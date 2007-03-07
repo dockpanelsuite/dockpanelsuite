@@ -1108,8 +1108,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 			if (floatPane == null)
 			{
 				IDockContent firstContent = GetFirstContent(DockState.Float);
-				if (firstContent == null)
-					return null;
+                if (firstContent == null)
+                {
+                    DockPanel.ResumeLayout(true, true);
+                    return null;
+                }
 				floatPane = DockPanel.DockPaneFactory.CreateDockPane(firstContent,DockState.Float, true);
 			}
 			SetVisibleContentsToPane(floatPane, activeContent);
