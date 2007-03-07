@@ -663,14 +663,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             FocusManager.SuspendFocusTracking();
 			SuspendLayout();
 			if (allWindows)
-			{
-				AutoHideWindow.SuspendLayout();
-
 				SuspendMdiClientLayout();
-
-                foreach (DockWindow dockWindow in DockWindows)
-					dockWindow.SuspendLayout();
-			}
 		}
 
 		public void ResumeLayout(bool performLayout, bool allWindows)
@@ -678,14 +671,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             FocusManager.ResumeFocusTracking();
             ResumeLayout(performLayout);
             if (allWindows)
-            {
-                AutoHideWindow.ResumeLayout(performLayout);
-
-                foreach (DockWindow dockWindow in DockWindows)
-                    dockWindow.ResumeLayout(performLayout);
-
                 ResumeMdiClientLayout(performLayout);
-            }
 		}
 
 	    internal Form ParentForm
