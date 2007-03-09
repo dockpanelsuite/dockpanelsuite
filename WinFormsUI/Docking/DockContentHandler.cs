@@ -933,7 +933,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (!IsDockStateValid(pane.DockState))
                 return false;
 
-            if (Pane == pane && pane.DisplayingContents.Count == 0)
+            if (Pane == pane && pane.DisplayingContents.Count == 1)
                 return false;
 
             return true;
