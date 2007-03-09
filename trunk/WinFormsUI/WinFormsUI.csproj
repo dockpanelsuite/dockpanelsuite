@@ -10,7 +10,8 @@
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
     <AssemblyName>WeifenLuo.WinFormsUI.Docking</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>WeifenLuo.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -176,7 +177,6 @@
     <None Include="Docking\Resources\DockIndicator_PanelTop.bmp" />
     <None Include="Docking\Resources\DockIndicator_PanelTop_Active.bmp" />
     <None Include="Docking\Resources\DockPanel.bmp" />
-    <None Include="WeifenLuo.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Docking\Resources\DockPaneStrip_CloseActive.bmp" />
