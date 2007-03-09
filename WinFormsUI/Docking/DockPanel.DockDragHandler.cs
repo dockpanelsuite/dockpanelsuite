@@ -792,11 +792,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 if (!Outline.FlagTestDrop)
                 {
-                    NativeMethods.SetCursor(Cursors.No.Handle);
+                    Cursor.Current = Cursors.No;
                     Outline.Show();
                 }
                 else
-                    NativeMethods.SetCursor(DragControl.Cursor.Handle);
+                    Cursor.Current = DragControl.Cursor;
             }
 
             private void EndDrag(bool abort)

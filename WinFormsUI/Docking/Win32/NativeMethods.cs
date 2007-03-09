@@ -13,9 +13,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 		public static extern bool DragDetect(IntPtr hWnd, Point pt);
 
         [DllImport("User32.dll", CharSet=CharSet.Auto)]
-        public static extern IntPtr SetCursor(IntPtr hCursor);
-
-        [DllImport("User32.dll", CharSet=CharSet.Auto)]
         public static extern IntPtr GetFocus();
 
         [DllImport("User32.dll", CharSet=CharSet.Auto)]
