@@ -122,7 +122,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		public IDockContent ActiveAutoHideContent
 		{
 			get	{	return AutoHideWindow.ActiveContent;	}
-			internal set	{	AutoHideWindow.ActiveContent = value;	}
+			set	{	AutoHideWindow.ActiveContent = value;	}
 		}
 
         private bool m_allowEndUserDocking = true;
