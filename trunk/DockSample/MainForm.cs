@@ -78,9 +78,7 @@ namespace DockSample
 			}
 			else
 			{
-				IDockContent[] documents = dockPanel.GetDocuments();
-
-				foreach (IDockContent content in documents)
+				foreach (IDockContent content in dockPanel.Documents)
 					if (content.DockHandler.TabText == text)
 						return content;
 
@@ -169,7 +167,7 @@ namespace DockSample
 			else
 			{
 				menuItemClose.Enabled = (dockPanel.ActiveDocument != null);
-				menuItemCloseAll.Enabled = (dockPanel.GetDocuments().Length > 0);
+				menuItemCloseAll.Enabled = (dockPanel.DocumentsCount > 0);
 			}
 		}
 
@@ -195,8 +193,8 @@ namespace DockSample
 			}
 			else
 			{
-				foreach (IDockContent content in dockPanel.GetDocuments())
-					content.DockHandler.Close();
+                foreach (IDockContent content in dockPanel.Documents)
+                    content.DockHandler.Close();
 			}
 		}
 
@@ -404,9 +402,7 @@ namespace DockSample
 			}
 			else
 			{
-				IDockContent[] documents = dockPanel.GetDocuments();
-
-				foreach (IDockContent document in documents)
+				foreach (IDockContent document in dockPanel.Documents)
 				{
 					if (!document.DockHandler.IsActivated)
 						document.DockHandler.Close();

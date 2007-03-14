@@ -110,26 +110,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             Items.Remove(content);
         }
 
-        internal IDockContent[] Select(DockAreas stateFilter)
-        {
-            if (DockPane != null)
-                throw new InvalidOperationException();
-
-            int count = 0;
-            foreach (IDockContent c in this)
-                if (DockHelper.IsDockStateValid(c.DockHandler.DockState, stateFilter))
-                    count++;
-
-            IDockContent[] contents = new IDockContent[count];
-
-            count = 0;
-            foreach (IDockContent c in this)
-                if (DockHelper.IsDockStateValid(c.DockHandler.DockState, stateFilter))
-                    contents[count++] = c;
-
-            return contents;
-        }
-
         private int CountOfVisibleContents
         {
             get
