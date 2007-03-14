@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Text;
 using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -392,9 +393,42 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-		public IDockContent[] GetDocuments()
+        public int DocumentsCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (DockContent content in Documents)
+                    count++;
+
+                return count;
+            }
+        }
+
+        public IDockContent[] GetDocuments()
+        {
+            int count = DocumentsCount;
+            IDockContent[] documents = new IDockContent[count];
+            int i = 0;
+            foreach (IDockContent content in Documents)
+            {
+                documents[i] = content;
+                i++;
+            }
+
+            return documents;
+        }
+
+		public IEnumerable<IDockContent> Documents
 		{
-            return Contents.Select(DockAreas.Document);
+            get
+            {
+                foreach (IDockContent content in Contents)
+                {
+                    if (content.DockHandler.DockState == DockState.Document)
+                        yield return content;
+                }
+            }
 		}
 
 		private Rectangle DocumentRectangle
