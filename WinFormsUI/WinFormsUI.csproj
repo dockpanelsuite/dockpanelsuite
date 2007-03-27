@@ -179,35 +179,16 @@
     <None Include="Docking\Resources\DockPanel.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Docking\Resources\DockPaneStrip_CloseActive.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Docking\Resources\DockPaneStrip_CloseInactive.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="license.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="Docking\Resources\DockPaneCaption_Options2.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_Options3.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_Options0.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_Options1.bmp" />
-    <Content Include="Docking\Resources\DockPaneStrip_WindowListActiveOverflow.bmp" />
-    <Content Include="Docking\Resources\DockPaneStrip_WindowListInactiveOverflow.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_Close3.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide7.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide3.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide0.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide1.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide2.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide4.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide5.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_AutoHide6.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_Close0.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_Close1.bmp" />
-    <Content Include="Docking\Resources\DockPaneCaption_Close2.bmp" />
-    <Content Include="Docking\Resources\DockPaneStrip_WindowListInactive.bmp" />
-    <Content Include="Docking\Resources\DockPaneStrip_WindowListActive.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Docking\Resources\DockPane_AutoHide.bmp" />
+    <None Include="Docking\Resources\DockPane_Close.bmp" />
+    <None Include="Docking\Resources\DockPane_Dock.bmp" />
+    <None Include="Docking\Resources\DockPane_Option.bmp" />
+    <None Include="Docking\Resources\DockPane_OptionOverflow.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
