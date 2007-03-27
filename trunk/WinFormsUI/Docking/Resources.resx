@@ -172,73 +172,22 @@
   <data name="DockIndicator_PanelTop_Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PanelTop_Active.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockPaneCaption_AutoHide0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide0.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DockPane_AutoHide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPane_AutoHide.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockPaneCaption_AutoHide1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide1.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DockPane_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPane_Close.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockPaneCaption_AutoHide2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide2.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DockPane_Dock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPane_Dock.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockPaneCaption_AutoHide3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide3.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DockPane_Option" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPane_Option.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockPaneCaption_AutoHide4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide4.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_AutoHide5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide5.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_AutoHide6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide6.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_AutoHide7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_AutoHide7.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Close0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Close0.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Close1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Close1.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Close2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Close2.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Close3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Close3.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Options0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Options0.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Options1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Options1.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Options2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Options2.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneCaption_Options3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneCaption_Options3.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DockPane_OptionOverflow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPane_OptionOverflow.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPanel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockPanel.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneStrip_CloseActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneStrip_CloseActive.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneStrip_CloseInactive" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneStrip_CloseInactive.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneStrip_WindowListActive" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneStrip_WindowListActive.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneStrip_WindowListActiveOverflow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneStrip_WindowListActiveOverflow.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneStrip_WindowListInactive" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneStrip_WindowListInactive.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockPaneStrip_WindowListInactiveOverflow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockPaneStrip_WindowListInactiveOverflow.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

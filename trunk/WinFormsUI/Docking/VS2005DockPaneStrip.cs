@@ -53,10 +53,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private sealed class InertButton : InertButtonBase
         {
-            public InertButton(ImageList imageList)
-                : base(imageList)
+            private Bitmap m_image0, m_image1;
+
+            public InertButton(Bitmap image0, Bitmap image1)
+                : base()
             {
-                RefreshChanges();
+                m_image0 = image0;
+                m_image1 = image1;
             }
 
             private int m_imageCategory = 0;
@@ -69,16 +72,22 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return;
 
                     m_imageCategory = value;
-                    RefreshChanges();
+                    Invalidate();
                 }
             }
 
-            protected override void  OnRefreshChanges()
+            public override Bitmap Image
             {
-                if (IsMouseOver)
-                    ImageIndex = 0 + 2 * ImageCategory;
-                else
-                    ImageIndex = 1 + 2 * ImageCategory;
+                get { return ImageCategory == 0 ? m_image0 : m_image1; }
+            }
+
+            protected override void OnRefreshChanges()
+            {
+                if (VS2005DockPaneStrip.ColorDocumentActiveText != ForeColor)
+                {
+                    ForeColor = VS2005DockPaneStrip.ColorDocumentActiveText;
+                    Invalidate();
+                }
             }
         }
 
@@ -115,22 +124,15 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int _DocumentTextGapRight = 3;
 		#endregion
 
-        private static ImageList _imageListButtonClose;
-        private static ImageList ImageListButtonClose
+        private static Bitmap _imageButtonClose;
+        private static Bitmap ImageButtonClose
         {
             get
             {
-                if (_imageListButtonClose == null)
-                {
-                    _imageListButtonClose = new ImageList();
-                    Bitmap bitmapCloseInactive = Resources.DockPaneStrip_CloseInactive;
-                    _imageListButtonClose.ImageSize = bitmapCloseInactive.Size;
-                    _imageListButtonClose.TransparentColor = bitmapCloseInactive.GetPixel(0, 0);
-                    _imageListButtonClose.Images.Add(Resources.DockPaneStrip_CloseActive);
-                    _imageListButtonClose.Images.Add(bitmapCloseInactive);
-                }
+                if (_imageButtonClose == null)
+                    _imageButtonClose = Resources.DockPane_Close;
 
-                return _imageListButtonClose;
+                return _imageButtonClose;
             }
         }
 
@@ -141,7 +143,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonClose == null)
                 {
-                    m_buttonClose = new InertButton(ImageListButtonClose);
+                    m_buttonClose = new InertButton(ImageButtonClose, ImageButtonClose);
                     m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
                     m_buttonClose.Click += new EventHandler(Close_Click);
                     Controls.Add(m_buttonClose);
@@ -151,24 +153,27 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static ImageList _imageListButtonWindowList;
-        private static ImageList ImageListButtonWindowList
+        private static Bitmap _imageButtonWindowList;
+        private static Bitmap ImageButtonWindowList
         {
             get
             {
-                if (_imageListButtonWindowList == null)
-                {
-                    _imageListButtonWindowList = new ImageList();
-                    Bitmap bitmapInactive = Resources.DockPaneStrip_WindowListInactive;
-                    _imageListButtonWindowList.ImageSize = bitmapInactive.Size;
-                    _imageListButtonWindowList.TransparentColor = bitmapInactive.GetPixel(0, 0);
-                    _imageListButtonWindowList.Images.Add(Resources.DockPaneStrip_WindowListActive);
-                    _imageListButtonWindowList.Images.Add(bitmapInactive);
-                    _imageListButtonWindowList.Images.Add(Resources.DockPaneStrip_WindowListActiveOverflow);
-                    _imageListButtonWindowList.Images.Add(Resources.DockPaneStrip_WindowListInactiveOverflow);
-                }
+                if (_imageButtonWindowList == null)
+                    _imageButtonWindowList = Resources.DockPane_Option;
 
-                return _imageListButtonWindowList;
+                return _imageButtonWindowList;
+            }
+        }
+
+        private static Bitmap _imageButtonWindowListOverflow;
+        private static Bitmap ImageButtonWindowListOverflow
+        {
+            get
+            {
+                if (_imageButtonWindowListOverflow == null)
+                    _imageButtonWindowListOverflow = Resources.DockPane_OptionOverflow;
+
+                return _imageButtonWindowListOverflow;
             }
         }
 
@@ -179,7 +184,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonWindowList == null)
                 {
-                    m_buttonWindowList = new InertButton(ImageListButtonWindowList);
+                    m_buttonWindowList = new InertButton(ImageButtonWindowList, ImageButtonWindowListOverflow);
                     m_toolTip.SetToolTip(m_buttonWindowList, ToolTipSelect);
                     m_buttonWindowList.Click += new EventHandler(WindowList_Click);
                     Controls.Add(m_buttonWindowList);
@@ -1187,6 +1192,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 bool showCloseButton = DockPane.ActiveContent == null ? true : DockPane.ActiveContent.DockHandler.CloseButton;
                 ButtonClose.Enabled = showCloseButton;
+                ButtonClose.RefreshChanges();
+                ButtonWindowList.RefreshChanges();
             }
 		}
 

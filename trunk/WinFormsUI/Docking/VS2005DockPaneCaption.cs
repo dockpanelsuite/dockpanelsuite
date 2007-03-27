@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.Windows.Forms.VisualStyles;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -10,52 +11,39 @@ namespace WeifenLuo.WinFormsUI.Docking
 	{
         private sealed class InertButton : InertButtonBase
         {
-            public InertButton(DockPane dockPane, ImageList imageList)
-                : base(imageList)
+            private Bitmap m_image, m_imageAutoHide;
+
+            public InertButton(VS2005DockPaneCaption dockPaneCaption, Bitmap image, Bitmap imageAutoHide)
+                : base()
             {
-                m_dockPane = dockPane;
+                m_dockPaneCaption = dockPaneCaption;
+                m_image = image;
+                m_imageAutoHide = imageAutoHide;
                 RefreshChanges();
             }
 
-            private DockPane m_dockPane;
-            private DockPane DockPane
+            private VS2005DockPaneCaption m_dockPaneCaption;
+            private VS2005DockPaneCaption DockPaneCaption
             {
-                get { return m_dockPane; }
-            }
-
-            public bool IsPaneActive
-            {
-                get { return DockPane.IsActivated; }
+                get { return m_dockPaneCaption; }
             }
 
             public bool IsAutoHide
             {
-                get { return DockPane.IsAutoHide; }
+                get { return DockPaneCaption.DockPane.IsAutoHide; }
+            }
+
+            public override Bitmap Image
+            {
+                get { return IsAutoHide ? m_imageAutoHide : m_image; }
             }
 
             protected override void OnRefreshChanges()
             {
-                if (!IsAutoHide || ImageList.Images.Count == 4)
+                if (DockPaneCaption.TextColor != ForeColor)
                 {
-                    if (IsMouseOver && IsPaneActive)
-                        ImageIndex = 0;
-                    else if (IsMouseOver && !IsPaneActive)
-                        ImageIndex = 1;
-                    else if (IsPaneActive)
-                        ImageIndex = 2;
-                    else
-                        ImageIndex = 3;
-                }
-                else
-                {
-                    if (IsMouseOver && IsPaneActive)
-                        ImageIndex = 4;
-                    else if (IsMouseOver && !IsPaneActive)
-                        ImageIndex = 5;
-                    else if (IsPaneActive)
-                        ImageIndex = 6;
-                    else
-                        ImageIndex = 7;
+                    ForeColor = DockPaneCaption.TextColor;
+                    Invalidate();
                 }
             }
         }
@@ -72,24 +60,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private const int _ButtonGapRight = 2;
 		#endregion
 
-        private static ImageList _imageListButtonClose;
-        private static ImageList ImageListButtonClose
+        private static Bitmap _imageButtonClose;
+        private static Bitmap ImageButtonClose
         {
             get
             {
-                if (_imageListButtonClose == null)
-                {
-                    _imageListButtonClose = new ImageList();
-                    Bitmap bitmap = Resources.DockPaneCaption_Close2;
-                    _imageListButtonClose.ImageSize = bitmap.Size;
-                    _imageListButtonClose.TransparentColor = bitmap.GetPixel(0, 0);
-                    _imageListButtonClose.Images.Add(Resources.DockPaneCaption_Close0);
-                    _imageListButtonClose.Images.Add(Resources.DockPaneCaption_Close1);
-                    _imageListButtonClose.Images.Add(bitmap);
-                    _imageListButtonClose.Images.Add(Resources.DockPaneCaption_Close3);
-                }
+                if (_imageButtonClose == null)
+                    _imageButtonClose = Resources.DockPane_Close;
 
-                return _imageListButtonClose;
+                return _imageButtonClose;
             }
         }
 
@@ -100,7 +79,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonClose == null)
                 {
-                    m_buttonClose = new InertButton(DockPane, ImageListButtonClose);
+                    m_buttonClose = new InertButton(this, ImageButtonClose, ImageButtonClose);
                     m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
                     m_buttonClose.Click += new EventHandler(Close_Click);
                     Controls.Add(m_buttonClose);
@@ -110,39 +89,38 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static ImageList _imageListButtonAutoHide;
-        private static ImageList ImageListButtonAutoHide
+        private static Bitmap _imageButtonAutoHide;
+        private static Bitmap ImageButtonAutoHide
         {
             get
             {
-                if (_imageListButtonAutoHide == null)
-                {
-                    _imageListButtonAutoHide = new ImageList();
-                    Bitmap bitmap = Resources.DockPaneCaption_AutoHide2;
-                    _imageListButtonAutoHide.ImageSize = bitmap.Size;
-                    _imageListButtonAutoHide.TransparentColor = bitmap.GetPixel(0, 0);
-                    _imageListButtonAutoHide.Images.Add(Resources.DockPaneCaption_AutoHide0);
-                    _imageListButtonAutoHide.Images.Add(Resources.DockPaneCaption_AutoHide1);
-                    _imageListButtonAutoHide.Images.Add(bitmap);
-                    _imageListButtonAutoHide.Images.Add(Resources.DockPaneCaption_AutoHide3);
-                    _imageListButtonAutoHide.Images.Add(Resources.DockPaneCaption_AutoHide4);
-                    _imageListButtonAutoHide.Images.Add(Resources.DockPaneCaption_AutoHide5);
-                    _imageListButtonAutoHide.Images.Add(Resources.DockPaneCaption_AutoHide6);
-                    _imageListButtonAutoHide.Images.Add(Resources.DockPaneCaption_AutoHide7);
-                }
+                if (_imageButtonAutoHide == null)
+                    _imageButtonAutoHide = Resources.DockPane_AutoHide;
 
-                return _imageListButtonAutoHide;
+                return _imageButtonAutoHide;
             }
         }
 
-		private InertButton m_buttonAutoHide;
+        private static Bitmap _imageButtonDock;
+        private static Bitmap ImageButtonDock
+        {
+            get
+            {
+                if (_imageButtonDock == null)
+                    _imageButtonDock = Resources.DockPane_Dock;
+
+                return _imageButtonDock;
+            }
+        }
+
+        private InertButton m_buttonAutoHide;
         private InertButton ButtonAutoHide
         {
             get
             {
                 if (m_buttonAutoHide == null)
                 {
-                    m_buttonAutoHide = new InertButton(DockPane, ImageListButtonAutoHide);
+                    m_buttonAutoHide = new InertButton(this, ImageButtonDock, ImageButtonAutoHide);
                     m_toolTip.SetToolTip(m_buttonAutoHide, ToolTipAutoHide);
                     m_buttonAutoHide.Click += new EventHandler(AutoHide_Click);
                     Controls.Add(m_buttonAutoHide);
@@ -152,24 +130,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static ImageList _imageListButtonOptions;
-        private static ImageList ImageListButtonOptions
+        private static Bitmap _imageButtonOptions;
+        private static Bitmap ImageButtonOptions
         {
             get
             {
-                if (_imageListButtonOptions == null)
-                {
-                    _imageListButtonOptions = new ImageList();
-                    Bitmap bitmap = Resources.DockPaneCaption_Options2;
-                    _imageListButtonOptions.ImageSize = bitmap.Size;
-                    _imageListButtonOptions.TransparentColor = bitmap.GetPixel(0, 0);
-                    _imageListButtonOptions.Images.Add(Resources.DockPaneCaption_Options0);
-                    _imageListButtonOptions.Images.Add(Resources.DockPaneCaption_Options1);
-                    _imageListButtonOptions.Images.Add(bitmap);
-                    _imageListButtonOptions.Images.Add(Resources.DockPaneCaption_Options3);
-                }
+                if (_imageButtonOptions == null)
+                    _imageButtonOptions = Resources.DockPane_Option;
 
-                return _imageListButtonOptions;
+                return _imageButtonOptions;
             }
         }
 
@@ -180,7 +149,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonOptions == null)
                 {
-                    m_buttonOptions = new InertButton(DockPane, ImageListButtonOptions);
+                    m_buttonOptions = new InertButton(this, ImageButtonOptions, ImageButtonOptions);
                     m_toolTip.SetToolTip(m_buttonOptions, ToolTipOptions);
                     m_buttonOptions.Click += new EventHandler(Options_Click);
                     Controls.Add(m_buttonOptions);
@@ -294,20 +263,45 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 		}
 
+        private static Blend _activeBackColorGradientBlend;
+        private static Blend ActiveBackColorGradientBlend
+        {
+            get
+            {
+                if (_activeBackColorGradientBlend == null)
+                {
+                    Blend blend = new Blend(2);
+
+                    blend.Factors = new float[]{0.5F, 1.0F};
+                    blend.Positions = new float[]{0.0F, 1.0F};
+                    _activeBackColorGradientBlend = blend;
+                }
+
+                return _activeBackColorGradientBlend;
+            }
+        }
+
 		private static Color ActiveBackColorGradientBegin
 		{
-			get	{ return Color.FromArgb(59, 128, 237); }
+            get { return SystemColors.GradientActiveCaption; }
         }
-		
 
         private static Color ActiveBackColorGradientEnd
         {
-            get { return Color.FromArgb(49, 106, 197); }
+            get { return SystemColors.ActiveCaption; }
         }
 
 		private static Color InactiveBackColor
 		{
-            get { return Color.FromArgb(204, 199, 186); }
+            get
+            {
+                string colorScheme = VisualStyleInformation.ColorScheme;
+
+                if (colorScheme == "HomeStead" || colorScheme == "Metallic")
+                    return SystemColors.GradientInactiveCaption;
+                else
+                    return SystemColors.GrayText;
+            }
 		}
 
 		private static Color ActiveTextColor
@@ -320,10 +314,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return SystemColors.ControlText;	}
 		}
 
-		private static Color InactiveBorderColor
-		{
-			get	{	return SystemColors.GrayText; }
-		}
+        private Color TextColor
+        {
+            get { return DockPane.IsActivated ? ActiveTextColor : InactiveTextColor; }
+        }
 
 		private static TextFormatFlags _textFormat =
             TextFormatFlags.SingleLine |
@@ -362,6 +356,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, ActiveBackColorGradientBegin, ActiveBackColorGradientEnd, LinearGradientMode.Vertical))
                 {
+                    brush.Blend = ActiveBackColorGradientBlend;
                     g.FillRectangle(brush, ClientRectangle);
                 }
             }
@@ -375,17 +370,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 			Rectangle rectCaption = ClientRectangle;
 
-			if (!DockPane.IsActivated)
-			{
-				using (Pen pen = new Pen(InactiveBorderColor))
-				{
-					g.DrawLine(pen, rectCaption.X + 1, rectCaption.Y, rectCaption.X + rectCaption.Width - 2, rectCaption.Y);
-					g.DrawLine(pen, rectCaption.X + 1, rectCaption.Y + rectCaption.Height - 1, rectCaption.X + rectCaption.Width - 2, rectCaption.Y + rectCaption.Height - 1);
-					g.DrawLine(pen, rectCaption.X, rectCaption.Y + 1, rectCaption.X, rectCaption.Y + rectCaption.Height - 2);
-					g.DrawLine(pen, rectCaption.X + rectCaption.Width - 1, rectCaption.Y + 1, rectCaption.X + rectCaption.Width - 1, rectCaption.Y + rectCaption.Height - 2);
-				}
-			}
-
 			Rectangle rectCaptionText = rectCaption;
             rectCaptionText.X += TextGapLeft;
             rectCaptionText.Width -= TextGapLeft + TextGapRight;
@@ -396,7 +380,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rectCaptionText.Width -= ButtonOptions.Width + ButtonGapBetween;
 			rectCaptionText.Y += TextGapTop;
 			rectCaptionText.Height -= TextGapTop + TextGapBottom;
-            TextRenderer.DrawText(g, DockPane.CaptionText, Font, DrawHelper.RtlTransform(this, rectCaptionText), DockPane.IsActivated ? ActiveTextColor : InactiveTextColor, TextFormat);
+            TextRenderer.DrawText(g, DockPane.CaptionText, Font, DrawHelper.RtlTransform(this, rectCaptionText), TextColor, TextFormat);
 		}
 
 		protected override void OnLayout(LayoutEventArgs levent)

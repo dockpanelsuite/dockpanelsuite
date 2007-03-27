@@ -186,114 +186,37 @@ namespace WeifenLuo.WinFormsUI.Docking {
             }
         }
         
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide0 {
+        internal static System.Drawing.Bitmap DockPane_AutoHide {
             get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide0", resourceCulture);
+                object obj = ResourceManager.GetObject("DockPane_AutoHide", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide1 {
+        internal static System.Drawing.Bitmap DockPane_Close {
             get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide1", resourceCulture);
+                object obj = ResourceManager.GetObject("DockPane_Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide2 {
+        internal static System.Drawing.Bitmap DockPane_Dock {
             get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide2", resourceCulture);
+                object obj = ResourceManager.GetObject("DockPane_Dock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide3 {
+        internal static System.Drawing.Bitmap DockPane_Option {
             get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide3", resourceCulture);
+                object obj = ResourceManager.GetObject("DockPane_Option", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide4 {
+        internal static System.Drawing.Bitmap DockPane_OptionOverflow {
             get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide5 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide5", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide6 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide6", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_AutoHide7 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_AutoHide7", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Close0 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Close0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Close1 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Close1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Close2 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Close2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Close3 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Close3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Options0 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Options0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Options1 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Options1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Options2 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Options2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneCaption_Options3 {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneCaption_Options3", resourceCulture);
+                object obj = ResourceManager.GetObject("DockPane_OptionOverflow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -301,48 +224,6 @@ namespace WeifenLuo.WinFormsUI.Docking {
         internal static System.Drawing.Bitmap DockPanel {
             get {
                 object obj = ResourceManager.GetObject("DockPanel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneStrip_CloseActive {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneStrip_CloseActive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneStrip_CloseInactive {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneStrip_CloseInactive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneStrip_WindowListActive {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneStrip_WindowListActive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneStrip_WindowListActiveOverflow {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneStrip_WindowListActiveOverflow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneStrip_WindowListInactive {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneStrip_WindowListInactive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap DockPaneStrip_WindowListInactiveOverflow {
-            get {
-                object obj = ResourceManager.GetObject("DockPaneStrip_WindowListInactiveOverflow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
