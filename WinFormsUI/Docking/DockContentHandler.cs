@@ -941,7 +941,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         Rectangle IDockDragSource.BeginDrag(Point ptMouse)
         {
-            Size size = FloatWindow.DefaultWindowSize;
+            Size size;
+            DockPane floatPane = this.FloatPane;
+            if (DockState == DockState.Float || floatPane == null || floatPane.FloatWindow.NestedPanes.Count != 1)
+                size = DockPanel.DefaultFloatWindowSize;
+            else
+                size = floatPane.FloatWindow.Size;
+
             Point location;
 			Rectangle rectPane = Pane.ClientRectangle;
             if (DockState == DockState.Document)

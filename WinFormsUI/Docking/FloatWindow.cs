@@ -11,7 +11,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 	public class FloatWindow : Form, INestedPanesContainer, IDockDragSource
 	{
 		private NestedPaneCollection m_nestedPanes;
-		internal static Size DefaultWindowSize = new Size(300, 300);
 		internal const int WM_CHECKDISPOSE = (int)(Win32.Msgs.WM_USER + 1);
 
 		public FloatWindow(DockPanel dockPanel, DockPane pane)
@@ -39,13 +38,16 @@ namespace WeifenLuo.WinFormsUI.Docking
                 RightToLeftLayout = dockPanel.RightToLeftLayout;
 			
 			SuspendLayout();
-			if (boundsSpecified)
-			{
-				Bounds = bounds;
-				StartPosition = FormStartPosition.Manual;
-			}
-			else
-				StartPosition = FormStartPosition.WindowsDefaultLocation;
+            if (boundsSpecified)
+            {
+                Bounds = bounds;
+                StartPosition = FormStartPosition.Manual;
+            }
+            else
+            {
+                StartPosition = FormStartPosition.WindowsDefaultLocation;
+                Size = dockPanel.DefaultFloatWindowSize;
+            }
 
 			m_dockPanel = dockPanel;
 			Owner = DockPanel.FindForm();
@@ -72,11 +74,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			get	{	return m_allowEndUserDocking;	}
 			set	{	m_allowEndUserDocking = value;	}
-		}
-
-		protected override Size DefaultSize
-		{
-			get	{	return FloatWindow.DefaultWindowSize;	}
 		}
 
 		public NestedPaneCollection NestedPanes
