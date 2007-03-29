@@ -466,6 +466,19 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return m_floatWindows;	}
 		}
 
+        private Size m_defaultFloatWindowSize = new Size(300, 300);
+        [Category("Layout")]
+        [LocalizedDescription("DockPanel_DefaultFloatWindowSize_Description")]
+        public Size DefaultFloatWindowSize
+        {
+            get { return m_defaultFloatWindowSize; }
+            set { m_defaultFloatWindowSize = value; }
+        }
+        private bool ShouldSerializeDefaultFloatWindowSize()
+        {
+            return DefaultFloatWindowSize != new Size(300, 300);
+        }
+
 		private DocumentStyle m_documentStyle = DocumentStyle.DockingMdi;
 		[LocalizedCategory("Category_Docking")]
 		[LocalizedDescription("DockPanel_DocumentStyle_Description")]
