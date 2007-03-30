@@ -574,8 +574,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             else
             {
-                if (BackColor != Color.WhiteSmoke)
-                    BackColor = Color.WhiteSmoke;
+                if (BackColor != SystemColors.ControlLight)
+                    BackColor = SystemColors.ControlLight;
             }
 			base.OnPaint (e);
 			CalculateTabs();
