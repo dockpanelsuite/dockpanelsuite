@@ -551,7 +551,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     m_dragForm = new DragForm();
                     SetDragForm(Rectangle.Empty);
-                    DragForm.BackColor = Color.Blue;
+                    DragForm.BackColor = SystemColors.ActiveCaption;
                     DragForm.Opacity = 0.5;
                     DragForm.Show(false);
                 }

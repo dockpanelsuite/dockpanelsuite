@@ -352,6 +352,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		private void DrawCaption(Graphics g)
 		{
+            if (ClientRectangle.IsEmpty)
+                return;
+
             if (DockPane.IsActivated)
             {
                 using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, ActiveBackColorGradientBegin, ActiveBackColorGradientEnd, LinearGradientMode.Vertical))

@@ -198,7 +198,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			SetStyle(ControlStyles.ResizeRedraw, true);
 			SetStyle(ControlStyles.UserPaint, true);
 			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-			BackColor = Color.WhiteSmoke;
+            BackColor = SystemColors.ControlLight;
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
