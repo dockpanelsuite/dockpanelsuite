@@ -209,12 +209,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return m_extender;	}
 		}
 
-		internal DockPanelExtender.IDockPaneFactory DockPaneFactory
+		public DockPanelExtender.IDockPaneFactory DockPaneFactory
 		{
 			get	{	return Extender.DockPaneFactory;	}
 		}
 
-		internal DockPanelExtender.IFloatWindowFactory FloatWindowFactory
+		public DockPanelExtender.IFloatWindowFactory FloatWindowFactory
 		{
 			get	{	return Extender.FloatWindowFactory;	}
 		}
