@@ -257,14 +257,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     IDockContent prev = handler.PreviousActive;
                     if (prev != null)
-                        prev.DockHandler.Activate();
+                        Activate(prev);
                     else if (ListContent.Count > 0)
-                        ListContent[ListContent.Count - 1].DockHandler.Activate();
+                        Activate(ListContent[ListContent.Count - 1]);
                 }
                 else if (LastActiveContent != null)
-                    LastActiveContent.DockHandler.Activate();
+                    Activate(LastActiveContent);
                 else if (ListContent.Count > 0)
-                    ListContent[ListContent.Count - 1].DockHandler.Activate();
+                    Activate(ListContent[ListContent.Count - 1]);
             }
 
             private static bool ContentContains(IDockContent content, IntPtr hWnd)
