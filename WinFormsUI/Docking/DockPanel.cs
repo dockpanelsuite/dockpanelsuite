@@ -398,7 +398,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 int count = 0;
-                foreach (DockContent content in Documents)
+                foreach (IDockContent content in Documents)
                     count++;
 
                 return count;
