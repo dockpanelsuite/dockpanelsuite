@@ -704,11 +704,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             // Change the parent of a control with focus may result in the first
             // MDI child form get activated. 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            bool bRestureFocus = false;
+            bool bRestoreFocus = false;
             if (Form.ContainsFocus)
             {
-                DockPanel.SaveFocus();
-                bRestureFocus = true;
+                if (value == null)
+                    DockPanel.ContentFocusManager.GiveUpFocus(this.Content);
+                else
+                {
+                    DockPanel.SaveFocus();
+                    bRestoreFocus = true;
+                }
             }
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -719,7 +724,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             // Change the parent of a control with focus may result in the first
             // MDI child form get activated. 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (bRestureFocus)
+            if (bRestoreFocus)
                 Activate();
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
