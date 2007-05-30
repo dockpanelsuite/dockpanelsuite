@@ -34,10 +34,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 			m_panes = new DockPaneCollection();
 			m_floatWindows = new FloatWindowCollection();
 
-			SetStyle(ControlStyles.ResizeRedraw |
-				ControlStyles.UserPaint |
-				ControlStyles.AllPaintingInWmPaint, true);
-
             SuspendLayout();
             Font = SystemInformation.MenuFont;
 
