@@ -459,9 +459,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		public VS2005DockPaneStrip(DockPane pane) : base(pane)
 		{
-			SetStyle(ControlStyles.ResizeRedraw, true);
-			SetStyle(ControlStyles.UserPaint, true);
-			SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+			SetStyle(ControlStyles.ResizeRedraw |
+                ControlStyles.UserPaint |
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.OptimizedDoubleBuffer, true);
 
 			SuspendLayout();
 
