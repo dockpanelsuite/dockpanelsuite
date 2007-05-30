@@ -487,7 +487,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			base.Dispose (disposing);
 		}
 
-        private Font TextFont
+        private static Font TextFont
         {
             get { return SystemInformation.MenuFont; }
         }

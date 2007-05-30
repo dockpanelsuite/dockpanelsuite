@@ -44,7 +44,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private const int _TabGapBetween = 10;
 
 		#region Customizable Properties
-        private Font TextFont
+        private static Font TextFont
         {
             get { return SystemInformation.MenuFont; }
         }
