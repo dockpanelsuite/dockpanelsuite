@@ -170,7 +170,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			SuspendLayout();
 
-			Font = SystemInformation.MenuFont;
             m_components = new Container();
             m_toolTip = new ToolTip(Components);
 
@@ -188,6 +187,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			get	{	return _TextGapTop;	}
 		}
+
+        private Font TextFont
+        {
+            get { return SystemInformation.MenuFont; }
+        }
 
 		private static int TextGapBottom
 		{
@@ -336,7 +340,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		protected internal override int MeasureHeight()
 		{
-			int height = Font.Height + TextGapTop + TextGapBottom;
+			int height = TextFont.Height + TextGapTop + TextGapBottom;
 
 			if (height < ButtonClose.Image.Height + ButtonGapTop + ButtonGapBottom)
 				height = ButtonClose.Image.Height + ButtonGapTop + ButtonGapBottom;
@@ -383,7 +387,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rectCaptionText.Width -= ButtonOptions.Width + ButtonGapBetween;
 			rectCaptionText.Y += TextGapTop;
 			rectCaptionText.Height -= TextGapTop + TextGapBottom;
-            TextRenderer.DrawText(g, DockPane.CaptionText, Font, DrawHelper.RtlTransform(this, rectCaptionText), TextColor, TextFormat);
+            TextRenderer.DrawText(g, DockPane.CaptionText, TextFont, DrawHelper.RtlTransform(this, rectCaptionText), TextColor, TextFormat);
 		}
 
 		protected override void OnLayout(LayoutEventArgs levent)

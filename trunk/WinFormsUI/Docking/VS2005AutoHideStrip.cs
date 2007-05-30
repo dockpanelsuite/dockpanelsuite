@@ -44,6 +44,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private const int _TabGapBetween = 10;
 
 		#region Customizable Properties
+        private Font TextFont
+        {
+            get { return SystemInformation.MenuFont; }
+        }
+
 		private static StringFormat _stringFormatTabHorizontal;
 		private StringFormat StringFormatTabHorizontal
 		{
@@ -269,7 +274,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 foreach (TabVS2005 tab in pane.AutoHideTabs)
                 {
                     int width = imageWidth + ImageGapLeft + ImageGapRight +
-                        TextRenderer.MeasureText(tab.Content.DockHandler.TabText, Font).Width +
+                        TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width +
                         TextGapLeft + TextGapRight;
                     tab.TabX = x;
                     tab.TabWidth = width;
@@ -339,9 +344,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 			rectText.Width -= ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
 			rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
 			if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
-				g.DrawString(content.DockHandler.TabText, Font, BrushTabText, rectText, StringFormatTabVertical);
+				g.DrawString(content.DockHandler.TabText, TextFont, BrushTabText, rectText, StringFormatTabVertical);
 			else
-				g.DrawString(content.DockHandler.TabText, Font, BrushTabText, rectText, StringFormatTabHorizontal);
+				g.DrawString(content.DockHandler.TabText, TextFont, BrushTabText, rectText, StringFormatTabHorizontal);
 
 			// Set rotate back
 			g.Transform = matrixRotate;
@@ -475,7 +480,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			return Math.Max(ImageGapBottom +
 				ImageGapTop + ImageHeight,
-				Font.Height) + TabGapTop;
+				TextFont.Height) + TabGapTop;
 		}
 
 		protected override void OnRefreshChanges()

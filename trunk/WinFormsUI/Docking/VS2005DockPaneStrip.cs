@@ -466,8 +466,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 			SuspendLayout();
 
-			Font = SystemInformation.MenuFont;
-			
 			m_components = new Container();
 			m_toolTip = new ToolTip(Components);
             m_selectMenu = new ContextMenuStrip(Components);
@@ -477,30 +475,45 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing)
-				Components.Dispose();
+            if (disposing)
+            {
+                Components.Dispose();
+                if (m_boldFont != null)
+                {
+                    m_boldFont.Dispose();
+                    m_boldFont = null;
+                }
+            }
 			base.Dispose (disposing);
 		}
 
+        private Font TextFont
+        {
+            get { return SystemInformation.MenuFont; }
+        }
+
+        private Font m_font;
         private Font m_boldFont;
         private Font BoldFont
         {
             get
             {
+                if (IsDisposed)
+                    return null;
+
                 if (m_boldFont == null)
-                    m_boldFont = new Font(Font, FontStyle.Bold);
+                {
+                    m_font = TextFont;
+                    m_boldFont = new Font(TextFont, FontStyle.Bold);
+                }
+                else if (m_font != TextFont)
+                {
+                    m_boldFont.Dispose();
+                    m_font = TextFont;
+                    m_boldFont = new Font(TextFont, FontStyle.Bold);
+                }
 
                 return m_boldFont;
-            }
-        }
-
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            if (m_boldFont != null)
-            {
-                m_boldFont.Dispose();
-                m_boldFont = null;
             }
         }
 
@@ -551,7 +564,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			if (DockPane.IsAutoHide || Tabs.Count <= 1)
 				return 0;
 
-            int height = Math.Max(Font.Height, ToolWindowImageHeight + ToolWindowImageGapTop + ToolWindowImageGapBottom)
+            int height = Math.Max(TextFont.Height, ToolWindowImageHeight + ToolWindowImageGapTop + ToolWindowImageGapBottom)
                 + ToolWindowStripGapTop + ToolWindowStripGapBottom;
 
 			return height;
@@ -559,7 +572,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		private int MeasureHeight_Document()
 		{
-			int height = Math.Max(Font.Height + DocumentTabGapTop,
+			int height = Math.Max(TextFont.Height + DocumentTabGapTop,
 				ButtonClose.Height + DocumentButtonGapTop + DocumentButtonGapBottom)
                 + DocumentStripGapBottom + DocumentStripGapTop;
 
@@ -810,7 +823,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private int GetMaxTabWidth_ToolWindow(int index)
 		{
 			IDockContent content = Tabs[index].Content;
-			Size sizeString = TextRenderer.MeasureText(content.DockHandler.TabText, Font);
+			Size sizeString = TextRenderer.MeasureText(content.DockHandler.TabText, TextFont);
 			return ToolWindowImageWidth + sizeString.Width + ToolWindowImageGapLeft
 				+ ToolWindowImageGapRight + ToolWindowTextGapRight;
 		}
@@ -1031,7 +1044,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			{
 				g.FillPath(BrushToolWindowActiveBackground, path);
                 g.DrawPath(PenToolWindowTabBorder, path);
-                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, Font, rectText, ColorToolWindowActiveText, ToolWindowTextFormat);
+                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorToolWindowActiveText, ToolWindowTextFormat);
 			}
 			else
 			{
@@ -1041,7 +1054,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     Point pt2 = new Point(rect.Right, rect.Bottom - ToolWindowTabSeperatorGapBottom); 
                     g.DrawLine(PenToolWindowTabBorder, DrawHelper.RtlTransform(this, pt1), DrawHelper.RtlTransform(this, pt2));
                 }
-				TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, Font, rectText, ColorToolWindowInactiveText, ToolWindowTextFormat);
+				TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorToolWindowInactiveText, ToolWindowTextFormat);
 			}
 
 			if (rectTab.Contains(rectIcon))
@@ -1080,13 +1093,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (DockPane.IsActiveDocumentPane)
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, BoldFont, rectText, ColorDocumentActiveText, DocumentTextFormat);
                 else
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, Font, rectText, ColorDocumentActiveText, DocumentTextFormat);
+                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorDocumentActiveText, DocumentTextFormat);
             }
             else
             {
                 g.FillPath(BrushDocumentInactiveBackground, path);
                 g.DrawPath(PenDocumentTabInactiveBorder, path);
-                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, Font, rectText, ColorDocumentInactiveText, DocumentTextFormat);
+                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorDocumentInactiveText, DocumentTextFormat);
             }
 
             if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
