@@ -98,6 +98,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void RefreshChanges()
         {
+            if (IsDisposed)
+                return;
+
             bool mouseOver = ClientRectangle.Contains(PointToClient(Control.MousePosition));
             if (mouseOver != IsMouseOver)
                 IsMouseOver = mouseOver;

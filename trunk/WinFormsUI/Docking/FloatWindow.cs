@@ -255,6 +255,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		internal void RefreshChanges()
 		{
+            if (IsDisposed)
+                return;
+
 			if (VisibleNestedPanes.Count == 0)
 			{
 				ControlBox = true;

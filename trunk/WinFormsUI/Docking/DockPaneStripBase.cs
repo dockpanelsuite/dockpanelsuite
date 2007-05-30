@@ -149,6 +149,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		internal void RefreshChanges()
 		{
+            if (IsDisposed)
+                return;
+
 			OnRefreshChanges();
 		}
 
