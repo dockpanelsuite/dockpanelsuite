@@ -185,7 +185,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 						m_activeContent.DockHandler.SetVisible();
 					if (oldValue != null && DisplayingContents.Contains(oldValue))
 						oldValue.DockHandler.SetVisible();
-                    if (IsActivated)
+                    if (IsActivated && m_activeContent != null)
                         m_activeContent.DockHandler.Activate();
 				}
 
