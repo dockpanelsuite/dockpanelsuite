@@ -586,9 +586,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             else if (DocumentStyle == DocumentStyle.DockingMdi)
                 InvalidateWindowRegion();
 
-			if (Parent != null)
-				Parent.ResumeLayout();
-
 			ResumeLayout(true, true);
 		}
 
