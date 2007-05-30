@@ -193,7 +193,7 @@ namespace DockSample
 			}
 			else
 			{
-                IDockContent[] documents = dockPanel.GetDocuments();
+                IDockContent[] documents = dockPanel.DocumentsToArray();
                 foreach (IDockContent content in documents)
                     content.DockHandler.Close();
 			}

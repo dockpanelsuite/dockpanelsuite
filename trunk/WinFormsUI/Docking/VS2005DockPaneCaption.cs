@@ -188,7 +188,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return _TextGapTop;	}
 		}
 
-        private Font TextFont
+        private static Font TextFont
         {
             get { return SystemInformation.MenuFont; }
         }

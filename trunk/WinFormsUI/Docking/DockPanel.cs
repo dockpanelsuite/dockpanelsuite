@@ -401,7 +401,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        public IDockContent[] GetDocuments()
+        public IDockContent[] DocumentsToArray()
         {
             int count = DocumentsCount;
             IDockContent[] documents = new IDockContent[count];
