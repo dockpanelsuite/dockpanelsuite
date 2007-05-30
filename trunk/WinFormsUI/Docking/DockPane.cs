@@ -185,6 +185,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 						m_activeContent.DockHandler.SetVisible();
 					if (oldValue != null && DisplayingContents.Contains(oldValue))
 						oldValue.DockHandler.SetVisible();
+                    if (IsActivated)
+                        m_activeContent.DockHandler.Activate();
 				}
 
 				if (FloatWindow != null)
@@ -892,10 +894,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 FloatWindow = DockPanel.FloatWindowFactory.CreateFloatWindow(DockPanel, this);
 
             if (contentFocused != null)
-                contentFocused.DockHandler.Activate();
+                DockPanel.ContentFocusManager.Activate(contentFocused);
 
 			ResumeRefreshStateChange(oldContainer, oldDockState);
-		}
+        }
 
 		private int m_countRefreshStateChange = 0;
 		private void SuspendRefreshStateChange()
@@ -907,12 +909,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private void ResumeRefreshStateChange()
 		{
 			m_countRefreshStateChange --;
-			#if DEBUG
-			if (m_countRefreshStateChange < 0)
-				throw new InvalidOperationException();
-			#endif
-			if (m_countRefreshStateChange < 0)
-				m_countRefreshStateChange = 0;
+			System.Diagnostics.Debug.Assert(m_countRefreshStateChange >= 0);
 			DockPanel.ResumeLayout(true, true);
 		}
 
