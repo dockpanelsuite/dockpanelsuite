@@ -176,7 +176,6 @@
     <None Include="Docking\Resources\DockIndicator_PanelRight_Active.bmp" />
     <None Include="Docking\Resources\DockIndicator_PanelTop.bmp" />
     <None Include="Docking\Resources\DockIndicator_PanelTop_Active.bmp" />
-    <None Include="Docking\Resources\DockPanel.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="license.txt">
@@ -189,6 +188,9 @@
     <None Include="Docking\Resources\DockPane_Dock.bmp" />
     <None Include="Docking\Resources\DockPane_Option.bmp" />
     <None Include="Docking\Resources\DockPane_OptionOverflow.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Docking\DockPanel.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
