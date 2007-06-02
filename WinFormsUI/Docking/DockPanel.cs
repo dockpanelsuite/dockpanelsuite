@@ -70,6 +70,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 				return m_autoHideStripControl;
 			}
 		}
+        internal void ResetAutoHideStripControl()
+        {
+            if (m_autoHideStripControl != null)
+                m_autoHideStripControl.Dispose();
+
+            m_autoHideStripControl = null;
+        }
 
 		private void MdiClientHandleAssigned(object sender, EventArgs e)
 		{
