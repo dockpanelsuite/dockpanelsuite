@@ -403,7 +403,7 @@ namespace DockSample
 			}
 			else
 			{
-				foreach (IDockContent document in dockPanel.Documents)
+				foreach (IDockContent document in dockPanel.DocumentsToArray())
 				{
 					if (!document.DockHandler.IsActivated)
 						document.DockHandler.Close();
