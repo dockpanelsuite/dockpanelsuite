@@ -593,10 +593,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal Rectangle GetAutoHideWindowBounds(Rectangle rectAutoHideWindow)
         {
-            if (Parent == null)
-                return Rectangle.Empty;
-
-            return Parent.RectangleToClient(RectangleToScreen(rectAutoHideWindow));
+            if (DocumentStyle == DocumentStyle.SystemMdi ||
+                DocumentStyle == DocumentStyle.DockingMdi)
+                return (Parent == null) ? Rectangle.Empty : Parent.RectangleToClient(RectangleToScreen(rectAutoHideWindow));
+            else
+                return rectAutoHideWindow;
         }
 
         internal void RefreshAutoHideStrip()

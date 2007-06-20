@@ -47,10 +47,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 			m_floatWindows = new FloatWindowCollection();
 
             SuspendLayout();
-            Font = SystemInformation.MenuFont;
 
 			m_autoHideWindow = new AutoHideWindowControl(this);
 			m_autoHideWindow.Visible = false;
+            SetAutoHideWindowParent();
 
 			m_dummyControl = new DummyControl();
 			m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
@@ -516,6 +516,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 				SuspendLayout(true);
 
+                SetAutoHideWindowParent();
 				SetMdiClient();
 				InvalidateWindowRegion();
 
@@ -757,11 +758,25 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		protected override void OnParentChanged(EventArgs e)
 		{
-			AutoHideWindow.Parent = this.Parent;
-			GetMdiClientController().ParentForm = (this.Parent as Form);
-			AutoHideWindow.BringToFront();
+            SetAutoHideWindowParent();
+            GetMdiClientController().ParentForm = (this.Parent as Form);
 			base.OnParentChanged (e);
 		}
+
+        private void SetAutoHideWindowParent()
+        {
+            Control parent;
+            if (DocumentStyle == DocumentStyle.DockingMdi ||
+                DocumentStyle == DocumentStyle.SystemMdi)
+                parent = this.Parent;
+            else
+                parent = this;
+            if (AutoHideWindow.Parent != parent)
+            {
+                AutoHideWindow.Parent = parent;
+                AutoHideWindow.BringToFront();
+            }
+        }
 
 		protected override void OnVisibleChanged(EventArgs e)
 		{
