@@ -869,7 +869,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			int count = 0;
 			foreach (DockPane pane in this.Panes)
 			{
-				if (pane.DockState != DockState.Document)
+				if (!pane.Visible || pane.DockState != DockState.Document)
 					continue;
 
 				count ++;
@@ -885,7 +885,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			int i = 0;
 			foreach (DockPane pane in this.Panes)
 			{
-				if (pane.DockState != DockState.Document)
+				if (!pane.Visible || pane.DockState != DockState.Document)
 					continue;
 
                 rects[i] = RectangleToClient(pane.RectangleToScreen(pane.ContentRectangle));
