@@ -166,7 +166,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
                 }
 
+                if (content == null)
+                    return;
                 DockContentHandler handler = content.DockHandler;
+                if (handler.Form.IsDisposed)
+                    return; // Should not reach here, but better than throwing an exception
                 if (ContentContains(content, handler.ActiveWindowHandle))
                     NativeMethods.SetFocus(handler.ActiveWindowHandle);
                 if (!handler.Form.ContainsFocus)
