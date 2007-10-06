@@ -410,6 +410,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             private void TimerMouseTrack_Tick(object sender, EventArgs e)
             {
+                if (IsDisposed)
+                    return;
+
                 if (ActivePane == null || ActivePane.IsActivated)
                 {
                     m_timerMouseTrack.Enabled = false;
