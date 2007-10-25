@@ -480,8 +480,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 public override void Show(bool bActivate)
                 {
-                    Bounds = SystemInformation.VirtualScreen;
                     base.Show(bActivate);
+                    Bounds = SystemInformation.VirtualScreen;
                     RefreshChanges();
                 }
 
