@@ -117,7 +117,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     public DockStyle HitTest(Point pt)
                     {
-                        return ClientRectangle.Contains(PointToClient(pt)) ? DockStyle : DockStyle.None;
+                        return this.Visible && ClientRectangle.Contains(PointToClient(pt)) ? DockStyle : DockStyle.None;
                     }
                 }
                 #endregion PanelIndicator
