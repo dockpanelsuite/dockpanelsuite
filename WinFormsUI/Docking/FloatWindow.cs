@@ -273,7 +273,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 					if (content.DockHandler.DockState != DockState.Float)
 						continue;
 
-					if (content.DockHandler.CloseButton)
+					if (content.DockHandler.CloseButton && content.DockHandler.CloseButtonVisible)
 					{
 						ControlBox = true;
 						return;

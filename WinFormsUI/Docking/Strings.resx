@@ -345,4 +345,7 @@
   <data name="IDockDragSource_DockTo_InvalidPanel" xml:space="preserve">
     <value>Invalid DockPanel.</value>
   </data>
+  <data name="DockContent_CloseButtonVisible_Description" xml:space="preserve">
+    <value>Shows or hides the close button of the content. This property does not function with System MDI Document Style.</value>
+  </data>
 </root>

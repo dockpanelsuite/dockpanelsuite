@@ -71,6 +71,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return DockHandler.CloseButton;	}
 			set	{	DockHandler.CloseButton = value;	}
 		}
+
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockContent_CloseButtonVisible_Description")]
+        [DefaultValue(true)]
+        public bool CloseButtonVisible
+        {
+            get { return DockHandler.CloseButtonVisible; }
+            set { DockHandler.CloseButtonVisible = value; }
+        }
 		
 		[Browsable(false)]
 		public DockPanel DockPanel

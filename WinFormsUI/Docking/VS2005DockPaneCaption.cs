@@ -407,6 +407,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return (DockPane.ActiveContent != null)? DockPane.ActiveContent.DockHandler.CloseButton : false;	}
 		}
 
+        /// <summary>
+        /// Determines whether the close button is visible on the content
+        /// </summary>
+        private bool CloseButtonVisible
+        {
+            get { return (DockPane.ActiveContent != null) ? DockPane.ActiveContent.DockHandler.CloseButtonVisible : false; }
+        }
+
 		private bool ShouldShowAutoHideButton
 		{
 			get	{	return !DockPane.IsFloat;	}
@@ -415,6 +423,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private void SetButtons()
 		{
 			ButtonClose.Enabled = CloseButtonEnabled;
+            ButtonClose.Visible = CloseButtonVisible;
 			ButtonAutoHide.Visible = ShouldShowAutoHideButton;
             ButtonOptions.Visible = HasTabPageContextMenu;
             ButtonClose.RefreshChanges();
@@ -441,7 +450,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 			int y = rectCaption.Y + ButtonGapTop;
 			Point point = new Point(x, y);
             ButtonClose.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
-			point.Offset(-(buttonWidth + ButtonGapBetween), 0);
+
+            // If the close button is not visible draw the auto hide button overtop.
+            // Otherwise it is drawn to the left of the close button.
+            if (ButtonClose.Visible)
+			    point.Offset(-(buttonWidth + ButtonGapBetween), 0);
+            
             ButtonAutoHide.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
             if (ShouldShowAutoHideButton)
                 point.Offset(-(buttonWidth + ButtonGapBetween), 0);
