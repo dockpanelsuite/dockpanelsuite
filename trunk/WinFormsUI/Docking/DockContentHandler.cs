@@ -127,6 +127,16 @@ namespace WeifenLuo.WinFormsUI.Docking
 						Pane.RefreshChanges();
 			}
 		}
+
+        private bool m_closeButtonVisible = true;
+        /// <summary>
+        /// Determines whether the close button is visible on the content
+        /// </summary>
+        public bool CloseButtonVisible
+        {
+            get { return m_closeButtonVisible; }
+            set { m_closeButtonVisible = value; }
+        }
 		
 		private DockState DefaultDockState
 		{
