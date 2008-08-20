@@ -322,16 +322,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private TextFormatFlags DocumentTextFormat
 		{
         	get
-            {	
-                 TextFormatFlags textFormat = TextFormatFlags.PathEllipsis |
+            {
+                TextFormatFlags textFormat = TextFormatFlags.EndEllipsis |
                     TextFormatFlags.SingleLine |
                     TextFormatFlags.VerticalCenter |
-                    TextFormatFlags.PreserveGraphicsClipping |
                     TextFormatFlags.HorizontalCenter;
-                 if (RightToLeft == RightToLeft.Yes)
-                     return textFormat | TextFormatFlags.RightToLeft;
-                 else
-                     return textFormat;
+                if (RightToLeft == RightToLeft.Yes)
+                    return textFormat | TextFormatFlags.RightToLeft;
+                else
+                    return textFormat;
             }
 		}
 
