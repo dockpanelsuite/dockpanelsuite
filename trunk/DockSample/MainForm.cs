@@ -218,6 +218,9 @@ namespace DockSample
 				return m_taskList;
 			else
 			{
+                // DummyDoc overrides GetPersistString to add extra information into persistString.
+                // Any DockContent may override this value to add any needed information for deserialization.
+
 				string[] parsedStrings = persistString.Split(new char[] { ',' });
 				if (parsedStrings.Length != 3)
 					return null;

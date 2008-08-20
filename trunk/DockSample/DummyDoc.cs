@@ -60,6 +60,8 @@ namespace DockSample
 
 		protected override string GetPersistString()
 		{
+            // Add extra information into the persist string for this document
+            // so that it is available when deserialized.
 			return GetType().ToString() + "," + FileName + "," + Text;
 		}
 
