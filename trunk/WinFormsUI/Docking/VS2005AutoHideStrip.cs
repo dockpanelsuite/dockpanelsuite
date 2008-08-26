@@ -60,6 +60,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 					_stringFormatTabHorizontal.Alignment = StringAlignment.Near;
 					_stringFormatTabHorizontal.LineAlignment = StringAlignment.Center;
 					_stringFormatTabHorizontal.FormatFlags = StringFormatFlags.NoWrap;
+				    _stringFormatTabHorizontal.Trimming = StringTrimming.None;
 				}
 
                 if (RightToLeft == RightToLeft.Yes)
@@ -82,6 +83,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 					_stringFormatTabVertical.Alignment = StringAlignment.Near;
 					_stringFormatTabVertical.LineAlignment = StringAlignment.Center;
 					_stringFormatTabVertical.FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.DirectionVertical;
+				    _stringFormatTabVertical.Trimming = StringTrimming.None;
 				}
                 if (RightToLeft == RightToLeft.Yes)
                     _stringFormatTabVertical.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
