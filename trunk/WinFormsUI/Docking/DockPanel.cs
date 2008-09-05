@@ -68,6 +68,25 @@ namespace WeifenLuo.WinFormsUI.Docking
 			m_dummyContent = new DockContent();
             ResumeLayout();
         }
+        
+        private Color m_BackColor;
+        /// <summary>
+        /// Determines the color with which the client rectangle will be drawn.
+        /// If you take this property instead of the BackColor it will not have any influence on the borders to the surrounding controls (DockPane).
+        /// If you use BackColor the borders to the surrounding controls (DockPane) will also change there colors.
+        /// Alternatively you can use both of them (BackColor to draw the define the color of the borders and DockBackColor to define the color of the client rectangle). 
+        /// </summary>
+        public Color DockBackColor
+        {
+            get
+            {
+                return !m_BackColor.IsEmpty ? m_BackColor : base.BackColor;
+            }
+            set
+            {
+                m_BackColor = value;
+            }
+        }
 
 		private AutoHideStripBase m_autoHideStripControl = null;
 		internal AutoHideStripBase AutoHideStripControl
@@ -618,8 +637,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			base.OnPaint(e);
 
-			Graphics g = e.Graphics;
-			g.FillRectangle(SystemBrushes.AppWorkspace, ClientRectangle);
+            Graphics g = e.Graphics;
+            SolidBrush bgBrush = new SolidBrush(DockBackColor);
+            g.FillRectangle(bgBrush, ClientRectangle);
 		}
 
 		internal void AddContent(IDockContent content)
