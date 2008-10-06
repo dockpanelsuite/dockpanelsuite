@@ -75,6 +75,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// If you take this property instead of the BackColor it will not have any influence on the borders to the surrounding controls (DockPane).
         /// If you use BackColor the borders to the surrounding controls (DockPane) will also change there colors.
         /// Alternatively you can use both of them (BackColor to draw the define the color of the borders and DockBackColor to define the color of the client rectangle). 
+        /// For Backgroundimages: Set your prefered Image, then set the DockBackColor and the BackColor to the same Color (Control)
         /// </summary>
         public Color DockBackColor
         {
@@ -637,9 +638,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			base.OnPaint(e);
 
-            Graphics g = e.Graphics;
-            SolidBrush bgBrush = new SolidBrush(DockBackColor);
-            g.FillRectangle(bgBrush, ClientRectangle);
+		    if (DockBackColor == BackColor) return;
+
+		    Graphics g = e.Graphics;
+		    SolidBrush bgBrush = new SolidBrush(DockBackColor);
+		    g.FillRectangle(bgBrush, ClientRectangle);
 		}
 
 		internal void AddContent(IDockContent content)
