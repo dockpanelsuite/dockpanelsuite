@@ -1234,9 +1234,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                 for (int i = Contents.Count - 1; i >= 0; i--)
                 {
                     IDockContent c = Contents[i];
-                    c.DockHandler.Pane = pane;
-                    if (contentIndex != -1)
-                        pane.SetContentIndex(c, contentIndex);
+                    if (c.DockHandler.DockState == DockState)
+                    {
+                        c.DockHandler.Pane = pane;
+                        if (contentIndex != -1)
+                            pane.SetContentIndex(c, contentIndex);
+                    }
                 }
                 pane.ActiveContent = activeContent;
             }
