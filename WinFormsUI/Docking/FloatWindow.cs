@@ -280,7 +280,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 					}
 				}
 			}
-			ControlBox = false;
+			//Only if there is a ControlBox do we turn it off
+			//old code caused a flash of the window.
+            if (ControlBox)
+				ControlBox = false;
 		}
 
 		public virtual Rectangle DisplayingRectangle
