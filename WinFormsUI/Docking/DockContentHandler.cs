@@ -524,8 +524,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 			{
 				if ((Pane != oldPane) ||
 					(Pane == oldPane && oldDockState != oldPane.DockState))
-					RefreshDockPane(Pane);
-			}
+					/*
+					 * Without this an early refresh can be triggered while the dimensions of the form
+					 * aren't calculated completely because the form could be still hidden although
+					 * isHidden says FALSE.
+					 */
+					if (Pane.DockWindow == null || Pane.DockWindow.Visible)
+						RefreshDockPane(Pane);			}
 
             if (oldDockState != DockState)
             {
@@ -721,7 +726,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             bool bRestoreFocus = false;
             if (Form.ContainsFocus)
             {
-                if (value == null)
+				//Suggested as a fix for a memory leak by bugreports
+                if (value == null && !IsFloat)
                     DockPanel.ContentFocusManager.GiveUpFocus(this.Content);
                 else
                 {
@@ -793,9 +799,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 
 			DockState = dockState;
-			Activate();
-
-            dockPanel.ResumeLayout(true, true);
+            dockPanel.ResumeLayout(true, true); //we'll resume the layout before activating to ensure that the position
+            Activate();                         //and size of the form are finally processed before the form is shown
 		}
 
         [SuppressMessage("Microsoft.Naming", "CA1720:AvoidTypeNamesInParameters")]
