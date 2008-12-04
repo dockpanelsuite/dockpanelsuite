@@ -57,6 +57,8 @@
     <Compile Include="Docking\InertButtonBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\DockPanelSkin.cs">
+    </Compile>
     <Compile Include="Docking\VS2005AutoHideStrip.cs">
       <SubType>Component</SubType>
     </Compile>

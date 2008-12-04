@@ -238,6 +238,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 		}
 
+        private DockPanelSkin m_dockPanelSkin = new DockPanelSkin();
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_DockPanelSkin")]
+        public DockPanelSkin Skin
+        {
+            get { return m_dockPanelSkin; }
+            set { m_dockPanelSkin = value; }
+        }
+
 		[Browsable(false)]
 		public DockPanelExtender Extender
 		{

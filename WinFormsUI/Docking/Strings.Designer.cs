@@ -124,6 +124,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows or hides the close button of the content. This property does not function with System MDI Document Style..
+        /// </summary>
+        internal static string DockContent_CloseButtonVisible_Description {
+            get {
+                return ResourceManager.GetString("DockContent_CloseButtonVisible_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The form must be of type IDockContent..
         /// </summary>
         internal static string DockContent_Constructor_InvalidForm {
@@ -570,6 +579,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         internal static string DockPanel_DockLeftPortion_Description {
             get {
                 return ResourceManager.GetString("DockPanel_DockLeftPortion_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The visual skin to use when displaying the docked windows..
+        /// </summary>
+        internal static string DockPanel_DockPanelSkin {
+            get {
+                return ResourceManager.GetString("DockPanel_DockPanelSkin", resourceCulture);
             }
         }
         
