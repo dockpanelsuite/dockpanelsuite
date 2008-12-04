@@ -549,12 +549,17 @@ namespace WeifenLuo.WinFormsUI.Docking
                     ButtonClose.Width +
                     ButtonWindowList.Width;
 
-                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor;
-                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor;
-                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.LinearGradientMode;
-                using (LinearGradientBrush brush = new LinearGradientBrush(rect, startColor, endColor, gradientMode))
+                // It is possible depending on the DockPanel DocumentStyle to have
+                // a Document without a DockStrip.
+                if (rect.Width > 0 && rect.Height > 0)
                 {
-                    e.Graphics.FillRectangle(brush, rect);
+                    Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor;
+                    Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor;
+                    LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.LinearGradientMode;
+                    using (LinearGradientBrush brush = new LinearGradientBrush(rect, startColor, endColor, gradientMode))
+                    {
+                        e.Graphics.FillRectangle(brush, rect);
+                    }
                 }
             }
             else
