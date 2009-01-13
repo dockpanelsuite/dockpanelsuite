@@ -311,7 +311,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private string m_tabText = null;
 		public string TabText
 		{
-			get	{	return m_tabText==null ? Form.Text : m_tabText;	}
+            get { return m_tabText == null || m_tabText == "" ? Form.Text : m_tabText; }
 			set
 			{
 				if (m_tabText == value)
@@ -529,7 +529,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 					 * aren't calculated completely because the form could be still hidden although
 					 * isHidden says FALSE.
 					 */
-					if (Pane.DockWindow == null || Pane.DockWindow.Visible)
+					if (Pane.DockWindow == null || Pane.DockWindow.Visible || Pane.DockState == DockState.Document)
 						RefreshDockPane(Pane);			}
 
             if (oldDockState != DockState)
