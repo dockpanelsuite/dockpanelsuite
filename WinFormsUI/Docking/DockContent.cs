@@ -13,6 +13,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			m_dockHandler = new DockContentHandler(this, new GetPersistStringCallback(GetPersistString));
 			m_dockHandler.DockStateChanged += new EventHandler(DockHandler_DockStateChanged);
+			//Suggested as a fix by bensty regarding form resize
+            this.ParentChanged += new EventHandler(DockContent_ParentChanged);
+		}
+
+		//Suggested as a fix by bensty regarding form resize
+        private void DockContent_ParentChanged(object Sender, EventArgs e)
+        {
+            if (this.Parent != null)
+                this.Font = this.Parent.Font;
 		}
 
 		private DockContentHandler m_dockHandler = null;
@@ -53,14 +62,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 		[LocalizedCategory("Category_Docking")]
 		[LocalizedDescription("DockContent_TabText_Description")]
 		[DefaultValue(null)]
+        private string m_tabText = null;
 		public string TabText
 		{
-			get	{	return DockHandler.TabText;	}
-			set	{	DockHandler.TabText = value;	}
+            get { return m_tabText; }
+            set { DockHandler.TabText = m_tabText = value; }
 		}
 		private bool ShouldSerializeTabText()
 		{
-			return (DockHandler.TabText != null);
+			return (m_tabText != null);
 		}
 
 		[LocalizedCategory("Category_Docking")]
