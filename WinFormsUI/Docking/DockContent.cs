@@ -267,6 +267,18 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockHandler.DockTo(panel, dockStyle);
         }
 
+		#region IDockContent Members
+		void IDockContent.OnActivated(EventArgs e)
+		{
+			this.OnActivated(e);
+		}
+
+		void IDockContent.OnDeactivate(EventArgs e)
+		{
+			this.OnDeactivate(e);
+		}
+		#endregion
+
 		#region Events
 		private void DockHandler_DockStateChanged(object sender, EventArgs e)
 		{

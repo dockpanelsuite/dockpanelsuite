@@ -116,6 +116,19 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			DockPanel.FloatWindows.BringWindowToFront(this);
 			base.OnActivated (e);
+			// Propagate the Activated event to the visible panes content objects
+			foreach (DockPane pane in VisibleNestedPanes)
+				foreach (IDockContent content in pane.Contents)
+					content.OnActivated(e);
+		}
+
+		protected override void OnDeactivate(EventArgs e)
+		{
+			base.OnDeactivate(e);
+			// Propagate the Deactivate event to the visible panes content objects
+			foreach (DockPane pane in VisibleNestedPanes)
+				foreach (IDockContent content in pane.Contents)
+					content.OnDeactivate(e);
 		}
 
 		protected override void OnLayout(LayoutEventArgs levent)
