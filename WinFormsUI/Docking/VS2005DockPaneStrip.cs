@@ -857,8 +857,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 
             g.SetClip(rectTabStrip);
-            g.DrawLine(PenDocumentTabActiveBorder, rectTabStrip.Left, rectTabStrip.Bottom - 1,
-                rectTabStrip.Right, rectTabStrip.Bottom - 1);
+
+            if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                g.DrawLine(PenDocumentTabActiveBorder, rectTabStrip.Left, rectTabStrip.Top + 1,
+                	rectTabStrip.Right, rectTabStrip.Top + 1);
+            else
+                g.DrawLine(PenDocumentTabActiveBorder, rectTabStrip.Left, rectTabStrip.Bottom - 1,
+                    rectTabStrip.Right, rectTabStrip.Bottom - 1);
+
             g.SetClip(DrawHelper.RtlTransform(this, rectTabOnly));
             if (tabActive != null)
             {
@@ -900,7 +906,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 			Rectangle rectTabStrip = TabStripRectangle;
 			TabVS2005 tab = (TabVS2005)Tabs[index];
 
-			return new Rectangle(tab.TabX, rectTabStrip.Y + DocumentTabGapTop, tab.TabWidth, rectTabStrip.Height - DocumentTabGapTop);
+            Rectangle rect = new Rectangle();
+            rect.X = tab.TabX;
+            rect.Width = tab.TabWidth;
+            rect.Height = rectTabStrip.Height - DocumentTabGapTop;
+
+            if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                rect.Y = rectTabStrip.Y + DocumentStripGapBottom;
+            else
+                rect.Y = rectTabStrip.Y + DocumentTabGapTop;
+
+			return rect;
 		}
 
         private void DrawTab(Graphics g, TabVS2005 tab, Rectangle rect)
@@ -942,42 +958,106 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (toScreen)
                 rect = RectangleToScreen(rect);
 
+            // Draws the full angle piece for active content (or first tab)
             if (tab.Content == DockPane.ActiveContent || Tabs.IndexOf(tab) == StartDisplayingTab || full)
             {
                 if (RightToLeft == RightToLeft.Yes)
                 {
-                    GraphicsPath.AddLine(rect.Right, rect.Bottom, rect.Right + rect.Height / 2, rect.Bottom);
-                    GraphicsPath.AddLine(rect.Right + rect.Height / 2, rect.Bottom, rect.Right - rect.Height / 2 + curveSize / 2, rect.Top + curveSize / 2);
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    {
+                        // For some reason the next line draws a line that is not hidden like it is when drawing the tab strip on top.
+                        // It is not needed so it has been commented out.
+                        //GraphicsPath.AddLine(rect.Right, rect.Bottom, rect.Right + rect.Height / 2, rect.Bottom);
+                        GraphicsPath.AddLine(rect.Right + rect.Height / 2, rect.Top, rect.Right - rect.Height / 2 + curveSize / 2, rect.Bottom - curveSize / 2);
+                    }
+                    else
+                    {
+                        GraphicsPath.AddLine(rect.Right, rect.Bottom, rect.Right + rect.Height / 2, rect.Bottom);
+                        GraphicsPath.AddLine(rect.Right + rect.Height / 2, rect.Bottom, rect.Right - rect.Height / 2 + curveSize / 2, rect.Top + curveSize / 2);
+                    }
                 }
                 else
                 {
-                    GraphicsPath.AddLine(rect.Left, rect.Bottom, rect.Left - rect.Height / 2, rect.Bottom);
-                    GraphicsPath.AddLine(rect.Left - rect.Height / 2, rect.Bottom, rect.Left + rect.Height / 2 - curveSize / 2, rect.Top + curveSize / 2);
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    {
+                        // For some reason the next line draws a line that is not hidden like it is when drawing the tab strip on top.
+                        // It is not needed so it has been commented out.
+                        //GraphicsPath.AddLine(rect.Left, rect.Top, rect.Left - rect.Height / 2, rect.Top);
+                        GraphicsPath.AddLine(rect.Left - rect.Height / 2, rect.Top, rect.Left + rect.Height / 2 - curveSize / 2, rect.Bottom - curveSize / 2);
+                    }
+                    else
+                    {
+                        GraphicsPath.AddLine(rect.Left, rect.Bottom, rect.Left - rect.Height / 2, rect.Bottom);
+                        GraphicsPath.AddLine(rect.Left - rect.Height / 2, rect.Bottom, rect.Left + rect.Height / 2 - curveSize / 2, rect.Top + curveSize / 2);
+                    }
                 }
             }
+            // Draws the partial angle for non-active content
             else
             {
                 if (RightToLeft == RightToLeft.Yes)
                 {
-                    GraphicsPath.AddLine(rect.Right, rect.Bottom, rect.Right, rect.Bottom - rect.Height / 2);
-                    GraphicsPath.AddLine(rect.Right, rect.Bottom - rect.Height / 2, rect.Right - rect.Height / 2 + curveSize / 2, rect.Top + curveSize / 2);
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    {
+                        GraphicsPath.AddLine(rect.Right, rect.Top, rect.Right, rect.Top + rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Right, rect.Top + rect.Height / 2, rect.Right - rect.Height / 2 + curveSize / 2, rect.Bottom - curveSize / 2);
+                    }
+                    else
+                    {
+                        GraphicsPath.AddLine(rect.Right, rect.Bottom, rect.Right, rect.Bottom - rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Right, rect.Bottom - rect.Height / 2, rect.Right - rect.Height / 2 + curveSize / 2, rect.Top + curveSize / 2);
+                    }
                 }
                 else
                 {
-                    GraphicsPath.AddLine(rect.Left, rect.Bottom, rect.Left, rect.Bottom - rect.Height / 2);
-                    GraphicsPath.AddLine(rect.Left, rect.Bottom - rect.Height / 2, rect.Left + rect.Height / 2 - curveSize / 2, rect.Top + curveSize / 2);
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    {
+                        GraphicsPath.AddLine(rect.Left, rect.Top, rect.Left, rect.Top + rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Left, rect.Top + rect.Height / 2, rect.Left + rect.Height / 2 - curveSize / 2, rect.Bottom - curveSize / 2);
+                    }
+                    else
+                    {
+                        GraphicsPath.AddLine(rect.Left, rect.Bottom, rect.Left, rect.Bottom - rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Left, rect.Bottom - rect.Height / 2, rect.Left + rect.Height / 2 - curveSize / 2, rect.Top + curveSize / 2);
+                    }
                 }
             }
 
             if (RightToLeft == RightToLeft.Yes)
             {
-                GraphicsPath.AddLine(rect.Right - rect.Height / 2 - curveSize / 2, rect.Top, rect.Left + curveSize / 2, rect.Top);
-                GraphicsPath.AddArc(new Rectangle(rect.Left, rect.Top, curveSize, curveSize), 180, 90);
+                if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                {
+                    // Draws the bottom horizontal line (short side)
+                    GraphicsPath.AddLine(rect.Right - rect.Height / 2 - curveSize / 2, rect.Bottom, rect.Left + curveSize / 2, rect.Bottom);
+
+                    // Drawing the rounded corner is not necessary. The path is automatically connected
+                    //GraphicsPath.AddArc(new Rectangle(rect.Left, rect.Top, curveSize, curveSize), 180, 90);
+                }
+                else
+                {
+                    // Draws the bottom horizontal line (short side)
+                    GraphicsPath.AddLine(rect.Right - rect.Height / 2 - curveSize / 2, rect.Top, rect.Left + curveSize / 2, rect.Top);
+                    GraphicsPath.AddArc(new Rectangle(rect.Left, rect.Top, curveSize, curveSize), 180, 90);
+                }
             }
             else
             {
-                GraphicsPath.AddLine(rect.Left + rect.Height / 2 + curveSize / 2, rect.Top, rect.Right - curveSize / 2, rect.Top);
-                GraphicsPath.AddArc(new Rectangle(rect.Right - curveSize, rect.Top, curveSize, curveSize), -90, 90);
+                if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                {
+                    // Draws the bottom horizontal line (short side)
+                    GraphicsPath.AddLine(rect.Left + rect.Height / 2 + curveSize / 2, rect.Bottom, rect.Right - curveSize / 2, rect.Bottom);
+
+                    // Drawing the rounded corner is not necessary. The path is automatically connected
+                    //GraphicsPath.AddArc(new Rectangle(rect.Right - curveSize, rect.Bottom, curveSize, curveSize), 90, -90);
+                }
+                else
+                {
+                    // Draws the top horizontal line (short side)
+                    GraphicsPath.AddLine(rect.Left + rect.Height / 2 + curveSize / 2, rect.Top, rect.Right - curveSize / 2, rect.Top);
+
+                    // Draws the rounded corner oppposite the angled side
+                    GraphicsPath.AddArc(new Rectangle(rect.Right - curveSize, rect.Top, curveSize, curveSize), -90, 90);
+                }
             }
 
             if (Tabs.IndexOf(tab) != EndDisplayingTab &&
@@ -986,21 +1066,48 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (RightToLeft == RightToLeft.Yes)
                 {
-                    GraphicsPath.AddLine(rect.Left, rect.Top + curveSize / 2, rect.Left, rect.Top + rect.Height / 2);
-                    GraphicsPath.AddLine(rect.Left, rect.Top + rect.Height / 2, rect.Left + rect.Height / 2, rect.Bottom);
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    {
+                        GraphicsPath.AddLine(rect.Left, rect.Bottom - curveSize / 2, rect.Left, rect.Bottom - rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Left, rect.Bottom - rect.Height / 2, rect.Left + rect.Height / 2, rect.Top);
+                    }
+                    else
+                    {
+                        GraphicsPath.AddLine(rect.Left, rect.Top + curveSize / 2, rect.Left, rect.Top + rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Left, rect.Top + rect.Height / 2, rect.Left + rect.Height / 2, rect.Bottom);
+                    }
                 }
                 else
                 {
-                    GraphicsPath.AddLine(rect.Right, rect.Top + curveSize / 2, rect.Right, rect.Top + rect.Height / 2);
-                    GraphicsPath.AddLine(rect.Right, rect.Top + rect.Height / 2, rect.Right - rect.Height / 2, rect.Bottom);
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    {
+                        GraphicsPath.AddLine(rect.Right, rect.Bottom - curveSize / 2, rect.Right, rect.Bottom - rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Right, rect.Bottom - rect.Height / 2, rect.Right - rect.Height / 2, rect.Top);
+                    }
+                    else
+                    {
+                        GraphicsPath.AddLine(rect.Right, rect.Top + curveSize / 2, rect.Right, rect.Top + rect.Height / 2);
+                        GraphicsPath.AddLine(rect.Right, rect.Top + rect.Height / 2, rect.Right - rect.Height / 2, rect.Bottom);
+                    }
                 }
             }
             else
             {
+                // Draw the vertical line opposite the angled side
                 if (RightToLeft == RightToLeft.Yes)
-                    GraphicsPath.AddLine(rect.Left, rect.Top + curveSize / 2, rect.Left, rect.Bottom);
+                {
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                        GraphicsPath.AddLine(rect.Left, rect.Bottom - curveSize / 2, rect.Left, rect.Top);
+                    else
+                        GraphicsPath.AddLine(rect.Left, rect.Top + curveSize / 2, rect.Left, rect.Bottom);
+                }
                 else
-                    GraphicsPath.AddLine(rect.Right, rect.Top + curveSize / 2, rect.Right, rect.Bottom);
+                {
+                    if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                        GraphicsPath.AddLine(rect.Right, rect.Bottom - curveSize / 2, rect.Right, rect.Top);
+                    else
+                        GraphicsPath.AddLine(rect.Right, rect.Top + curveSize / 2, rect.Right, rect.Bottom);
+                }
             }
 
             return GraphicsPath;

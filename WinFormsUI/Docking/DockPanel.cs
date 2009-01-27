@@ -247,6 +247,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { m_dockPanelSkin = value; }
         }
 
+        private DocumentTabStripLocation m_documentTabStripLocation = DocumentTabStripLocation.Top;
+        [DefaultValue(DocumentTabStripLocation.Top)]
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_DocumentTabStripLocation")]
+        public DocumentTabStripLocation DocumentTabStripLocation
+        {
+            get { return m_documentTabStripLocation; }
+            set { m_documentTabStripLocation = value; }
+        }
+
 		[Browsable(false)]
 		public DockPanelExtender Extender
 		{

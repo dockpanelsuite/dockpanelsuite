@@ -48,4 +48,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 		DockingSdi,
 		SystemMdi,
 	}
+
+    /// <summary>
+    /// The location to draw the DockPaneStrip for Document style windows.
+    /// </summary>
+    public enum DocumentTabStripLocation
+    {
+        Top,
+        Bottom
+    }
 }
