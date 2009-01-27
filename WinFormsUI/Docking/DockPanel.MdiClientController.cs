@@ -370,7 +370,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private void SuspendMdiClientLayout()
         {
             if (GetMdiClientController().MdiClient != null)
-                GetMdiClientController().MdiClient.PerformLayout();
+                GetMdiClientController().MdiClient.SuspendLayout();
         }
 
         private void ResumeMdiClientLayout(bool perform)
