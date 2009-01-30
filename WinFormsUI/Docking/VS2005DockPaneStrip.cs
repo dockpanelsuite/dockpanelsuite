@@ -612,17 +612,28 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectTab.X -= rectTab.Height / 2;
             rectTab.Intersect(TabsRectangle);
             rectTab = RectangleToScreen(DrawHelper.RtlTransform(this, rectTab));
-            int y = rectTab.Top;
             Rectangle rectPaneClient = DockPane.RectangleToScreen(DockPane.ClientRectangle);
 
             GraphicsPath path = new GraphicsPath();
             GraphicsPath pathTab = GetTabOutline_Document(Tabs[index], true, true, true);
             path.AddPath(pathTab, true);
-            path.AddLine(rectTab.Right, rectTab.Bottom, rectPaneClient.Right, rectTab.Bottom);
-            path.AddLine(rectPaneClient.Right, rectTab.Bottom, rectPaneClient.Right, rectPaneClient.Bottom);
-            path.AddLine(rectPaneClient.Right, rectPaneClient.Bottom, rectPaneClient.Left, rectPaneClient.Bottom);
-            path.AddLine(rectPaneClient.Left, rectPaneClient.Bottom, rectPaneClient.Left, rectTab.Bottom);
-            path.AddLine(rectPaneClient.Left, rectTab.Bottom, rectTab.Right, rectTab.Bottom);
+
+            if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+            {
+                path.AddLine(rectTab.Right, rectTab.Top, rectPaneClient.Right, rectTab.Top);
+                path.AddLine(rectPaneClient.Right, rectTab.Top, rectPaneClient.Right, rectPaneClient.Top);
+                path.AddLine(rectPaneClient.Right, rectPaneClient.Top, rectPaneClient.Left, rectPaneClient.Top);
+                path.AddLine(rectPaneClient.Left, rectPaneClient.Top, rectPaneClient.Left, rectTab.Top);
+                path.AddLine(rectPaneClient.Left, rectTab.Top, rectTab.Right, rectTab.Top);
+            }
+            else
+            {
+                path.AddLine(rectTab.Right, rectTab.Bottom, rectPaneClient.Right, rectTab.Bottom);
+                path.AddLine(rectPaneClient.Right, rectTab.Bottom, rectPaneClient.Right, rectPaneClient.Bottom);
+                path.AddLine(rectPaneClient.Right, rectPaneClient.Bottom, rectPaneClient.Left, rectPaneClient.Bottom);
+                path.AddLine(rectPaneClient.Left, rectPaneClient.Bottom, rectPaneClient.Left, rectTab.Bottom);
+                path.AddLine(rectPaneClient.Left, rectTab.Bottom, rectTab.Right, rectTab.Bottom);
+            }
             return path;
         }
 

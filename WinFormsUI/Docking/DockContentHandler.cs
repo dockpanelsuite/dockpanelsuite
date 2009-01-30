@@ -975,7 +975,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             Point location;
 			Rectangle rectPane = Pane.ClientRectangle;
             if (DockState == DockState.Document)
-                location = new Point(rectPane.Left, rectPane.Top);
+            {
+                if (Pane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    location = new Point(rectPane.Left, rectPane.Bottom - size.Height);
+                else
+                    location = new Point(rectPane.Left, rectPane.Top);
+            }
             else
             {
                 location = new Point(rectPane.Left, rectPane.Bottom);
