@@ -369,6 +369,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         c.DockHandler.Pane = pane;
                         if (contentIndex != -1)
                             pane.SetContentIndex(c, contentIndex);
+                        c.DockHandler.Activate();
                     }
                 }
             }
