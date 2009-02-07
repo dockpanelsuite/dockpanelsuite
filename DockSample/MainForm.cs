@@ -144,7 +144,13 @@ namespace DockSample
 
 				DummyDoc dummyDoc = new DummyDoc();
 				dummyDoc.Text = fileName;
-				dummyDoc.Show(dockPanel);
+				if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
+				{
+					dummyDoc.MdiParent = this;
+					dummyDoc.Show();
+				}
+				else
+					dummyDoc.Show(dockPanel);
 				try
 				{
 					dummyDoc.FileName = fullName;
