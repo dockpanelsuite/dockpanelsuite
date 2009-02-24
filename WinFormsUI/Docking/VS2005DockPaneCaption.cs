@@ -285,42 +285,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-		private static Color ActiveBackColorGradientBegin
-		{
-            get { return SystemColors.GradientActiveCaption; }
-        }
-
-        private static Color ActiveBackColorGradientEnd
-        {
-            get { return SystemColors.ActiveCaption; }
-        }
-
-		private static Color InactiveBackColor
-		{
-            get
-            {
-                string colorScheme = VisualStyleInformation.ColorScheme;
-
-                if (colorScheme == "HomeStead" || colorScheme == "Metallic")
-                    return SystemColors.GradientInactiveCaption;
-                else
-                    return SystemColors.GrayText;
-            }
-		}
-
-		private static Color ActiveTextColor
-		{
-			get	{	return SystemColors.ActiveCaptionText;	}
-		}
-
-		private static Color InactiveTextColor
-		{
-			get	{	return SystemColors.ControlText;	}
-		}
-
         private Color TextColor
         {
-            get { return DockPane.IsActivated ? ActiveTextColor : InactiveTextColor; }
+            get
+            {
+                if (DockPane.IsActivated)
+                    return DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.TextColor;
+                else
+                    return DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor;
+            }
         }
 
 		private static TextFormatFlags _textFormat =
@@ -361,7 +334,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (DockPane.IsActivated)
             {
-                using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, ActiveBackColorGradientBegin, ActiveBackColorGradientEnd, LinearGradientMode.Vertical))
+                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.StartColor;
+                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.EndColor;
+                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode;
+                using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, startColor, endColor, gradientMode))
                 {
                     brush.Blend = ActiveBackColorGradientBlend;
                     g.FillRectangle(brush, ClientRectangle);
@@ -369,7 +345,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             else
             {
-                using (SolidBrush brush = new SolidBrush(InactiveBackColor))
+                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.StartColor;
+                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.EndColor;
+                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode;
+                using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, startColor, endColor, gradientMode))
                 {
                     g.FillRectangle(brush, ClientRectangle);
                 }
@@ -387,7 +366,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rectCaptionText.Width -= ButtonOptions.Width + ButtonGapBetween;
 			rectCaptionText.Y += TextGapTop;
 			rectCaptionText.Height -= TextGapTop + TextGapBottom;
-            TextRenderer.DrawText(g, DockPane.CaptionText, TextFont, DrawHelper.RtlTransform(this, rectCaptionText), TextColor, TextFormat);
+
+            Color colorText;
+            if (DockPane.IsActivated)
+                colorText = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.TextColor;
+            else
+                colorText = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor;
+
+            TextRenderer.DrawText(g, DockPane.CaptionText, TextFont, DrawHelper.RtlTransform(this, rectCaptionText), colorText, TextFormat);
 		}
 
 		protected override void OnLayout(LayoutEventArgs levent)
@@ -470,6 +456,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private void AutoHide_Click(object sender, EventArgs e)
 		{
 			DockPane.DockState = DockHelper.ToggleAutoHideState(DockPane.DockState);
+            if (DockHelper.IsDockStateAutoHide(DockPane.DockState))
+                DockPane.DockPanel.ActiveAutoHideContent = null;
+
 		}
 
         private void Options_Click(object sender, EventArgs e)

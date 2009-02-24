@@ -650,9 +650,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                             DockAlignment alignment = floatWindows[i].NestedPanes[j].Alignment;
                             double proportion = floatWindows[i].NestedPanes[j].Proportion;
                             pane.DockTo(fw, prevPane, alignment, proportion);
-                            if (panes[indexPane].DockState == fw.DockState)
-                                panes[indexPane].ZOrderIndex = floatWindows[i].ZOrderIndex;
                         }
+
+                        if (panes[indexPane].DockState == fw.DockState)
+                            panes[indexPane].ZOrderIndex = floatWindows[i].ZOrderIndex;
                     }
                 }
 

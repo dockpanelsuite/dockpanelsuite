@@ -311,7 +311,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private string m_tabText = null;
 		public string TabText
 		{
-			get	{	return m_tabText==null ? Form.Text : m_tabText;	}
+            get { return m_tabText == null || m_tabText == "" ? Form.Text : m_tabText; }
 			set
 			{
 				if (m_tabText == value)
@@ -524,8 +524,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 			{
 				if ((Pane != oldPane) ||
 					(Pane == oldPane && oldDockState != oldPane.DockState))
-					RefreshDockPane(Pane);
-			}
+					/*
+					 * Without this an early refresh can be triggered while the dimensions of the form
+					 * aren't calculated completely because the form could be still hidden although
+					 * isHidden says FALSE.
+					 */
+					if (Pane.DockWindow == null || Pane.DockWindow.Visible || Pane.DockState == DockState.Document)
+						RefreshDockPane(Pane);			}
 
             if (oldDockState != DockState)
             {
@@ -721,7 +726,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             bool bRestoreFocus = false;
             if (Form.ContainsFocus)
             {
-                if (value == null)
+				//Suggested as a fix for a memory leak by bugreports
+                if (value == null && !IsFloat)
                     DockPanel.ContentFocusManager.GiveUpFocus(this.Content);
                 else
                 {
@@ -793,9 +799,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 
 			DockState = dockState;
-			Activate();
-
-            dockPanel.ResumeLayout(true, true);
+            dockPanel.ResumeLayout(true, true); //we'll resume the layout before activating to ensure that the position
+            Activate();                         //and size of the form are finally processed before the form is shown
 		}
 
         [SuppressMessage("Microsoft.Naming", "CA1720:AvoidTypeNamesInParameters")]
@@ -970,7 +975,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             Point location;
 			Rectangle rectPane = Pane.ClientRectangle;
             if (DockState == DockState.Document)
-                location = new Point(rectPane.Left, rectPane.Top);
+            {
+                if (Pane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
+                    location = new Point(rectPane.Left, rectPane.Bottom - size.Height);
+                else
+                    location = new Point(rectPane.Left, rectPane.Top);
+            }
             else
             {
                 location = new Point(rectPane.Left, rectPane.Bottom);

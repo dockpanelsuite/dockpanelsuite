@@ -75,6 +75,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// If you take this property instead of the BackColor it will not have any influence on the borders to the surrounding controls (DockPane).
         /// If you use BackColor the borders to the surrounding controls (DockPane) will also change there colors.
         /// Alternatively you can use both of them (BackColor to draw the define the color of the borders and DockBackColor to define the color of the client rectangle). 
+        /// For Backgroundimages: Set your prefered Image, then set the DockBackColor and the BackColor to the same Color (Control)
         /// </summary>
         public Color DockBackColor
         {
@@ -236,6 +237,25 @@ namespace WeifenLuo.WinFormsUI.Docking
 				Refresh();
 			}
 		}
+
+        private DockPanelSkin m_dockPanelSkin = new DockPanelSkin();
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_DockPanelSkin")]
+        public DockPanelSkin Skin
+        {
+            get { return m_dockPanelSkin; }
+            set { m_dockPanelSkin = value; }
+        }
+
+        private DocumentTabStripLocation m_documentTabStripLocation = DocumentTabStripLocation.Top;
+        [DefaultValue(DocumentTabStripLocation.Top)]
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_DocumentTabStripLocation")]
+        public DocumentTabStripLocation DocumentTabStripLocation
+        {
+            get { return m_documentTabStripLocation; }
+            set { m_documentTabStripLocation = value; }
+        }
 
 		[Browsable(false)]
 		public DockPanelExtender Extender
@@ -637,9 +657,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			base.OnPaint(e);
 
-            Graphics g = e.Graphics;
-            SolidBrush bgBrush = new SolidBrush(DockBackColor);
-            g.FillRectangle(bgBrush, ClientRectangle);
+		    if (DockBackColor == BackColor) return;
+
+		    Graphics g = e.Graphics;
+		    SolidBrush bgBrush = new SolidBrush(DockBackColor);
+		    g.FillRectangle(bgBrush, ClientRectangle);
 		}
 
 		internal void AddContent(IDockContent content)
