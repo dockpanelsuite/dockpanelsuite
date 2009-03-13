@@ -793,7 +793,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 FirstDisplayingTab = EndDisplayingTab;
 
                 tempX = x; // Reset X location because we are starting over
-                bool tempOverflow = true;
+                
                 // Start with the first tab displayed - name is a little misleading.
                 // Loop through each tab and set its location. If there is not enough
                 // room for all of them overflow will be returned.
