@@ -524,13 +524,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 			{
 				if ((Pane != oldPane) ||
 					(Pane == oldPane && oldDockState != oldPane.DockState))
-					/*
-					 * Without this an early refresh can be triggered while the dimensions of the form
-					 * aren't calculated completely because the form could be still hidden although
-					 * isHidden says FALSE.
-					 */
-					if (Pane.DockWindow == null || Pane.DockWindow.Visible || Pane.DockState == DockState.Document)
-						RefreshDockPane(Pane);			}
+					// Avoid early refresh when both Pane.IsHidden and Pane.DockWindow.Visible are set to false
+					if (Pane.DockWindow == null || Pane.DockWindow.Visible || Pane.IsHidden)
+						RefreshDockPane(Pane);			
+			}
 
             if (oldDockState != DockState)
             {
