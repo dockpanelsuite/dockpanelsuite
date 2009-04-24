@@ -314,13 +314,20 @@ namespace DockSample
 		{
 			dockPanel.SuspendLayout(true);
 
-			m_solutionExplorer.Show(dockPanel, DockState.DockRight);
-			m_propertyWindow.Show(m_solutionExplorer.Pane, m_solutionExplorer);
-			m_toolbox.Show(dockPanel, new Rectangle(98, 133, 200, 383));
-			m_outputWindow.Show(m_solutionExplorer.Pane, DockAlignment.Bottom, 0.35);
-			m_taskList.Show(m_toolbox.Pane, DockAlignment.Left, 0.4);
-
 			CloseAllDocuments();
+
+            m_solutionExplorer = new DummySolutionExplorer();
+            m_propertyWindow = new DummyPropertyWindow();
+            m_toolbox = new DummyToolbox();
+            m_outputWindow = new DummyOutputWindow();
+            m_taskList = new DummyTaskList();
+
+            m_solutionExplorer.Show(dockPanel, DockState.DockRight);
+            m_propertyWindow.Show(m_solutionExplorer.Pane, m_solutionExplorer);
+            m_toolbox.Show(dockPanel, new Rectangle(98, 133, 200, 383));
+            m_outputWindow.Show(m_solutionExplorer.Pane, DockAlignment.Bottom, 0.35);
+            m_taskList.Show(m_toolbox.Pane, DockAlignment.Left, 0.4);
+
 			DummyDoc doc1 = CreateNewDocument("Document1");
 			DummyDoc doc2 = CreateNewDocument("Document2");
 			DummyDoc doc3 = CreateNewDocument("Document3");
