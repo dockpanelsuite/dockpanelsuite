@@ -442,7 +442,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             // If the close button is not visible draw the auto hide button overtop.
             // Otherwise it is drawn to the left of the close button.
-            if (ButtonClose.Visible)
+            if (CloseButtonVisible)
 			    point.Offset(-(buttonWidth + ButtonGapBetween), 0);
             
             ButtonAutoHide.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
