@@ -40,10 +40,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             protected override void OnRefreshChanges()
             {
-                if (DockPaneCaption.TextColor != ForeColor)
+                if (DockPaneCaption.DockPane.DockPanel != null)
                 {
-                    ForeColor = DockPaneCaption.TextColor;
-                    Invalidate();
+                    if (DockPaneCaption.TextColor != ForeColor)
+                    {
+                        ForeColor = DockPaneCaption.TextColor;
+                        Invalidate();
+                    }
                 }
             }
         }
