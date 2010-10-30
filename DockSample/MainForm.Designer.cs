@@ -29,6 +29,21 @@ namespace DockSample
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            WeifenLuo.WinFormsUI.Docking.DockPanelSkin dockPanelSkin5 = new WeifenLuo.WinFormsUI.Docking.DockPanelSkin();
+            WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin autoHideStripSkin5 = new WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin();
+            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient13 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient29 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin dockPaneStripSkin5 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin();
+            WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient dockPaneStripGradient5 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient30 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient14 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient31 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient dockPaneStripToolWindowGradient5 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient32 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient33 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient15 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient34 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+            WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient35 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +97,7 @@ namespace DockSample
             this.toolBarButtonSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolBarButtonLayoutByCode = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonLayoutByXml = new System.Windows.Forms.ToolStripButton();
+            this.toolBarButtonDockPanelSkinDemo = new System.Windows.Forms.ToolStripButton();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
@@ -438,7 +454,8 @@ namespace DockSample
             this.toolBarButtonTaskList,
             this.toolBarButtonSeparator2,
             this.toolBarButtonLayoutByCode,
-            this.toolBarButtonLayoutByXml});
+            this.toolBarButtonLayoutByXml,
+            this.toolBarButtonDockPanelSkinDemo});
             this.toolBar.Location = new System.Drawing.Point(0, 24);
             this.toolBar.Name = "toolBar";
             this.toolBar.Size = new System.Drawing.Size(579, 25);
@@ -518,6 +535,17 @@ namespace DockSample
             this.toolBarButtonLayoutByXml.Size = new System.Drawing.Size(23, 22);
             this.toolBarButtonLayoutByXml.ToolTipText = "Show layout by predefined XML file";
             // 
+            // toolBarButtonDockPanelSkinDemo
+            // 
+            this.toolBarButtonDockPanelSkinDemo.CheckOnClick = true;
+            this.toolBarButtonDockPanelSkinDemo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolBarButtonDockPanelSkinDemo.Image = ((System.Drawing.Image)(resources.GetObject("toolBarButtonDockPanelSkinDemo.Image")));
+            this.toolBarButtonDockPanelSkinDemo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolBarButtonDockPanelSkinDemo.Name = "toolBarButtonDockPanelSkinDemo";
+            this.toolBarButtonDockPanelSkinDemo.Size = new System.Drawing.Size(124, 22);
+            this.toolBarButtonDockPanelSkinDemo.Text = "DockPanelSkin Demo";
+            this.toolBarButtonDockPanelSkinDemo.ToolTipText = "This will use the DockPanelSkin properties to demonstrate its capabilities.";
+            // 
             // dockPanel
             // 
             this.dockPanel.ActiveAutoHideContent = null;
@@ -532,6 +560,52 @@ namespace DockSample
             this.dockPanel.Name = "dockPanel";
             this.dockPanel.RightToLeftLayout = true;
             this.dockPanel.Size = new System.Drawing.Size(579, 338);
+            dockPanelGradient13.EndColor = System.Drawing.SystemColors.ControlLight;
+            dockPanelGradient13.StartColor = System.Drawing.SystemColors.ControlLight;
+            autoHideStripSkin5.DockStripGradient = dockPanelGradient13;
+            tabGradient29.EndColor = System.Drawing.SystemColors.Control;
+            tabGradient29.StartColor = System.Drawing.SystemColors.Control;
+            tabGradient29.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+            autoHideStripSkin5.TabGradient = tabGradient29;
+            autoHideStripSkin5.TextFont = new System.Drawing.Font("Segoe UI", 9F);
+            dockPanelSkin5.AutoHideStripSkin = autoHideStripSkin5;
+            tabGradient30.EndColor = System.Drawing.SystemColors.ControlLightLight;
+            tabGradient30.StartColor = System.Drawing.SystemColors.ControlLightLight;
+            tabGradient30.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripGradient5.ActiveTabGradient = tabGradient30;
+            dockPanelGradient14.EndColor = System.Drawing.SystemColors.Control;
+            dockPanelGradient14.StartColor = System.Drawing.SystemColors.Control;
+            dockPaneStripGradient5.DockStripGradient = dockPanelGradient14;
+            tabGradient31.EndColor = System.Drawing.SystemColors.ControlLight;
+            tabGradient31.StartColor = System.Drawing.SystemColors.ControlLight;
+            tabGradient31.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripGradient5.InactiveTabGradient = tabGradient31;
+            dockPaneStripSkin5.DocumentGradient = dockPaneStripGradient5;
+            dockPaneStripSkin5.TextFont = new System.Drawing.Font("Segoe UI", 9F);
+            tabGradient32.EndColor = System.Drawing.SystemColors.ActiveCaption;
+            tabGradient32.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            tabGradient32.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
+            tabGradient32.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dockPaneStripToolWindowGradient5.ActiveCaptionGradient = tabGradient32;
+            tabGradient33.EndColor = System.Drawing.SystemColors.Control;
+            tabGradient33.StartColor = System.Drawing.SystemColors.Control;
+            tabGradient33.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripToolWindowGradient5.ActiveTabGradient = tabGradient33;
+            dockPanelGradient15.EndColor = System.Drawing.SystemColors.ControlLight;
+            dockPanelGradient15.StartColor = System.Drawing.SystemColors.ControlLight;
+            dockPaneStripToolWindowGradient5.DockStripGradient = dockPanelGradient15;
+            tabGradient34.EndColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            tabGradient34.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            tabGradient34.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            tabGradient34.TextColor = System.Drawing.SystemColors.ControlText;
+            dockPaneStripToolWindowGradient5.InactiveCaptionGradient = tabGradient34;
+            tabGradient35.EndColor = System.Drawing.Color.Transparent;
+            tabGradient35.StartColor = System.Drawing.Color.Transparent;
+            tabGradient35.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+            dockPaneStripToolWindowGradient5.InactiveTabGradient = tabGradient35;
+            dockPaneStripSkin5.ToolWindowGradient = dockPaneStripToolWindowGradient5;
+            dockPanelSkin5.DockPaneStripSkin = dockPaneStripSkin5;
+            this.dockPanel.Skin = dockPanelSkin5;
             this.dockPanel.TabIndex = 0;
             // 
             // MainForm
@@ -612,5 +686,6 @@ namespace DockSample
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripMenuItem showRightToLeft;
         private System.Windows.Forms.ToolStripMenuItem exitWithoutSavingLayout;
+        private System.Windows.Forms.ToolStripButton toolBarButtonDockPanelSkinDemo;
     }
 }
