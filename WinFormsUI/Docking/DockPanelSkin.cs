@@ -133,9 +133,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_ToolWindowGradient.ActiveCaptionGradient.TextColor = SystemColors.ActiveCaptionText;
 
             m_ToolWindowGradient.InactiveCaptionGradient.StartColor = SystemColors.GradientInactiveCaption;
-            m_ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.GradientInactiveCaption;
+            m_ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.InactiveCaption;
             m_ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            m_ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.ControlText;
+            m_ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.InactiveCaptionText;
 
             m_textFont = SystemFonts.MenuFont;
         }
