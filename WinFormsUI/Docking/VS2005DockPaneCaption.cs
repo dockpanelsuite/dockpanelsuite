@@ -191,9 +191,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return _TextGapTop;	}
 		}
 
-        private static Font TextFont
+        public Font TextFont
         {
-            get { return SystemInformation.MenuFont; }
+            get { return DockPane.DockPanel.Skin.DockPaneStripSkin.TextFont; }
         }
 
 		private static int TextGapBottom

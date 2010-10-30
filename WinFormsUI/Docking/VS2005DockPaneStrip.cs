@@ -441,9 +441,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 			base.Dispose (disposing);
 		}
 
-        private static Font TextFont
+        public Font TextFont
         {
-            get { return SystemInformation.MenuFont; }
+            get { return DockPane.DockPanel.Skin.DockPaneStripSkin.TextFont; }
         }
 
         private Font m_font;

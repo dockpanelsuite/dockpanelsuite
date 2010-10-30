@@ -44,9 +44,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private const int _TabGapBetween = 10;
 
 		#region Customizable Properties
-        private static Font TextFont
+        public Font TextFont
         {
-            get { return SystemInformation.MenuFont; }
+            get { return DockPanel.Skin.AutoHideStripSkin.TextFont; }
         }
 
 		private static StringFormat _stringFormatTabHorizontal;
