@@ -135,6 +135,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private bool m_documentTabsOverflow = false;
         private static string m_toolTipSelect;
         private static string m_toolTipClose;
+        private bool m_closeButtonVisible = false;
 
         #endregion
 
@@ -1389,7 +1390,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
             {
                 ButtonClose.Enabled = DockPane.ActiveContent == null ? true : DockPane.ActiveContent.DockHandler.CloseButton;
-                ButtonClose.Visible = DockPane.ActiveContent == null ? true : DockPane.ActiveContent.DockHandler.CloseButtonVisible;
+                m_closeButtonVisible = DockPane.ActiveContent == null ? true : DockPane.ActiveContent.DockHandler.CloseButtonVisible;
+                ButtonClose.Visible = m_closeButtonVisible;
                 ButtonClose.RefreshChanges();
                 ButtonWindowList.RefreshChanges();
             }
@@ -1429,7 +1431,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             // If the close button is not visible draw the window list button overtop.
             // Otherwise it is drawn to the left of the close button.
-            if (ButtonClose.Visible)
+            if (m_closeButtonVisible)
                 point.Offset(-(DocumentButtonGapBetween + buttonWidth), 0);
 
             ButtonWindowList.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
