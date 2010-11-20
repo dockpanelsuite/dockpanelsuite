@@ -498,7 +498,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (content.DockHandler.HideOnClose)
                 {
                     content.DockHandler.Hide();
-                    NestedDockingStatus.NestedPanes.Remove(this);
+
+                    // This line is causing more issues than it solved.
+                    // Commenting out until a better solution can be created.
+                    //NestedDockingStatus.NestedPanes.Remove(this);
                 }
                 else
                     content.DockHandler.Close();
