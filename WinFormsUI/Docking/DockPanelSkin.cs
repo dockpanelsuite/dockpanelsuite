@@ -54,6 +54,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         private DockPanelGradient m_dockStripGradient;
         private TabGradient m_TabGradient;
+        private Font m_textFont;
 
         public AutoHideStripSkin()
         {
@@ -63,6 +64,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             m_TabGradient = new TabGradient();
             m_TabGradient.TextColor = SystemColors.ControlDarkDark;
+
+            m_textFont = SystemFonts.MenuFont;
         }
 
         /// <summary>
@@ -82,6 +85,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_TabGradient; }
             set { m_TabGradient = value; }
         }
+
+        /// <summary>
+        /// Font used in AutoHideStrip elements.
+        /// </summary>
+        public Font TextFont
+        {
+            get { return m_textFont; }
+            set { m_textFont = value; }
+        }
     }
 
     /// <summary>
@@ -92,6 +104,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         private DockPaneStripGradient m_DocumentGradient;
         private DockPaneStripToolWindowGradient m_ToolWindowGradient;
+        private Font m_textFont;
 
         public DockPaneStripSkin()
         {
@@ -106,23 +119,25 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_ToolWindowGradient = new DockPaneStripToolWindowGradient();
             m_ToolWindowGradient.DockStripGradient.StartColor = SystemColors.ControlLight;
             m_ToolWindowGradient.DockStripGradient.EndColor = SystemColors.ControlLight;
-            
+
             m_ToolWindowGradient.ActiveTabGradient.StartColor = SystemColors.Control;
             m_ToolWindowGradient.ActiveTabGradient.EndColor = SystemColors.Control;
-            
+
             m_ToolWindowGradient.InactiveTabGradient.StartColor = Color.Transparent;
             m_ToolWindowGradient.InactiveTabGradient.EndColor = Color.Transparent;
             m_ToolWindowGradient.InactiveTabGradient.TextColor = SystemColors.ControlDarkDark;
-            
+
             m_ToolWindowGradient.ActiveCaptionGradient.StartColor = SystemColors.GradientActiveCaption;
             m_ToolWindowGradient.ActiveCaptionGradient.EndColor = SystemColors.ActiveCaption;
             m_ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
             m_ToolWindowGradient.ActiveCaptionGradient.TextColor = SystemColors.ActiveCaptionText;
 
             m_ToolWindowGradient.InactiveCaptionGradient.StartColor = SystemColors.GradientInactiveCaption;
-            m_ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.GradientInactiveCaption;
+            m_ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.InactiveCaption;
             m_ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            m_ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.ControlText;
+            m_ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.InactiveCaptionText;
+
+            m_textFont = SystemFonts.MenuFont;
         }
 
         /// <summary>
@@ -141,6 +156,15 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get { return m_ToolWindowGradient; }
             set { m_ToolWindowGradient = value; }
+        }
+
+        /// <summary>
+        /// Font used in DockPaneStrip elements.
+        /// </summary>
+        public Font TextFont
+        {
+            get { return m_textFont; }
+            set { m_textFont = value; }
         }
     }
 

@@ -72,11 +72,16 @@ namespace WeifenLuo.WinFormsUI.Docking
         private Color m_BackColor;
         /// <summary>
         /// Determines the color with which the client rectangle will be drawn.
-        /// If you take this property instead of the BackColor it will not have any influence on the borders to the surrounding controls (DockPane).
-        /// If you use BackColor the borders to the surrounding controls (DockPane) will also change there colors.
-        /// Alternatively you can use both of them (BackColor to draw the define the color of the borders and DockBackColor to define the color of the client rectangle). 
+        /// If this property is used instead of the BackColor it will not have any influence on the borders to the surrounding controls (DockPane).
+        /// The BackColor property changes the borders of surrounding controls (DockPane).
+        /// Alternatively both properties may be used (BackColor to draw and define the color of the borders and DockBackColor to define the color of the client rectangle). 
         /// For Backgroundimages: Set your prefered Image, then set the DockBackColor and the BackColor to the same Color (Control)
         /// </summary>
+        [Description("Determines the color with which the client rectangle will be drawn.\r\n" +
+            "If this property is used instead of the BackColor it will not have any influence on the borders to the surrounding controls (DockPane).\r\n" +
+            "The BackColor property changes the borders of surrounding controls (DockPane).\r\n" +
+            "Alternatively both properties may be used (BackColor to draw and define the color of the borders and DockBackColor to define the color of the client rectangle).\r\n" +
+            "For Backgroundimages: Set your prefered Image, then set the DockBackColor and the BackColor to the same Color (Control).")]
         public Color DockBackColor
         {
             get
@@ -85,7 +90,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             set
             {
-                m_BackColor = value;
+                if (m_BackColor != value)
+                {
+                    m_BackColor = value;
+                    this.Refresh();
+                }
             }
         }
 
@@ -263,11 +272,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 			get	{	return m_extender;	}
 		}
 
+        [Browsable(false)]
 		public DockPanelExtender.IDockPaneFactory DockPaneFactory
 		{
 			get	{	return Extender.DockPaneFactory;	}
 		}
 
+        [Browsable(false)]
 		public DockPanelExtender.IFloatWindowFactory FloatWindowFactory
 		{
 			get	{	return Extender.FloatWindowFactory;	}
@@ -447,6 +458,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        [Browsable(false)]
         public int DocumentsCount
         {
             get
@@ -473,6 +485,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return documents;
         }
 
+        [Browsable(false)]
 		public IEnumerable<IDockContent> Documents
 		{
             get
