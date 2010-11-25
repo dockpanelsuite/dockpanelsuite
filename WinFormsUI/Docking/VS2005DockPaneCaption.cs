@@ -460,8 +460,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			DockPane.DockState = DockHelper.ToggleAutoHideState(DockPane.DockState);
             if (DockHelper.IsDockStateAutoHide(DockPane.DockState))
+            {
                 DockPane.DockPanel.ActiveAutoHideContent = null;
-
+                DockPane.NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(DockPane);
+            }
 		}
 
         private void Options_Click(object sender, EventArgs e)

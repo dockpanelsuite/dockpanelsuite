@@ -498,10 +498,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (content.DockHandler.HideOnClose)
                 {
                     content.DockHandler.Hide();
-
-                    // This line is causing more issues than it solved.
-                    // Commenting out until a better solution can be created.
-                    //NestedDockingStatus.NestedPanes.Remove(this);
+                    NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(this);
                 }
                 else
                     content.DockHandler.Close();
@@ -1244,6 +1241,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 FloatWindow.Bounds = floatWindowBounds;
 
             DockState = DockState.Float;
+
+            NestedDockingStatus.NestedPanes.Remove(this);
         }
 
         public void DockTo(DockPane pane, DockStyle dockStyle, int contentIndex)

@@ -60,6 +60,56 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 		}
 
+        /// <summary>
+        /// Switches a pane with its first child in the pane hierarchy. (The actual hiding happens elsewhere.)
+        /// </summary>
+        /// <param name="pane">Pane to switch</param>
+        internal void SwitchPaneWithFirstChild(DockPane pane)
+        {
+            if (!Contains(pane))
+                return;
+
+            NestedDockingStatus statusPane = pane.NestedDockingStatus;
+            DockPane lastNestedPane = null;
+            for (int i = Count - 1; i > IndexOf(pane); i--)
+            {
+                if (this[i].NestedDockingStatus.PreviousPane == pane)
+                {
+                    lastNestedPane = this[i];
+                    break;
+                }
+            }
+
+            if (lastNestedPane != null)
+            {
+                int indexLastNestedPane = IndexOf(lastNestedPane);
+                Items[IndexOf(pane)] = lastNestedPane;
+                Items[indexLastNestedPane] = pane;
+                NestedDockingStatus lastNestedDock = lastNestedPane.NestedDockingStatus;
+
+                DockAlignment newAlignment;
+                if (lastNestedDock.Alignment == DockAlignment.Left)
+                    newAlignment = DockAlignment.Right;
+                else if (lastNestedDock.Alignment == DockAlignment.Right)
+                    newAlignment = DockAlignment.Left;
+                else if (lastNestedDock.Alignment == DockAlignment.Top)
+                    newAlignment = DockAlignment.Bottom;
+                else
+                    newAlignment = DockAlignment.Top;
+                double newProportion = 1 - lastNestedDock.Proportion;
+
+                lastNestedDock.SetStatus(this, statusPane.PreviousPane, statusPane.Alignment, statusPane.Proportion);
+                for (int i = indexLastNestedPane - 1; i > IndexOf(lastNestedPane); i--)
+                {
+                    NestedDockingStatus status = this[i].NestedDockingStatus;
+                    if (status.PreviousPane == pane)
+                        status.SetStatus(this, lastNestedPane, status.Alignment, status.Proportion);
+                }
+
+                statusPane.SetStatus(this, lastNestedPane, newAlignment, newProportion);
+            }
+        }
+
 		internal void Remove(DockPane pane)
 		{
 			InternalRemove(pane);
