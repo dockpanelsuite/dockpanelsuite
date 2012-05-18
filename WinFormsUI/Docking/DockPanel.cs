@@ -170,24 +170,47 @@ namespace WeifenLuo.WinFormsUI.Docking
 			set	{	AutoHideWindow.ActiveContent = value;	}
 		}
 
-        private bool m_allowEndUserDocking = true;
+        private bool m_allowEndUserDocking = !Win32Helper.IsRunningOnMono();
 		[LocalizedCategory("Category_Docking")]
 		[LocalizedDescription("DockPanel_AllowEndUserDocking_Description")]
 		[DefaultValue(true)]
 		public bool AllowEndUserDocking
 		{
-			get	{	return m_allowEndUserDocking;	}
-			set	{	m_allowEndUserDocking = value;	}
+			get
+			{
+                if (Win32Helper.IsRunningOnMono() && m_allowEndUserDocking)
+                    m_allowEndUserDocking = false;
+
+			    return m_allowEndUserDocking;
+			}
+			set
+			{
+			    if (Win32Helper.IsRunningOnMono() && value)
+			        throw new InvalidOperationException("AllowEndUserDocking can only be false if running on Mono");
+                    
+                m_allowEndUserDocking = value;
+			}
 		}
 
-        private bool m_allowEndUserNestedDocking = true;
+        private bool m_allowEndUserNestedDocking = !Win32Helper.IsRunningOnMono();
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_AllowEndUserNestedDocking_Description")]
         [DefaultValue(true)]
         public bool AllowEndUserNestedDocking
         {
-            get { return m_allowEndUserNestedDocking; }
-            set { m_allowEndUserNestedDocking = value; }
+            get
+            {
+                if (Win32Helper.IsRunningOnMono() && m_allowEndUserDocking)
+                    m_allowEndUserDocking = false;
+                return m_allowEndUserNestedDocking;
+            }
+            set
+            {
+                if (Win32Helper.IsRunningOnMono() && value)
+                    throw new InvalidOperationException("AllowEndUserNestedDocking can only be false if running on Mono");
+
+                m_allowEndUserNestedDocking = value;
+            }
         }
 
         private DockContentCollection m_contents = new DockContentCollection();
