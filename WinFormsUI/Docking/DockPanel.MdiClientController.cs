@@ -87,6 +87,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     // "Adding designable borders to user controls".
                     // http://www.codeproject.com/cs/miscctrl/CsAddingBorders.asp
 
+                    if (!Win32Helper.IsRunningOnMono())
+                    {
                     // Get styles using Win32 calls
                     int style = NativeMethods.GetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_STYLE);
                     int exStyle = NativeMethods.GetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE);
@@ -113,7 +115,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     // Set the styles using Win32 calls
                     NativeMethods.SetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_STYLE, style);
                     NativeMethods.SetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, exStyle);
-
+                    }
                     // Cause an update of the non-client area.
                     UpdateStyles();
                 }
@@ -232,6 +234,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         // If AutoScroll is set to false, hide the scrollbars when the control
                         // calculates its non-client area.
                         if (!AutoScroll)
+                            if (!Win32Helper.IsRunningOnMono())
                             NativeMethods.ShowScrollBar(m.HWnd, (int)Win32.ScrollBars.SB_BOTH, 0 /*false*/);
                         break;
                 }
@@ -320,6 +323,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 // To show style changes, the non-client area must be repainted. Using the
                 // control's Invalidate method does not affect the non-client area.
                 // Instead use a Win32 call to signal the style has changed.
+                if (!Win32Helper.IsRunningOnMono())
                 NativeMethods.SetWindowPos(MdiClient.Handle, IntPtr.Zero, 0, 0, 0, 0,
                     Win32.FlagsSetWindowPos.SWP_NOACTIVATE |
                     Win32.FlagsSetWindowPos.SWP_NOMOVE |

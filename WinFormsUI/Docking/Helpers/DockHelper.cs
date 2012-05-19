@@ -74,6 +74,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		public static DockPane PaneAtPoint(Point pt, DockPanel dockPanel)
 		{
+                        if (!Win32Helper.IsRunningOnMono())
 			for (Control control = Win32Helper.ControlAtPoint(pt); control != null; control = control.Parent)
 			{
 				IDockContent content = control as IDockContent;
@@ -90,6 +91,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		public static FloatWindow FloatWindowAtPoint(Point pt, DockPanel dockPanel)
 		{
+                        if (!Win32Helper.IsRunningOnMono())
 			for (Control control = Win32Helper.ControlAtPoint(pt); control != null; control = control.Parent)
 			{
 				FloatWindow floatWindow = control as FloatWindow;

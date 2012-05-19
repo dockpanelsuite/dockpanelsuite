@@ -125,13 +125,13 @@
     <value>Resources\DockIndicator_PaneDiamond_Bottom.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockIndicator_PaneDiamond_Fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_Fill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\Dockindicator_PaneDiamond_Fill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockIndicator_PaneDiamond_HotSpot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_HotSpot.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\DockIndicator_PaneDiamond_Hotspot.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockIndicator_PaneDiamond_HotSpotIndex" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_HotSpotIndex.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockIndicator_PaneDiamond_Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PaneDiamond_Left.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <version>2.5.9-alpha</version>
+    <authors>Weifen Luo and other contributors</authors>
+    <owners>Weifen Luo and other contributors</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/dockpanelsuite/dockpanelsuite</projectUrl>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Design" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="" />
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+    </frameworkAssemblies>
+    <id>DockPanelSuite</id>
+    <title>DockPanel Suite</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
+    <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
+    <releaseNotes>May 18, 2012: 2.5.9 (alpha)
+1. GitHub work item #7: Lite mode support on Mono.
+2. First signed release with NuGet package deployment.
+
+Nov 25, 2010: 2.5.0
+1. Fix Bug [2149926]: Can't resize document marked as HideOnClose when one of a set of side by side documents is closed (patch 3118287 from Agiel).
+2. Fix Bug [2792816]: Changing the DockBackColor at design time does not refresh immediately. Set a couple public properties to [Browsable(false)] so that they are not displayed in the Designer.
+3. Fix Bug [2956415]: The Window List button is hidden underneath the close button on a Document when a Floating form is opened and a new Document form opened afterwards.
+4. Fix Bug [2945519]: CloseContent suspended layout but it was possible to not resume layout because of early exits. try/finally added and suspend layout moved below the early exits since the suspend is not needed that early.
+5. Fix Bug [2782283]: DockPanelSkin tool window inactive caption gradient end color should have been SystemColors.InactiveCaption and TextColor should have been SystemColors.InactiveCaptionText instead of ControlText so that it will show up in all windows color schemes.
+6. Fix Bug [2737792]: For AutoHideTabs that are right or left the icon should be rotated 90 degrees to be consistent with Visual Studio (original code from lind60 and re-posted by jhorigan).
+7. Patch 2810961: Add a text font to the DockPanelSkin to allow different fonts to be used for tab text. From Branko Drvensek.
+
+Oct 30, 2010: 2.4.0
+1. Upgrade the suite to use Visual Studio 2008. The suite still uses the 2.0 Framework.
+2. BUG FIX: [2149926] Can't resize document marked as HideOnClose when one of a set of side by side documents is closed.
+3. BUG FIX: [2780774] Sample app layout by code functionality does not fully work and breaks when executed two times in a row.
+4. Middle mouse button click on a Document tab closes the Document that was clicked. (Original code from Ralf Jablonski but modified to close the Document that was clicked)
+</releaseNotes>
+    <copyright>(C) 2007-2012 Weifen Luo and other contributors</copyright>
+    <language>en-US</language>
+    <tags>windows forms docking dockpanel panel</tags>
+  </metadata>
+  <files>
+    <file src="..\license.txt" target="content\license.txt" />
+    <file src="..\bin\net20\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net20\WeifenLuo.WinFormsUI.Docking.dll" />
+    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.dll" />
+  </files>
+</package>

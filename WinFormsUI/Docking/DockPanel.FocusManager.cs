@@ -124,6 +124,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             // Use a static instance of the windows hook to prevent stack overflows in the windows kernel.
             static FocusManagerImpl()
             {
+                if (Win32Helper.IsRunningOnMono())
+                    return; 
+
                 sm_localWindowsHook = new LocalWindowsHook(Win32.HookType.WH_CALLWNDPROCRET);
                 sm_localWindowsHook.Install();
             }
@@ -131,6 +134,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             public FocusManagerImpl(DockPanel dockPanel)
             {
                 m_dockPanel = dockPanel;
+                if (Win32Helper.IsRunningOnMono())
+                    return;                
                 m_hookEventHandler = new LocalWindowsHook.HookEventHandler(HookEventHandler);
                 sm_localWindowsHook.HookInvoked += m_hookEventHandler;
             }
@@ -148,6 +153,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     if (!m_disposed && disposing)
                     {
+                        if (!Win32Helper.IsRunningOnMono())
                         sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
                         m_disposed = true;
                     }
@@ -177,11 +183,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (handler.Form.IsDisposed)
                     return; // Should not reach here, but better than throwing an exception
                 if (ContentContains(content, handler.ActiveWindowHandle))
+                    if (!Win32Helper.IsRunningOnMono())
                     NativeMethods.SetFocus(handler.ActiveWindowHandle);
                 if (!handler.Form.ContainsFocus)
                 {
                     if (!handler.Form.SelectNextControl(handler.Form.ActiveControl, true, true, true, true))
                         // Since DockContent Form is not selectalbe, use Win32 SetFocus instead
+                        if (!Win32Helper.IsRunningOnMono())
                         NativeMethods.SetFocus(handler.Form.Handle);
                 }
             }
@@ -290,6 +298,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             public void SuspendFocusTracking()
             {
                 m_countSuspendFocusTracking++;
+                if (!Win32Helper.IsRunningOnMono())
                 sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
             }
 
@@ -305,6 +314,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         Activate(ContentActivating);
                         ContentActivating = null;
                     }
+                    if (!Win32Helper.IsRunningOnMono())
                     sm_localWindowsHook.HookInvoked += m_hookEventHandler;
                     if (!InRefreshActiveWindow)
                         RefreshActiveWindow();
@@ -395,7 +405,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             private void SetActivePane()
             {
-                DockPane value = GetPaneFromHandle(NativeMethods.GetFocus());
+                DockPane value = Win32Helper.IsRunningOnMono() ? null : GetPaneFromHandle(NativeMethods.GetFocus());
                 if (m_activePane == value)
                     return;
 
