@@ -300,5 +300,23 @@ namespace WeifenLuo.WinFormsUI.Docking
 				handler(this, e);
 		}
 		#endregion
+
+        /// <summary>
+        /// Overridden to avoid resize issues with nested controls
+        /// </summary>
+        /// <remarks>
+        /// http://blogs.msdn.com/b/alejacma/archive/2008/11/20/controls-won-t-get-resized-once-the-nesting-hierarchy-of-windows-exceeds-a-certain-depth-x64.aspx
+        /// http://support.microsoft.com/kb/953934
+        /// </remarks>
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            if (IsHandleCreated)
+            {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    base.OnSizeChanged(e);
+                });
+            }
+        }
 	}
 }
