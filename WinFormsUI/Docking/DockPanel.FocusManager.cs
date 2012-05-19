@@ -118,16 +118,21 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
 
-            private LocalWindowsHook m_localWindowsHook;
+            private static LocalWindowsHook sm_localWindowsHook;
             private LocalWindowsHook.HookEventHandler m_hookEventHandler;
+
+            // Use a static instance of the windows hook to prevent stack overflows in the windows kernel.
+            static FocusManagerImpl()
+            {
+                sm_localWindowsHook = new LocalWindowsHook(Win32.HookType.WH_CALLWNDPROCRET);
+                sm_localWindowsHook.Install();
+            }
 
             public FocusManagerImpl(DockPanel dockPanel)
             {
                 m_dockPanel = dockPanel;
-                m_localWindowsHook = new LocalWindowsHook(Win32.HookType.WH_CALLWNDPROCRET);
                 m_hookEventHandler = new LocalWindowsHook.HookEventHandler(HookEventHandler);
-                m_localWindowsHook.HookInvoked += m_hookEventHandler;
-                m_localWindowsHook.Install();
+                sm_localWindowsHook.HookInvoked += m_hookEventHandler;
             }
 
             private DockPanel m_dockPanel;
@@ -143,7 +148,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     if (!m_disposed && disposing)
                     {
-                        m_localWindowsHook.Dispose();
+                        sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
                         m_disposed = true;
                     }
 
@@ -285,7 +290,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             public void SuspendFocusTracking()
             {
                 m_countSuspendFocusTracking++;
-                m_localWindowsHook.HookInvoked -= m_hookEventHandler;
+                sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
             }
 
             public void ResumeFocusTracking()
@@ -300,7 +305,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         Activate(ContentActivating);
                         ContentActivating = null;
                     }
-                    m_localWindowsHook.HookInvoked += m_hookEventHandler;
+                    sm_localWindowsHook.HookInvoked += m_hookEventHandler;
                     if (!InRefreshActiveWindow)
                         RefreshActiveWindow();
                 }
