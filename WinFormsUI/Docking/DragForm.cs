@@ -57,9 +57,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			if (bActivate)
 				Show();
-			else
-                                if (!Win32Helper.IsRunningOnMono())
-				NativeMethods.ShowWindow(Handle, (int)Win32.ShowWindowStyles.SW_SHOWNOACTIVATE);
+			else 
+                if (!Win32Helper.IsRunningOnMono)
+				    NativeMethods.ShowWindow(Handle, (int)Win32.ShowWindowStyles.SW_SHOWNOACTIVATE);
 		}
 	}
 }

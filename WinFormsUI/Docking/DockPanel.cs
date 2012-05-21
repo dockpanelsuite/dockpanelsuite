@@ -170,7 +170,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			set	{	AutoHideWindow.ActiveContent = value;	}
 		}
 
-        private bool m_allowEndUserDocking = !Win32Helper.IsRunningOnMono();
+        private bool m_allowEndUserDocking = !Win32Helper.IsRunningOnMono;
 		[LocalizedCategory("Category_Docking")]
 		[LocalizedDescription("DockPanel_AllowEndUserDocking_Description")]
 		[DefaultValue(true)]
@@ -178,21 +178,21 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			get
 			{
-                if (Win32Helper.IsRunningOnMono() && m_allowEndUserDocking)
+                if (Win32Helper.IsRunningOnMono && m_allowEndUserDocking)
                     m_allowEndUserDocking = false;
 
 			    return m_allowEndUserDocking;
 			}
 			set
 			{
-			    if (Win32Helper.IsRunningOnMono() && value)
+			    if (Win32Helper.IsRunningOnMono && value)
 			        throw new InvalidOperationException("AllowEndUserDocking can only be false if running on Mono");
                     
                 m_allowEndUserDocking = value;
 			}
 		}
 
-        private bool m_allowEndUserNestedDocking = !Win32Helper.IsRunningOnMono();
+        private bool m_allowEndUserNestedDocking = !Win32Helper.IsRunningOnMono;
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_AllowEndUserNestedDocking_Description")]
         [DefaultValue(true)]
@@ -200,13 +200,13 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get
             {
-                if (Win32Helper.IsRunningOnMono() && m_allowEndUserDocking)
+                if (Win32Helper.IsRunningOnMono && m_allowEndUserDocking)
                     m_allowEndUserDocking = false;
                 return m_allowEndUserNestedDocking;
             }
             set
             {
-                if (Win32Helper.IsRunningOnMono() && value)
+                if (Win32Helper.IsRunningOnMono && value)
                     throw new InvalidOperationException("AllowEndUserNestedDocking can only be false if running on Mono");
 
                 m_allowEndUserNestedDocking = value;

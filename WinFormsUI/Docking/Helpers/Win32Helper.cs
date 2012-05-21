@@ -4,21 +4,20 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-        public static class Win32Helper
-	{
-                internal static Control ControlAtPoint(Point pt)
-	        {
-		        return Control.FromChildHandle(NativeMethods.WindowFromPoint(pt));
-		}
+    public static class Win32Helper
+    {
+        private static readonly bool _isRunningOnMono = Type.GetType("Mono.Runtime") != null;
 
-                internal static uint MakeLong(int low, int high)
-		{
-			return (uint)((high << 16) + low);
-		}
+        public static bool IsRunningOnMono { get { return _isRunningOnMono; } }
 
-		public static bool IsRunningOnMono()
-		{
-			return Type.GetType ("Mono.Runtime") != null;
-		}
-	}
+        internal static Control ControlAtPoint(Point pt)
+        {
+            return Control.FromChildHandle(NativeMethods.WindowFromPoint(pt));
+        }
+
+        internal static uint MakeLong(int low, int high)
+        {
+            return (uint)((high << 16) + low);
+        }
+    }
 }
