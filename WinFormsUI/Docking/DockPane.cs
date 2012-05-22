@@ -1243,7 +1243,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             DockState = DockState.Float;
 
-            NestedDockingStatus.NestedPanes.Remove(this);
+            NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(this);
         }
 
         public void DockTo(DockPane pane, DockStyle dockStyle, int contentIndex)
