@@ -310,12 +310,16 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// </remarks>
         protected override void OnSizeChanged(EventArgs e)
         {
-            if (IsHandleCreated)
+            if (DockPanel != null && DockPanel.SupportDeeplyNestedContent && IsHandleCreated)
             {
                 BeginInvoke((MethodInvoker)delegate
                 {
                     base.OnSizeChanged(e);
                 });
+            }
+            else
+            {
+                base.OnSizeChanged(e);
             }
         }
 	}

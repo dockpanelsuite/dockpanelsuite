@@ -79,6 +79,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Performance.
+        /// </summary>
+        internal static string Category_Performance {
+            get {
+                return ResourceManager.GetString("Category_Performance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Property Changed.
         /// </summary>
         internal static string Category_PropertyChanged {
@@ -714,6 +723,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         internal static string DockPanel_ShowDocumentIcon_Description {
             get {
                 return ResourceManager.GetString("DockPanel_ShowDocumentIcon_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support deeply nested controls.  Disabling this setting may improve resize performance but may cause heavily nested content not to resize..
+        /// </summary>
+        internal static string DockPanel_SupportDeeplyNestedContent_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_SupportDeeplyNestedContent_Description", resourceCulture);
             }
         }
         

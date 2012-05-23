@@ -354,4 +354,10 @@
   <data name="DockPanel_DocumentTabStripLocation" xml:space="preserve">
     <value>Determines where the tab strip for Document style content is drawn.</value>
   </data>
+  <data name="Category_Performance" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="DockPanel_SupportDeeplyNestedContent_Description" xml:space="preserve">
+    <value>Support deeply nested controls.  Disabling this setting may improve resize performance but may cause heavily nested content not to resize.</value>
+  </data>
 </root>

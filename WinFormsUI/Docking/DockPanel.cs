@@ -607,6 +607,16 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 		}
 
+        private bool _supprtDeeplyNestedContent = true;
+        [LocalizedCategory("Category_Performance")]
+        [LocalizedDescription("DockPanel_SupportDeeplyNestedContent_Description")]
+        [DefaultValue(true)]
+        public bool SupportDeeplyNestedContent
+        {
+            get { return _supprtDeeplyNestedContent; }
+            set { _supprtDeeplyNestedContent = value; }
+        }
+
         private int GetDockWindowSize(DockState dockState)
         {
             if (dockState == DockState.DockLeft || dockState == DockState.DockRight)
