@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.5.9-alpha</version>
+    <version>2.6.0-beta</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,9 +16,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
-    <releaseNotes>May 18, 2012: 2.5.9 (alpha)
-1. GitHub work item #7: Lite mode support on Mono.
-2. First signed release with NuGet package deployment.
+    <releaseNotes>May 26, 2012: 2.6.0 (beta)
+1. Fix Bug [1849882]: When click Autohide, form should slide away.
+2. Patch 3118287: Fix for unable to move splitter after hide.
+3. GitHub work item #1: ActiveContentChanged Doesn't Fire When Many DockPanels Exist in Application.
+4. GitHub work item #2: Heavily Nested Controls Do Not Resize With DockContent.
+5. GitHub work item #7: Should Work on Mono/Linux/Mac with Minimal Feature Set.
+6. First signed release with NuGet package deployment.
 
 Nov 25, 2010: 2.5.0
 1. Fix Bug [2149926]: Can't resize document marked as HideOnClose when one of a set of side by side documents is closed (patch 3118287 from Agiel).
