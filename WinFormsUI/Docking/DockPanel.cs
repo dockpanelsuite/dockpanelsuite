@@ -637,9 +637,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			base.OnPaint(e);
 
-            Graphics g = e.Graphics;
-            SolidBrush bgBrush = new SolidBrush(DockBackColor);
-            g.FillRectangle(bgBrush, ClientRectangle);
+			Graphics g = e.Graphics;
+			g.FillRectangle(SystemBrushes.AppWorkspace, ClientRectangle);
 		}
 
 		internal void AddContent(IDockContent content)

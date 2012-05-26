@@ -308,7 +308,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return textFormat;
             }
 		}
-
+		
         private static int DocumentStripGapTop
         {
             get { return _DocumentStripGapTop; }
@@ -322,18 +322,36 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private TextFormatFlags DocumentTextFormat
 		{
         	get
-            {
-                TextFormatFlags textFormat = TextFormatFlags.EndEllipsis |
+            {	
+                 TextFormatFlags textFormat = TextFormatFlags.PathEllipsis |
                     TextFormatFlags.SingleLine |
                     TextFormatFlags.VerticalCenter |
+                    TextFormatFlags.PreserveGraphicsClipping |
                     TextFormatFlags.HorizontalCenter;
-                if (RightToLeft == RightToLeft.Yes)
-                    return textFormat | TextFormatFlags.RightToLeft;
-                else
-                    return textFormat;
+                 if (RightToLeft == RightToLeft.Yes)
+                     return textFormat | TextFormatFlags.RightToLeft;
+                 else
+                     return textFormat;
             }
 		}
-
+		
+		private StringFormat DocumentStringFormat
+		{
+			get
+			{
+				StringFormat format = new StringFormat();
+				format.Alignment = StringAlignment.Center;
+				format.LineAlignment = StringAlignment.Center;
+				format.FormatFlags = StringFormatFlags.NoWrap | StringFormatFlags.NoClip;
+				format.Trimming = StringTrimming.EllipsisPath;
+				
+				if (RightToLeft == RightToLeft.Yes)
+					format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+				
+				return format;
+			}
+		}
+		
 		private static int DocumentTabMaxWidth
 		{
 			get	{	return _DocumentTabMaxWidth;	}
@@ -421,7 +439,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private static Brush BrushToolWindowActiveBackground
         {
-            get { return SystemBrushes.Control; }
+            get { return SystemBrushes.ControlLightLight; }
         }
 
         private static Brush BrushDocumentActiveBackground
@@ -833,7 +851,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             int height = GetTabRectangle_Document(index).Height;
 
-            Size sizeText = TextRenderer.MeasureText(content.DockHandler.TabText, BoldFont, new Size(DocumentTabMaxWidth, height), DocumentTextFormat);
+			Size sizeText;
+			using (Graphics g = CreateGraphics()) {
+				SizeF sizeTextF = g.MeasureString(content.DockHandler.TabText, BoldFont, new Size(DocumentTabMaxWidth, height), DocumentStringFormat);
+				sizeText = new Size((int)Math.Ceiling(sizeTextF.Width), (int)Math.Ceiling(sizeTextF.Height));
+			}
 
 			if (DockPane.DockPanel.ShowDocumentIcon)
 				return sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
@@ -1043,7 +1065,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			{
 				g.FillPath(BrushToolWindowActiveBackground, path);
                 g.DrawPath(PenToolWindowTabBorder, path);
-                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorToolWindowActiveText, ToolWindowTextFormat);
+				TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorToolWindowActiveText, ToolWindowTextFormat);
 			}
 			else
 			{
@@ -1089,17 +1111,24 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 g.FillPath(BrushDocumentActiveBackground, path);
                 g.DrawPath(PenDocumentTabActiveBorder, path);
-                if (DockPane.IsActiveDocumentPane)
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, BoldFont, rectText, ColorDocumentActiveText, DocumentTextFormat);
-                else
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorDocumentActiveText, DocumentTextFormat);
-            }
-            else
-            {
-                g.FillPath(BrushDocumentInactiveBackground, path);
-                g.DrawPath(PenDocumentTabInactiveBorder, path);
-                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, ColorDocumentInactiveText, DocumentTextFormat);
-            }
+                if (DockPane.IsActiveDocumentPane) {
+					using (SolidBrush brush = new SolidBrush(ColorDocumentActiveText))
+						g.DrawString(tab.Content.DockHandler.TabText, BoldFont, brush,
+						             rectText, DocumentStringFormat);
+				} else {
+					using (SolidBrush brush = new SolidBrush(ColorDocumentActiveText))
+						g.DrawString(tab.Content.DockHandler.TabText, TextFont, brush,
+						             rectText, DocumentStringFormat);
+				}
+			}
+			else
+			{
+				g.FillPath(BrushDocumentInactiveBackground, path);
+				g.DrawPath(PenDocumentTabInactiveBorder, path);
+				using (SolidBrush brush = new SolidBrush(ColorDocumentInactiveText))
+					g.DrawString(tab.Content.DockHandler.TabText, TextFont, brush,
+					             rectText, DocumentStringFormat);
+			}
 
             if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);

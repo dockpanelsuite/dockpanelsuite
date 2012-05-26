@@ -165,9 +165,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     ContentActivating = content;
                     return;
                 }
-
+                
                 if (content == null)
                     return;
+
+                if (content.IsDisposed)
+                	return;
+
                 DockContentHandler handler = content.DockHandler;
                 if (handler.Form.IsDisposed)
                     return; // Should not reach here, but better than throwing an exception
