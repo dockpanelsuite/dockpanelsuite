@@ -58,17 +58,18 @@ namespace WeifenLuo.WinFormsUI.Docking
 			set	{	DockHandler.AutoHidePortion = value;	}
 		}
 
+        private string m_tabText = null;
 		[Localizable(true)]
 		[LocalizedCategory("Category_Docking")]
 		[LocalizedDescription("DockContent_TabText_Description")]
 		[DefaultValue(null)]
-        private string m_tabText = null;
 		public string TabText
 		{
             get { return m_tabText; }
             set { DockHandler.TabText = m_tabText = value; }
 		}
-		private bool ShouldSerializeTabText()
+
+        private bool ShouldSerializeTabText()
 		{
 			return (m_tabText != null);
 		}
