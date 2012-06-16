@@ -28,6 +28,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     internal interface IDockDragSource : IDragSource
     {
         Rectangle BeginDrag(Point ptMouse);
+        void EndDrag();
         bool IsDockStateValid(DockState dockState);
         bool CanDockTo(DockPane pane);
         void FloatAt(Rectangle floatWindowBounds);

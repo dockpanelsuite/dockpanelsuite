@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	public class FloatWindow : Form, INestedPanesContainer, IDockDragSource
+    public class FloatWindow : Form, INestedPanesContainer, IDockDragSource
 	{
 		private NestedPaneCollection m_nestedPanes;
 		internal const int WM_CHECKDISPOSE = (int)(Win32.Msgs.WM_USER + 1);
@@ -262,7 +262,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 return;
             }
-
+            
 			base.WndProc(ref m);
 		}
 
@@ -347,9 +347,20 @@ namespace WeifenLuo.WinFormsUI.Docking
             return true;
         }
 
+        private int m_preDragExStyle;
+
         Rectangle IDockDragSource.BeginDrag(Point ptMouse)
         {
+            m_preDragExStyle = NativeMethods.GetWindowLong(this.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE);
+            NativeMethods.SetWindowLong(this.Handle, 
+                                        (int)Win32.GetWindowLongIndex.GWL_EXSTYLE,
+                                        m_preDragExStyle | (int)(Win32.WindowExStyles.WS_EX_TRANSPARENT | Win32.WindowExStyles.WS_EX_LAYERED) );
             return Bounds;
+        }
+
+        void IDockDragSource.EndDrag()
+        {
+            NativeMethods.SetWindowLong(this.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, m_preDragExStyle);
         }
 
         public  void FloatAt(Rectangle floatWindowBounds)

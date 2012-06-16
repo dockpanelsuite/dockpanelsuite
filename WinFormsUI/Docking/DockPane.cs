@@ -1234,6 +1234,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Rectangle(location, size);
         }
 
+        void IDockDragSource.EndDrag()
+        {
+        }
+
         public void FloatAt(Rectangle floatWindowBounds)
         {
             if (FloatWindow == null || FloatWindow.NestedPanes.Count != 1)

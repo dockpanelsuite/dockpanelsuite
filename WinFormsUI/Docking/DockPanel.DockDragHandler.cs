@@ -782,6 +782,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (abort)
                     return;
 
+                DragSource.EndDrag();
+
                 if (!Outline.FloatWindowBounds.IsEmpty)
                     DragSource.FloatAt(Outline.FloatWindowBounds);
                 else if (Outline.DockTo is DockPane)
