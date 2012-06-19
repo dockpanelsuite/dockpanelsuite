@@ -728,6 +728,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 DockPanel.ResumeLayout(true, true);
 
+                DragSource.EndDrag();
+
                 DragSource = null;
             }
 
@@ -781,8 +783,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (abort)
                     return;
-
-                DragSource.EndDrag();
 
                 if (!Outline.FloatWindowBounds.IsEmpty)
                     DragSource.FloatAt(Outline.FloatWindowBounds);

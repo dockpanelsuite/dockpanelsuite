@@ -361,6 +361,9 @@ namespace WeifenLuo.WinFormsUI.Docking
         void IDockDragSource.EndDrag()
         {
             NativeMethods.SetWindowLong(this.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, m_preDragExStyle);
+            
+            Invalidate(true);
+            NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCPAINT, 1, 0);
         }
 
         public  void FloatAt(Rectangle floatWindowBounds)
