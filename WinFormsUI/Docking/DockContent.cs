@@ -93,20 +93,23 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 		
 		[Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public DockPanel DockPanel
 		{
 			get {	return DockHandler.DockPanel; }
 			set	{	DockHandler.DockPanel = value;	}
 		}
 
-		[Browsable(false)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public DockState DockState
 		{
 			get	{	return DockHandler.DockState;	}
 			set	{	DockHandler.DockState = value;	}
 		}
 
-		[Browsable(false)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public DockPane Pane
 		{
 			get {	return DockHandler.Pane; }
@@ -114,34 +117,39 @@ namespace WeifenLuo.WinFormsUI.Docking
 		}
 
 		[Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool IsHidden
 		{
 			get	{	return DockHandler.IsHidden;	}
 			set	{	DockHandler.IsHidden = value;	}
 		}
 
-		[Browsable(false)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public DockState VisibleState
 		{
 			get	{	return DockHandler.VisibleState;	}
 			set	{	DockHandler.VisibleState = value;	}
 		}
 
-		[Browsable(false)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public bool IsFloat
 		{
 			get	{	return DockHandler.IsFloat;	}
 			set	{	DockHandler.IsFloat = value;	}
 		}
 
-		[Browsable(false)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public DockPane PanelPane
 		{
 			get	{	return DockHandler.PanelPane;	}
 			set	{	DockHandler.PanelPane = value;	}
 		}
 
-		[Browsable(false)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public DockPane FloatPane
 		{
 			get	{	return DockHandler.FloatPane;	}

@@ -127,6 +127,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             [Browsable(false)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
             public Form ParentForm
             {
                 get { return m_parentForm; }

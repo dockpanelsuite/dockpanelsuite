@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
+using WeifenLuo.WinFormsUI.Docking.Skins;
 
 // To simplify the process of finding the toolbox bitmap resource:
 // #1 Create an internal class called "resfinder" outside of the root namespace.
@@ -98,6 +99,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        private bool ShouldSerializeDockBackColor()
+        {
+            return !m_BackColor.IsEmpty;
+        }
+
+        private void ResetDockBackColor()
+        {
+            DockBackColor = Color.Empty;
+        }
+
 		private AutoHideStripBase m_autoHideStripControl = null;
 		internal AutoHideStripBase AutoHideStripControl
 		{
@@ -164,6 +175,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 		}
 
 		[Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public IDockContent ActiveAutoHideContent
 		{
 			get	{	return AutoHideWindow.ActiveContent;	}
@@ -271,12 +283,39 @@ namespace WeifenLuo.WinFormsUI.Docking
 		}
 
         private DockPanelSkin m_dockPanelSkin = new DockPanelSkin();
-        [LocalizedCategory("Category_Docking")]
-        [LocalizedDescription("DockPanel_DockPanelSkin")]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DockPanelSkin Skin
         {
             get { return m_dockPanelSkin; }
-            set { m_dockPanelSkin = value; }
+            set 
+            {
+                SkinStyle = Style.Custom;
+                m_dockPanelSkin = value; 
+            }
+        }
+
+        private Style m_dockPanelSkinStyle = Style.VisualStudio2005;
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_DockPanelSkin")]
+        [DefaultValue(Style.VisualStudio2005)]
+        public Style SkinStyle
+        {
+            get { return m_dockPanelSkinStyle; }
+            set
+            {
+                if (m_dockPanelSkinStyle == value)
+                    return;
+
+                m_dockPanelSkinStyle = value;
+
+                switch (m_dockPanelSkinStyle)
+                {
+                    case Style.VisualStudio2005:
+                        m_dockPanelSkin = new DockPanelSkin();
+                        break;
+                }
+            }
         }
 
         private DocumentTabStripLocation m_documentTabStripLocation = DocumentTabStripLocation.Top;
@@ -567,6 +606,10 @@ namespace WeifenLuo.WinFormsUI.Docking
         private bool ShouldSerializeDefaultFloatWindowSize()
         {
             return DefaultFloatWindowSize != new Size(300, 300);
+        }
+        private void ResetDefaultFloatWindowSize()
+        {
+            DefaultFloatWindowSize = new Size(300, 300);
         }
 
 		private DocumentStyle m_documentStyle = DocumentStyle.DockingMdi;

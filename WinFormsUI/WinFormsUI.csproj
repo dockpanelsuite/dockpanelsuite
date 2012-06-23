@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Docking\DockPanelSkin.cs">
     </Compile>
+    <Compile Include="Docking\Skins\Style.cs" />
     <Compile Include="Docking\VS2005AutoHideStrip.cs">
       <SubType>Component</SubType>
     </Compile>
