@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Docking\DockPanelSkin.cs">
     </Compile>
+    <Compile Include="Docking\Skins\DockPanelSkinBuilder.cs" />
     <Compile Include="Docking\Skins\Style.cs" />
     <Compile Include="Docking\VS2005AutoHideStrip.cs">
       <SubType>Component</SubType>
@@ -163,6 +164,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Docking\DockPanel.Appearance.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <None Include="Docking\Resources\DockIndicator_PaneDiamond.bmp" />
     <None Include="Docking\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
     <None Include="Docking\Resources\Dockindicator_PaneDiamond_Fill.bmp" />

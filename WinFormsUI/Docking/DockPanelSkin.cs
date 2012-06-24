@@ -18,14 +18,8 @@ namespace WeifenLuo.WinFormsUI.Docking
     [TypeConverter(typeof(DockPanelSkinConverter))]
     public class DockPanelSkin
     {
-        private AutoHideStripSkin m_autoHideStripSkin;
-        private DockPaneStripSkin m_dockPaneStripSkin;
-
-        public DockPanelSkin()
-        {
-            m_autoHideStripSkin = new AutoHideStripSkin();
-            m_dockPaneStripSkin = new DockPaneStripSkin();
-        }
+        private AutoHideStripSkin m_autoHideStripSkin = new AutoHideStripSkin();
+        private DockPaneStripSkin m_dockPaneStripSkin = new DockPaneStripSkin();
 
         /// <summary>
         /// The skin used to display the auto hide strips and tabs.
@@ -52,21 +46,9 @@ namespace WeifenLuo.WinFormsUI.Docking
     [TypeConverter(typeof(AutoHideStripConverter))]
     public class AutoHideStripSkin
     {
-        private DockPanelGradient m_dockStripGradient;
-        private TabGradient m_TabGradient;
-        private Font m_textFont;
-
-        public AutoHideStripSkin()
-        {
-            m_dockStripGradient = new DockPanelGradient();
-            m_dockStripGradient.StartColor = SystemColors.ControlLight;
-            m_dockStripGradient.EndColor = SystemColors.ControlLight;
-
-            m_TabGradient = new TabGradient();
-            m_TabGradient.TextColor = SystemColors.ControlDarkDark;
-
-            m_textFont = SystemFonts.MenuFont;
-        }
+        private DockPanelGradient m_dockStripGradient = new DockPanelGradient();
+        private TabGradient m_TabGradient = new TabGradient();
+        private Font m_textFont = SystemFonts.MenuFont;
 
         /// <summary>
         /// The gradient color skin for the DockStrips.
@@ -89,6 +71,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <summary>
         /// Font used in AutoHideStrip elements.
         /// </summary>
+        [DefaultValue(typeof(SystemFonts), "MenuFont")]
         public Font TextFont
         {
             get { return m_textFont; }
@@ -102,43 +85,9 @@ namespace WeifenLuo.WinFormsUI.Docking
     [TypeConverter(typeof(DockPaneStripConverter))]
     public class DockPaneStripSkin
     {
-        private DockPaneStripGradient m_DocumentGradient;
-        private DockPaneStripToolWindowGradient m_ToolWindowGradient;
-        private Font m_textFont;
-
-        public DockPaneStripSkin()
-        {
-            m_DocumentGradient = new DockPaneStripGradient();
-            m_DocumentGradient.DockStripGradient.StartColor = SystemColors.Control;
-            m_DocumentGradient.DockStripGradient.EndColor = SystemColors.Control;
-            m_DocumentGradient.ActiveTabGradient.StartColor = SystemColors.ControlLightLight;
-            m_DocumentGradient.ActiveTabGradient.EndColor = SystemColors.ControlLightLight;
-            m_DocumentGradient.InactiveTabGradient.StartColor = SystemColors.ControlLight;
-            m_DocumentGradient.InactiveTabGradient.EndColor = SystemColors.ControlLight;
-
-            m_ToolWindowGradient = new DockPaneStripToolWindowGradient();
-            m_ToolWindowGradient.DockStripGradient.StartColor = SystemColors.ControlLight;
-            m_ToolWindowGradient.DockStripGradient.EndColor = SystemColors.ControlLight;
-
-            m_ToolWindowGradient.ActiveTabGradient.StartColor = SystemColors.Control;
-            m_ToolWindowGradient.ActiveTabGradient.EndColor = SystemColors.Control;
-
-            m_ToolWindowGradient.InactiveTabGradient.StartColor = Color.Transparent;
-            m_ToolWindowGradient.InactiveTabGradient.EndColor = Color.Transparent;
-            m_ToolWindowGradient.InactiveTabGradient.TextColor = SystemColors.ControlDarkDark;
-
-            m_ToolWindowGradient.ActiveCaptionGradient.StartColor = SystemColors.GradientActiveCaption;
-            m_ToolWindowGradient.ActiveCaptionGradient.EndColor = SystemColors.ActiveCaption;
-            m_ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            m_ToolWindowGradient.ActiveCaptionGradient.TextColor = SystemColors.ActiveCaptionText;
-
-            m_ToolWindowGradient.InactiveCaptionGradient.StartColor = SystemColors.GradientInactiveCaption;
-            m_ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.InactiveCaption;
-            m_ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            m_ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.InactiveCaptionText;
-
-            m_textFont = SystemFonts.MenuFont;
-        }
+        private DockPaneStripGradient m_DocumentGradient = new DockPaneStripGradient();
+        private DockPaneStripToolWindowGradient m_ToolWindowGradient = new DockPaneStripToolWindowGradient();
+        private Font m_textFont = SystemFonts.MenuFont;
 
         /// <summary>
         /// The skin used to display the Document style DockPane strip and tab.
@@ -161,6 +110,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <summary>
         /// Font used in DockPaneStrip elements.
         /// </summary>
+        [DefaultValue(typeof(SystemFonts), "MenuFont")]
         public Font TextFont
         {
             get { return m_textFont; }
@@ -174,14 +124,8 @@ namespace WeifenLuo.WinFormsUI.Docking
     [TypeConverter(typeof(DockPaneStripGradientConverter))]
     public class DockPaneStripToolWindowGradient : DockPaneStripGradient
     {
-        private TabGradient m_activeCaptionGradient;
-        private TabGradient m_inactiveCaptionGradient;
-
-        public DockPaneStripToolWindowGradient()
-        {
-            m_activeCaptionGradient = new TabGradient();
-            m_inactiveCaptionGradient = new TabGradient();
-        }
+        private TabGradient m_activeCaptionGradient = new TabGradient();
+        private TabGradient m_inactiveCaptionGradient = new TabGradient();
 
         /// <summary>
         /// The skin used to display the active ToolWindow caption.
@@ -208,16 +152,9 @@ namespace WeifenLuo.WinFormsUI.Docking
     [TypeConverter(typeof(DockPaneStripGradientConverter))]
     public class DockPaneStripGradient
     {
-        private DockPanelGradient m_dockStripGradient;
-        private TabGradient m_activeTabGradient;
-        private TabGradient m_inactiveTabGradient;
-
-        public DockPaneStripGradient()
-        {
-            m_dockStripGradient = new DockPanelGradient();
-            m_activeTabGradient = new TabGradient();
-            m_inactiveTabGradient = new TabGradient();
-        }
+        private DockPanelGradient m_dockStripGradient = new DockPanelGradient();
+        private TabGradient m_activeTabGradient = new TabGradient();
+        private TabGradient m_inactiveTabGradient = new TabGradient();
 
         /// <summary>
         /// The gradient color skin for the DockStrip.
@@ -253,12 +190,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     [TypeConverter(typeof(DockPaneTabGradientConverter))]
     public class TabGradient : DockPanelGradient
     {
-        private Color m_textColor;
-
-        public TabGradient()
-        {
-            m_textColor = SystemColors.ControlText;
-        }
+        private Color m_textColor = SystemColors.ControlText;
 
         /// <summary>
         /// The text color.
@@ -277,16 +209,9 @@ namespace WeifenLuo.WinFormsUI.Docking
     [TypeConverter(typeof(DockPanelGradientConverter))]
     public class DockPanelGradient
     {
-        private Color m_startColor;
-        private Color m_endColor;
-        private LinearGradientMode m_linearGradientMode;
-
-        public DockPanelGradient()
-        {
-            m_startColor = SystemColors.Control;
-            m_endColor = SystemColors.Control;
-            m_linearGradientMode = LinearGradientMode.Horizontal;
-        }
+        private Color m_startColor = SystemColors.Control;
+        private Color m_endColor = SystemColors.Control;
+        private LinearGradientMode m_linearGradientMode = LinearGradientMode.Horizontal;
 
         /// <summary>
         /// The beginning gradient color.
@@ -434,7 +359,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
         {
-            if (destinationType == typeof(String) && value is TabGradient)
+            TabGradient val = value as TabGradient;
+            if (destinationType == typeof(String) && val != null)
             {
                 return "DockPaneTabGradient";
             }

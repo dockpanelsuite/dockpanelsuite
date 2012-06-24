@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
-using WeifenLuo.WinFormsUI.Docking.Skins;
 
 // To simplify the process of finding the toolbox bitmap resource:
 // #1 Create an internal class called "resfinder" outside of the root namespace.
@@ -281,42 +280,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 				Refresh();
 			}
 		}
-
-        private DockPanelSkin m_dockPanelSkin = new DockPanelSkin();
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public DockPanelSkin Skin
-        {
-            get { return m_dockPanelSkin; }
-            set 
-            {
-                SkinStyle = Style.Custom;
-                m_dockPanelSkin = value; 
-            }
-        }
-
-        private Style m_dockPanelSkinStyle = Style.VisualStudio2005;
-        [LocalizedCategory("Category_Docking")]
-        [LocalizedDescription("DockPanel_DockPanelSkin")]
-        [DefaultValue(Style.VisualStudio2005)]
-        public Style SkinStyle
-        {
-            get { return m_dockPanelSkinStyle; }
-            set
-            {
-                if (m_dockPanelSkinStyle == value)
-                    return;
-
-                m_dockPanelSkinStyle = value;
-
-                switch (m_dockPanelSkinStyle)
-                {
-                    case Style.VisualStudio2005:
-                        m_dockPanelSkin = new DockPanelSkin();
-                        break;
-                }
-            }
-        }
 
         private DocumentTabStripLocation m_documentTabStripLocation = DocumentTabStripLocation.Top;
         [DefaultValue(DocumentTabStripLocation.Top)]

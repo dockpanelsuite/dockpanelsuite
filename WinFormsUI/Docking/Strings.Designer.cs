@@ -601,6 +601,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The predefined style used as the base for the skin..
+        /// </summary>
+        internal static string DockPanel_DockPanelSkinStyle {
+            get {
+                return ResourceManager.GetString("DockPanel_DockPanelSkinStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size of the right docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels..
         /// </summary>
         internal static string DockPanel_DockRightPortion_Description {

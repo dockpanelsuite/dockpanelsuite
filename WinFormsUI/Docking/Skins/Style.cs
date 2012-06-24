@@ -7,7 +7,6 @@ namespace WeifenLuo.WinFormsUI.Docking.Skins
 {
     public enum Style
     {
-        Custom = 0,
         VisualStudio2005 = 1
     }
 }
