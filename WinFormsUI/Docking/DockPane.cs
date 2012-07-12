@@ -483,13 +483,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal void CloseContent(IDockContent content)
         {
-            DockPanel dockPanel = DockPanel;
-
             if (content == null)
                 return;
 
             if (!content.DockHandler.CloseButton)
                 return;
+
+            DockPanel dockPanel = DockPanel;
 
             dockPanel.SuspendLayout(true);
 

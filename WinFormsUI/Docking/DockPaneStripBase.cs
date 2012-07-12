@@ -182,11 +182,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.OnMouseDown(e);
 
             int index = HitTest();
+
             if (index != -1)
             {
-                IDockContent content = Tabs[index].Content;
-                if (DockPane.ActiveContent != content)
-                    DockPane.ActiveContent = content;
+                if (e.Button == MouseButtons.Middle &&
+                    DockPane.Appearance == Docking.DockPane.AppearanceStyle.Document)
+                {
+                    // Close the specified content.
+                    IDockContent content = Tabs[index].Content;
+                    DockPane.CloseContent(content);
+                }
+                else
+                {
+                    IDockContent content = Tabs[index].Content;
+                    if (DockPane.ActiveContent != content)
+                        DockPane.ActiveContent = content;
+                }
             }
 
             if (e.Button == MouseButtons.Left)
@@ -212,17 +223,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (e.Button == MouseButtons.Right)
                 ShowTabPageContextMenu(new Point(e.X, e.Y));
-            else if ((e.Button == MouseButtons.Middle) && (DockPane.Appearance == Docking.DockPane.AppearanceStyle.Document))
-            {
-                // Get the content located under the click (if there is one)
-                int index = HitTest();
-                if (index != -1)
-                {
-                    // Close the specified content.
-                    IDockContent content = Tabs[index].Content;
-                    DockPane.CloseContent(content);
-                }
-            }
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
