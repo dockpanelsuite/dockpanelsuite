@@ -613,10 +613,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 		}
 
-        private bool _supprtDeeplyNestedContent = true;
+        private bool _supprtDeeplyNestedContent = false;
         [LocalizedCategory("Category_Performance")]
         [LocalizedDescription("DockPanel_SupportDeeplyNestedContent_Description")]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool SupportDeeplyNestedContent
         {
             get { return _supprtDeeplyNestedContent; }
