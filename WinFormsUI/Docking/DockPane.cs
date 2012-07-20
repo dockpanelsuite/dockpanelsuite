@@ -125,10 +125,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockPanel.ResumeLayout(true, true);
         }
 
+        private bool m_isDisposing;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
+                // IMPORTANT: avoid nested call into this method on Mono. 
+                // https://github.com/dockpanelsuite/dockpanelsuite/issues/16
+                if (Win32Helper.IsRunningOnMono)
+                {
+                    if (m_isDisposing)
+                        return;
+
+                    m_isDisposing = true;
+                }
+
                 m_dockState = DockState.Unknown;
 
                 if (NestedPanesContainer != null)
