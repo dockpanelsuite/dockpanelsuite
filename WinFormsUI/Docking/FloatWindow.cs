@@ -147,12 +147,16 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			DockPane theOnlyPane = (VisibleNestedPanes.Count == 1) ? VisibleNestedPanes[0] : null;
 
-			if (theOnlyPane == null)
+			if (theOnlyPane == null || theOnlyPane.ActiveContent == null)
+            {
 				Text = " ";	// use " " instead of string.Empty because the whole title bar will disappear when ControlBox is set to false.
-			else if (theOnlyPane.ActiveContent == null)
-				Text = " ";
+                Icon = null;
+            }
 			else
-				Text = theOnlyPane.ActiveContent.DockHandler.TabText;
+			{
+			    Text = theOnlyPane.ActiveContent.DockHandler.TabText;
+                Icon = theOnlyPane.ActiveContent.DockHandler.Icon;
+			}
 		}
 
 		protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
