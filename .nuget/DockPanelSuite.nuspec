@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.6.0.0</version>
+    <version>2.6.0.1</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
-    <projectUrl>https://github.com/dockpanelsuite/dockpanelsuite</projectUrl>
+    <projectUrl>http://dockpanelsuite.com</projectUrl>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Design" targetFramework="" />
       <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="" />
