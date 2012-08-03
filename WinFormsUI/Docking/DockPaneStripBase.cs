@@ -181,12 +181,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             base.OnMouseDown(e);
 
-            int index = HitTest();
+            int index = HitTest(e.Location);
 
             if (index != -1)
             {
-                if (e.Button == MouseButtons.Middle &&
-                    DockPane.Appearance == Docking.DockPane.AppearanceStyle.Document)
+                if (e.Button == MouseButtons.Middle)
                 {
                     // Close the specified content.
                     IDockContent content = Tabs[index].Content;
