@@ -24,7 +24,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 	public delegate IDockContent DeserializeDockContent(string persistString);
 
     [LocalizedDescription("DockPanel_Description")]
-    [Designer(typeof(System.Windows.Forms.Design.ControlDesigner))]
+    [Designer("System.Windows.Forms.Design.ControlDesigner, System.Design")]
     [ToolboxBitmap(typeof(resfinder), "WeifenLuo.WinFormsUI.Docking.DockPanel.bmp")]
     [DefaultProperty("DocumentStyle")]
     [DefaultEvent("ActiveContentChanged")]

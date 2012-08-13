@@ -7,7 +7,6 @@
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://dockpanelsuite.com</projectUrl>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Design" targetFramework="" />
       <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="" />
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
