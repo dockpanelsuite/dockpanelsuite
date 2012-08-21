@@ -95,7 +95,8 @@ namespace WeifenLuo.WinFormsUI.Docking.Win32
 		WS_EX_APPWINDOW         = 0x00040000,
 		WS_EX_OVERLAPPEDWINDOW  = 0x00000300,
 		WS_EX_PALETTEWINDOW     = 0x00000188,
-		WS_EX_LAYERED			= 0x00080000
+		WS_EX_LAYERED			= 0x00080000,
+        WS_EX_NOACTIVATE        = 0x08000000
 	}
 
 	internal enum Msgs
