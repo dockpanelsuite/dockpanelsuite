@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.6.0.1</version>
+    <version>2.7.0-beta</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -15,12 +15,27 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
-    <releaseNotes>May 26, 2012: 2.6.0
+    <releaseNotes>
+August 25, 2012: 2.7.0 RC
+1. GitHub #11 - Corrected an issue that prevented the docking indicator from being shown when docking a float window while the cursor was in the float window to be docked.
+2. GitHub #16 - Fixed a stack overflow that occurs on Mono at shutdown due to an existing discrepency in Mono's implementation of Control.Dispose().
+3. GitHub #22 - DockContent.TabText is now localizable.
+4. GitHub #28 - Closing a tab via middle click no longer activates the content first, which was unnecessarily time consuming and could result in the active tab changing from what was previously active.
+5. GitHub #31 - SupportDeeplyNestedControls is now turned off by default. (BREAKING CHANGE)
+6. GitHub #35 - The icon of a FloatWindow will reflect the active content. Note that icons are not visible on FloatWindows by default but can be made visible via the Extender functionality (see the cookbook on the wiki for details).
+7. GitHub #40 - The middle mouse button now closes tabs embedded in a FloatWindow.
+8. GitHub #42 - Added support for .NET Client Profile.
+9. GitHub #46 - Fixed docking indicators not-visible issue for most known scenarios.
+
+BREAKING CHANGES
+#31 - By changing the default value of SupportDeeplyNestedControls to false, if a DockPanel previously relied on this functionality being enabled it will need to be manually enabled again following the upgrade to 2.7.
+
+May 26, 2012: 2.6.0
 1. Fix Bug [1849882]: When click Autohide, form should slide away.
 2. Patch 3118287: Fix for unable to move splitter after hide.
-3. GitHub work item #1: ActiveContentChanged Doesn't Fire When Many DockPanels Exist in Application.
-4. GitHub work item #2: Heavily Nested Controls Do Not Resize With DockContent.
-5. GitHub work item #7: Should Work on Mono/Linux/Mac with Minimal Feature Set.
+3. GitHub #1: ActiveContentChanged Doesn't Fire When Many DockPanels Exist in Application.
+4. GitHub #2: Heavily Nested Controls Do Not Resize With DockContent.
+5. GitHub #7: Should Work on Mono/Linux/Mac with Minimal Feature Set.
 6. First signed release with NuGet package deployment.
 
 Nov 25, 2010: 2.5.0
