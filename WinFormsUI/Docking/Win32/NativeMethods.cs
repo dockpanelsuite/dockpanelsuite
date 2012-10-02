@@ -26,9 +26,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         public static extern uint SendMessage(IntPtr hWnd, int Msg, uint wParam, uint lParam);
 
         [DllImport("User32.dll", CharSet=CharSet.Auto)]
-        public static extern int ShowWindow(IntPtr hWnd, short cmdShow);
-
-        [DllImport("User32.dll", CharSet=CharSet.Auto)]
         public static extern int SetWindowPos(IntPtr hWnd, IntPtr hWndAfter, int X, int Y, int Width, int Height, FlagsSetWindowPos flags);
 
 		[DllImport("user32.dll", CharSet = CharSet.Auto)]
