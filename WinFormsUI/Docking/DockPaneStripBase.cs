@@ -294,6 +294,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        protected void ContentClosed()
+        {
+            if (m_tabs.Count == 0)
+            {
+                DockPane.ClearLastActiveContent();
+            }
+        }
+
         protected abstract Rectangle GetTabBounds(Tab tab);
 
         internal static Rectangle ToScreen(Rectangle rectangle, Control parent)

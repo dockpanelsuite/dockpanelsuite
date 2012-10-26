@@ -951,7 +951,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             Form.Close();
             if (dockPanel != null)
                 dockPanel.ResumeLayout(true, true);
-
         }
 
         private DockPaneStripBase.Tab m_tab = null;

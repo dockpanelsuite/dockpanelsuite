@@ -217,6 +217,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        internal void ClearLastActiveContent()
+        {
+            m_activeContent = null;
+        }
+
         private bool m_allowDockDragAndDrop = true;
         public virtual bool AllowDockDragAndDrop
         {
