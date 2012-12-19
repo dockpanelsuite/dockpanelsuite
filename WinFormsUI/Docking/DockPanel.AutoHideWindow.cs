@@ -82,6 +82,30 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_activePane = value;
             }
 
+            #region ActiveContentChanged Event
+            private static readonly object ActiveContentChangedEvent = new object();
+            public event EventHandler ActiveContentChanged
+            {
+                add { Events.AddHandler(ActiveContentChangedEvent, value); }
+                remove { Events.RemoveHandler(ActiveContentChangedEvent, value); }
+            }
+            protected virtual void OnActiveContentChanged(EventArgs e, IDockContent prevContent)
+            {
+				var activeContent = ActiveContent;
+				EventHandler handler;
+				if (null != prevContent)
+				{
+					prevContent.OnDeactivate(e);
+				}
+                handler = (EventHandler)Events[ActiveContentChangedEvent];
+                if (handler != null)
+                    handler(this, e);
+				if (null != activeContent)
+				{
+					activeContent.OnActivated(e);
+				}
+            }
+            #endregion
             private IDockContent m_activeContent = null;
             public IDockContent ActiveContent
             {
@@ -107,6 +131,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         AnimateWindow(false);
                     }
 
+					var prevContent = m_activeContent;
                     m_activeContent = value;
                     SetActivePane();
                     if (ActivePane != null)
@@ -119,6 +144,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DockPanel.RefreshAutoHideStrip();
 
                     SetTimerMouseTrack();
+
+					OnActiveContentChanged(EventArgs.Empty, prevContent);
                 }
             }
 

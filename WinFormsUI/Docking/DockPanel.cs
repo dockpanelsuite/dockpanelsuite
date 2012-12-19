@@ -49,6 +49,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             SuspendLayout();
 
 			m_autoHideWindow = new AutoHideWindowControl(this);
+            m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged;
 			m_autoHideWindow.Visible = false;
             SetAutoHideWindowParent();
 
@@ -1047,6 +1048,25 @@ namespace WeifenLuo.WinFormsUI.Docking
 			return false;
 		}
 
+        #region Events
+        private static readonly object ActiveAutoHideContentChangedEvent = new object();
+        public event EventHandler ActiveAutoHideContentChanged
+        {
+            add { Events.AddHandler(ActiveAutoHideContentChangedEvent, value); }
+            remove { Events.RemoveHandler(ActiveAutoHideContentChangedEvent, value); }
+        }
+        protected virtual void OnActiveAutoHideContentChanged(EventArgs e)
+        {
+            EventHandler handler = (EventHandler)Events[ActiveAutoHideContentChangedEvent];
+            if (handler != null)
+                handler(this, e);
+        }
+        private void m_autoHideWindow_ActiveContentChanged(object sender, EventArgs e)
+        {
+            OnActiveAutoHideContentChanged(e);
+        }
+
+
 		private static readonly object ContentAddedEvent = new object();
 		[LocalizedCategory("Category_DockingNotification")]
 		[LocalizedDescription("DockPanel_ContentAdded_Description")]
@@ -1076,5 +1096,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 			if (handler != null)
 				handler(this, e);
 		}
+        #endregion
     }
 }
