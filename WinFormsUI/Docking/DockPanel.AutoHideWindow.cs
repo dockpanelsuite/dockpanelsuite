@@ -89,11 +89,21 @@ namespace WeifenLuo.WinFormsUI.Docking
                 add { Events.AddHandler(ActiveContentChangedEvent, value); }
                 remove { Events.RemoveHandler(ActiveContentChangedEvent, value); }
             }
-            protected virtual void OnActiveContentChanged(EventArgs e)
+            protected virtual void OnActiveContentChanged(EventArgs e, IDockContent prevContent)
             {
-                EventHandler handler = (EventHandler)Events[ActiveContentChangedEvent];
+				var activeContent = ActiveContent;
+				EventHandler handler;
+				if (null != prevContent)
+				{
+					prevContent.OnDeactivate(e);
+				}
+                handler = (EventHandler)Events[ActiveContentChangedEvent];
                 if (handler != null)
                     handler(this, e);
+				if (null != activeContent)
+				{
+					activeContent.OnActivated(e);
+				}
             }
             #endregion
             private IDockContent m_activeContent = null;
@@ -121,6 +131,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         AnimateWindow(false);
                     }
 
+					var prevContent = m_activeContent;
                     m_activeContent = value;
                     SetActivePane();
                     if (ActivePane != null)
@@ -134,7 +145,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     SetTimerMouseTrack();
 
-                    OnActiveContentChanged(EventArgs.Empty);
+					OnActiveContentChanged(EventArgs.Empty, prevContent);
                 }
             }
 
