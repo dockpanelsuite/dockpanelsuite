@@ -30,7 +30,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 			m_nestedPanes = new NestedPaneCollection(this);
 
-			FormBorderStyle = FormBorderStyle.SizableToolWindow;
+			FormBorderStyle = dockPanel.DefaultFloatWindowStyle;
+			MinimizeBox = false;
 			ShowInTaskbar = false;
             if (dockPanel.RightToLeft != RightToLeft)
                 RightToLeft = dockPanel.RightToLeft;
@@ -181,7 +182,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 					return;
 
 				uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
-				if (result == 2 && DockPanel.AllowEndUserDocking && this.AllowEndUserDocking)	// HITTEST_CAPTION
+				if (this.WindowState != FormWindowState.Maximized && result == 2 && DockPanel.AllowEndUserDocking && this.AllowEndUserDocking)	// HITTEST_CAPTION
 				{
 					Activate();
 					m_dockPanel.BeginDrag(this);
@@ -236,7 +237,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 return;
             }
-            else if (m.Msg == (int)Win32.Msgs.WM_NCLBUTTONDBLCLK)
+			else if (m_dockPanel != null && m_dockPanel.DoubleClickReturnsFloatWindow && m.Msg == (int)Win32.Msgs.WM_NCLBUTTONDBLCLK)
             {
                 uint result = Win32Helper.IsRunningOnMono ? 0: NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
                 if (result != 2)	// HITTEST_CAPTION
