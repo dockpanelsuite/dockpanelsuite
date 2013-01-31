@@ -46,6 +46,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 			m_panes = new DockPaneCollection();
 			m_floatWindows = new FloatWindowCollection();
 
+			DefaultFloatWindowStyle = FormBorderStyle.FixedToolWindow;
+			DoubleClickReturnsFloatWindow = true;
+
             SuspendLayout();
 
 			m_autoHideWindow = new AutoHideWindowControl(this);
@@ -574,6 +577,27 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             DefaultFloatWindowSize = new Size(300, 300);
         }
+
+		/// <summary>
+		/// Gets or sets the default form border style for float windows.
+		/// </summary>
+		[Category("Layout")]
+		public FormBorderStyle DefaultFloatWindowStyle
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets whether double clicking on a float window title bar 
+		/// returns it to it's owner dock panel. If false, double clicking maximizes the float 
+		/// window. True by default.
+		/// </summary>
+		public bool DoubleClickReturnsFloatWindow
+		{
+			get;
+			set;
+		}
 
 		private DocumentStyle m_documentStyle = DocumentStyle.DockingMdi;
 		[LocalizedCategory("Category_Docking")]
