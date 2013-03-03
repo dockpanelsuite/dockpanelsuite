@@ -152,6 +152,8 @@ namespace DockSample
                 Extender.SetSchema(dockPanel, Extender.Schema.VS2005);
             else if (sender == menuItemSchemaVS2003)
                 Extender.SetSchema(dockPanel, Extender.Schema.VS2003);
+            else if (sender == menuItemSchemaVS2012Light)
+                Extender.SetSchema(dockPanel, Extender.Schema.VS2012Light);
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
