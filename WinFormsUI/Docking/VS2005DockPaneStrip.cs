@@ -1440,6 +1440,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private void Close_Click(object sender, EventArgs e)
         {
             DockPane.CloseActiveContent();
+            base.ContentClosed();
         }
 
         protected internal override int HitTest(Point ptMouse)

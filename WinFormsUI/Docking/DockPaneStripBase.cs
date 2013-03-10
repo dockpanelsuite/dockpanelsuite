@@ -258,5 +258,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DockPane.ActiveContent = content;
             }
         }
+
+	    protected void ContentClosed()
+	    {
+            if (m_tabs.Count == 0)
+                DockPane.ClearLastActiveContent();
+	    }
 	}
 }

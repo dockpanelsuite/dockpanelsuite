@@ -874,13 +874,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		public void Close()
 		{
-			DockPanel dockPanel = DockPanel;
+            DockPanel dockPanel = DockPanel;
             if (dockPanel != null)
                 dockPanel.SuspendLayout(true);
-			Form.Close();
+            Form.Close();
 			if (dockPanel != null)
 				dockPanel.ResumeLayout(true, true);
-
 		}
 
 		private DockPaneStripBase.Tab m_tab = null;

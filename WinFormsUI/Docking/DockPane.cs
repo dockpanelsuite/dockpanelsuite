@@ -214,6 +214,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                     TabStripControl.EnsureTabVisible(m_activeContent);
             }
         }
+        public void ClearLastActiveContent()
+        {
+            m_activeContent = null;
+        }
 
         private bool m_allowDockDragAndDrop = true;
         public virtual bool AllowDockDragAndDrop
