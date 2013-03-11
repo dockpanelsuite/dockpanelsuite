@@ -143,27 +143,24 @@ namespace WeifenLuo.WinFormsUI.Docking
 		private bool m_disposed = false;
 		protected override void Dispose(bool disposing)
 		{
-			lock (this)
+			if (!m_disposed && disposing)
 			{
-				if (!m_disposed && disposing)
+                m_focusManager.Dispose();
+				if (m_mdiClientController != null)
 				{
-                    m_focusManager.Dispose();
-					if (m_mdiClientController != null)
-					{
-						m_mdiClientController.HandleAssigned -= new EventHandler(MdiClientHandleAssigned);
-						m_mdiClientController.MdiChildActivate -= new EventHandler(ParentFormMdiChildActivate);
-						m_mdiClientController.Layout -= new LayoutEventHandler(MdiClient_Layout);
-						m_mdiClientController.Dispose();
-					}
-					FloatWindows.Dispose();
-					Panes.Dispose();
-					DummyContent.Dispose();
-
-					m_disposed = true;
+					m_mdiClientController.HandleAssigned -= new EventHandler(MdiClientHandleAssigned);
+					m_mdiClientController.MdiChildActivate -= new EventHandler(ParentFormMdiChildActivate);
+					m_mdiClientController.Layout -= new LayoutEventHandler(MdiClient_Layout);
+					m_mdiClientController.Dispose();
 				}
-				
-				base.Dispose(disposing);
+				FloatWindows.Dispose();
+				Panes.Dispose();
+				DummyContent.Dispose();
+
+				m_disposed = true;
 			}
+				
+			base.Dispose(disposing);
 		}
 
 		[Browsable(false)]
