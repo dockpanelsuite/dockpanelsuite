@@ -118,18 +118,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
 
-            private static LocalWindowsHook sm_localWindowsHook;
-            private LocalWindowsHook.HookEventHandler m_hookEventHandler;
-
             // Use a static instance of the windows hook to prevent stack overflows in the windows kernel.
-            static FocusManagerImpl()
-            {
-                if (Win32Helper.IsRunningOnMono)
-                    return; 
+            [ThreadStatic]
+            private static LocalWindowsHook sm_localWindowsHook;
 
-                sm_localWindowsHook = new LocalWindowsHook(Win32.HookType.WH_CALLWNDPROCRET);
-                sm_localWindowsHook.Install();
-            }
+            private LocalWindowsHook.HookEventHandler m_hookEventHandler;
 
             public FocusManagerImpl(DockPanel dockPanel)
             {
@@ -137,6 +130,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (Win32Helper.IsRunningOnMono)
                     return;                
                 m_hookEventHandler = new LocalWindowsHook.HookEventHandler(HookEventHandler);
+
+                // Ensure the windows hook has been created for this thread
+                if (sm_localWindowsHook == null)
+                {
+                    sm_localWindowsHook = new LocalWindowsHook(Win32.HookType.WH_CALLWNDPROCRET);
+                    sm_localWindowsHook.Install();
+                }
+
                 sm_localWindowsHook.HookInvoked += m_hookEventHandler;
             }
 
