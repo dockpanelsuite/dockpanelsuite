@@ -14,19 +14,20 @@ namespace DockSample
     {
         private bool m_bSaveLayout = true;
         private DeserializeDockContent m_deserializeDockContent;
-        private DummySolutionExplorer m_solutionExplorer = new DummySolutionExplorer();
-        private DummyPropertyWindow m_propertyWindow = new DummyPropertyWindow();
-        private DummyToolbox m_toolbox = new DummyToolbox();
-        private DummyOutputWindow m_outputWindow = new DummyOutputWindow();
-        private DummyTaskList m_taskList = new DummyTaskList();
+        private DummySolutionExplorer m_solutionExplorer;
+        private DummyPropertyWindow m_propertyWindow;
+        private DummyToolbox m_toolbox;
+        private DummyOutputWindow m_outputWindow;
+        private DummyTaskList m_taskList;
 
         public MainForm()
         {
             InitializeComponent();
 
+            CreateStandardControls();
+
             showRightToLeft.Checked = (RightToLeft == RightToLeft.Yes);
             RightToLeftLayout = showRightToLeft.Checked;
-            m_solutionExplorer = new DummySolutionExplorer();
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
         }
@@ -423,11 +424,7 @@ namespace DockSample
 
             CloseAllDocuments();
 
-            m_solutionExplorer = new DummySolutionExplorer();
-            m_propertyWindow = new DummyPropertyWindow();
-            m_toolbox = new DummyToolbox();
-            m_outputWindow = new DummyOutputWindow();
-            m_taskList = new DummyTaskList();
+            CreateStandardControls();
 
             m_solutionExplorer.Show(dockPanel, DockState.DockRight);
             m_propertyWindow.Show(m_solutionExplorer.Pane, m_solutionExplorer);
@@ -447,12 +444,23 @@ namespace DockSample
             dockPanel.ResumeLayout(true, true);
         }
 
+        private void CreateStandardControls()
+        {
+            m_solutionExplorer = new DummySolutionExplorer();
+            m_propertyWindow = new DummyPropertyWindow();
+            m_toolbox = new DummyToolbox();
+            m_outputWindow = new DummyOutputWindow();
+            m_taskList = new DummyTaskList();
+        }
+
         private void menuItemLayoutByXml_Click(object sender, System.EventArgs e)
         {
             dockPanel.SuspendLayout(true);
 
             // In order to load layout from XML, we need to close all the DockContents
             CloseAllContents();
+
+            CreateStandardControls();
 
             Assembly assembly = Assembly.GetAssembly(typeof(MainForm));
             Stream xmlStream = assembly.GetManifestResourceStream("DockSample.Resources.DockPanel.xml");
