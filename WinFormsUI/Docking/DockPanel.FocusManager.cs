@@ -150,17 +150,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             private bool m_disposed = false;
             protected override void Dispose(bool disposing)
             {
-                lock (this)
+                if (!m_disposed && disposing)
                 {
-                    if (!m_disposed && disposing)
-                    {
-                        if (!Win32Helper.IsRunningOnMono)
-                        sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
-                        m_disposed = true;
-                    }
-
-                    base.Dispose(disposing);
+                    if (!Win32Helper.IsRunningOnMono)
+                    sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
+                    m_disposed = true;
                 }
+
+                base.Dispose(disposing);
             }
 
             private IDockContent m_contentActivating = null;

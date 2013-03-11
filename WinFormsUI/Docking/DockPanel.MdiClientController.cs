@@ -33,14 +33,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (disposing)
                 {
-                    lock (this)
-                    {
-                        if (Site != null && Site.Container != null)
-                            Site.Container.Remove(this);
+                    if (Site != null && Site.Container != null)
+                        Site.Container.Remove(this);
 
-                        if (Disposed != null)
-                            Disposed(this, EventArgs.Empty);
-                    }
+                    if (Disposed != null)
+                        Disposed(this, EventArgs.Empty);
                 }
             }
 

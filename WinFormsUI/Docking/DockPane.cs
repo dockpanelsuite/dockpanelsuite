@@ -956,13 +956,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private void RefreshStateChange(INestedPanesContainer oldContainer, DockState oldDockState)
         {
-            lock (this)
-            {
-                if (IsRefreshStateChangeSuspended)
-                    return;
+            if (IsRefreshStateChangeSuspended)
+                return;
 
-                SuspendRefreshStateChange();
-            }
+            SuspendRefreshStateChange();
 
             DockPanel.SuspendLayout(true);
 

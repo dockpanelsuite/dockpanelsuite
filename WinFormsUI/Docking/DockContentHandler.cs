@@ -35,20 +35,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 
 		protected virtual void Dispose(bool disposing)
 		{
-			if(disposing)
+			if (disposing)
 			{
-				lock(this)
-				{
-					DockPanel = null;
-					if (m_autoHideTab != null)
-						m_autoHideTab.Dispose();
-					if (m_tab != null)
-						m_tab.Dispose();
+				DockPanel = null;
+				if (m_autoHideTab != null)
+					m_autoHideTab.Dispose();
+				if (m_tab != null)
+					m_tab.Dispose();
 
-					Form.Disposed -= new EventHandler(Form_Disposed);
-					Form.TextChanged -= new EventHandler(Form_TextChanged);
-					m_events.Dispose();
-				}
+				Form.Disposed -= new EventHandler(Form_Disposed);
+				Form.TextChanged -= new EventHandler(Form_TextChanged);
+				m_events.Dispose();
 			}
 		}
 
