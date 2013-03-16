@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,11 +5,33 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     partial class DockPane
     {
-        private class SplitterControl : Control, ISplitterDragSource
+        internal class DefaultSplitterControl : SplitterControlBase
+        {
+            public DefaultSplitterControl(DockPane pane) : base(pane)
+            {
+            }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                base.OnPaint(e);
+
+                if (DockPane.DockState != DockState.Document)
+                    return;
+
+                Graphics g = e.Graphics;
+                Rectangle rect = ClientRectangle;
+                if (Alignment == DockAlignment.Top || Alignment == DockAlignment.Bottom)
+                    g.DrawLine(SystemPens.ControlDark, rect.Left, rect.Bottom - 1, rect.Right, rect.Bottom - 1);
+                else if (Alignment == DockAlignment.Left || Alignment == DockAlignment.Right)
+                    g.DrawLine(SystemPens.ControlDarkDark, rect.Right - 1, rect.Top, rect.Right - 1, rect.Bottom);
+            }
+        }
+
+        public class SplitterControlBase : Control, ISplitterDragSource
         {
             DockPane m_pane;
 
-            public SplitterControl(DockPane pane)
+            public SplitterControlBase(DockPane pane)
             {
                 SetStyle(ControlStyles.Selectable, false);
                 m_pane = pane;
@@ -40,21 +59,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (DockPane.DockState == DockState.Document)
                         Invalidate();
                 }
-            }
-
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                base.OnPaint(e);
-
-                if (DockPane.DockState != DockState.Document)
-                    return;
-
-                Graphics g = e.Graphics;
-                Rectangle rect = ClientRectangle;
-                if (Alignment == DockAlignment.Top || Alignment == DockAlignment.Bottom)
-                    g.DrawLine(SystemPens.ControlDark, rect.Left, rect.Bottom - 1, rect.Right, rect.Bottom - 1);
-                else if (Alignment == DockAlignment.Left || Alignment == DockAlignment.Right)
-                    g.DrawLine(SystemPens.ControlDarkDark, rect.Right - 1, rect.Top, rect.Right - 1, rect.Bottom);
             }
 
             protected override void OnMouseDown(MouseEventArgs e)
@@ -137,9 +141,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             #endregion
         }
-
-        private SplitterControl m_splitter;
-        private SplitterControl Splitter
+        
+        private SplitterControlBase m_splitter;
+        private SplitterControlBase Splitter
         {
             get { return m_splitter; }
         }

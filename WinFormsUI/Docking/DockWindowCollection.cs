@@ -9,11 +9,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 		internal DockWindowCollection(DockPanel dockPanel)
             : base(new List<DockWindow>())
 		{
-			Items.Add(new DockWindow(dockPanel, DockState.Document));
-			Items.Add(new DockWindow(dockPanel, DockState.DockLeft));
-			Items.Add(new DockWindow(dockPanel, DockState.DockRight));
-			Items.Add(new DockWindow(dockPanel, DockState.DockTop));
-			Items.Add(new DockWindow(dockPanel, DockState.DockBottom));
+			Items.Add(dockPanel.DockWindowFactory.CreateDockWindow(dockPanel, DockState.Document));
+			Items.Add(dockPanel.DockWindowFactory.CreateDockWindow(dockPanel, DockState.DockLeft));
+			Items.Add(dockPanel.DockWindowFactory.CreateDockWindow(dockPanel, DockState.DockRight));
+			Items.Add(dockPanel.DockWindowFactory.CreateDockWindow(dockPanel, DockState.DockTop));
+			Items.Add(dockPanel.DockWindowFactory.CreateDockWindow(dockPanel, DockState.DockBottom));
 		}
 
 		public DockWindow this [DockState dockState]

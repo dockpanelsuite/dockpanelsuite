@@ -147,6 +147,12 @@
     <Compile Include="Docking\VS2012LightDockPaneStrip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\VS2012LightDockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2012LightSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Docking\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

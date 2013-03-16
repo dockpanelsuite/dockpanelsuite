@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -17,12 +18,22 @@ namespace WeifenLuo.WinFormsUI.Docking
 			DockPane CreateDockPane(IDockContent content, Rectangle floatWindowBounds, bool show);
 		}
 
+        public interface IDockPaneSplitterControlFactory
+        {
+            DockPane.SplitterControlBase CreateSplitterControl(DockPane pane);
+        }
+
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public interface IFloatWindowFactory
 		{
 			FloatWindow CreateFloatWindow(DockPanel dockPanel, DockPane pane);
 			FloatWindow CreateFloatWindow(DockPanel dockPanel, DockPane pane, Rectangle bounds);
 		}
+
+        public interface IDockWindowFactory
+        {
+            DockWindow CreateDockWindow(DockPanel dockPanel, DockState dockState);
+        }
 
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public interface IDockPaneCaptionFactory
@@ -67,8 +78,18 @@ namespace WeifenLuo.WinFormsUI.Docking
 		}
 		#endregion
 
-		#region DefaultFloatWindowFactory
-		private class DefaultFloatWindowFactory : IFloatWindowFactory
+        #region DefaultDockPaneSplitterControlFactory
+        private class DefaultDockPaneSplitterControlFactory : IDockPaneSplitterControlFactory
+        {
+            public DockPane.SplitterControlBase CreateSplitterControl(DockPane pane)
+            {
+                return new DockPane.DefaultSplitterControl(pane);
+            }
+        }
+        #endregion
+
+        #region DefaultFloatWindowFactory
+        private class DefaultFloatWindowFactory : IFloatWindowFactory
 		{
 			public FloatWindow CreateFloatWindow(DockPanel dockPanel, DockPane pane)
 			{
@@ -82,8 +103,19 @@ namespace WeifenLuo.WinFormsUI.Docking
 		}
 		#endregion
 
-		#region DefaultDockPaneCaptionFactory
-		private class DefaultDockPaneCaptionFactory : IDockPaneCaptionFactory
+        #region DefaultDockWindowFactory
+        private class DefaultDockWindowFactory : IDockWindowFactory
+        {
+            public DockWindow CreateDockWindow(DockPanel dockPanel, DockState dockState)
+            {
+                return new DefaultDockWindow(dockPanel, dockState);
+            }
+        }
+
+	    #endregion
+
+        #region DefaultDockPaneCaptionFactory
+        private class DefaultDockPaneCaptionFactory : IDockPaneCaptionFactory
 		{
 			public DockPaneCaptionBase CreateDockPaneCaption(DockPane pane)
 			{
@@ -142,6 +174,26 @@ namespace WeifenLuo.WinFormsUI.Docking
 			}
 		}
 
+	    private IDockPaneSplitterControlFactory m_dockPaneSplitterControlFactory;
+	    public IDockPaneSplitterControlFactory DockPaneSplitterControlFactory
+	    {
+            get
+            {
+                return m_dockPaneSplitterControlFactory ??
+                       (m_dockPaneSplitterControlFactory = new DefaultDockPaneSplitterControlFactory());
+            }
+
+            set
+            {
+                if (DockPanel.Panes.Count > 0)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                m_dockPaneSplitterControlFactory = value;
+            }
+	    }
+
 		private IFloatWindowFactory m_floatWindowFactory = null;
 		public IFloatWindowFactory FloatWindowFactory
 		{
@@ -160,6 +212,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 				m_floatWindowFactory = value;
 			}
 		}
+
+	    private IDockWindowFactory m_dockWindowFactory;
+	    public IDockWindowFactory DockWindowFactory
+	    {
+            get { return m_dockWindowFactory ?? (m_dockWindowFactory = new DefaultDockWindowFactory()); }
+            set
+            {
+                DockPanel.ReloadDockWindows();
+                m_dockWindowFactory = value;
+            }
+	    }
 
 		private IDockPaneCaptionFactory m_dockPaneCaptionFactory = null;
 		public IDockPaneCaptionFactory DockPaneCaptionFactory

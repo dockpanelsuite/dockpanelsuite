@@ -38,6 +38,14 @@ namespace DockSample.Customization
             }
         }
 
+        private class VS2012LightDockPaneSplitterControlFactory : DockPanelExtender.IDockPaneSplitterControlFactory
+        {
+            public DockPane.SplitterControlBase CreateSplitterControl(DockPane pane)
+            {
+                return new VS2012LightSplitterControl(pane);
+            }
+        }
+
         private class VS2012LightDockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
         {
             public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
@@ -62,20 +70,32 @@ namespace DockSample.Customization
             }
         }
 
-        public static void SetSchema(DockPanel dockPanel, Extender.Schema schema)
+        private class VS2012LightDockWindowFactory : DockPanelExtender.IDockWindowFactory
         {
-            if (schema == Extender.Schema.VS2005)
+            public DockWindow CreateDockWindow(DockPanel dockPanel, DockState dockState)
+            {
+                return new VS2012LightDockWindow(dockPanel, dockState);
+            }
+        }
+
+        public static void SetSchema(DockPanel dockPanel, Schema schema)
+        {
+            if (schema == Schema.VS2005)
             {
                 dockPanel.Extender.AutoHideStripFactory = null;
                 dockPanel.Extender.DockPaneCaptionFactory = null;
                 dockPanel.Extender.DockPaneStripFactory = null;
+                dockPanel.Extender.DockPaneSplitterControlFactory = null;
+                dockPanel.Extender.DockWindowFactory = null;
                 dockPanel.SkinStyle = Style.VisualStudio2005;
             }
-            else if (schema == Extender.Schema.VS2003)
+            else if (schema == Schema.VS2003)
             {
                 dockPanel.Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
                 dockPanel.Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
                 dockPanel.Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
+                dockPanel.Extender.DockPaneSplitterControlFactory = null;
+                dockPanel.Extender.DockWindowFactory = null;
                 dockPanel.SkinStyle = Style.VisualStudio2005;
             }
             else if (schema == Schema.VS2012Light)
@@ -83,6 +103,8 @@ namespace DockSample.Customization
                 dockPanel.Extender.DockPaneCaptionFactory = new VS2012LightDockPaneCaptionFactory();
                 dockPanel.Extender.AutoHideStripFactory = new VS2012LightAutoHideStripFactory();
                 dockPanel.Extender.DockPaneStripFactory = new VS2012LightDockPaneStripFactory();
+                dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012LightDockPaneSplitterControlFactory();
+                dockPanel.Extender.DockWindowFactory = new VS2012LightDockWindowFactory();
                 dockPanel.SkinStyle = Style.VisualStudio2012Light;
             }
         }

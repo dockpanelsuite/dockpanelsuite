@@ -99,7 +99,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_dockPanel = content.DockHandler.DockPanel;
             m_dockPanel.AddPane(this);
 
-            m_splitter = new SplitterControl(this);
+            m_splitter = content.DockHandler.DockPanel.Extender.DockPaneSplitterControlFactory.CreateSplitterControl(this);
 
             m_nestedDockingStatus = new NestedDockingStatus(this);
 

@@ -56,14 +56,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 			m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
 			Controls.Add(m_dummyControl);
 
-			m_dockWindows = new DockWindowCollection(this);
-			Controls.AddRange(new Control[]	{
-				DockWindows[DockState.Document],
-				DockWindows[DockState.DockLeft],
-				DockWindows[DockState.DockRight],
-				DockWindows[DockState.DockTop],
-				DockWindows[DockState.DockBottom]
-				});
+			LoadDockWindows();
 
 			m_dummyContent = new DockContent();
             ResumeLayout();
@@ -308,6 +301,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 		{
 			get	{	return Extender.FloatWindowFactory;	}
 		}
+
+        [Browsable(false)]
+        public DockPanelExtender.IDockWindowFactory DockWindowFactory
+        {
+            get { return Extender.DockWindowFactory; }
+        }
 
 		internal DockPanelExtender.IDockPaneCaptionFactory DockPaneCaptionFactory
 		{
@@ -1076,5 +1075,25 @@ namespace WeifenLuo.WinFormsUI.Docking
 			if (handler != null)
 				handler(this, e);
 		}
-    }
+
+        internal void ReloadDockWindows()
+        {
+            foreach (var dockWindow in DockWindows)
+            {
+                Controls.Remove(dockWindow);
+                dockWindow.Dispose();
+            }
+
+            LoadDockWindows();
+        }
+
+        private void LoadDockWindows()
+        {
+            m_dockWindows = new DockWindowCollection(this);
+            foreach (var dockWindow in DockWindows)
+            {
+                Controls.Add(dockWindow);
+            }
+        }
+	}
 }

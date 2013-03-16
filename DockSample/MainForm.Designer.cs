@@ -328,7 +328,6 @@ namespace DockSample
             // 
             // menuItemSchemaVS2012Light
             // 
-            this.menuItemSchemaVS2012Light.CheckOnClick = true;
             this.menuItemSchemaVS2012Light.Name = "menuItemSchemaVS2012Light";
             this.menuItemSchemaVS2012Light.Size = new System.Drawing.Size(255, 22);
             this.menuItemSchemaVS2012Light.Text = "Schema: VS2012 Light";
@@ -409,7 +408,7 @@ namespace DockSample
             // menuItemNewWindow
             // 
             this.menuItemNewWindow.Name = "menuItemNewWindow";
-            this.menuItemNewWindow.Size = new System.Drawing.Size(145, 22);
+            this.menuItemNewWindow.Size = new System.Drawing.Size(152, 22);
             this.menuItemNewWindow.Text = "&New Window";
             this.menuItemNewWindow.Click += new System.EventHandler(this.menuItemNewWindow_Click);
             // 

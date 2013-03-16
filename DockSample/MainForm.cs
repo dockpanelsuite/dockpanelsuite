@@ -157,6 +157,7 @@ namespace DockSample
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
+            menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)
