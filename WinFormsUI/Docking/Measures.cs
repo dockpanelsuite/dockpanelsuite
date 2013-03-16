@@ -1,8 +1,8 @@
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	internal static class Measures
+    public static class Measures
 	{
-		public const int SplitterSize = 4;
+		public static int SplitterSize = 4;
         public const int AutoHideTabLineWidth = 6;
 	}
 

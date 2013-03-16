@@ -82,6 +82,7 @@ namespace DockSample.Customization
         {
             if (schema == Schema.VS2005)
             {
+                Measures.SplitterSize = 4;
                 dockPanel.Extender.AutoHideStripFactory = null;
                 dockPanel.Extender.DockPaneCaptionFactory = null;
                 dockPanel.Extender.DockPaneStripFactory = null;
@@ -91,6 +92,7 @@ namespace DockSample.Customization
             }
             else if (schema == Schema.VS2003)
             {
+                Measures.SplitterSize = 4;
                 dockPanel.Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
                 dockPanel.Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
                 dockPanel.Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
@@ -100,6 +102,7 @@ namespace DockSample.Customization
             }
             else if (schema == Schema.VS2012Light)
             {
+                Measures.SplitterSize = 6;
                 dockPanel.Extender.DockPaneCaptionFactory = new VS2012LightDockPaneCaptionFactory();
                 dockPanel.Extender.AutoHideStripFactory = new VS2012LightAutoHideStripFactory();
                 dockPanel.Extender.DockPaneStripFactory = new VS2012LightDockPaneStripFactory();
