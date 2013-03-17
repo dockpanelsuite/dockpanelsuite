@@ -44,6 +44,10 @@
     <Compile Include="AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customization\ITheme.cs" />
+    <Compile Include="Customization\VS2003Theme.cs" />
+    <Compile Include="Customization\VS2005Theme.cs" />
+    <Compile Include="Customization\VS2012LightTheme.cs" />
     <Compile Include="DummyDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,7 +85,6 @@
       <DependentUpon>DummyToolbox.cs</DependentUpon>
     </Compile>
     <Compile Include="Customization\DockHelper.cs" />
-    <Compile Include="Customization\Extender.cs" />
     <Compile Include="Customization\InertButton.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -5,8 +5,8 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 using System.IO;
-using WeifenLuo.WinFormsUI.Docking;
 using DockSample.Customization;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace DockSample
 {
@@ -144,16 +144,20 @@ namespace DockSample
             CloseAllDocuments();
         }
 
+        private static readonly VS2003Theme VS2003 = new VS2003Theme();
+        private static readonly VS2005Theme VS2005 = new VS2005Theme();
+        private static readonly VS2012LightTheme VS2012Light = new VS2012LightTheme();
+
         private void SetSchema(object sender, System.EventArgs e)
         {
             CloseAllContents();
 
             if (sender == menuItemSchemaVS2005)
-                Extender.SetSchema(dockPanel, Extender.Schema.VS2005);
+                VS2005.Apply(dockPanel);
             else if (sender == menuItemSchemaVS2003)
-                Extender.SetSchema(dockPanel, Extender.Schema.VS2003);
+                VS2003.Apply(dockPanel);
             else if (sender == menuItemSchemaVS2012Light)
-                Extender.SetSchema(dockPanel, Extender.Schema.VS2012Light);
+                VS2012Light.Apply(dockPanel);
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
