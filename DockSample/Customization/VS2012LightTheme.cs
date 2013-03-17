@@ -17,10 +17,19 @@ namespace DockSample.Customization
             Measures.SplitterSize = 6;
             dockPanel.Extender.DockPaneCaptionFactory = new VS2012LightDockPaneCaptionFactory();
             dockPanel.Extender.AutoHideStripFactory = new VS2012LightAutoHideStripFactory();
+            dockPanel.Extender.AutoHideWindowFactory = new VS2012LightAutoHideWindowFactory();
             dockPanel.Extender.DockPaneStripFactory = new VS2012LightDockPaneStripFactory();
             dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012LightDockPaneSplitterControlFactory();
             dockPanel.Extender.DockWindowFactory = new VS2012LightDockWindowFactory();
             dockPanel.SkinStyle = Style.VisualStudio2012Light;
+        }
+
+        public class VS2012LightAutoHideWindowFactory : DockPanelExtender.IAutoHideWindowFactory
+        {
+            public DockPanel.AutoHideWindowControl CreateAutoHideWindow(DockPanel panel)
+            {
+                return new VS2012LightAutoHideWindowControl(panel);
+            }
         }
 
         private class VS2012LightDockPaneSplitterControlFactory : DockPanelExtender.IDockPaneSplitterControlFactory

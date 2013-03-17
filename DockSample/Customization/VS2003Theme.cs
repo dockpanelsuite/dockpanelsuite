@@ -17,6 +17,7 @@ namespace DockSample.Customization
             Measures.SplitterSize = 4;
             dockPanel.Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
             dockPanel.Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
+            dockPanel.Extender.AutoHideWindowFactory = null;
             dockPanel.Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
             dockPanel.Extender.DockPaneSplitterControlFactory = null;
             dockPanel.Extender.DockWindowFactory = null;

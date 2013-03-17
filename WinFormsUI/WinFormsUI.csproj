@@ -141,6 +141,9 @@
     <Compile Include="Docking\VS2012LightAutoHideStrip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\VS2012LightAutoHideWindowControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\VS2012LightDockPaneCaption.cs">
       <SubType>Component</SubType>
     </Compile>

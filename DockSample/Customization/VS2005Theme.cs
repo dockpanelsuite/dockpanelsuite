@@ -15,8 +15,9 @@ namespace DockSample.Customization
         public void Apply(DockPanel dockPanel)
         {
             Measures.SplitterSize = 4;
-            dockPanel.Extender.AutoHideStripFactory = null;
             dockPanel.Extender.DockPaneCaptionFactory = null;
+            dockPanel.Extender.AutoHideStripFactory = null;
+            dockPanel.Extender.AutoHideWindowFactory = null;
             dockPanel.Extender.DockPaneStripFactory = null;
             dockPanel.Extender.DockPaneSplitterControlFactory = null;
             dockPanel.Extender.DockWindowFactory = null;

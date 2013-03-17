@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	internal class SplitterBase : Control
+    public class SplitterBase : Control
 	{
 		public SplitterBase()
 		{
