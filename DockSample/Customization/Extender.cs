@@ -1,5 +1,3 @@
-using System;
-using System.Drawing;
 using WeifenLuo.WinFormsUI.Docking;
 using WeifenLuo.WinFormsUI.Docking.Skins;
 

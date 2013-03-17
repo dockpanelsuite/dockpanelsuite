@@ -18,11 +18,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             Rectangle rect = ClientRectangle;
 
             if (Alignment == DockAlignment.Left || Alignment == DockAlignment.Right)
-                g.FillRectangle(SystemBrushes.ControlLight, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
+                g.FillRectangle(SystemBrushes.ScrollBar, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
                                 Measures.SplitterSize / 3, rect.Height);
             else
                 if (Alignment == DockAlignment.Top || Alignment == DockAlignment.Bottom)
-                    g.FillRectangle(SystemBrushes.ControlLight, rect.X, rect.Y,
+                    g.FillRectangle(SystemBrushes.ScrollBar, rect.X, rect.Y,
                                     rect.Width, Measures.SplitterSize);
         }
     }

@@ -1076,18 +1076,16 @@ namespace WeifenLuo.WinFormsUI.Docking
 				handler(this, e);
 		}
 
-        internal void ReloadDockWindows()
+        internal void UnloadDockWindows()
         {
             foreach (var dockWindow in DockWindows)
             {
                 Controls.Remove(dockWindow);
                 dockWindow.Dispose();
             }
-
-            LoadDockWindows();
         }
 
-        private void LoadDockWindows()
+        internal void LoadDockWindows()
         {
             m_dockWindows = new DockWindowCollection(this);
             foreach (var dockWindow in DockWindows)
