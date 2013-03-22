@@ -1,10 +1,8 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
-using WeifenLuo.WinFormsUI.Docking;
 
-namespace DockSample.Customization
+namespace WeifenLuo.WinFormsUI.Docking
 {
 	/// <include file='CodeDoc/DockPaneCaptionVS2003.xml' path='//CodeDoc/Class[@name="DockPaneCaptionVS2003"]/ClassDef/*'/>
 	internal class VS2003DockPaneCaption : DockPaneCaptionBase
@@ -109,7 +107,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageCloseEnabled == null)
-					_imageCloseEnabled = Resources.DockPaneCaption_CloseEnabled;
+					_imageCloseEnabled = ResourcesVS2003.DockPaneCaption_CloseEnabled;
 				return _imageCloseEnabled;
 			}
 		}
@@ -121,7 +119,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageCloseDisabled == null)
-					_imageCloseDisabled = Resources.DockPaneCaption_CloseDisabled;
+                    _imageCloseDisabled = ResourcesVS2003.DockPaneCaption_CloseDisabled;
 				return _imageCloseDisabled;
 			}
 		}
@@ -133,7 +131,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageAutoHideYes == null)
-					_imageAutoHideYes = Resources.DockPaneCaption_AutoHideYes;
+                    _imageAutoHideYes = ResourcesVS2003.DockPaneCaption_AutoHideYes;
 				return _imageAutoHideYes;
 			}
 		}
@@ -145,7 +143,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageAutoHideNo == null)
-					_imageAutoHideNo = Resources.DockPaneCaption_AutoHideNo;
+                    _imageAutoHideNo = ResourcesVS2003.DockPaneCaption_AutoHideNo;
 				return _imageAutoHideNo;
 			}
 		}
@@ -232,7 +230,7 @@ namespace DockSample.Customization
 		#endregion
 
 		/// <exclude/>
-		protected override int MeasureHeight()
+		protected internal override int MeasureHeight()
 		{
 			int height = Font.Height + TextGapTop + TextGapBottom;
 

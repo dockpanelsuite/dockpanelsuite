@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    public class VS2012LightSplitterControl : DockPane.SplitterControlBase
+    internal class VS2012LightSplitterControl : DockPane.SplitterControlBase
     {
         public VS2012LightSplitterControl(DockPane pane)
             : base(pane)

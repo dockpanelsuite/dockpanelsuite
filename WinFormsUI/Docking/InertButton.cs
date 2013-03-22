@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.ComponentModel;
 
-namespace DockSample.Customization
+namespace WeifenLuo.WinFormsUI.Docking
 {
 	internal class InertButton : Button
 	{

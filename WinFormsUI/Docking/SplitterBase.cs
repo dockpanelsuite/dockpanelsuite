@@ -1,11 +1,10 @@
-using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     public class SplitterBase : Control
 	{
 		public SplitterBase()

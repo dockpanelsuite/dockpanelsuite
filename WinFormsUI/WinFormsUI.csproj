@@ -57,13 +57,42 @@
     <Compile Include="Docking\AutoHideStripBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\InertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\InertButtonBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\DockPanelSkin.cs">
     </Compile>
+    <Compile Include="Docking\ITheme.cs" />
+    <Compile Include="Docking\ResourcesVS2003.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesVS2003.resx</DependentUpon>
+    </Compile>
     <Compile Include="Docking\Skins\DockPanelSkinBuilder.cs" />
     <Compile Include="Docking\Skins\Style.cs" />
+    <Compile Include="Docking\StringsVS2003.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringsVS2003.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\ThemeBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2003AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2003DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2003DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2003Theme.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\VS2005AutoHideStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -138,6 +167,9 @@
     <Compile Include="Docking\Localization.cs" />
     <Compile Include="Docking\Helpers\ResourceHelper.cs" />
     <Compile Include="Docking\Helpers\Win32Helper.cs" />
+    <Compile Include="Docking\VS2005Theme.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\VS2012LightAutoHideStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -154,6 +186,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\VS2012LightSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Docking\VS2012LightTheme.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,10 +211,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Docking\ResourcesVS2003.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesVS2003.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Docking\Strings.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\StringsVS2003.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringsVS2003.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

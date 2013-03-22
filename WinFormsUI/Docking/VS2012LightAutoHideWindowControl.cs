@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    public class VS2012LightAutoHideWindowControl : DockPanel.AutoHideWindowControl
+    internal class VS2012LightAutoHideWindowControl : DockPanel.AutoHideWindowControl
     {
         private class VS2012LightAutoHideWindowSplitterControl : SplitterBase
         {

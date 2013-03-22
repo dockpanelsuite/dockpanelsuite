@@ -44,11 +44,6 @@
     <Compile Include="AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customization\ITheme.cs" />
-    <Compile Include="Customization\ThemeBase.cs" />
-    <Compile Include="Customization\VS2003Theme.cs" />
-    <Compile Include="Customization\VS2005Theme.cs" />
-    <Compile Include="Customization\VS2012LightTheme.cs" />
     <Compile Include="DummyDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,18 +81,6 @@
       <DependentUpon>DummyToolbox.cs</DependentUpon>
     </Compile>
     <Compile Include="Customization\DockHelper.cs" />
-    <Compile Include="Customization\InertButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Customization\VS2003AutoHideStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Customization\VS2003DockPaneCaption.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Customization\VS2003DockPaneStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,16 +140,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Customization\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Customization\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ToolWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,105 +178,11 @@
     <None Include="Images\XmlFile.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Customization\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DockPanel.xml" />
-    <EmbeddedResource Include="Customization\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ToolWindow.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ToolWindow.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollRightEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\Dockindicator_PaneDiamond_Fill.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Hotspot.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Left.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Right.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PaneDiamond_Top.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelBottom.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelBottom_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelFill.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelFill_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelLeft.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelLeft_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelRight.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelRight_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelTop.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockIndicator_PanelTop_Active.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_AutoHideNo.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_AutoHideYes.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_CloseDisabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneCaption_CloseEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_CloseDisabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_CloseEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollLeftDisabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollLeftEnabled.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Customization\Resources\DockPaneStrip_ScrollRightDisabled.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="license.txt">

@@ -2,10 +2,8 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
-using WeifenLuo.WinFormsUI.Docking;
 
-namespace DockSample.Customization
+namespace WeifenLuo.WinFormsUI.Docking
 {
 	/// <include file='CodeDoc/AutoHideStripVS2003.xml' path='//CodeDoc/Class[@name="AutoHideStripVS2003"]/ClassDef/*'/>
 	internal class VS2003AutoHideStrip : AutoHideStripBase
@@ -475,7 +473,7 @@ namespace DockSample.Customization
 		}
 
 		/// <exclude/>
-		protected override int MeasureHeight()
+		protected internal override int MeasureHeight()
 		{
 			return Math.Max(ImageGapBottom +
 				ImageGapTop + ImageHeight,

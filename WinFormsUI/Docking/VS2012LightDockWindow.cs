@@ -7,7 +7,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// Dock window of Visual Studio 2012 Light theme.
     /// </summary>
 	[ToolboxItem(false)]
-	public class VS2012LightDockWindow : DockWindow
+    internal class VS2012LightDockWindow : DockWindow
 	{
         /// <summary>
         /// Initializes a new instance of the <see cref="VS2012LightDockWindow"/> class.

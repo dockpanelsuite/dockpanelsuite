@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
-using WeifenLuo.WinFormsUI.Docking;
 
-namespace DockSample.Customization
+namespace WeifenLuo.WinFormsUI.Docking
 {
 	public abstract class ThemeBase : Component, ITheme
 	{

@@ -1,6 +1,4 @@
-using WeifenLuo.WinFormsUI.Docking;
-
-namespace DockSample.Customization
+namespace WeifenLuo.WinFormsUI.Docking
 {
     /// <summary>
     /// DockPanel Suite theme interface.

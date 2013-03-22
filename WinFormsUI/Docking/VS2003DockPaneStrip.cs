@@ -3,9 +3,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
-using WeifenLuo.WinFormsUI.Docking;
 
-namespace DockSample.Customization
+namespace WeifenLuo.WinFormsUI.Docking
 {
 	internal class VS2003DockPaneStrip : DockPaneStripBase
 	{
@@ -45,7 +44,7 @@ namespace DockSample.Customization
             }
         }
 
-        protected override DockPaneStripBase.Tab CreateTab(IDockContent content)
+        protected internal override DockPaneStripBase.Tab CreateTab(IDockContent content)
         {
             return new TabVS2003(content);
         }
@@ -184,7 +183,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageCloseEnabled == null)
-					_imageCloseEnabled = Resources.DockPaneStrip_CloseEnabled;
+                    _imageCloseEnabled = ResourcesVS2003.DockPaneStrip_CloseEnabled;
 				return _imageCloseEnabled;
 			}
 		}
@@ -196,7 +195,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageCloseDisabled == null)
-					_imageCloseDisabled = Resources.DockPaneStrip_CloseDisabled;
+                    _imageCloseDisabled = ResourcesVS2003.DockPaneStrip_CloseDisabled;
 				return _imageCloseDisabled;
 			}
 		}
@@ -208,7 +207,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageScrollLeftEnabled == null)
-					_imageScrollLeftEnabled = Resources.DockPaneStrip_ScrollLeftEnabled;
+                    _imageScrollLeftEnabled = ResourcesVS2003.DockPaneStrip_ScrollLeftEnabled;
 				return _imageScrollLeftEnabled;
 			}
 		}
@@ -220,7 +219,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageScrollLeftDisabled == null)
-					_imageScrollLeftDisabled = Resources.DockPaneStrip_ScrollLeftDisabled;
+                    _imageScrollLeftDisabled = ResourcesVS2003.DockPaneStrip_ScrollLeftDisabled;
 				return _imageScrollLeftDisabled;
 			}
 		}
@@ -232,7 +231,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageScrollRightEnabled == null)
-					_imageScrollRightEnabled = Resources.DockPaneStrip_ScrollRightEnabled;
+                    _imageScrollRightEnabled = ResourcesVS2003.DockPaneStrip_ScrollRightEnabled;
 				return _imageScrollRightEnabled;
 			}
 		}
@@ -244,7 +243,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_imageScrollRightDisabled == null)
-					_imageScrollRightDisabled = Resources.DockPaneStrip_ScrollRightDisabled;
+                    _imageScrollRightDisabled = ResourcesVS2003.DockPaneStrip_ScrollRightDisabled;
 				return _imageScrollRightDisabled;
 			}
 		}
@@ -268,7 +267,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_toolTipScrollLeft == null)
-					_toolTipScrollLeft = Strings.DockPaneStrip_ToolTipScrollLeft;
+                    _toolTipScrollLeft = StringsVS2003.DockPaneStrip_ToolTipScrollLeft;
 				return _toolTipScrollLeft;
 			}
 		}
@@ -280,7 +279,7 @@ namespace DockSample.Customization
 			get
 			{	
 				if (_toolTipScrollRight == null)
-					_toolTipScrollRight = Strings.DockPaneStrip_ToolTipScrollRight;
+                    _toolTipScrollRight = StringsVS2003.DockPaneStrip_ToolTipScrollRight;
 				return _toolTipScrollRight;
 			}
 		}
@@ -459,7 +458,7 @@ namespace DockSample.Customization
 			base.Dispose (disposing);
 		}
 
-		protected override int MeasureHeight()
+		protected internal override int MeasureHeight()
 		{
 			if (Appearance == DockPane.AppearanceStyle.ToolWindow)
 				return MeasureHeight_ToolWindow();
@@ -500,7 +499,7 @@ namespace DockSample.Customization
 			Invalidate();
 		}
 
-		protected override GraphicsPath GetOutline(int index)
+		protected internal override GraphicsPath GetOutline(int index)
 		{
 			Point[] pts = new Point[8];
 
@@ -641,7 +640,7 @@ namespace DockSample.Customization
 			}
 		}
 
-		protected override void EnsureTabVisible(IDockContent content)
+		protected internal override void EnsureTabVisible(IDockContent content)
 		{
 			if (Appearance != DockPane.AppearanceStyle.Document || !Tabs.Contains(content))
 				return;
@@ -1023,7 +1022,7 @@ namespace DockSample.Customization
 		}
 
 		/// <exclude/>
-		protected override int HitTest(Point ptMouse)
+		protected internal override int HitTest(Point ptMouse)
 		{
 			Rectangle rectTabStrip = TabsRectangle;
 

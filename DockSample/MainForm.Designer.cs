@@ -100,6 +100,9 @@ namespace DockSample
             this.toolBarButtonLayoutByXml = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonDockPanelSkinDemo = new System.Windows.Forms.ToolStripButton();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.vS2003Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2003Theme();
+            this.vS2005Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
+            this.vS2012LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -602,10 +605,10 @@ namespace DockSample
             dockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
             dockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
             dockPaneStripToolWindowGradient1.DockStripGradient = dockPanelGradient3;
-            tabGradient6.EndColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            tabGradient6.EndColor = System.Drawing.SystemColors.InactiveCaption;
             tabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             tabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            tabGradient6.TextColor = System.Drawing.SystemColors.ControlText;
+            tabGradient6.TextColor = System.Drawing.SystemColors.InactiveCaptionText;
             dockPaneStripToolWindowGradient1.InactiveCaptionGradient = tabGradient6;
             tabGradient7.EndColor = System.Drawing.Color.Transparent;
             tabGradient7.StartColor = System.Drawing.Color.Transparent;
@@ -615,6 +618,7 @@ namespace DockSample
             dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
             this.dockPanel.Skin = dockPanelSkin1;
             this.dockPanel.TabIndex = 0;
+            this.dockPanel.Theme = this.vS2005Theme1;
             // 
             // MainForm
             // 
@@ -696,5 +700,8 @@ namespace DockSample
         private System.Windows.Forms.ToolStripMenuItem exitWithoutSavingLayout;
         private System.Windows.Forms.ToolStripButton toolBarButtonDockPanelSkinDemo;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Light;
+        private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme vS2012LightTheme1;
+        private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;
+        private WeifenLuo.WinFormsUI.Docking.VS2005Theme vS2005Theme1;
     }
 }

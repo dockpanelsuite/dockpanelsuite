@@ -1,8 +1,7 @@
 using System;
-using WeifenLuo.WinFormsUI.Docking;
 using WeifenLuo.WinFormsUI.Docking.Skins;
 
-namespace DockSample.Customization
+namespace WeifenLuo.WinFormsUI.Docking
 {
     /// <summary>
     /// Visual Studio 2003 theme.

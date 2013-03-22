@@ -3,11 +3,10 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
-using System.Windows.Forms.VisualStyles;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    public class VS2012LightDockPaneCaption : DockPaneCaptionBase
+    internal class VS2012LightDockPaneCaption : DockPaneCaptionBase
 	{
         private sealed class InertButton : InertButtonBase
         {
