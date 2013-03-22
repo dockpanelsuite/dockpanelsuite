@@ -45,6 +45,7 @@
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Customization\ITheme.cs" />
+    <Compile Include="Customization\ThemeBase.cs" />
     <Compile Include="Customization\VS2003Theme.cs" />
     <Compile Include="Customization\VS2005Theme.cs" />
     <Compile Include="Customization\VS2012LightTheme.cs" />

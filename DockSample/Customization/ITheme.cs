@@ -13,4 +13,6 @@ namespace DockSample.Customization
         /// <param name="dockPanel">The dock panel.</param>
         void Apply(DockPanel dockPanel);
     }
+    
+
 }

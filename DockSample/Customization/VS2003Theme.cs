@@ -1,3 +1,4 @@
+using System;
 using WeifenLuo.WinFormsUI.Docking;
 using WeifenLuo.WinFormsUI.Docking.Skins;
 
@@ -6,14 +7,19 @@ namespace DockSample.Customization
     /// <summary>
     /// Visual Studio 2003 theme.
     /// </summary>
-    public class VS2003Theme : ITheme
+    public class VS2003Theme : ThemeBase
     {
         /// <summary>
         /// Applies the specified theme to the dock panel.
         /// </summary>
         /// <param name="dockPanel">The dock panel.</param>
-        public void Apply(DockPanel dockPanel)
+        public override void Apply(DockPanel dockPanel)
         {
+            if (dockPanel == null)
+            {
+                throw new NullReferenceException("dockPanel");
+            }
+            
             Measures.SplitterSize = 4;
             dockPanel.Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
             dockPanel.Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();

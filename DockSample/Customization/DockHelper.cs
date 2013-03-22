@@ -5,7 +5,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace DockSample.Customization
 {
-	internal class DockHelper
+	internal static class DockHelper
 	{
 		public static bool IsDockStateAutoHide(DockState dockState)
 		{

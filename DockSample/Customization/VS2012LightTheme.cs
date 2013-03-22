@@ -1,3 +1,4 @@
+using System;
 using WeifenLuo.WinFormsUI.Docking;
 using WeifenLuo.WinFormsUI.Docking.Skins;
 
@@ -6,14 +7,19 @@ namespace DockSample.Customization
     /// <summary>
     /// Visual Studio 2012 Light theme.
     /// </summary>
-    public class VS2012LightTheme : ITheme
+    public class VS2012LightTheme : ThemeBase
     {
         /// <summary>
         /// Applies the specified theme to the dock panel.
         /// </summary>
         /// <param name="dockPanel">The dock panel.</param>
-        public void Apply(DockPanel dockPanel)
+        public override void Apply(DockPanel dockPanel)
         {
+            if (dockPanel == null)
+            {
+                throw new NullReferenceException("dockPanel");
+            }
+            
             Measures.SplitterSize = 6;
             dockPanel.Extender.DockPaneCaptionFactory = new VS2012LightDockPaneCaptionFactory();
             dockPanel.Extender.AutoHideStripFactory = new VS2012LightAutoHideStripFactory();
@@ -24,7 +30,7 @@ namespace DockSample.Customization
             dockPanel.SkinStyle = Style.VisualStudio2012Light;
         }
 
-        public class VS2012LightAutoHideWindowFactory : DockPanelExtender.IAutoHideWindowFactory
+        private class VS2012LightAutoHideWindowFactory : DockPanelExtender.IAutoHideWindowFactory
         {
             public DockPanel.AutoHideWindowControl CreateAutoHideWindow(DockPanel panel)
             {
