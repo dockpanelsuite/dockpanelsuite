@@ -258,9 +258,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_dockWindowFactory ?? (m_dockWindowFactory = new DefaultDockWindowFactory()); }
             set
             {
-                DockPanel.UnloadDockWindows();
                 m_dockWindowFactory = value;
-                DockPanel.LoadDockWindows();
+                DockPanel.ReloadDockWindows();
             }
         }
 
