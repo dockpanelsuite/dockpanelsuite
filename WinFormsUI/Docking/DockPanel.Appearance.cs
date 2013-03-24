@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using WeifenLuo.WinFormsUI.Docking.Skins;
 using System.ComponentModel;
 
