@@ -76,6 +76,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 			set	{	m_allowEndUserDocking = value;	}
 		}
 
+        private bool m_doubleClickTitleBarToDock = true;
+        public bool DoubleClickTitleBarToDock
+        {
+            get { return m_doubleClickTitleBarToDock; }
+            set { m_doubleClickTitleBarToDock = value; }
+        }
+
 		public NestedPaneCollection NestedPanes
 		{
 			get	{	return m_nestedPanes;	}
@@ -174,103 +181,102 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
 		protected override void WndProc(ref Message m)
-		{
-			if (m.Msg == (int)Win32.Msgs.WM_NCLBUTTONDOWN)
-			{
-				if (IsDisposed)
-					return;
-
-				uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
-				if (result == 2 && DockPanel.AllowEndUserDocking && this.AllowEndUserDocking)	// HITTEST_CAPTION
-				{
-					Activate();
-					m_dockPanel.BeginDrag(this);
-				}
-				else
-					base.WndProc(ref m);
-
-				return;
-			}
-            else if (m.Msg == (int)Win32.Msgs.WM_NCRBUTTONDOWN)
+        {
+            switch (m.Msg)
             {
-                uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
-                if (result == 2)	// HITTEST_CAPTION
-                {
-                    DockPane theOnlyPane = (VisibleNestedPanes.Count == 1) ? VisibleNestedPanes[0] : null;
-                    if (theOnlyPane != null && theOnlyPane.ActiveContent != null)
+                case (int)Win32.Msgs.WM_NCLBUTTONDOWN:
                     {
-                        theOnlyPane.ShowTabPageContextMenu(this, PointToClient(Control.MousePosition));
+                        if (IsDisposed)
+                            return;
+
+                        uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
+                        if (result == 2 && DockPanel.AllowEndUserDocking && this.AllowEndUserDocking)	// HITTEST_CAPTION
+                        {
+                            Activate();
+                            m_dockPanel.BeginDrag(this);
+                        }
+                        else
+                            base.WndProc(ref m);
+
                         return;
                     }
-                }
-
-                base.WndProc(ref m);
-                return;
-            }
-            else if (m.Msg == (int)Win32.Msgs.WM_CLOSE)
-            {
-                if (NestedPanes.Count == 0)
-                {
-                    base.WndProc(ref m);
-                    return;
-                }
-
-                for (int i = NestedPanes.Count - 1; i >= 0; i--)
-                {
-                    DockContentCollection contents = NestedPanes[i].Contents;
-                    for (int j = contents.Count - 1; j >= 0; j--)
+                case (int)Win32.Msgs.WM_NCRBUTTONDOWN:
                     {
-                        IDockContent content = contents[j];
-                        if (content.DockHandler.DockState != DockState.Float)
-                            continue;
+                        uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
+                        if (result == 2)	// HITTEST_CAPTION
+                        {
+                            DockPane theOnlyPane = (VisibleNestedPanes.Count == 1) ? VisibleNestedPanes[0] : null;
+                            if (theOnlyPane != null && theOnlyPane.ActiveContent != null)
+                            {
+                                theOnlyPane.ShowTabPageContextMenu(this, PointToClient(Control.MousePosition));
+                                return;
+                            }
+                        }
 
-                        if (!content.DockHandler.CloseButton)
-                            continue;
-
-                        if (content.DockHandler.HideOnClose)
-                            content.DockHandler.Hide();
-                        else
-                            content.DockHandler.Close();
+                        base.WndProc(ref m);
+                        return;
                     }
-                }
+                case (int)Win32.Msgs.WM_CLOSE:
+                    if (NestedPanes.Count == 0)
+                    {
+                        base.WndProc(ref m);
+                        return;
+                    }
+                    for (int i = NestedPanes.Count - 1; i >= 0; i--)
+                    {
+                        DockContentCollection contents = NestedPanes[i].Contents;
+                        for (int j = contents.Count - 1; j >= 0; j--)
+                        {
+                            IDockContent content = contents[j];
+                            if (content.DockHandler.DockState != DockState.Float)
+                                continue;
 
-                return;
-            }
-            else if (m.Msg == (int)Win32.Msgs.WM_NCLBUTTONDBLCLK)
-            {
-                uint result = Win32Helper.IsRunningOnMono ? 0: NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
-                if (result != 2)	// HITTEST_CAPTION
-                {
-                    base.WndProc(ref m);
+                            if (!content.DockHandler.CloseButton)
+                                continue;
+
+                            if (content.DockHandler.HideOnClose)
+                                content.DockHandler.Hide();
+                            else
+                                content.DockHandler.Close();
+                        }
+                    }
                     return;
-                }
+                case (int)Win32.Msgs.WM_NCLBUTTONDBLCLK:
+                    {
+                        uint result = !DoubleClickTitleBarToDock || Win32Helper.IsRunningOnMono 
+                            ? 0
+                            : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
 
-                DockPanel.SuspendLayout(true);
+                        if (result != 2)	// HITTEST_CAPTION
+                        {
+                            base.WndProc(ref m);
+                            return;
+                        }
 
-                // Restore to panel
-                foreach (DockPane pane in NestedPanes)
-                {
-                    if (pane.DockState != DockState.Float)
-                        continue;
-                    pane.RestoreToPanel();
-                }
+                        DockPanel.SuspendLayout(true);
+
+                        // Restore to panel
+                        foreach (DockPane pane in NestedPanes)
+                        {
+                            if (pane.DockState != DockState.Float)
+                                continue;
+                            pane.RestoreToPanel();
+                        }
 
 
-                DockPanel.ResumeLayout(true, true);
-                return;
+                        DockPanel.ResumeLayout(true, true);
+                        return;
+                    }
+                case WM_CHECKDISPOSE:
+                    if (NestedPanes.Count == 0)
+                        Dispose();
+                    return;
             }
-            else if (m.Msg == WM_CHECKDISPOSE)
-            {
-                if (NestedPanes.Count == 0)
-                    Dispose();
 
-                return;
-            }
-            
-			base.WndProc(ref m);
-		}
+            base.WndProc(ref m);
+        }
 
-		internal void RefreshChanges()
+        internal void RefreshChanges()
 		{
             if (IsDisposed)
                 return;

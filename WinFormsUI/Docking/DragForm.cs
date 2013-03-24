@@ -9,7 +9,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     // (1) it was not to show up in the task bar;
     //     ShowInTaskBar = false
     // (2) it needed to be the top-most window;
-    //     TopMost = true (not necessary here)
+    //     TopMost = true
     // (3) its icon could not show up in the ALT+TAB window if the user pressed ALT+TAB during a drag-and-drop;
     //     FormBorderStyle = FormBorderStyle.None;
     //     Create with WS_EX_TOOLWINDOW window style.
@@ -30,6 +30,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             ShowInTaskbar = false;
             SetStyle(ControlStyles.Selectable, false);
             Enabled = false;
+            TopMost = true;
         }
 
         protected override CreateParams CreateParams
