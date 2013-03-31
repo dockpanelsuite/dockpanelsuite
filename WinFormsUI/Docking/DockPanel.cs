@@ -1117,12 +1117,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void ResetAutoHideStripWindow()
         {
-            m_autoHideWindow.Visible = false;
-            m_autoHideWindow.Parent = null;
-            m_autoHideWindow.Dispose();
+            var old = m_autoHideWindow;
             m_autoHideWindow = Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
             m_autoHideWindow.Visible = false;
             SetAutoHideWindowParent();
+
+            old.Visible = false;
+            old.Parent = null;
+            old.Dispose();
         }
 	}
 }

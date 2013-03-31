@@ -19,10 +19,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             private Form m_parentForm = null;
             private ISite m_site = null;
 
-            public MdiClientController()
-            {
-            }
-
             public void Dispose()
             {
                 Dispose(true);
