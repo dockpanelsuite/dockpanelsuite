@@ -477,31 +477,31 @@ namespace WeifenLuo.WinFormsUI.Docking
                 IDockContent content = ActiveContent;
                 if (DockState == DockState.DockLeftAutoHide && rectDockArea.Width > 0)
                 {
-                    if (content.DockHandler.AutoHidePortion < 1)
-                        content.DockHandler.AutoHidePortion += ((double)offset) / (double)rectDockArea.Width;
+                    if (content.DockHandler.DockPanel.DockLeftPortion < 1)
+                        content.DockHandler.DockPanel.DockLeftPortion += ((double)offset) / (double)rectDockArea.Width;
                     else
-                        content.DockHandler.AutoHidePortion = Width + offset;
+                        content.DockHandler.DockPanel.DockLeftPortion = Width + offset;
                 }
                 else if (DockState == DockState.DockRightAutoHide && rectDockArea.Width > 0)
                 {
-                    if (content.DockHandler.AutoHidePortion < 1)
-                        content.DockHandler.AutoHidePortion -= ((double)offset) / (double)rectDockArea.Width;
+                    if (content.DockHandler.DockPanel.DockRightPortion < 1)
+                        content.DockHandler.DockPanel.DockRightPortion -= ((double)offset) / (double)rectDockArea.Width;
                     else
-                        content.DockHandler.AutoHidePortion = Width - offset;
+                        content.DockHandler.DockPanel.DockRightPortion = Width - offset;
                 }
                 else if (DockState == DockState.DockBottomAutoHide && rectDockArea.Height > 0)
                 {
-                    if (content.DockHandler.AutoHidePortion < 1)
-                        content.DockHandler.AutoHidePortion -= ((double)offset) / (double)rectDockArea.Height;
+                    if (content.DockHandler.DockPanel.DockTopPortion < 1)
+                        content.DockHandler.DockPanel.DockTopPortion -= ((double)offset) / (double)rectDockArea.Height;
                     else
-                        content.DockHandler.AutoHidePortion = Height - offset;
+                        content.DockHandler.DockPanel.DockTopPortion = Height - offset;
                 }
                 else if (DockState == DockState.DockTopAutoHide && rectDockArea.Height > 0)
                 {
-                    if (content.DockHandler.AutoHidePortion < 1)
-                        content.DockHandler.AutoHidePortion += ((double)offset) / (double)rectDockArea.Height;
+                    if (content.DockHandler.DockPanel.DockBottomPortion < 1)
+                        content.DockHandler.DockPanel.DockBottomPortion += ((double)offset) / (double)rectDockArea.Height;
                     else
-                        content.DockHandler.AutoHidePortion = Height + offset;
+                        content.DockHandler.DockPanel.DockBottomPortion = Height + offset;
                 }
             }
 
@@ -548,6 +548,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 double autoHideSize = ActiveAutoHideContent.DockHandler.AutoHidePortion;
                 if (state == DockState.DockLeftAutoHide)
                 {
+                    autoHideSize = DockLeftPortion;
                     if (autoHideSize < 1)
                         autoHideSize = rectDockArea.Width * autoHideSize;
                     if (autoHideSize > rectDockArea.Width - MeasurePane.MinSize)
@@ -559,6 +560,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
                 else if (state == DockState.DockRightAutoHide)
                 {
+                    autoHideSize = DockRightPortion;
                     if (autoHideSize < 1)
                         autoHideSize = rectDockArea.Width * autoHideSize;
                     if (autoHideSize > rectDockArea.Width - MeasurePane.MinSize)
@@ -570,6 +572,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
                 else if (state == DockState.DockTopAutoHide)
                 {
+                    autoHideSize = DockTopPortion;
                     if (autoHideSize < 1)
                         autoHideSize = rectDockArea.Height * autoHideSize;
                     if (autoHideSize > rectDockArea.Height - MeasurePane.MinSize)
@@ -581,6 +584,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
                 else if (state == DockState.DockBottomAutoHide)
                 {
+                    autoHideSize = DockBottomPortion;
                     if (autoHideSize < 1)
                         autoHideSize = rectDockArea.Height * autoHideSize;
                     if (autoHideSize > rectDockArea.Height - MeasurePane.MinSize)
