@@ -932,12 +932,17 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return GetMaxTabWidth_Document(index);
         }
 
+        //<--Added for close button likes FireFox tab
+        private const int TAB_CLOSE_BUTTON_WIDTH = 30;
+
         private int GetMaxTabWidth_ToolWindow(int index)
         {
             IDockContent content = Tabs[index].Content;
             Size sizeString = TextRenderer.MeasureText(content.DockHandler.TabText, TextFont);
-            return ToolWindowImageWidth + sizeString.Width + ToolWindowImageGapLeft
+            int width = ToolWindowImageWidth + sizeString.Width + ToolWindowImageGapLeft
                 + ToolWindowImageGapRight + ToolWindowTextGapRight;
+            if (this.DockPane.DockPanel.ShowCloseButtonOnEachTab) width += TAB_CLOSE_BUTTON_WIDTH;
+            return width;
         }
 
         private int GetMaxTabWidth_Document(int index)
@@ -947,12 +952,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             int height = GetTabRectangle_Document(index).Height;
 
             Size sizeText = TextRenderer.MeasureText(content.DockHandler.TabText, BoldFont, new Size(DocumentTabMaxWidth, height), DocumentTextFormat);
-
+            int width;
             if (DockPane.DockPanel.ShowDocumentIcon)
-                return sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
+                width = sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
             else
-                return sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
+                width = sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
+            if (this.DockPane.DockPanel.ShowCloseButtonOnEachTab) width += TAB_CLOSE_BUTTON_WIDTH;
+            return width;
         }
+        //Added for close button likes FireFox tab-->
 
         private void DrawTabStrip(Graphics g)
         {
@@ -1292,65 +1300,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
         }
 
-        private void DrawTab_Document(Graphics g, TabVS2005 tab, Rectangle rect)
-        {
-            if (tab.TabWidth == 0)
-                return;
-
-            Rectangle rectIcon = new Rectangle(
-                rect.X + DocumentIconGapLeft,
-                rect.Y + rect.Height - 1 - DocumentIconGapBottom - DocumentIconHeight,
-                DocumentIconWidth, DocumentIconHeight);
-            Rectangle rectText = rectIcon;
-            if (DockPane.DockPanel.ShowDocumentIcon)
-            {
-                rectText.X += rectIcon.Width + DocumentIconGapRight;
-                rectText.Y = rect.Y;
-                rectText.Width = rect.Width - rectIcon.Width - DocumentIconGapLeft -
-                    DocumentIconGapRight - DocumentTextGapRight;
-                rectText.Height = rect.Height;
-            }
-            else
-                rectText.Width = rect.Width - DocumentIconGapLeft - DocumentTextGapRight;
-
-            Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
-            Rectangle rectBack = DrawHelper.RtlTransform(this, rect);
-            rectBack.Width += rect.X;
-            rectBack.X = 0;
-
-            rectText = DrawHelper.RtlTransform(this, rectText);
-            rectIcon = DrawHelper.RtlTransform(this, rectIcon);
-            GraphicsPath path = GetTabOutline(tab, true, false);
-            if (DockPane.ActiveContent == tab.Content)
-            {
-                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
-                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
-                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.LinearGradientMode;
-                g.FillPath(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), path);
-                g.DrawPath(PenDocumentTabActiveBorder, path);
-
-                Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
-                if (DockPane.IsActiveDocumentPane)
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, BoldFont, rectText, textColor, DocumentTextFormat);
-                else
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
-            }
-            else
-            {
-                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
-                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor;
-                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.LinearGradientMode;
-                g.FillPath(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), path);
-                g.DrawPath(PenDocumentTabInactiveBorder, path);
-
-                Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
-                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
-            }
-
-            if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
-                g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
-        }
-
         private void WindowList_Click(object sender, EventArgs e)
         {
             int x = 0;
@@ -1456,6 +1405,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             return -1;
         }
 
+        //<--Added for close button likes FireFox tab
+        //http://sourceforge.net/projects/dockpanelsuite/forums/forum/402316/topic/3901160
         protected override void OnMouseHover(EventArgs e)
         {
             int index = HitTest(PointToClient(Control.MousePosition));
@@ -1488,5 +1439,103 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.OnRightToLeftChanged(e);
             PerformLayout();
         }
+
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            if (!DockPane.DockPanel.ShowCloseButtonOnEachTab) return;
+            if (e.Button != MouseButtons.Left) return;
+            var indexHit = HitTest();
+            if (indexHit > -1)
+                TabCloseButtonHit(indexHit);
+        }
+
+
+        private void TabCloseButtonHit(int index)
+        {
+            var mousePos = PointToClient(MousePosition);
+            var tabRect = GetTabRectangle(index);
+            var closeButtonRect = GetCloseButtonRect(tabRect);
+            var mouseRect = new Rectangle(mousePos, new Size(1, 1));
+
+            if (closeButtonRect.IntersectsWith(mouseRect))
+                DockPane.CloseActiveContent();
+        }
+
+        private Rectangle GetCloseButtonRect(Rectangle rectTab)
+        {
+            const int gap = 4;
+            var dimension = rectTab.Height - gap;
+            return new Rectangle(rectTab.X + rectTab.Width - dimension - gap / 2, rectTab.Y + gap / 2, dimension, dimension);
+        }
+
+        private void DrawTab_Document(Graphics g, TabVS2005 tab, Rectangle rect)
+        {
+            if (tab.TabWidth == 0)
+                return;
+
+            Rectangle rectIcon = new Rectangle(
+                rect.X + DocumentIconGapLeft,
+                rect.Y + rect.Height - 1 - DocumentIconGapBottom - DocumentIconHeight,
+                DocumentIconWidth, DocumentIconHeight);
+            Rectangle rectText = rectIcon;
+            if (DockPane.DockPanel.ShowDocumentIcon)
+            {
+                rectText.X += rectIcon.Width + DocumentIconGapRight;
+                rectText.Y = rect.Y;
+                rectText.Width = rect.Width - rectIcon.Width - DocumentIconGapLeft -
+                    DocumentIconGapRight - DocumentTextGapRight;
+                rectText.Height = rect.Height;
+            }
+            else
+                rectText.Width = rect.Width - DocumentIconGapLeft - DocumentTextGapRight;
+
+            Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
+            Rectangle rectBack = DrawHelper.RtlTransform(this, rect);
+            rectBack.Width += rect.X;
+            rectBack.X = 0;
+
+            rectText = DrawHelper.RtlTransform(this, rectText);
+            rectIcon = DrawHelper.RtlTransform(this, rectIcon);
+            GraphicsPath path = GetTabOutline(tab, true, false);
+            if (DockPane.ActiveContent == tab.Content)
+            {
+                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
+                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
+                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.LinearGradientMode;
+                g.FillPath(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), path);
+                g.DrawPath(PenDocumentTabActiveBorder, path);
+
+                Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
+                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, DockPane.IsActiveDocumentPane ? BoldFont : TextFont,
+                                        rectText, textColor, DocumentTextFormat);
+
+            }
+            else
+            {
+                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
+                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor;
+                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.LinearGradientMode;
+                g.FillPath(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), path);
+                g.DrawPath(PenDocumentTabInactiveBorder, path);
+
+                Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
+                TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
+            }
+
+            if (DockPane.DockPanel.ShowCloseButtonOnEachTab)
+            {
+                /* Draw the close Button on the active tab */
+                var rectCloseButton = GetCloseButtonRect(rect);
+                var closeButtonImage = Resources.Overlay_close;
+                g.DrawImage(closeButtonImage, rectCloseButton);
+            }
+
+            if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
+                g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
+        }
+        //Added for close button likes FireFox tab-->
+
     }
 }
