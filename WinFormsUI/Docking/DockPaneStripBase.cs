@@ -177,12 +177,43 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Tab(content);
         }
 
+        //protected override void OnMouseDown(MouseEventArgs e)
+        //{
+        //    base.OnMouseDown(e);
+
+        //    int index = HitTest(e.Location);
+
+        //    if (index != -1)
+        //    {
+        //        if (e.Button == MouseButtons.Middle)
+        //        {
+        //            // Close the specified content.
+        //            IDockContent content = Tabs[index].Content;
+        //            DockPane.CloseContent(content);
+        //        }
+        //        else
+        //        {
+        //            IDockContent content = Tabs[index].Content;
+        //            if (DockPane.ActiveContent != content)
+        //                DockPane.ActiveContent = content;
+        //        }
+        //    }
+
+        //    if (e.Button == MouseButtons.Left)
+        //    {
+        //        if (DockPane.DockPanel.AllowEndUserDocking && DockPane.AllowDockDragAndDrop && DockPane.ActiveContent.DockHandler.AllowEndUserDocking)
+        //            DockPane.DockPanel.BeginDrag(DockPane.ActiveContent.DockHandler);
+        //    }
+        //}
+        
+        //<--Added for close button likes FireFox tab style
+        //http://sourceforge.net/projects/dockpanelsuite/forums/forum/402316/topic/3901160
+        private Rectangle _dragBox = Rectangle.Empty;
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
 
-            int index = HitTest(e.Location);
-
+            int index = HitTest();
             if (index != -1)
             {
                 if (e.Button == MouseButtons.Middle)
@@ -201,10 +232,22 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (e.Button == MouseButtons.Left)
             {
-                if (DockPane.DockPanel.AllowEndUserDocking && DockPane.AllowDockDragAndDrop && DockPane.ActiveContent.DockHandler.AllowEndUserDocking)
-                    DockPane.DockPanel.BeginDrag(DockPane.ActiveContent.DockHandler);
+                var dragSize = SystemInformation.DragSize;
+                _dragBox = new Rectangle(new Point(e.X - (dragSize.Width / 2),
+                                                e.Y - (dragSize.Height / 2)), dragSize);
             }
         }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+
+            if (e.Button != MouseButtons.Left || _dragBox.Contains(e.Location)) return;
+
+            if (DockPane.DockPanel.AllowEndUserDocking && DockPane.AllowDockDragAndDrop && DockPane.ActiveContent.DockHandler.AllowEndUserDocking)
+                DockPane.DockPanel.BeginDrag(DockPane.ActiveContent.DockHandler);
+        }
+        //Added for close button likes FireFox tab style -->
 
         protected bool HasTabPageContextMenu
         {
