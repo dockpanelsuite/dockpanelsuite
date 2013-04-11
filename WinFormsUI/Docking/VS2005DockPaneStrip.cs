@@ -960,28 +960,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (this.DockPane.DockPanel.ShowCloseButtonOnEachTab) width += TAB_CLOSE_BUTTON_WIDTH;
             return width;
         }
-
-        //private int GetMaxTabWidth_ToolWindow(int index)
-        //{
-        //    IDockContent content = Tabs[index].Content;
-        //    Size sizeString = TextRenderer.MeasureText(content.DockHandler.TabText, TextFont);
-        //    return ToolWindowImageWidth + sizeString.Width + ToolWindowImageGapLeft
-        //        + ToolWindowImageGapRight + ToolWindowTextGapRight;
-        //}
-
-        //private int GetMaxTabWidth_Document(int index)
-        //{
-        //    IDockContent content = Tabs[index].Content;
-
-        //    int height = GetTabRectangle_Document(index).Height;
-
-        //    Size sizeText = TextRenderer.MeasureText(content.DockHandler.TabText, BoldFont, new Size(DocumentTabMaxWidth, height), DocumentTextFormat);
-
-        //    if (DockPane.DockPanel.ShowDocumentIcon)
-        //        return sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
-        //    else
-        //        return sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
-        //}
         //Added for close button likes FireFox tab-->
 
         private void DrawTabStrip(Graphics g)
@@ -1321,66 +1299,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (rectTab.Contains(rectIcon))
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
         }
-
-        //The function is replace by below codes
-        //private void DrawTab_Document(Graphics g, TabVS2005 tab, Rectangle rect)
-        //{
-        //    if (tab.TabWidth == 0)
-        //        return;
-
-        //    Rectangle rectIcon = new Rectangle(
-        //        rect.X + DocumentIconGapLeft,
-        //        rect.Y + rect.Height - 1 - DocumentIconGapBottom - DocumentIconHeight,
-        //        DocumentIconWidth, DocumentIconHeight);
-        //    Rectangle rectText = rectIcon;
-        //    if (DockPane.DockPanel.ShowDocumentIcon)
-        //    {
-        //        rectText.X += rectIcon.Width + DocumentIconGapRight;
-        //        rectText.Y = rect.Y;
-        //        rectText.Width = rect.Width - rectIcon.Width - DocumentIconGapLeft -
-        //            DocumentIconGapRight - DocumentTextGapRight;
-        //        rectText.Height = rect.Height;
-        //    }
-        //    else
-        //        rectText.Width = rect.Width - DocumentIconGapLeft - DocumentTextGapRight;
-
-        //    Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
-        //    Rectangle rectBack = DrawHelper.RtlTransform(this, rect);
-        //    rectBack.Width += rect.X;
-        //    rectBack.X = 0;
-
-        //    rectText = DrawHelper.RtlTransform(this, rectText);
-        //    rectIcon = DrawHelper.RtlTransform(this, rectIcon);
-        //    GraphicsPath path = GetTabOutline(tab, true, false);
-        //    if (DockPane.ActiveContent == tab.Content)
-        //    {
-        //        Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
-        //        Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
-        //        LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.LinearGradientMode;
-        //        g.FillPath(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), path);
-        //        g.DrawPath(PenDocumentTabActiveBorder, path);
-
-        //        Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
-        //        if (DockPane.IsActiveDocumentPane)
-        //            TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, BoldFont, rectText, textColor, DocumentTextFormat);
-        //        else
-        //            TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
-        //    }
-        //    else
-        //    {
-        //        Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
-        //        Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor;
-        //        LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.LinearGradientMode;
-        //        g.FillPath(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), path);
-        //        g.DrawPath(PenDocumentTabInactiveBorder, path);
-
-        //        Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
-        //        TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
-        //    }
-
-        //    if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
-        //        g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
-        //}
 
         private void WindowList_Click(object sender, EventArgs e)
         {

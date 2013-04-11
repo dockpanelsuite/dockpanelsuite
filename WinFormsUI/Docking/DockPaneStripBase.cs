@@ -177,35 +177,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Tab(content);
         }
 
-        //protected override void OnMouseDown(MouseEventArgs e)
-        //{
-        //    base.OnMouseDown(e);
-
-        //    int index = HitTest(e.Location);
-
-        //    if (index != -1)
-        //    {
-        //        if (e.Button == MouseButtons.Middle)
-        //        {
-        //            // Close the specified content.
-        //            IDockContent content = Tabs[index].Content;
-        //            DockPane.CloseContent(content);
-        //        }
-        //        else
-        //        {
-        //            IDockContent content = Tabs[index].Content;
-        //            if (DockPane.ActiveContent != content)
-        //                DockPane.ActiveContent = content;
-        //        }
-        //    }
-
-        //    if (e.Button == MouseButtons.Left)
-        //    {
-        //        if (DockPane.DockPanel.AllowEndUserDocking && DockPane.AllowDockDragAndDrop && DockPane.ActiveContent.DockHandler.AllowEndUserDocking)
-        //            DockPane.DockPanel.BeginDrag(DockPane.ActiveContent.DockHandler);
-        //    }
-        //}
-        
         //<--Added for close button likes FireFox tab style
         //http://sourceforge.net/projects/dockpanelsuite/forums/forum/402316/topic/3901160
         private Rectangle _dragBox = Rectangle.Empty;
