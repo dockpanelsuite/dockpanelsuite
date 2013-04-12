@@ -296,7 +296,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             public void SuspendFocusTracking()
             {
                 m_countSuspendFocusTracking++;
-                if (!Win32Helper.IsRunningOnMono)
+                if (!Win32Helper.IsRunningOnMono && !m_disposed)
                     sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
             }
 
@@ -312,7 +312,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         Activate(ContentActivating);
                         ContentActivating = null;
                     }
-                    if (!Win32Helper.IsRunningOnMono)
+                    if (!Win32Helper.IsRunningOnMono && !m_disposed)
                         sm_localWindowsHook.HookInvoked += m_hookEventHandler;
                     if (!InRefreshActiveWindow)
                         RefreshActiveWindow();
