@@ -270,6 +270,9 @@
   <data name="DockPanel_AllowEndUserNestedDocking_Description" xml:space="preserve">
     <value>Determines if the drag and drop nested docking is allowed.</value>
   </data>
+  <data name="DockPanel_ActiveAutoHideContentChanged_Description" xml:space="preserve">
+    <value>Occurs when the value of the AutoHideWindow's ActiveContent changed.</value>
+  </data>
   <data name="DockPanel_ContentAdded_Description" xml:space="preserve">
     <value>Occurs when a content added to the DockPanel.</value>
   </data>

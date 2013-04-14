@@ -30,14 +30,14 @@ namespace WeifenLuo.WinFormsUI.Docking
     [DefaultEvent("ActiveContentChanged")]
     public partial class DockPanel : Panel
     {
-        private FocusManagerImpl m_focusManager;
-        private DockPanelExtender m_extender;
-        private DockPaneCollection m_panes;
-        private FloatWindowCollection m_floatWindows;
-        private AutoHideWindowControl m_autoHideWindow;
-        private DockWindowCollection m_dockWindows;
-        private DockContent m_dummyContent; 
-        private Control m_dummyControl;
+        private readonly FocusManagerImpl m_focusManager;
+        private readonly DockPanelExtender m_extender;
+        private readonly DockPaneCollection m_panes;
+        private readonly FloatWindowCollection m_floatWindows;
+        private readonly AutoHideWindowControl m_autoHideWindow;
+        private readonly DockWindowCollection m_dockWindows;
+        private readonly DockContent m_dummyContent; 
+        private readonly Control m_dummyControl;
         
         public DockPanel()
         {
@@ -50,6 +50,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             m_autoHideWindow = new AutoHideWindowControl(this);
             m_autoHideWindow.Visible = false;
+            m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged; 
             SetAutoHideWindowParent();
 
             m_dummyControl = new DummyControl();
@@ -1019,6 +1020,26 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             return false;
         }
+
+        private static readonly object ActiveAutoHideContentChangedEvent = new object();
+        [LocalizedCategory("Category_DockingNotification")]
+        [LocalizedDescription("DockPanel_ActiveAutoHideContentChanged_Description")]
+        public event EventHandler ActiveAutoHideContentChanged
+        {
+            add { Events.AddHandler(ActiveAutoHideContentChangedEvent, value); }
+            remove { Events.RemoveHandler(ActiveAutoHideContentChangedEvent, value); }
+        }
+        protected virtual void OnActiveAutoHideContentChanged(EventArgs e)
+        {
+            EventHandler handler = (EventHandler)Events[ActiveAutoHideContentChangedEvent];
+            if (handler != null)
+                handler(this, e);
+        }
+        private void m_autoHideWindow_ActiveContentChanged(object sender, EventArgs e)
+        {
+            OnActiveAutoHideContentChanged(e);
+        }
+
 
         private static readonly object ContentAddedEvent = new object();
         [LocalizedCategory("Category_DockingNotification")]
