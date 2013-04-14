@@ -519,30 +519,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 		}
 
-		private Rectangle DocumentRectangle
-		{
-			get
-			{
-				Rectangle rect = DockArea;
-				if (DockWindows[DockState.DockLeft].VisibleNestedPanes.Count != 0)
-				{
-					rect.X += (int)(DockArea.Width * DockLeftPortion);
-					rect.Width -= (int)(DockArea.Width * DockLeftPortion);
-				}
-				if (DockWindows[DockState.DockRight].VisibleNestedPanes.Count != 0)
-					rect.Width -= (int)(DockArea.Width * DockRightPortion);
-				if (DockWindows[DockState.DockTop].VisibleNestedPanes.Count != 0)
-				{
-					rect.Y += (int)(DockArea.Height * DockTopPortion);
-					rect.Height -= (int)(DockArea.Height * DockTopPortion);
-				}
-				if (DockWindows[DockState.DockBottom].VisibleNestedPanes.Count != 0)
-					rect.Height -= (int)(DockArea.Height * DockBottomPortion);
-
-				return rect;
-			}
-		}
-
 		private Control DummyControl
 		{
 			get	{	return m_dummyControl;	}
