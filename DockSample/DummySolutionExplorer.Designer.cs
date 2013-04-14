@@ -21,12 +21,12 @@ namespace DockSample
         }
 
         #region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Solution \'WinFormsUI\' (2 projects)");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("System", 6, 6);
@@ -453,8 +453,8 @@ namespace DockSample
             this.Text = "Solution Explorer - WinFormsUI";
             this.ResumeLayout(false);
 
-		}
-		#endregion
+        }
+        #endregion
 
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ImageList imageList1;

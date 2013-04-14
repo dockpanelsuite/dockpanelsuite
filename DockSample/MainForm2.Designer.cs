@@ -21,12 +21,12 @@ namespace DockSample
         }
 
         #region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm2));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
@@ -574,8 +574,8 @@ namespace DockSample
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		#endregion
+        }
+        #endregion
 
         private System.Windows.Forms.ImageList imageList;
         private System.Windows.Forms.MenuStrip mainMenu;

@@ -3,8 +3,8 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	public partial class DockPanel
-	{
+    public partial class DockPanel
+    {
         private DockPanelSkin m_dockPanelSkin = DockPanelSkinBuilder.Create(Style.VisualStudio2005);
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockPanelSkin")]
@@ -31,5 +31,5 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Skin = DockPanelSkinBuilder.Create(m_dockPanelSkinStyle);
             }
         }
-	}
+    }
 }

@@ -21,12 +21,12 @@ namespace DockSample
         }
 
         #region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DummyOutputWindow));
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -74,10 +74,10 @@ namespace DockSample
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		#endregion
+        }
+        #endregion
 
-		private System.Windows.Forms.ComboBox comboBox;
-		private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -351,7 +351,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     xmlOut.WriteEndElement();
                     xmlOut.WriteEndElement();
                 }
-                xmlOut.WriteEndElement();	//	</FloatWindows>
+                xmlOut.WriteEndElement();    //    </FloatWindows>
 
                 xmlOut.WriteEndElement();
 
