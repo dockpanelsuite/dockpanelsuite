@@ -153,6 +153,20 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_activePane = value;
             }
 
+            private static readonly object ActiveContentChangedEvent = new object();
+            public event EventHandler ActiveContentChanged
+            {
+                add { Events.AddHandler(ActiveContentChangedEvent, value); }
+                remove { Events.RemoveHandler(ActiveContentChangedEvent, value); }
+            }
+
+            protected virtual void OnActiveContentChanged(EventArgs e)
+            {
+                EventHandler handler = (EventHandler)Events[ActiveContentChangedEvent];
+                if (handler != null)
+                    handler(this, e);
+            }
+
             private IDockContent m_activeContent = null;
             public IDockContent ActiveContent
             {
@@ -190,6 +204,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DockPanel.RefreshAutoHideStrip();
 
                     SetTimerMouseTrack();
+
+                    OnActiveContentChanged(EventArgs.Empty);
                 }
             }
 
