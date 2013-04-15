@@ -339,31 +339,31 @@ namespace WeifenLuo.WinFormsUI.Docking
         private DockPanel m_dockPanel;
         protected DockPanel DockPanel
         {
-            get    {    return m_dockPanel;    }
+            get { return m_dockPanel; }
         }
 
         private PaneCollection m_panesTop;
         protected PaneCollection PanesTop
         {
-            get    {    return m_panesTop;    }
+            get { return m_panesTop; }
         }
 
         private PaneCollection m_panesBottom;
         protected PaneCollection PanesBottom
         {
-            get    {    return m_panesBottom;    }
+            get { return m_panesBottom; }
         }
 
         private PaneCollection m_panesLeft;
         protected PaneCollection PanesLeft
         {
-            get    {    return m_panesLeft;    }
+            get { return m_panesLeft; }
         }
 
         private PaneCollection m_panesRight;
         protected PaneCollection PanesRight
         {
-            get    {    return m_panesRight;    }
+            get { return m_panesRight; }
         }
 
         protected PaneCollection GetPanes(DockState dockState)
@@ -473,6 +473,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (content == null)
                 return;
 
+            SetActiveAutoHideContent(content);
+
             content.DockHandler.Activate();
         }
 
@@ -480,12 +482,20 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             base.OnMouseHover(e);
 
+            if (!DockPanel.ShowAutoHideContentOnHover)
+                return;
+
             IDockContent content = HitTest();
-            if (content != null && DockPanel.ActiveAutoHideContent != content)
-                DockPanel.ActiveAutoHideContent = content;
+            SetActiveAutoHideContent(content);
 
             // requires further tracking of mouse hover behavior,
             ResetMouseEventArgs();
+        }
+
+        private void SetActiveAutoHideContent(IDockContent content)
+        {
+            if (content != null && DockPanel.ActiveAutoHideContent != content)
+                DockPanel.ActiveAutoHideContent = content;
         }
 
         protected override void OnLayout(LayoutEventArgs levent)
