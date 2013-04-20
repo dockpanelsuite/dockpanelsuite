@@ -34,8 +34,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private readonly DockPanelExtender m_extender;
         private readonly DockPaneCollection m_panes;
         private readonly FloatWindowCollection m_floatWindows;
-        private readonly AutoHideWindowControl m_autoHideWindow;
-        private readonly DockWindowCollection m_dockWindows;
+        private AutoHideWindowControl m_autoHideWindow;
+        private DockWindowCollection m_dockWindows;
         private readonly DockContent m_dummyContent; 
         private readonly Control m_dummyControl;
         
