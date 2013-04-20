@@ -736,6 +736,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows the hidden autohide content when hovering over the tab.  When disabled, the tab must be clicked to show the content..
+        /// </summary>
+        internal static string DockPanel_ShowAutoHideContentOnHover_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ShowAutoHideContentOnHover_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Determines if the document icon will be displayed in the tab strip..
         /// </summary>
         internal static string DockPanel_ShowDocumentIcon_Description {

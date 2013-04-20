@@ -41,6 +41,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         
         public DockPanel()
         {
+            ShowAutoHideContentOnHover = true;
+
             m_focusManager = new FocusManagerImpl(this);
             m_extender = new DockPanelExtender(this);
             m_panes = new DockPaneCollection();
@@ -595,6 +597,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return _supprtDeeplyNestedContent; }
             set { _supprtDeeplyNestedContent = value; }
         }
+
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_ShowAutoHideContentOnHover_Description")]
+        [DefaultValue(true)]
+        public bool ShowAutoHideContentOnHover { get; set; }
 
         private int GetDockWindowSize(DockState dockState)
         {
