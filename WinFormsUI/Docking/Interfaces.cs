@@ -4,21 +4,21 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	public interface IDockContent
-	{
-		DockContentHandler DockHandler	{	get;	}
-		void OnActivated(EventArgs e);
-		void OnDeactivate(EventArgs e);
-	}
+    public interface IDockContent
+    {
+        DockContentHandler DockHandler	{	get;	}
+        void OnActivated(EventArgs e);
+        void OnDeactivate(EventArgs e);
+    }
 
-	public interface INestedPanesContainer
-	{
-		DockState DockState	{	get;	}
-		Rectangle DisplayingRectangle	{	get;	}
-		NestedPaneCollection NestedPanes	{	get;	}
-		VisibleNestedPaneCollection VisibleNestedPanes	{	get;	}
-		bool IsFloat	{	get;	}
-	}
+    public interface INestedPanesContainer
+    {
+        DockState DockState	{	get;	}
+        Rectangle DisplayingRectangle	{	get;	}
+        NestedPaneCollection NestedPanes	{	get;	}
+        VisibleNestedPaneCollection VisibleNestedPanes	{	get;	}
+        bool IsFloat	{	get;	}
+    }
 
     internal interface IDragSource
     {

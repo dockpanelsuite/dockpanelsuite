@@ -4,8 +4,8 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	public partial class DockPanel
-	{
+    public partial class DockPanel
+    {
         private DockPanelSkin m_dockPanelSkin = DockPanelSkinBuilder.Create(Style.VisualStudio2005);
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockPanelSkin")]
@@ -35,11 +35,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-	    private ThemeBase m_dockPanelTheme = new VS2005Theme();
-	    [LocalizedCategory("Category_Docking")]
-	    [LocalizedDescription("DockPanel_DockPanelTheme")]
-	    public ThemeBase Theme
-	    {
+        private ThemeBase m_dockPanelTheme = new VS2005Theme();
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_DockPanelTheme")]
+        public ThemeBase Theme
+        {
             get { return m_dockPanelTheme; }
             set
             {
@@ -56,6 +56,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_dockPanelTheme = value;
                 m_dockPanelTheme.Apply(this);
             }
-	    }
-	}
+        }
+    }
 }

@@ -9,8 +9,8 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	public abstract class DockPaneStripBase : Control
-	{
+    public abstract class DockPaneStripBase : Control
+    {
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]        
         protected internal class Tab : IDisposable
         {
@@ -115,62 +115,62 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-		protected DockPaneStripBase(DockPane pane)
-		{
-			m_dockPane = pane;
+        protected DockPaneStripBase(DockPane pane)
+        {
+            m_dockPane = pane;
 
-			SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-			SetStyle(ControlStyles.Selectable, false);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.Selectable, false);
             AllowDrop = true;
-		}
+        }
 
-		private DockPane m_dockPane;
-		protected DockPane DockPane
-		{
-			get	{	return m_dockPane;	}
-		}
+        private DockPane m_dockPane;
+        protected DockPane DockPane
+        {
+            get	{	return m_dockPane;	}
+        }
 
-		protected DockPane.AppearanceStyle Appearance
-		{
-			get	{	return DockPane.Appearance;	}
-		}
+        protected DockPane.AppearanceStyle Appearance
+        {
+            get	{	return DockPane.Appearance;	}
+        }
 
         private TabCollection m_tabs = null;
-		protected TabCollection Tabs
-		{
-			get
+        protected TabCollection Tabs
+        {
+            get
             {
                 if (m_tabs == null)
                     m_tabs = new TabCollection(DockPane);
 
                 return m_tabs;
             }
-		}
+        }
 
-		internal void RefreshChanges()
-		{
+        internal void RefreshChanges()
+        {
             if (IsDisposed)
                 return;
 
-			OnRefreshChanges();
-		}
+            OnRefreshChanges();
+        }
 
-		protected virtual void OnRefreshChanges()
-		{
-		}
+        protected virtual void OnRefreshChanges()
+        {
+        }
 
-		protected internal abstract int MeasureHeight();
+        protected internal abstract int MeasureHeight();
 
-		protected internal abstract void EnsureTabVisible(IDockContent content);
+        protected internal abstract void EnsureTabVisible(IDockContent content);
 
-		protected int HitTest()
-		{
-			return HitTest(PointToClient(Control.MousePosition));
-		}
+        protected int HitTest()
+        {
+            return HitTest(PointToClient(Control.MousePosition));
+        }
 
-		protected internal abstract int HitTest(Point point);
+        protected internal abstract int HitTest(Point point);
 
-		protected internal abstract GraphicsPath GetOutline(int index);
+        protected internal abstract GraphicsPath GetOutline(int index);
 
         protected internal virtual Tab CreateTab(IDockContent content)
         {
@@ -225,26 +225,26 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
-		protected override void WndProc(ref Message m)
-		{
-			if (m.Msg == (int)Win32.Msgs.WM_LBUTTONDBLCLK)
-			{
-				base.WndProc(ref m);
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == (int)Win32.Msgs.WM_LBUTTONDBLCLK)
+            {
+                base.WndProc(ref m);
 
-				int index = HitTest();
-				if (DockPane.DockPanel.AllowEndUserDocking && index != -1)
-				{
-					IDockContent content = Tabs[index].Content;
+                int index = HitTest();
+                if (DockPane.DockPanel.AllowEndUserDocking && index != -1)
+                {
+                    IDockContent content = Tabs[index].Content;
                     if (content.DockHandler.CheckDockState(!content.DockHandler.IsFloat) != DockState.Unknown)
-					    content.DockHandler.IsFloat = !content.DockHandler.IsFloat;	
-				}
+                        content.DockHandler.IsFloat = !content.DockHandler.IsFloat;	
+                }
 
-				return;
-			}
+                return;
+            }
 
-			base.WndProc(ref m);
-			return;
-		}
+            base.WndProc(ref m);
+            return;
+        }
 
         protected override void OnDragOver(DragEventArgs drgevent)
         {
@@ -258,5 +258,5 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DockPane.ActiveContent = content;
             }
         }
-	}
+    }
 }

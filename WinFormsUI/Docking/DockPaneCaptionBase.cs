@@ -6,29 +6,29 @@ using System.Security.Permissions;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-	public abstract class DockPaneCaptionBase : Control
-	{
-		protected internal DockPaneCaptionBase(DockPane pane)
-		{
-			m_dockPane = pane;
+    public abstract class DockPaneCaptionBase : Control
+    {
+        protected internal DockPaneCaptionBase(DockPane pane)
+        {
+            m_dockPane = pane;
 
-			SetStyle(ControlStyles.OptimizedDoubleBuffer |
+            SetStyle(ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.ResizeRedraw |
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint, true);
-			SetStyle(ControlStyles.Selectable, false);
-		}
+            SetStyle(ControlStyles.Selectable, false);
+        }
 
-		private DockPane m_dockPane;
-		protected DockPane DockPane
-		{
-			get	{	return m_dockPane;	}
-		}
+        private DockPane m_dockPane;
+        protected DockPane DockPane
+        {
+            get	{	return m_dockPane;	}
+        }
 
-		protected DockPane.AppearanceStyle Appearance
-		{
-			get	{	return DockPane.Appearance;	}
-		}
+        protected DockPane.AppearanceStyle Appearance
+        {
+            get	{	return DockPane.Appearance;	}
+        }
 
         protected bool HasTabPageContextMenu
         {
@@ -53,11 +53,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.OnMouseDown(e);
 
             if (e.Button == MouseButtons.Left &&
-			    DockPane.DockPanel.AllowEndUserDocking &&
+                DockPane.DockPanel.AllowEndUserDocking &&
                 DockPane.AllowDockDragAndDrop &&
-				!DockHelper.IsDockStateAutoHide(DockPane.DockState) &&
+                !DockHelper.IsDockStateAutoHide(DockPane.DockState) &&
                 DockPane.ActiveContent != null)
-				DockPane.DockPanel.BeginDrag(DockPane);
+                DockPane.DockPanel.BeginDrag(DockPane);
         }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]         
@@ -79,22 +79,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.WndProc(ref m);
         }
 
-		internal void RefreshChanges()
-		{
+        internal void RefreshChanges()
+        {
             if (IsDisposed)
                 return;
 
-			OnRefreshChanges();
-		}
+            OnRefreshChanges();
+        }
 
         protected virtual void OnRightToLeftLayoutChanged()
         {
         }
 
-		protected virtual void OnRefreshChanges()
-		{
-		}
+        protected virtual void OnRefreshChanges()
+        {
+        }
 
-		protected internal abstract int MeasureHeight();
-	}
+        protected internal abstract int MeasureHeight();
+    }
 }
