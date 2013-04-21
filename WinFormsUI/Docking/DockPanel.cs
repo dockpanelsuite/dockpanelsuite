@@ -616,22 +616,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (dockRightSize < MeasurePane.MinSize)
                     dockRightSize = MeasurePane.MinSize;
 
-                while (dockLeftSize + dockRightSize > width - MeasurePane.MinSize)
+                if (dockLeftSize + dockRightSize > width - MeasurePane.MinSize)
                 {
                     int adjust = (dockLeftSize + dockRightSize) - (width - MeasurePane.MinSize);
                     dockLeftSize -= adjust / 2;
                     dockRightSize -= adjust / 2;
-                    if (dockLeftSize < MeasurePane.MinSize)
-                    {
-                        dockLeftSize = MeasurePane.MinSize;
-                        dockRightSize -= adjust / 2;
-                    }
-
-                    if (dockRightSize < MeasurePane.MinSize)
-                    {
-                        dockRightSize = MeasurePane.MinSize;
-                        dockLeftSize -= adjust / 2;
-                    }
                 }
 
                 return dockState == DockState.DockLeft ? dockLeftSize : dockRightSize;
@@ -647,22 +636,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (dockBottomSize < MeasurePane.MinSize)
                     dockBottomSize = MeasurePane.MinSize;
 
-                while (dockTopSize + dockBottomSize > height - MeasurePane.MinSize)
+                if (dockTopSize + dockBottomSize > height - MeasurePane.MinSize)
                 {
                     int adjust = (dockTopSize + dockBottomSize) - (height - MeasurePane.MinSize);
                     dockTopSize -= adjust / 2;
                     dockBottomSize -= adjust / 2;
-                    if (dockTopSize < MeasurePane.MinSize)
-                    {
-                        dockTopSize = MeasurePane.MinSize;
-                        dockBottomSize -= adjust / 2;
-                    }
-
-                    if (dockBottomSize < MeasurePane.MinSize)
-                    {
-                        dockBottomSize = MeasurePane.MinSize;
-                        dockTopSize -= adjust / 2;
-                    }
                 }
 
                 return dockState == DockState.DockTop ? dockTopSize : dockBottomSize;
