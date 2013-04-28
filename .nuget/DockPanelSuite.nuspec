@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>3.0.0-alpha</version>
+    <version>3.0.0-alpha2</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,14 +16,17 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
-April 6, 2013: 3.0.0 Alpha
+April 28, 2013: 3.0.0 Alpha 2
 1. GitHub #19 Added Visual Studio 2012 Light theme.
 2. GitHub #112 Changed theme related interfaces.
 
-April 6, 2013: 2.8.0 Beta
+April 28, 2013: 2.8.0 Beta
 1. GitHub #69 Restored multiple UI threads support.
-2. GitHub #82 Fixed dock indicator issue when DockPanel parent form is set to TopMost.
-3. GitHub #91 Changed double-click behavior of FloatWindow.
+2. GitHub #81 Added ActiveAutoHideContentChanged event.
+3. GitHub #82 Fixed dock indicator issue when DockPanel parent form is set to TopMost.
+4. GitHub #91 Changed double-click behavior of FloatWindow.
+5. GitHub #119 Changed initialization of DockContent's AutoHidePortion.
+6. GitHub #123 Require click to show autohide content.
 
 Sept 5, 2012: 2.7.0
 1. GitHub #11 - Corrected an issue that prevented the docking indicator from being shown when docking a float window while the cursor was in the float window to be docked.
