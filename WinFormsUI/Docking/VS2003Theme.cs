@@ -1,5 +1,4 @@
 using System;
-using WeifenLuo.WinFormsUI.Docking.Skins;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -18,7 +17,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 throw new NullReferenceException("dockPanel");
             }
-            
+
             Measures.SplitterSize = 4;
             dockPanel.Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
             dockPanel.Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
@@ -26,7 +25,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
             dockPanel.Extender.DockPaneSplitterControlFactory = null;
             dockPanel.Extender.DockWindowFactory = null;
-            dockPanel.SkinStyle = Style.VisualStudio2005;
+            dockPanel.Skin = VS2005Theme.CreateVisualStudio2005();
         }
 
         private class VS2003DockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory

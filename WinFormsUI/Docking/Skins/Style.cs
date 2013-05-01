@@ -1,5 +1,8 @@
-﻿namespace WeifenLuo.WinFormsUI.Docking.Skins
+﻿using System;
+
+namespace WeifenLuo.WinFormsUI.Docking.Skins
 {
+    [Obsolete]
     public enum Style
     {
         VisualStudio2005 = 1,

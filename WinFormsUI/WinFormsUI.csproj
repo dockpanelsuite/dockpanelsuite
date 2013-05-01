@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -70,7 +70,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesVS2003.resx</DependentUpon>
     </Compile>
-    <Compile Include="Docking\Skins\DockPanelSkinBuilder.cs" />
     <Compile Include="Docking\Skins\Style.cs" />
     <Compile Include="Docking\StringsVS2003.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -1050,7 +1050,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Rectangle rect = new Rectangle();
             rect.X = tab.TabX;
-            rect.Width = tab.TabWidth;
+            rect.Width = tab.TabWidth - 1;
             rect.Height = rectTabStrip.Height - DocumentTabGapTop;
 
             if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
@@ -1179,39 +1179,30 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectText = DrawHelper.RtlTransform(this, rectText);
             rectIcon = DrawHelper.RtlTransform(this, rectIcon);
 
+            Color active = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
+            Color inactive = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
             if (DockPane.ActiveContent == tab.Content)
             {
-                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
-                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
-                Color inactiveColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor;
-
-                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.LinearGradientMode;
-
                 if (((DockContent)tab.Content).IsActivated)
-                    g.FillRectangle(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), rect);
+                    g.FillRectangle(new SolidBrush(active), rect);
                 else
-                    g.FillRectangle(new SolidBrush(inactiveColor), rect);
+                    g.FillRectangle(new SolidBrush(inactive), rect);
 
                 Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
                 if (DockPane.IsActiveDocumentPane)
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
+                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, BoldFont, rectText, textColor, DocumentTextFormat);
                 else
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
             }
             else
             {
-                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
-                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
-                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.LinearGradientMode;
-                Color mouseOverColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor;
-
                 if (tab.MouseOver)
                 {
                     tab.MouseOver = false;
-                    g.FillRectangle(new SolidBrush(mouseOverColor), rect);
+                    g.FillRectangle(new SolidBrush(active), rect);
                 }
                 else
-                    g.FillRectangle(new LinearGradientBrush(rectBack, startColor, endColor, gradientMode), rect);
+                    g.FillRectangle(new SolidBrush(inactive), rect);
 
                 Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);
