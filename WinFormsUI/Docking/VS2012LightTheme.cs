@@ -26,6 +26,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.AutoHideWindowFactory = new VS2012LightAutoHideWindowFactory();
             dockPanel.Extender.DockPaneStripFactory = new VS2012LightDockPaneStripFactory();
             dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012LightDockPaneSplitterControlFactory();
+            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2012LightDockWindowSplitterControlFactory();
             dockPanel.Extender.DockWindowFactory = new VS2012LightDockWindowFactory();
             dockPanel.Skin = CreateVisualStudio2012Light();
         }
@@ -43,6 +44,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             public DockPane.SplitterControlBase CreateSplitterControl(DockPane pane)
             {
                 return new VS2012LightSplitterControl(pane);
+            }
+        }
+        
+        private class VS2012LightDockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
+        {
+            public SplitterBase CreateSplitterControl()
+            {
+                return new VS2012LightDockWindow.VS2012LightDockWindowSplitterControl();
             }
         }
 

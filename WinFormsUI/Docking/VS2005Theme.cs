@@ -26,6 +26,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.AutoHideWindowFactory = null;
             dockPanel.Extender.DockPaneStripFactory = null;
             dockPanel.Extender.DockPaneSplitterControlFactory = null;
+            dockPanel.Extender.DockWindowSplitterControlFactory = null;
             dockPanel.Extender.DockWindowFactory = null;
             dockPanel.Skin = CreateVisualStudio2005();
         }

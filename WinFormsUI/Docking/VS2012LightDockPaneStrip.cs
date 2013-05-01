@@ -92,7 +92,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int _ToolWindowStripGapLeft = 0;
         private const int _ToolWindowStripGapRight = 0;
         private const int _ToolWindowImageHeight = 16;
-        private const int _ToolWindowImageWidth = 0;//16;
+        private const int _ToolWindowImageWidth = 0;
         private const int _ToolWindowImageGapTop = 3;
         private const int _ToolWindowImageGapBottom = 1;
         private const int _ToolWindowImageGapLeft = 2;
@@ -108,10 +108,10 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int _DocumentButtonGapBottom = 3;
         private const int _DocumentButtonGapBetween = 0;
         private const int _DocumentButtonGapRight = 3;
-        private const int _DocumentTabGapTop = 0;//3;
-        private const int _DocumentTabGapLeft = 0;//3;
-        private const int _DocumentTabGapRight = 0;//3;
-        private const int _DocumentIconGapBottom = 2;//2;
+        private const int _DocumentTabGapTop = 0;
+        private const int _DocumentTabGapLeft = 0;
+        private const int _DocumentTabGapRight = 0;
+        private const int _DocumentIconGapBottom = 2;
         private const int _DocumentIconGapLeft = 8;
         private const int _DocumentIconGapRight = 0;
         private const int _DocumentIconHeight = 16;
@@ -846,7 +846,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Rectangle rectTabStrip = TabsRectangle;
 
-            int x = rectTabStrip.X; //+ rectTabStrip.Height / 2;
+            int x = rectTabStrip.X;
             bool overflow = false;
 
             // Originally all new documents that were considered overflow
@@ -894,7 +894,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 m_startDisplayingTab = 0;
                 FirstDisplayingTab = 0;
-                x = rectTabStrip.X;// +rectTabStrip.Height / 2;
+                x = rectTabStrip.X;
                 foreach (TabVS2012Light tab in Tabs)
                 {
                     tab.TabX = x;

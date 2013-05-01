@@ -8,7 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     public partial class DockWindow
     {
-        private class SplitterControl : SplitterBase
+        internal class DefaultSplitterControl : SplitterBase
         {
             protected override int SplitterSize
             {

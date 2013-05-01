@@ -25,6 +25,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             DockPane.SplitterControlBase CreateSplitterControl(DockPane pane);
         }
+        
+        public interface IDockWindowSplitterControlFactory
+        {
+            SplitterBase CreateSplitterControl();
+        }
 
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public interface IFloatWindowFactory
@@ -96,6 +101,18 @@ namespace WeifenLuo.WinFormsUI.Docking
             public DockPane.SplitterControlBase CreateSplitterControl(DockPane pane)
             {
                 return new DockPane.DefaultSplitterControl(pane);
+            }
+        }
+
+        #endregion
+        
+        #region DefaultDockWindowSplitterControlFactory
+
+        private class DefaultDockWindowSplitterControlFactory : IDockWindowSplitterControlFactory
+        {
+            public SplitterBase CreateSplitterControl()
+            {
+                return new DockWindow.DefaultSplitterControl();
             }
         }
 
@@ -228,6 +245,23 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 m_dockPaneSplitterControlFactory = value;
+            }
+        }
+        
+        private IDockWindowSplitterControlFactory m_dockWindowSplitterControlFactory;
+
+        public IDockWindowSplitterControlFactory DockWindowSplitterControlFactory
+        {
+            get
+            {
+                return m_dockWindowSplitterControlFactory ??
+                       (m_dockWindowSplitterControlFactory = new DefaultDockWindowSplitterControlFactory());
+            }
+
+            set
+            {
+                m_dockWindowSplitterControlFactory = value;
+                DockPanel.ReloadDockWindows();
             }
         }
 

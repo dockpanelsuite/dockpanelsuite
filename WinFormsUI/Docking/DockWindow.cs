@@ -12,7 +12,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         private DockPanel m_dockPanel;
         private DockState m_dockState;
-        private SplitterControl m_splitter;
+        private SplitterBase m_splitter;
         private NestedPaneCollection m_nestedPanes;
 
         internal DockWindow(DockPanel dockPanel, DockState dockState)
@@ -27,7 +27,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (DockState == DockState.DockLeft || DockState == DockState.DockRight ||
                 DockState == DockState.DockTop || DockState == DockState.DockBottom)
             {
-                m_splitter = new SplitterControl();
+                m_splitter = DockPanel.Extender.DockWindowSplitterControlFactory.CreateSplitterControl();
                 Controls.Add(m_splitter);
             }
 
