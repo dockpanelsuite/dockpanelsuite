@@ -28,7 +28,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         
         public interface IDockWindowSplitterControlFactory
         {
-            SplitterBase CreateSplitterControl();
+            SplitterBase CreateSplitterControl(DockPanel panel);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
@@ -110,7 +110,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private class DefaultDockWindowSplitterControlFactory : IDockWindowSplitterControlFactory
         {
-            public SplitterBase CreateSplitterControl()
+            public SplitterBase CreateSplitterControl(DockPanel panel)
             {
                 return new DockWindow.DefaultSplitterControl();
             }

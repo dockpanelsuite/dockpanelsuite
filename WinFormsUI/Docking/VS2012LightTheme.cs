@@ -49,9 +49,9 @@ namespace WeifenLuo.WinFormsUI.Docking
         
         private class VS2012LightDockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
         {
-            public SplitterBase CreateSplitterControl()
+            public SplitterBase CreateSplitterControl(DockPanel panel)
             {
-                return new VS2012LightDockWindow.VS2012LightDockWindowSplitterControl();
+                return new VS2012LightDockWindow.VS2012LightDockWindowSplitterControl(panel);
             }
         }
 
@@ -130,7 +130,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.ControlDark;
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.GrayText;
-
 
             return skin;
         }

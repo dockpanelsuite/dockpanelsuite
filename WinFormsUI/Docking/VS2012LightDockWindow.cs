@@ -45,6 +45,16 @@ namespace WeifenLuo.WinFormsUI.Docking
         
         internal class VS2012LightDockWindowSplitterControl : SplitterBase
         {
+            private DockPanel Panel { get; set; }
+
+            public VS2012LightDockWindowSplitterControl(DockPanel panel)
+            {
+                Panel = panel;
+                Brush = new SolidBrush(Panel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor);
+            }
+
+            private SolidBrush Brush { get; set; }
+
             protected override int SplitterSize
             {
                 get { return Measures.SplitterSize; }
@@ -66,13 +76,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Rectangle rect = ClientRectangle;
 
                 if (Dock==DockStyle.Left || Dock==DockStyle.Right)
-                    e.Graphics.FillRectangle(SystemBrushes.ScrollBar, rect.X+Measures.SplitterSize/2 -1, rect.Y, 
-                        Measures.SplitterSize/3, rect.Height);
-                else
-                    if (Dock==DockStyle.Top || Dock==DockStyle.Bottom)
-                        e.Graphics.FillRectangle(SystemBrushes.ScrollBar, rect.X, rect.Y,
-                            rect.Width, Measures.SplitterSize);
-
+                    e.Graphics.FillRectangle(Brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y, Measures.SplitterSize/3, rect.Height);
+                else if (Dock==DockStyle.Top || Dock==DockStyle.Bottom)
+                        e.Graphics.FillRectangle(Brush, rect.X, rect.Y, rect.Width, Measures.SplitterSize);
             }
         }
     }
