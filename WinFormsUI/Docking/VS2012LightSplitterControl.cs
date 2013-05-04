@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
@@ -18,12 +19,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             Rectangle rect = ClientRectangle;
 
             if (Alignment == DockAlignment.Left || Alignment == DockAlignment.Right)
-                g.FillRectangle(SystemBrushes.ScrollBar, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
-                                Measures.SplitterSize / 3, rect.Height);
+            {
+                var path = new GraphicsPath();
+                path.AddRectangle(rect);
+                var brush = new PathGradientBrush(path) { CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = new[] { SystemColors.Control } };
+
+                g.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
+                                Measures.SplitterSize / 3, rect.Height);}
             else
                 if (Alignment == DockAlignment.Top || Alignment == DockAlignment.Bottom)
-                    g.FillRectangle(SystemBrushes.ScrollBar, rect.X, rect.Y,
-                                    rect.Width, Measures.SplitterSize);
+                {
+                    var brush = new SolidBrush(Color.FromArgb(0xFF, 204, 206, 219));
+                    g.FillRectangle(brush, rect.X, rect.Y,
+                                    rect.Width, Measures.SplitterSize);}
         }
     }
 }

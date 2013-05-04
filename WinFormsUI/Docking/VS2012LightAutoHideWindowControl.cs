@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
@@ -31,14 +32,19 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Graphics g = e.Graphics;
                 Rectangle rect = ClientRectangle;
 
-                // TODO: [Lex Li] this is not accurate.
                 if (AutoHideWindow.DockState == DockState.DockLeftAutoHide || AutoHideWindow.DockState == DockState.DockRightAutoHide)
-                    g.FillRectangle(SystemBrushes.ScrollBar, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
-                        Measures.SplitterSize / 3, rect.Height);
+                {
+                    var path = new GraphicsPath();
+                    path.AddRectangle(rect);
+                    var brush = new PathGradientBrush(path) { CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = new[] { SystemColors.Control } };
+                    g.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
+                        Measures.SplitterSize / 3, rect.Height);}
                 else
                     if (AutoHideWindow.DockState == DockState.DockTopAutoHide || AutoHideWindow.DockState == DockState.DockBottomAutoHide)
-                        g.FillRectangle(SystemBrushes.ScrollBar, rect.X, rect.Y,
-                            rect.Width, Measures.SplitterSize);
+                    {
+                        var brush = new SolidBrush(Color.FromArgb(0xFF, 204, 206, 219));
+                        g.FillRectangle(brush, rect.X, rect.Y,
+                            rect.Width, Measures.SplitterSize);}
             }
         }
 
