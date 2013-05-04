@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>3.0.0-alpha2</version>
+    <version>3.0.0-alpha3</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,11 +16,12 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
-April 28, 2013: 3.0.0 Alpha 2
+May 4, 2013: 3.0.0 Alpha 3
 1. GitHub #19 Added Visual Studio 2012 Light theme.
 2. GitHub #112 Changed theme related interfaces.
+3. GitHub #124 Fixed flickers of VS2012 Light theme.
 
-April 28, 2013: 2.8.0 Beta
+April 28, 2013: 2.8.0
 1. GitHub #69 Restored multiple UI threads support.
 2. GitHub #81 Added ActiveAutoHideContentChanged event.
 3. GitHub #82 Fixed dock indicator issue when DockPanel parent form is set to TopMost.
