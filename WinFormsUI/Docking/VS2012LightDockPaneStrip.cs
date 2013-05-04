@@ -999,7 +999,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
             {
                 Color tabUnderLineColor;
-                if (tabActive != null && ((DockContent)tabActive.Content).IsActivated)
+                if (tabActive != null && DockPane.IsActiveDocumentPane)
                     tabUnderLineColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
                 else
                     tabUnderLineColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
