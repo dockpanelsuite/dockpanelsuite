@@ -90,10 +90,13 @@ namespace WeifenLuo.WinFormsUI.Docking
         public static DockPanelSkin CreateVisualStudio2012Light()
         {
             var specialBlue = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
-            var activeTab = Color.FromArgb(0xFF, 176, 203, 241);
-            var inactiveTab = Color.FromArgb(0xFF, 141, 163, 193);
+            var dot = Color.FromArgb(80, 170, 220);
+            var activeTab = specialBlue;
+            var mouseHoverTab = Color.FromArgb(0xFF, 28, 151, 234);
+            var inactiveTab = SystemColors.Control;
+            var lostFocusTab = Color.FromArgb(0xFF, 204, 206, 219);
             var skin = new DockPanelSkin();
-            
+
             skin.AutoHideStripSkin.DockStripGradient.StartColor = specialBlue;
             skin.AutoHideStripSkin.DockStripGradient.EndColor = SystemColors.ControlLight;
             skin.AutoHideStripSkin.TabGradient.TextColor = SystemColors.ControlDarkDark;
@@ -101,10 +104,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor = SystemColors.Control;
             skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor = SystemColors.Control;
             skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor = activeTab;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor = activeTab;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor = Color.Black;
+            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor = lostFocusTab;
+            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor = Color.White;
             skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor = inactiveTab;
-            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor = inactiveTab;
+            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor = mouseHoverTab;
             skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor = Color.Black;
 
             skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.StartColor = SystemColors.Control;
@@ -119,7 +122,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor = SystemColors.GrayText;
 
             skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.StartColor = specialBlue;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.EndColor = Color.FromArgb(80, 170, 220); // dots in caption
+            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.EndColor = dot;
             skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
             skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.TextColor = Color.White;
 
@@ -127,6 +130,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.ControlDark;
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.GrayText;
+
 
             return skin;
         }
