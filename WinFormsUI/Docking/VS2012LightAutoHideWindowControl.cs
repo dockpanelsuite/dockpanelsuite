@@ -10,10 +10,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             public VS2012LightAutoHideWindowSplitterControl(DockPanel.AutoHideWindowControl autoHideWindow)
             {
                 AutoHideWindow = autoHideWindow;
-                Brush = new SolidBrush(autoHideWindow.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor);
             }
-
-            private SolidBrush Brush { get; set; }
 
             private DockPanel.AutoHideWindowControl AutoHideWindow { get; set; }
 
@@ -34,10 +31,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Graphics g = e.Graphics;
                 Rectangle rect = ClientRectangle;
 
+                // TODO: [Lex Li] this is not accurate.
                 if (AutoHideWindow.DockState == DockState.DockLeftAutoHide || AutoHideWindow.DockState == DockState.DockRightAutoHide)
-                    g.FillRectangle(Brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y, Measures.SplitterSize / 3, rect.Height);
-                else if (AutoHideWindow.DockState == DockState.DockTopAutoHide || AutoHideWindow.DockState == DockState.DockBottomAutoHide)
-                        g.FillRectangle(Brush, rect.X, rect.Y, rect.Width, Measures.SplitterSize);
+                    g.FillRectangle(SystemBrushes.ScrollBar, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
+                        Measures.SplitterSize / 3, rect.Height);
+                else
+                    if (AutoHideWindow.DockState == DockState.DockTopAutoHide || AutoHideWindow.DockState == DockState.DockBottomAutoHide)
+                        g.FillRectangle(SystemBrushes.ScrollBar, rect.X, rect.Y,
+                            rect.Width, Measures.SplitterSize);
             }
         }
 
