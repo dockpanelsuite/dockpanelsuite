@@ -1208,6 +1208,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return this; }
         }
 
+        public IDockContent MouseOverTab { get; set; }
+
         #endregion
 
         bool IDockDragSource.IsDockStateValid(DockState dockState)

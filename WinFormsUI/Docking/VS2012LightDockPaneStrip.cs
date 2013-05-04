@@ -42,11 +42,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 get { return m_flag; }
                 set { m_flag = value; }
             }
-
-            /// <summary>
-            /// A flag used to indicate whether the mouse is now over the strip.
-            /// </summary>
-            protected internal bool MouseOver { get; set; }
         }
 
         protected internal override Tab CreateTab(IDockContent content)
@@ -1130,7 +1125,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
             {
                 Color textColor;
-                if (tab.MouseOver)
+                if (tab.Content == DockPane.MouseOverTab)
                     textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor;
                 else
                     textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor;
@@ -1142,8 +1137,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (rectTab.Contains(rectIcon))
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
-
-            tab.MouseOver = false;
         }
 
         private void DrawTab_Document(Graphics g, TabVS2012Light tab, Rectangle rect)
@@ -1199,9 +1192,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             else
             {
-                if (tab.MouseOver)
+                if (tab.Content == DockPane.MouseOverTab)
                 {
-                    tab.MouseOver = false;
                     g.FillRectangle(new SolidBrush(mouseHoverColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
                 }
@@ -1323,7 +1315,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnMouseHover(EventArgs e)
         {
-            int index = HitTest(PointToClient(Control.MousePosition));
+            int index = HitTest(PointToClient(MousePosition));
             string toolTip = string.Empty;
 
             base.OnMouseHover(e);
@@ -1331,17 +1323,32 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (index != -1)
             {
                 var tab = Tabs[index] as TabVS2012Light;
-                if (Appearance == DockPane.AppearanceStyle.ToolWindow ||
-                    (Appearance == DockPane.AppearanceStyle.Document && tab.Content != DockPane.ActiveContent))
+                if (Appearance == DockPane.AppearanceStyle.ToolWindow || Appearance == DockPane.AppearanceStyle.Document)
                 {
-                    tab.MouseOver = true;
-                    Invalidate();
+                    if (tab.Content == DockPane.ActiveContent)
+                    {
+                        DockPane.MouseOverTab = null;
+                        Invalidate();
+                    }
+                    else if (tab.Content == DockPane.MouseOverTab)
+                    {
+                    }
+                    else
+                    {
+                        DockPane.MouseOverTab = tab.Content;
+                        Invalidate();
+                    }
                 }
 
                 if (!String.IsNullOrEmpty(tab.Content.DockHandler.ToolTipText))
                     toolTip = tab.Content.DockHandler.ToolTipText;
                 else if (tab.MaxWidth > tab.TabWidth)
                     toolTip = tab.Content.DockHandler.TabText;
+            }
+            else
+            {
+                DockPane.MouseOverTab = null;
+                Invalidate();
             }
 
             if (m_toolTip.GetToolTip(this) != toolTip)
@@ -1357,6 +1364,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnMouseLeave(EventArgs e)
         {
+            DockPane.MouseOverTab = null;
             Invalidate();
             base.OnMouseLeave(e);
         }
