@@ -71,7 +71,6 @@ Oct 30, 2010: 2.4.0
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\license.txt" target="content\license.txt" />
     <file src="..\bin\net20\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net20\WeifenLuo.WinFormsUI.Docking.dll" />
     <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.dll" />
   </files>
