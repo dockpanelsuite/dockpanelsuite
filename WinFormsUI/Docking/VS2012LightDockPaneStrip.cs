@@ -1243,9 +1243,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private Rectangle GetCloseButtonRect(Rectangle rectTab)
         {
-            const int gap = 4;
+            const int gap = 5;
             var dimension = rectTab.Height - gap;
-            return new Rectangle(rectTab.X + rectTab.Width - dimension - gap / 2, rectTab.Y + gap / 2, dimension, dimension);
+            return new Rectangle(rectTab.X + rectTab.Width - dimension - gap / 2 - 1, rectTab.Y + gap / 2 + 1, dimension, dimension);
         }
 
         private void WindowList_Click(object sender, EventArgs e)
