@@ -938,18 +938,24 @@ namespace WeifenLuo.WinFormsUI.Docking
                 + ToolWindowImageGapRight + ToolWindowTextGapRight;
         }
 
+        private const int TAB_CLOSE_BUTTON_WIDTH = 30;
+
         private int GetMaxTabWidth_Document(int index)
         {
             IDockContent content = Tabs[index].Content;
-
             int height = GetTabRectangle_Document(index).Height;
-
             Size sizeText = TextRenderer.MeasureText(content.DockHandler.TabText, BoldFont, new Size(DocumentTabMaxWidth, height), DocumentTextFormat);
 
+            int width;
             if (DockPane.DockPanel.ShowDocumentIcon)
-                return sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
+                width = sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
             else
-                return sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
+                width = sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
+            
+            if (DockPane.DockPanel.ShowCloseButtonOnEachTab) 
+                width += TAB_CLOSE_BUTTON_WIDTH;
+
+            return width;
         }
 
         private void DrawTabStrip(Graphics g)
@@ -1204,8 +1210,45 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
 
+            if (DockPane.DockPanel.ShowCloseButtonOnEachTab)
+            {
+                /* Draw the close Button on the active tab */
+                var rectCloseButton = GetCloseButtonRect(rect);
+                var closeButtonImage = Resources.Overlay_close;
+                g.DrawImage(closeButtonImage, rectCloseButton);
+            }
+
             if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            if (!DockPane.DockPanel.ShowCloseButtonOnEachTab) return;
+            if (e.Button != MouseButtons.Left) return;
+            var indexHit = HitTest();
+            if (indexHit > -1)
+                TabCloseButtonHit(indexHit);
+        }
+
+
+        private void TabCloseButtonHit(int index)
+        {
+            var mousePos = PointToClient(MousePosition);
+            var tabRect = GetTabRectangle(index);
+            var closeButtonRect = GetCloseButtonRect(tabRect);
+            var mouseRect = new Rectangle(mousePos, new Size(1, 1));
+
+            if (closeButtonRect.IntersectsWith(mouseRect))
+                DockPane.CloseActiveContent();
+        }
+
+        private Rectangle GetCloseButtonRect(Rectangle rectTab)
+        {
+            const int gap = 4;
+            var dimension = rectTab.Height - gap;
+            return new Rectangle(rectTab.X + rectTab.Width - dimension - gap / 2, rectTab.Y + gap / 2, dimension, dimension);
         }
 
         private void WindowList_Click(object sender, EventArgs e)

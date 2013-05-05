@@ -366,6 +366,9 @@
   <data name="DockPanel_SupportDeeplyNestedContent_Description" xml:space="preserve">
     <value>Support deeply nested controls.  Disabling this setting may improve resize performance but may cause heavily nested content not to resize.</value>
   </data>
+  <data name="DockPanel_ShowCloseButtonOnEachTab_Description" xml:space="preserve">
+    <value>Show close button on each tab</value>
+  </data>
   <data name="DockPanel_ShowAutoHideContentOnHover_Description" xml:space="preserve">
     <value>Shows the hidden autohide content when hovering over the tab.  When disabled, the tab must be clicked to show the content.</value>
   </data>

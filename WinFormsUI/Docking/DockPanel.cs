@@ -64,7 +64,27 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_dummyContent = new DockContent();
             ResumeLayout();
         }
-        
+
+        //<--Added for close button likes FireFox tab
+        //http://sourceforge.net/projects/dockpanelsuite/forums/forum/402316/topic/3901160
+        private bool m_ShowCloseButtonOnEachTab = true;
+        [DefaultValue(true)]
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockPanel_ShowCloseButtonOnEachTab_Description")]
+        public bool ShowCloseButtonOnEachTab
+        {
+            get { return m_ShowCloseButtonOnEachTab; }
+            set
+            {
+                if (m_ShowCloseButtonOnEachTab == value)
+                    return;
+
+                m_ShowCloseButtonOnEachTab = value;
+                Refresh();
+            }
+        }
+        //Added for close button likes FireFox tab-->
+
         private Color m_BackColor;
         /// <summary>
         /// Determines the color with which the client rectangle will be drawn.
