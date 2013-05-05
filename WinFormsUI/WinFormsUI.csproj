@@ -263,7 +263,11 @@
     <EmbeddedResource Include="Docking\DockPanel.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Docking\Resources\Overlay-close.png" />
+    <None Include="Docking\Resources\ActiveTabHover_Close.bmp" />
+    <None Include="Docking\Resources\ActiveTab_Close.bmp" />
+    <None Include="Docking\Resources\InactiveTabHover_Close.bmp" />
+    <None Include="Docking\Resources\LostFocusTabHover_Close.bmp" />
+    <None Include="Docking\Resources\LostFocusTab_Close.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

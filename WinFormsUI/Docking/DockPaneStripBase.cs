@@ -177,8 +177,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Tab(content);
         }
 
-        //<--Added for close button likes FireFox tab style
-        //http://sourceforge.net/projects/dockpanelsuite/forums/forum/402316/topic/3901160
         private Rectangle _dragBox = Rectangle.Empty;
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -213,12 +211,12 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             base.OnMouseMove(e);
 
-            if (e.Button != MouseButtons.Left || _dragBox.Contains(e.Location)) return;
+            if (e.Button != MouseButtons.Left || _dragBox.Contains(e.Location)) 
+                return;
 
             if (DockPane.DockPanel.AllowEndUserDocking && DockPane.AllowDockDragAndDrop && DockPane.ActiveContent.DockHandler.AllowEndUserDocking)
                 DockPane.DockPanel.BeginDrag(DockPane.ActiveContent.DockHandler);
         }
-        //Added for close button likes FireFox tab style -->
 
         protected bool HasTabPageContextMenu
         {

@@ -134,6 +134,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static string m_toolTipSelect;
         private static string m_toolTipClose;
         private bool m_closeButtonVisible = false;
+        private Rectangle _activeClose;
 
         #endregion
 
@@ -952,9 +953,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
                 width = sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
             
-            if (DockPane.DockPanel.ShowCloseButtonOnEachTab) 
-                width += TAB_CLOSE_BUTTON_WIDTH;
-
+            width += TAB_CLOSE_BUTTON_WIDTH;
             return width;
         }
 
@@ -1183,17 +1182,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color inactiveText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
             Color lostFocusText = SystemColors.GrayText;
 
+            /* Draw the close Button on the active tab */
+            var rectCloseButton = GetCloseButtonRect(rect);
+
             if (DockPane.ActiveContent == tab.Content)
             {
                 if (DockPane.IsActiveDocumentPane)
                 {
                     g.FillRectangle(new SolidBrush(activeColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
+                    g.DrawImage(rectCloseButton == ActiveClose ? Resources.ActiveTabHover_Close : Resources.ActiveTab_Close, rectCloseButton);
                 }
                 else
                 {
                     g.FillRectangle(new SolidBrush(lostFocusColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, lostFocusText, DocumentTextFormat);
+                    g.DrawImage(rectCloseButton == ActiveClose ? Resources.LostFocusTabHover_Close : Resources.LostFocusTab_Close, rectCloseButton);
                 }
             }
             else
@@ -1202,20 +1206,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     g.FillRectangle(new SolidBrush(mouseHoverColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
+                    g.DrawImage(rectCloseButton == ActiveClose ? Resources.InactiveTabHover_Close : Resources.ActiveTabHover_Close, rectCloseButton);
                 }
                 else
                 {
                     g.FillRectangle(new SolidBrush(inactiveColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, inactiveText, DocumentTextFormat);
                 }
-            }
-
-            if (DockPane.DockPanel.ShowCloseButtonOnEachTab)
-            {
-                /* Draw the close Button on the active tab */
-                var rectCloseButton = GetCloseButtonRect(rect);
-                var closeButtonImage = Resources.Overlay_close;
-                g.DrawImage(closeButtonImage, rectCloseButton);
             }
 
             if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
@@ -1225,13 +1222,13 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
-            if (!DockPane.DockPanel.ShowCloseButtonOnEachTab) return;
-            if (e.Button != MouseButtons.Left) return;
+            if (e.Button != MouseButtons.Left)
+                return;
+
             var indexHit = HitTest();
             if (indexHit > -1)
                 TabCloseButtonHit(indexHit);
         }
-
 
         private void TabCloseButtonHit(int index)
         {
@@ -1289,8 +1286,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             else
             {
-                ButtonClose.Enabled = DockPane.ActiveContent == null ? true : DockPane.ActiveContent.DockHandler.CloseButton;
-                m_closeButtonVisible = DockPane.ActiveContent == null ? true : DockPane.ActiveContent.DockHandler.CloseButtonVisible;
+                ButtonClose.Enabled = false;
+                m_closeButtonVisible = false;
                 ButtonClose.Visible = m_closeButtonVisible;
                 ButtonClose.RefreshChanges();
                 ButtonWindowList.RefreshChanges();
@@ -1353,7 +1350,31 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (path.IsVisible(ptMouse))
                     return Tabs.IndexOf(tab);
             }
+
             return -1;
+        }
+
+        private Rectangle ActiveClose
+        {
+            get { return _activeClose; }
+        }
+
+        private bool SetActiveClose(Rectangle rectangle)
+        {
+            if (_activeClose == rectangle)
+                return false;
+
+            _activeClose = rectangle;
+            return true;
+        }
+
+        private bool SetMouseOverTab(IDockContent content)
+        {
+            if (DockPane.MouseOverTab == content)
+                return false;
+
+            DockPane.MouseOverTab = content;
+            return true;
         }
 
         protected override void OnMouseHover(EventArgs e)
@@ -1363,36 +1384,33 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             base.OnMouseHover(e);
 
+            bool needUpdate = false;
             if (index != -1)
             {
                 var tab = Tabs[index] as TabVS2012Light;
                 if (Appearance == DockPane.AppearanceStyle.ToolWindow || Appearance == DockPane.AppearanceStyle.Document)
                 {
-                    if (tab.Content == DockPane.ActiveContent)
-                    {
-                        DockPane.MouseOverTab = null;
-                        Invalidate();
-                    }
-                    else if (tab.Content == DockPane.MouseOverTab)
-                    {
-                    }
-                    else
-                    {
-                        DockPane.MouseOverTab = tab.Content;
-                        Invalidate();
-                    }
+                    needUpdate = SetMouseOverTab(tab.Content == DockPane.ActiveContent ? null : tab.Content);
                 }
 
                 if (!String.IsNullOrEmpty(tab.Content.DockHandler.ToolTipText))
                     toolTip = tab.Content.DockHandler.ToolTipText;
                 else if (tab.MaxWidth > tab.TabWidth)
                     toolTip = tab.Content.DockHandler.TabText;
+
+                var mousePos = PointToClient(MousePosition);
+                var tabRect = GetTabRectangle(index);
+                var closeButtonRect = GetCloseButtonRect(tabRect);
+                var mouseRect = new Rectangle(mousePos, new Size(1, 1));
+                needUpdate = needUpdate || SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
             }
             else
             {
-                DockPane.MouseOverTab = null;
-                Invalidate();
+                needUpdate = SetMouseOverTab(null) || SetActiveClose(Rectangle.Empty);
             }
+
+            if (needUpdate)
+                Invalidate();
 
             if (m_toolTip.GetToolTip(this) != toolTip)
             {
@@ -1407,8 +1425,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnMouseLeave(EventArgs e)
         {
-            DockPane.MouseOverTab = null;
-            Invalidate();
+            if (SetMouseOverTab(null) || SetActiveClose(Rectangle.Empty))
+                Invalidate();
+
             base.OnMouseLeave(e);
         }
 
