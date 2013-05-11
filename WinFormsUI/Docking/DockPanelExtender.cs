@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -64,6 +65,21 @@ namespace WeifenLuo.WinFormsUI.Docking
         public interface IAutoHideWindowFactory
         {
             DockPanel.AutoHideWindowControl CreateAutoHideWindow(DockPanel panel);
+        }
+
+        public interface IPaneIndicatorFactory
+        {
+            DockPanel.IPaneIndicator CreatePaneIndicator();
+        }
+
+        public interface IPanelIndicatorFactory
+        {
+            DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style);
+        }
+
+        public interface IDockOutlineFactory
+        {
+            DockOutlineBase CreateDockOutline();
         }
 
         #region DefaultDockPaneFactory
@@ -194,6 +210,30 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         #endregion
+
+        public class DefaultPaneIndicatorFactory : IPaneIndicatorFactory
+        {
+            public DockPanel.IPaneIndicator CreatePaneIndicator()
+            {
+                return new DockPanel.DefaultPaneIndicator();
+            }
+        }
+
+        public class DefaultPanelIndicatorFactory : IPanelIndicatorFactory
+        {
+            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style)
+            {
+                return new DockPanel.DefaultPanelIndicator(style);
+            }
+        }
+
+        public class DefaultDockOutlineFactory : IDockOutlineFactory
+        {
+            public DockOutlineBase CreateDockOutline()
+            {
+                return new DockPanel.DefaultDockOutline();
+            }
+        }
 
         internal DockPanelExtender(DockPanel dockPanel)
         {
@@ -362,7 +402,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private IAutoHideWindowFactory m_autoHideWindowFactory;
-
+        
         public IAutoHideWindowFactory AutoHideWindowFactory
         {
             get { return m_autoHideWindowFactory ?? (m_autoHideWindowFactory = new DefaultAutoHideWindowFactory()); }
@@ -381,6 +421,30 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_autoHideWindowFactory = value;
                 DockPanel.ResetAutoHideStripWindow();
             }
+        }
+
+        private IPaneIndicatorFactory m_PaneIndicatorFactory;
+
+        public IPaneIndicatorFactory PaneIndicatorFactory
+        {
+            get { return m_PaneIndicatorFactory ?? (m_PaneIndicatorFactory = new DefaultPaneIndicatorFactory()); }
+            set { m_PaneIndicatorFactory = value; }
+        }
+
+        private IPanelIndicatorFactory m_PanelIndicatorFactory;
+
+        public IPanelIndicatorFactory PanelIndicatorFactory
+        {
+            get { return m_PanelIndicatorFactory ?? (m_PanelIndicatorFactory = new DefaultPanelIndicatorFactory()); }
+            set { m_PanelIndicatorFactory = value; }
+        }
+
+        private IDockOutlineFactory m_DockOutlineFactory;
+
+        public IDockOutlineFactory DockOutlineFactory
+        {
+            get { return m_DockOutlineFactory ?? (m_DockOutlineFactory = new DefaultDockOutlineFactory()); }
+            set { m_DockOutlineFactory = value; }
         }
     }
 }

@@ -53,6 +53,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             base.WndProc(ref m);
         }
+
         //The form can be still activated by explicity calling Activate
         protected override bool ShowWithoutActivation
         {

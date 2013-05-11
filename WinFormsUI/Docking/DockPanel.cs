@@ -603,7 +603,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         [DefaultValue(true)]
         public bool ShowAutoHideContentOnHover { get; set; }
 
-        private int GetDockWindowSize(DockState dockState)
+        public int GetDockWindowSize(DockState dockState)
         {
             if (dockState == DockState.DockLeft || dockState == DockState.DockRight)
             {
