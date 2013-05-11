@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>3.0.0-alpha5</version>
+    <version>3.0.0-alpha6</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,7 +16,7 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
-May 5, 2013: 3.0.0 Alpha 5
+May 11, 2013: 3.0.0 Alpha 6
 1. GitHub #19 Added Visual Studio 2012 Light theme.
 2. GitHub #112 Changed theme related interfaces.
 3. GitHub #121 Added a close button on tab (VS2012 theme only).
