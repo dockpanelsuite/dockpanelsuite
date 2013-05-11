@@ -36,7 +36,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Skin = CreateVisualStudio2012Light();
         }
 
-        public class VS2012LightDockOutlineFactory : DockPanelExtender.IDockOutlineFactory
+        private class VS2012LightDockOutlineFactory : DockPanelExtender.IDockOutlineFactory
         {
             public DockOutlineBase CreateDockOutline()
             {
