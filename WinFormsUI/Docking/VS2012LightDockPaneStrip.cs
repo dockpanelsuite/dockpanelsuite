@@ -1384,13 +1384,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             base.OnMouseHover(e);
 
-            bool needUpdate = false;
+            bool tabUpdate = false;
+            bool buttonUpdate = false;
             if (index != -1)
             {
                 var tab = Tabs[index] as TabVS2012Light;
                 if (Appearance == DockPane.AppearanceStyle.ToolWindow || Appearance == DockPane.AppearanceStyle.Document)
                 {
-                    needUpdate = SetMouseOverTab(tab.Content == DockPane.ActiveContent ? null : tab.Content);
+                    tabUpdate = SetMouseOverTab(tab.Content == DockPane.ActiveContent ? null : tab.Content);
                 }
 
                 if (!String.IsNullOrEmpty(tab.Content.DockHandler.ToolTipText))
@@ -1402,14 +1403,15 @@ namespace WeifenLuo.WinFormsUI.Docking
                 var tabRect = GetTabRectangle(index);
                 var closeButtonRect = GetCloseButtonRect(tabRect);
                 var mouseRect = new Rectangle(mousePos, new Size(1, 1));
-                needUpdate = needUpdate || SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
+                buttonUpdate = SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
             }
             else
             {
-                needUpdate = SetMouseOverTab(null) || SetActiveClose(Rectangle.Empty);
+                tabUpdate = SetMouseOverTab(null);
+                buttonUpdate = SetActiveClose(Rectangle.Empty);
             }
 
-            if (needUpdate)
+            if (tabUpdate || buttonUpdate)
                 Invalidate();
 
             if (m_toolTip.GetToolTip(this) != toolTip)
@@ -1425,7 +1427,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnMouseLeave(EventArgs e)
         {
-            if (SetMouseOverTab(null) || SetActiveClose(Rectangle.Empty))
+            var tabUpdate = SetMouseOverTab(null);
+            var buttonUpdate = SetActiveClose(Rectangle.Empty);
+            if (tabUpdate || buttonUpdate)
                 Invalidate();
 
             base.OnMouseLeave(e);
