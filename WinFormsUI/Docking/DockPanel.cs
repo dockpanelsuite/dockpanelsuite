@@ -767,6 +767,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return;
 
             FloatWindows.Remove(floatWindow);
+            if (FloatWindows.Count != 0)
+                return;
+
+            if (ParentForm == null) 
+                return;
+
+            ParentForm.Focus();
         }
 
         public void SetPaneIndex(DockPane pane, int index)

@@ -116,8 +116,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (m_activeContent != null)
                     {
                         if (m_activeContent.DockHandler.Form.ContainsFocus)
+                        {
                             if (!Win32Helper.IsRunningOnMono)
+                            {
                                 DockPanel.ContentFocusManager.GiveUpFocus(m_activeContent);
+                            }
+                        }
+
                         AnimateWindow(false);
                     }
 
