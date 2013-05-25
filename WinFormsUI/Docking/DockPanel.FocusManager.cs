@@ -153,7 +153,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (!m_disposed && disposing)
                 {
                     if (!Win32Helper.IsRunningOnMono)
-                    sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
+                    {
+                        sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
+                    }
+
                     m_disposed = true;
                 }
 
@@ -181,15 +184,24 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (handler.Form.IsDisposed)
                     return; // Should not reach here, but better than throwing an exception
                 if (ContentContains(content, handler.ActiveWindowHandle))
-                    if (!Win32Helper.IsRunningOnMono)
-                        NativeMethods.SetFocus(handler.ActiveWindowHandle);
-                if (!handler.Form.ContainsFocus)
                 {
-                    if (!handler.Form.SelectNextControl(handler.Form.ActiveControl, true, true, true, true))
-                        // Since DockContent Form is not selectalbe, use Win32 SetFocus instead
-                        if (!Win32Helper.IsRunningOnMono)
-                            NativeMethods.SetFocus(handler.Form.Handle);
+                    if (!Win32Helper.IsRunningOnMono)
+                    {
+                        NativeMethods.SetFocus(handler.ActiveWindowHandle);
+                    }
                 }
+
+                if (handler.Form.ContainsFocus)
+                    return;
+
+                if (handler.Form.SelectNextControl(handler.Form.ActiveControl, true, true, true, true))
+                    return;
+
+                if (Win32Helper.IsRunningOnMono) 
+                    return;
+
+                // Since DockContent Form is not selectalbe, use Win32 SetFocus instead
+                NativeMethods.SetFocus(handler.Form.Handle);
             }
 
             private List<IDockContent> m_listContent = new List<IDockContent>();
@@ -312,8 +324,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                         Activate(ContentActivating);
                         ContentActivating = null;
                     }
+
                     if (!Win32Helper.IsRunningOnMono)
                         sm_localWindowsHook.HookInvoked += m_hookEventHandler;
+
                     if (!InRefreshActiveWindow)
                         RefreshActiveWindow();
                 }

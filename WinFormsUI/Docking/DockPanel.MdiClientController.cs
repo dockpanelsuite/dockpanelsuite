@@ -109,6 +109,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         NativeMethods.SetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_STYLE, style);
                         NativeMethods.SetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, exStyle);
                     }
+
                     // Cause an update of the non-client area.
                     UpdateStyles();
                 }
@@ -228,8 +229,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                         // If AutoScroll is set to false, hide the scrollbars when the control
                         // calculates its non-client area.
                         if (!AutoScroll)
+                        {
                             if (!Win32Helper.IsRunningOnMono)
+                            {
                                 NativeMethods.ShowScrollBar(m.HWnd, (int)Win32.ScrollBars.SB_BOTH, 0 /*false*/);
+                            }
+                        }
+
                         break;
                 }
 

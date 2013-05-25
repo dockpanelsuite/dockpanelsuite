@@ -325,8 +325,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Point ptMouse = Control.MousePosition;
                 uint lParam = Win32Helper.MakeLong(ptMouse.X, ptMouse.Y);
                 if (!Win32Helper.IsRunningOnMono)
+                {
                     if (NativeMethods.SendMessage(Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, lParam) == (uint)Win32.HitTest.HTCAPTION)
+                    {
                         dockOutline.Show(VisibleNestedPanes[0], -1);
+                    }
+                }
             }
         }
 
