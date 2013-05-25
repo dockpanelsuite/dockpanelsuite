@@ -431,10 +431,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
                 return Rectangle.Empty;
 
-            if (!transformed)
-                return new Rectangle(x, y, width, height);
-            else
-                return GetTransformedRectangle(dockState, new Rectangle(x, y, width, height));
+            if (width == 0 || height == 0)
+            {
+                return Rectangle.Empty;
+            }
+
+            var rect = new Rectangle(x, y, width, height);
+            return transformed ? GetTransformedRectangle(dockState, rect) : rect;
         }
 
         private Rectangle GetTabRectangle(TabVS2005 tab)
