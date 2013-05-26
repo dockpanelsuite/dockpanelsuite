@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.IO;
 using DockSample.Customization;
+using Lextm.SharpSnmpLib;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace DockSample
@@ -145,16 +146,28 @@ namespace DockSample
             CloseAllDocuments();
         }
 
+        private readonly ToolStripRenderer _system = new ToolStripProfessionalRenderer();
+        private readonly ToolStripRenderer _custom = new VS2012ToolStripRenderer();
+        
         private void SetSchema(object sender, System.EventArgs e)
         {
             CloseAllContents();
 
             if (sender == menuItemSchemaVS2005)
+            {
                 dockPanel.Theme = vS2005Theme1;
+                ToolStripManager.Renderer = _system;
+            }
             else if (sender == menuItemSchemaVS2003)
+            {
                 dockPanel.Theme = vS2003Theme1;
+                ToolStripManager.Renderer = _system;
+            }
             else if (sender == menuItemSchemaVS2012Light)
+            {
                 dockPanel.Theme = vS2012LightTheme1;
+                ToolStripManager.Renderer = _custom;
+            }
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
