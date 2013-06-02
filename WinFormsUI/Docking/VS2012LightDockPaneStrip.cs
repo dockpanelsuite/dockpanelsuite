@@ -1149,6 +1149,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (tab.TabWidth == 0)
                 return;
 
+            var rectCloseButton = GetCloseButtonRect(rect);
             Rectangle rectIcon = new Rectangle(
                 rect.X + DocumentIconGapLeft,
                 rect.Y + rect.Height - DocumentIconGapBottom - DocumentIconHeight,
@@ -1158,12 +1159,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 rectText.X += rectIcon.Width + DocumentIconGapRight;
                 rectText.Y = rect.Y;
-                rectText.Width = rect.Width - rectIcon.Width - DocumentIconGapLeft -
-                    DocumentIconGapRight - DocumentTextGapRight;
+                rectText.Width = rect.Width - rectIcon.Width - DocumentIconGapLeft - DocumentIconGapRight - DocumentTextGapRight - rectCloseButton.Width;
                 rectText.Height = rect.Height;
             }
             else
-                rectText.Width = rect.Width - DocumentIconGapLeft - DocumentTextGapRight;
+                rectText.Width = rect.Width - DocumentIconGapLeft - DocumentTextGapRight - rectCloseButton.Width;
 
             Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
             Rectangle rectBack = DrawHelper.RtlTransform(this, rect);
@@ -1181,9 +1181,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color activeText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
             Color inactiveText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
             Color lostFocusText = SystemColors.GrayText;
-
-            /* Draw the close Button on the active tab */
-            var rectCloseButton = GetCloseButtonRect(rect);
 
             if (DockPane.ActiveContent == tab.Content)
             {
