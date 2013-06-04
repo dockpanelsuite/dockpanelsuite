@@ -120,7 +120,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 m_closeButton = value;
                 if (Pane != null)
-                    if (Pane.ActiveContent.DockHandler == this)
+                    if (Pane.ActiveContent != null && Pane.ActiveContent.DockHandler == this)
                         Pane.RefreshChanges();
             }
         }
