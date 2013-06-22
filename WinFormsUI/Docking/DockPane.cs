@@ -923,8 +923,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                 FloatWindow = DockPanel.FloatWindowFactory.CreateFloatWindow(DockPanel, this);
 
             if (contentFocused != null)
+            {
                 if (!Win32Helper.IsRunningOnMono)
-                DockPanel.ContentFocusManager.Activate(contentFocused);
+                {
+                    DockPanel.ContentFocusManager.Activate(contentFocused);
+                }
+            }
 
             ResumeRefreshStateChange(oldContainer, oldDockState);
         }

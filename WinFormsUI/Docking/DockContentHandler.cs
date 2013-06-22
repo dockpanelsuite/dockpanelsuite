@@ -262,7 +262,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     Form.FormBorderStyle = FormBorderStyle.None;
                     Form.ShowInTaskbar = false;
                     Form.WindowState = FormWindowState.Normal;
-                    if (!Win32Helper.IsRunningOnMono)            
+                    if (Win32Helper.IsRunningOnMono) 
+                        return;
+
                     NativeMethods.SetWindowPos(Form.Handle, IntPtr.Zero, 0, 0, 0, 0,
                         Win32.FlagsSetWindowPos.SWP_NOACTIVATE |
                         Win32.FlagsSetWindowPos.SWP_NOMOVE |
@@ -517,9 +519,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             if (Form.ContainsFocus)
+            {
                 if (DockState == DockState.Hidden || DockState == DockState.Unknown)
-                    if (!Win32Helper.IsRunningOnMono)                    
+                {
+                    if (!Win32Helper.IsRunningOnMono)
+                    {
                         DockPanel.ContentFocusManager.GiveUpFocus(Content);
+                    }
+                }
+            }
 
             SetPaneAndVisible(Pane);
 
@@ -530,24 +538,34 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if ((Pane != oldPane) ||
                     (Pane == oldPane && oldDockState != oldPane.DockState))
+                {
                     // Avoid early refresh of hidden AutoHide panes
                     if ((Pane.DockWindow == null || Pane.DockWindow.Visible || Pane.IsHidden) && !Pane.IsAutoHide)
-                        RefreshDockPane(Pane);            
+                    {
+                        RefreshDockPane(Pane);
+                    }
+                }
             }
 
             if (oldDockState != DockState)
             {
                 if (DockState == DockState.Hidden || DockState == DockState.Unknown ||
                     DockHelper.IsDockStateAutoHide(DockState))
+                {
                     if (!Win32Helper.IsRunningOnMono)
+                    {
                         DockPanel.ContentFocusManager.RemoveFromList(Content);
-                else
-                    if (!Win32Helper.IsRunningOnMono)
-                        DockPanel.ContentFocusManager.AddToList(Content);
+                    }
+                }
+                else if (!Win32Helper.IsRunningOnMono)
+                {
+                    DockPanel.ContentFocusManager.AddToList(Content);
+                }
 
                 ResetAutoHidePortion(oldDockState, DockState);
                 OnDockStateChanged(EventArgs.Empty);
             }
+
             ResumeSetDockState();
 
             if (dockPanel != null)
@@ -681,9 +699,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
-                if (!Form.ContainsFocus)
-                    if (!Win32Helper.IsRunningOnMono)
-                        DockPanel.ContentFocusManager.Activate(Content);
+                if (Form.ContainsFocus) 
+                    return;
+
+                if (Win32Helper.IsRunningOnMono) 
+                    return;
+
+                DockPanel.ContentFocusManager.Activate(Content);
             }
         }
 
@@ -762,32 +784,37 @@ namespace WeifenLuo.WinFormsUI.Docking
             // Workaround of .Net Framework bug:
             // Change the parent of a control with focus may result in the first
             // MDI child form get activated. 
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             bool bRestoreFocus = false;
             if (Form.ContainsFocus)
             {
-                //Suggested as a fix for a memory leak by bugreports
+                // Suggested as a fix for a memory leak by bugreports
                 if (value == null && !IsFloat)
+                {
                     if (!Win32Helper.IsRunningOnMono)
+                    {
                         DockPanel.ContentFocusManager.GiveUpFocus(this.Content);
+                    }
+                }
                 else
                 {
                     DockPanel.SaveFocus();
                     bRestoreFocus = true;
                 }
             }
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Form.Parent = value;
 
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // Workaround of .Net Framework bug:
             // Change the parent of a control with focus may result in the first
             // MDI child form get activated. 
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (bRestoreFocus)
                 Activate();
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
         public void Show()
@@ -805,7 +832,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (DockState == DockState.Unknown)
                 Show(dockPanel, DefaultShowState);
-            else            
+            else
                 Activate();
         }
 
