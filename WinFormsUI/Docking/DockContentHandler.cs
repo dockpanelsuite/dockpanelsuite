@@ -119,7 +119,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 m_closeButton = value;
-                if (Pane != null && Pane.ActiveContent.DockHandler == this)
+                if (IsActiveContentHandler)
                     Pane.RefreshChanges();
             }
         }
@@ -137,9 +137,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 m_closeButtonVisible = value;
-                if (Pane != null && Pane.ActiveContent.DockHandler == this)
+                if (IsActiveContentHandler)
                     Pane.RefreshChanges();
             }
+        }
+
+        private bool IsActiveContentHandler
+        {
+            get { return Pane != null && Pane.ActiveContent != null && Pane.ActiveContent.DockHandler == this; }
         }
         
         private DockState DefaultDockState
