@@ -119,9 +119,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 m_closeButton = value;
-                if (Pane != null)
-                    if (Pane.ActiveContent.DockHandler == this)
-                        Pane.RefreshChanges();
+                if (Pane != null && Pane.ActiveContent.DockHandler == this)
+                    Pane.RefreshChanges();
             }
         }
 
@@ -132,7 +131,15 @@ namespace WeifenLuo.WinFormsUI.Docking
         public bool CloseButtonVisible
         {
             get { return m_closeButtonVisible; }
-            set { m_closeButtonVisible = value; }
+            set
+            {
+                if (m_closeButtonVisible == value)
+                    return;
+
+                m_closeButtonVisible = value;
+                if (Pane != null && Pane.ActiveContent.DockHandler == this)
+                    Pane.RefreshChanges();
+            }
         }
         
         private DockState DefaultDockState
