@@ -87,13 +87,9 @@ namespace DockSample
             }
             else
             {
-                for (int index = dockPanel.Contents.Count - 1; index >= 0; index--)
+                foreach (IDockContent document in dockPanel.DocumentsToArray())
                 {
-                    if (dockPanel.Contents[index] is IDockContent)
-                    {
-                        IDockContent content = (IDockContent)dockPanel.Contents[index];
-                        content.DockHandler.Close();
-                    }
+                    document.DockHandler.Close();
                 }
             }
         }
