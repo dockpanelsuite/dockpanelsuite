@@ -328,12 +328,15 @@ namespace DockSample
         {
             if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
             {
-                menuItemClose.Enabled = menuItemCloseAll.Enabled = (ActiveMdiChild != null);
+                menuItemClose.Enabled = 
+                    menuItemCloseAll.Enabled =
+                    menuItemCloseAllButThisOne.Enabled = (ActiveMdiChild != null);
             }
             else
             {
                 menuItemClose.Enabled = (dockPanel.ActiveDocument != null);
-                menuItemCloseAll.Enabled = (dockPanel.DocumentsCount > 0);
+                menuItemCloseAll.Enabled =
+                    menuItemCloseAllButThisOne.Enabled = (dockPanel.DocumentsCount > 0);
             }
         }
 
