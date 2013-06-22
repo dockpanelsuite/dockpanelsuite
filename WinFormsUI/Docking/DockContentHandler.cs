@@ -861,8 +861,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 foreach (DockPane pane in DockPanel.Panes)
                     if (pane.DockState == dockState)
                     {
-                        paneExisting = pane;
-                        break;
+                        if (paneExisting == null || pane.IsActivated)
+                            paneExisting = pane;
+
+                        if (pane.IsActivated)
+                            break;
                     }
 
                 if (paneExisting == null)
