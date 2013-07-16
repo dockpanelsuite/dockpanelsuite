@@ -270,13 +270,9 @@
     <None Include="Docking\Resources\LostFocusTab_Close.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Bottom_VS2012.bmp" />
     <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Fill_VS2012.bmp" />
     <Content Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.bmp" />
     <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Hotspot_VS2012.bmp" />
-    <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Left_VS2012.bmp" />
-    <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Right_VS2012.bmp" />
-    <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Top_VS2012.bmp" />
     <Content Include="Docking\Resources\Dockindicator_PaneDiamond_VS2012.bmp" />
     <Content Include="Docking\Resources\DockIndicator_PanelBottom_VS2012.bmp" />
     <Content Include="Docking\Resources\DockIndicator_PanelFill_VS2012.bmp" />
