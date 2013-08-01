@@ -69,6 +69,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 Rectangle rect = ClientRectangle;
 
+                if (rect.Width <= 0 || rect.Height <= 0)
+                    return;
+
                 switch (Dock)
                 {
                     case DockStyle.Right:

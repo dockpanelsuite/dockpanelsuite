@@ -19,8 +19,10 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             base.OnPaint(e);
 
-            Graphics g = e.Graphics;
             Rectangle rect = ClientRectangle;
+
+            if (rect.Width <= 0 || rect.Height <= 0)
+                return;
 
             switch (Alignment)
             {
@@ -35,7 +37,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                                 SurroundColors = _verticalSurroundColors
                             };
 
-                        g.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
+                        e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
                                         Measures.SplitterSize / 3, rect.Height);
 
                         path.Dispose();
@@ -45,7 +47,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 case DockAlignment.Bottom:
                 case DockAlignment.Top:
                     {
-                        g.FillRectangle(_horizontalBrush, rect.X, rect.Y,
+                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
                                         rect.Width, Measures.SplitterSize);
                     }
                     break;
