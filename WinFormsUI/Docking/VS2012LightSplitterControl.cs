@@ -29,19 +29,18 @@ namespace WeifenLuo.WinFormsUI.Docking
                 case DockAlignment.Right:
                 case DockAlignment.Left:
                     {
-                        var path = new GraphicsPath();
-                        path.AddRectangle(rect);
-                        var brush = new PathGradientBrush(path)
+                        using (var path = new GraphicsPath())
+                        {
+                            path.AddRectangle(rect);
+                            using (var brush = new PathGradientBrush(path)
+                                {
+                                    CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = _verticalSurroundColors
+                                })
                             {
-                                CenterColor = Color.FromArgb(0xFF, 204, 206, 219), 
-                                SurroundColors = _verticalSurroundColors
-                            };
-
-                        e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
-                                        Measures.SplitterSize / 3, rect.Height);
-
-                        path.Dispose();
-                        brush.Dispose();
+                                e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
+                                                         Measures.SplitterSize / 3, rect.Height);
+                            }
+                        }
                     }
                     break;
                 case DockAlignment.Bottom:

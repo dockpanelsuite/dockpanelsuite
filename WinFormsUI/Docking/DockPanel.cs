@@ -991,6 +991,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Region region = new Region(new Rectangle(0, 0, this.Width, this.Height));
                 foreach (Rectangle rect in m_clipRects)
                     region.Exclude(rect);
+                if (Region != null)
+                {
+                    Region.Dispose();
+                }
+
                 Region = region;
             }
         }

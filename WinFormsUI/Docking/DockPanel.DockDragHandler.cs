@@ -372,9 +372,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 DragForm.Bounds = rect;
                 if (rect == Rectangle.Empty)
+                {
+                    if (DragForm.Region != null)
+                    {
+                        DragForm.Region.Dispose();
+                    }
+
                     DragForm.Region = new Region(Rectangle.Empty);
+                }
                 else if (DragForm.Region != null)
+                {
+                    DragForm.Region.Dispose();
                     DragForm.Region = null;
+                }
             }
 
             private void SetDragForm(Rectangle rect, Region region)

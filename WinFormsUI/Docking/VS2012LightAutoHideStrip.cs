@@ -492,10 +492,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             pts[0].X = (float)rect.X + (float)rect.Width / 2;
             pts[0].Y = (float)rect.Y + (float)rect.Height / 2;
             Rectangle rectTabStrip = GetLogicalTabStripRectangle(dockState);
-            Matrix matrix = new Matrix();
-            matrix.RotateAt(90, new PointF((float)rectTabStrip.X + (float)rectTabStrip.Height / 2,
-                (float)rectTabStrip.Y + (float)rectTabStrip.Height / 2));
-            matrix.TransformPoints(pts);
+            using (var matrix = new Matrix())
+            {
+                matrix.RotateAt(90, new PointF((float)rectTabStrip.X + (float)rectTabStrip.Height / 2,
+                                               (float)rectTabStrip.Y + (float)rectTabStrip.Height / 2));
+                matrix.TransformPoints(pts);
+            }
 
             return new Rectangle((int)(pts[0].X - (float)rect.Height / 2 + .5F),
                 (int)(pts[0].Y - (float)rect.Width / 2 + .5F),

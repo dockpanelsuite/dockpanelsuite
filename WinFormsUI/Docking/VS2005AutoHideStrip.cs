@@ -319,67 +319,70 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockState dockState = tab.Content.DockHandler.DockState;
             IDockContent content = tab.Content;
 
-            GraphicsPath path = GetTabOutline(tab, false, true);
-
-            Color startColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.StartColor;
-            Color endColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.EndColor;
-            LinearGradientMode gradientMode = DockPanel.Skin.AutoHideStripSkin.TabGradient.LinearGradientMode;
-            g.FillPath(new LinearGradientBrush(rectTabOrigin, startColor, endColor, gradientMode), path);
-            g.DrawPath(PenTabBorder, path);
+            using (GraphicsPath path = GetTabOutline(tab, false, true))
+            {
+                Color startColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.StartColor;
+                Color endColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.EndColor;
+                LinearGradientMode gradientMode = DockPanel.Skin.AutoHideStripSkin.TabGradient.LinearGradientMode;
+                g.FillPath(new LinearGradientBrush(rectTabOrigin, startColor, endColor, gradientMode), path);
+                g.DrawPath(PenTabBorder, path);
+            }
 
             // Set no rotate for drawing icon and text
-            Matrix matrixRotate = g.Transform;
-            g.Transform = MatrixIdentity;
-
-            // Draw the icon
-            Rectangle rectImage = rectTabOrigin;
-            rectImage.X += ImageGapLeft;
-            rectImage.Y += ImageGapTop;
-            int imageHeight = rectTabOrigin.Height - ImageGapTop - ImageGapBottom;
-            int imageWidth = ImageWidth;
-            if (imageHeight > ImageHeight)
-                imageWidth = ImageWidth * (imageHeight / ImageHeight);
-            rectImage.Height = imageHeight;
-            rectImage.Width = imageWidth;
-            rectImage = GetTransformedRectangle(dockState, rectImage);
-
-            if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
+            using (Matrix matrixRotate = g.Transform)
             {
-                // The DockState is DockLeftAutoHide or DockRightAutoHide, so rotate the image 90 degrees to the right. 
-                Rectangle rectTransform = RtlTransform(rectImage, dockState);
-                Point[] rotationPoints =
-                { 
-                    new Point(rectTransform.X + rectTransform.Width, rectTransform.Y), 
-                    new Point(rectTransform.X + rectTransform.Width, rectTransform.Y + rectTransform.Height), 
-                    new Point(rectTransform.X, rectTransform.Y)
-                };
+                g.Transform = MatrixIdentity;
 
-                using (Icon rotatedIcon = new Icon(((Form)content).Icon, 16, 16))
+                // Draw the icon
+                Rectangle rectImage = rectTabOrigin;
+                rectImage.X += ImageGapLeft;
+                rectImage.Y += ImageGapTop;
+                int imageHeight = rectTabOrigin.Height - ImageGapTop - ImageGapBottom;
+                int imageWidth = ImageWidth;
+                if (imageHeight > ImageHeight)
+                    imageWidth = ImageWidth * (imageHeight / ImageHeight);
+                rectImage.Height = imageHeight;
+                rectImage.Width = imageWidth;
+                rectImage = GetTransformedRectangle(dockState, rectImage);
+
+                if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
                 {
-                    g.DrawImage(rotatedIcon.ToBitmap(), rotationPoints);
+                    // The DockState is DockLeftAutoHide or DockRightAutoHide, so rotate the image 90 degrees to the right. 
+                    Rectangle rectTransform = RtlTransform(rectImage, dockState);
+                    Point[] rotationPoints =
+                        { 
+                            new Point(rectTransform.X + rectTransform.Width, rectTransform.Y), 
+                            new Point(rectTransform.X + rectTransform.Width, rectTransform.Y + rectTransform.Height), 
+                            new Point(rectTransform.X, rectTransform.Y)
+                        };
+
+                    using (Icon rotatedIcon = new Icon(((Form)content).Icon, 16, 16))
+                    {
+                        g.DrawImage(rotatedIcon.ToBitmap(), rotationPoints);
+                    }
                 }
+                else
+                {
+                    // Draw the icon normally without any rotation.
+                    g.DrawIcon(((Form)content).Icon, RtlTransform(rectImage, dockState));
+                }
+
+                // Draw the text
+                Rectangle rectText = rectTabOrigin;
+                rectText.X += ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
+                rectText.Width -= ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
+                rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
+
+                Color textColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.TextColor;
+
+                if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
+                    g.DrawString(content.DockHandler.TabText, TextFont, new SolidBrush(textColor), rectText, StringFormatTabVertical);
+                else
+                    g.DrawString(content.DockHandler.TabText, TextFont, new SolidBrush(textColor), rectText, StringFormatTabHorizontal);
+
+                // Set rotate back
+                g.Transform = matrixRotate;
             }
-            else
-            {
-                // Draw the icon normally without any rotation.
-                g.DrawIcon(((Form)content).Icon, RtlTransform(rectImage, dockState));
-            }
-
-            // Draw the text
-            Rectangle rectText = rectTabOrigin;
-            rectText.X += ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
-            rectText.Width -= ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
-            rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
-
-            Color textColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.TextColor;
-
-            if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
-                g.DrawString(content.DockHandler.TabText, TextFont, new SolidBrush(textColor), rectText, StringFormatTabVertical);
-            else
-                g.DrawString(content.DockHandler.TabText, TextFont, new SolidBrush(textColor), rectText, StringFormatTabHorizontal);
-
-            // Set rotate back
-            g.Transform = matrixRotate;
         }
 
         private Rectangle GetLogicalTabStripRectangle(DockState dockState)
@@ -476,10 +479,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             pts[0].X = (float)rect.X + (float)rect.Width / 2;
             pts[0].Y = (float)rect.Y + (float)rect.Height / 2;
             Rectangle rectTabStrip = GetLogicalTabStripRectangle(dockState);
-            Matrix matrix = new Matrix();
-            matrix.RotateAt(90, new PointF((float)rectTabStrip.X + (float)rectTabStrip.Height / 2,
-                (float)rectTabStrip.Y + (float)rectTabStrip.Height / 2));
-            matrix.TransformPoints(pts);
+            using (var matrix = new Matrix())
+            {
+                matrix.RotateAt(90, new PointF((float)rectTabStrip.X + (float)rectTabStrip.Height / 2,
+                                               (float)rectTabStrip.Y + (float)rectTabStrip.Height / 2));
+                matrix.TransformPoints(pts);
+            }
 
             return new Rectangle((int)(pts[0].X - (float)rect.Height / 2 + .5F),
                 (int)(pts[0].Y - (float)rect.Width / 2 + .5F),

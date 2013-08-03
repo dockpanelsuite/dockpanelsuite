@@ -281,6 +281,10 @@
     <Content Include="Docking\Resources\DockIndicator_PanelTop_VS2012.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\GendarmeMsBuild.dll')" AssemblyFile="..\gendarme\GendarmeMsBuild.dll" TaskName="GendarmeMsBuild.Gendarme" />
+  <Target Name="AfterBuild">
+    <Gendarme Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\gendarme.exe')" GendarmeExeFilename="..\gendarme\gendarme.exe" Assemblies="$(TargetPath)" WarningsAsErrors="False" IntegrateWithVisualStudio="True" GendarmeIgnoreFilename="gendarme.ignore" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

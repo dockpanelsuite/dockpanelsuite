@@ -1061,6 +1061,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void FloatAt(Rectangle floatWindowBounds)
         {
+            // TODO: where is the pane used?
             DockPane pane = DockPanel.DockPaneFactory.CreateDockPane(Content, floatWindowBounds, true);
         }
 
