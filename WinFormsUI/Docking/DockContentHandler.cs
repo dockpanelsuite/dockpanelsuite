@@ -142,6 +142,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        private static bool m_windowListButtonVisible = true;
+
+        public bool WindowListButtonVisible
+        {
+            get { return m_windowListButtonVisible; }
+
+            set { m_windowListButtonVisible = value; }
+        }
+
         private bool IsActiveContentHandler
         {
             get { return Pane != null && Pane.ActiveContent != null && Pane.ActiveContent.DockHandler == this; }
