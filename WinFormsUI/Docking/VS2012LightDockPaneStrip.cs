@@ -135,6 +135,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static string m_toolTipClose;
         private bool m_closeButtonVisible = false;
         private Rectangle _activeClose;
+        private bool m_windowListButtonVisible = false;
 
         #endregion
 
@@ -1155,6 +1156,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rect.Y + rect.Height - DocumentIconGapBottom - DocumentIconHeight,
                 DocumentIconWidth, DocumentIconHeight);
             Rectangle rectText = rectIcon;
+            rectText.Height += 1;
             if (DockPane.DockPanel.ShowDocumentIcon)
             {
                 rectText.X += rectIcon.Width + DocumentIconGapRight;
@@ -1287,6 +1289,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_closeButtonVisible = false;
                 ButtonClose.Visible = m_closeButtonVisible;
                 ButtonClose.RefreshChanges();
+
+                m_windowListButtonVisible = DockPane.ActiveContent == null
+                                                ? true
+                                                : DockPane.ActiveContent.DockHandler.WindowListButtonVisible;
+                ButtonWindowList.Visible = m_windowListButtonVisible;
+
                 ButtonWindowList.RefreshChanges();
             }
         }

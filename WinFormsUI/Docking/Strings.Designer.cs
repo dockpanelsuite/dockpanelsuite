@@ -214,6 +214,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows or hides the window list button of the content. This property does not function with System MDI Document Style..
+        /// </summary>
+        internal static string DockContent_WindowListButtonVisible_Description {
+            get {
+                return ResourceManager.GetString("DockContent_WindowListButtonVisible_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided value is out of range..
         /// </summary>
         internal static string DockContentHandler_AutoHidePortion_OutOfRange {

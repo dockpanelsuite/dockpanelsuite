@@ -351,6 +351,9 @@
   <data name="DockContent_CloseButtonVisible_Description" xml:space="preserve">
     <value>Shows or hides the close button of the content. This property does not function with System MDI Document Style.</value>
   </data>
+  <data name="DockContent_WindowListButtonVisible_Description" xml:space="preserve">
+    <value>Shows or hides the window list button of the content. This property does not function with System MDI Document Style.</value>
+  </data>
   <data name="DockPanel_DockPanelSkin" xml:space="preserve">
     <value>The visual skin to use when displaying the docked windows.</value>
   </data>

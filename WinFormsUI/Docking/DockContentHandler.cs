@@ -135,6 +135,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { m_closeButtonVisible = value; }
         }
         
+        private static bool m_windowListButtonVisible = true;
+
+
+        public bool WindowListButtonVisible
+        {
+            get { return m_windowListButtonVisible; }
+
+            set { m_windowListButtonVisible = value; }
+        }
+		
         private DockState DefaultDockState
         {
             get
