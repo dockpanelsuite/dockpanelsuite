@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.8.0.0</version>
+    <version>2.9.0.0</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,7 +16,15 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
-April 28, 2013: 2.8.0 Beta
+November 26, 2013: 2.9.0
+1. GitHub #81 - Add an event to the DockPanel that will be raised when the value of the AutoHideWindow's ActiveContent property changes.
+2. GitHub #123 - Opt-in ShowAutoHideContentOnHover feature to require a tab to be clicked on to show autohide content vice the current behavior of showing on hover.
+3. GitHub #128 - Fixed issues with the sample application: "Close All" should only close documents and disable "close all but this" when there are no documents.
+4. GitHub #129 - Fixed ArgumentException with VS2005 theme.
+5. GitHub #130 - Fixed NullReferenceException when setting DockPanel.CloseButton while the content is hidden. Fixed issue that prevented close button from being show when made visible programatically.
+6. GitHub #138 - When showing a content, prefer to place it in the active pane, otherwise default to the first available.
+    
+April 28, 2013: 2.8.0
 1. GitHub #69 Restored multiple UI threads support.
 2. GitHub #81 Added ActiveAutoHideContentChanged event.
 3. GitHub #82 Fixed dock indicator issue when DockPanel parent form is set to TopMost.
