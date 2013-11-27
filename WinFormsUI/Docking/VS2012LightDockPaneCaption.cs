@@ -383,6 +383,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected void DrawDotsStrip(Graphics g, Rectangle rectStrip, Color colorDots)
         {
+            if (rectStrip.Width <= 0 || rectStrip.Height <= 0)
+                return;
+
             var penDots = new Pen(colorDots, 1);
             penDots.DashStyle = DashStyle.Custom;
             penDots.DashPattern = new float[] { 1, 3 };
