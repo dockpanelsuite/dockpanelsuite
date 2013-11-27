@@ -1,6 +1,4 @@
 using System;
-using WeifenLuo.WinFormsUI.Docking.Skins;
-using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -16,23 +14,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { m_dockPanelSkin = value; }
         }
         
-        private Style m_dockPanelSkinStyle = Style.VisualStudio2005;
-        [LocalizedCategory("Category_Docking")]
-        [LocalizedDescription("DockPanel_DockPanelSkinStyle")]
-        [DefaultValue(Style.VisualStudio2005)]
-        [Obsolete("Please use Theme instead.")]
-        public Style SkinStyle
-        {
-            get { return m_dockPanelSkinStyle; }
-            set
-            {
-                if (m_dockPanelSkinStyle == value)
-                    return;
-
-                m_dockPanelSkinStyle = value;
-            }
-        }
-
         private ThemeBase m_dockPanelTheme = new VS2005Theme();
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockPanelTheme")]

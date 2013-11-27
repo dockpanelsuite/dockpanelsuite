@@ -75,7 +75,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesVS2003.resx</DependentUpon>
     </Compile>
-    <Compile Include="Docking\Skins\Style.cs" />
     <Compile Include="Docking\StringsVS2003.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

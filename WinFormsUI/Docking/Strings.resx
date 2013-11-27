@@ -354,9 +354,6 @@
   <data name="DockPanel_DockPanelSkin" xml:space="preserve">
     <value>The visual skin to use when displaying the docked windows.</value>
   </data>
-  <data name="DockPanel_DockPanelSkinStyle" xml:space="preserve">
-    <value>The predefined style used as the base for the skin.</value>
-  </data>
   <data name="DockPanel_DocumentTabStripLocation" xml:space="preserve">
     <value>Determines where the tab strip for Document style content is drawn.</value>
   </data>
