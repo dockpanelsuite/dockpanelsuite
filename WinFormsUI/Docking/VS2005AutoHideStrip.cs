@@ -319,14 +319,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockState dockState = tab.Content.DockHandler.DockState;
             IDockContent content = tab.Content;
 
-            using (GraphicsPath path = GetTabOutline(tab, false, true))
-            {
-                Color startColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.StartColor;
-                Color endColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.EndColor;
-                LinearGradientMode gradientMode = DockPanel.Skin.AutoHideStripSkin.TabGradient.LinearGradientMode;
-                g.FillPath(new LinearGradientBrush(rectTabOrigin, startColor, endColor, gradientMode), path);
-                g.DrawPath(PenTabBorder, path);
-            }
+            GraphicsPath path = GetTabOutline(tab, false, true);
+            Color startColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.StartColor;
+            Color endColor = DockPanel.Skin.AutoHideStripSkin.TabGradient.EndColor;
+            LinearGradientMode gradientMode = DockPanel.Skin.AutoHideStripSkin.TabGradient.LinearGradientMode;
+            g.FillPath(new LinearGradientBrush(rectTabOrigin, startColor, endColor, gradientMode), path);
+            g.DrawPath(PenTabBorder, path);
 
             // Set no rotate for drawing icon and text
             using (Matrix matrixRotate = g.Transform)
