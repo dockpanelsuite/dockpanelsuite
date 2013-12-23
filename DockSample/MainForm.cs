@@ -31,6 +31,9 @@ namespace DockSample
             RightToLeftLayout = showRightToLeft.Checked;
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
+            
+            vS2012ToolStripExtender1.DefaultRenderer = _system;
+            vS2012ToolStripExtender1.VS2012Renderer = _custom;
         }
 
         #region Methods
@@ -156,22 +159,28 @@ namespace DockSample
             if (sender == menuItemSchemaVS2005)
             {
                 dockPanel.Theme = vS2005Theme1;
-                ToolStripManager.Renderer = _system;
+                EnableVS2012Renderer(false);
             }
             else if (sender == menuItemSchemaVS2003)
             {
                 dockPanel.Theme = vS2003Theme1;
-                ToolStripManager.Renderer = _system;
+                EnableVS2012Renderer(false);
             }
             else if (sender == menuItemSchemaVS2012Light)
             {
                 dockPanel.Theme = vS2012LightTheme1;
-                ToolStripManager.Renderer = _custom;
+                EnableVS2012Renderer(true);
             }
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
+        }
+
+        private void EnableVS2012Renderer(bool enable)
+        {
+            vS2012ToolStripExtender1.SetEnableVS2012Style(this.mainMenu, enable);
+            vS2012ToolStripExtender1.SetEnableVS2012Style(this.toolBar, enable);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)

@@ -313,25 +313,5 @@ namespace Lextm.SharpSnmpLib
         } 
         // */
         #endregion
-
-        /// <summary>
-        /// Gets or sets a value indicating whether top-level menu items should be rendered upper case or not.
-        /// </summary>
-        /// <remarks>
-        /// Setting this property to <c>true</c> helps in simulating a VS2012/2013 style.
-        /// </remarks>
-        public bool EnableUpperCaseTopLevelMenuItems { get; set; }
-
-        protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
-        {
-            if (EnableUpperCaseTopLevelMenuItems &&
-                e.Item is ToolStripMenuItem &&
-                e.Item.GetCurrentParent() is MenuStrip)
-            {
-                e.Item.Text = e.Text.ToUpper();
-            }
-
-            base.OnRenderItemText(e);
-        }
     }
 }
