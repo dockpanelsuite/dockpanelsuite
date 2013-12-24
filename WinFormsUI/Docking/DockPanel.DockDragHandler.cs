@@ -51,7 +51,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        public class DefaultPaneIndicator : PictureBox, IPaneIndicator
+        internal class DefaultPaneIndicator : PictureBox, IPaneIndicator
         {
             private static Bitmap _bitmapPaneDiamond = Resources.DockIndicator_PaneDiamond;
             private static Bitmap _bitmapPaneDiamondLeft = Resources.DockIndicator_PaneDiamond_Left;
