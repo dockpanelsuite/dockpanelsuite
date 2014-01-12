@@ -999,7 +999,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 rectTab = GetTabRectangle(Tabs.IndexOf(tabActive));
                 if (rectTab.IntersectsWith(rectTabOnly))
+                {
+                    rectTab.Intersect(rectTabOnly);
                     DrawTab(g, tabActive, rectTab);
+                }
             }
         }
 
@@ -1082,6 +1085,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             GraphicsPath.Reset();
             Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
+            
+            // Shorten TabOutline so it doesn't get overdrawn by icons next to it
+            rect.Intersect(TabsRectangle);
+            rect.Width--;
+
             if (rtlTransform)
                 rect = DrawHelper.RtlTransform(this, rect);
             if (toScreen)

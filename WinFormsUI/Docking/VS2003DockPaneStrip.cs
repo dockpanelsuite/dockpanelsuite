@@ -735,7 +735,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 rectTab = GetTabRectangle(i);
                 if (rectTab.IntersectsWith(rectTabOnly))
+                {
+                    rectTab.Intersect(rectTabOnly);
                     DrawTab(g, Tabs[i] as TabVS2003, rectTab);
+                }
             }
         }
 
