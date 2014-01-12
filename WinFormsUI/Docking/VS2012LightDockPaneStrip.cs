@@ -1227,7 +1227,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
-            if (e.Button != MouseButtons.Left)
+            if (e.Button != MouseButtons.Left || Appearance != DockPane.AppearanceStyle.Document)
                 return;
 
             var indexHit = HitTest();
@@ -1241,16 +1241,20 @@ namespace WeifenLuo.WinFormsUI.Docking
             var tabRect = GetTabRectangle(index);
             var closeButtonRect = GetCloseButtonRect(tabRect);
             var mouseRect = new Rectangle(mousePos, new Size(1, 1));
-
             if (closeButtonRect.IntersectsWith(mouseRect))
                 DockPane.CloseActiveContent();
         }
 
         private Rectangle GetCloseButtonRect(Rectangle rectTab)
         {
-            const int gap = 5;
-            var dimension = rectTab.Height - gap;
-            return new Rectangle(rectTab.X + rectTab.Width - dimension - gap / 2 - 1, rectTab.Y + gap / 2 + 1, dimension, dimension);
+            if (Appearance != Docking.DockPane.AppearanceStyle.Document)
+            {
+                return Rectangle.Empty;
+            }
+
+            const int gap = 3;
+            const int imageSize = 15;
+            return new Rectangle(rectTab.X + rectTab.Width - imageSize - gap - 1, rectTab.Y + gap, imageSize, imageSize);
         }
 
         private void WindowList_Click(object sender, EventArgs e)
