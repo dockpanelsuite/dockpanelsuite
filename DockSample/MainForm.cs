@@ -213,6 +213,9 @@ namespace DockSample
             toolBarButtonLayoutByXml.Enabled = (newStyle != DocumentStyle.SystemMdi);
         }
 
+        private AutoHideStripSkin _autoHideStripSkin;
+        private DockPaneStripSkin _dockPaneStripSkin;
+
         private void SetDockPanelSkinOptions(bool isChecked)
         {
             if (isChecked)
@@ -229,6 +232,7 @@ namespace DockSample
                 autoHideSkin.TabGradient.TextColor = SystemColors.ControlText;
                 autoHideSkin.TextFont = new Font("Showcard Gothic", 10);
 
+                _autoHideStripSkin = dockPanel.Skin.AutoHideStripSkin;
                 dockPanel.Skin.AutoHideStripSkin = autoHideSkin;
 
                 DockPaneStripSkin dockPaneSkin = new DockPaneStripSkin();
@@ -245,11 +249,20 @@ namespace DockSample
 
                 dockPaneSkin.TextFont = new Font("SketchFlow Print", 10);
 
+                _dockPaneStripSkin = dockPanel.Skin.DockPaneStripSkin;
                 dockPanel.Skin.DockPaneStripSkin = dockPaneSkin;
             }
             else
             {
-                dockPanel.Skin = new DockPanelSkin();
+                if (_autoHideStripSkin != null)
+                {
+                    dockPanel.Skin.AutoHideStripSkin = _autoHideStripSkin;
+                }
+
+                if (_dockPaneStripSkin != null)
+                {
+                    dockPanel.Skin.DockPaneStripSkin = _dockPaneStripSkin;
+                }
             }
 
             menuItemLayoutByXml_Click(menuItemLayoutByXml, EventArgs.Empty);
