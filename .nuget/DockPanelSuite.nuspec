@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>3.0.0-alpha6</version>
+    <version>3.0.0-alpha8</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,11 +16,26 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
-May 11, 2013: 3.0.0 Alpha 6
+May 11, 2013: 3.0.0 Alpha 8
 1. GitHub #19 Added Visual Studio 2012 Light theme.
 2. GitHub #112 Changed theme related interfaces.
 3. GitHub #121 Added a close button on tab (VS2012 theme only).
 4. GitHub #124 Fixed flickers of VS2012 Light theme.
+5. GitHub #143 Memory leak in VS2012LighSplitterControl class 
+6. GitHub #161 Tabs docked at the bottom close unexpectedly.
+7. GitHub #163 Hatch marks over the pin and close button on a small window.
+8. GitHub #172 Skin demo button broken in sample project.
+9. GitHub #175 Handling long headings patch from @lukeer.
+10. GitHub #189 "Show Document Icon" doesn't work with the skin VS2012 Light theme.
+11. GitHub #183 VS2012 Theme enhancement in sample project.
+
+November 26, 2013: 2.9.0
+1. GitHub #81 - Add an event to the DockPanel that will be raised when the value of the AutoHideWindow's ActiveContent property changes.
+2. GitHub #123 - Opt-in ShowAutoHideContentOnHover feature to require a tab to be clicked on to show autohide content vice the current behavior of showing on hover.
+3. GitHub #128 - Fixed issues with the sample application: "Close All" should only close documents and disable "close all but this" when there are no documents.
+4. GitHub #129 - Fixed ArgumentException with VS2005 theme.
+5. GitHub #130 - Fixed NullReferenceException when setting DockPanel.CloseButton while the content is hidden. Fixed issue that prevented close button from being show when made visible programatically.
+6. GitHub #138 - When showing a content, prefer to place it in the active pane, otherwise default to the first available.
 
 April 28, 2013: 2.8.0
 1. GitHub #69 Restored multiple UI threads support.
