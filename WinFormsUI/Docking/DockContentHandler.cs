@@ -837,6 +837,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (DockState == DockState.Unknown)
                 Show(dockPanel, DefaultShowState);
+            else if (DockPanel != dockPanel)
+                Show(dockPanel, DockState == DockState.Hidden ? m_visibleState : DockState);
             else
                 Activate();
         }
