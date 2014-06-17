@@ -232,10 +232,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             public static void SaveAsXml(DockPanel dockPanel, Stream stream, Encoding encoding, bool upstream)
             {
-                XmlTextWriter xmlOut = new XmlTextWriter(stream, encoding);
-
-                // Use indenting for readability
-                xmlOut.Formatting = Formatting.Indented;
+				// Use indenting for readability
+				XmlWriter xmlOut = XmlWriter.Create(stream, new XmlWriterSettings() { Encoding = encoding, Indent = true });
 
                 if (!upstream)
                     xmlOut.WriteStartDocument();
