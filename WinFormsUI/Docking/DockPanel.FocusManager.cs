@@ -350,7 +350,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (pane == null)
                         RefreshActiveWindow();
                 }
-                else if (msg == Win32.Msgs.WM_SETFOCUS)
+                else if (msg == Win32.Msgs.WM_SETFOCUS || msg == Win32.Msgs.WM_MDIACTIVATE)
                     RefreshActiveWindow();
             }
 
