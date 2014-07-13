@@ -85,7 +85,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 e.Graphics.DrawImage(
                    Image,
-                   new Rectangle(0, 0, Image.Width, Image.Height),
+                   ClientRectangle,
                    0, 0,
                    Image.Width,
                    Image.Height,
