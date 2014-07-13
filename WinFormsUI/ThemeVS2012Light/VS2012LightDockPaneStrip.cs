@@ -1270,7 +1270,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             const int gap = 3;
-            const int imageSize = 15;
+            var imageSize = rectTab.Height - gap * 2;
             return new Rectangle(rectTab.X + rectTab.Width - imageSize - gap - 1, rectTab.Y + gap, imageSize, imageSize);
         }
 
