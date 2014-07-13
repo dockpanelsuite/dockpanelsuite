@@ -1117,7 +1117,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rect.X + ToolWindowImageGapLeft,
                 rect.Y - 1 + rect.Height - ToolWindowImageGapBottom - ToolWindowImageHeight,
                 ToolWindowImageWidth, ToolWindowImageHeight);
-            Rectangle rectText = rectIcon;
+            Rectangle rectText = new Rectangle(
+                rect.X + ToolWindowImageGapLeft,
+                rect.Y - 1 + rect.Height - ToolWindowImageGapBottom - TextFont.Height,
+                ToolWindowImageWidth, TextFont.Height);
             rectText.X += rectIcon.Width + ToolWindowImageGapRight;
             rectText.Width = rect.Width - rectIcon.Width - ToolWindowImageGapLeft -
                 ToolWindowImageGapRight - ToolWindowTextGapRight;
@@ -1162,7 +1165,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rect.X + DocumentIconGapLeft,
                 rect.Y + rect.Height - DocumentIconGapBottom - DocumentIconHeight,
                 DocumentIconWidth, DocumentIconHeight);
-            Rectangle rectText = rectIcon;
+            Rectangle rectText = new Rectangle(
+                rect.X + DocumentIconGapLeft,
+                rect.Y + rect.Height - DocumentIconGapBottom - TextFont.Height,
+                DocumentIconWidth, TextFont.Height);
             if (DockPane.DockPanel.ShowDocumentIcon)
             {
                 rectText.X += rectIcon.Width + DocumentIconGapRight;
