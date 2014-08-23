@@ -855,8 +855,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             DockPanel = dockPanel;
 
-            if (dockState == DockState.Float && FloatPane == null)
-                Pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.Float, true);
+            if (dockState == DockState.Float)
+            {
+                if (FloatPane == null)
+                    Pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.Float, true);
+            }
             else if (PanelPane == null)
             {
                 DockPane paneExisting = null;
