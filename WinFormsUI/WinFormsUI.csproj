@@ -168,24 +168,6 @@
     <Compile Include="Docking\DockPanel.Appearance.cs">
       <SubType>Component</SubType>
     </Compile>
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
-    <None Include="Docking\Resources\Dockindicator_PaneDiamond_Fill.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Hotspot.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Left.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Right.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Top.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelBottom.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelBottom_Active.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelFill.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelFill_Active.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelLeft.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelLeft_Active.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelRight.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelRight_Active.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelTop.bmp" />
-    <None Include="Docking\Resources\DockIndicator_PanelTop_Active.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dockpanelsuite.snk" />
@@ -194,14 +176,32 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Docking\Resources\DockPane_AutoHide.bmp" />
-    <None Include="Docking\Resources\DockPane_Close.bmp" />
-    <None Include="Docking\Resources\DockPane_Dock.bmp" />
-    <None Include="Docking\Resources\DockPane_Option.bmp" />
-    <None Include="Docking\Resources\DockPane_OptionOverflow.bmp" />
+    <EmbeddedResource Include="Docking\DockPanel.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Docking\DockPanel.bmp" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond.png" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Bottom.png" />
+    <None Include="Docking\Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Left.png" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Right.png" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Top.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelBottom.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelBottom_Active.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelFill.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelFill_Active.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelLeft.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelLeft_Active.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelRight.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelRight_Active.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelTop.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelTop_Active.png" />
+    <None Include="Docking\Resources\DockPane_AutoHide.png" />
+    <None Include="Docking\Resources\DockPane_Close.png" />
+    <None Include="Docking\Resources\DockPane_Dock.png" />
+    <None Include="Docking\Resources\DockPane_Option.png" />
+    <None Include="Docking\Resources\DockPane_OptionOverflow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
