@@ -120,10 +120,10 @@ namespace WeifenLuo.WinFormsUI.Docking
         #region Members
 
         private ContextMenuStrip m_selectMenu;
-        private static Bitmap m_imageButtonClose;
+        private Bitmap m_imageButtonClose;
         private InertButton m_buttonClose;
-        private static Bitmap m_imageButtonWindowList;
-        private static Bitmap m_imageButtonWindowListOverflow;
+        private Bitmap m_imageButtonWindowList;
+        private Bitmap m_imageButtonWindowListOverflow;
         private InertButton m_buttonWindowList;
         private IContainer m_components;
         private ToolTip m_toolTip;
@@ -200,12 +200,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_selectMenu; }
         }
 
-        private static Bitmap ImageButtonClose
+        private Bitmap ImageButtonClose
         {
             get
             {
                 if (m_imageButtonClose == null)
-                    m_imageButtonClose = Resources.DockPane_Close;
+                    m_imageButtonClose = (Bitmap)Resources.DockPane_Close.Clone();
 
                 return m_imageButtonClose;
             }
@@ -227,23 +227,23 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap ImageButtonWindowList
+        private Bitmap ImageButtonWindowList
         {
             get
             {
                 if (m_imageButtonWindowList == null)
-                    m_imageButtonWindowList = Resources.DockPane_Option;
+                    m_imageButtonWindowList = (Bitmap)Resources.DockPane_Option.Clone();
 
                 return m_imageButtonWindowList;
             }
         }
 
-        private static Bitmap ImageButtonWindowListOverflow
+        private Bitmap ImageButtonWindowListOverflow
         {
             get
             {
                 if (m_imageButtonWindowListOverflow == null)
-                    m_imageButtonWindowListOverflow = Resources.DockPane_OptionOverflow;
+                    m_imageButtonWindowListOverflow = (Bitmap)Resources.DockPane_OptionOverflow.Clone();
 
                 return m_imageButtonWindowListOverflow;
             }
