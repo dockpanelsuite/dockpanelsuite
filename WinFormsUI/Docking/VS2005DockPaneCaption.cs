@@ -182,7 +182,29 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void Dispose(bool disposing)
         {
             if (disposing)
+            {
                 Components.Dispose();
+                if (_imageButtonClose != null)
+                {
+                    _imageButtonClose.Dispose();
+                    _imageButtonClose = null;
+                }
+                if (_imageButtonAutoHide != null)
+                {
+                    _imageButtonAutoHide.Dispose();
+                    _imageButtonAutoHide = null;
+                }
+                if (_imageButtonDock != null)
+                {
+                    _imageButtonDock.Dispose();
+                    _imageButtonDock = null;
+                }
+                if (_imageButtonOptions != null)
+                {
+                    _imageButtonOptions.Dispose();
+                    _imageButtonOptions = null;
+                }
+            }
             base.Dispose(disposing);
         }
 

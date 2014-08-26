@@ -190,6 +190,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_graphicsPath != null)
+                {
+                    _graphicsPath.Dispose();
+                    _graphicsPath = null;
+                }
+            }
+            base.Dispose(disposing);
+        }
+
         public VS2005AutoHideStrip(DockPanel panel)
             : base(panel)
         {
