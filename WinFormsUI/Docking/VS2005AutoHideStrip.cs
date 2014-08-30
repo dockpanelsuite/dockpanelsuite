@@ -178,8 +178,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static GraphicsPath _graphicsPath;
-        internal static GraphicsPath GraphicsPath
+        private GraphicsPath _graphicsPath;
+        internal GraphicsPath GraphicsPath
         {
             get
             {
@@ -188,6 +188,19 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 return _graphicsPath;
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_graphicsPath != null)
+                {
+                    _graphicsPath.Dispose();
+                    _graphicsPath = null;
+                }
+            }
+            base.Dispose(disposing);
         }
 
         public VS2005AutoHideStrip(DockPanel panel)
