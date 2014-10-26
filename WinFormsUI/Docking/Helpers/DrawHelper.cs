@@ -83,6 +83,21 @@ namespace WeifenLuo.WinFormsUI.Docking
                 } 
             } 
             return graphicsPath; 
-        } 
+        }
+
+        internal static int Balance(int length, int margin, int input, int lower, int upper)
+        {
+            return Max(Min(input, upper - length - margin), lower + margin);
+        }
+
+        private static int Min(int one, int other)
+        {
+            return one > other ? other : one;
+        }
+
+        private static int Max(int one, int other)
+        {
+            return one < other ? other : one;
+        }
     }
 }
