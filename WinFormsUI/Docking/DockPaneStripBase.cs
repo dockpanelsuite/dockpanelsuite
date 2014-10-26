@@ -214,6 +214,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (e.Button != MouseButtons.Left || _dragBox.Contains(e.Location)) 
                 return;
 
+            if (DockPane.ActiveContent == null)
+                return;
+
             if (DockPane.DockPanel.AllowEndUserDocking && DockPane.AllowDockDragAndDrop && DockPane.ActiveContent.DockHandler.AllowEndUserDocking)
                 DockPane.DockPanel.BeginDrag(DockPane.ActiveContent.DockHandler);
         }
