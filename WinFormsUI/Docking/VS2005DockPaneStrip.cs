@@ -134,6 +134,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static string m_toolTipSelect;
         private static string m_toolTipClose;
         private bool m_closeButtonVisible = false;
+        private int _selectMenuMargin = 5;
+        private bool _initialized;
 
         #endregion
 
@@ -196,6 +198,12 @@ namespace WeifenLuo.WinFormsUI.Docking
         private ContextMenuStrip SelectMenu
         {
             get { return m_selectMenu; }
+        }
+
+        public int SelectMenuMargin
+        {
+            get { return _selectMenuMargin; }
+            set { _selectMenuMargin = value; }
         }
 
         private static Bitmap ImageButtonClose
@@ -1359,9 +1367,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private void WindowList_Click(object sender, EventArgs e)
         {
-            int x = 0;
-            int y = ButtonWindowList.Location.Y + ButtonWindowList.Height;
-
             SelectMenu.Items.Clear();
             foreach (TabVS2005 tab in Tabs)
             {
@@ -1370,7 +1375,35 @@ namespace WeifenLuo.WinFormsUI.Docking
                 item.Tag = tab.Content;
                 item.Click += new EventHandler(ContextMenuItem_Click);
             }
-            SelectMenu.Show(ButtonWindowList, x, y);
+
+            var workingArea = Screen.GetWorkingArea(ButtonWindowList.PointToScreen(new Point(ButtonWindowList.Width / 2, ButtonWindowList.Height / 2)));
+            var menu = new Rectangle(ButtonWindowList.PointToScreen(new Point(0, ButtonWindowList.Location.Y + ButtonWindowList.Height)), SelectMenu.Size);
+            var menuMargined = new Rectangle(menu.X - SelectMenuMargin, menu.Y - SelectMenuMargin, menu.Width + SelectMenuMargin, menu.Height + SelectMenuMargin);
+            if (!_initialized)
+            {
+                SelectMenu.Show();
+                SelectMenu.Hide();
+                _initialized = true;
+            }
+
+            if (workingArea.Contains(menuMargined))
+            {
+                SelectMenu.Show(menu.Location);
+            }
+            else
+            {
+                var newPoint = menu.Location;
+                newPoint.X = DrawHelper.Balance(SelectMenu.Width, SelectMenuMargin, newPoint.X, workingArea.Left, workingArea.Right);
+                newPoint.Y = DrawHelper.Balance(SelectMenu.Size.Height, SelectMenuMargin, newPoint.Y, workingArea.Top, workingArea.Bottom);
+                var buttonY = ButtonWindowList.PointToScreen(new Point(0, ButtonWindowList.Height)).Y;
+                if (newPoint.Y < buttonY)
+                {
+                    // flip the menu up to be above the button.
+                    newPoint.Y = buttonY - SelectMenu.Size.Height - ButtonWindowList.Height;
+                }
+
+                SelectMenu.Show(newPoint);
+            }
         }
 
         private void ContextMenuItem_Click(object sender, EventArgs e)
