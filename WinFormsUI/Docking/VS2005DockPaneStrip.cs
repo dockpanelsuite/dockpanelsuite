@@ -137,7 +137,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static string m_toolTipClose;
         private bool m_closeButtonVisible = false;
         private int _selectMenuMargin = 5;
-        private bool _initialized;
 
         #endregion
 
@@ -1373,13 +1372,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             var workingArea = Screen.GetWorkingArea(ButtonWindowList.PointToScreen(new Point(ButtonWindowList.Width / 2, ButtonWindowList.Height / 2)));
             var menu = new Rectangle(ButtonWindowList.PointToScreen(new Point(0, ButtonWindowList.Location.Y + ButtonWindowList.Height)), SelectMenu.Size);
             var menuMargined = new Rectangle(menu.X - SelectMenuMargin, menu.Y - SelectMenuMargin, menu.Width + SelectMenuMargin, menu.Height + SelectMenuMargin);
-            if (!_initialized)
-            {
-                SelectMenu.Show();
-                SelectMenu.Hide();
-                _initialized = true;
-            }
-
             if (workingArea.Contains(menuMargined))
             {
                 SelectMenu.Show(menu.Location);
@@ -1389,14 +1381,17 @@ namespace WeifenLuo.WinFormsUI.Docking
                 var newPoint = menu.Location;
                 newPoint.X = DrawHelper.Balance(SelectMenu.Width, SelectMenuMargin, newPoint.X, workingArea.Left, workingArea.Right);
                 newPoint.Y = DrawHelper.Balance(SelectMenu.Size.Height, SelectMenuMargin, newPoint.Y, workingArea.Top, workingArea.Bottom);
-                var buttonY = ButtonWindowList.PointToScreen(new Point(0, ButtonWindowList.Height)).Y;
-                if (newPoint.Y < buttonY)
+                var button = ButtonWindowList.PointToScreen(new Point(0, ButtonWindowList.Height));
+                if (newPoint.Y < button.Y)
                 {
                     // flip the menu up to be above the button.
-                    newPoint.Y = buttonY - SelectMenu.Size.Height - ButtonWindowList.Height;
+                    newPoint.Y = button.Y - ButtonWindowList.Height;
+                    SelectMenu.Show(newPoint, ToolStripDropDownDirection.AboveRight);
                 }
-
-                SelectMenu.Show(newPoint);
+                else
+                {
+                    SelectMenu.Show(newPoint);
+                }
             }
         }
 
