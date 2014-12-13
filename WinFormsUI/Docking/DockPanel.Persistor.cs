@@ -359,8 +359,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                     else
                         xmlOut.Flush();
-                }
-            }
+                }            
 
             public static void LoadFromXml(DockPanel dockPanel, string fileName, DeserializeDockContent deserializeContent)
             {

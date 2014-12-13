@@ -185,11 +185,6 @@
     <None Include="Images\XmlFile.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Customization\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DockPanel.xml" />
     <EmbeddedResource Include="ToolWindow.resx">
       <SubType>Designer</SubType>

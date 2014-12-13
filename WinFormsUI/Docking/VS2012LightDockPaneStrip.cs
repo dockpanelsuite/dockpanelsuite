@@ -136,7 +136,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         private bool m_closeButtonVisible = false;
         private Rectangle _activeClose;
         private int _selectMenuMargin = 5;
-        private bool _initialized;
 
         #endregion
 
