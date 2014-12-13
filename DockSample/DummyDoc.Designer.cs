@@ -21,12 +21,12 @@ namespace DockSample
         }
 
         #region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DummyDoc));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
@@ -130,18 +130,18 @@ namespace DockSample
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
-		#endregion
+        }
+        #endregion
 
         private System.Windows.Forms.MenuStrip mainMenu;
-		private System.Windows.Forms.ToolStripMenuItem menuItem1;
-		private System.Windows.Forms.ToolStripMenuItem menuItem2;
-		private System.Windows.Forms.ContextMenuStrip contextMenuTabPage;
-		private System.Windows.Forms.ToolStripMenuItem menuItem3;
-		private System.Windows.Forms.ToolStripMenuItem menuItem4;
-		private System.Windows.Forms.ToolStripMenuItem menuItem5;
-		private System.Windows.Forms.ToolStripMenuItem menuItemCheckTest;
-		private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.ToolStripMenuItem menuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menuItem2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuTabPage;
+        private System.Windows.Forms.ToolStripMenuItem menuItem3;
+        private System.Windows.Forms.ToolStripMenuItem menuItem4;
+        private System.Windows.Forms.ToolStripMenuItem menuItem5;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCheckTest;
+        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

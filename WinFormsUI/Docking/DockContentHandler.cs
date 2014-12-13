@@ -119,9 +119,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 m_closeButton = value;
-                if (Pane != null)
-                    if (Pane.ActiveContent.DockHandler == this)
-                        Pane.RefreshChanges();
+                if (IsActiveContentHandler)
+                    Pane.RefreshChanges();
             }
         }
 
@@ -132,7 +131,20 @@ namespace WeifenLuo.WinFormsUI.Docking
         public bool CloseButtonVisible
         {
             get { return m_closeButtonVisible; }
-            set { m_closeButtonVisible = value; }
+            set
+            {
+                if (m_closeButtonVisible == value)
+                    return;
+
+                m_closeButtonVisible = value;
+                if (IsActiveContentHandler)
+                    Pane.RefreshChanges();
+        }
+        }
+        
+        private bool IsActiveContentHandler
+        {
+            get { return Pane != null && Pane.ActiveContent != null && Pane.ActiveContent.DockHandler == this; }
         }
         
         private DockState DefaultDockState
@@ -825,6 +837,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (DockState == DockState.Unknown)
                 Show(dockPanel, DefaultShowState);
+            else if (DockPanel != dockPanel)
+                Show(dockPanel, DockState == DockState.Hidden ? m_visibleState : DockState);
             else
                 Activate();
         }
@@ -841,15 +855,21 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             DockPanel = dockPanel;
 
-            if (dockState == DockState.Float && FloatPane == null)
+            if (dockState == DockState.Float)
+            {
+                if (FloatPane == null)
                 Pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.Float, true);
+            }
             else if (PanelPane == null)
             {
                 DockPane paneExisting = null;
                 foreach (DockPane pane in DockPanel.Panes)
                     if (pane.DockState == dockState)
                     {
+                        if (paneExisting == null || pane.IsActivated)
                         paneExisting = pane;
+
+                        if (pane.IsActivated)
                         break;
                     }
 

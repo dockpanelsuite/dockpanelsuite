@@ -91,13 +91,9 @@ namespace DockSample
             }
             else
             {
-                for (int index = dockPanel.Contents.Count - 1; index >= 0; index--)
+                foreach (IDockContent document in dockPanel.DocumentsToArray())
                 {
-                    if (dockPanel.Contents[index] is IDockContent)
-                    {
-                        IDockContent content = (IDockContent)dockPanel.Contents[index];
-                        content.DockHandler.Close();
-                    }
+                    document.DockHandler.Close();
                 }
             }
         }
@@ -366,12 +362,15 @@ namespace DockSample
         {
             if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
             {
-                menuItemClose.Enabled = menuItemCloseAll.Enabled = (ActiveMdiChild != null);
+                menuItemClose.Enabled = 
+                    menuItemCloseAll.Enabled =
+                    menuItemCloseAllButThisOne.Enabled = (ActiveMdiChild != null);
             }
             else
             {
                 menuItemClose.Enabled = (dockPanel.ActiveDocument != null);
-                menuItemCloseAll.Enabled = (dockPanel.DocumentsCount > 0);
+                menuItemCloseAll.Enabled =
+                    menuItemCloseAllButThisOne.Enabled = (dockPanel.DocumentsCount > 0);
             }
         }
 

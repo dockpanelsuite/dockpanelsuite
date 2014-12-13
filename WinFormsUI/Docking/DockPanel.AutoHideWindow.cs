@@ -102,12 +102,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 protected override void StartDrag()
                 {
-        			AutoHideWindow.DockPanel.BeginDrag(AutoHideWindow, AutoHideWindow.RectangleToScreen(Bounds));
+                    AutoHideWindow.DockPanel.BeginDrag(AutoHideWindow, AutoHideWindow.RectangleToScreen(Bounds));
                 }
             }
 
             #region consts
-            private const int ANIMATE_TIME = 100;	// in mini-seconds
+            private const int ANIMATE_TIME = 100;    // in mini-seconds
             #endregion
 
             private Timer m_timerMouseTrack;

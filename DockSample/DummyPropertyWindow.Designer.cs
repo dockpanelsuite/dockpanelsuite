@@ -21,12 +21,12 @@ namespace DockSample
         }
 
         #region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DummyPropertyWindow));
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
@@ -84,12 +84,12 @@ namespace DockSample
             this.Text = "Properties";
             this.ResumeLayout(false);
 
-		}
-		#endregion
+        }
+        #endregion
 
-		private System.Windows.Forms.PropertyGrid propertyGrid;
-		private System.Windows.Forms.ComboBox comboBox;
-		private System.Windows.Forms.MainMenu mainMenu1;
-		private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.PropertyGrid propertyGrid;
+        private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.MainMenu mainMenu1;
+        private System.Windows.Forms.MenuItem menuItem1;
     }
 }

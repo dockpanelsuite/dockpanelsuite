@@ -304,7 +304,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return false;
             }
 
-            private int m_countSuspendFocusTracking = 0;
+            private uint m_countSuspendFocusTracking = 0;
             public void SuspendFocusTracking()
             {
                 m_countSuspendFocusTracking++;
@@ -314,10 +314,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             public void ResumeFocusTracking()
             {
-                if (m_countSuspendFocusTracking > 0)
-                    m_countSuspendFocusTracking--;
-
                 if (m_countSuspendFocusTracking == 0)
+                    return;
+
+                if (--m_countSuspendFocusTracking == 0)
                 {
                     if (ContentActivating != null)
                     {

@@ -1315,5 +1315,33 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         #endregion
+
+        #region cachedLayoutArgs leak workaround
+        
+        /// <summary>
+        /// There's a bug in the WinForms layout engine
+        /// that can result in a deferred layout to not
+        /// properly clear out the cached layout args after
+        /// the layout operation is performed.
+        /// Specifically, this bug is hit when the bounds of
+        /// the Pane change, initiating a layout on the parent
+        /// (DockWindow) which is where the bug hits.
+        /// To work around it, when a pane loses the DockWindow
+        /// as its parent, that parent DockWindow needs to
+        /// perform a layout to flush the cached args, if they exist.
+        /// </summary>
+        private DockWindow _lastParentWindow;
+        protected override void OnParentChanged(EventArgs e)
+        {
+            base.OnParentChanged(e);
+            var newParent = Parent as DockWindow;
+            if (newParent != _lastParentWindow)
+            {
+                if (_lastParentWindow != null)
+                    _lastParentWindow.PerformLayout();
+                _lastParentWindow = newParent;
+            }
+        }
+        #endregion
     }
 }
