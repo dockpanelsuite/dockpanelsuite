@@ -459,7 +459,7 @@ namespace DockSample
         {
             dockPanel.SuspendLayout(true);
 
-            CloseAllDocuments();
+            CloseAllContents();
 
             CreateStandardControls();
 
