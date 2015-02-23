@@ -514,6 +514,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return null;
         }
 
+        protected override Rectangle GetTabBounds(Tab tab)
+        {
+            GraphicsPath path = GetTabOutline((TabVS2012Light)tab, true, true);
+            RectangleF bounds = path.GetBounds();
+            return new Rectangle((int)bounds.Left, (int)bounds.Top, (int)bounds.Width, (int)bounds.Height);
+        }
+
         protected Tab TabHitTest(Point ptMouse)
         {
             foreach (DockState state in DockStates)

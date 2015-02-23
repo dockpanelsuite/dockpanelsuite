@@ -273,5 +273,117 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DockPane.ActiveContent = content;
             }
         }
+
+        protected abstract Rectangle GetTabBounds(Tab tab);
+
+        internal static Rectangle ToScreen(Rectangle rectangle, Control parent)
+        {
+            if (parent == null)
+                return rectangle;
+
+            return new Rectangle(parent.PointToScreen(new Point(rectangle.Left, rectangle.Top)), new Size(rectangle.Width, rectangle.Height));
+        }
+
+        protected override AccessibleObject CreateAccessibilityInstance()
+        {
+            return new DockPaneStripAccessibleObject(this);
+        }
+
+        public class DockPaneStripAccessibleObject : Control.ControlAccessibleObject
+        {
+            private DockPaneStripBase _strip;
+            private DockState _state;
+
+            public DockPaneStripAccessibleObject(DockPaneStripBase strip)
+                : base(strip)
+            {
+                _strip = strip;
+            }
+
+            public override AccessibleRole Role
+            {
+                get
+                {
+                    return AccessibleRole.PageTabList;
+                }
+            }
+
+            public override int GetChildCount()
+            {
+                return _strip.Tabs.Count;
+            }
+
+            public override AccessibleObject GetChild(int index)
+            {
+                return new DockPaneStripTabAccessibleObject(_strip, _strip.Tabs[index], this);
+            }
+
+            public override AccessibleObject HitTest(int x, int y)
+            {
+                Point point = new Point(x, y);
+                foreach (Tab tab in _strip.Tabs)
+                {
+                    Rectangle rectangle = _strip.GetTabBounds(tab);
+                    if (ToScreen(rectangle, _strip).Contains(point))
+                        return new DockPaneStripTabAccessibleObject(_strip, tab, this);
+                }
+
+                return null;
+            }
+        }
+
+        protected class DockPaneStripTabAccessibleObject : AccessibleObject
+        {
+            private DockPaneStripBase _strip;
+            private Tab _tab;
+
+            private AccessibleObject _parent;
+
+            internal DockPaneStripTabAccessibleObject(DockPaneStripBase strip, Tab tab, AccessibleObject parent)
+            {
+                _strip = strip;
+                _tab = tab;
+
+                _parent = parent;
+            }
+
+            public override AccessibleObject Parent
+            {
+                get
+                {
+                    return _parent;
+                }
+            }
+
+            public override AccessibleRole Role
+            {
+                get
+                {
+                    return AccessibleRole.PageTab;
+                }
+            }
+
+            public override Rectangle Bounds
+            {
+                get
+                {
+                    Rectangle rectangle = _strip.GetTabBounds(_tab);
+                    return ToScreen(rectangle, _strip);
+                }
+            }
+
+            public override string Name
+            {
+                get
+                {
+                    return _tab.Content.DockHandler.TabText;
+                }
+                set
+                {
+                    //base.Name = value;
+                }
+            }
+        }
+ 
     }
 }

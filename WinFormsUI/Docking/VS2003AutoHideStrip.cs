@@ -477,6 +477,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             return null;
         }
 
+        protected override Rectangle GetTabBounds(Tab tab)
+        {
+            return GetTabRectangle((TabVS2003)tab, true);
+        }
+
         /// <exclude/>
         protected internal override int MeasureHeight()
         {
