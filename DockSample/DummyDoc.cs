@@ -65,6 +65,21 @@ namespace DockSample
             return GetType().ToString() + "," + FileName + "," + Text;
         }
 
+        public override void Deserialize(System.Xml.XmlReader reader)
+        {
+            // Deserialize extra information.
+            string myUserValue = reader.GetAttribute("UserData");
+
+            base.Deserialize(reader);
+        }
+        public override void Serialize(System.Xml.XmlWriter writer)
+        {
+            // Serialize extra information.
+            writer.WriteAttributeString("UserData", "My user value");
+
+            base.Serialize(writer);
+        }
+
         private void menuItem2_Click(object sender, System.EventArgs e)
         {
             MessageBox.Show("This is to demostrate menu item has been successfully merged into the main form. Form Text=" + Text);

@@ -9,6 +9,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         DockContentHandler DockHandler	{	get;	}
         void OnActivated(EventArgs e);
         void OnDeactivate(EventArgs e);
+        void Deserialize(System.Xml.XmlReader reader);
+        void Serialize(System.Xml.XmlWriter writer);
     }
 
     public interface INestedPanesContainer

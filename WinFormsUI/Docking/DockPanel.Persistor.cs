@@ -93,6 +93,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get { return m_isFloat; }
                     set { m_isFloat = value; }
                 }
+
+                private IDockContent m_dockContent;
+                public IDockContent DockContent
+                {
+                    get { return m_dockContent; }
+                    set { m_dockContent = value; }
+                }                
             }
 
             private struct PaneStruct
@@ -267,6 +274,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         xmlOut.WriteAttributeString("AutoHidePortion", content.DockHandler.AutoHidePortion.ToString(CultureInfo.InvariantCulture));
                         xmlOut.WriteAttributeString("IsHidden", content.DockHandler.IsHidden.ToString(CultureInfo.InvariantCulture));
                         xmlOut.WriteAttributeString("IsFloat", content.DockHandler.IsFloat.ToString(CultureInfo.InvariantCulture));
+                        content.Serialize(xmlOut);
                         xmlOut.WriteEndElement();
                     }
                     xmlOut.WriteEndElement();
@@ -381,7 +389,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 LoadFromXml(dockPanel, stream, deserializeContent, true);
             }
 
-            private static ContentStruct[] LoadContents(XmlTextReader xmlIn)
+            private static ContentStruct[] LoadContents(XmlTextReader xmlIn, DeserializeDockContent deserializeContent)
             {
                 int countOfContents = Convert.ToInt32(xmlIn.GetAttribute("Count"), CultureInfo.InvariantCulture);
                 ContentStruct[] contents = new ContentStruct[countOfContents];
@@ -396,6 +404,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                     contents[i].AutoHidePortion = Convert.ToDouble(xmlIn.GetAttribute("AutoHidePortion"), CultureInfo.InvariantCulture);
                     contents[i].IsHidden = Convert.ToBoolean(xmlIn.GetAttribute("IsHidden"), CultureInfo.InvariantCulture);
                     contents[i].IsFloat = Convert.ToBoolean(xmlIn.GetAttribute("IsFloat"), CultureInfo.InvariantCulture);
+
+                    IDockContent dockContent = deserializeContent(contents[i].PersistString);
+                    if (dockContent == null) dockContent = new DummyContent();
+                    dockContent.Deserialize(xmlIn);
+                    contents[i].DockContent = dockContent;
+
                     MoveToNextElement(xmlIn);
                 }
 
@@ -548,7 +562,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     MoveToNextElement(xmlIn);
                     if (xmlIn.Name != "Contents")
                         throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
-                    contents = LoadContents(xmlIn);
+                    contents = LoadContents(xmlIn, deserializeContent);
 
                     // Load Panes
                     if (xmlIn.Name != "Panes")
@@ -598,9 +612,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 // Create Contents
                 for (int i = 0; i < contents.Length; i++)
                 {
-                    IDockContent content = deserializeContent(contents[i].PersistString);
-                    if (content == null)
-                        content = new DummyContent();
+                    IDockContent content = contents[i].DockContent;
                     content.DockHandler.DockPanel = dockPanel;
                     content.DockHandler.AutoHidePortion = contents[i].AutoHidePortion;
                     content.DockHandler.IsHidden = true;

@@ -286,6 +286,13 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             this.OnDeactivate(e);
         }
+
+        public virtual void Deserialize(System.Xml.XmlReader reader)
+        {
+        }
+        public virtual void Serialize(System.Xml.XmlWriter writer)
+        {
+        }
         #endregion
 
         #region Events
