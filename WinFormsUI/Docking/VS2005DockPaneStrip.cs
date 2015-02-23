@@ -1490,6 +1490,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             return -1;
         }
 
+        protected override Rectangle GetTabBounds(Tab tab)
+        {
+            GraphicsPath path = GetTabOutline(tab, true, false);
+            RectangleF rectangle = path.GetBounds();
+            return new Rectangle((int)rectangle.Left, (int)rectangle.Top, (int)rectangle.Width, (int)rectangle.Height);
+        }
+
         protected override void OnMouseHover(EventArgs e)
         {
             int index = HitTest(PointToClient(Control.MousePosition));
