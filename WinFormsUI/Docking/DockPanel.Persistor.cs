@@ -358,6 +358,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                     xmlOut.WriteEndElement();	//	</FloatWindows>
 
+                    // Save global user configuration
+                    dockPanel.SaveUserConfigurationAsXml(xmlOut);
+
                     xmlOut.WriteEndElement();
 
                     if (!upstream)
@@ -579,6 +582,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                         throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
                     floatWindows = LoadFloatWindows(xmlIn);
 
+                    // Load global user configuration.
+                    dockPanel.LoadUserConfigurationFromXml(xmlIn);
+
                     if (closeStream)
                         xmlIn.Close();
                 }
@@ -797,5 +803,35 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             Persistor.LoadFromXml(this, stream, deserializeContent, closeStream);
         }
+
+        internal bool LoadUserConfigurationFromXml(System.Xml.XmlReader reader)
+        {
+            if (OnLoadUserConfiguration!=null && reader.NodeType!=XmlNodeType.EndElement && reader.Name=="UserConfigurations")
+            {
+                OnLoadUserConfiguration(reader);
+                return true;
+            }
+            return false;
+        }
+        /// <summary> Defines a delegate for deserialize global user data from the stream specified. </summary>
+        public delegate void LoadXmlUserConfigurationHandler(System.Xml.XmlReader reader);
+        /// <summary> Occurs when the DockPanel wants deserialize global user data. </summary>
+        public event LoadXmlUserConfigurationHandler OnLoadUserConfiguration;
+
+        internal bool SaveUserConfigurationAsXml(System.Xml.XmlWriter writer)
+        {
+            if (OnSaveUserConfiguration!=null)
+            {
+                writer.WriteStartElement("UserConfigurations");
+                OnSaveUserConfiguration(writer);
+                writer.WriteEndElement();
+                return true;
+            }
+            return false;
+        }
+        /// <summary> Defines a delegate for serialize global user data to the stream specified. </summary>
+        public delegate void SaveXmlUserConfigurationHandler(System.Xml.XmlWriter writer);
+        /// <summary> Occurs when the DockPanel wants serialize global user data. </summary>
+        public event SaveXmlUserConfigurationHandler OnSaveUserConfiguration;
     }
 }
