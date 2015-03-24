@@ -97,10 +97,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 // if DockWindow is document, exclude the border
                 if (DockState == DockState.Document)
                 {
-                    rect.X += 1;
-                    rect.Y += 1;
-                    rect.Width -= 2;
-                    rect.Height -= 2;
+					if(DockPanel.DocumentWithBorder)
+					{
+						rect.X+=1;
+						rect.Y+=1;
+						rect.Width-=2;
+						rect.Height-=2;
+					}
                 }
                 // exclude the splitter
                 else if (DockState == DockState.DockLeft)

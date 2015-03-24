@@ -369,4 +369,7 @@
   <data name="DockPanel_ShowAutoHideContentOnHover_Description" xml:space="preserve">
     <value>Shows the hidden autohide content when hovering over the tab.  When disabled, the tab must be clicked to show the content.</value>
   </data>
+  <data name="DockPanel_DocumentWithBorder_Description" xml:space="preserve">
+    <value>Enable/Disable the border on document content.</value>
+  </data>
 </root>
