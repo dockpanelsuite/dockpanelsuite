@@ -228,15 +228,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="dockpanelsuite.snk" />
-    <None Include="license.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Docking\DockPanel.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Docking\Resources\DockIndicator_PaneDiamond.png" />
     <None Include="Docking\Resources\DockIndicator_PaneDiamond_Bottom.png" />
     <None Include="Docking\Resources\Dockindicator_PaneDiamond_Fill.png" />
@@ -260,24 +251,39 @@
     <None Include="Docking\Resources\DockPane_Dock.png" />
     <None Include="Docking\Resources\DockPane_Option.png" />
     <None Include="Docking\Resources\DockPane_OptionOverflow.png" />
+    <None Include="dockpanelsuite.snk" />
+    <None Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Docking\Resources\ActiveTabHover_Close.bmp" />
-    <None Include="Docking\Resources\ActiveTab_Close.bmp" />
-    <None Include="Docking\Resources\InactiveTabHover_Close.bmp" />
-    <None Include="Docking\Resources\LostFocusTabHover_Close.bmp" />
-    <None Include="Docking\Resources\LostFocusTab_Close.bmp" />
+    <EmbeddedResource Include="Docking\DockPanel.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Fill_VS2012.bmp" />
-    <Content Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.bmp" />
-    <Content Include="Docking\Resources\Dockindicator_PaneDiamond_Hotspot_VS2012.bmp" />
-    <Content Include="Docking\Resources\Dockindicator_PaneDiamond_VS2012.bmp" />
-    <Content Include="Docking\Resources\DockIndicator_PanelBottom_VS2012.bmp" />
-    <Content Include="Docking\Resources\DockIndicator_PanelFill_VS2012.bmp" />
-    <Content Include="Docking\Resources\DockIndicator_PanelLeft_VS2012.bmp" />
-    <Content Include="Docking\Resources\DockIndicator_PanelRight_VS2012.bmp" />
-    <Content Include="Docking\Resources\DockIndicator_PanelTop_VS2012.bmp" />
+    <None Include="Docking\ResourcesVS2003\DockPaneCaption_AutoHideNo.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneCaption_AutoHideYes.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneCaption_CloseDisabled.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneCaption_CloseEnabled.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneStrip_CloseDisabled.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneStrip_CloseEnabled.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneStrip_ScrollLeftDisabled.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneStrip_ScrollLeftEnabled.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneStrip_ScrollRightDisabled.png" />
+    <None Include="Docking\ResourcesVS2003\DockPaneStrip_ScrollRightEnabled.png" />
+    <None Include="Docking\Resources\ActiveTabHover_Close.png" />
+    <None Include="Docking\Resources\ActiveTab_Close.png" />
+    <None Include="Docking\Resources\Dockindicator_PaneDiamond_Fill_VS2012.png" />
+    <None Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
+    <None Include="Docking\Resources\Dockindicator_PaneDiamond_Hotspot_VS2012.png" />
+    <None Include="Docking\Resources\Dockindicator_PaneDiamond_VS2012.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelBottom_VS2012.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelFill_VS2012.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelLeft_VS2012.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelRight_VS2012.png" />
+    <None Include="Docking\Resources\DockIndicator_PanelTop_VS2012.png" />
+    <None Include="Docking\Resources\InactiveTabHover_Close.png" />
+    <None Include="Docking\Resources\LostFocusTabHover_Close.png" />
+    <None Include="Docking\Resources\LostFocusTab_Close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\GendarmeMsBuild.dll')" AssemblyFile="..\gendarme\GendarmeMsBuild.dll" TaskName="GendarmeMsBuild.Gendarme" />
