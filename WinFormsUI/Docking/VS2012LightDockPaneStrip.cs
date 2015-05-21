@@ -624,42 +624,28 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rect = TabsRectangle;
-
+            Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor;
+            Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor;
+            LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.LinearGradientMode;
+		
             if (Appearance == DockPane.AppearanceStyle.Document)
             {
                 rect.X -= DocumentTabGapLeft;
 
                 // Add these values back in so that the DockStrip color is drawn
                 // beneath the close button and window list button.
+                // It is possible depending on the DockPanel DocumentStyle to have
+                // a Document without a DockStrip.
                 rect.Width += DocumentTabGapLeft +
                     DocumentTabGapRight +
                     DocumentButtonGapRight +
                     ButtonClose.Width +
                     ButtonWindowList.Width;
+            
+            }
 
-                // It is possible depending on the DockPanel DocumentStyle to have
-                // a Document without a DockStrip.
-                if (rect.Width > 0 && rect.Height > 0)
-                {
-                    Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor;
-                    Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor;
-                    LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.LinearGradientMode;
-                    using (LinearGradientBrush brush = new LinearGradientBrush(rect, startColor, endColor, gradientMode))
-                    {
-                        e.Graphics.FillRectangle(brush, rect);
-                    }
-                }
-            }
-            else
-            {
-                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.StartColor;
-                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.EndColor;
-                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.LinearGradientMode;
-                using (LinearGradientBrush brush = new LinearGradientBrush(rect, startColor, endColor, gradientMode))
-                {
-                    e.Graphics.FillRectangle(brush, rect);
-                }
-            }
+            DrawingRoutines.SafelyDrawLinearGradient(rect, startColor, endColor, gradientMode, e.Graphics);
+
             base.OnPaint(e);
             CalculateTabs();
             if (Appearance == DockPane.AppearanceStyle.Document && DockPane.ActiveContent != null)
