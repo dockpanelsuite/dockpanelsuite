@@ -623,9 +623,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rect = TabsRectangle;
-            Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor;
-            Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor;
-            LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.LinearGradientMode;
+            DockPanelGradient gradient = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient;
             if (Appearance == DockPane.AppearanceStyle.Document)
             {
                 rect.X -= DocumentTabGapLeft;
@@ -639,12 +637,16 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DocumentButtonGapRight +
                     ButtonClose.Width +
                     ButtonWindowList.Width;
-
-            } else {
-                startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor;
-                endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor;
-                gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.LinearGradientMode;
             }
+            else
+            {
+                gradient = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient;
+            }
+
+            Color startColor = gradient.StartColor;
+            Color endColor = gradient.EndColor;
+            LinearGradientMode gradientMode = gradient.LinearGradientMode;
+
             DrawingRoutines.SafelyDrawLinearGradient(rect, startColor, endColor, gradientMode, e.Graphics);
             base.OnPaint(e);
             CalculateTabs();
