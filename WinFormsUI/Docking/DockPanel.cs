@@ -664,9 +664,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             AutoHideWindow.Bounds = GetAutoHideWindowBounds(AutoHideWindowRectangle);
 
-            DockWindows[DockState.Document].BringToFront();
-            AutoHideWindow.BringToFront();
-
+            // Index in the controls collection indicates existing zOrder. 
+            // docIndex = 0 && autoHideIndex == -1 is fine, as is autoHideIndex == 0 && docIndex == 1, othewise need to Re-order
+            // Re-ordering every time causes flicker.
+            var docIndex = Controls.IndexOf(DockWindows[DockState.Document]);
+            var autoHideIndex = Controls.IndexOf(AutoHideWindow);
+            if (autoHideIndex >= docIndex || docIndex > 1)
+            {
+                DockWindows[DockState.Document].BringToFront();
+                AutoHideWindow.BringToFront();
+            }
+ 
             base.OnLayout(levent);
 
             if (DocumentStyle == DocumentStyle.SystemMdi && MdiClientExists)
