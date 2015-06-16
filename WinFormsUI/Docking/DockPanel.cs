@@ -664,8 +664,18 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             AutoHideWindow.Bounds = GetAutoHideWindowBounds(AutoHideWindowRectangle);
 
-            DockWindows[DockState.Document].BringToFront();
-            AutoHideWindow.BringToFront();
+            DockWindow documentDockWindow = DockWindows[DockState.Document];
+
+            if (ReferenceEquals(documentDockWindow.Parent, AutoHideWindow.Parent))
+            {
+                AutoHideWindow.Parent.Controls.SetChildIndex(AutoHideWindow, 0);
+                documentDockWindow.Parent.Controls.SetChildIndex(documentDockWindow, 1);
+            }
+            else
+            {
+                documentDockWindow.BringToFront();
+                AutoHideWindow.BringToFront();
+            }
 
             base.OnLayout(levent);
 
