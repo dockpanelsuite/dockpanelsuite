@@ -119,33 +119,33 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="DockPaneCaption_AutoHideNo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneCaption_AutoHideNo.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneCaption_AutoHideNo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneCaption_AutoHideYes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneCaption_AutoHideYes.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneCaption_AutoHideYes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneCaption_CloseDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneCaption_CloseDisabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneCaption_CloseDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneCaption_CloseEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneCaption_CloseEnabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneCaption_CloseEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneStrip_CloseDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneStrip_CloseDisabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneStrip_CloseDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneStrip_CloseEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneStrip_CloseEnabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneStrip_CloseEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneStrip_ScrollLeftDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneStrip_ScrollLeftDisabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneStrip_ScrollLeftDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneStrip_ScrollLeftEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneStrip_ScrollLeftEnabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneStrip_ScrollLeftEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneStrip_ScrollRightDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneStrip_ScrollRightDisabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneStrip_ScrollRightDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPaneStrip_ScrollRightEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>ResourcesVS2003\DockPaneStrip_ScrollRightEnabled.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>ResourcesVS2003\DockPaneStrip_ScrollRightEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -122,7 +122,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             [ThreadStatic]
             private static LocalWindowsHook sm_localWindowsHook;
 
-            private LocalWindowsHook.HookEventHandler m_hookEventHandler;
+            private readonly LocalWindowsHook.HookEventHandler m_hookEventHandler;
 
             public FocusManagerImpl(DockPanel dockPanel)
             {
@@ -307,14 +307,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             private uint m_countSuspendFocusTracking = 0;
             public void SuspendFocusTracking()
             {
-                m_countSuspendFocusTracking++;
-                if (!Win32Helper.IsRunningOnMono)
-                    sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
+                if (m_disposed)
+                    return;
+
+                if (m_countSuspendFocusTracking++ == 0)
+                {
+                    if (!Win32Helper.IsRunningOnMono)
+                        sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
+                }
             }
 
             public void ResumeFocusTracking()
             {
-                if (m_countSuspendFocusTracking == 0)
+                if (m_disposed || m_countSuspendFocusTracking == 0)
                     return;
 
                 if (--m_countSuspendFocusTracking == 0)
