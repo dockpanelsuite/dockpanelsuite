@@ -1137,7 +1137,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 Color textColor;
                 if (tab.Content == DockPane.MouseOverTab)
-                    textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor;
+                    textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.HoverTabGradient.TextColor;
                 else
                     textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor;
 
@@ -1181,12 +1181,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color activeColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
             Color lostFocusColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
-            Color inactiveColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
-            Color mouseHoverColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor;
+            Color inactiveColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;           
+            Color mouseHoverColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.EndColor;
 
             Color activeText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
             Color inactiveText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
             Color lostFocusText = SystemColors.GrayText;
+            Color mouseHoverText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.TextColor;
 
             if (DockPane.ActiveContent == tab.Content)
             {
@@ -1208,7 +1209,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (tab.Content == DockPane.MouseOverTab)
                 {
                     g.FillRectangle(new SolidBrush(mouseHoverColor), rect);
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
+                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, mouseHoverText, DocumentTextFormat);
                     g.DrawImage(rectCloseButton == ActiveClose ? Resources.InactiveTabHover_Close : Resources.ActiveTabHover_Close, rectCloseButton);
                 }
                 else
