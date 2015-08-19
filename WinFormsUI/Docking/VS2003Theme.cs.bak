@@ -32,11 +32,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Skin = VS2005Theme.CreateVisualStudio2005();
         }
 
-        public override void Apply(DockContent dockContent)
-        {
-            if (dockContent == null) return;
-        }
-
         private class VS2003DockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
         {
             public DockPaneStripBase CreateDockPaneStrip(DockPane pane)

@@ -71,6 +71,7 @@ namespace DockSample
             this.menuItemShowDocumentIcon = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemSchemaVS2012Light = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSchemaVS2013Light = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2005 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2003 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem6 = new System.Windows.Forms.ToolStripSeparator();
@@ -103,7 +104,9 @@ namespace DockSample
             this.vS2005Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
             this.vS2003Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2003Theme();
             this.vS2012LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
+            this.vS2013LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013LightTheme();
             this.vS2012ToolStripExtender1 = new DockSample.VS2012ToolStripExtender(this.components);
+            this.vS2013ToolStripExtender1 = new DockSample.Vs2013ToolStripExtender(this.components);
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -295,6 +298,7 @@ namespace DockSample
             this.menuItemLockLayout,
             this.menuItemShowDocumentIcon,
             this.menuItem3,
+            this.menuItemSchemaVS2013Light,
             this.menuItemSchemaVS2012Light,
             this.menuItemSchemaVS2005,
             this.menuItemSchemaVS2003,
@@ -329,6 +333,13 @@ namespace DockSample
             // 
             this.menuItem3.Name = "menuItem3";
             this.menuItem3.Size = new System.Drawing.Size(252, 6);
+            // 
+            // menuItemSchemaVS2013Light
+            // 
+            this.menuItemSchemaVS2013Light.Name = "menuItemSchemaVS2013Light";
+            this.menuItemSchemaVS2013Light.Size = new System.Drawing.Size(189, 22);
+            this.menuItemSchemaVS2013Light.Text = "Schema: VS2013 Light";
+            this.menuItemSchemaVS2013Light.Click += new System.EventHandler(this.SetSchema);
             // 
             // menuItemSchemaVS2012Light
             // 
@@ -705,9 +716,12 @@ namespace DockSample
         private System.Windows.Forms.ToolStripMenuItem exitWithoutSavingLayout;
         private System.Windows.Forms.ToolStripButton toolBarButtonDockPanelSkinDemo;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Light;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2013Light;
+        private WeifenLuo.WinFormsUI.Docking.VS2013LightTheme vS2013LightTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme vS2012LightTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;
         private WeifenLuo.WinFormsUI.Docking.VS2005Theme vS2005Theme1;
         private VS2012ToolStripExtender vS2012ToolStripExtender1;
+        private Vs2013ToolStripExtender vS2013ToolStripExtender1;
     }
 }

@@ -209,9 +209,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            //SystemBrushes.Control 
-            var backgroundBrush = new SolidBrush(DockPanel.Skin.AutoHideStripSkin.DockStripBackground.StartColor);
-            g.FillRectangle(backgroundBrush, ClientRectangle);
+            g.FillRectangle(SystemBrushes.Control, ClientRectangle);
             DrawTabStrip(g);
         }
 
@@ -387,7 +385,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
 
             if (DockPanel.ActiveContent == content || tab.IsMouseOver)
-                textColor = DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.HoverTabGradient.TextColor;
+                textColor = DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor;
             else
                 textColor = DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor;
 

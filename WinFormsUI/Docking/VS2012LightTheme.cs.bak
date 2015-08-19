@@ -26,7 +26,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.DockPaneCaptionFactory = new VS2012LightDockPaneCaptionFactory();
             dockPanel.Extender.AutoHideStripFactory = new VS2012LightAutoHideStripFactory();
             dockPanel.Extender.AutoHideWindowFactory = new VS2012LightAutoHideWindowFactory();
-            dockPanel.Extender.DockPaneStripFactory = new VS2013LightDockPaneStripFactory();
+            dockPanel.Extender.DockPaneStripFactory = new VS2012LightDockPaneStripFactory();
             dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012LightDockPaneSplitterControlFactory();
             dockPanel.Extender.DockWindowSplitterControlFactory = new VS2012LightDockWindowSplitterControlFactory();
             dockPanel.Extender.DockWindowFactory = new VS2012LightDockWindowFactory();
@@ -34,11 +34,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.PanelIndicatorFactory = new VS2012LightPanelIndicatorFactory();
             dockPanel.Extender.DockOutlineFactory = new VS2012LightDockOutlineFactory();
             dockPanel.Skin = CreateVisualStudio2012Light();
-        }
-
-        public override void Apply(DockContent dockContent)
-        {
-            if (dockContent == null) return;
         }
 
         private class VS2012LightDockOutlineFactory : DockPanelExtender.IDockOutlineFactory
@@ -422,7 +417,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013LightDockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
+        private class VS2012LightDockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
         {
             public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
             {
