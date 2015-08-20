@@ -91,6 +91,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="VS2012ColorTable.cs" />
     <Compile Include="VS2012ToolStripExtender.cs">
       <SubType>Component</SubType>
@@ -197,6 +203,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\DockPanel.xml" />
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolWindow.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ToolWindow.cs</DependentUpon>
@@ -209,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Logo.ico" />
+    <Content Include="Images\SplashScreen.png" />
     <Content Include="Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
