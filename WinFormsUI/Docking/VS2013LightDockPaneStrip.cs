@@ -1186,7 +1186,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color activeText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
             Color inactiveText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
-            Color lostFocusText = SystemColors.GrayText;
+            Color lostFocusText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
             Color mouseHoverText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.TextColor;
 
             if (DockPane.ActiveContent == tab.Content)
