@@ -32,10 +32,10 @@ namespace DockSample
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
             
-            vS2012ToolStripExtender1.DefaultRenderer = _system;
-            vS2012ToolStripExtender1.VS2012Renderer = _custom;
+            vS2012ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+            vS2012ToolStripExtender1.VS2012Renderer = _vs2012ToolStripRenderer;
 
-			vS2013ToolStripExtender1.DefaultRenderer = _system;
+			vS2013ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
             vS2013ToolStripExtender1.Vs2013Renderer = _vs2013ToolStripRenderer;
         }
 
@@ -148,12 +148,16 @@ namespace DockSample
             CloseAllDocuments();
         }
 
-        private readonly ToolStripRenderer _system = new ToolStripProfessionalRenderer();
-        private readonly ToolStripRenderer _custom = new VS2012ToolStripRenderer();
+        private readonly ToolStripRenderer _toolStripProfessionalRenderer = new ToolStripProfessionalRenderer();
+        private readonly ToolStripRenderer _vs2012ToolStripRenderer = new VS2012ToolStripRenderer();
         private readonly ToolStripRenderer _vs2013ToolStripRenderer = new Vs2013ToolStripRenderer();
         
         private void SetSchema(object sender, System.EventArgs e)
         {
+            // Persist settings when rebuilding UI
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.temp.config");
+
+            dockPanel.SaveAsXml(configFile);
             CloseAllContents();
 
             if (sender == menuItemSchemaVS2005)
@@ -180,6 +184,8 @@ namespace DockSample
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
             menuItemSchemaVS2013Light.Checked = (sender == menuItemSchemaVS2013Light);
+            if (File.Exists(configFile))
+                dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
         }
 
         private void SetTheme(ThemeBase theme)
