@@ -37,6 +37,8 @@ namespace DockSample
 
 			vS2013ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
             vS2013ToolStripExtender1.Vs2013Renderer = _vs2013ToolStripRenderer;
+
+            SetSchema(menuItemSchemaVS2013Light, null);
         }
 
         #region Methods
