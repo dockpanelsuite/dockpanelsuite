@@ -32,8 +32,12 @@ namespace DockSample
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
             
-            vS2012ToolStripExtender1.DefaultRenderer = _system;
-            vS2012ToolStripExtender1.VS2012Renderer = _custom;
+            vS2012ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+            vS2012ToolStripExtender1.VS2012Renderer = _vs2012ToolStripRenderer;
+
+			vS2013ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+            vS2013ToolStripExtender1.Vs2013Renderer = _vs2013ToolStripRenderer;
+
         }
 
         #region Methods
@@ -145,8 +149,9 @@ namespace DockSample
             CloseAllDocuments();
         }
 
-        private readonly ToolStripRenderer _system = new ToolStripProfessionalRenderer();
-        private readonly ToolStripRenderer _custom = new VS2012ToolStripRenderer();
+        private readonly ToolStripRenderer _toolStripProfessionalRenderer = new ToolStripProfessionalRenderer();
+        private readonly ToolStripRenderer _vs2012ToolStripRenderer = new VS2012ToolStripRenderer();
+        private readonly ToolStripRenderer _vs2013ToolStripRenderer = new Vs2013ToolStripRenderer();
         
         private void SetSchema(object sender, System.EventArgs e)
         {
@@ -167,16 +172,38 @@ namespace DockSample
                 dockPanel.Theme = vS2012LightTheme1;
                 EnableVS2012Renderer(true);
             }
-
+            else if (sender == menuItemSchemaVS2013Light)
+            {
+                SetTheme(vS2013LightTheme1);
+                EnableVs2013Renderer(true);
+            }
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
+			menuItemSchemaVS2013Light.Checked = (sender == menuItemSchemaVS2013Light);
+        }
+
+        private void SetTheme(ThemeBase theme)
+        {
+            dockPanel.Theme         = theme;
+            m_solutionExplorer.Theme = theme;
+            m_propertyWindow.Theme   = theme;
+            m_toolbox.Theme          = theme;
+            m_outputWindow.Theme     = theme;
+            m_taskList.Theme         = theme;
         }
 
         private void EnableVS2012Renderer(bool enable)
         {
             vS2012ToolStripExtender1.SetEnableVS2012Style(this.mainMenu, enable);
             vS2012ToolStripExtender1.SetEnableVS2012Style(this.toolBar, enable);
+        }
+
+        private void EnableVs2013Renderer(bool enable)
+        {
+            vS2013ToolStripExtender1.SetEnableVs2013Style(mainMenu, enable);
+            vS2013ToolStripExtender1.SetEnableVs2013Style(toolBar, enable);
+            vS2013ToolStripExtender1.SetEnableVs2013Style(statusBar, enable);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)

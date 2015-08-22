@@ -96,6 +96,14 @@
       <DependentUpon>VS2012ToolStripExtender.cs</DependentUpon>
     </Compile>
     <Compile Include="VS2012ToolStripRenderer.cs" />
+    <Compile Include="VS2013BlueColorTable.cs" />
+    <Compile Include="VS2013ToolStripExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VS2013ToolStripExtender.Designer.cs">
+      <DependentUpon>VS2013ToolStripExtender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VS2013ToolStripRenderer.cs" />
     <EmbeddedResource Include="AboutDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutDialog.cs</DependentUpon>
