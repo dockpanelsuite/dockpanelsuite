@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal class VS2013LightDockPaneStrip : DockPaneStripBase
+    internal class VS2013BlueDockPaneStrip : DockPaneStripBase
     {
         private class TabVS2013Light : Tab
         {
@@ -562,7 +562,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         #endregion
 
-        public VS2013LightDockPaneStrip(DockPane pane)
+        public VS2013BlueDockPaneStrip(DockPane pane)
             : base(pane)
         {
             SetStyle(ControlStyles.ResizeRedraw |
@@ -1195,13 +1195,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     g.FillRectangle(new SolidBrush(activeColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? ResourcesVS2013.ActiveTabHover_Close : ResourcesVS2013.ActiveTab_Close, rectCloseButton);
+                    g.DrawImage(rectCloseButton == ActiveClose ? ResourcesVS2013Blue.ActiveTabHover_Close : ResourcesVS2013Blue.ActiveTab_Close, rectCloseButton);
                 }
                 else
                 {
                     g.FillRectangle(new SolidBrush(lostFocusColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, lostFocusText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? ResourcesVS2013.LostFocusTabHover_Close : ResourcesVS2013.LostFocusTab_Close, rectCloseButton);
+                    g.DrawImage(rectCloseButton == ActiveClose ? ResourcesVS2013Blue.LostFocusTabHover_Close : ResourcesVS2013Blue.LostFocusTab_Close, rectCloseButton);
                 }
             }
             else
@@ -1210,8 +1210,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     g.FillRectangle(new SolidBrush(mouseHoverColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, mouseHoverText, DocumentTextFormat);
-                    //g.DrawImage(rectCloseButton == ActiveClose ? ResourcesVS2013.InactiveTabHover_Close : ResourcesVS2013.ActiveTabHover_Close, rectCloseButton);
-                    g.DrawImage(rectCloseButton == ActiveClose ? ResourcesVS2013.ActiveTabHover_Close : ResourcesVS2013.InactiveTabHover_Close, rectCloseButton);
+                    g.DrawImage(rectCloseButton == ActiveClose ? ResourcesVS2013Blue.ActiveTabHover_Close : ResourcesVS2013Blue.InactiveTabHover_Close, rectCloseButton);
                 }
                 else
                 {
