@@ -9,7 +9,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// <summary>
     /// Visual Studio 2013 Light theme.
     /// </summary>
-    public class VS2013LightTheme : ThemeBase
+    public class VS2013BlueTheme : ThemeBase
     {
         /// <summary>
         /// Applies the specified theme to the dock panel.
@@ -428,7 +428,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
             {
-                return new VS2013LightDockPaneStrip(pane);
+                return new VS2013BlueDockPaneStrip(pane);
             }
         }
 

@@ -107,7 +107,7 @@ namespace DockSample
             this.vS2005Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
             this.vS2003Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2003Theme();
             this.vS2012LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
-            this.vS2013LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013LightTheme();
+            this.vS2013LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme();
             this.vS2012ToolStripExtender1 = new DockSample.VS2012ToolStripExtender(this.components);
             this.vS2013ToolStripExtender1 = new DockSample.Vs2013ToolStripExtender(this.components);
             this.mainMenu.SuspendLayout();
@@ -738,7 +738,7 @@ namespace DockSample
         private System.Windows.Forms.ToolStripButton toolBarButtonDockPanelSkinDemo;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Light;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2013Light;
-        private WeifenLuo.WinFormsUI.Docking.VS2013LightTheme vS2013LightTheme1;
+        private WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme vS2013LightTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme vS2012LightTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;
         private WeifenLuo.WinFormsUI.Docking.VS2005Theme vS2005Theme1;
