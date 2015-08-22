@@ -21,10 +21,12 @@ namespace DockSample
         private DummyOutputWindow m_outputWindow;
         private DummyTaskList m_taskList;
 
+        private SplashScreen _splashScreen;
         public MainForm()
         {
             InitializeComponent();
 
+            SetSplashScreen();
             CreateStandardControls();
 
             showRightToLeft.Checked = (RightToLeft == RightToLeft.Yes);
@@ -38,6 +40,7 @@ namespace DockSample
 			vS2013ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
             vS2013ToolStripExtender1.Vs2013Renderer = _vs2013ToolStripRenderer;
 
+            SetSchema(menuItemSchemaVS2013Light, null);
         }
 
         #region Methods
@@ -155,6 +158,10 @@ namespace DockSample
         
         private void SetSchema(object sender, System.EventArgs e)
         {
+            // Persist settings when rebuilding UI
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.temp.config");
+
+            dockPanel.SaveAsXml(configFile);
             CloseAllContents();
 
             if (sender == menuItemSchemaVS2005)
@@ -181,6 +188,8 @@ namespace DockSample
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
 			menuItemSchemaVS2013Light.Checked = (sender == menuItemSchemaVS2013Light);
+            if (File.Exists(configFile))
+                dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
         }
 
         private void SetTheme(ThemeBase theme)
@@ -508,6 +517,39 @@ namespace DockSample
             dockPanel.ResumeLayout(true, true);
         }
 
+        private void SetSplashScreen()
+        {
+            
+            _splashScreen = new SplashScreen();
+
+            ResizeSplash();
+            _splashScreen.Visible = true;
+            _splashScreen.TopMost = true;
+
+            SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+
+            Timer _timer = new Timer();
+            _timer.Tick += (sender, e) =>
+            {
+                _splashScreen.Visible = false;
+                _timer.Enabled = false;
+                SizeChanged -= new System.EventHandler(this.MainForm_SizeChanged);
+            };
+            _timer.Interval = 4000;
+            _timer.Enabled = true;
+        }
+
+        private void ResizeSplash()
+        {                
+            var centerXMain = (this.Location.X + this.Width) / 2.0;
+            var LocationXSplash = Math.Max(0, centerXMain - (_splashScreen.Width / 2.0));
+
+            var centerYMain = (this.Location.Y + this.Height) / 2.0;
+            var LocationYSplash = Math.Max(0, centerYMain - (_splashScreen.Height / 2.0));
+
+            _splashScreen.Location = new Point((int)Math.Round(LocationXSplash), (int)Math.Round(LocationYSplash));
+        }
+
         private void CreateStandardControls()
         {
             m_solutionExplorer = new DummySolutionExplorer();
@@ -585,5 +627,9 @@ namespace DockSample
         }
 
         #endregion
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            ResizeSplash();
+        }
     }
 }
