@@ -1,9 +1,10 @@
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.Runtime.InteropServices;
+using System.Drawing;
+using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking.Win32;
+using ScrollBars = WeifenLuo.WinFormsUI.Docking.Win32.ScrollBars;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -83,31 +84,31 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (!Win32Helper.IsRunningOnMono)
                     {
                         // Get styles using Win32 calls
-                        int style = NativeMethods.GetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_STYLE);
-                        int exStyle = NativeMethods.GetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE);
+                        int style = NativeMethods.GetWindowLong(MdiClient.Handle, (int)GetWindowLongIndex.GWL_STYLE);
+                        int exStyle = NativeMethods.GetWindowLong(MdiClient.Handle, (int)GetWindowLongIndex.GWL_EXSTYLE);
 
                         // Add or remove style flags as necessary.
                         switch (m_borderStyle)
                         {
                             case BorderStyle.Fixed3D:
-                                exStyle |= (int)Win32.WindowExStyles.WS_EX_CLIENTEDGE;
-                                style &= ~((int)Win32.WindowStyles.WS_BORDER);
+                                exStyle |= (int)WindowExStyles.WS_EX_CLIENTEDGE;
+                                style &= ~((int)WindowStyles.WS_BORDER);
                                 break;
 
                             case BorderStyle.FixedSingle:
-                                exStyle &= ~((int)Win32.WindowExStyles.WS_EX_CLIENTEDGE);
-                                style |= (int)Win32.WindowStyles.WS_BORDER;
+                                exStyle &= ~((int)WindowExStyles.WS_EX_CLIENTEDGE);
+                                style |= (int)WindowStyles.WS_BORDER;
                                 break;
 
                             case BorderStyle.None:
-                                style &= ~((int)Win32.WindowStyles.WS_BORDER);
-                                exStyle &= ~((int)Win32.WindowExStyles.WS_EX_CLIENTEDGE);
+                                style &= ~((int)WindowStyles.WS_BORDER);
+                                exStyle &= ~((int)WindowExStyles.WS_EX_CLIENTEDGE);
                                 break;
                         }
 
                         // Set the styles using Win32 calls
-                        NativeMethods.SetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_STYLE, style);
-                        NativeMethods.SetWindowLong(MdiClient.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, exStyle);
+                        NativeMethods.SetWindowLong(MdiClient.Handle, (int)GetWindowLongIndex.GWL_STYLE, style);
+                        NativeMethods.SetWindowLong(MdiClient.Handle, (int)GetWindowLongIndex.GWL_EXSTYLE, exStyle);
                     }
 
                     // Cause an update of the non-client area.
@@ -225,14 +226,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 switch (m.Msg)
                 {
-                    case (int)Win32.Msgs.WM_NCCALCSIZE:
+                    case (int)Msgs.WM_NCCALCSIZE:
                         // If AutoScroll is set to false, hide the scrollbars when the control
                         // calculates its non-client area.
                         if (!AutoScroll)
                         {
                             if (!Win32Helper.IsRunningOnMono)
                             {
-                                NativeMethods.ShowScrollBar(m.HWnd, (int)Win32.ScrollBars.SB_BOTH, 0 /*false*/);
+                                NativeMethods.ShowScrollBar(m.HWnd, (int)ScrollBars.SB_BOTH, 0 /*false*/);
                             }
                         }
 
@@ -325,12 +326,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                 // Instead use a Win32 call to signal the style has changed.
                 if (!Win32Helper.IsRunningOnMono)
                     NativeMethods.SetWindowPos(MdiClient.Handle, IntPtr.Zero, 0, 0, 0, 0,
-                        Win32.FlagsSetWindowPos.SWP_NOACTIVATE |
-                        Win32.FlagsSetWindowPos.SWP_NOMOVE |
-                        Win32.FlagsSetWindowPos.SWP_NOSIZE |
-                        Win32.FlagsSetWindowPos.SWP_NOZORDER |
-                        Win32.FlagsSetWindowPos.SWP_NOOWNERZORDER |
-                        Win32.FlagsSetWindowPos.SWP_FRAMECHANGED);
+                        FlagsSetWindowPos.SWP_NOACTIVATE |
+                        FlagsSetWindowPos.SWP_NOMOVE |
+                        FlagsSetWindowPos.SWP_NOSIZE |
+                        FlagsSetWindowPos.SWP_NOZORDER |
+                        FlagsSetWindowPos.SWP_NOOWNERZORDER |
+                        FlagsSetWindowPos.SWP_FRAMECHANGED);
             }
         }
 

@@ -1,9 +1,8 @@
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.ComponentModel;
-using System.Windows.Forms.VisualStyles;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -468,7 +467,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private void Options_Click(object sender, EventArgs e)
         {
-            ShowTabPageContextMenu(PointToClient(Control.MousePosition));
+            ShowTabPageContextMenu(PointToClient(MousePosition));
         }
 
         protected override void OnRightToLeftChanged(EventArgs e)

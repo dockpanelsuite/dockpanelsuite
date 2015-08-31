@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Lextm.SharpSnmpLib
+namespace DockSample
 {
     internal class VS2012ToolStripRenderer : ToolStripProfessionalRenderer
     {

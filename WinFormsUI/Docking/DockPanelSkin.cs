@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.Windows.Forms.Design;
-using System.ComponentModel;
+using System.Globalization;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -309,7 +306,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPanelSkin)
             {
@@ -329,7 +326,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPanelGradient)
             {
@@ -349,7 +346,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is AutoHideStripSkin)
             {
@@ -369,7 +366,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPaneStripSkin)
             {
@@ -389,7 +386,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPaneStripGradient)
             {
@@ -409,7 +406,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             TabGradient val = value as TabGradient;
             if (destinationType == typeof(String) && val != null)

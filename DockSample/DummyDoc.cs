@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using System.IO;
 
 namespace DockSample
 {
@@ -65,12 +60,12 @@ namespace DockSample
             return GetType().ToString() + "," + FileName + "," + Text;
         }
 
-        private void menuItem2_Click(object sender, System.EventArgs e)
+        private void menuItem2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This is to demostrate menu item has been successfully merged into the main form. Form Text=" + Text);
         }
 
-        private void menuItemCheckTest_Click(object sender, System.EventArgs e)
+        private void menuItemCheckTest_Click(object sender, EventArgs e)
         {
             menuItemCheckTest.Checked = !menuItemCheckTest.Checked;
         }

@@ -1,12 +1,12 @@
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing.Design;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
     [Flags]
     [Serializable]
-    [Editor(typeof(DockAreasEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [Editor(typeof(DockAreasEditor), typeof(UITypeEditor))]
     public enum DockAreas
     {
         Float = 1,

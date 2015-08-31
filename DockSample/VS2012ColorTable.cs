@@ -6,7 +6,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lextm.SharpSnmpLib
+namespace DockSample
 {
     class VS2012ColorTable : ProfessionalColorTable
     {

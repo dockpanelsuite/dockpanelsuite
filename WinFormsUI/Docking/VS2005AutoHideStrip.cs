@@ -1,8 +1,7 @@
 using System;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -524,7 +523,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Invalidate();
         }
 
-        protected override AutoHideStripBase.Tab CreateTab(IDockContent content)
+        protected override Tab CreateTab(IDockContent content)
         {
             return new TabVS2005(content);
         }

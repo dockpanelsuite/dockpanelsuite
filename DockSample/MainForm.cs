@@ -1,12 +1,10 @@
 using System;
-using System.Drawing;
-using System.Collections;
 using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using System.IO;
-using DockSample.Customization;
-using Lextm.SharpSnmpLib;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace DockSample
@@ -156,7 +154,7 @@ namespace DockSample
         private readonly ToolStripRenderer _vs2012ToolStripRenderer = new VS2012ToolStripRenderer();
         private readonly ToolStripRenderer _vs2013ToolStripRenderer = new Vs2013ToolStripRenderer();
         
-        private void SetSchema(object sender, System.EventArgs e)
+        private void SetSchema(object sender, EventArgs e)
         {
             // Persist settings when rebuilding UI
             string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.temp.config");
@@ -215,7 +213,7 @@ namespace DockSample
             vS2013ToolStripExtender1.SetEnableVs2013Style(statusBar, enable);
         }
 
-        private void SetDocumentStyle(object sender, System.EventArgs e)
+        private void SetDocumentStyle(object sender, EventArgs e)
         {
             DocumentStyle oldStyle = dockPanel.DocumentStyle;
             DocumentStyle newStyle;
@@ -258,7 +256,7 @@ namespace DockSample
                 AutoHideStripSkin autoHideSkin = new AutoHideStripSkin();
                 autoHideSkin.DockStripGradient.StartColor = Color.AliceBlue;
                 autoHideSkin.DockStripGradient.EndColor = Color.Blue;
-                autoHideSkin.DockStripGradient.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+                autoHideSkin.DockStripGradient.LinearGradientMode = LinearGradientMode.ForwardDiagonal;
                 autoHideSkin.TabGradient.StartColor = SystemColors.Control;
                 autoHideSkin.TabGradient.EndColor = SystemColors.ControlDark;
                 autoHideSkin.TabGradient.TextColor = SystemColors.ControlText;
@@ -304,43 +302,43 @@ namespace DockSample
 
         #region Event Handlers
 
-        private void menuItemExit_Click(object sender, System.EventArgs e)
+        private void menuItemExit_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void menuItemSolutionExplorer_Click(object sender, System.EventArgs e)
+        private void menuItemSolutionExplorer_Click(object sender, EventArgs e)
         {
             m_solutionExplorer.Show(dockPanel);
         }
 
-        private void menuItemPropertyWindow_Click(object sender, System.EventArgs e)
+        private void menuItemPropertyWindow_Click(object sender, EventArgs e)
         {
             m_propertyWindow.Show(dockPanel);
         }
 
-        private void menuItemToolbox_Click(object sender, System.EventArgs e)
+        private void menuItemToolbox_Click(object sender, EventArgs e)
         {
             m_toolbox.Show(dockPanel);
         }
 
-        private void menuItemOutputWindow_Click(object sender, System.EventArgs e)
+        private void menuItemOutputWindow_Click(object sender, EventArgs e)
         {
             m_outputWindow.Show(dockPanel);
         }
 
-        private void menuItemTaskList_Click(object sender, System.EventArgs e)
+        private void menuItemTaskList_Click(object sender, EventArgs e)
         {
             m_taskList.Show(dockPanel);
         }
 
-        private void menuItemAbout_Click(object sender, System.EventArgs e)
+        private void menuItemAbout_Click(object sender, EventArgs e)
         {
             AboutDialog aboutDialog = new AboutDialog();
             aboutDialog.ShowDialog(this);
         }
 
-        private void menuItemNew_Click(object sender, System.EventArgs e)
+        private void menuItemNew_Click(object sender, EventArgs e)
         {
             DummyDoc dummyDoc = CreateNewDocument();
             if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
@@ -352,7 +350,7 @@ namespace DockSample
                 dummyDoc.Show(dockPanel);
         }
 
-        private void menuItemOpen_Click(object sender, System.EventArgs e)
+        private void menuItemOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
 
@@ -394,7 +392,7 @@ namespace DockSample
             }
         }
 
-        private void menuItemFile_Popup(object sender, System.EventArgs e)
+        private void menuItemFile_Popup(object sender, EventArgs e)
         {
             if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
             {
@@ -410,7 +408,7 @@ namespace DockSample
             }
         }
 
-        private void menuItemClose_Click(object sender, System.EventArgs e)
+        private void menuItemClose_Click(object sender, EventArgs e)
         {
             if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
                 ActiveMdiChild.Close();
@@ -418,12 +416,12 @@ namespace DockSample
                 dockPanel.ActiveDocument.DockHandler.Close();
         }
 
-        private void menuItemCloseAll_Click(object sender, System.EventArgs e)
+        private void menuItemCloseAll_Click(object sender, EventArgs e)
         {
             CloseAllDocuments();
         }
 
-        private void MainForm_Load(object sender, System.EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.config");
 
@@ -431,7 +429,7 @@ namespace DockSample
                 dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
         }
 
-        private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void MainForm_Closing(object sender, CancelEventArgs e)
         {
             string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.config");
             if (m_bSaveLayout)
@@ -440,17 +438,17 @@ namespace DockSample
                 File.Delete(configFile);
         }
 
-        private void menuItemToolBar_Click(object sender, System.EventArgs e)
+        private void menuItemToolBar_Click(object sender, EventArgs e)
         {
             toolBar.Visible = menuItemToolBar.Checked = !menuItemToolBar.Checked;
         }
 
-        private void menuItemStatusBar_Click(object sender, System.EventArgs e)
+        private void menuItemStatusBar_Click(object sender, EventArgs e)
         {
             statusBar.Visible = menuItemStatusBar.Checked = !menuItemStatusBar.Checked;
         }
 
-        private void toolBar_ButtonClick(object sender, System.Windows.Forms.ToolStripItemClickedEventArgs e)
+        private void toolBar_ButtonClick(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem == toolBarButtonNew)
                 menuItemNew_Click(null, null);
@@ -474,24 +472,24 @@ namespace DockSample
                 SetDockPanelSkinOptions(!toolBarButtonDockPanelSkinDemo.Checked);
         }
 
-        private void menuItemNewWindow_Click(object sender, System.EventArgs e)
+        private void menuItemNewWindow_Click(object sender, EventArgs e)
         {
             MainForm newWindow = new MainForm();
             newWindow.Text = newWindow.Text + " - New";
             newWindow.Show();
         }
 
-        private void menuItemTools_Popup(object sender, System.EventArgs e)
+        private void menuItemTools_Popup(object sender, EventArgs e)
         {
             menuItemLockLayout.Checked = !this.dockPanel.AllowEndUserDocking;
         }
 
-        private void menuItemLockLayout_Click(object sender, System.EventArgs e)
+        private void menuItemLockLayout_Click(object sender, EventArgs e)
         {
             dockPanel.AllowEndUserDocking = !dockPanel.AllowEndUserDocking;
         }
 
-        private void menuItemLayoutByCode_Click(object sender, System.EventArgs e)
+        private void menuItemLayoutByCode_Click(object sender, EventArgs e)
         {
             dockPanel.SuspendLayout(true);
 
@@ -526,14 +524,14 @@ namespace DockSample
             _splashScreen.Visible = true;
             _splashScreen.TopMost = true;
 
-            SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+            SizeChanged += new EventHandler(this.MainForm_SizeChanged);
 
             Timer _timer = new Timer();
             _timer.Tick += (sender, e) =>
             {
                 _splashScreen.Visible = false;
                 _timer.Enabled = false;
-                SizeChanged -= new System.EventHandler(this.MainForm_SizeChanged);
+                SizeChanged -= new EventHandler(this.MainForm_SizeChanged);
             };
             _timer.Interval = 4000;
             _timer.Enabled = true;
@@ -559,7 +557,7 @@ namespace DockSample
             m_taskList = new DummyTaskList();
         }
 
-        private void menuItemLayoutByXml_Click(object sender, System.EventArgs e)
+        private void menuItemLayoutByXml_Click(object sender, EventArgs e)
         {
             dockPanel.SuspendLayout(true);
 
@@ -576,7 +574,7 @@ namespace DockSample
             dockPanel.ResumeLayout(true, true);
         }
 
-        private void menuItemCloseAllButThisOne_Click(object sender, System.EventArgs e)
+        private void menuItemCloseAllButThisOne_Click(object sender, EventArgs e)
         {
             if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
             {
@@ -597,7 +595,7 @@ namespace DockSample
             }
         }
 
-        private void menuItemShowDocumentIcon_Click(object sender, System.EventArgs e)
+        private void menuItemShowDocumentIcon_Click(object sender, EventArgs e)
         {
             dockPanel.ShowDocumentIcon = menuItemShowDocumentIcon.Checked = !menuItemShowDocumentIcon.Checked;
         }
