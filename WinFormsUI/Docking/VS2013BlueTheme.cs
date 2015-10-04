@@ -27,8 +27,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.AutoHideStripFactory = new VS2013LightAutoHideStripFactory();
             dockPanel.Extender.AutoHideWindowFactory = new VS2013LightAutoHideWindowFactory();
             dockPanel.Extender.DockPaneStripFactory = new VS2013LightDockPaneStripFactory();
-            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2013LightDockPaneSplitterControlFactory();
-            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2013LightDockWindowSplitterControlFactory();
+            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2013BlueDockPaneSplitterControlFactory();
+            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2013BlueDockWindowSplitterControlFactory();
             dockPanel.Extender.DockWindowFactory = new VS2013LightDockWindowFactory();
             dockPanel.Extender.PaneIndicatorFactory = new VS2013LightPaneIndicatorFactory();
             dockPanel.Extender.PanelIndicatorFactory = new VS2013LightPanelIndicatorFactory();
@@ -408,19 +408,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013LightDockPaneSplitterControlFactory : DockPanelExtender.IDockPaneSplitterControlFactory
+        private class VS2013BlueDockPaneSplitterControlFactory : DockPanelExtender.IDockPaneSplitterControlFactory
         {
             public DockPane.SplitterControlBase CreateSplitterControl(DockPane pane)
             {
-                return new VS2012LightSplitterControl(pane);
+                return new VS2013BlueSplitterControl(pane);
             }
         }
 
-        private class VS2013LightDockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
+        private class VS2013BlueDockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
         {
             public SplitterBase CreateSplitterControl()
             {
-                return new VS2012LightDockWindow.VS2012LightDockWindowSplitterControl();
+                return new VS2013BlueDockWindowSplitterControl();
             }
         }
 
@@ -514,6 +514,62 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor = Color.White;
 
             return skin;
+        }
+
+        internal class VS2013BlueDockWindowSplitterControl : SplitterBase
+        {
+            private SolidBrush _brush;
+
+            protected override int SplitterSize
+            {
+                get { return Measures.SplitterSize; }
+            }
+
+            protected override void StartDrag()
+            {
+                DockWindow window = Parent as DockWindow;
+                if (window == null)
+                    return;
+
+                window.DockPanel.BeginDrag(window, window.RectangleToScreen(Bounds));
+            }
+
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                base.OnPaint(e);
+
+                Rectangle rect = ClientRectangle;
+
+                if (rect.Width <= 0 || rect.Height <= 0)
+                    return;
+
+                DockWindow window = Parent as DockWindow;
+                if (window == null)
+                    return;
+
+                if (this._brush == null)
+                {
+                    _brush = new SolidBrush(window.DockPanel.Skin.AutoHideStripSkin.DockStripBackground.StartColor);
+                }
+
+                switch (Dock)
+                {
+                    case DockStyle.Right:
+                    case DockStyle.Left:
+                        {
+                            e.Graphics.FillRectangle(_brush, rect.X, rect.Y,
+                                                             Measures.SplitterSize, rect.Height);
+                        }
+                        break;
+                    case DockStyle.Bottom:
+                    case DockStyle.Top:
+                        {
+                            e.Graphics.FillRectangle(_brush, rect.X, rect.Y, rect.Width, Measures.SplitterSize);
+                        }
+                        break;
+                }
+
+            }
         }
     }
 }

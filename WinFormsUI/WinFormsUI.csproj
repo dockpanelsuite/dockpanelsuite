@@ -193,6 +193,9 @@
     <Compile Include="Docking\VS2012LightDockWindow.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\VS2013BlueSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Docking\VS2012LightSplitterControl.cs">
       <SubType>Component</SubType>
     </Compile>

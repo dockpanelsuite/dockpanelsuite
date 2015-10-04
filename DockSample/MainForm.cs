@@ -37,10 +37,12 @@ namespace DockSample
             vS2012ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
             vS2012ToolStripExtender1.VS2012Renderer = _vs2012ToolStripRenderer;
 
-			vS2013ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+            vS2013ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
             vS2013ToolStripExtender1.Vs2013Renderer = _vs2013ToolStripRenderer;
 
-            SetSchema(menuItemSchemaVS2013Light, null);
+            this.topBar.BackColor = this.bottomBar.BackColor = Color.FromArgb(0xFF, 41, 57, 85);
+
+            SetSchema(this.menuItemSchemaVS2013Blue, null);
         }
 
         #region Methods
@@ -179,15 +181,17 @@ namespace DockSample
                 dockPanel.Theme = vS2012LightTheme1;
                 EnableVS2012Renderer(true);
             }
-            else if (sender == menuItemSchemaVS2013Light)
+            else if (sender == this.menuItemSchemaVS2013Blue)
             {
-                SetTheme(vS2013LightTheme1);
+                SetTheme(this.vS2013BlueTheme1);
                 EnableVs2013Renderer(true);
             }
+
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
-            menuItemSchemaVS2013Light.Checked = (sender == menuItemSchemaVS2013Light);
+            this.menuItemSchemaVS2013Blue.Checked = (sender == this.menuItemSchemaVS2013Blue);
+            this.topBar.Visible = this.bottomBar.Visible = (sender == this.menuItemSchemaVS2013Blue);
             if (File.Exists(configFile))
                 dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
         }
