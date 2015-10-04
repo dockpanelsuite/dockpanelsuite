@@ -46,8 +46,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         
         internal class VS2012LightDockWindowSplitterControl : SplitterBase
         {
-            private static readonly SolidBrush _horizontalBrush = new SolidBrush(Color.FromArgb(0xFF, 204, 206, 219));
-            private static readonly Color[] _verticalSurroundColors = new[] { SystemColors.Control };
+            private SolidBrush _horizontalBrush;
+            private Color[] _verticalSurroundColors;
 
             protected override int SplitterSize
             {
@@ -71,6 +71,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 if (rect.Width <= 0 || rect.Height <= 0)
                     return;
+
+                DockWindow window = Parent as DockWindow;
+                if (window == null)
+                    return;
+
+                if (this._horizontalBrush == null)
+                {
+                    var skin = window.DockPanel.Skin;
+                    _horizontalBrush = new SolidBrush(skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor);
+                    _verticalSurroundColors = new[] { skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor };
+                }
 
                 switch (Dock)
                 {

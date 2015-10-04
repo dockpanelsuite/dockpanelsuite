@@ -6,13 +6,19 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     internal class VS2012LightSplitterControl : DockPane.SplitterControlBase
     {
-        private static readonly SolidBrush _horizontalBrush = new SolidBrush(Color.FromArgb(0xFF, 204, 206, 219));
-        private static readonly Color[] _verticalSurroundColors = new[] { SystemColors.Control };
+        private readonly SolidBrush _horizontalBrush;
+        private readonly Color[] _verticalSurroundColors;
 
 
         public VS2012LightSplitterControl(DockPane pane)
             : base(pane)
         {
+            _horizontalBrush = new SolidBrush(pane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor);
+            this._verticalSurroundColors = new[]
+                                               {
+                                                   pane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient
+                                                       .InactiveTabGradient.StartColor
+                                               };
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -34,7 +40,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                             path.AddRectangle(rect);
                             using (var brush = new PathGradientBrush(path)
                                 {
-                                    CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = _verticalSurroundColors
+                                    CenterColor = this._horizontalBrush.Color, SurroundColors = _verticalSurroundColors
                                 })
                             {
                                 e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
