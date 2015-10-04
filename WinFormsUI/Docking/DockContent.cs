@@ -1,9 +1,8 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Diagnostics.CodeAnalysis;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -98,6 +97,24 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get {	return DockHandler.DockPanel; }
             set	{	DockHandler.DockPanel = value;	}
+        }
+
+        private ThemeBase m_Theme;
+        [Localizable(true)]
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockContent_Theme")]
+        [DefaultValue(null)]
+        public ThemeBase Theme
+        {
+            get { return m_Theme; }
+            set
+            {
+                if (m_Theme != value && value != null)
+                {
+                    m_Theme = value;
+                    m_Theme.Apply(this);
+                }
+            }
         }
 
         [Browsable(false)]

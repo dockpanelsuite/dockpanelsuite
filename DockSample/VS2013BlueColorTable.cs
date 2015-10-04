@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace DockSample
 {
-    class VS2012ColorTable : ProfessionalColorTable
+    class VS2013BlueColorTable : ProfessionalColorTable
     {
         public override Color ButtonSelectedHighlight
         {
@@ -44,39 +44,39 @@ namespace DockSample
         }
         public override Color ButtonCheckedGradientBegin
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color ButtonCheckedGradientMiddle
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color ButtonCheckedGradientEnd
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color ButtonSelectedGradientBegin
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color ButtonSelectedGradientMiddle
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color ButtonSelectedGradientEnd
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color ButtonPressedGradientBegin
         { 
-            get { return Color.FromArgb(255, 32, 172, 232); }
+            get { return Color.FromArgb(255, 255, 242, 157); }
         }
         public override Color ButtonPressedGradientMiddle
         { 
-            get { return Color.FromArgb(255, 32, 172, 232); }
+            get { return Color.FromArgb(255, 255, 242, 157); }
         }
         public override Color ButtonPressedGradientEnd
         { 
-            get { return Color.FromArgb(255, 32, 172, 232); }
+            get { return Color.FromArgb(255, 255, 242, 157); }
         }
         public override Color CheckBackground
         { 
@@ -88,7 +88,7 @@ namespace DockSample
         }
         public override Color CheckPressedBackground
         { 
-            get { return Color.FromArgb(255, 32, 172, 232); }
+            get { return Color.FromArgb(255, 255, 242, 157); }
         }
         public override Color GripDark
         { 
@@ -100,39 +100,39 @@ namespace DockSample
         }
         public override Color ImageMarginGradientBegin
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ImageMarginGradientMiddle
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ImageMarginGradientEnd
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ImageMarginRevealedGradientBegin
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ImageMarginRevealedGradientMiddle
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ImageMarginRevealedGradientEnd
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color MenuStripGradientBegin
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color MenuStripGradientEnd
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color MenuItemSelected
         { 
-            get { return Color.FromArgb(255, 248, 249, 250); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color MenuItemBorder
         { 
@@ -144,23 +144,23 @@ namespace DockSample
         }
         public override Color MenuItemSelectedGradientBegin
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color MenuItemSelectedGradientEnd
         { 
-            get { return Color.FromArgb(255, 254, 254, 254); }
+            get { return Color.FromArgb(255, 253, 244, 191); }
         }
         public override Color MenuItemPressedGradientBegin
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 255, 242, 157); }
         }
         public override Color MenuItemPressedGradientMiddle
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 255, 242, 157); }
         }
         public override Color MenuItemPressedGradientEnd
         { 
-            get { return Color.FromArgb(255, 231, 232, 236); }
+            get { return Color.FromArgb(255, 255, 242, 157); }
         }
         public override Color RaftingContainerGradientBegin
         { 
@@ -180,11 +180,11 @@ namespace DockSample
         }
         public override Color StatusStripGradientBegin
         { 
-            get { return Color.FromArgb(255, 79, 146, 219); }
+            get { return Color.FromArgb(255, 0, 122, 204); }
         }
         public override Color StatusStripGradientEnd
         { 
-            get { return Color.FromArgb(255, 79, 146, 219); }
+            get { return Color.FromArgb(255, 0, 122, 204); }
         }
         public override Color ToolStripBorder
         { 
@@ -196,43 +196,43 @@ namespace DockSample
         }
         public override Color ToolStripGradientBegin
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ToolStripGradientMiddle
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ToolStripGradientEnd
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ToolStripContentPanelGradientBegin
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ToolStripContentPanelGradientEnd
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ToolStripPanelGradientBegin
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color ToolStripPanelGradientEnd
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color OverflowButtonGradientBegin
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color OverflowButtonGradientMiddle
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
         public override Color OverflowButtonGradientEnd
         { 
-            get { return Color.FromArgb(255, 239, 239, 242); }
+            get { return Color.FromArgb(255, 214, 219, 233); }
         }
     }
 }

@@ -1,13 +1,9 @@
 using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Text;
-using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using System.Windows.Forms;
 
 // To simplify the process of finding the toolbox bitmap resource:
 // #1 Create an internal class called "resfinder" outside of the root namespace.

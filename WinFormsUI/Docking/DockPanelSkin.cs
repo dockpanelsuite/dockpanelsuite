@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.Windows.Forms.Design;
-using System.ComponentModel;
+using System.Globalization;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -48,6 +45,8 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         private DockPanelGradient m_dockStripGradient = new DockPanelGradient();
         private TabGradient m_TabGradient = new TabGradient();
+        private DockStripBackground m_DockStripBackground = new DockStripBackground();
+        
         private Font m_textFont = SystemFonts.MenuFont;
 
         /// <summary>
@@ -67,6 +66,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_TabGradient; }
             set { m_TabGradient = value; }
         }
+
+        /// <summary>
+        /// The gradient color skin for the Tabs.
+        /// </summary>
+        public DockStripBackground DockStripBackground
+        {
+            get { return m_DockStripBackground; }
+            set { m_DockStripBackground = value; }
+        }
+
 
         /// <summary>
         /// Font used in AutoHideStrip elements.
@@ -155,6 +164,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private DockPanelGradient m_dockStripGradient = new DockPanelGradient();
         private TabGradient m_activeTabGradient = new TabGradient();
         private TabGradient m_inactiveTabGradient = new TabGradient();
+        private TabGradient m_hoverTabGradient = new TabGradient();
+        
 
         /// <summary>
         /// The gradient color skin for the DockStrip.
@@ -172,6 +183,12 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get { return m_activeTabGradient; }
             set { m_activeTabGradient = value; }
+        }
+
+        public TabGradient HoverTabGradient
+        {
+            get { return m_hoverTabGradient; }
+            set { m_hoverTabGradient = value; }
         }
 
         /// <summary>
@@ -202,6 +219,38 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { m_textColor = value; }
         }
     }
+
+        /// <summary>
+    /// The skin used to display the dock pane tab
+    /// </summary>
+    [TypeConverter(typeof(DockPaneTabGradientConverter))]
+    public class DockStripBackground
+    {
+        private Color m_startColor = SystemColors.Control;
+        private Color m_endColor = SystemColors.Control;
+        //private LinearGradientMode m_linearGradientMode = LinearGradientMode.Horizontal;
+
+        /// <summary>
+        /// The beginning gradient color.
+        /// </summary>
+        [DefaultValue(typeof(SystemColors), "Control")]
+        public Color StartColor
+        {
+            get { return m_startColor; }
+            set { m_startColor = value; }
+        }
+
+        /// <summary>
+        /// The ending gradient color.
+        /// </summary>
+        [DefaultValue(typeof(SystemColors), "Control")]
+        public Color EndColor
+        {
+            get { return m_endColor; }
+            set { m_endColor = value; }
+        }
+    }
+    
 
     /// <summary>
     /// The gradient color skin.
@@ -257,7 +306,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPanelSkin)
             {
@@ -277,7 +326,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPanelGradient)
             {
@@ -297,7 +346,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is AutoHideStripSkin)
             {
@@ -317,7 +366,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPaneStripSkin)
             {
@@ -337,7 +386,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(String) && value is DockPaneStripGradient)
             {
@@ -357,7 +406,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return base.CanConvertTo(context, destinationType);
         }
 
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             TabGradient val = value as TabGradient;
             if (destinationType == typeof(String) && val != null)
