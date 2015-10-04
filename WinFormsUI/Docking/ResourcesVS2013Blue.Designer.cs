@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DockSample.Properties {
+namespace WeifenLuo.WinFormsUI.Docking {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DockSample.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class ResourcesVS2013Blue {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal ResourcesVS2013Blue() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DockSample.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DockSample.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WeifenLuo.WinFormsUI.Docking.ResourcesVS2013Blue", typeof(ResourcesVS2013Blue).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,59 @@ namespace DockSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SplashScreen {
+        internal static System.Drawing.Bitmap ActiveTab_Close {
             get {
-                object obj = ResourceManager.GetObject("SplashScreen", resourceCulture);
+                object obj = ResourceManager.GetObject("ActiveTab_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ActiveTabHover_Close {
+            get {
+                object obj = ResourceManager.GetObject("ActiveTabHover_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPane_Close {
+            get {
+                object obj = ResourceManager.GetObject("DockPane_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InactiveTabHover_Close {
+            get {
+                object obj = ResourceManager.GetObject("InactiveTabHover_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LostFocusTab_Close {
+            get {
+                object obj = ResourceManager.GetObject("LostFocusTab_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LostFocusTabHover_Close {
+            get {
+                object obj = ResourceManager.GetObject("LostFocusTabHover_Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

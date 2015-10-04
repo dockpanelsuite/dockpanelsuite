@@ -20,11 +20,13 @@ namespace DockSample
         private DummyToolbox m_toolbox;
         private DummyOutputWindow m_outputWindow;
         private DummyTaskList m_taskList;
-
+        private bool _showSplash;
+        private SplashScreen _splashScreen;
         public MainForm()
         {
             InitializeComponent();
 
+            SetSplashScreen();
             CreateStandardControls();
 
             showRightToLeft.Checked = (RightToLeft == RightToLeft.Yes);
@@ -32,8 +34,13 @@ namespace DockSample
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
             
-            vS2012ToolStripExtender1.DefaultRenderer = _system;
-            vS2012ToolStripExtender1.VS2012Renderer = _custom;
+            vS2012ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+            vS2012ToolStripExtender1.VS2012Renderer = _vs2012ToolStripRenderer;
+
+			vS2013ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+            vS2013ToolStripExtender1.Vs2013Renderer = _vs2013ToolStripRenderer;
+
+            SetSchema(menuItemSchemaVS2013Light, null);
         }
 
         #region Methods
@@ -145,11 +152,16 @@ namespace DockSample
             CloseAllDocuments();
         }
 
-        private readonly ToolStripRenderer _system = new ToolStripProfessionalRenderer();
-        private readonly ToolStripRenderer _custom = new VS2012ToolStripRenderer();
+        private readonly ToolStripRenderer _toolStripProfessionalRenderer = new ToolStripProfessionalRenderer();
+        private readonly ToolStripRenderer _vs2012ToolStripRenderer = new VS2012ToolStripRenderer();
+        private readonly ToolStripRenderer _vs2013ToolStripRenderer = new Vs2013ToolStripRenderer();
         
         private void SetSchema(object sender, System.EventArgs e)
         {
+            // Persist settings when rebuilding UI
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.temp.config");
+
+            dockPanel.SaveAsXml(configFile);
             CloseAllContents();
 
             if (sender == menuItemSchemaVS2005)
@@ -167,16 +179,40 @@ namespace DockSample
                 dockPanel.Theme = vS2012LightTheme1;
                 EnableVS2012Renderer(true);
             }
-
+            else if (sender == menuItemSchemaVS2013Light)
+            {
+                SetTheme(vS2013LightTheme1);
+                EnableVs2013Renderer(true);
+            }
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
+            menuItemSchemaVS2013Light.Checked = (sender == menuItemSchemaVS2013Light);
+            if (File.Exists(configFile))
+                dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
+        }
+
+        private void SetTheme(ThemeBase theme)
+        {
+            dockPanel.Theme         = theme;
+            m_solutionExplorer.Theme = theme;
+            m_propertyWindow.Theme   = theme;
+            m_toolbox.Theme          = theme;
+            m_outputWindow.Theme     = theme;
+            m_taskList.Theme         = theme;
         }
 
         private void EnableVS2012Renderer(bool enable)
         {
             vS2012ToolStripExtender1.SetEnableVS2012Style(this.mainMenu, enable);
             vS2012ToolStripExtender1.SetEnableVS2012Style(this.toolBar, enable);
+        }
+
+        private void EnableVs2013Renderer(bool enable)
+        {
+            vS2013ToolStripExtender1.SetEnableVs2013Style(mainMenu, enable);
+            vS2013ToolStripExtender1.SetEnableVs2013Style(toolBar, enable);
+            vS2013ToolStripExtender1.SetEnableVs2013Style(statusBar, enable);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)
@@ -481,6 +517,41 @@ namespace DockSample
             dockPanel.ResumeLayout(true, true);
         }
 
+        private void SetSplashScreen()
+        {
+            
+            _showSplash = true;
+            _splashScreen = new SplashScreen();
+
+            ResizeSplash();
+            _splashScreen.Visible = true;
+            _splashScreen.TopMost = true;
+
+            Timer _timer = new Timer();
+            _timer.Tick += (sender, e) =>
+            {
+                _splashScreen.Visible = false;
+                _timer.Enabled = false;
+                _showSplash = false;
+            };
+            _timer.Interval = 4000;
+            _timer.Enabled = true;
+        }
+
+        private void ResizeSplash()
+        {
+            if (_showSplash) {
+                
+            var centerXMain = (this.Location.X + this.Width) / 2.0;
+            var LocationXSplash = Math.Max(0, centerXMain - (_splashScreen.Width / 2.0));
+
+            var centerYMain = (this.Location.Y + this.Height) / 2.0;
+            var LocationYSplash = Math.Max(0, centerYMain - (_splashScreen.Height / 2.0));
+
+            _splashScreen.Location = new Point((int)Math.Round(LocationXSplash), (int)Math.Round(LocationYSplash));
+            }
+        }
+
         private void CreateStandardControls()
         {
             m_solutionExplorer = new DummySolutionExplorer();
@@ -558,5 +629,10 @@ namespace DockSample
         }
 
         #endregion
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            ResizeSplash();
+        }
     }
 }
