@@ -1253,7 +1253,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             const int gap = 3;
             const int imageSize = 15;
-            return new Rectangle(rectTab.X + rectTab.Width - imageSize - gap - 1, rectTab.Y + gap, imageSize, imageSize);
+            return new Rectangle(rectTab.X + rectTab.Width - imageSize - gap, rectTab.Y + gap, imageSize, imageSize);
         }
 
         private void WindowList_Click(object sender, EventArgs e)
