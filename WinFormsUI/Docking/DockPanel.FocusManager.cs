@@ -570,12 +570,29 @@ namespace WeifenLuo.WinFormsUI.Docking
             add { Events.AddHandler(ActiveContentChangedEvent, value); }
             remove { Events.RemoveHandler(ActiveContentChangedEvent, value); }
         }
-        protected void OnActiveContentChanged(EventArgs e)
-        {
-            EventHandler handler = (EventHandler)Events[ActiveContentChangedEvent];
-            if (handler != null)
-                handler(this, e);
-        }
+
+		protected void OnActiveContentChanged(EventArgs e)
+		{
+			EventHandler handler = (EventHandler)Events[ActiveContentChangedEvent];
+			if (handler != null)
+				handler(this, e);
+		}
+
+		private static readonly object DocumentDraggedEvent = new object();
+		[LocalizedCategory("Category_PropertyChanged")]
+		[LocalizedDescription("DockPanel_ActiveContentChanged_Description")]
+		public event EventHandler DocumentDragged
+		{
+			add { Events.AddHandler(DocumentDraggedEvent, value); }
+			remove { Events.RemoveHandler(DocumentDraggedEvent, value); }
+		}
+
+		internal void OnDocumentDragged()
+		{
+			EventHandler handler = (EventHandler)Events[DocumentDraggedEvent];
+			if (handler != null)
+				handler(this, EventArgs.Empty);
+		}
 
         private static readonly object ActivePaneChangedEvent = new object();
         [LocalizedCategory("Category_PropertyChanged")]

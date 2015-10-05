@@ -258,7 +258,10 @@
   <data name="DockPanel_ActiveContentChanged_Description" xml:space="preserve">
     <value>Occurs when the value of ActiveContentProperty changed.</value>
   </data>
-  <data name="DockPanel_ActiveDocumentChanged_Description" xml:space="preserve">
+	<data name="DockPanel_DocumentDragged_Description" xml:space="preserve">
+    <value>Occurs when a document or pane is dragged within the dock panel.</value>
+  </data>
+	<data name="DockPanel_ActiveDocumentChanged_Description" xml:space="preserve">
     <value>Occurs when the value of ActiveDocument property changed.</value>
   </data>
   <data name="DockPanel_ActivePaneChanged_Description" xml:space="preserve">

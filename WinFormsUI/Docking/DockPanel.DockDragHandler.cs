@@ -765,6 +765,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 DragSource.EndDrag();
 
                 DragSource = null;
+
+				// Fire notification
+				DockPanel.OnDocumentDragged();
             }
 
             private void TestDrop()
