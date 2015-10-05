@@ -536,5 +536,194 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         protected abstract IDockContent HitTest(Point point);
+
+        protected override AccessibleObject CreateAccessibilityInstance()
+        {
+            return new AutoHideStripsAccessibleObject(this);
+        }
+
+        protected abstract Rectangle GetTabBounds(Tab tab);
+
+        internal static Rectangle ToScreen(Rectangle rectangle, Control parent)
+        {
+            if (parent == null)
+                return rectangle;
+
+            return new Rectangle(parent.PointToScreen(new Point(rectangle.Left, rectangle.Top)), new Size(rectangle.Width, rectangle.Height));
+        }
+
+        public class AutoHideStripsAccessibleObject : Control.ControlAccessibleObject
+        {
+            private AutoHideStripBase _strip;
+
+            public AutoHideStripsAccessibleObject(AutoHideStripBase strip)
+                : base(strip)
+            {
+                _strip = strip;
+            }
+
+            public override AccessibleRole Role
+            {
+                get
+                {
+                    return AccessibleRole.Window;
+                }
+            }
+
+            public override int GetChildCount()
+            {
+                // Top, Bottom, Left, Right
+                return 4;
+            }
+
+            public override AccessibleObject GetChild(int index)
+            {
+                switch (index)
+                {
+                    case 0:
+                        return new AutoHideStripAccessibleObject(_strip, DockState.DockTopAutoHide, this);
+                    case 1:
+                        return new AutoHideStripAccessibleObject(_strip, DockState.DockBottomAutoHide, this);						
+                    case 2:
+                        return new AutoHideStripAccessibleObject(_strip, DockState.DockLeftAutoHide, this);
+                    case 3:
+                    default:
+                        return new AutoHideStripAccessibleObject(_strip, DockState.DockRightAutoHide, this);
+                }
+            }
+
+            public override AccessibleObject HitTest(int x, int y)
+            {
+                Dictionary<DockState, Rectangle> rectangles = new Dictionary<DockState, Rectangle> {
+                    { DockState.DockTopAutoHide,    _strip.GetTabStripRectangle(DockState.DockTopAutoHide) },
+                    { DockState.DockBottomAutoHide, _strip.GetTabStripRectangle(DockState.DockBottomAutoHide) },
+                    { DockState.DockLeftAutoHide,   _strip.GetTabStripRectangle(DockState.DockLeftAutoHide) },
+                    { DockState.DockRightAutoHide,  _strip.GetTabStripRectangle(DockState.DockRightAutoHide) },
+                };
+
+                Point point = _strip.PointToClient(new Point(x, y));
+                foreach (var rectangle in rectangles)
+                {
+                    if (rectangle.Value.Contains(point))
+                        return new AutoHideStripAccessibleObject(_strip, rectangle.Key, this);
+                }
+
+                return null;
+            }
+        }
+
+        public class AutoHideStripAccessibleObject : AccessibleObject
+        {
+            private AutoHideStripBase _strip;
+            private DockState _state;
+            private AccessibleObject _parent;
+
+            public AutoHideStripAccessibleObject(AutoHideStripBase strip, DockState state, AccessibleObject parent)
+            {
+                _strip = strip;
+                _state = state;
+
+                _parent = parent;
+            }
+
+            public override AccessibleObject Parent
+            {
+                get
+                {
+                    return _parent;
+                }
+            }
+
+            public override AccessibleRole Role
+            {
+                get
+                {
+                    return AccessibleRole.PageTabList;
+                }
+            }
+
+            public override int GetChildCount()
+            {
+                int count = 0;
+                foreach (Pane pane in _strip.GetPanes(_state))
+                {
+                    count += pane.AutoHideTabs.Count;
+                }
+                return count;
+            }
+
+            public override AccessibleObject GetChild(int index)
+            {
+                List<Tab> tabs = new List<Tab>();
+                foreach (Pane pane in _strip.GetPanes(_state))
+                {
+                    tabs.AddRange(pane.AutoHideTabs);
+                }
+
+                return new AutoHideStripTabAccessibleObject(_strip, tabs[index], this);
+            }
+
+            public override Rectangle Bounds
+            {
+                get
+                {
+                    Rectangle rectangle = _strip.GetTabStripRectangle(_state);
+                    return ToScreen(rectangle, _strip);
+                }
+            }
+        }
+
+        protected class AutoHideStripTabAccessibleObject : AccessibleObject
+        {
+            private AutoHideStripBase _strip;
+            private Tab _tab;
+
+            private AccessibleObject _parent;
+
+            internal AutoHideStripTabAccessibleObject(AutoHideStripBase strip, Tab tab, AccessibleObject parent)
+            {
+                _strip = strip;
+                _tab = tab;
+
+                _parent = parent;
+            }
+
+            public override AccessibleObject Parent
+            {
+                get
+                {
+                    return _parent;
+                }
+            }
+
+            public override AccessibleRole Role
+            {
+                get
+                {
+                    return AccessibleRole.PageTab;
+                }
+            }
+
+            public override Rectangle Bounds
+            {
+                get
+                {
+                    Rectangle rectangle = _strip.GetTabBounds(_tab);
+                    return ToScreen(rectangle, _strip);
+                }
+            }
+
+            public override string Name
+            {
+                get
+                {
+                    return _tab.Content.DockHandler.TabText;
+                }
+                set
+                {
+                    //base.Name = value;
+                }
+            }
+        }
     }
 }

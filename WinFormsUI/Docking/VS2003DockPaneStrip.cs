@@ -1039,6 +1039,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             return -1;
         }
 
+        protected override Rectangle GetTabBounds(Tab tab)
+        {
+            return GetTabRectangle(Tabs.IndexOf(tab));
+        }
+
         /// <exclude/>
         protected override void OnMouseMove(MouseEventArgs e)
         {
