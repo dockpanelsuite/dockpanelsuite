@@ -11,6 +11,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         [LocalizedDescription("DockPanel_DockPanelSkin")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Obsolete("Please use Theme instead.")]
+        [Browsable(false)]
         public DockPanelSkin Skin
         {
             get { return m_dockPanelSkin;  }
