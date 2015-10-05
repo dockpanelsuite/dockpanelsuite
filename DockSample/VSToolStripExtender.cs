@@ -30,7 +30,7 @@ namespace DockSample
                 set
                 {
                     this.version = value;
-                    UpdateMenuText(this.version == VsVersion.Vs2012);
+                    UpdateMenuText(this.version == VsVersion.Vs2012 || this.version == VsVersion.Vs2013);
                 }
             }
 
