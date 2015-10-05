@@ -170,7 +170,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected internal abstract int HitTest(Point point);
 
-        protected internal abstract GraphicsPath GetOutline(int index);
+        public abstract GraphicsPath GetOutline(int index);
 
         protected internal virtual Tab CreateTab(IDockContent content)
         {

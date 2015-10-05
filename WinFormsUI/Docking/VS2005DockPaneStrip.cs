@@ -665,7 +665,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Invalidate();
         }
 
-        protected internal override GraphicsPath GetOutline(int index)
+        public override GraphicsPath GetOutline(int index)
         {
 
             if (Appearance == DockPane.AppearanceStyle.Document)

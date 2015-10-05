@@ -69,7 +69,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// Switches a pane with its first child in the pane hierarchy. (The actual hiding happens elsewhere.)
         /// </summary>
         /// <param name="pane">Pane to switch</param>
-        internal void SwitchPaneWithFirstChild(DockPane pane)
+        public void SwitchPaneWithFirstChild(DockPane pane)
         {
             if (!Contains(pane))
                 return;

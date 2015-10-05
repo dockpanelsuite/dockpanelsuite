@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal static class DrawHelper
+    public static class DrawHelper
     {
         public static Point RtlTransform(Control control, Point point)
         {
@@ -85,7 +85,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return graphicsPath; 
         }
 
-        internal static int Balance(int length, int margin, int input, int lower, int upper)
+        public static int Balance(int length, int margin, int input, int lower, int upper)
         {
             return Max(Min(input, upper - length - margin), lower + margin);
         }
