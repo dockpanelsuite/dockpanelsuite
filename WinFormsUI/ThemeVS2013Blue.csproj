@@ -116,8 +116,6 @@
     <Content Include="ThemeVS2013Blue\Resources\ActiveTabHover_Close.png" />
     <Content Include="ThemeVS2013Blue\Resources\ActiveTab_Close.png" />
     <Content Include="ThemeVS2013Blue\Resources\DockPane_Close.png" />
-    <Content Include="ThemeVS2013Blue\Resources\InactiveTabHover_Close.png" />
-    <Content Include="ThemeVS2013Blue\Resources\LostFocusTabHover_Close.png" />
     <Content Include="ThemeVS2013Blue\Resources\LostFocusTab_Close.png" />
   </ItemGroup>
   <ItemGroup>
