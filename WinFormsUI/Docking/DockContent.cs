@@ -100,24 +100,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             set	{	DockHandler.DockPanel = value;	}
         }
 
-        private ThemeBase m_Theme;
-        [Localizable(true)]
-        [LocalizedCategory("Category_Docking")]
-        [LocalizedDescription("DockContent_Theme")]
-        [DefaultValue(null)]
-        public ThemeBase Theme
-        {
-            get { return m_Theme; }
-            set
-            {
-                if (m_Theme != value && value != null)
-                {
-                    m_Theme = value;
-                    m_Theme.Apply(this);
-                }
-            }
-        }
-
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DockState DockState

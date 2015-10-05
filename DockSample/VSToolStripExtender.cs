@@ -6,11 +6,11 @@ using System.Collections.Generic;
 namespace DockSample
 {
     [ProvideProperty("EnableVS2012Style", typeof(ToolStrip))]
-    public partial class VS2012ToolStripExtender : Component, IExtenderProvider
+    public partial class VSToolStripExtender : Component, IExtenderProvider
     {
         private class ToolStripProperties
         {
-            private bool enabled = false;
+            private VsVersion version = VsVersion.Unkown;
             private readonly ToolStrip strip;
             private readonly Dictionary<ToolStripItem, string> menuText = new Dictionary<ToolStripItem, string>();
             
@@ -24,13 +24,13 @@ namespace DockSample
                     SaveMenuStripText();
             }
 
-            public bool EnableVS2012Style 
+            public VsVersion VsVersion 
             {
-                get { return enabled; }
+                get { return this.version; }
                 set
                 {
-                    enabled = value;
-                    UpdateMenuText(enabled);
+                    this.version = value;
+                    UpdateMenuText(this.version == VsVersion.Vs2012);
                 }
             }
 
@@ -52,12 +52,12 @@ namespace DockSample
 
         private readonly Dictionary<ToolStrip, ToolStripProperties> strips = new Dictionary<ToolStrip, ToolStripProperties>();
 
-        public VS2012ToolStripExtender()
+        public VSToolStripExtender()
         {
             InitializeComponent();
         }
 
-        public VS2012ToolStripExtender(IContainer container)
+        public VSToolStripExtender(IContainer container)
         {
             container.Add(this);
 
@@ -77,38 +77,50 @@ namespace DockSample
 
         public ToolStripRenderer VS2012Renderer { get; set; }
 
+        public ToolStripRenderer VS2013Renderer { get; set; }
+
         [DefaultValue(false)]
-        public bool GetEnableVS2012Style(ToolStrip strip)
+        public VsVersion GetStyle(ToolStrip strip)
         {
             if (strips.ContainsKey(strip))
-                return strips[strip].EnableVS2012Style;
+                return strips[strip].VsVersion;
 
-            return false;
+            return VsVersion.Unkown;
         }
 
-        public void SetEnableVS2012Style(ToolStrip strip, bool enable)
+        public void SetStyle(ToolStrip strip, VsVersion version)
         {
             var apply = false;
             ToolStripProperties properties = null;
 
             if (!strips.ContainsKey(strip))
             {
-                properties = new ToolStripProperties(strip) { EnableVS2012Style = enable };
+                properties = new ToolStripProperties(strip) { VsVersion = version };
                 strips.Add(strip, properties);
                 apply = true;
             }
             else
             {
                 properties = strips[strip];
-                apply = properties.EnableVS2012Style != enable;
+                apply = properties.VsVersion != version;
             }
 
             if (apply)
             {
-                //ToolStripManager.Renderer = enable ? VS2012Renderer : DefaultRenderer;
-                strip.Renderer = enable ? VS2012Renderer : DefaultRenderer;
-                properties.EnableVS2012Style = enable;
+                strip.Renderer = version == VsVersion.Vs2013
+                                     ? this.VS2013Renderer
+                                     : version == VsVersion.Vs2012 ? VS2012Renderer : DefaultRenderer;
+                properties.VsVersion = version;
             }
+        }
+
+        public enum VsVersion
+        {
+            Unkown,
+            Vs2003,
+            Vs2005,
+            Vs2012,
+            Vs2013
         }
     }
 }

@@ -34,11 +34,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Skin = CreateVisualStudio2005();
         }
 
-        public override void Apply(DockContent dockContent)
-        {
-            if (dockContent == null) return;
-        }
-
         internal static DockPanelSkin CreateVisualStudio2005()
         {
             DockPanelSkin skin = new DockPanelSkin();

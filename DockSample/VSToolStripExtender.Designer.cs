@@ -1,6 +1,6 @@
 ﻿namespace DockSample
 {
-    partial class Vs2013ToolStripExtender
+    partial class VSToolStripExtender
     {
         /// <summary>
         /// Required designer variable.

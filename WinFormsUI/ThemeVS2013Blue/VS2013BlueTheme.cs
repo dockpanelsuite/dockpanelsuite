@@ -38,13 +38,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Skin = CreateVisualStudio2013Light();
         }
 
-        public override void Apply(DockContent dockContent)
-        {
-            if (dockContent == null) return;
-            dockContent.BackColor =  Color.FromArgb(0xFF, 214, 219, 233);
-        }
-
-
         private class VS2013LightDockOutlineFactory : DockPanelExtender.IDockOutlineFactory
         {
             public DockOutlineBase CreateDockOutline()
