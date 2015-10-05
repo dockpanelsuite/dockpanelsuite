@@ -255,7 +255,7 @@
     <None Include="Docking\Resources\DockPane_OptionOverflow.png" />
     <None Include="dockpanelsuite.snk" />
     <None Include="license.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
