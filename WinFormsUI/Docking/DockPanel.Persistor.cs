@@ -93,6 +93,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get { return m_isFloat; }
                     set { m_isFloat = value; }
                 }
+
+                private IDockContent m_dockContent;
+                public IDockContent DockContent
+                {
+                    get { return m_dockContent; }
+                    set { m_dockContent = value; }
+                }                
             }
 
             private struct PaneStruct
@@ -267,6 +274,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         xmlOut.WriteAttributeString("AutoHidePortion", content.DockHandler.AutoHidePortion.ToString(CultureInfo.InvariantCulture));
                         xmlOut.WriteAttributeString("IsHidden", content.DockHandler.IsHidden.ToString(CultureInfo.InvariantCulture));
                         xmlOut.WriteAttributeString("IsFloat", content.DockHandler.IsFloat.ToString(CultureInfo.InvariantCulture));
+                        content.Serialize(xmlOut);
                         xmlOut.WriteEndElement();
                     }
                     xmlOut.WriteEndElement();
@@ -350,6 +358,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                     xmlOut.WriteEndElement();	//	</FloatWindows>
 
+                    // Save global user configuration
+                    dockPanel.SaveUserConfigurationAsXml(xmlOut);
+
                     xmlOut.WriteEndElement();
 
                     if (!upstream)
@@ -381,7 +392,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 LoadFromXml(dockPanel, stream, deserializeContent, true);
             }
 
-            private static ContentStruct[] LoadContents(XmlTextReader xmlIn)
+            private static ContentStruct[] LoadContents(XmlTextReader xmlIn, DeserializeDockContent deserializeContent)
             {
                 int countOfContents = Convert.ToInt32(xmlIn.GetAttribute("Count"), CultureInfo.InvariantCulture);
                 ContentStruct[] contents = new ContentStruct[countOfContents];
@@ -396,6 +407,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                     contents[i].AutoHidePortion = Convert.ToDouble(xmlIn.GetAttribute("AutoHidePortion"), CultureInfo.InvariantCulture);
                     contents[i].IsHidden = Convert.ToBoolean(xmlIn.GetAttribute("IsHidden"), CultureInfo.InvariantCulture);
                     contents[i].IsFloat = Convert.ToBoolean(xmlIn.GetAttribute("IsFloat"), CultureInfo.InvariantCulture);
+
+                    IDockContent dockContent = deserializeContent(contents[i].PersistString);
+                    if (dockContent == null) dockContent = new DummyContent();
+                    dockContent.Deserialize(xmlIn);
+                    contents[i].DockContent = dockContent;
+
                     MoveToNextElement(xmlIn);
                 }
 
@@ -548,7 +565,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     MoveToNextElement(xmlIn);
                     if (xmlIn.Name != "Contents")
                         throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
-                    contents = LoadContents(xmlIn);
+                    contents = LoadContents(xmlIn, deserializeContent);
 
                     // Load Panes
                     if (xmlIn.Name != "Panes")
@@ -564,6 +581,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (xmlIn.Name != "FloatWindows")
                         throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
                     floatWindows = LoadFloatWindows(xmlIn);
+
+                    // Load global user configuration.
+                    dockPanel.LoadUserConfigurationFromXml(xmlIn);
 
                     if (closeStream)
                         xmlIn.Close();
@@ -598,9 +618,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 // Create Contents
                 for (int i = 0; i < contents.Length; i++)
                 {
-                    IDockContent content = deserializeContent(contents[i].PersistString);
-                    if (content == null)
-                        content = new DummyContent();
+                    IDockContent content = contents[i].DockContent;
                     content.DockHandler.DockPanel = dockPanel;
                     content.DockHandler.AutoHidePortion = contents[i].AutoHidePortion;
                     content.DockHandler.IsHidden = true;
@@ -785,5 +803,35 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             Persistor.LoadFromXml(this, stream, deserializeContent, closeStream);
         }
+
+        internal bool LoadUserConfigurationFromXml(System.Xml.XmlReader reader)
+        {
+            if (OnLoadUserConfiguration!=null && reader.NodeType!=XmlNodeType.EndElement && reader.Name=="UserConfigurations")
+            {
+                OnLoadUserConfiguration(reader);
+                return true;
+            }
+            return false;
+        }
+        /// <summary> Defines a delegate for deserialize global user data from the stream specified. </summary>
+        public delegate void LoadXmlUserConfigurationHandler(System.Xml.XmlReader reader);
+        /// <summary> Occurs when the DockPanel wants deserialize global user data. </summary>
+        public event LoadXmlUserConfigurationHandler OnLoadUserConfiguration;
+
+        internal bool SaveUserConfigurationAsXml(System.Xml.XmlWriter writer)
+        {
+            if (OnSaveUserConfiguration!=null)
+            {
+                writer.WriteStartElement("UserConfigurations");
+                OnSaveUserConfiguration(writer);
+                writer.WriteEndElement();
+                return true;
+            }
+            return false;
+        }
+        /// <summary> Defines a delegate for serialize global user data to the stream specified. </summary>
+        public delegate void SaveXmlUserConfigurationHandler(System.Xml.XmlWriter writer);
+        /// <summary> Occurs when the DockPanel wants serialize global user data. </summary>
+        public event SaveXmlUserConfigurationHandler OnSaveUserConfiguration;
     }
 }

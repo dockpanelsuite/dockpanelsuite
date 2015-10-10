@@ -34,6 +34,16 @@ namespace DockSample
             
             vS2012ToolStripExtender1.DefaultRenderer = _system;
             vS2012ToolStripExtender1.VS2012Renderer = _custom;
+
+            // Load/Save global user configurations.
+            dockPanel.OnLoadUserConfiguration += delegate(System.Xml.XmlReader reader)
+            {
+                string myGlobalUserValue = reader.GetAttribute("GlobalUserData");
+            };
+            dockPanel.OnSaveUserConfiguration += delegate(System.Xml.XmlWriter writer)
+            {
+                writer.WriteAttributeString("GlobalUserData", "My global user value");
+            };
         }
 
         #region Methods
