@@ -1385,6 +1385,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             return -1;
         }
 
+        protected override Rectangle GetTabBounds(Tab tab)
+        {
+            GraphicsPath path = GetTabOutline(tab, true, false);
+            RectangleF rectangle = path.GetBounds();
+            return new Rectangle((int)rectangle.Left, (int)rectangle.Top, (int)rectangle.Width, (int)rectangle.Height);
+        }
+
         private Rectangle ActiveClose
         {
             get { return _activeClose; }
