@@ -4,6 +4,8 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    using WeifenLuo.WinFormsUI.ThemeVS2003;
+
     /// <include file='CodeDoc/DockPaneCaptionVS2003.xml' path='//CodeDoc/Class[@name="DockPaneCaptionVS2003"]/ClassDef/*'/>
     internal class VS2003DockPaneCaption : DockPaneCaptionBase
     {
@@ -107,7 +109,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageCloseEnabled == null)
-                    _imageCloseEnabled = ResourcesVS2003.DockPaneCaption_CloseEnabled;
+                    _imageCloseEnabled = Resources.DockPaneCaption_CloseEnabled;
                 return _imageCloseEnabled;
             }
         }
@@ -119,7 +121,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageCloseDisabled == null)
-                    _imageCloseDisabled = ResourcesVS2003.DockPaneCaption_CloseDisabled;
+                    _imageCloseDisabled = Resources.DockPaneCaption_CloseDisabled;
                 return _imageCloseDisabled;
             }
         }
@@ -131,7 +133,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageAutoHideYes == null)
-                    _imageAutoHideYes = ResourcesVS2003.DockPaneCaption_AutoHideYes;
+                    _imageAutoHideYes = Resources.DockPaneCaption_AutoHideYes;
                 return _imageAutoHideYes;
             }
         }
@@ -143,7 +145,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageAutoHideNo == null)
-                    _imageAutoHideNo = ResourcesVS2003.DockPaneCaption_AutoHideNo;
+                    _imageAutoHideNo = Resources.DockPaneCaption_AutoHideNo;
                 return _imageAutoHideNo;
             }
         }
@@ -230,7 +232,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         #endregion
 
         /// <exclude/>
-        protected internal override int MeasureHeight()
+        protected override int MeasureHeight()
         {
             int height = Font.Height + TextGapTop + TextGapBottom;
 

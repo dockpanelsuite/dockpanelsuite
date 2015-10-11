@@ -118,7 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SplashScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\SplashScreen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DockPaneCaption_AutoHideNo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneCaption_AutoHideNo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneCaption_AutoHideYes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneCaption_AutoHideYes.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneCaption_CloseDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneCaption_CloseDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneCaption_CloseEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneCaption_CloseEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneStrip_CloseDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneStrip_CloseDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneStrip_CloseEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneStrip_CloseEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneStrip_ScrollLeftDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneStrip_ScrollLeftDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneStrip_ScrollLeftEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneStrip_ScrollLeftEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneStrip_ScrollRightDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneStrip_ScrollRightDisabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneStrip_ScrollRightEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneStrip_ScrollRightEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

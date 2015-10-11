@@ -6,6 +6,8 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    using WeifenLuo.WinFormsUI.ThemeVS2012Light;
+
     internal class VS2012LightDockPaneCaption : DockPaneCaptionBase
     {
         private sealed class InertButton : InertButtonBase
@@ -313,7 +315,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        protected internal override int MeasureHeight()
+        protected override int MeasureHeight()
         {
             int height = TextFont.Height + TextGapTop + TextGapBottom;
 

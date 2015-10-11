@@ -118,62 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DockIndicator_PaneDiamond" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ActiveTabHover_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ActiveTabHover_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PaneDiamond_Bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_Bottom.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ActiveTab_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ActiveTab_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PaneDiamond_Fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Dockindicator_PaneDiamond_Fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Dockindicator_PaneDiamond_Fill.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PaneDiamond_HotSpot" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_Hotspot.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockIndicator_PaneDiamond_HotSpotIndex" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="DockIndicator_PaneDiamond_HotspotIndex" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PaneDiamond_HotspotIndex.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PaneDiamond_HotspotIndex_VS2012" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dockindicator_PaneDiamond_Hotspot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Dockindicator_PaneDiamond_Hotspot.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PaneDiamond_Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_Left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockIndicator_PaneDiamond_Right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_Right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockIndicator_PaneDiamond_Top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PaneDiamond_Top.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Dockindicator_PaneDiamond" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Dockindicator_PaneDiamond.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockIndicator_PanelBottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PanelBottom.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PanelBottom_Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PanelBottom_Active.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DockIndicator_PanelFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PanelFill.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockIndicator_PanelFill_Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PanelFill_Active.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockIndicator_PanelLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PanelLeft.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PanelLeft_Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PanelLeft_Active.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DockIndicator_PanelRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PanelRight.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DockIndicator_PanelRight_Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PanelRight_Active.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="DockIndicator_PanelTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockIndicator_PanelTop.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DockIndicator_PanelTop_Active" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DockIndicator_PanelTop_Active.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DockPane_AutoHide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockPane_AutoHide.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -189,5 +165,14 @@
   </data>
   <data name="DockPane_OptionOverflow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockPane_OptionOverflow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InactiveTabHover_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\InactiveTabHover_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LostFocusTabHover_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LostFocusTabHover_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LostFocusTab_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\LostFocusTab_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

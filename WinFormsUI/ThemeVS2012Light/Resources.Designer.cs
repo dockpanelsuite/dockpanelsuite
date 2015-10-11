@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WeifenLuo.WinFormsUI.Docking {
+namespace WeifenLuo.WinFormsUI.ThemeVS2012Light {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WeifenLuo.WinFormsUI.Docking {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WeifenLuo.WinFormsUI.Docking.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WeifenLuo.WinFormsUI.ThemeVS2012Light.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond {
+        internal static System.Drawing.Bitmap ActiveTab_Close {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond", resourceCulture);
+                object obj = ResourceManager.GetObject("ActiveTab_Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_Bottom {
+        internal static System.Drawing.Bitmap ActiveTabHover_Close {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_Bottom", resourceCulture);
+                object obj = ResourceManager.GetObject("ActiveTabHover_Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_Fill {
+        internal static System.Drawing.Bitmap Dockindicator_PaneDiamond {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_Fill", resourceCulture);
+                object obj = ResourceManager.GetObject("Dockindicator_PaneDiamond", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotSpot {
+        internal static System.Drawing.Bitmap Dockindicator_PaneDiamond_Fill {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotSpot", resourceCulture);
+                object obj = ResourceManager.GetObject("Dockindicator_PaneDiamond_Fill", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotSpotIndex {
+        internal static System.Drawing.Bitmap Dockindicator_PaneDiamond_Hotspot {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotSpotIndex", resourceCulture);
+                object obj = ResourceManager.GetObject("Dockindicator_PaneDiamond_Hotspot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,39 +113,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotspotIndex_VS2012 {
+        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotspotIndex {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotspotIndex_VS2012", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_Left {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_Left", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_Right {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_Right", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_Top {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_Top", resourceCulture);
+                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotspotIndex", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,29 +133,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PanelBottom_Active {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PanelBottom_Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap DockIndicator_PanelFill {
             get {
                 object obj = ResourceManager.GetObject("DockIndicator_PanelFill", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PanelFill_Active {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PanelFill_Active", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,16 +153,6 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PanelLeft_Active {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PanelLeft_Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap DockIndicator_PanelRight {
             get {
                 object obj = ResourceManager.GetObject("DockIndicator_PanelRight", resourceCulture);
@@ -223,29 +163,9 @@ namespace WeifenLuo.WinFormsUI.Docking {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PanelRight_Active {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PanelRight_Active", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap DockIndicator_PanelTop {
             get {
                 object obj = ResourceManager.GetObject("DockIndicator_PanelTop", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PanelTop_Active {
-            get {
-                object obj = ResourceManager.GetObject("DockIndicator_PanelTop_Active", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,6 +216,36 @@ namespace WeifenLuo.WinFormsUI.Docking {
         internal static System.Drawing.Bitmap DockPane_OptionOverflow {
             get {
                 object obj = ResourceManager.GetObject("DockPane_OptionOverflow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InactiveTabHover_Close {
+            get {
+                object obj = ResourceManager.GetObject("InactiveTabHover_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LostFocusTab_Close {
+            get {
+                object obj = ResourceManager.GetObject("LostFocusTab_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LostFocusTabHover_Close {
+            get {
+                object obj = ResourceManager.GetObject("LostFocusTabHover_Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

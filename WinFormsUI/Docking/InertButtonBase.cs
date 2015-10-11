@@ -7,7 +7,7 @@ using System.Drawing.Imaging;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal abstract class InertButtonBase : Control
+    public abstract class InertButtonBase : Control
     {
         protected InertButtonBase()
         {

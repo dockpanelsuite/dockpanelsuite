@@ -329,7 +329,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get	{	return m_panes;	}
         }
 
-        internal Rectangle DockArea
+        public Rectangle DockArea
         {
             get
             {
@@ -879,7 +879,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        internal Rectangle DocumentWindowBounds
+        public Rectangle DocumentWindowBounds
         {
             get
             {

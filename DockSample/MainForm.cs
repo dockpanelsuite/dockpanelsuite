@@ -20,11 +20,13 @@ namespace DockSample
         private DummyToolbox m_toolbox;
         private DummyOutputWindow m_outputWindow;
         private DummyTaskList m_taskList;
-
+        private bool _showSplash;
+        private SplashScreen _splashScreen;
         public MainForm()
         {
             InitializeComponent();
 
+            SetSplashScreen();
             CreateStandardControls();
 
             showRightToLeft.Checked = (RightToLeft == RightToLeft.Yes);
@@ -32,8 +34,13 @@ namespace DockSample
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
             
-            vS2012ToolStripExtender1.DefaultRenderer = _system;
-            vS2012ToolStripExtender1.VS2012Renderer = _custom;
+            vS2012ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+            vS2012ToolStripExtender1.VS2012Renderer = _vs2012ToolStripRenderer;
+            vS2012ToolStripExtender1.VS2013Renderer = _vs2013ToolStripRenderer;
+
+            this.topBar.BackColor = this.bottomBar.BackColor = Color.FromArgb(0xFF, 41, 57, 85);
+
+            SetSchema(this.menuItemSchemaVS2013Blue, null);
         }
 
         #region Methods
@@ -145,38 +152,54 @@ namespace DockSample
             CloseAllDocuments();
         }
 
-        private readonly ToolStripRenderer _system = new ToolStripProfessionalRenderer();
-        private readonly ToolStripRenderer _custom = new VS2012ToolStripRenderer();
+        private readonly ToolStripRenderer _toolStripProfessionalRenderer = new ToolStripProfessionalRenderer();
+        private readonly ToolStripRenderer _vs2012ToolStripRenderer = new VS2012ToolStripRenderer();
+        private readonly ToolStripRenderer _vs2013ToolStripRenderer = new Vs2013ToolStripRenderer();
         
         private void SetSchema(object sender, System.EventArgs e)
         {
+            // Persist settings when rebuilding UI
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.temp.config");
+
+            dockPanel.SaveAsXml(configFile);
             CloseAllContents();
 
-            if (sender == menuItemSchemaVS2005)
+            if (sender == this.menuItemSchemaVS2005)
             {
-                dockPanel.Theme = vS2005Theme1;
-                EnableVS2012Renderer(false);
+                this.dockPanel.Theme = this.vS2005Theme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2005);
             }
-            else if (sender == menuItemSchemaVS2003)
+            else if (sender == this.menuItemSchemaVS2003)
             {
-                dockPanel.Theme = vS2003Theme1;
-                EnableVS2012Renderer(false);
+                this.dockPanel.Theme = this.vS2003Theme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2003);
             }
-            else if (sender == menuItemSchemaVS2012Light)
+            else if (sender == this.menuItemSchemaVS2012Light)
             {
-                dockPanel.Theme = vS2012LightTheme1;
-                EnableVS2012Renderer(true);
+                this.dockPanel.Theme = this.vS2012LightTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2012);
+            }
+            else if (sender == this.menuItemSchemaVS2013Blue)
+            {
+                this.dockPanel.Theme = this.vS2013BlueTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
             }
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
+            this.menuItemSchemaVS2013Blue.Checked = (sender == this.menuItemSchemaVS2013Blue);
+            this.topBar.Visible = this.bottomBar.Visible = (sender == this.menuItemSchemaVS2013Blue);
+
+            if (File.Exists(configFile))
+                dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
         }
 
-        private void EnableVS2012Renderer(bool enable)
+        private void EnableVSRenderer(VSToolStripExtender.VsVersion version)
         {
-            vS2012ToolStripExtender1.SetEnableVS2012Style(this.mainMenu, enable);
-            vS2012ToolStripExtender1.SetEnableVS2012Style(this.toolBar, enable);
+            vS2012ToolStripExtender1.SetStyle(this.mainMenu, version);
+            vS2012ToolStripExtender1.SetStyle(this.toolBar, version);
+            vS2012ToolStripExtender1.SetStyle(this.statusBar, version);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)
@@ -481,6 +504,41 @@ namespace DockSample
             dockPanel.ResumeLayout(true, true);
         }
 
+        private void SetSplashScreen()
+        {
+            
+            _showSplash = true;
+            _splashScreen = new SplashScreen();
+
+            ResizeSplash();
+            _splashScreen.Visible = true;
+            _splashScreen.TopMost = true;
+
+            Timer _timer = new Timer();
+            _timer.Tick += (sender, e) =>
+            {
+                _splashScreen.Visible = false;
+                _timer.Enabled = false;
+                _showSplash = false;
+            };
+            _timer.Interval = 4000;
+            _timer.Enabled = true;
+        }
+
+        private void ResizeSplash()
+        {
+            if (_showSplash) {
+                
+            var centerXMain = (this.Location.X + this.Width) / 2.0;
+            var LocationXSplash = Math.Max(0, centerXMain - (_splashScreen.Width / 2.0));
+
+            var centerYMain = (this.Location.Y + this.Height) / 2.0;
+            var LocationYSplash = Math.Max(0, centerYMain - (_splashScreen.Height / 2.0));
+
+            _splashScreen.Location = new Point((int)Math.Round(LocationXSplash), (int)Math.Round(LocationYSplash));
+            }
+        }
+
         private void CreateStandardControls()
         {
             m_solutionExplorer = new DummySolutionExplorer();
@@ -558,5 +616,10 @@ namespace DockSample
         }
 
         #endregion
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            ResizeSplash();
+        }
     }
 }
