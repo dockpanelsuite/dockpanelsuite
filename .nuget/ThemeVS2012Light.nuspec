@@ -14,7 +14,7 @@
       <dependency id="DockPanelSuite" version="2.10.0-beta1" />
     </dependencies>
     <id>DockPanelSuite.ThemeVS2012Light</id>
-    <title>DockPanel Suite</title>
+    <title>DockPanel Suite VS2012 Light Theme</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Visual Studio 2012 Light theme for DockPanel Suite.</description>
     <summary>Visual Studio 2012 Light theme for DockPanel Suite.</summary>
