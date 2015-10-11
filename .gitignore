@@ -24,3 +24,4 @@ logs
 T4MVC.cs
 /SharpSnmpLib/sharpsnmplib.snk
 /packages
+/Gendarme
