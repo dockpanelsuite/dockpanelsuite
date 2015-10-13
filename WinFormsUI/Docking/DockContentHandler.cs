@@ -506,6 +506,17 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_visibleState = visibleState;
             m_dockState = isHidden ? DockState.Hidden : visibleState;
 
+            //Remove hidden content (shown content is added last so removal is done first to invert the operation)
+            bool hidingContent = (DockState == DockState.Hidden) || (DockState == DockState.Unknown) || DockHelper.IsDockStateAutoHide(DockState);
+            if (oldDockState != DockState)
+            {
+                if (hidingContent)
+                {
+                    if (!Win32Helper.IsRunningOnMono)
+                        DockPanel.ContentFocusManager.RemoveFromList(Content);
+                }
+            }
+
             if (visibleState == DockState.Unknown)
                 Pane = null;
             else
@@ -554,17 +565,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (oldDockState != DockState)
             {
-                if (DockState == DockState.Hidden || DockState == DockState.Unknown ||
-                    DockHelper.IsDockStateAutoHide(DockState))
+                //Add content that is being shown
+                if (!hidingContent)
                 {
                     if (!Win32Helper.IsRunningOnMono)
-                    {
-                        DockPanel.ContentFocusManager.RemoveFromList(Content);
-                    }
-                }
-                else if (!Win32Helper.IsRunningOnMono)
-                {
-                    DockPanel.ContentFocusManager.AddToList(Content);
+                        DockPanel.ContentFocusManager.AddToList(Content);
                 }
 
                 ResetAutoHidePortion(oldDockState, DockState);
