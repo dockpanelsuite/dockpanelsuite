@@ -178,6 +178,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        [ThreadStatic()]
         private static GraphicsPath _graphicsPath;
         internal static GraphicsPath GraphicsPath
         {

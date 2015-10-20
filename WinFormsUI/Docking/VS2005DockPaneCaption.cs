@@ -63,13 +63,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int _ButtonGapRight = 2;
         #endregion
 
+        [ThreadStatic()]
         private static Bitmap _imageButtonClose;
         private static Bitmap ImageButtonClose
         {
             get
             {
                 if (_imageButtonClose == null)
-                    _imageButtonClose = Resources.DockPane_Close;
+                {
+                    lock (typeof(Resources))
+                        _imageButtonClose = (Bitmap)Resources.DockPane_Close.Clone();
+                }
 
                 return _imageButtonClose;
             }
@@ -92,25 +96,33 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        [ThreadStatic()]
         private static Bitmap _imageButtonAutoHide;
         private static Bitmap ImageButtonAutoHide
         {
             get
             {
                 if (_imageButtonAutoHide == null)
-                    _imageButtonAutoHide = Resources.DockPane_AutoHide;
+                {
+                    lock (typeof(Resources))
+                        _imageButtonAutoHide = (Bitmap)Resources.DockPane_AutoHide.Clone();
+                }
 
                 return _imageButtonAutoHide;
             }
         }
 
+        [ThreadStatic()]
         private static Bitmap _imageButtonDock;
         private static Bitmap ImageButtonDock
         {
             get
             {
                 if (_imageButtonDock == null)
-                    _imageButtonDock = Resources.DockPane_Dock;
+                {
+                    lock (typeof(Resources))
+                        _imageButtonDock = (Bitmap)Resources.DockPane_Dock.Clone();
+                }
 
                 return _imageButtonDock;
             }
@@ -133,13 +145,17 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        [ThreadStatic()]
         private static Bitmap _imageButtonOptions;
         private static Bitmap ImageButtonOptions
         {
             get
             {
                 if (_imageButtonOptions == null)
-                    _imageButtonOptions = Resources.DockPane_Option;
+                {
+                    lock (typeof(Resources))
+                        _imageButtonOptions = (Bitmap)Resources.DockPane_Option.Clone();
+                }
 
                 return _imageButtonOptions;
             }
@@ -270,6 +286,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        [ThreadStatic()]
         private static Blend _activeBackColorGradientBlend;
         private static Blend ActiveBackColorGradientBlend
         {

@@ -12,6 +12,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     [ToolboxItem(false)]
     public partial class DockPane : UserControl, IDockDragSource
     {
+
         public enum AppearanceStyle
         {
             ToolWindow,

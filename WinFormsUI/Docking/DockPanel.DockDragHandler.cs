@@ -2,6 +2,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
+using System;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -53,14 +54,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal class DefaultPaneIndicator : PictureBox, IPaneIndicator
         {
-            private static Bitmap _bitmapPaneDiamond = Resources.DockIndicator_PaneDiamond;
-            private static Bitmap _bitmapPaneDiamondLeft = Resources.DockIndicator_PaneDiamond_Left;
-            private static Bitmap _bitmapPaneDiamondRight = Resources.DockIndicator_PaneDiamond_Right;
-            private static Bitmap _bitmapPaneDiamondTop = Resources.DockIndicator_PaneDiamond_Top;
-            private static Bitmap _bitmapPaneDiamondBottom = Resources.DockIndicator_PaneDiamond_Bottom;
-            private static Bitmap _bitmapPaneDiamondFill = Resources.DockIndicator_PaneDiamond_Fill;
-            private static Bitmap _bitmapPaneDiamondHotSpot = Resources.DockIndicator_PaneDiamond_HotSpot;
-            private static Bitmap _bitmapPaneDiamondHotSpotIndex = Resources.DockIndicator_PaneDiamond_HotSpotIndex;
+            private Bitmap _bitmapPaneDiamond;
+            private Bitmap _bitmapPaneDiamondLeft;
+            private Bitmap _bitmapPaneDiamondRight;
+            private Bitmap _bitmapPaneDiamondTop;
+            private Bitmap _bitmapPaneDiamondBottom;
+            private Bitmap _bitmapPaneDiamondFill;
+            private Bitmap _bitmapPaneDiamondHotSpot;
+            private Bitmap _bitmapPaneDiamondHotSpotIndex;
+
             private static HotSpotIndex[] _hotSpots = new[]
             {
                 new HotSpotIndex(1, 0, DockStyle.Top),
@@ -70,10 +72,24 @@ namespace WeifenLuo.WinFormsUI.Docking
                 new HotSpotIndex(1, 2, DockStyle.Bottom)
             };
 
-            private GraphicsPath _displayingGraphicsPath = DrawHelper.CalculateGraphicsPathFromBitmap(_bitmapPaneDiamond);
+            private GraphicsPath _displayingGraphicsPath;
 
             public DefaultPaneIndicator()
             {
+                lock (typeof(Resources))
+                {
+                    _bitmapPaneDiamond = (Bitmap)Resources.DockIndicator_PaneDiamond.Clone();
+                    _bitmapPaneDiamondLeft = (Bitmap)Resources.DockIndicator_PaneDiamond_Left.Clone();
+                    _bitmapPaneDiamondRight = (Bitmap)Resources.DockIndicator_PaneDiamond_Right.Clone();
+                    _bitmapPaneDiamondTop = (Bitmap)Resources.DockIndicator_PaneDiamond_Top.Clone();
+                    _bitmapPaneDiamondBottom = (Bitmap)Resources.DockIndicator_PaneDiamond_Bottom.Clone();
+                    _bitmapPaneDiamondFill = (Bitmap)Resources.DockIndicator_PaneDiamond_Fill.Clone();
+                    _bitmapPaneDiamondHotSpot = (Bitmap)Resources.DockIndicator_PaneDiamond_HotSpot.Clone();
+                    _bitmapPaneDiamondHotSpotIndex = (Bitmap)Resources.DockIndicator_PaneDiamond_HotSpotIndex.Clone();
+                }
+                
+                _displayingGraphicsPath = DrawHelper.CalculateGraphicsPathFromBitmap(_bitmapPaneDiamond);
+
                 SizeMode = PictureBoxSizeMode.AutoSize;
                 Image = _bitmapPaneDiamond;
                 Region = new Region(DisplayingGraphicsPath);
@@ -147,19 +163,33 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal class DefaultPanelIndicator : PictureBox, IPanelIndicator
         {
-            private static Image _imagePanelLeft = Resources.DockIndicator_PanelLeft;
-            private static Image _imagePanelRight = Resources.DockIndicator_PanelRight;
-            private static Image _imagePanelTop = Resources.DockIndicator_PanelTop;
-            private static Image _imagePanelBottom = Resources.DockIndicator_PanelBottom;
-            private static Image _imagePanelFill = Resources.DockIndicator_PanelFill;
-            private static Image _imagePanelLeftActive = Resources.DockIndicator_PanelLeft_Active;
-            private static Image _imagePanelRightActive = Resources.DockIndicator_PanelRight_Active;
-            private static Image _imagePanelTopActive = Resources.DockIndicator_PanelTop_Active;
-            private static Image _imagePanelBottomActive = Resources.DockIndicator_PanelBottom_Active;
-            private static Image _imagePanelFillActive = Resources.DockIndicator_PanelFill_Active;
+            private Image _imagePanelLeft;
+            private Image _imagePanelRight;
+            private Image _imagePanelTop;
+            private Image _imagePanelBottom;
+            private Image _imagePanelFill;
+            private Image _imagePanelLeftActive;
+            private Image _imagePanelRightActive;
+            private Image _imagePanelTopActive;
+            private Image _imagePanelBottomActive;
+            private Image _imagePanelFillActive;
 
             public DefaultPanelIndicator(DockStyle dockStyle)
             {
+                lock (typeof(Resources))
+                {
+                    _imagePanelLeft = (Image)Resources.DockIndicator_PanelLeft.Clone();
+                    _imagePanelRight = (Image)Resources.DockIndicator_PanelRight.Clone();
+                    _imagePanelTop = (Image)Resources.DockIndicator_PanelTop.Clone();
+                    _imagePanelBottom = (Image)Resources.DockIndicator_PanelBottom.Clone();
+                    _imagePanelFill = (Image)Resources.DockIndicator_PanelFill.Clone();
+                    _imagePanelLeftActive = (Image)Resources.DockIndicator_PanelLeft_Active.Clone();
+                    _imagePanelRightActive = (Image)Resources.DockIndicator_PanelRight_Active.Clone();
+                    _imagePanelTopActive = (Image)Resources.DockIndicator_PanelTop_Active.Clone();
+                    _imagePanelBottomActive = (Image)Resources.DockIndicator_PanelBottom_Active.Clone();
+                    _imagePanelFillActive = (Image)Resources.DockIndicator_PanelFill_Active.Clone();
+                }
+
                 m_dockStyle = dockStyle;
                 SizeMode = PictureBoxSizeMode.AutoSize;
                 Image = ImageInactive;
