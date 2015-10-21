@@ -15,7 +15,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private SplitterBase m_splitter;
         private NestedPaneCollection m_nestedPanes;
 
-        internal DockWindow(DockPanel dockPanel, DockState dockState)
+        protected internal DockWindow(DockPanel dockPanel, DockState dockState)
         {
             m_nestedPanes = new NestedPaneCollection(this);
             m_dockPanel = dockPanel;

@@ -6,6 +6,8 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    using WeifenLuo.WinFormsUI.ThemeVS2003;
+
     internal class VS2003DockPaneStrip : DockPaneStripBase
     {
         private class TabVS2003 : Tab
@@ -44,7 +46,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        protected internal override DockPaneStripBase.Tab CreateTab(IDockContent content)
+        protected override DockPaneStripBase.Tab CreateTab(IDockContent content)
         {
             return new TabVS2003(content);
         }
@@ -183,7 +185,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageCloseEnabled == null)
-                    _imageCloseEnabled = ResourcesVS2003.DockPaneStrip_CloseEnabled;
+                    _imageCloseEnabled = Resources.DockPaneStrip_CloseEnabled;
                 return _imageCloseEnabled;
             }
         }
@@ -195,7 +197,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageCloseDisabled == null)
-                    _imageCloseDisabled = ResourcesVS2003.DockPaneStrip_CloseDisabled;
+                    _imageCloseDisabled = Resources.DockPaneStrip_CloseDisabled;
                 return _imageCloseDisabled;
             }
         }
@@ -207,7 +209,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageScrollLeftEnabled == null)
-                    _imageScrollLeftEnabled = ResourcesVS2003.DockPaneStrip_ScrollLeftEnabled;
+                    _imageScrollLeftEnabled = Resources.DockPaneStrip_ScrollLeftEnabled;
                 return _imageScrollLeftEnabled;
             }
         }
@@ -219,7 +221,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageScrollLeftDisabled == null)
-                    _imageScrollLeftDisabled = ResourcesVS2003.DockPaneStrip_ScrollLeftDisabled;
+                    _imageScrollLeftDisabled = Resources.DockPaneStrip_ScrollLeftDisabled;
                 return _imageScrollLeftDisabled;
             }
         }
@@ -231,7 +233,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageScrollRightEnabled == null)
-                    _imageScrollRightEnabled = ResourcesVS2003.DockPaneStrip_ScrollRightEnabled;
+                    _imageScrollRightEnabled = Resources.DockPaneStrip_ScrollRightEnabled;
                 return _imageScrollRightEnabled;
             }
         }
@@ -243,7 +245,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_imageScrollRightDisabled == null)
-                    _imageScrollRightDisabled = ResourcesVS2003.DockPaneStrip_ScrollRightDisabled;
+                    _imageScrollRightDisabled = Resources.DockPaneStrip_ScrollRightDisabled;
                 return _imageScrollRightDisabled;
             }
         }
@@ -267,7 +269,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_toolTipScrollLeft == null)
-                    _toolTipScrollLeft = StringsVS2003.DockPaneStrip_ToolTipScrollLeft;
+                    _toolTipScrollLeft = Strings.DockPaneStrip_ToolTipScrollLeft;
                 return _toolTipScrollLeft;
             }
         }
@@ -279,7 +281,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (_toolTipScrollRight == null)
-                    _toolTipScrollRight = StringsVS2003.DockPaneStrip_ToolTipScrollRight;
+                    _toolTipScrollRight = Strings.DockPaneStrip_ToolTipScrollRight;
                 return _toolTipScrollRight;
             }
         }
@@ -458,7 +460,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.Dispose (disposing);
         }
 
-        protected internal override int MeasureHeight()
+        protected override int MeasureHeight()
         {
             if (Appearance == DockPane.AppearanceStyle.ToolWindow)
                 return MeasureHeight_ToolWindow();
@@ -499,7 +501,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Invalidate();
         }
 
-        protected internal override GraphicsPath GetOutline(int index)
+        public override GraphicsPath GetOutline(int index)
         {
             Point[] pts = new Point[8];
 
@@ -640,7 +642,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        protected internal override void EnsureTabVisible(IDockContent content)
+        protected override void EnsureTabVisible(IDockContent content)
         {
             if (Appearance != DockPane.AppearanceStyle.Document || !Tabs.Contains(content))
                 return;
@@ -1025,7 +1027,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         /// <exclude/>
-        protected internal override int HitTest(Point ptMouse)
+        protected override int HitTest(Point ptMouse)
         {
             Rectangle rectTabStrip = TabsRectangle;
 
@@ -1037,6 +1039,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return i;
             }
             return -1;
+        }
+
+        protected override Rectangle GetTabBounds(Tab tab)
+        {
+            return GetTabRectangle(Tabs.IndexOf(tab));
         }
 
         /// <exclude/>

@@ -22,7 +22,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     // achieve this (don't know why, spent hours to try it out :( ):
     //  1. Enabled = false;
     //  2. WM_NCHITTEST returns HTTRANSPARENT
-    internal class DragForm : Form
+    public class DragForm : Form
     {
         public DragForm()
         {

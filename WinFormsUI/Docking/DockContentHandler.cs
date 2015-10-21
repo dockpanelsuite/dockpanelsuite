@@ -1093,6 +1093,19 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (!samePane)
                     Pane = pane;
 
+                int visiblePanes = 0;
+                int convertedIndex = 0;
+                while (visiblePanes <= contentIndex && convertedIndex < Pane.Contents.Count)
+                {
+                    DockContent window = Pane.Contents[convertedIndex] as DockContent;
+                    if (window != null && !window.IsHidden)
+                        ++visiblePanes;
+
+                    ++convertedIndex;
+                }
+
+                contentIndex = Math.Min(Math.Max(0, convertedIndex-1), Pane.Contents.Count - 1);
+
                 if (contentIndex == -1 || !samePane)
                     pane.SetContentIndex(Content, contentIndex);
                 else

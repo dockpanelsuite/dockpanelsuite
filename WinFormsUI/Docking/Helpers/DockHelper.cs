@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal static class DockHelper
+    public static class DockHelper
     {
         public static bool IsDockStateAutoHide(DockState dockState)
         {

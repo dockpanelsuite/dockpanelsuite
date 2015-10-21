@@ -665,7 +665,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Invalidate();
         }
 
-        protected internal override GraphicsPath GetOutline(int index)
+        public override GraphicsPath GetOutline(int index)
         {
 
             if (Appearance == DockPane.AppearanceStyle.Document)
@@ -1477,6 +1477,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return Tabs.IndexOf(tab);
             }
             return -1;
+        }
+
+        protected override Rectangle GetTabBounds(Tab tab)
+        {
+            GraphicsPath path = GetTabOutline(tab, true, false);
+            RectangleF rectangle = path.GetBounds();
+            return new Rectangle((int)rectangle.Left, (int)rectangle.Top, (int)rectangle.Width, (int)rectangle.Height);
         }
 
         protected override void OnMouseHover(EventArgs e)

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.9.0.0</version>
+    <version>2.10.0-beta1</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,7 +16,7 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
-May 11, 2013: 3.0.0 Alpha 8
+Oct 11, 2015: 2.10.0 Beta 1
 1. GitHub #19 Added Visual Studio 2012 Light theme.
 2. GitHub #112 Changed theme related interfaces.
 3. GitHub #121 Added a close button on tab (VS2012 theme only).
@@ -28,6 +28,10 @@ May 11, 2013: 3.0.0 Alpha 8
 9. GitHub #175 Handling long headings patch from @lukeer.
 10. GitHub #189 "Show Document Icon" doesn't work with the skin VS2012 Light theme.
 11. GitHub #183 VS2012 Theme enhancement in sample project.
+12. GitHub #261 Addessed memory leak when a dock content is closed.
+13. GitHub #300 Hide DockPanel.Skin in designer.
+14. GitHub #306 Added Visual Studio 2013 Blue theme.
+15. GitHub #315 Non default themes are now in separate assemblies/NuGet packages.
 
 November 26, 2013: 2.9.0
 1. GitHub #81 - Add an event to the DockPanel that will be raised when the value of the AutoHideWindow's ActiveContent property changes.

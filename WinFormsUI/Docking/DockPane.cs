@@ -45,7 +45,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private DockPaneStripBase m_tabStripControl;
-        internal DockPaneStripBase TabStripControl
+
+        public DockPaneStripBase TabStripControl
         {
             get { return m_tabStripControl; }
         }
@@ -462,7 +463,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return (DockState == DockState.Document) ? AppearanceStyle.Document : AppearanceStyle.ToolWindow; }
         }
 
-        internal Rectangle DisplayingRectangle
+        public Rectangle DisplayingRectangle
         {
             get { return ClientRectangle; }
         }
