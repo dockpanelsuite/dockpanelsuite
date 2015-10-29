@@ -178,17 +178,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        [ThreadStatic()]
-        private static GraphicsPath _graphicsPath;
-        internal static GraphicsPath GraphicsPath
+        private readonly GraphicsPath _graphicsPath;
+        private GraphicsPath GraphicsPath
         {
-            get
-            {
-                if (_graphicsPath == null)
-                    _graphicsPath = new GraphicsPath();
-
-                return _graphicsPath;
-            }
+            get { return _graphicsPath; }
         }
 
         public VS2005AutoHideStrip(DockPanel panel)
@@ -199,6 +192,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.OptimizedDoubleBuffer, true);
             BackColor = SystemColors.ControlLight;
+
+            _graphicsPath = new GraphicsPath();
         }
 
         protected override void OnPaint(PaintEventArgs e)

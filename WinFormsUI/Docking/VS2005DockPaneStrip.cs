@@ -127,6 +127,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private ToolTip m_toolTip;
         private Font m_font;
         private Font m_boldFont;
+        private GraphicsPath m_graphicsPath;
         private int m_startDisplayingTab = 0;
         private int m_endDisplayingTab = 0;
         private int m_firstDisplayingTab = 0;
@@ -279,9 +280,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static GraphicsPath GraphicsPath
+        private GraphicsPath GraphicsPath
         {
-            get { return VS2005AutoHideStrip.GraphicsPath; }
+            get { return m_graphicsPath; }
         }
 
         private IContainer Components
@@ -583,6 +584,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_components = new Container();
             m_toolTip = new ToolTip(Components);
             m_selectMenu = new ContextMenuStrip(Components);
+            m_graphicsPath = new GraphicsPath();
 
             ResumeLayout();
         }
