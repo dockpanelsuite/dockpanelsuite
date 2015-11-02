@@ -63,22 +63,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int _ButtonGapRight = 2;
         #endregion
 
-        [ThreadStatic()]
-        private static Bitmap _imageButtonClose;
-        private static Bitmap ImageButtonClose
-        {
-            get
-            {
-                if (_imageButtonClose == null)
-                {
-                    lock (typeof(Resources))
-                        _imageButtonClose = (Bitmap)Resources.DockPane_Close.Clone();
-                }
-
-                return _imageButtonClose;
-            }
-        }
-
         private InertButton m_buttonClose;
         private InertButton ButtonClose
         {
@@ -86,45 +70,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonClose == null)
                 {
-                    m_buttonClose = new InertButton(this, ImageButtonClose, ImageButtonClose);
+                    m_buttonClose = new InertButton(this, _imageButtonClose, _imageButtonClose);
                     m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
                     m_buttonClose.Click += new EventHandler(Close_Click);
                     Controls.Add(m_buttonClose);
                 }
 
                 return m_buttonClose;
-            }
-        }
-
-        [ThreadStatic()]
-        private static Bitmap _imageButtonAutoHide;
-        private static Bitmap ImageButtonAutoHide
-        {
-            get
-            {
-                if (_imageButtonAutoHide == null)
-                {
-                    lock (typeof(Resources))
-                        _imageButtonAutoHide = (Bitmap)Resources.DockPane_AutoHide.Clone();
-                }
-
-                return _imageButtonAutoHide;
-            }
-        }
-
-        [ThreadStatic()]
-        private static Bitmap _imageButtonDock;
-        private static Bitmap ImageButtonDock
-        {
-            get
-            {
-                if (_imageButtonDock == null)
-                {
-                    lock (typeof(Resources))
-                        _imageButtonDock = (Bitmap)Resources.DockPane_Dock.Clone();
-                }
-
-                return _imageButtonDock;
             }
         }
 
@@ -135,29 +87,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonAutoHide == null)
                 {
-                    m_buttonAutoHide = new InertButton(this, ImageButtonDock, ImageButtonAutoHide);
+                    m_buttonAutoHide = new InertButton(this, _imageButtonDock, _imageButtonAutoHide);
                     m_toolTip.SetToolTip(m_buttonAutoHide, ToolTipAutoHide);
                     m_buttonAutoHide.Click += new EventHandler(AutoHide_Click);
                     Controls.Add(m_buttonAutoHide);
                 }
 
                 return m_buttonAutoHide;
-            }
-        }
-
-        [ThreadStatic()]
-        private static Bitmap _imageButtonOptions;
-        private static Bitmap ImageButtonOptions
-        {
-            get
-            {
-                if (_imageButtonOptions == null)
-                {
-                    lock (typeof(Resources))
-                        _imageButtonOptions = (Bitmap)Resources.DockPane_Option.Clone();
-                }
-
-                return _imageButtonOptions;
             }
         }
 
@@ -168,7 +104,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonOptions == null)
                 {
-                    m_buttonOptions = new InertButton(this, ImageButtonOptions, ImageButtonOptions);
+                    m_buttonOptions = new InertButton(this, _imageButtonOptions, _imageButtonOptions);
                     m_toolTip.SetToolTip(m_buttonOptions, ToolTipOptions);
                     m_buttonOptions.Click += new EventHandler(Options_Click);
                     Controls.Add(m_buttonOptions);
@@ -183,6 +119,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_components; }
         }
 
+        private readonly Bitmap _imageButtonAutoHide;
+        private readonly Bitmap _imageButtonClose;
+        private readonly Bitmap _imageButtonDock;
+        private readonly Bitmap _imageButtonOptions;
+        private readonly Blend _activeBackColorGradientBlend;
+
         private ToolTip m_toolTip;
 
         public VS2005DockPaneCaption(DockPane pane) : base(pane)
@@ -192,13 +134,36 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_components = new Container();
             m_toolTip = new ToolTip(Components);
 
+            // clone shared resources
+            lock (typeof(Resources))
+            {
+                _imageButtonAutoHide = (Bitmap)Resources.DockPane_AutoHide.Clone();
+                _imageButtonClose = (Bitmap)Resources.DockPane_Close.Clone();
+                _imageButtonDock = (Bitmap)Resources.DockPane_Dock.Clone();
+                _imageButtonOptions = (Bitmap)Resources.DockPane_Option.Clone();
+            }
+
+            // create background blend
+            _activeBackColorGradientBlend = new Blend(2)
+            {
+                Factors = new float[] { 0.5F, 1.0F },
+                Positions = new float[] { 0.0F, 1.0F },
+            };
+
             ResumeLayout();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
+            {
                 Components.Dispose();
+
+                _imageButtonAutoHide.Dispose();
+                _imageButtonClose.Dispose();
+                _imageButtonDock.Dispose();
+                _imageButtonOptions.Dispose();
+            }
             base.Dispose(disposing);
         }
 
@@ -286,25 +251,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        [ThreadStatic()]
-        private static Blend _activeBackColorGradientBlend;
-        private static Blend ActiveBackColorGradientBlend
-        {
-            get
-            {
-                if (_activeBackColorGradientBlend == null)
-                {
-                    Blend blend = new Blend(2);
-
-                    blend.Factors = new float[]{0.5F, 1.0F};
-                    blend.Positions = new float[]{0.0F, 1.0F};
-                    _activeBackColorGradientBlend = blend;
-                }
-
-                return _activeBackColorGradientBlend;
-            }
-        }
-
         private Color TextColor
         {
             get
@@ -359,7 +305,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode;
                 using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, startColor, endColor, gradientMode))
                 {
-                    brush.Blend = ActiveBackColorGradientBlend;
+                    brush.Blend = _activeBackColorGradientBlend;
                     g.FillRectangle(brush, ClientRectangle);
                 }
             }
@@ -452,7 +398,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 buttonHeight = height;
             }
             Size buttonSize = new Size(buttonWidth, buttonHeight);
-            int x = rectCaption.X + rectCaption.Width - 1 - ButtonGapRight - m_buttonClose.Width;
+            int x = rectCaption.X + rectCaption.Width - 1 - ButtonGapRight - ButtonClose.Width;
             int y = rectCaption.Y + ButtonGapTop;
             Point point = new Point(x, y);
             ButtonClose.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));

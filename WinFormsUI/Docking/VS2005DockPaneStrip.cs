@@ -117,11 +117,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         #region Members
 
+        private readonly Bitmap m_imageButtonClose;
+        private readonly Bitmap m_imageButtonWindowList;
+        private readonly Bitmap m_imageButtonWindowListOverflow;
+
         private ContextMenuStrip m_selectMenu;
-        [ThreadStatic()] private static Bitmap m_imageButtonClose;
         private InertButton m_buttonClose;
-        [ThreadStatic()] private static Bitmap m_imageButtonWindowList;
-        [ThreadStatic()] private static Bitmap m_imageButtonWindowListOverflow;
         private InertButton m_buttonWindowList;
         private IContainer m_components;
         private ToolTip m_toolTip;
@@ -206,27 +207,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { _selectMenuMargin = value; }
         }
 
-        private static Bitmap ImageButtonClose
-        {
-            get
-            {
-                if (m_imageButtonClose == null)
-                {
-                    lock (typeof(Resources))
-                        m_imageButtonClose = (Bitmap)Resources.DockPane_Close.Clone();
-                }
-
-                return m_imageButtonClose;
-            }
-        }
-
         private InertButton ButtonClose
         {
             get
             {
                 if (m_buttonClose == null)
                 {
-                    m_buttonClose = new InertButton(ImageButtonClose, ImageButtonClose);
+                    m_buttonClose = new InertButton(m_imageButtonClose, m_imageButtonClose);
                     m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
                     m_buttonClose.Click += new EventHandler(Close_Click);
                     Controls.Add(m_buttonClose);
@@ -236,41 +223,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap ImageButtonWindowList
-        {
-            get
-            {
-                if (m_imageButtonWindowList == null)
-                {
-                    lock (typeof(Resources))
-                        m_imageButtonWindowList = (Bitmap)Resources.DockPane_Option.Clone();
-                }
-
-                return m_imageButtonWindowList;
-            }
-        }
-
-        private static Bitmap ImageButtonWindowListOverflow
-        {
-            get
-            {
-                if (m_imageButtonWindowListOverflow == null)
-                {
-                    lock (typeof(Resources))
-                        m_imageButtonWindowListOverflow = (Bitmap)Resources.DockPane_OptionOverflow.Clone();
-                }
-
-                return m_imageButtonWindowListOverflow;
-            }
-        }
-
         private InertButton ButtonWindowList
         {
             get
             {
                 if (m_buttonWindowList == null)
                 {
-                    m_buttonWindowList = new InertButton(ImageButtonWindowList, ImageButtonWindowListOverflow);
+                    m_buttonWindowList = new InertButton(m_imageButtonWindowList, m_imageButtonWindowListOverflow);
                     m_toolTip.SetToolTip(m_buttonWindowList, ToolTipSelect);
                     m_buttonWindowList.Click += new EventHandler(WindowList_Click);
                     Controls.Add(m_buttonWindowList);
@@ -586,6 +545,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_selectMenu = new ContextMenuStrip(Components);
             m_graphicsPath = new GraphicsPath();
 
+            // clone shared resources
+            lock (typeof(Resources))
+            {
+                m_imageButtonClose = (Bitmap)Resources.DockPane_Close.Clone();
+                m_imageButtonWindowList = (Bitmap)Resources.DockPane_Option.Clone();
+                m_imageButtonWindowListOverflow = (Bitmap)Resources.DockPane_OptionOverflow.Clone();
+            }
+
             ResumeLayout();
         }
 
@@ -599,6 +566,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                     m_boldFont.Dispose();
                     m_boldFont = null;
                 }
+
+                m_imageButtonClose.Dispose();
+                m_imageButtonWindowList.Dispose();
+                m_imageButtonWindowListOverflow.Dispose();
             }
             base.Dispose(disposing);
         }
