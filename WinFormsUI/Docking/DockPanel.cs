@@ -522,6 +522,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+		private bool m_documentWithBorder=true;
+		[LocalizedCategory("Category_Docking")]
+		[LocalizedDescription("DockPanel_DocumentWithBorder_Description")]
+		[DefaultValue(true)]
+		public bool DocumentWithBorder
+		{
+			get { return m_documentWithBorder; }
+			set { m_documentWithBorder=value; }
+		}
+
         private Control DummyControl
         {
             get	{	return m_dummyControl;	}
