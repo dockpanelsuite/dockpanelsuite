@@ -13,11 +13,12 @@
 	<dependencies>
       <dependency id="DockPanelSuite" version="2.10.0-beta2" />
     </dependencies>
-    <id>DockPanelSuite.ThemeVS2003</id>
-    <title>DockPanel Suite VS2003 Theme</title>
+    <id>DockPanelSuite.ThemeVS2005Multithreading</id>
+    <title>DockPanel Suite VS2005 Theme for Multiple UI Threads</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Visual Studio 2003 theme for DockPanel Suite.</description>
-    <summary>Visual Studio 2003 theme for DockPanel Suite.</summary>
+    <description>Visual Studio 2005 theme for DockPanel Suite with multiple UI thread support. 
+Most WinForms apps uses a single UI thread. Not recommended unless the application uses multiple UI threads.</description>
+    <summary>Visual Studio 2005 theme for DockPanel Suite with multiple UI thread support.</summary>
     <releaseNotes>
 Dec 29, 2015: 2.10.0 Beta 2
 Initial release of this theme as a separate assembly.
@@ -27,7 +28,7 @@ Initial release of this theme as a separate assembly.
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net20\ThemeVS2003.dll" target="lib\net20\ThemeVS2003.dll" />
-    <file src="..\bin\net40\ThemeVS2003.dll" target="lib\net40\ThemeVS2003.dll" />
+    <file src="..\bin\net20\ThemeVS2005Multithreading.dll" target="lib\net20\ThemeVS2005Multithreading.dll" />
+    <file src="..\bin\net40\ThemeVS2005Multithreading.dll" target="lib\net40\ThemeVS2005Multithreading.dll" />
   </files>
 </package>
