@@ -128,7 +128,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 m_dockPanel = dockPanel;
                 if (Win32Helper.IsRunningOnMono)
-                    return;                
+                    return;
                 m_hookEventHandler = new LocalWindowsHook.HookEventHandler(HookEventHandler);
 
                 // Ensure the windows hook has been created for this thread
@@ -197,7 +197,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (handler.Form.SelectNextControl(handler.Form.ActiveControl, true, true, true, true))
                     return;
 
-                if (Win32Helper.IsRunningOnMono) 
+                if (Win32Helper.IsRunningOnMono)
                     return;
 
                 // Since DockContent Form is not selectalbe, use Win32 SetFocus instead
@@ -575,11 +575,28 @@ namespace WeifenLuo.WinFormsUI.Docking
             add { Events.AddHandler(ActiveContentChangedEvent, value); }
             remove { Events.RemoveHandler(ActiveContentChangedEvent, value); }
         }
+
         protected void OnActiveContentChanged(EventArgs e)
         {
             EventHandler handler = (EventHandler)Events[ActiveContentChangedEvent];
             if (handler != null)
                 handler(this, e);
+        }
+
+        private static readonly object DocumentDraggedEvent = new object();
+        [LocalizedCategory("Category_PropertyChanged")]
+        [LocalizedDescription("DockPanel_ActiveContentChanged_Description")]
+        public event EventHandler DocumentDragged
+        {
+            add { Events.AddHandler(DocumentDraggedEvent, value); }
+            remove { Events.RemoveHandler(DocumentDraggedEvent, value); }
+        }
+
+        internal void OnDocumentDragged()
+        {
+            EventHandler handler = (EventHandler)Events[DocumentDraggedEvent];
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         private static readonly object ActivePaneChangedEvent = new object();

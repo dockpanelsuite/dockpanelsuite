@@ -606,7 +606,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (ShouldPaneDiamondVisible())
                     {
                         Rectangle rect = RectangleToClient(DockPane.RectangleToScreen(DockPane.ClientRectangle));
-                        PaneDiamond.Location = new Point(rect.Left + (rect.Width - PaneDiamond.Width)/2, rect.Top + (rect.Height - PaneDiamond.Height)/2);
+                        PaneDiamond.Location = new Point(rect.Left + (rect.Width - PaneDiamond.Width) / 2, rect.Top + (rect.Height - PaneDiamond.Height) / 2);
                         PaneDiamond.Visible = true;
                         using (GraphicsPath graphicsPath = PaneDiamond.DisplayingGraphicsPath.Clone() as GraphicsPath)
                         {
@@ -765,6 +765,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 DragSource.EndDrag();
 
                 DragSource = null;
+
+                // Fire notification
+                DockPanel.OnDocumentDragged();
             }
 
             private void TestDrop()
