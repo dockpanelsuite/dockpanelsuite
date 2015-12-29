@@ -170,6 +170,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected internal abstract int HitTest(Point point);
 
+        protected virtual bool MouseDownActivateTest(MouseEventArgs e)
+        {
+            return true;
+        }
+
         public abstract GraphicsPath GetOutline(int index);
 
         protected internal virtual Tab CreateTab(IDockContent content)
@@ -181,21 +186,24 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-
             int index = HitTest();
             if (index != -1)
             {
                 if (e.Button == MouseButtons.Middle)
                 {
                     // Close the specified content.
-                    IDockContent content = Tabs[index].Content;
-                    DockPane.CloseContent(content);
+                    TryCloseTab(index);
                 }
                 else
                 {
                     IDockContent content = Tabs[index].Content;
                     if (DockPane.ActiveContent != content)
-                        DockPane.ActiveContent = content;
+                    {
+                        // Test if the content should be active
+                        if (MouseDownActivateTest(e))
+                            DockPane.ActiveContent = content;
+                    }
+
                 }
             }
 
@@ -229,6 +237,18 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected void ShowTabPageContextMenu(Point position)
         {
             DockPane.ShowTabPageContextMenu(this, position);
+        }
+
+        protected bool TryCloseTab(int index)
+        {
+            if (index >= 0 || index < Tabs.Count)
+            {
+                // Close the specified content.
+                IDockContent content = Tabs[index].Content;
+                DockPane.CloseContent(content);
+                return true;
+            }
+            return false;
         }
 
         protected override void OnMouseUp(MouseEventArgs e)

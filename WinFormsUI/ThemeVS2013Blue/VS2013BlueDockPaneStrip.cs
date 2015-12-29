@@ -138,7 +138,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private bool m_closeButtonVisible = false;
         private Rectangle _activeClose;
         private int _selectMenuMargin = 5;
-
+        private bool m_suspendDrag = false;
         #endregion
 
         #region Properties
@@ -641,7 +641,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DocumentButtonGapRight +
                     ButtonClose.Width +
                     ButtonWindowList.Width;
-            
+
             }
             else
             {
@@ -952,7 +952,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 width = sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
             else
                 width = sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
-            
+
             width += TAB_CLOSE_BUTTON_WIDTH;
             return width;
         }
@@ -1096,7 +1096,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             GraphicsPath.Reset();
             Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
-            
+
             // Shorten TabOutline so it doesn't get overdrawn by icons next to it
             rect.Intersect(TabsRectangle);
             rect.Width--;
@@ -1183,7 +1183,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color activeColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
             Color lostFocusColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
-            Color inactiveColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;           
+            Color inactiveColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
             Color mouseHoverColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.EndColor;
 
             Color activeText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
@@ -1225,6 +1225,19 @@ namespace WeifenLuo.WinFormsUI.Docking
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
         }
 
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            // suspend drag if mouse is down on active close button.
+            this.m_suspendDrag  = ActiveCloseHitTest(e.Location);
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (!this.m_suspendDrag)
+                base.OnMouseMove(e);
+        }
+
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
@@ -1239,11 +1252,9 @@ namespace WeifenLuo.WinFormsUI.Docking
         private void TabCloseButtonHit(int index)
         {
             var mousePos = PointToClient(MousePosition);
-            var tabRect = GetTabRectangle(index);
-            var closeButtonRect = GetCloseButtonRect(tabRect);
-            var mouseRect = new Rectangle(mousePos, new Size(1, 1));
-            if (closeButtonRect.IntersectsWith(mouseRect))
-                DockPane.CloseActiveContent();
+            var tabRect = GetTabBounds(Tabs[index]);
+            if  (tabRect.Contains(ActiveClose) && ActiveCloseHitTest(mousePos))
+                TryCloseTab(index);
         }
 
         private Rectangle GetCloseButtonRect(Rectangle rectTab)
@@ -1294,7 +1305,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
         }
-        
+
         private void ContextMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
@@ -1383,6 +1394,28 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             return -1;
+        }
+
+        protected override bool MouseDownActivateTest(MouseEventArgs e)
+        {
+            bool result = base.MouseDownActivateTest(e);
+            if (result && (e.Button == MouseButtons.Left) && (Appearance == DockPane.AppearanceStyle.Document))
+            {
+                // don't activate if mouse is downed on active close button
+                result = !ActiveCloseHitTest(e.Location);
+            }
+            return result;
+        }
+
+        private bool ActiveCloseHitTest(Point ptMouse)
+        {
+            bool result = false;
+            if (!ActiveClose.IsEmpty)
+            {
+                var mouseRect = new Rectangle(ptMouse, new Size(1, 1));
+                result = ActiveClose.IntersectsWith(mouseRect);
+            }
+            return result;
         }
 
         protected override Rectangle GetTabBounds(Tab tab)
