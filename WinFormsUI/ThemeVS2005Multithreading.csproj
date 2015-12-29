@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{01B09009-BD30-47F2-B318-4B583D606C61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
+    <AssemblyName>ThemeVS2005Multithreading</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>dockpanelsuite.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ThemeVS2005Multithreading\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ThemeVS2005Multithreading\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingAutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingDockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingDockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingPaneIndicator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingPanelIndicator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dockpanelsuite.snk" />
+    <None Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="WinFormsUI.csproj">
+      <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
+      <Name>WinFormsUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ThemeVS2005Multithreading\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemeVS2005Multithreading\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Bottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\Dockindicator_PaneDiamond_Fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Top.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelBottom_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelFill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelFill_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelLeft_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelRight_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelTop_Active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockPane_AutoHide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockPane_Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockPane_Dock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockPane_Option.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThemeVS2005Multithreading\Resources\DockPane_OptionOverflow.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\GendarmeMsBuild.dll')" AssemblyFile="..\gendarme\GendarmeMsBuild.dll" TaskName="GendarmeMsBuild.Gendarme" />
+  <Target Name="AfterBuild">
+    <Gendarme Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\gendarme.exe')" GendarmeExeFilename="..\gendarme\gendarme.exe" Assemblies="$(TargetPath)" WarningsAsErrors="False" IntegrateWithVisualStudio="True" GendarmeIgnoreFilename="gendarme.ignore" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

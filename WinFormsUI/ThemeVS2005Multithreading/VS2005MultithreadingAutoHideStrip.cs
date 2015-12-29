@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal class VS2005AutoHideStrip : AutoHideStripBase
+    internal class VS2005MultithreadingAutoHideStrip : AutoHideStripBase
     {
         private class TabVS2005 : Tab
         {
@@ -178,19 +178,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static GraphicsPath _graphicsPath;
-        internal static GraphicsPath GraphicsPath
+        private readonly GraphicsPath _graphicsPath;
+        private GraphicsPath GraphicsPath
         {
-            get
-            {
-                if (_graphicsPath == null)
-                    _graphicsPath = new GraphicsPath();
-
-                return _graphicsPath;
-            }
+            get { return _graphicsPath; }
         }
 
-        public VS2005AutoHideStrip(DockPanel panel)
+        public VS2005MultithreadingAutoHideStrip(DockPanel panel)
             : base(panel)
         {
             SetStyle(ControlStyles.ResizeRedraw |
@@ -198,6 +192,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.OptimizedDoubleBuffer, true);
             BackColor = SystemColors.ControlLight;
+
+            _graphicsPath = new GraphicsPath();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -518,7 +514,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Rectangle((int)bounds.Left, (int)bounds.Top, (int)bounds.Width, (int)bounds.Height);
         }
 
-        protected internal override int MeasureHeight()
+        protected override int MeasureHeight()
         {
             return Math.Max(ImageGapBottom +
                 ImageGapTop + ImageHeight,

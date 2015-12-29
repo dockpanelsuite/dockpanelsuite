@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2012Light", "WinForm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2003", "WinFormsUI\ThemeVS2003.csproj", "{719F0F69-66DA-438D-B5BB-2D883EF4ACE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2005Multithreading", "WinFormsUI\ThemeVS2005Multithreading.csproj", "{01B09009-BD30-47F2-B318-4B583D606C61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{719F0F69-66DA-438D-B5BB-2D883EF4ACE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{719F0F69-66DA-438D-B5BB-2D883EF4ACE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{719F0F69-66DA-438D-B5BB-2D883EF4ACE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B09009-BD30-47F2-B318-4B583D606C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B09009-BD30-47F2-B318-4B583D606C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B09009-BD30-47F2-B318-4B583D606C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B09009-BD30-47F2-B318-4B583D606C61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

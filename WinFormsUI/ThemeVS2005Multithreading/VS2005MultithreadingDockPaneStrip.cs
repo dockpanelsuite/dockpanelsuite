@@ -3,10 +3,11 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
+using WeifenLuo.WinFormsUI.ThemeVS2005Multithreading;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal class VS2005DockPaneStrip : DockPaneStripBase
+    internal class VS2005MultithreadingDockPaneStrip : DockPaneStripBase
     {
         private class TabVS2005 : Tab
         {
@@ -44,7 +45,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        protected internal override DockPaneStripBase.Tab CreateTab(IDockContent content)
+        protected override DockPaneStripBase.Tab CreateTab(IDockContent content)
         {
             return new TabVS2005(content);
         }
@@ -117,16 +118,18 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         #region Members
 
+        private readonly Bitmap m_imageButtonClose;
+        private readonly Bitmap m_imageButtonWindowList;
+        private readonly Bitmap m_imageButtonWindowListOverflow;
+
         private ContextMenuStrip m_selectMenu;
-        private static Bitmap m_imageButtonClose;
         private InertButton m_buttonClose;
-        private static Bitmap m_imageButtonWindowList;
-        private static Bitmap m_imageButtonWindowListOverflow;
         private InertButton m_buttonWindowList;
         private IContainer m_components;
         private ToolTip m_toolTip;
         private Font m_font;
         private Font m_boldFont;
+        private GraphicsPath m_graphicsPath;
         private int m_startDisplayingTab = 0;
         private int m_endDisplayingTab = 0;
         private int m_firstDisplayingTab = 0;
@@ -205,24 +208,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { _selectMenuMargin = value; }
         }
 
-        private static Bitmap ImageButtonClose
-        {
-            get
-            {
-                if (m_imageButtonClose == null)
-                    m_imageButtonClose = Resources.DockPane_Close;
-
-                return m_imageButtonClose;
-            }
-        }
-
         private InertButton ButtonClose
         {
             get
             {
                 if (m_buttonClose == null)
                 {
-                    m_buttonClose = new InertButton(ImageButtonClose, ImageButtonClose);
+                    m_buttonClose = new InertButton(m_imageButtonClose, m_imageButtonClose);
                     m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
                     m_buttonClose.Click += new EventHandler(Close_Click);
                     Controls.Add(m_buttonClose);
@@ -232,35 +224,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap ImageButtonWindowList
-        {
-            get
-            {
-                if (m_imageButtonWindowList == null)
-                    m_imageButtonWindowList = Resources.DockPane_Option;
-
-                return m_imageButtonWindowList;
-            }
-        }
-
-        private static Bitmap ImageButtonWindowListOverflow
-        {
-            get
-            {
-                if (m_imageButtonWindowListOverflow == null)
-                    m_imageButtonWindowListOverflow = Resources.DockPane_OptionOverflow;
-
-                return m_imageButtonWindowListOverflow;
-            }
-        }
-
         private InertButton ButtonWindowList
         {
             get
             {
                 if (m_buttonWindowList == null)
                 {
-                    m_buttonWindowList = new InertButton(ImageButtonWindowList, ImageButtonWindowListOverflow);
+                    m_buttonWindowList = new InertButton(m_imageButtonWindowList, m_imageButtonWindowListOverflow);
                     m_toolTip.SetToolTip(m_buttonWindowList, ToolTipSelect);
                     m_buttonWindowList.Click += new EventHandler(WindowList_Click);
                     Controls.Add(m_buttonWindowList);
@@ -270,9 +240,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static GraphicsPath GraphicsPath
+        private GraphicsPath GraphicsPath
         {
-            get { return VS2005AutoHideStrip.GraphicsPath; }
+            get { return m_graphicsPath; }
         }
 
         private IContainer Components
@@ -561,7 +531,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         #endregion
 
-        public VS2005DockPaneStrip(DockPane pane)
+        public VS2005MultithreadingDockPaneStrip(DockPane pane)
             : base(pane)
         {
             SetStyle(ControlStyles.ResizeRedraw |
@@ -574,6 +544,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_components = new Container();
             m_toolTip = new ToolTip(Components);
             m_selectMenu = new ContextMenuStrip(Components);
+            m_graphicsPath = new GraphicsPath();
+
+            // clone shared resources
+            lock (typeof(Resources))
+            {
+                m_imageButtonClose = (Bitmap)Resources.DockPane_Close.Clone();
+                m_imageButtonWindowList = (Bitmap)Resources.DockPane_Option.Clone();
+                m_imageButtonWindowListOverflow = (Bitmap)Resources.DockPane_OptionOverflow.Clone();
+            }
 
             ResumeLayout();
         }
@@ -588,11 +567,15 @@ namespace WeifenLuo.WinFormsUI.Docking
                     m_boldFont.Dispose();
                     m_boldFont = null;
                 }
+
+                m_imageButtonClose.Dispose();
+                m_imageButtonWindowList.Dispose();
+                m_imageButtonWindowListOverflow.Dispose();
             }
             base.Dispose(disposing);
         }
 
-        protected internal override int MeasureHeight()
+        protected override int MeasureHeight()
         {
             if (Appearance == DockPane.AppearanceStyle.ToolWindow)
                 return MeasureHeight_ToolWindow();
@@ -895,7 +878,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             DocumentTabsOverflow = overflow;
         }
 
-        protected internal override void EnsureTabVisible(IDockContent content)
+        protected override void EnsureTabVisible(IDockContent content)
         {
             if (Appearance != DockPane.AppearanceStyle.Document || !Tabs.Contains(content))
                 return;
@@ -1465,7 +1448,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockPane.CloseActiveContent();
         }
 
-        protected internal override int HitTest(Point ptMouse)
+        protected override int HitTest(Point ptMouse)
         {
             if (!TabsRectangle.Contains(ptMouse))
                 return -1;
