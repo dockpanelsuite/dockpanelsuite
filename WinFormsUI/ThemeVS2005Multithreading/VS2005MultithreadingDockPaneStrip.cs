@@ -1300,8 +1300,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
             Rectangle rectBack = DrawHelper.RtlTransform(this, rect);
-            rectBack.Width += rect.X;
-            rectBack.X = 0;
+            rectBack.Width += DocumentIconGapLeft;
+            rectBack.X -= DocumentIconGapLeft;
 
             rectText = DrawHelper.RtlTransform(this, rectText);
             rectIcon = DrawHelper.RtlTransform(this, rectIcon);
