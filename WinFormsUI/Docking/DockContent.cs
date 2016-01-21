@@ -24,6 +24,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 this.Font = this.Parent.Font;
         }
 
+        public virtual void OnMaximize()
+        {
+        }
+
         private DockContentHandler m_dockHandler = null;
         [Browsable(false)]
         public DockContentHandler DockHandler

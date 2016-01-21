@@ -97,6 +97,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ActiveTab_Maximize.bmp" />
+    <None Include="Resources\ActiveTabHover_Maximize.bmp" />
+    <None Include="Resources\DockPane_Maximize.bmp" />
+    <None Include="Resources\InactiveTabHover_Maximize.bmp" />
+    <None Include="Resources\LostFocusTab_Maximize.bmp" />
+    <None Include="Resources\LostFocusTabHover_Maximize.bmp" />
     <Content Include="ThemeVS2012Light\Resources\ActiveTabHover_Close.png" />
     <Content Include="ThemeVS2012Light\Resources\ActiveTab_Close.png" />
     <Content Include="ThemeVS2012Light\Resources\DockIndicator_PaneDiamond1.bmp" />

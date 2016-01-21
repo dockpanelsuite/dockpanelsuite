@@ -713,7 +713,20 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (Panes.Contains(pane))
                 return;
 
+            pane.IsMaximizedChanged += pane_IsMaximizedChanged;
+
             Panes.Add(pane);
+        }
+
+        protected virtual void OnIsMaximizedChanged(object sender, EventArgs e)
+        {
+            if (ActiveContent != null)
+                ActiveContent.DockHandler.FloatAt(Screen.PrimaryScreen.WorkingArea);
+        }
+
+        void pane_IsMaximizedChanged(object sender, EventArgs e)
+        {
+            OnIsMaximizedChanged(sender, e);
         }
 
         internal void AddFloatWindow(FloatWindow floatWindow)
