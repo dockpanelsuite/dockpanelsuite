@@ -106,6 +106,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (ToolBar).
+        /// </summary>
+        internal static string DockAreaEditor_ToolBarCheckBoxText {
+            get {
+                return ResourceManager.GetString("DockAreaEditor_ToolBarCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Determines if end user drag and drop docking is allowed..
         /// </summary>
         internal static string DockContent_AllowEndUserDocking_Description {

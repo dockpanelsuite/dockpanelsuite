@@ -129,6 +129,9 @@
   <data name="DockAreaEditor_FloatCheckBoxText" xml:space="preserve">
     <value>(Float)</value>
   </data>
+  <data name="DockAreaEditor_ToolBarCheckBoxText" xml:space="preserve">
+    <value>(ToolBar)</value>
+  </data>
   <data name="DockContent_AllowEndUserDocking_Description" xml:space="preserve">
     <value>Determines if end user drag and drop docking is allowed.</value>
   </data>

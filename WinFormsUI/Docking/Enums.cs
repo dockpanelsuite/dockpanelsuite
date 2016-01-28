@@ -14,7 +14,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         DockRight = 4,
         DockTop = 8,
         DockBottom = 16,
-        Document = 32
+        Document = 32,
+        ToolBar = 64
     }
 
     public enum DockState
@@ -30,7 +31,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         DockLeft = 8,
         DockBottom = 9,
         DockRight = 10,
-        Hidden = 11
+        Hidden = 11,
+        ToolBar = 12
     }
 
     public enum DockAlignment
