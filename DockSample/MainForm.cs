@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
@@ -117,6 +118,8 @@ namespace DockSample
                 return m_outputWindow;
             else if (persistString == typeof(DummyTaskList).ToString())
                 return m_taskList;
+            else if (persistString == typeof(DummyToolBar).ToString())
+                return new DummyToolBar();
             else
             {
                 // DummyDoc overrides GetPersistString to add extra information into persistString.
@@ -147,6 +150,15 @@ namespace DockSample
             m_toolbox.DockPanel = null;
             m_outputWindow.DockPanel = null;
             m_taskList.DockPanel = null;
+
+            // Close all DummyToolBars
+            foreach (IDockContent dockContent in new List<IDockContent>(dockPanel.Contents))
+            {
+                if (dockContent is DummyToolBar)
+                {
+                    dockContent.DockHandler.Close();
+                }
+            }
 
             // Close all other document windows
             CloseAllDocuments();
@@ -337,6 +349,12 @@ namespace DockSample
             }
             else
                 dummyDoc.Show(dockPanel);
+        }
+
+        private void toolBarButtonToolBar_Click(object sender, EventArgs e)
+        {
+			DummyToolBar toolbar = new DummyToolBar();
+			toolbar.Show(dockPanel);
         }
 
         private void menuItemOpen_Click(object sender, System.EventArgs e)
