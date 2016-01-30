@@ -18,6 +18,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // Avoid that sometimes MainForm goes bottom in z-order position
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                ActivateDockPanelForm();
+            }
+            base.OnFormClosing(e);
+        }
+
         private DockContentHandler m_dockHandler = null;
         [Browsable(false)]
         public DockContentHandler DockHandler
@@ -216,6 +226,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         public new void Activate()
         {
             DockHandler.Activate();
+        }
+
+        internal void ActivateDockPanelForm()
+        {
+            Form mainForm = DockPanel != null ? DockPanel.ParentForm : null;
+            
+            if (mainForm != null)
+            {
+                mainForm.Activate();
+                mainForm.BringToFront();
+            }
         }
 
         public new void Hide()
