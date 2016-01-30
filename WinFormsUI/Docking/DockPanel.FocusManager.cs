@@ -505,6 +505,24 @@ namespace WeifenLuo.WinFormsUI.Docking
             private void SetActiveDocument()
             {
                 IDockContent value = ActiveDocumentPane == null ? null : ActiveDocumentPane.ActiveContent;
+                
+                DockContent activeContent = DockPanel.ActiveContent as DockContent;
+
+                // Fix selection of floating documents
+                if (activeContent == null && DockPanel.ActiveDocument != null)
+                {
+                    activeContent = DockPanel.ActiveDocument as DockContent;
+                }
+                if (activeContent != null && (activeContent.DockAreas&DockAreas.Document) != 0
+                    &&
+                    activeContent.DockState != DockState.Document
+                    &&
+                    activeContent.DockState != DockState.Unknown
+                    &&
+                    DockPanel.Contents.Contains(activeContent))
+                {
+                    value = activeContent;
+                }
 
                 if (m_activeDocument == value)
                     return;
