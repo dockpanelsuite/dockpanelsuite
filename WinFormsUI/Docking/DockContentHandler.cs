@@ -154,6 +154,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (ShowHint != DockState.Unknown && ShowHint != DockState.Hidden)
                     return ShowHint;
 
+                if ((DockAreas & DockAreas.ToolBar) != 0)
+                    return DockState.ToolBar;
+                if ((DockAreas & DockAreas.Float) != 0 && (DockAreas & DockAreas.Document) == 0)
+                    return DockState.Float;
+
                 if ((DockAreas & DockAreas.Document) != 0)
                     return DockState.Document;
                 if ((DockAreas & DockAreas.DockRight) != 0)
@@ -176,6 +181,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (ShowHint != DockState.Unknown)
                     return ShowHint;
 
+                if ((DockAreas & DockAreas.ToolBar) != 0 || ((DockAreas&DockAreas.Float) != 0 && (DockAreas&DockAreas.Document) == 0))
+                    return DockState.Float;
                 if ((DockAreas & DockAreas.Document) != 0)
                     return DockState.Document;
                 if ((DockAreas & DockAreas.DockRight) != 0)
@@ -937,7 +944,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 IsHidden = true;	// to reduce the screen flicker
                 FloatPane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.Float, false);
-                FloatPane.FloatWindow.StartPosition = FormStartPosition.Manual;
+            //  FloatPane.FloatWindow.StartPosition = FormStartPosition.Manual;
             }
 
             FloatPane.FloatWindow.Bounds = floatWindowBounds;
@@ -945,6 +952,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             Show(dockPanel, DockState.Float);
             Activate();
 
+            // Preserve original bounds of the window
+            Rectangle bounds = FloatPane.FloatWindow.Bounds;
+            if (bounds != floatWindowBounds)
+            {
+                FloatWindow floatWindow = FloatPane.FloatWindow;
+                floatWindow.SuspendLayout();
+                floatWindow.Bounds = floatWindowBounds;
+                floatWindow.ResumeLayout(true);
+            }
             dockPanel.ResumeLayout(true, true);
         }
 
@@ -985,12 +1001,20 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void Close()
         {
+            bool detachDockToolStrip = Form.Parent is DockToolStrip && (this.DockAreas&Docking.DockAreas.ToolBar) != 0;
+            Control parentForm = Form.Parent;
+
             DockPanel dockPanel = DockPanel;
             if (dockPanel != null)
                 dockPanel.SuspendLayout(true);
             Form.Close();
             if (dockPanel != null)
                 dockPanel.ResumeLayout(true, true);
+
+            if (detachDockToolStrip && parentForm.Parent != null)
+            {
+                parentForm.Parent.Controls.Remove(parentForm);
+            }
         }
 
         private DockPaneStripBase.Tab m_tab = null;
@@ -1080,17 +1104,53 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (Pane == pane && pane.DisplayingContents.Count == 1)
                 return false;
 
+            if (DockUtils.ContainsToolBar(Pane) || DockUtils.ContainsToolBar(pane))
+                return false;
+
             return true;
+        }
+
+        internal void SetDockState(DockState visibleState, bool dockStateAsToolBar)
+        {
+            int dockState = (int)visibleState;
+            if (dockStateAsToolBar) dockState += (int)DockState.ToolBar;
+            if (m_dockState != (DockState)dockState) { m_dockState = (DockState)dockState; OnDockStateChanged(EventArgs.Empty); }
+        }
+        internal DockStyle ToolBarStyle
+        {
+            get
+            {
+                if (IsFloat && (int)m_dockState >= (int)DockState.ToolBar)
+                {
+                    DockState dockState = (DockState)((int)m_dockState-(int)DockState.ToolBar);
+
+                    switch (dockState)
+                    {
+                        case DockState.DockLeft:   return DockStyle.Left;
+                        case DockState.DockTop:	   return DockStyle.Top;
+                        case DockState.DockRight:  return DockStyle.Right;
+                        case DockState.DockBottom: return DockStyle.Bottom;
+                    }
+                }
+                return DockStyle.None;
+            }
         }
 
         Rectangle IDockDragSource.BeginDrag(Point ptMouse)
         {
             Size size;
             DockPane floatPane = this.FloatPane;
-            if (DockState == DockState.Float || floatPane == null || floatPane.FloatWindow.NestedPanes.Count != 1)
-                size = DockPanel.DefaultFloatWindowSize;
+
+            // Calculate the drag size using if possible the original window size
+            if (DockState == DockState.Float && floatPane != null && floatPane.FloatWindow.NestedPanes.Count != 1)
+            {
+                DockPane pane = this.Pane;
+                if (pane != null) size = pane.ClientSize; else size = DockPanel.DefaultFloatWindowSize;
+            }
             else
-                size = floatPane.FloatWindow.Size;
+            {
+                size = floatPane != null ? floatPane.FloatWindow.Size : (m_form != null ? m_form.Size : DockPanel.DefaultFloatWindowSize);
+            }
 
             Point location;
             Rectangle rectPane = Pane.ClientRectangle;

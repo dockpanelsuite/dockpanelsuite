@@ -50,6 +50,8 @@
     <Compile Include="Docking\DockPanel.DragHandler.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Docking\DockToolStrip.cs" />
+    <Compile Include="Docking\DockUtils.cs" />
     <Compile Include="Docking\DragForm.cs">
       <SubType>Form</SubType>
     </Compile>

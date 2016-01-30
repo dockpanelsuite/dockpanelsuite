@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -313,11 +314,19 @@ namespace WeifenLuo.WinFormsUI.Docking
                 else if (dock == DockStyle.Left)
                 {
                     int width = dockPanel.GetDockWindowSize(DockState.DockLeft);
+
+                    // Define the width according current DragForm
+                    if (m_dragForm != null && m_dragForm.Width > 0) width = m_dragForm.Width;
+
                     rect = new Rectangle(rect.X, rect.Y, width, rect.Height);
                 }
                 else if (dock == DockStyle.Right)
                 {
                     int width = dockPanel.GetDockWindowSize(DockState.DockRight);
+
+                    // Define the width according current DragForm
+                    if (m_dragForm != null && m_dragForm.Width > 0) width = m_dragForm.Width;
+
                     rect = new Rectangle(rect.Right - width, rect.Y, width, rect.Height);
                 }
                 else if (dock == DockStyle.Fill)
@@ -638,6 +647,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (DockPanel.DockWindows[dockState].Visible)
                         return false;
 
+                    if (DockUtils.ContainsToolBar(DragHandler.DragSource)) 
+                        return false;
+
                     return DragHandler.DragSource.IsDockStateValid(dockState);
                 }
 
@@ -647,6 +659,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return false;
 
                     if (!DockPanel.AllowEndUserNestedDocking)
+                        return false;
+
+                    if (DockUtils.ContainsToolBar(DragHandler.DragSource)) 
                         return false;
 
                     return DragHandler.DragSource.CanDockTo(DockPane);
@@ -757,8 +772,42 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 EndDrag(abort);
 
+                // Move to a DockToolStrip if it is needed
+                ToolStripPanel toolStripPanel = null;
+                DockContent dockContent = null;
+                if ((toolStripPanel = DockUtils.ShouldToolStripPanelVisible(DragSource, out dockContent)) != null)
+                {
+                    Rectangle rectangle = FloatOutlineBounds;
+                    rectangle.Offset(Control.MousePosition.X - StartMousePosition.X, Control.MousePosition.Y - StartMousePosition.Y);
+                    
+                    Point location = rectangle.Location;
+                    location = toolStripPanel.PointToClient(location);
+                    DockUtils.MakeToolStrip(toolStripPanel, dockContent, location, true);
+                }
+
                 // Queue a request to layout all children controls
                 DockPanel.PerformMdiClientLayout();
+
+                // Fix splitter position to the width of first window
+                if (DragSource is FloatWindow)
+                {
+                    DockPanel dockPanel = this.DockPanel;
+                    DockStyle dockStyle = Outline.Dock;
+
+                    if (dockStyle == DockStyle.Left || dockStyle == DockStyle.Right)
+                    {
+                        DockWindow dockWindow = dockPanel.DockWindows[dockStyle == DockStyle.Left ? DockState.DockLeft : DockState.DockRight];
+                        
+                        if (dockWindow.NestedPanes.Count == 1)
+                        {
+                            FloatWindow floatWindow = this.DragSource as FloatWindow;							
+                            int offset = dockWindow.Width - floatWindow.Width;
+
+                            ISplitterDragSource splitterOb = dockWindow as ISplitterDragSource;
+                            splitterOb.MoveSplitter(dockStyle == DockStyle.Left ? -offset : offset);
+                        }
+                    }
+                }
 
                 DockPanel.ResumeLayout(true, true);
 
@@ -803,6 +852,52 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         Rectangle rect = FloatOutlineBounds;
                         rect.Offset(Control.MousePosition.X - StartMousePosition.X, Control.MousePosition.Y - StartMousePosition.Y);
+                        
+                        // Assign the position when we are dragging a ToolStrip
+                        ToolStripPanel toolStripPanel = null;
+                        if ((toolStripPanel = DockUtils.ShouldToolStripPanelVisible(DragSource)) != null)
+                        {
+                            DockPanel dockPanel = (DragSource as FloatWindow).DockPanel;
+                            Rectangle rectBounds = dockPanel.RectangleToScreen(dockPanel.DockArea);
+                            rect.Height -= SystemInformation.ToolWindowCaptionHeight;
+
+                            if (toolStripPanel.Orientation == Orientation.Vertical)
+                            {
+                                int wd = Math.Max(rect.Width, rect.Height);
+                                int hg = Math.Min(rect.Width, rect.Height);
+                                rect = new Rectangle(rect.Location, new Size(hg, wd));
+                            }
+                            else
+                            {
+                                int wd = Math.Min(rect.Width, rect.Height);
+                                int hg = Math.Max(rect.Width, rect.Height);
+                                rect = new Rectangle(rect.Location, new Size(hg, wd));
+                            }
+                            
+                            switch (toolStripPanel.Dock)
+                            {
+                                case DockStyle.Left:
+                                    rect.X = rectBounds.Left;
+                                    break;
+                                case DockStyle.Top:
+                                    rect.Y = rectBounds.Top;
+                                    break;
+                                case DockStyle.Right:
+                                    rect.X = rectBounds.Right - rect.Width;
+                                    break;
+                                case DockStyle.Bottom:
+                                    rect.Y = rectBounds.Bottom - rect.Height;
+                                    break;
+                            }
+                            if (rect.Right > rectBounds.Right) rect.X -= rect.Right - rectBounds.Right;
+                            if (rect.Bottom > rectBounds.Bottom) rect.Y -= rect.Bottom - rectBounds.Bottom;
+                            rect.X = Math.Max(rect.X, rectBounds.Left); 
+                            rect.Y = Math.Max(rect.Y, rectBounds.Top);
+
+                            Cursor.Current = Cursors.SizeAll;
+                            Outline.Show(rect);
+                            return;
+                        }
                         Outline.Show(rect);
                     }
                 }

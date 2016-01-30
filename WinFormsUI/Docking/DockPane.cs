@@ -115,7 +115,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             else if (prevPane != null)
                 DockTo(prevPane.NestedPanesContainer, prevPane, alignment, proportion);
 
-            SetDockState(dockState);
+            SetDockState(dockState, content);
             if (show)
                 content.DockHandler.Pane = this;
             else if (this.IsFloat)
@@ -868,14 +868,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        public DockPane SetDockState(DockState value)
+        public DockPane SetDockState(DockState value, IDockContent currentContent = null)
         {
             if (value == DockState.Unknown || value == DockState.Hidden)
                 throw new InvalidOperationException(Strings.DockPane_SetDockState_InvalidState);
 
             if ((value == DockState.Float) == this.IsFloat)
             {
-                InternalSetDockState(value);
+                InternalSetDockState(value, currentContent);
                 return this;
             }
 
@@ -908,7 +908,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return pane;
         }
 
-        private void InternalSetDockState(DockState value)
+        private void InternalSetDockState(DockState value, IDockContent currentContent)
         {
             if (m_dockState == value)
                 return;
@@ -927,7 +927,24 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (!IsFloat)
                 DockWindow = DockPanel.DockWindows[DockState];
             else if (FloatWindow == null)
-                FloatWindow = DockPanel.FloatWindowFactory.CreateFloatWindow(DockPanel, this);
+            {
+                if (currentContent != null)
+                {
+                    Size borderSize = SystemInformation.ToolWindowCaptionButtonSize;
+                    Rectangle bounds = currentContent.DockHandler.Form.Bounds;
+                    bounds.Height += borderSize.Width/2 + SystemInformation.ToolWindowCaptionHeight;
+
+                    FloatWindow = DockPanel.FloatWindowFactory.CreateFloatWindow(DockPanel, this, bounds);
+                    if (currentContent is Form)
+                    {
+                        Form tempForm = currentContent as Form;
+                        if (!tempForm.MaximumSize.IsEmpty) FloatWindow.MaximumSize = tempForm.MaximumSize;
+                        if (!tempForm.MinimumSize.IsEmpty) FloatWindow.MinimumSize = new Size(tempForm.MinimumSize.Width+borderSize.Width/2, tempForm.MinimumSize.Height+borderSize.Height/2+SystemInformation.ToolWindowCaptionHeight);
+                    }
+                }
+                else
+                    FloatWindow = DockPanel.FloatWindowFactory.CreateFloatWindow(DockPanel, this);
+            }
 
             if (contentFocused != null)
             {
@@ -1236,6 +1253,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (pane == this)
                 return false;
 
+            if (DockUtils.ContainsToolBar(this) || DockUtils.ContainsToolBar(pane)) 
+                return false;
+
             return true;
         }
 
@@ -1245,10 +1265,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             Size size;
 
             DockPane floatPane = ActiveContent.DockHandler.FloatPane;
-            if (DockState == DockState.Float || floatPane == null || floatPane.FloatWindow.NestedPanes.Count != 1)
-                size = DockPanel.DefaultFloatWindowSize;
+
+            if (DockState == DockState.Float && floatPane != null && floatPane.FloatWindow.NestedPanes.Count != 1)
+            {
+                DockPane pane = m_activeContent != null && m_activeContent.DockHandler != null ? m_activeContent.DockHandler.Pane : null;
+                if (pane != null) size = pane.ClientSize; else size = DockPanel.DefaultFloatWindowSize;
+            }
             else
-                size = floatPane.FloatWindow.Size;
+            {
+                size = floatPane != null ? floatPane.FloatWindow.Size : DockPanel.DefaultFloatWindowSize;
+            }
 
             if (ptMouse.X > location.X + size.Width)
                 location.X += ptMouse.X - (location.X + size.Width) + Measures.SplitterSize;

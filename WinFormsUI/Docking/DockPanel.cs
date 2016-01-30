@@ -50,6 +50,54 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             SuspendLayout();
 
+            ToolStripPanel topToolStripPanel = new ToolStripPanel();
+            ToolStripPanel leftToolStripPanel = new ToolStripPanel();
+            ToolStripPanel rightToolStripPanel = new ToolStripPanel();
+            ToolStripPanel bottomToolStripPanel = new ToolStripPanel();
+
+            Size sz = this.ClientSize;
+            // 
+            // TopToolStripPanel
+            // 
+            topToolStripPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            topToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            topToolStripPanel.Name = "TopToolStripPanel";
+            topToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            topToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            topToolStripPanel.Size = new System.Drawing.Size(sz.Width, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            leftToolStripPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            leftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            leftToolStripPanel.Name = "LeftToolStripPanel";
+            leftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Vertical;
+            leftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            leftToolStripPanel.Size = new System.Drawing.Size(0, sz.Height);
+            // 
+            // RightToolStripPanel
+            // 
+            rightToolStripPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            rightToolStripPanel.Location = new System.Drawing.Point(sz.Width, 0);
+            rightToolStripPanel.Name = "RightToolStripPanel";
+            rightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Vertical;
+            rightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            rightToolStripPanel.Size = new System.Drawing.Size(0, sz.Height);
+            // 
+            // BottomToolStripPanel
+            // 
+            bottomToolStripPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            bottomToolStripPanel.Location = new System.Drawing.Point(0, sz.Height);
+            bottomToolStripPanel.Name = "BottomToolStripPanel";
+            bottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            bottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            bottomToolStripPanel.Size = new System.Drawing.Size(sz.Width, 0);
+
+            Controls.Add(bottomToolStripPanel);
+            Controls.Add(rightToolStripPanel);
+            Controls.Add(leftToolStripPanel);
+            Controls.Add(topToolStripPanel);
+
             m_autoHideWindow = Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
             m_autoHideWindow.Visible = false;
             m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged; 
@@ -63,6 +111,37 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             m_dummyContent = new DockContent();
             ResumeLayout();
+        }
+
+        /// <summary> Get the specified DockStyle-ToolStripPanel </summary>
+        public ToolStripPanel GetToolStripPanel(DockStyle dockStyle)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is ToolStripPanel && control.Dock == dockStyle)
+                {
+                    return control as ToolStripPanel;
+                }
+            }
+            return null;
+        }
+        /// <summary> Get the full ToolStripPanel collection managed </summary>
+        public ToolStripPanel[] ToolStripPanels
+        {
+            get
+            {
+                int index = 0;
+                ToolStripPanel[] toolStripPanels = new ToolStripPanel[4];
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is ToolStripPanel)
+                    {
+                        toolStripPanels[index++] = control as ToolStripPanel;
+                    }
+                }
+                return toolStripPanels;
+            }
         }
 
         private Color m_BackColor;
@@ -697,13 +776,16 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            if (DockBackColor != BackColor && DockBackColor.A > 0)
+            {
+                Graphics g = e.Graphics;
+                
+                using (SolidBrush bgBrush = new SolidBrush(DockBackColor))
+                {
+                    g.FillRectangle(bgBrush, ClientRectangle);
+                }
+            }
             base.OnPaint(e);
-
-            if (DockBackColor == BackColor) return;
-
-            Graphics g = e.Graphics;
-            SolidBrush bgBrush = new SolidBrush(DockBackColor);
-            g.FillRectangle(bgBrush, ClientRectangle);
         }
 
         internal void AddContent(IDockContent content)
@@ -908,6 +990,27 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
                 if (DockWindows[DockState.DockBottom].Visible)
                     rectDocumentBounds.Height -= DockWindows[DockState.DockBottom].Height;
+
+                ToolStripPanel toolStripPanel = null;
+
+                if ((toolStripPanel = this.GetToolStripPanel(DockStyle.Left)) != null && toolStripPanel.Visible && toolStripPanel.Width > 0)
+                {
+                    rectDocumentBounds.X += toolStripPanel.Width;
+                    rectDocumentBounds.Width -= toolStripPanel.Width;
+                }
+                if ((toolStripPanel = this.GetToolStripPanel(DockStyle.Right)) != null && toolStripPanel.Visible && toolStripPanel.Width > 0)
+                {
+                    rectDocumentBounds.Width -= toolStripPanel.Width;
+                }
+                if ((toolStripPanel = this.GetToolStripPanel(DockStyle.Top)) != null && toolStripPanel.Visible && toolStripPanel.Height > 0)
+                {
+                    rectDocumentBounds.Y += toolStripPanel.Height;
+                    rectDocumentBounds.Height -= toolStripPanel.Height;
+                }
+                if ((toolStripPanel = this.GetToolStripPanel(DockStyle.Bottom)) != null && toolStripPanel.Visible && toolStripPanel.Height > 0)
+                {
+                    rectDocumentBounds.Height -= toolStripPanel.Height;
+                }
 
                 return rectDocumentBounds;
 
