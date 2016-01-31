@@ -51,7 +51,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
             base.OnMouseMove(e);
-		}
+        }
 
         /// <summary> Original OrientationStyle value. </summary>
         private readonly DockStyle m_originalOrientationStyle = DockStyle.None;

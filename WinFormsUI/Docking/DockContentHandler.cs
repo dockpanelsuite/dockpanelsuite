@@ -1126,10 +1126,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     switch (dockState)
                     {
-                        case DockState.DockLeft:   return DockStyle.Left;
-                        case DockState.DockTop:	   return DockStyle.Top;
-                        case DockState.DockRight:  return DockStyle.Right;
-                        case DockState.DockBottom: return DockStyle.Bottom;
+                        case DockState.DockLeft:    return DockStyle.Left;
+                        case DockState.DockTop:     return DockStyle.Top;
+                        case DockState.DockRight:   return DockStyle.Right;
+                        case DockState.DockBottom:  return DockStyle.Bottom;
                     }
                 }
                 return DockStyle.None;

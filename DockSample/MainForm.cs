@@ -353,8 +353,8 @@ namespace DockSample
 
         private void toolBarButtonToolBar_Click(object sender, EventArgs e)
         {
-			DummyToolBar toolbar = new DummyToolBar();
-			toolbar.Show(dockPanel);
+            DummyToolBar toolbar = new DummyToolBar();
+            toolbar.Show(dockPanel);
         }
 
         private void menuItemOpen_Click(object sender, System.EventArgs e)

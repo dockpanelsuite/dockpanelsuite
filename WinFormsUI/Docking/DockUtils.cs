@@ -38,7 +38,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         /// <summary> Search the ToolStrip owner of the specified DockContent </summary>
         public static ToolStrip FindToolStrip(DockContent dockContent)
-	    {
+        {
             foreach (ToolStripPanel toolStripPanel in dockContent.DockPanel.ToolStripPanels)
             {
                 foreach (ToolStrip toolStrip in toolStripPanel.Controls)
@@ -52,8 +52,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
             }
-		    return null;
-	    }
+            return null;
+        }
         
         /// <summary> Creates a new ToolStrip for the specified DockContent </summary>
         public static ToolStrip MakeToolStrip(ToolStripPanel ownerPanel, DockContent dockContent, Point location, bool perfomLayout)
@@ -77,7 +77,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 ownerPanel.ResumeLayout(true);
             }
             return toolStrip;
-	    }
+        }
         
         /// <summary> Returns the ToolStripPanel for the specified IDockDragSource </summary>
         public static ToolStripPanel ShouldToolStripPanelVisible(IDockDragSource checkObject, out DockContent currentContent)
@@ -97,7 +97,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 int splitterSize = 3 * Measures.SplitterSize;
                 Rectangle rectDock = new Rectangle(rect.Left + splitterSize, rect.Top + splitterSize, rect.Width - 2 * splitterSize, rect.Height - 2 * splitterSize);
 
-			    if ((currentContent.DockAreas&DockAreas.DockLeft) != 0)
+                if ((currentContent.DockAreas&DockAreas.DockLeft) != 0)
                 {
                     ToolStripPanel toolStripPanel = dockPanel.GetToolStripPanel(DockStyle.Left);
                     if (toolStripPanel.Bounds.Contains(point) || (toolStripPanel.Bounds.Width == 0 && point.X < rectDock.Left)) return toolStripPanel;
@@ -138,7 +138,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
             return null;
-	    }
+        }
 
         /// <summary> Returns the DockState for the specified ToolStripPanel </summary>
         private static DockState GetDockStatePanel(ToolStripPanel toolStripPanel)
