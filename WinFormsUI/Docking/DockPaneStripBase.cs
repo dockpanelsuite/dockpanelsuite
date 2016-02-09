@@ -312,7 +312,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         public class DockPaneStripAccessibleObject : Control.ControlAccessibleObject
         {
             private DockPaneStripBase _strip;
-            private DockState _state;
 
             public DockPaneStripAccessibleObject(DockPaneStripBase strip)
                 : base(strip)

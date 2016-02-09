@@ -562,7 +562,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 ((Control)NestedPanesContainer).PerformLayout();
         }
 
-        protected override void OnLayout(LayoutEventArgs levent)
+        protected override void OnLayout(LayoutEventArgs e)
         {
             SetIsHidden(DisplayingContents.Count == 0);
             if (!IsHidden)
@@ -580,7 +580,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
 
-            base.OnLayout(levent);
+            base.OnLayout(e);
         }
 
         internal void SetContentBounds()

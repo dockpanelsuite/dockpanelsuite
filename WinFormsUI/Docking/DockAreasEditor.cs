@@ -126,14 +126,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             return UITypeEditorEditStyle.DropDown;
         }
 
-        public override object EditValue(ITypeDescriptorContext context, IServiceProvider sp, object value)
+        public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             if (m_ui == null)
                 m_ui = new DockAreasEditor.DockAreasEditorControl();
 
             m_ui.SetStates((DockAreas)value);
 
-            IWindowsFormsEditorService edSvc = (IWindowsFormsEditorService)sp.GetService(typeof(IWindowsFormsEditorService));
+            IWindowsFormsEditorService edSvc = (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
             edSvc.DropDownControl(m_ui);
 
             return m_ui.DockAreas;

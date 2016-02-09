@@ -1027,7 +1027,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         /// <exclude/>
-        protected override int HitTest(Point ptMouse)
+        protected override int HitTest(Point point)
         {
             Rectangle rectTabStrip = TabsRectangle;
 
@@ -1035,7 +1035,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 Rectangle rectTab = GetTabRectangle(i);
                 rectTab.Intersect(rectTabStrip);
-                if (rectTab.Contains(ptMouse))
+                if (rectTab.Contains(point))
                     return i;
             }
             return -1;

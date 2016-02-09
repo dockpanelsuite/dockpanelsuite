@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    public abstract partial class AutoHideStripBase : Control
+    public abstract class AutoHideStripBase : Control
     {
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         protected class Tab : IDisposable

@@ -504,9 +504,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rect.Height, rect.Width);
         }
 
-        protected override IDockContent HitTest(Point ptMouse)
+        protected override IDockContent HitTest(Point point)
         {
-            Tab tab = TabHitTest(ptMouse);
+            Tab tab = TabHitTest(point);
 
             if (tab != null)
                 return tab.Content;

@@ -38,9 +38,9 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
         }
 
-        protected override string GetLocalizedString(string key)
+        protected override string GetLocalizedString(string value)
         {
-            return ResourceHelper.GetString(key);
+            return ResourceHelper.GetString(value);
         }
     }
 }

@@ -318,11 +318,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         /// <exclude/>
-        protected override void OnMouseDown(MouseEventArgs e)
+        protected override void OnMouseDown(MouseEventArgs mevent)
         {
-            base.OnMouseDown(e);
+            base.OnMouseDown(mevent);
 
-            if (e.Button != MouseButtons.Left)
+            if (mevent.Button != MouseButtons.Left)
                 return;
 
             if (m_mouseCapture == false || m_mouseOver == false)
@@ -351,11 +351,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         /// <exclude/>
-        protected override void OnMouseUp(MouseEventArgs e)
+        protected override void OnMouseUp(MouseEventArgs mevent)
         {
-            base.OnMouseUp(e);
+            base.OnMouseUp(mevent);
 
-            if (e.Button != MouseButtons.Left)
+            if (mevent.Button != MouseButtons.Left)
                 return;
 
             if (m_mouseOver == true || m_mouseCapture == true)
@@ -372,12 +372,12 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         /// <exclude/>
-        protected override void OnMouseMove(MouseEventArgs e)
+        protected override void OnMouseMove(MouseEventArgs mevent)
         {
-            base.OnMouseMove(e);
+            base.OnMouseMove(mevent);
 
             // Is mouse point inside our client rectangle
-            bool over = this.ClientRectangle.Contains(new Point(e.X, e.Y));
+            bool over = this.ClientRectangle.Contains(new Point(mevent.X, mevent.Y));
 
             // If entering the button area or leaving the button area...
             if (over != m_mouseOver)
@@ -421,13 +421,13 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         /// <exclude/>
-        protected override void OnPaint(PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs pevent)
         {
-            base.OnPaint(e);
-            DrawBackground(e.Graphics);
-            DrawImage(e.Graphics);
-            DrawText(e.Graphics);
-            DrawBorder(e.Graphics);
+            base.OnPaint(pevent);
+            DrawBackground(pevent.Graphics);
+            DrawImage(pevent.Graphics);
+            DrawText(pevent.Graphics);
+            DrawBorder(pevent.Graphics);
         }
 
         private void DrawBackground(Graphics g)

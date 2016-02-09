@@ -1465,15 +1465,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockPane.CloseActiveContent();
         }
 
-        protected internal override int HitTest(Point ptMouse)
+        protected internal override int HitTest(Point point)
         {
-            if (!TabsRectangle.Contains(ptMouse))
+            if (!TabsRectangle.Contains(point))
                 return -1;
 
             foreach (Tab tab in Tabs)
             {
                 GraphicsPath path = GetTabOutline(tab, true, false);
-                if (path.IsVisible(ptMouse))
+                if (path.IsVisible(point))
                     return Tabs.IndexOf(tab);
             }
             return -1;
