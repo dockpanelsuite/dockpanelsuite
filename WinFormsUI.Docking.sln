@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsUI", "WinFormsUI\WinFormsUI.csproj", "{C75532C4-765B-418E-B09B-46D36B2ABDB1}"
 EndProject
@@ -13,6 +13,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2003", "WinFormsUI\ThemeVS2003.csproj", "{719F0F69-66DA-438D-B5BB-2D883EF4ACE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2005Multithreading", "WinFormsUI\ThemeVS2005Multithreading.csproj", "{01B09009-BD30-47F2-B318-4B583D606C61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{718A6D59-6451-4C5F-A456-399CC9F47B97}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\DockPanelSuite.nuspec = .nuget\DockPanelSuite.nuspec
+		.nuget\ThemeVS2003.nuspec = .nuget\ThemeVS2003.nuspec
+		.nuget\ThemeVS2005Multithreading.nuspec = .nuget\ThemeVS2005Multithreading.nuspec
+		.nuget\ThemeVS2012Light.nuspec = .nuget\ThemeVS2012Light.nuspec
+		.nuget\ThemeVS2013Blue.nuspec = .nuget\ThemeVS2013Blue.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

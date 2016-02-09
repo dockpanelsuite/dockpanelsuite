@@ -27,7 +27,7 @@ Initial release of this theme as a separate assembly.
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net20\ThemeVS2012Light.dll" target="lib\net20\ThemeVS2012Light.dll" />
-    <file src="..\bin\net40\ThemeVS2012Light.dll" target="lib\net40\ThemeVS2012Light.dll" />
+    <file src="..\bin\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" target="lib\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" />
+    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" />
   </files>
 </package>
