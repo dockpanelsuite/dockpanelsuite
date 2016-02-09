@@ -13,6 +13,11 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// </summary>
     public class VS2012LightTheme : ThemeBase
     {
+        public VS2012LightTheme()
+        {
+            Skin = CreateVisualStudio2012Light();
+        }
+
         /// <summary>
         /// Applies the specified theme to the dock panel.
         /// </summary>
@@ -35,7 +40,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.PaneIndicatorFactory = new VS2012LightPaneIndicatorFactory();
             dockPanel.Extender.PanelIndicatorFactory = new VS2012LightPanelIndicatorFactory();
             dockPanel.Extender.DockOutlineFactory = new VS2012LightDockOutlineFactory();
-            dockPanel.Skin = CreateVisualStudio2012Light();
+            Skin = CreateVisualStudio2012Light();
         }
 
         private class VS2012LightDockOutlineFactory : DockPanelExtender.IDockOutlineFactory

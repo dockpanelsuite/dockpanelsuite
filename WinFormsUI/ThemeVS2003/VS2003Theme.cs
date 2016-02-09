@@ -10,6 +10,11 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// </summary>
     public class VS2003Theme : ThemeBase
     {
+        public VS2003Theme()
+        {
+            Skin = CreateVisualStudio2003();
+        }
+
         /// <summary>
         /// Applies the specified theme to the dock panel.
         /// </summary>
@@ -32,7 +37,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.PaneIndicatorFactory = null;
             dockPanel.Extender.PanelIndicatorFactory = null;
             dockPanel.Extender.DockOutlineFactory = null;
-            dockPanel.Skin = CreateVisualStudio2003();
         }
 
         internal static DockPanelSkin CreateVisualStudio2003()

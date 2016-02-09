@@ -10,6 +10,11 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// </summary>
     public class VS2005MultithreadingTheme : ThemeBase
     {
+        public VS2005MultithreadingTheme()
+        {
+            Skin = CreateVisualStudio2005();
+        }
+
         /// <summary>
         /// Applies the specified theme to the dock panel.
         /// </summary>
@@ -32,7 +37,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.PaneIndicatorFactory = new VS2005MultithreadingPaneIndicatorFactory();
             dockPanel.Extender.PanelIndicatorFactory = new VS2005MultithreadingPanelIndicatorFactory();
             dockPanel.Extender.DockOutlineFactory = null;
-            dockPanel.Skin = CreateVisualStudio2005();
         }
 
         internal static DockPanelSkin CreateVisualStudio2005()

@@ -6,18 +6,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 
     public partial class DockPanel
     {
-        private DockPanelSkin m_dockPanelSkin = VS2005Theme.CreateVisualStudio2005();
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockPanelSkin")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [Obsolete("Please use Theme instead.")]
         [Browsable(false)]
         public DockPanelSkin Skin
         {
-            get { return m_dockPanelSkin;  }
-            set { m_dockPanelSkin = value; }
+            get { return m_dockPanelTheme.Skin;  }
         }
-        
+
         private ThemeBase m_dockPanelTheme = new VS2005Theme();
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockPanelTheme")]

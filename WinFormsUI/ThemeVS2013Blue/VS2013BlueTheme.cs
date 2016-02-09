@@ -13,6 +13,11 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// </summary>
     public class VS2013BlueTheme : ThemeBase
     {
+        public VS2013BlueTheme()
+        {
+            Skin = CreateVisualStudio2013Blue();
+        }
+
         /// <summary>
         /// Applies the specified theme to the dock panel.
         /// </summary>
@@ -35,7 +40,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.PaneIndicatorFactory = new VS2013BluePaneIndicatorFactory();
             dockPanel.Extender.PanelIndicatorFactory = new VS2013BluePanelIndicatorFactory();
             dockPanel.Extender.DockOutlineFactory = new VS2013BlueDockOutlineFactory();
-            dockPanel.Skin = CreateVisualStudio2013Blue();
         }
 
         private class VS2013BlueDockOutlineFactory : DockPanelExtender.IDockOutlineFactory
