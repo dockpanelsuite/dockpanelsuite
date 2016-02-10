@@ -747,7 +747,19 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (Form.MdiParent != DockPanel.ParentForm)
                 {
                     FlagClipWindow = true;
-                    Form.MdiParent = DockPanel.ParentForm;
+
+                    // The content form should inherit the font of the dock panel, not the font of
+                    // the dock panel's parent form. However, the content form's font value should
+                    // not be overwritten if it has been explicitly set to a non-default value.
+                    if (Form.Font == Control.DefaultFont)
+                    {
+                        Form.MdiParent = DockPanel.ParentForm;
+                        Form.Font = DockPanel.Font;
+                    }
+                    else
+                    {
+                        Form.MdiParent = DockPanel.ParentForm;
+                    }
                 }
             }
             else
