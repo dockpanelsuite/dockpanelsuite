@@ -1389,6 +1389,10 @@ namespace WeifenLuo.WinFormsUI.Docking
         private void Close_Click(object sender, EventArgs e)
         {
             DockPane.CloseActiveContent();
+            if (PatchController.EnableMemoryLeakFix)
+            {
+                ContentClosed();
+            }
         }
 
         protected override int HitTest(Point point)
