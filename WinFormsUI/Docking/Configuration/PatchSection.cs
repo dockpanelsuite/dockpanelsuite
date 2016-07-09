@@ -7,7 +7,7 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         [ConfigurationProperty("enableAll", DefaultValue = null)]
         public bool? EnableAll
         {
-            get { return (bool)base["enableAll"]; }
+            get { return (bool?)base["enableAll"]; }
         }
 
         [ConfigurationProperty("enableHighDpi", DefaultValue = true)]

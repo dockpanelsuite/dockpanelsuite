@@ -7,11 +7,16 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     public static class PatchController
     {
-        public static bool? EnableAll { get; set; }
+        public static bool? EnableAll { private get; set; }
 
         private static bool? _highDpi;
 
-        public static bool EnableHighDpiSupport
+        internal static void Reset()
+        {
+            EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = null;
+        }
+
+        public static bool EnableHighDpi
         {
             get
             {
