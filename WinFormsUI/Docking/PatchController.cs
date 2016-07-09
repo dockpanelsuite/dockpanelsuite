@@ -11,7 +11,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private static bool? _highDpi;
 
-        public static bool HighDpiSupport
+        public static bool EnableHighDpiSupport
         {
             get
             {
@@ -22,7 +22,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 if (EnableAll != null)
                 {
-                    return EnableAll.Value;
+                    return (_highDpi = EnableAll).Value;
                 }
 
                 var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
@@ -30,10 +30,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     if (section.EnableAll != null)
                     {
-                        return section.EnableAll.Value;
+                        return (_highDpi = section.EnableAll).Value;
                     }
 
-                    return section.EnableHighDpi;
+                    return (_highDpi = section.EnableHighDpi).Value;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableHighDpi");
@@ -42,7 +42,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     var enable = false;
                     if (bool.TryParse(environment, out enable))
                     {
-                        return enable;
+                        return (_highDpi = enable).Value;
                     }
                 }
 
@@ -56,7 +56,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return enable;
+                                return (_highDpi = enable).Value;
                             }
                         }
                     }
@@ -72,7 +72,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return enable;
+                                return (_highDpi = enable).Value;
                             }
                         }
                     }
