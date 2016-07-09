@@ -588,7 +588,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (DockPane.IsAutoHide || Tabs.Count <= 1)
                 return 0;
 
-            int height = Math.Max(TextFont.Height + (PatchController.EnableHighDpi ? DocumentIconGapBottom : 0), 
+            int height = Math.Max(TextFont.Height + (PatchController.EnableHighDpi == true ? DocumentIconGapBottom : 0), 
                 ToolWindowImageHeight + ToolWindowImageGapTop + ToolWindowImageGapBottom)
                 + ToolWindowStripGapTop + ToolWindowStripGapBottom;
 
@@ -597,7 +597,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private int MeasureHeight_Document()
         {
-            int height = Math.Max(TextFont.Height + DocumentTabGapTop + (PatchController.EnableHighDpi ? DocumentIconGapBottom : 0),
+            int height = Math.Max(TextFont.Height + DocumentTabGapTop + (PatchController.EnableHighDpi == true ? DocumentIconGapBottom : 0),
                 ButtonClose.Height + DocumentButtonGapTop + DocumentButtonGapBottom)
                 + DocumentStripGapBottom + DocumentStripGapTop;
 
@@ -1236,7 +1236,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rect.X + ToolWindowImageGapLeft,
                 rect.Y + rect.Height - 1 - ToolWindowImageGapBottom - ToolWindowImageHeight,
                 ToolWindowImageWidth, ToolWindowImageHeight);
-            Rectangle rectText = PatchController.EnableHighDpi
+            Rectangle rectText = PatchController.EnableHighDpi == true
                 ? new Rectangle(
                     rect.X + ToolWindowImageGapLeft,
                     rect.Y - 1 + rect.Height - ToolWindowImageGapBottom - TextFont.Height,
@@ -1292,7 +1292,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 rect.X + DocumentIconGapLeft,
                 rect.Y + rect.Height - 1 - DocumentIconGapBottom - DocumentIconHeight,
                 DocumentIconWidth, DocumentIconHeight);
-            Rectangle rectText = PatchController.EnableHighDpi
+            Rectangle rectText = PatchController.EnableHighDpi == true
                 ? new Rectangle(
                     rect.X + DocumentIconGapLeft,
                     rect.Y + rect.Height - DocumentIconGapBottom - TextFont.Height,
@@ -1457,7 +1457,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private void Close_Click(object sender, EventArgs e)
         {
             DockPane.CloseActiveContent();
-            if (PatchController.EnableMemoryLeakFix)
+            if (PatchController.EnableMemoryLeakFix == true)
             {
                 ContentClosed();
             }

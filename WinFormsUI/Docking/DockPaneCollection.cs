@@ -32,7 +32,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal void Dispose()
         {
-            if (PatchController.EnableNestedDisposalFix)
+            if (PatchController.EnableNestedDisposalFix == true)
             {
                 List<DockPane> collection = new List<DockPane>(Items);
                 foreach (var dockPane in collection)

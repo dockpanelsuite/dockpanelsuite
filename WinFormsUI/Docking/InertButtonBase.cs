@@ -85,7 +85,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 e.Graphics.DrawImage(
                    Image,
-                   PatchController.EnableHighDpi 
+                   PatchController.EnableHighDpi == true
                        ? ClientRectangle 
                        : new Rectangle(0, 0, Image.Width, Image.Height),
                    0, 0,

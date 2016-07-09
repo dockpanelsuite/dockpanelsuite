@@ -16,18 +16,18 @@ namespace WeifenLuo.WinFormsUI.Docking
             EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = null;
         }
 
-        public static bool EnableHighDpi
+        public static bool? EnableHighDpi
         {
             get
             {
                 if (_highDpi != null)
                 {
-                    return _highDpi.Value;
+                    return _highDpi;
                 }
 
                 if (EnableAll != null)
                 {
-                    return (_highDpi = EnableAll).Value;
+                    return _highDpi = EnableAll;
                 }
 
                 var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
@@ -35,10 +35,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     if (section.EnableAll != null)
                     {
-                        return (_highDpi = section.EnableAll).Value;
+                        return _highDpi = section.EnableAll;
                     }
 
-                    return (_highDpi = section.EnableHighDpi).Value;
+                    return _highDpi = section.EnableHighDpi;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableHighDpi");
@@ -47,7 +47,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     var enable = false;
                     if (bool.TryParse(environment, out enable))
                     {
-                        return (_highDpi = enable).Value;
+                        return _highDpi = enable;
                     }
                 }
 
@@ -61,7 +61,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_highDpi = enable).Value;
+                                return _highDpi = enable;
                             }
                         }
                     }
@@ -77,13 +77,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_highDpi = enable).Value;
+                                return _highDpi = enable;
                             }
                         }
                     }
                 }
 
-                return (_highDpi = true).Value;
+                return _highDpi = true;
             }
 
             set
@@ -94,18 +94,18 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private static bool? _memoryLeakFix;
 
-        public static bool EnableMemoryLeakFix
+        public static bool? EnableMemoryLeakFix
         {
             get
             {
                 if (_memoryLeakFix != null)
                 {
-                    return _memoryLeakFix.Value;
+                    return _memoryLeakFix;
                 }
 
                 if (EnableAll != null)
                 {
-                    return (_memoryLeakFix = EnableAll).Value;
+                    return _memoryLeakFix = EnableAll;
                 }
 
                 var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
@@ -113,10 +113,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     if (section.EnableAll != null)
                     {
-                        return (_memoryLeakFix = section.EnableAll).Value;
+                        return _memoryLeakFix = section.EnableAll;
                     }
 
-                    return (_memoryLeakFix = section.EnableMemoryLeakFix).Value;
+                    return _memoryLeakFix = section.EnableMemoryLeakFix;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableMemoryLeakFix");
@@ -125,7 +125,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     var enable = false;
                     if (bool.TryParse(environment, out enable))
                     {
-                        return (_memoryLeakFix = enable).Value;
+                        return _memoryLeakFix = enable;
                     }
                 }
 
@@ -139,7 +139,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_memoryLeakFix = enable).Value;
+                                return _memoryLeakFix = enable;
                             }
                         }
                     }
@@ -155,13 +155,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_memoryLeakFix = enable).Value;
+                                return _memoryLeakFix = enable;
                             }
                         }
                     }
                 }
 
-                return (_memoryLeakFix = true).Value;
+                return _memoryLeakFix = true;
             }
 
             set
@@ -172,18 +172,18 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private static bool? _focusLostFix;
 
-        public static bool EnableMainWindowFocusLostFix
+        public static bool? EnableMainWindowFocusLostFix
         {
             get
             {
                 if (_focusLostFix != null)
                 {
-                    return _focusLostFix.Value;
+                    return _focusLostFix;
                 }
 
                 if (EnableAll != null)
                 {
-                    return (_focusLostFix = EnableAll).Value;
+                    return _focusLostFix = EnableAll;
                 }
 
                 var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
@@ -191,10 +191,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     if (section.EnableAll != null)
                     {
-                        return (_focusLostFix = section.EnableAll).Value;
+                        return _focusLostFix = section.EnableAll;
                     }
 
-                    return (_focusLostFix = section.EnableMainWindowFocusLostFix).Value;
+                    return _focusLostFix = section.EnableMainWindowFocusLostFix;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableMainWindowFocusLostFix");
@@ -203,7 +203,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     var enable = false;
                     if (bool.TryParse(environment, out enable))
                     {
-                        return (_focusLostFix = enable).Value;
+                        return _focusLostFix = enable;
                     }
                 }
 
@@ -217,7 +217,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_focusLostFix = enable).Value;
+                                return _focusLostFix = enable;
                             }
                         }
                     }
@@ -233,13 +233,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_focusLostFix = enable).Value;
+                                return _focusLostFix = enable;
                             }
                         }
                     }
                 }
 
-                return (_focusLostFix = true).Value;
+                return _focusLostFix = true;
             }
 
             set
@@ -250,18 +250,18 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private static bool? _nestedDisposalFix;
 
-        public static bool EnableNestedDisposalFix
+        public static bool? EnableNestedDisposalFix
         {
             get
             {
                 if (_nestedDisposalFix != null)
                 {
-                    return _nestedDisposalFix.Value;
+                    return _nestedDisposalFix;
                 }
 
                 if (EnableAll != null)
                 {
-                    return (_nestedDisposalFix = EnableAll).Value;
+                    return _nestedDisposalFix = EnableAll;
                 }
 
                 var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
@@ -269,10 +269,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     if (section.EnableAll != null)
                     {
-                        return (_nestedDisposalFix = section.EnableAll).Value;
+                        return _nestedDisposalFix = section.EnableAll;
                     }
 
-                    return (_nestedDisposalFix = section.EnableNestedDisposalFix).Value;
+                    return _nestedDisposalFix = section.EnableNestedDisposalFix;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableNestedDisposalFix");
@@ -281,7 +281,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     var enable = false;
                     if (bool.TryParse(environment, out enable))
                     {
-                        return (_nestedDisposalFix = enable).Value;
+                        return _nestedDisposalFix = enable;
                     }
                 }
 
@@ -295,7 +295,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_nestedDisposalFix = enable).Value;
+                                return _nestedDisposalFix = enable;
                             }
                         }
                     }
@@ -311,13 +311,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                             var enable = false;
                             if (bool.TryParse(pair.ToString(), out enable))
                             {
-                                return (_nestedDisposalFix = enable).Value;
+                                return _nestedDisposalFix = enable;
                             }
                         }
                     }
                 }
 
-                return (_nestedDisposalFix = true).Value;
+                return _nestedDisposalFix = true;
             }
 
             set
