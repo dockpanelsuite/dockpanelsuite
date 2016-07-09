@@ -15,5 +15,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableHighDpi"]; }
         }
+
+        [ConfigurationProperty("enableMemoryLeakFix", DefaultValue = true)]
+        public bool EnableMemoryLeakFix
+        {
+            get { return (bool)base["enableMemoryLeakFix"]; }
+        }
     }
 }

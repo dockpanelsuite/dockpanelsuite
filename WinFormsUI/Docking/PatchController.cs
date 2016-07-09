@@ -111,10 +111,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return (_memoryLeakFix = section.EnableAll).Value;
                     }
 
-                    return (_memoryLeakFix = section.EnableHighDpi).Value;
+                    return (_memoryLeakFix = section.EnableMemoryLeakFix).Value;
                 }
 
-                var environment = Environment.GetEnvironmentVariable("DPS_EnableHighDpi");
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableMemoryLeakFix");
                 if (!string.IsNullOrEmpty(environment))
                 {
                     var enable = false;
@@ -128,7 +128,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
                     {
-                        var pair = key.GetValue("EnableHighDpi");
+                        var pair = key.GetValue("EnableMemoryLeakFix");
                         if (pair != null)
                         {
                             var enable = false;
@@ -144,7 +144,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
                     {
-                        var pair = key.GetValue("EnableHighDpi");
+                        var pair = key.GetValue("EnableMemoryLeakFix");
                         if (pair != null)
                         {
                             var enable = false;
