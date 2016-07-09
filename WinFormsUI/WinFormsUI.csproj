@@ -36,12 +36,14 @@
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Docking\Configuration\PatchSection.cs" />
     <Compile Include="Docking\DockPanel.SplitterDragHandler.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -67,6 +69,7 @@
     <Compile Include="Docking\DockPanelSkin.cs">
     </Compile>
     <Compile Include="Docking\ITheme.cs" />
+    <Compile Include="Docking\PatchController.cs" />
     <Compile Include="Docking\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
