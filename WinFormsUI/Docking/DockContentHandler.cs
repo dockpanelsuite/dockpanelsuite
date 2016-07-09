@@ -809,7 +809,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            var parentChanged = value != Form.Parent;
             Form.Parent = value;
+            if (PatchController.EnableMainWindowFocusLostFix && parentChanged)
+            {
+                Form.Focus();
+            }
 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // Workaround of .Net Framework bug:

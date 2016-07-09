@@ -164,5 +164,83 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _memoryLeakFix = value;
             }
         }
+
+        private static bool? _focusLostFix;
+
+        public static bool EnableMainWindowFocusLostFix
+        {
+            get
+            {
+                if (_focusLostFix != null)
+                {
+                    return _focusLostFix.Value;
+                }
+
+                if (EnableAll != null)
+                {
+                    return (_focusLostFix = EnableAll).Value;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return (_focusLostFix = section.EnableAll).Value;
+                    }
+
+                    return (_focusLostFix = section.EnableMainWindowFocusLostFix).Value;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableMainWindowFocusLostFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return (_focusLostFix = enable).Value;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableMainWindowFocusLostFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return (_focusLostFix = enable).Value;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableMainWindowFocusLostFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return (_focusLostFix = enable).Value;
+                            }
+                        }
+                    }
+                }
+
+                return (_focusLostFix = true).Value;
+            }
+
+            set
+            {
+                _focusLostFix = value;
+            }
+        }
     }
 }

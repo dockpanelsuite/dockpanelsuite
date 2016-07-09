@@ -21,5 +21,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableMemoryLeakFix"]; }
         }
+
+        [ConfigurationProperty("enableMainWindowFocusLostFix", DefaultValue = true)]
+        public bool EnableMainWindowFocusLostFix
+        {
+            get { return (bool)base["enableMainWindowFocusLostFix"]; }
+        }
     }
 }
