@@ -27,5 +27,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableMainWindowFocusLostFix"]; }
         }
+
+        [ConfigurationProperty("enableNestedDisposalFix", DefaultValue = true)]
+        public bool EnableNestedDisposalFix
+        {
+            get { return (bool)base["enableNestedDisposalFix"]; }
+        }
     }
 }

@@ -242,5 +242,83 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _focusLostFix = value;
             }
         }
+
+        private static bool? _nestedDisposalFix;
+
+        public static bool EnableNestedDisposalFix
+        {
+            get
+            {
+                if (_nestedDisposalFix != null)
+                {
+                    return _nestedDisposalFix.Value;
+                }
+
+                if (EnableAll != null)
+                {
+                    return (_nestedDisposalFix = EnableAll).Value;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return (_nestedDisposalFix = section.EnableAll).Value;
+                    }
+
+                    return (_nestedDisposalFix = section.EnableNestedDisposalFix).Value;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableNestedDisposalFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return (_nestedDisposalFix = enable).Value;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableNestedDisposalFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return (_nestedDisposalFix = enable).Value;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableNestedDisposalFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return (_nestedDisposalFix = enable).Value;
+                            }
+                        }
+                    }
+                }
+
+                return (_nestedDisposalFix = true).Value;
+            }
+
+            set
+            {
+                _focusLostFix = value;
+            }
+        }
     }
 }
