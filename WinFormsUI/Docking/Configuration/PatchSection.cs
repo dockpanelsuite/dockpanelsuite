@@ -39,5 +39,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableFontInheritanceFix"]; }
         }
+
+        [ConfigurationProperty("enableContentOrderFix", DefaultValue = true)]
+        public bool EnableContentOrderFix
+        {
+            get { return (bool)base["enableContentOrderFix"]; }
+        }
     }
 }

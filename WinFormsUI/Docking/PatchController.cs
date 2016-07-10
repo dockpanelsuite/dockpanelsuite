@@ -403,5 +403,83 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _fontInheritanceFix = value;
             }
         }
+
+        private static bool? _contentOrderFix;
+
+        public static bool? EnableContentOrderFix
+        {
+            get
+            {
+                if (_contentOrderFix != null)
+                {
+                    return _contentOrderFix;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _contentOrderFix = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _contentOrderFix = section.EnableAll;
+                    }
+
+                    return _contentOrderFix = section.EnableContentOrderFix;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableContentOrderFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _contentOrderFix = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableContentOrderFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _contentOrderFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableContentOrderFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _contentOrderFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _contentOrderFix = true;
+            }
+
+            set
+            {
+                _contentOrderFix = value;
+            }
+        }
     }
 }
