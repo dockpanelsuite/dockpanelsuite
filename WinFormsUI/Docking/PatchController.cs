@@ -325,5 +325,83 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _focusLostFix = value;
             }
         }
+
+        private static bool? _fontInheritanceFix;
+
+        public static bool? EnableFontInheritanceFix
+        {
+            get
+            {
+                if (_fontInheritanceFix != null)
+                {
+                    return _fontInheritanceFix;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _fontInheritanceFix = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _fontInheritanceFix = section.EnableAll;
+                    }
+
+                    return _fontInheritanceFix = section.EnableFontInheritanceFix;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableFontInheritanceFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _fontInheritanceFix = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableFontInheritanceFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _fontInheritanceFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableFontInheritanceFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _fontInheritanceFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _fontInheritanceFix = true;
+            }
+
+            set
+            {
+                _fontInheritanceFix = value;
+            }
+        }
     }
 }

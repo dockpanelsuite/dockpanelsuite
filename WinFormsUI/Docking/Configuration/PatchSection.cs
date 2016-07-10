@@ -33,5 +33,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableNestedDisposalFix"]; }
         }
+
+        [ConfigurationProperty("enableFontInheritanceFix", DefaultValue = true)]
+        public bool EnableFontInheritanceFix
+        {
+            get { return (bool)base["enableFontInheritanceFix"]; }
+        }
     }
 }
