@@ -175,4 +175,22 @@
   <data name="LostFocusTab_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\LostFocusTab_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ActiveTabHover_Maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ActiveTabHover_Maximize.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ActiveTab_Maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ActiveTab_Maximize.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPane_Maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DockPane_Maximize.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InactiveTabHover_Maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InactiveTabHover_Maximize.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LostFocusTabHover_Maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LostFocusTabHover_Maximize.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LostFocusTab_Maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LostFocusTab_Maximize.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

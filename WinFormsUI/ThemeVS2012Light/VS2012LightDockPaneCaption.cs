@@ -64,6 +64,39 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int _ButtonGapRight = 2;
         #endregion
 
+        private static Bitmap _imageButtonMaximize;
+        private static Bitmap ImageButtonMaximize
+        {
+            get
+            {
+                if (_imageButtonMaximize == null)
+                    _imageButtonMaximize = Resources.DockPane_Maximize;
+
+                return _imageButtonMaximize;
+            }
+        }
+
+        private InertButton m_buttonMaximize;
+        private InertButton ButtonMaximize
+        {
+            get
+            {
+                if (m_buttonMaximize == null)
+                {
+                    m_buttonMaximize = new InertButton(this, ImageButtonMaximize, ImageButtonMaximize);
+                    m_toolTip.SetToolTip(m_buttonMaximize, ToolTipMaximize);
+                    m_buttonMaximize.Click += new EventHandler(Maximize_Click);
+                    Controls.Add(m_buttonMaximize);
+                }
+
+                return m_buttonMaximize;
+            }
+        }
+        private void Maximize_Click(object sender, EventArgs e)
+        {
+            DockPane.SetIsMaximized();
+        }
+
         private static Bitmap _imageButtonClose;
         private static Bitmap ImageButtonClose
         {
@@ -235,6 +268,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static int ButtonGapBetween
         {
             get	{	return _ButtonGapBetween;	}
+        }
+
+        private static string _toolTipMaximize;
+        private static string ToolTipMaximize
+        {
+            get
+            {
+                if (_toolTipMaximize == null)
+                    _toolTipMaximize = Strings.DockPaneCaption_ToolTipMaximize;
+                return _toolTipMaximize;
+            }
         }
 
         private static string _toolTipClose;
@@ -438,7 +482,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             ButtonClose.RefreshChanges();
             ButtonAutoHide.RefreshChanges();
             ButtonOptions.RefreshChanges();
-            
+            ButtonMaximize.RefreshChanges();
+
             SetButtonsPosition();
         }
 
@@ -464,7 +509,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             // Otherwise it is drawn to the left of the close button.
             if (CloseButtonVisible)
                 point.Offset(-(buttonWidth + ButtonGapBetween), 0);
-            
+
+            ButtonMaximize.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
+            point.Offset(-(buttonWidth + ButtonGapBetween), 0);
+
             ButtonAutoHide.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
             if (ShouldShowAutoHideButton)
                 point.Offset(-(buttonWidth + ButtonGapBetween), 0);

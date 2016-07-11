@@ -139,6 +139,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private Rectangle _activeClose;
         private int _selectMenuMargin = 5;
         private bool m_suspendDrag = false;
+        private Rectangle _activeMaximize;
+
         #endregion
 
         #region Properties
@@ -1164,6 +1166,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return;
 
             var rectCloseButton = GetCloseButtonRect(rect);
+            var rectMaximizeButton = GetMaximizeButtonRect(rect, rectCloseButton);
             Rectangle rectIcon = new Rectangle(
                 rect.X + DocumentIconGapLeft,
                 rect.Y + rect.Height - DocumentIconGapBottom - DocumentIconHeight,
@@ -1178,11 +1181,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 rectText.X += rectIcon.Width + DocumentIconGapRight;
                 rectText.Y = rect.Y;
-                rectText.Width = rect.Width - rectIcon.Width - DocumentIconGapLeft - DocumentIconGapRight - DocumentTextGapRight - rectCloseButton.Width;
+                rectText.Width = rect.Width - rectIcon.Width - DocumentIconGapLeft - DocumentIconGapRight - DocumentTextGapRight - (rect.Width - (rectMaximizeButton.X - rect.X));
                 rectText.Height = rect.Height;
             }
             else
-                rectText.Width = rect.Width - DocumentIconGapLeft - DocumentTextGapRight - rectCloseButton.Width;
+                rectText.Width = rect.Width - DocumentIconGapLeft - DocumentTextGapRight - (rect.Width - (rectMaximizeButton.X - rect.X));
 
             Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
             Rectangle rectBack = DrawHelper.RtlTransform(this, rect);
@@ -1208,12 +1211,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                     g.FillRectangle(new SolidBrush(activeColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
                     g.DrawImage(rectCloseButton == ActiveClose ? Resources.ActiveTabHover_Close : Resources.ActiveTab_Close, rectCloseButton);
+                    g.DrawImage(rectMaximizeButton == ActiveMaximize ? Resources.ActiveTabHover_Maximize : Resources.ActiveTab_Maximize, rectMaximizeButton);
                 }
                 else
                 {
                     g.FillRectangle(new SolidBrush(lostFocusColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, lostFocusText, DocumentTextFormat);
                     g.DrawImage(rectCloseButton == ActiveClose ? Resources.LostFocusTabHover_Close : Resources.LostFocusTab_Close, rectCloseButton);
+                    g.DrawImage(rectMaximizeButton == ActiveMaximize ? Resources.LostFocusTabHover_Maximize : Resources.LostFocusTab_Maximize, rectMaximizeButton);
                 }
             }
             else
@@ -1223,6 +1228,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     g.FillRectangle(new SolidBrush(mouseHoverColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
                     g.DrawImage(rectCloseButton == ActiveClose ? Resources.InactiveTabHover_Close : Resources.ActiveTabHover_Close, rectCloseButton);
+                    g.DrawImage(rectMaximizeButton == ActiveMaximize ? Resources.InactiveTabHover_Maximize : Resources.ActiveTabHover_Maximize, rectMaximizeButton);
                 }
                 else
                 {
@@ -1263,8 +1269,24 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             var mousePos = PointToClient(MousePosition);
             var tabRect = GetTabBounds(Tabs[index]);
+            var closeButtonRect = GetCloseButtonRect(tabRect);
+            var maximizeButtonRect = GetMaximizeButtonRect(tabRect, closeButtonRect);
+
             if (tabRect.Contains(ActiveClose) && ActiveCloseHitTest(mousePos))
                 TryCloseTab(index);
+            else if (maximizeButtonRect.Contains(mousePos))
+                DockPane.SetIsMaximized();
+        }
+
+        private Rectangle GetMaximizeButtonRect(Rectangle rectTab, Rectangle rectClose)
+        {
+            const int gap = 3;
+            const int imageSize = 15;
+
+            if (rectClose == Rectangle.Empty)
+                return new Rectangle(rectTab.X + rectTab.Width - imageSize - gap - 1, rectTab.Y + gap, imageSize, imageSize);
+            else
+                return new Rectangle(rectTab.X + rectTab.Width - 2 * imageSize - 2 * gap - 1, rectTab.Y + gap, imageSize, imageSize);
         }
 
         private Rectangle GetCloseButtonRect(Rectangle rectTab)
@@ -1437,6 +1459,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             GraphicsPath path = GetTabOutline(tab, true, false);
             RectangleF rectangle = path.GetBounds();
             return new Rectangle((int)rectangle.Left, (int)rectangle.Top, (int)rectangle.Width, (int)rectangle.Height);
+        }
+
+        private Rectangle ActiveMaximize
+        {
+            get { return _activeMaximize; }
         }
 
         private Rectangle ActiveClose

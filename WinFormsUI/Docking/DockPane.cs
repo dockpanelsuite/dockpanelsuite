@@ -418,6 +418,23 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        private static readonly object IsMaximizedChangedEvent = new object();
+        public event EventHandler IsMaximizedChanged
+        {
+            add { Events.AddHandler(IsMaximizedChangedEvent, value); }
+            remove { Events.RemoveHandler(IsMaximizedChangedEvent, value); }
+        }
+        protected virtual void OnIsMaximizedChanged(EventArgs e)
+        {
+            EventHandler handler = (EventHandler)Events[IsMaximizedChangedEvent];
+            if (handler != null)
+                handler(this, e);
+        }
+        public void SetIsMaximized()
+        {
+            OnIsMaximizedChanged(EventArgs.Empty);
+        }
+
         private bool m_isActivated = false;
         public bool IsActivated
         {

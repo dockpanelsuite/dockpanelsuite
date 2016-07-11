@@ -18,6 +18,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        public virtual void OnMaximize()
+        {
+        }
+
         private DockContentHandler m_dockHandler = null;
         [Browsable(false)]
         public DockContentHandler DockHandler
