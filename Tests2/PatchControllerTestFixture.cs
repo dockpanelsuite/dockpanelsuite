@@ -11,6 +11,11 @@ namespace Tests
         {
             PatchController.Reset();
             Assert.IsFalse(PatchController.EnableHighDpi);
+            Assert.IsFalse(PatchController.EnableContentOrderFix);
+            Assert.IsFalse(PatchController.EnableFontInheritanceFix);
+            Assert.IsFalse(PatchController.EnableMainWindowFocusLostFix);
+            Assert.IsFalse(PatchController.EnableMemoryLeakFix);
+            Assert.IsFalse(PatchController.EnableNestedDisposalFix);
         }
     }
 }

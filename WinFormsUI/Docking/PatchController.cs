@@ -13,7 +13,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal static void Reset()
         {
-            EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = null;
+            EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = _contentOrderFix = _fontInheritanceFix = null;
         }
 
         public static bool? EnableHighDpi
