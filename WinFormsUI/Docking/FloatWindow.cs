@@ -40,8 +40,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             SuspendLayout();
             if (boundsSpecified)
             {
+                // Clamp to working area
+                if (bounds.Left<0) bounds.Offset(-bounds.Left, 0);
+                if (bounds.Top<0) bounds.Offset(0, -bounds.Top);
+                Rectangle screenRect = Screen.PrimaryScreen.WorkingArea;
+                if (bounds.Right>screenRect.Width) bounds.Offset(screenRect.Width-bounds.Right,0);
+                if (bounds.Bottom>screenRect.Height) bounds.Offset(0,screenRect.Height-bounds.Bottom);
+
                 Bounds = bounds;
-                StartPosition = FormStartPosition.Manual;
+                StartPosition = bounds.Location.IsEmpty ? FormStartPosition.CenterParent : FormStartPosition.Manual;
             }
             else
             {
@@ -361,6 +368,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return false;
 
             if (pane.FloatWindow == this)
+                return false;
+            
+            if (DockUtils.ContainsToolBar(this) || DockUtils.ContainsToolBar(pane.FloatWindow)) 
                 return false;
 
             return true;

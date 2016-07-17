@@ -76,6 +76,12 @@
     <Compile Include="DummyTaskList.Designer.cs">
       <DependentUpon>DummyTaskList.cs</DependentUpon>
     </Compile>
+    <Compile Include="DummyToolBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DummyToolBar.Designer.cs">
+      <DependentUpon>DummyToolBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="DummyToolbox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     <EmbeddedResource Include="DummyTaskList.resx">
       <SubType>Designer</SubType>
       <DependentUpon>DummyTaskList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DummyToolBar.resx">
+      <DependentUpon>DummyToolBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DummyToolbox.resx">
       <SubType>Designer</SubType>

@@ -81,6 +81,7 @@ namespace DockSample
             this.toolBarButtonToolbox = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonOutputWindow = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonTaskList = new System.Windows.Forms.ToolStripButton();
+            this.toolBarButtonToolBar = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolBarButtonLayoutByCode = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonLayoutByXml = new System.Windows.Forms.ToolStripButton();
@@ -462,6 +463,7 @@ namespace DockSample
             this.toolBarButtonToolbox,
             this.toolBarButtonOutputWindow,
             this.toolBarButtonTaskList,
+            this.toolBarButtonToolBar,
             this.toolBarButtonSeparator2,
             this.toolBarButtonLayoutByCode,
             this.toolBarButtonLayoutByXml,
@@ -526,6 +528,16 @@ namespace DockSample
             this.toolBarButtonTaskList.Size = new System.Drawing.Size(23, 22);
             this.toolBarButtonTaskList.ToolTipText = "Task List";
             // 
+            // toolBarButtonToolBar
+            // 
+            this.toolBarButtonToolBar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolBarButtonToolBar.Image = ((System.Drawing.Image)(resources.GetObject("toolBarButtonToolBar.Image")));
+            this.toolBarButtonToolBar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolBarButtonToolBar.Name = "toolBarButtonToolBar";
+            this.toolBarButtonToolBar.Size = new System.Drawing.Size(23, 22);
+            this.toolBarButtonToolBar.ToolTipText = "ToolBar";
+            this.toolBarButtonToolBar.Click += new System.EventHandler(this.toolBarButtonToolBar_Click);
+            // 
             // toolBarButtonSeparator2
             // 
             this.toolBarButtonSeparator2.Name = "toolBarButtonSeparator2";
@@ -575,6 +587,7 @@ namespace DockSample
             // 
             this.vS2012ToolStripExtender1.DefaultRenderer = null;
             this.vS2012ToolStripExtender1.VS2012Renderer = null;
+            this.vS2012ToolStripExtender1.VS2013Renderer = null;
             // 
             // topBar
             // 
@@ -686,5 +699,6 @@ namespace DockSample
         private VSToolStripExtender vS2012ToolStripExtender1;
         private System.Windows.Forms.Panel topBar;
         private System.Windows.Forms.Panel bottomBar;
+        private System.Windows.Forms.ToolStripButton toolBarButtonToolBar;
     }
 }

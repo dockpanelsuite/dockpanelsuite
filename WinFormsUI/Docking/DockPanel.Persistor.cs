@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -93,6 +94,88 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get { return m_isFloat; }
                     set { m_isFloat = value; }
                 }
+                
+                /// <summary> Deserialize the properties of a ContentStruct </summary>
+                public void LoadFromXml(XmlTextReader xmlIn)
+                {
+                    string tempString = null;
+
+                    Content = null;
+                    ContentID = Convert.ToInt32(xmlIn.GetAttribute("ID"));
+                    
+                    TBStyle = System.Windows.Forms.DockStyle.None;
+                    TBLocation = Point.Empty;
+
+                    PersistString = xmlIn.GetAttribute("PersistString");
+                    AutoHidePortion = Convert.ToDouble(xmlIn.GetAttribute("AutoHidePortion"), CultureInfo.InvariantCulture);
+                    IsHidden = Convert.ToBoolean(xmlIn.GetAttribute("IsHidden"), CultureInfo.InvariantCulture);
+                    IsFloat = Convert.ToBoolean(xmlIn.GetAttribute("IsFloat"), CultureInfo.InvariantCulture);
+                   
+                    if (!string.IsNullOrEmpty(tempString = xmlIn.GetAttribute("TBStyle")))
+                    {
+                        EnumConverter ec = new EnumConverter(typeof(System.Windows.Forms.DockStyle));
+                        TBStyle = (System.Windows.Forms.DockStyle)ec.ConvertFromInvariantString(tempString);
+                    }
+                    if (!string.IsNullOrEmpty(tempString = xmlIn.GetAttribute("TBLocation")))
+                    {
+                        PointConverter pc = new PointConverter();
+                        TBLocation = (Point)pc.ConvertFromInvariantString(tempString);
+                    }
+                }
+                /// <summary> Load the ContentStruct collection of the specified DockStyle </summary>
+                public static void LoadToolBarStyle(DockPanel dockPanel, ContentStruct[] contents, System.Windows.Forms.DockStyle toolBarStyle)
+                {
+                    foreach (ContentStruct contentInfo in GetContentStructsByStyle(contents, toolBarStyle))
+                    {
+                        System.Windows.Forms.ToolStripPanel panel = dockPanel.GetToolStripPanel(toolBarStyle);
+                        DockContent content = contentInfo.Content as DockContent;
+                        DockUtils.MakeToolStrip(panel, content, contentInfo.TBLocation, false);
+                    }
+                }
+                /// <summary> Returns the ContentStruct collection of the specified DockStyle. </summary>
+                private static List<ContentStruct> GetContentStructsByStyle(ContentStruct[] contents, System.Windows.Forms.DockStyle dockStyle)
+                {
+                    List<ContentStruct> tempList = new List<ContentStruct>();
+
+                    foreach (ContentStruct cs in contents)
+                    {
+                        if (cs.TBStyle == dockStyle)
+                        {
+                            tempList.Add(cs);
+                        }
+                    }
+                    if (tempList.Count > 1)
+                    {
+                        tempList.Sort(CompareTo);
+                    }
+                    return tempList;
+                }
+                /// <summary> Order ContentStructs by location. </summary>
+                private static int CompareTo(ContentStruct obj1, ContentStruct obj2)
+                {
+                    int x1 = obj1.TBLocation.X;
+                    int y1 = obj1.TBLocation.Y;
+                    int x2 = obj2.TBLocation.X;
+                    int y2 = obj2.TBLocation.Y;
+                    
+                    switch (obj1.TBStyle)
+                    {
+                        case System.Windows.Forms.DockStyle.Left:
+                        case System.Windows.Forms.DockStyle.Right:
+                            if (x1 != x2) return x1.CompareTo(x2);
+                            if (y1 != y2) return y1.CompareTo(y2);
+                            break;
+                        default:
+                            if (y1 != y2) return y1.CompareTo(y2);
+                            if (x1 != x2) return x1.CompareTo(x2);
+                            break;
+                    }
+                    return 0;
+                }
+                public int ContentID;
+                public IDockContent Content;
+                public System.Windows.Forms.DockStyle TBStyle;
+                public Point TBLocation;
             }
 
             private struct PaneStruct
@@ -267,6 +350,15 @@ namespace WeifenLuo.WinFormsUI.Docking
                         xmlOut.WriteAttributeString("AutoHidePortion", content.DockHandler.AutoHidePortion.ToString(CultureInfo.InvariantCulture));
                         xmlOut.WriteAttributeString("IsHidden", content.DockHandler.IsHidden.ToString(CultureInfo.InvariantCulture));
                         xmlOut.WriteAttributeString("IsFloat", content.DockHandler.IsFloat.ToString(CultureInfo.InvariantCulture));
+                        
+                        System.Windows.Forms.DockStyle dockStyle = content.DockHandler.ToolBarStyle;
+
+                        if (dockStyle != System.Windows.Forms.DockStyle.None)
+                        {
+                            System.Windows.Forms.ToolStrip toolStrip = DockUtils.FindToolStrip(content as DockContent);
+                            xmlOut.WriteAttributeString("TBStyle", dockStyle.ToString());
+                            xmlOut.WriteAttributeString("TBLocation", new PointConverter().ConvertToInvariantString(toolStrip.Location));
+                        }
                         xmlOut.WriteEndElement();
                     }
                     xmlOut.WriteEndElement();
@@ -392,10 +484,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (xmlIn.Name != "Content" || id != i)
                         throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
 
-                    contents[i].PersistString = xmlIn.GetAttribute("PersistString");
-                    contents[i].AutoHidePortion = Convert.ToDouble(xmlIn.GetAttribute("AutoHidePortion"), CultureInfo.InvariantCulture);
-                    contents[i].IsHidden = Convert.ToBoolean(xmlIn.GetAttribute("IsHidden"), CultureInfo.InvariantCulture);
-                    contents[i].IsFloat = Convert.ToBoolean(xmlIn.GetAttribute("IsFloat"), CultureInfo.InvariantCulture);
+                    contents[i].LoadFromXml(xmlIn);
+                    
                     MoveToNextElement(xmlIn);
                 }
 
@@ -605,6 +695,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     content.DockHandler.AutoHidePortion = contents[i].AutoHidePortion;
                     content.DockHandler.IsHidden = true;
                     content.DockHandler.IsFloat = contents[i].IsFloat;
+
+                    contents[i].Content = content;
                 }
 
                 // Create panes
@@ -699,6 +791,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (content.DockHandler.Pane != null && content.DockHandler.Pane.DockState != DockState.Document)
                         content.DockHandler.IsHidden = contents[sortedContents[i]].IsHidden;
                 }
+
+                // configure ToolBar contents
+                ContentStruct.LoadToolBarStyle(dockPanel, contents, System.Windows.Forms.DockStyle.Top);
+                ContentStruct.LoadToolBarStyle(dockPanel, contents, System.Windows.Forms.DockStyle.Left);
+                ContentStruct.LoadToolBarStyle(dockPanel, contents, System.Windows.Forms.DockStyle.Right);
+                ContentStruct.LoadToolBarStyle(dockPanel, contents, System.Windows.Forms.DockStyle.Bottom);
 
                 // after all non-document IDockContent, show document IDockContent
                 for (int i = 0; i < contents.Length; i++)

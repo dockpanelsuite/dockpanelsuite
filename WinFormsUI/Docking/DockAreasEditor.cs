@@ -17,6 +17,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private CheckBox checkBoxDockTop;
             private CheckBox checkBoxDockBottom;
             private CheckBox checkBoxDockFill;
+            private CheckBox checkBoxToolBar;
             private DockAreas m_oldDockAreas;
 
             public DockAreas DockAreas
@@ -37,6 +38,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (checkBoxDockFill.Checked)
                         dockAreas |= DockAreas.Document;
 
+                    if (checkBoxToolBar.Checked)
+                    {
+                        dockAreas |= (DockAreas.Float | DockAreas.ToolBar);
+                        dockAreas &= ~DockAreas.Document;
+                    }
+
                     if (dockAreas == 0)
                         return m_oldDockAreas;
                     else
@@ -52,6 +59,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 checkBoxDockTop = new CheckBox();
                 checkBoxDockBottom = new CheckBox();
                 checkBoxDockFill = new CheckBox();
+                checkBoxToolBar = new CheckBox();
 
                 SuspendLayout();
 
@@ -86,12 +94,21 @@ namespace WeifenLuo.WinFormsUI.Docking
                 checkBoxDockFill.Dock = System.Windows.Forms.DockStyle.Fill;
                 checkBoxDockFill.FlatStyle = FlatStyle.System;
 
+                checkBoxToolBar.Appearance = Appearance.Button;
+                checkBoxToolBar.Dock = DockStyle.Top;
+                checkBoxToolBar.Height = 24;
+                checkBoxToolBar.Text = Strings.DockAreaEditor_ToolBarCheckBoxText;
+                checkBoxToolBar.TextAlign = ContentAlignment.MiddleCenter;
+                checkBoxToolBar.FlatStyle = FlatStyle.System;
+                checkBoxToolBar.CheckedChanged += checkBoxToolBar_CheckedChanged;
+
                 this.Controls.AddRange(new Control[] {
                                                          checkBoxDockFill,
                                                          checkBoxDockBottom,
                                                          checkBoxDockTop,
                                                          checkBoxDockRight,
                                                          checkBoxDockLeft,
+                                                         checkBoxToolBar,
                                                          checkBoxFloat});
 
                 Size = new System.Drawing.Size(160, 144);
@@ -116,6 +133,21 @@ namespace WeifenLuo.WinFormsUI.Docking
                     checkBoxDockFill.Checked = true;
                 if ((dockAreas & DockAreas.Float) != 0)
                     checkBoxFloat.Checked = true;
+                if ((dockAreas & DockAreas.ToolBar) != 0)
+                    checkBoxToolBar.Checked = true;
+            }
+
+            private void checkBoxToolBar_CheckedChanged(object sender, EventArgs e)
+            {
+                if (checkBoxToolBar.Checked)
+                {
+                    checkBoxFloat.Checked = true;
+                    checkBoxDockFill.Enabled = checkBoxDockFill.Checked = false;
+                }
+                else
+                {
+                    checkBoxDockFill.Enabled = true;
+                }
             }
         }
 
