@@ -1,11 +1,8 @@
 using System;
 using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 using System.IO;
-using DockSample.Customization;
 using Lextm.SharpSnmpLib;
 using WeifenLuo.WinFormsUI.Docking;
 
