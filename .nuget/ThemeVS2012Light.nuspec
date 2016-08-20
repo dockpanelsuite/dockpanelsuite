@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.11.0-alpha1</version>
+    <version>2.11.0-alpha2</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -11,7 +11,7 @@
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
 	<dependencies>
-      <dependency id="DockPanelSuite" version="2.11.0-alpha1" />
+      <dependency id="DockPanelSuite" version="2.11.0-alpha2" />
     </dependencies>
     <id>DockPanelSuite.ThemeVS2012Light</id>
     <title>DockPanel Suite VS2012 Light Theme</title>
@@ -19,7 +19,7 @@
     <description>Visual Studio 2012 Light theme for DockPanel Suite.</description>
     <summary>Visual Studio 2012 Light theme for DockPanel Suite.</summary>
     <releaseNotes>
-Jul 9, 2016: 2.11.0 Alpha 1
+Jul 9, 2016: 2.11.0 Alpha 2
 Updated.
 
 Jul 6, 2016: 2.10.0
