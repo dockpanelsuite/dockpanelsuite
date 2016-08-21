@@ -40,7 +40,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.PaneIndicatorFactory = new VS2012LightPaneIndicatorFactory();
             dockPanel.Extender.PanelIndicatorFactory = new VS2012LightPanelIndicatorFactory();
             dockPanel.Extender.DockOutlineFactory = new VS2012LightDockOutlineFactory();
-            Skin = CreateVisualStudio2012Light();
         }
 
         private class VS2012LightDockOutlineFactory : DockPanelExtender.IDockOutlineFactory
