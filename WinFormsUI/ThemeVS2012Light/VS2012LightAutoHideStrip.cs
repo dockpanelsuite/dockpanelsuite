@@ -323,9 +323,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color textColor;
             if (tab.Content.DockHandler.IsActivated || tab.IsMouseOver)
-                textColor = DockPanel.Skin.AutoHideStripSkin.DockStripGradient.StartColor;
+                textColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Text;
             else
-                textColor = DockPanel.Skin.AutoHideStripSkin.DockStripGradient.EndColor;
+                textColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Text;
 
             Rectangle rectThickLine = rectTabOrigin;
             rectThickLine.X += _TabGapLeft + _TextGapLeft + _ImageGapLeft + _ImageWidth;
@@ -385,9 +385,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
 
             if (DockPanel.ActiveContent == content || tab.IsMouseOver)
-                textColor = DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor;
+                textColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Text;
             else
-                textColor = DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor;
+                textColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Text;
 
             if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
                 g.DrawString(content.DockHandler.TabText, TextFont, new SolidBrush(textColor), rectText, StringFormatTabVertical);

@@ -457,47 +457,54 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public static DockPanelSkin CreateVisualStudio2012Light()
         {
-            var specialBlue = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
-            var dot = Color.FromArgb(80, 170, 220);
-            var activeTab = specialBlue;
-            var mouseHoverTab = Color.FromArgb(0xFF, 28, 151, 234);
-            var inactiveTab = SystemColors.Control;
-            var lostFocusTab = Color.FromArgb(0xFF, 204, 206, 219);
             var skin = new DockPanelSkin();
 
-            skin.AutoHideStripSkin.DockStripGradient.StartColor = specialBlue;
-            skin.AutoHideStripSkin.DockStripGradient.EndColor = SystemColors.ControlLight;
-            skin.AutoHideStripSkin.TabGradient.TextColor = SystemColors.ControlDarkDark;
+            skin.ColorPalette.AutoHideStripDefault.Background = Color.FromArgb(0xFF, 0xEE, 0xEE, 0xF2);
+            skin.ColorPalette.AutoHideStripDefault.Border = Color.FromArgb(0xFF, 0xCC, 0xCE, 0xDB);
+            skin.ColorPalette.AutoHideStripDefault.Text = Color.FromArgb(0xFF, 0x44, 0x44, 0x44);
 
-            skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor = SystemColors.Control;
-            skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor = SystemColors.Control;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor = activeTab;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor = lostFocusTab;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor = Color.White;
-            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor = inactiveTab;
-            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor = mouseHoverTab;
-            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor = Color.Black;
+            skin.ColorPalette.AutoHideStripHovered.Background = Color.FromArgb(0xFF, 0xEE, 0xEE, 0xF2);
+            skin.ColorPalette.AutoHideStripHovered.Border = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
+            skin.ColorPalette.AutoHideStripHovered.Text = Color.FromArgb(0xFF, 0x0E, 0x70, 0xC0);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.StartColor = SystemColors.Control;
-            skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.EndColor = SystemColors.Control;
+            skin.ColorPalette.TabSelectedActive.Background = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
+            skin.ColorPalette.TabSelectedActive.Button = Color.FromArgb(0xFF, 0xD0, 0xE6, 0xF5);
+            skin.ColorPalette.TabSelectedActive.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.StartColor = SystemColors.ControlLightLight;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.EndColor = SystemColors.ControlLightLight;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor = specialBlue;
+            skin.ColorPalette.TabSelectedInactive.Background = Color.FromArgb(0xFF, 0xCC, 0xCE, 0xDB);
+            skin.ColorPalette.TabSelectedInactive.Button = Color.FromArgb(0xFF, 0x6D, 0x6D, 0x70);
+            skin.ColorPalette.TabSelectedInactive.Text = Color.FromArgb(0xFF, 0x71, 0x71, 0x71);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.StartColor = SystemColors.Control;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.EndColor = SystemColors.Control;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor = SystemColors.GrayText;
+            skin.ColorPalette.TabUnselected.Background = Color.FromArgb(0xFF, 0xEE, 0xEE, 0xF2);
+            skin.ColorPalette.TabUnselected.Text = Color.FromArgb(0xFF, 0x1E, 0x1E, 0x1E);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.StartColor = specialBlue;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.EndColor = dot;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.TextColor = Color.White;
+            skin.ColorPalette.TabUnselectedHovered.Background = Color.FromArgb(0xFF, 0x1C, 0x97, 0xEA);
+            skin.ColorPalette.TabUnselectedHovered.Button = Color.FromArgb(0xFF, 0xD0, 0xE6, 0xF5);
+            skin.ColorPalette.TabUnselectedHovered.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.StartColor = SystemColors.Control;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.EndColor = SystemColors.ControlDark;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.GrayText;
+            skin.ColorPalette.ToolWindowCaptionActive.Background = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
+            skin.ColorPalette.ToolWindowCaptionActive.Border = Color.FromArgb(0xFF, 0xCC, 0xCE, 0xDB);
+            skin.ColorPalette.ToolWindowCaptionActive.Button = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+            skin.ColorPalette.ToolWindowCaptionActive.Grip = Color.FromArgb(0xFF, 0x59, 0xA8, 0xDE);
+            skin.ColorPalette.ToolWindowCaptionActive.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+
+            skin.ColorPalette.ToolWindowCaptionInactive.Background = Color.FromArgb(0xFF, 0xEE, 0xEE, 0xF2);
+            skin.ColorPalette.ToolWindowCaptionInactive.Border = Color.FromArgb(0xFF, 0xCC, 0xCE, 0xDB);
+            skin.ColorPalette.ToolWindowCaptionInactive.Button = Color.FromArgb(0xFF, 0x1E, 0x1E, 0x1E);
+            skin.ColorPalette.ToolWindowCaptionInactive.Grip = Color.FromArgb(0xFF, 0x99, 0x99, 0x99);
+            skin.ColorPalette.ToolWindowCaptionInactive.Text = Color.FromArgb(0xFF, 0x44, 0x44, 0x44);
+
+            skin.ColorPalette.ToolWindowTabSelectedActive.Background = Color.FromArgb(0xFF, 0xF5, 0xF5, 0xF5);
+            skin.ColorPalette.ToolWindowTabSelectedActive.Text = Color.FromArgb(0xFF, 0x0E, 0x70, 0xC0);
+
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Background = Color.FromArgb(0xFF, 0xF5, 0xF5, 0xF5);
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Text = Color.FromArgb(0xFF, 0x0E, 0x70, 0xC0);
+
+            skin.ColorPalette.ToolWindowTabUnselected.Background = Color.FromArgb(0xFF, 0xEE, 0xEE, 0xF2);
+            skin.ColorPalette.ToolWindowTabUnselected.Text = Color.FromArgb(0xFF, 0x44, 0x44, 0x44);
+
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Background = Color.FromArgb(0xFF, 0xC9, 0xDE, 0xF5);
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Text = Color.FromArgb(0xFF, 0x1E, 0x1E, 0x1E);
 
             return skin;
         }

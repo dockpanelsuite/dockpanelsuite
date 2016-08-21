@@ -76,11 +76,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (window == null)
                     return;
 
+                var skin = window.DockPanel.Skin;
                 if (this._horizontalBrush == null)
                 {
-                    var skin = window.DockPanel.Skin;
-                    _horizontalBrush = new SolidBrush(skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor);
-                    _verticalSurroundColors = new[] { skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor };
+                    _horizontalBrush = new SolidBrush(skin.ColorPalette.TabUnselected.Background);
+                    _verticalSurroundColors = new[] { skin.ColorPalette.TabSelectedInactive.Background };
                 }
 
                 switch (Dock)
@@ -93,7 +93,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                                 path.AddRectangle(rect);
                                 using (var brush = new PathGradientBrush(path)
                                     {
-                                        CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = _verticalSurroundColors
+                                        CenterColor = skin.ColorPalette.ToolWindowCaptionActive.Border, SurroundColors = _verticalSurroundColors
                                     })
                                 {
                                     e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y, 
