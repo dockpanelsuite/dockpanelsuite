@@ -57,6 +57,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class ToolWindowTabPalette
     {
         public Color Background { get; set; }
+        public Color Separator { get; set; } // VS2012
         public Color Text { get; set; }
     }
 
