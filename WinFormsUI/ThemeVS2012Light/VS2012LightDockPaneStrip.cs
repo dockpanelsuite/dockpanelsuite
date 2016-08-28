@@ -545,20 +545,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return _DocumentTextGapRight; }
         }
 
-        private Pen _toolWindowTabActiveBorder;
-
-        private Pen PenToolWindowTabActiveBorder
-        {
-            get { return _toolWindowTabActiveBorder ?? (_toolWindowTabActiveBorder = new Pen(DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionActive.Border)); }
-        }
-
-        private Pen _toolWindowTabInactiveBorder;
-
-        private Pen PenToolWindowTabInactiveBorder
-        {
-            get { return _toolWindowTabInactiveBorder ?? (_toolWindowTabInactiveBorder = new Pen(DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionInactive.Border)); }
-        }
-
         #endregion
 
         #endregion
@@ -958,7 +944,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     continue;
                 }
                 if (rectTab.IntersectsWith(rectTabOnly))
-                    DrawTab(g, Tabs[i] as TabVS2012Light, rectTab);
+                    DrawTab(g, Tabs[i] as TabVS2012Light, rectTab, false);
             }
 
             g.SetClip(rectTabStrip);
@@ -984,23 +970,15 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (rectTab.IntersectsWith(rectTabOnly))
                 {
                     rectTab.Intersect(rectTabOnly);
-                    DrawTab(g, tabActive, rectTab);
+                    DrawTab(g, tabActive, rectTab, false);
                 }
             }
         }
 
         private void DrawTabStrip_ToolWindow(Graphics g)
         {
-            Rectangle rectTabStrip = TabStripRectangle;
-
-            g.DrawLine(DockPane.IsActiveDocumentPane
-                ? PenToolWindowTabActiveBorder
-                : PenToolWindowTabInactiveBorder,
-                rectTabStrip.Left, rectTabStrip.Top,
-                rectTabStrip.Right, rectTabStrip.Top);
-
             for (int i = 0; i < Tabs.Count; i++)
-                DrawTab(g, Tabs[i] as TabVS2012Light, GetTabRectangle(i));
+                DrawTab(g, Tabs[i] as TabVS2012Light, GetTabRectangle(i), i == Tabs.Count - 1);
         }
 
         private Rectangle GetTabRectangle(int index)
@@ -1037,10 +1015,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             return rect;
         }
 
-        private void DrawTab(Graphics g, TabVS2012Light tab, Rectangle rect)
+        private void DrawTab(Graphics g, TabVS2012Light tab, Rectangle rect, bool last)
         {
             if (Appearance == DockPane.AppearanceStyle.ToolWindow)
-                DrawTab_ToolWindow(g, tab, rect);
+                DrawTab_ToolWindow(g, tab, rect, last);
             else
                 DrawTab_Document(g, tab, rect);
         }
@@ -1083,7 +1061,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return GraphicsPath;
         }
 
-        private void DrawTab_ToolWindow(Graphics g, TabVS2012Light tab, Rectangle rect)
+        private void DrawTab_ToolWindow(Graphics g, TabVS2012Light tab, Rectangle rect, bool last)
         {
             rect.Y += 1;
             Rectangle rectIcon = new Rectangle(
@@ -1106,20 +1084,43 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (DockPane.ActiveContent == tab.Content && ((DockContent)tab.Content).IsActivated)
             {
                 g.FillRectangle(new SolidBrush(DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabSelectedActive.Background), rect);
-                Color textColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabSelectedActive.Text;
+                Color textColor;
+                Color separatorColor;
+                if (tab.Content == DockPane.MouseOverTab)
+                {
+                    textColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabSelectedActive.Text;
+                    separatorColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabSelectedActive.Separator;
+                }
+                else
+                {
+                    textColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabSelectedInactive.Text;
+                    separatorColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabSelectedInactive.Separator;
+                }
+
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, ToolWindowTextFormat);
-                g.DrawLine(PenToolWindowTabActiveBorder, rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
+                // TODO: how to cache Pen?
+                g.DrawLine(new Pen(separatorColor), rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
             }
             else
             {
                 Color textColor;
+                Color separatorColor;
                 if (tab.Content == DockPane.MouseOverTab)
+                {
                     textColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabUnselectedHovered.Text;
+                    separatorColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabUnselectedHovered.Separator;
+                }
                 else
+                {
                     textColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabUnselected.Text;
+                    separatorColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabUnselected.Separator;
+                }
 
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, ToolWindowTextFormat);
-                g.DrawLine(PenToolWindowTabInactiveBorder, rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
+                if (!last)
+                {
+                    g.DrawLine(new Pen(separatorColor), rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
+                }
             }
 
             if (rectTab.Contains(rectIcon))
