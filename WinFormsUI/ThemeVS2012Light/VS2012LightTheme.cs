@@ -486,7 +486,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.ColorPalette.ToolWindowCaptionActive.Grip = Color.FromArgb(0xFF, 0x59, 0xA8, 0xDE);
             skin.ColorPalette.ToolWindowCaptionActive.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 
-            skin.ColorPalette.ToolWindowCaptionInactive.Background = Color.FromArgb(0xFF, 0xEF, 0xFE, 0xF2);
+            skin.ColorPalette.ToolWindowCaptionInactive.Background = Color.FromArgb(0xFF, 0xEF, 0xEF, 0xF2);
             skin.ColorPalette.ToolWindowCaptionInactive.Button = Color.FromArgb(0xFF, 0x1E, 0x1E, 0x1E);
             skin.ColorPalette.ToolWindowCaptionInactive.Grip = Color.FromArgb(0xFF, 0x99, 0x99, 0x99);
             skin.ColorPalette.ToolWindowCaptionInactive.Text = Color.FromArgb(0xFF, 0x44, 0x44, 0x44);

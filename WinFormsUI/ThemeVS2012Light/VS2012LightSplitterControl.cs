@@ -9,7 +9,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         private readonly SolidBrush _horizontalBrush;
         private readonly Color[] _verticalSurroundColors;
 
-
         public VS2012LightSplitterControl(DockPane pane)
             : base(pane)
         {
