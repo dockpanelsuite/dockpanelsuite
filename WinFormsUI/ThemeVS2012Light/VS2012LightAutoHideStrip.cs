@@ -321,11 +321,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockState dockState = tab.Content.DockHandler.DockState;
             IDockContent content = tab.Content;
 
-            Color textColor;
+            Color borderColor;
             if (tab.Content.DockHandler.IsActivated || tab.IsMouseOver)
-                textColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Text;
+                borderColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Border;
             else
-                textColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Text;
+                borderColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Border;
 
             Rectangle rectThickLine = rectTabOrigin;
             rectThickLine.X += _TabGapLeft + _TextGapLeft + _ImageGapLeft + _ImageWidth;
@@ -338,7 +338,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (dockState == DockState.DockTopAutoHide || dockState == DockState.DockRightAutoHide)
                     rectThickLine.Y += 0;
 
-            g.FillRectangle(new SolidBrush(textColor), rectThickLine);
+            g.FillRectangle(new SolidBrush(borderColor), rectThickLine);
 
             //Set no rotate for drawing icon and text
             Matrix matrixRotate = g.Transform;
@@ -384,6 +384,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectText.Width -= ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
             rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
 
+            Color textColor;
             if (DockPanel.ActiveContent == content || tab.IsMouseOver)
                 textColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Text;
             else
