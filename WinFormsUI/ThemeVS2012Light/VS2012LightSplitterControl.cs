@@ -13,7 +13,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2012LightSplitterControl(DockPane pane)
             : base(pane)
         {
-            _horizontalBrush = new SolidBrush(pane.DockPanel.Skin.ColorPalette.TabUnselected.Background);
+            _horizontalBrush = new SolidBrush(pane.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background);
             this._verticalSurroundColors = new[]
                                                {
                                                    pane.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background
