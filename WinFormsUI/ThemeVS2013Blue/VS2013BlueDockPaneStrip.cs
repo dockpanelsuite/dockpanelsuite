@@ -240,7 +240,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 if (m_imageButtonWindowList == null)
-                    m_imageButtonWindowList = ThemeVS2012Light.Resources.DockPane_Option;
+                    m_imageButtonWindowList = ThemeVS2012.Light.Resources.DockPane_Option;
 
                 return m_imageButtonWindowList;
             }
@@ -251,7 +251,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 if (m_imageButtonWindowListOverflow == null)
-                    m_imageButtonWindowListOverflow = ThemeVS2012Light.Resources.DockPane_OptionOverflow;
+                    m_imageButtonWindowListOverflow = ThemeVS2012.Light.Resources.DockPane_OptionOverflow;
 
                 return m_imageButtonWindowListOverflow;
             }
@@ -275,7 +275,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private static GraphicsPath GraphicsPath
         {
-            get { return VS2012LightAutoHideStrip.GraphicsPath; }
+            get { return VS2012AutoHideStrip.GraphicsPath; }
         }
 
         private IContainer Components

@@ -6,17 +6,16 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    using WeifenLuo.WinFormsUI.ThemeVS2012;
-    using WeifenLuo.WinFormsUI.ThemeVS2012.Light;
+    using WeifenLuo.WinFormsUI.ThemeVS2012.Dark;
 
     /// <summary>
-    /// Visual Studio 2013 Light theme.
+    /// Visual Studio 2012 Dark theme.
     /// </summary>
-    public class VS2013BlueTheme : ThemeBase
+    public class VS2012DarkTheme : ThemeBase
     {
-        public VS2013BlueTheme()
+        public VS2012DarkTheme()
         {
-            Skin = CreateVisualStudio2013Blue();
+            Skin = CreateVisualStudio2012Dark();
         }
 
         /// <summary>
@@ -31,31 +30,32 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             Measures.SplitterSize = 6;
-            dockPanel.Extender.DockPaneCaptionFactory = new VS2013BlueDockPaneCaptionFactory();
-            dockPanel.Extender.AutoHideStripFactory = new VS2013BlueAutoHideStripFactory();
-            dockPanel.Extender.AutoHideWindowFactory = new VS2013BlueAutoHideWindowFactory();
-            dockPanel.Extender.DockPaneStripFactory = new VS2013BlueDockPaneStripFactory();
-            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2013BlueDockPaneSplitterControlFactory();
-            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2013BlueDockWindowSplitterControlFactory();
-            dockPanel.Extender.DockWindowFactory = new VS2013BlueDockWindowFactory();
-            dockPanel.Extender.PaneIndicatorFactory = new VS2013BluePaneIndicatorFactory();
-            dockPanel.Extender.PanelIndicatorFactory = new VS2013BluePanelIndicatorFactory();
-            dockPanel.Extender.DockOutlineFactory = new VS2013BlueDockOutlineFactory();
+            dockPanel.Extender.DockPaneCaptionFactory = new VS2012DockPaneCaptionFactory();
+            dockPanel.Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
+            dockPanel.Extender.AutoHideWindowFactory = new VS2012AutoHideWindowFactory();
+            dockPanel.Extender.DockPaneStripFactory = new VS2012DockPaneStripFactory();
+            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012DockPaneSplitterControlFactory();
+            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2012DockWindowSplitterControlFactory();
+            dockPanel.Extender.DockWindowFactory = new VS2012DockWindowFactory();
+            dockPanel.Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
+            dockPanel.Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();
+            dockPanel.Extender.DockOutlineFactory = new VS2012DockOutlineFactory();
         }
 
-        private class VS2013BlueDockOutlineFactory : DockPanelExtender.IDockOutlineFactory
+        private class VS2012DockOutlineFactory : DockPanelExtender.IDockOutlineFactory
         {
             public DockOutlineBase CreateDockOutline()
             {
-                return new VS2013BlueDockOutline();
+                return new VS2012LightDockOutline();
             }
 
-            private class VS2013BlueDockOutline : DockOutlineBase
+            private class VS2012LightDockOutline : DockOutlineBase
             {
-                public VS2013BlueDockOutline()
+                public VS2012LightDockOutline()
                 {
                     m_dragForm = new DragForm();
                     SetDragForm(Rectangle.Empty);
+                    // TODO: get this color from palette
                     DragForm.BackColor = Color.FromArgb(0xff, 91, 173, 255);
                     DragForm.Opacity = 0.5;
                     DragForm.Show(false);
@@ -207,14 +207,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013BluePanelIndicatorFactory : DockPanelExtender.IPanelIndicatorFactory
+        private class VS2012PanelIndicatorFactory : DockPanelExtender.IPanelIndicatorFactory
         {
             public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style)
             {
-                return new VS2013BluePanelIndicator(style);
+                return new VS2012LightPanelIndicator(style);
             }
 
-            private class VS2013BluePanelIndicator : PictureBox, DockPanel.IPanelIndicator
+            private class VS2012LightPanelIndicator : PictureBox, DockPanel.IPanelIndicator
             {
                 private static Image _imagePanelLeft = Resources.DockIndicator_PanelLeft;
                 private static Image _imagePanelRight = Resources.DockIndicator_PanelRight;
@@ -227,7 +227,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 private static Image _imagePanelBottomActive = Resources.DockIndicator_PanelBottom;
                 private static Image _imagePanelFillActive = Resources.DockIndicator_PanelFill;
 
-                public VS2013BluePanelIndicator(DockStyle dockStyle)
+                public VS2012LightPanelIndicator(DockStyle dockStyle)
                 {
                     m_dockStyle = dockStyle;
                     SizeMode = PictureBoxSizeMode.AutoSize;
@@ -316,14 +316,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013BluePaneIndicatorFactory : DockPanelExtender.IPaneIndicatorFactory
+        private class VS2012PaneIndicatorFactory : DockPanelExtender.IPaneIndicatorFactory
         {
             public DockPanel.IPaneIndicator CreatePaneIndicator()
             {
-                return new VS2013BluePaneIndicator();
+                return new VS2012LightPaneIndicator();
             }
 
-            private class VS2013BluePaneIndicator : PictureBox, DockPanel.IPaneIndicator
+            private class VS2012LightPaneIndicator : PictureBox, DockPanel.IPaneIndicator
             {
                 private static Bitmap _bitmapPaneDiamond = Resources.Dockindicator_PaneDiamond;
                 private static Bitmap _bitmapPaneDiamondLeft = Resources.Dockindicator_PaneDiamond_Fill;
@@ -345,7 +345,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 private GraphicsPath _displayingGraphicsPath = DrawHelper.CalculateGraphicsPathFromBitmap(_bitmapPaneDiamond);
 
-                public VS2013BluePaneIndicator()
+                public VS2012LightPaneIndicator()
                 {
                     SizeMode = PictureBoxSizeMode.AutoSize;
                     Image = _bitmapPaneDiamond;
@@ -400,7 +400,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013BlueAutoHideWindowFactory : DockPanelExtender.IAutoHideWindowFactory
+        private class VS2012AutoHideWindowFactory : DockPanelExtender.IAutoHideWindowFactory
         {
             public DockPanel.AutoHideWindowControl CreateAutoHideWindow(DockPanel panel)
             {
@@ -408,31 +408,31 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013BlueDockPaneSplitterControlFactory : DockPanelExtender.IDockPaneSplitterControlFactory
+        private class VS2012DockPaneSplitterControlFactory : DockPanelExtender.IDockPaneSplitterControlFactory
         {
             public DockPane.SplitterControlBase CreateSplitterControl(DockPane pane)
             {
-                return new VS2013BlueSplitterControl(pane);
+                return new VS2012SplitterControl(pane);
             }
         }
 
-        private class VS2013BlueDockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
+        private class VS2012DockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
         {
             public SplitterBase CreateSplitterControl()
             {
-                return new VS2013BlueDockWindowSplitterControl();
+                return new VS2012DockWindow.VS2012DockWindowSplitterControl();
             }
         }
 
-        private class VS2013BlueDockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
+        private class VS2012DockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
         {
             public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
             {
-                return new VS2013BlueDockPaneStrip(pane);
+                return new VS2012DockPaneStrip(pane);
             }
         }
 
-        private class VS2013BlueAutoHideStripFactory : DockPanelExtender.IAutoHideStripFactory
+        private class VS2012AutoHideStripFactory : DockPanelExtender.IAutoHideStripFactory
         {
             public AutoHideStripBase CreateAutoHideStrip(DockPanel panel)
             {
@@ -440,7 +440,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013BlueDockPaneCaptionFactory : DockPanelExtender.IDockPaneCaptionFactory
+        private class VS2012DockPaneCaptionFactory : DockPanelExtender.IDockPaneCaptionFactory
         {
             public DockPaneCaptionBase CreateDockPaneCaption(DockPane pane)
             {
@@ -448,7 +448,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2013BlueDockWindowFactory : DockPanelExtender.IDockWindowFactory
+        private class VS2012DockWindowFactory : DockPanelExtender.IDockWindowFactory
         {
             public DockWindow CreateDockWindow(DockPanel dockPanel, DockState dockState)
             {
@@ -456,116 +456,60 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        public static DockPanelSkin CreateVisualStudio2013Blue()
+        public static DockPanelSkin CreateVisualStudio2012Dark()
         {
-            var border      = Color.FromArgb(0xFF, 41, 57, 85);
-            var specialyellow = Color.FromArgb(0xFF, 255, 242, 157);
-            var hover = Color.FromArgb(0xFF, 155, 167, 183);
-
-            var activeTab = specialyellow;
-            var mouseHoverTab = Color.FromArgb(0xFF, 91, 113, 153);
-            var inactiveTab = Color.FromArgb(0xFF, 54, 78, 111);
-            var lostFocusTab = Color.FromArgb(0xFF, 77, 96, 130);
             var skin = new DockPanelSkin();
 
-            skin.AutoHideStripSkin.DockStripGradient.StartColor = hover;
-            skin.AutoHideStripSkin.DockStripGradient.EndColor = inactiveTab;
-            skin.AutoHideStripSkin.TabGradient.TextColor = Color.White;
-            skin.AutoHideStripSkin.DockStripBackground.StartColor = border;
+            skin.ColorPalette.MainWindowActive.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
 
-            skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.StartColor = border;
-            skin.DockPaneStripSkin.DocumentGradient.DockStripGradient.EndColor = border;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor = activeTab;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor = lostFocusTab;
-            skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor = Color.Black;
-            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor = inactiveTab;
-            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.EndColor = mouseHoverTab;
-            skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor = Color.White;
+            skin.ColorPalette.AutoHideStripDefault.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
+            skin.ColorPalette.AutoHideStripDefault.Border = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
+            skin.ColorPalette.AutoHideStripDefault.Text = Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.StartColor = inactiveTab;
-            skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient.EndColor = inactiveTab;
+            skin.ColorPalette.AutoHideStripHovered.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
+            skin.ColorPalette.AutoHideStripHovered.Border = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
+            skin.ColorPalette.AutoHideStripHovered.Text = Color.FromArgb(0xFF, 0x00, 0x97, 0xFB);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.StartColor = Color.White;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.EndColor = Color.White;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor = Color.Black;
+            skin.ColorPalette.TabSelectedActive.Background = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
+            skin.ColorPalette.TabSelectedActive.Button = Color.FromArgb(0xFF, 0xD0, 0xE6, 0xF5);
+            skin.ColorPalette.TabSelectedActive.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.StartColor = border;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.EndColor = border;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor = Color.White;
+            skin.ColorPalette.TabSelectedInactive.Background = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
+            skin.ColorPalette.TabSelectedInactive.Button = Color.FromArgb(0xFF, 0x6D, 0x6D, 0x70);
+            skin.ColorPalette.TabSelectedInactive.Text = Color.FromArgb(0xFF, 0xF1, 0xF1, 0xF1);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.StartColor = specialyellow;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.EndColor = specialyellow;
-            //skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.TextColor = Color.Black;
+            skin.ColorPalette.TabUnselected.Text = Color.FromArgb(0xFF, 0xF1, 0xF1, 0xF1);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.StartColor = lostFocusTab;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.EndColor = lostFocusTab;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
-            skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor = Color.White;
+            skin.ColorPalette.TabUnselectedHovered.Background = Color.FromArgb(0xFF, 0x1C, 0x97, 0xEA);
+            skin.ColorPalette.TabUnselectedHovered.Button = Color.FromArgb(0xFF, 0xD0, 0xE6, 0xF5);
+            skin.ColorPalette.TabUnselectedHovered.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 
-            skin.DockPaneStripSkin.ToolWindowGradient.HoverTabGradient.TextColor = Color.White;
+            skin.ColorPalette.ToolWindowCaptionActive.Background = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
+            skin.ColorPalette.ToolWindowCaptionActive.Button = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+            skin.ColorPalette.ToolWindowCaptionActive.Grip = Color.FromArgb(0xFF, 0x59, 0xA8, 0xDE);
+            skin.ColorPalette.ToolWindowCaptionActive.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
 
-            skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.StartColor = mouseHoverTab;
-            skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.EndColor = mouseHoverTab;
-            skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.TextColor = Color.White;
+            skin.ColorPalette.ToolWindowCaptionInactive.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
+            skin.ColorPalette.ToolWindowCaptionInactive.Button = Color.FromArgb(0xFF, 0xF1, 0xF1, 0xF1);
+            skin.ColorPalette.ToolWindowCaptionInactive.Grip = Color.FromArgb(0xFF, 0x46, 0x46, 0x4A);
+            skin.ColorPalette.ToolWindowCaptionInactive.Text = Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0);
+
+            skin.ColorPalette.ToolWindowTabSelectedActive.Background = Color.FromArgb(0xFF, 0x25, 0x25, 0x26);
+            skin.ColorPalette.ToolWindowTabSelectedActive.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
+            skin.ColorPalette.ToolWindowTabSelectedActive.Text = Color.FromArgb(0xFF, 0x00, 0x97, 0xFB);
+
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Background = Color.FromArgb(0xFF, 0x25, 0x25, 0x26);
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Text = Color.FromArgb(0xFF, 0x00, 0x97, 0xFB);
+
+            skin.ColorPalette.ToolWindowTabUnselected.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
+            skin.ColorPalette.ToolWindowTabUnselected.Text = Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0);
+
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Background = Color.FromArgb(0xFF, 0x3E, 0x3E, 0x40);
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Text = Color.FromArgb(0xFF, 0x55, 0xAA, 0xFF);
 
             return skin;
-        }
-
-        internal class VS2013BlueDockWindowSplitterControl : SplitterBase
-        {
-            private SolidBrush _brush;
-
-            protected override int SplitterSize
-            {
-                get { return Measures.SplitterSize; }
-            }
-
-            protected override void StartDrag()
-            {
-                DockWindow window = Parent as DockWindow;
-                if (window == null)
-                    return;
-
-                window.DockPanel.BeginDrag(window, window.RectangleToScreen(Bounds));
-            }
-
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                base.OnPaint(e);
-
-                Rectangle rect = ClientRectangle;
-
-                if (rect.Width <= 0 || rect.Height <= 0)
-                    return;
-
-                DockWindow window = Parent as DockWindow;
-                if (window == null)
-                    return;
-
-                if (this._brush == null)
-                {
-                    _brush = new SolidBrush(window.DockPanel.Skin.AutoHideStripSkin.DockStripBackground.StartColor);
-                }
-
-                switch (Dock)
-                {
-                    case DockStyle.Right:
-                    case DockStyle.Left:
-                        {
-                            e.Graphics.FillRectangle(_brush, rect.X, rect.Y,
-                                                             Measures.SplitterSize, rect.Height);
-                        }
-                        break;
-                    case DockStyle.Bottom:
-                    case DockStyle.Top:
-                        {
-                            e.Graphics.FillRectangle(_brush, rect.X, rect.Y, rect.Width, Measures.SplitterSize);
-                        }
-                        break;
-                }
-
-            }
         }
     }
 }

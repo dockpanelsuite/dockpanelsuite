@@ -57,6 +57,7 @@ namespace DockSample
             this.menuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemSchemaVS2013Blue = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2012Light = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSchemaVS2012Dark = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2005 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2003 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem6 = new System.Windows.Forms.ToolStripSeparator();
@@ -93,6 +94,7 @@ namespace DockSample
             this.vS2012ToolStripExtender1 = new DockSample.VSToolStripExtender(this.components);
             this.topBar = new System.Windows.Forms.Panel();
             this.bottomBar = new System.Windows.Forms.Panel();
+            this.vS2012DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -286,6 +288,7 @@ namespace DockSample
             this.menuItem3,
             this.menuItemSchemaVS2013Blue,
             this.menuItemSchemaVS2012Light,
+            this.menuItemSchemaVS2012Dark,
             this.menuItemSchemaVS2005,
             this.menuItemSchemaVS2003,
             this.menuItem6,
@@ -297,7 +300,7 @@ namespace DockSample
             this.showRightToLeft});
             this.menuItemTools.MergeIndex = 2;
             this.menuItemTools.Name = "menuItemTools";
-            this.menuItemTools.Size = new System.Drawing.Size(47, 20);
+            this.menuItemTools.Size = new System.Drawing.Size(48, 20);
             this.menuItemTools.Text = "&Tools";
             this.menuItemTools.DropDownOpening += new System.EventHandler(this.menuItemTools_Popup);
             // 
@@ -333,6 +336,13 @@ namespace DockSample
             this.menuItemSchemaVS2012Light.Size = new System.Drawing.Size(255, 22);
             this.menuItemSchemaVS2012Light.Text = "Schema: VS2012 Light";
             this.menuItemSchemaVS2012Light.Click += new System.EventHandler(this.SetSchema);
+            // 
+            // menuItemSchemaVS2012Dark
+            // 
+            this.menuItemSchemaVS2012Dark.Name = "menuItemSchemaVS2012Dark";
+            this.menuItemSchemaVS2012Dark.Size = new System.Drawing.Size(255, 22);
+            this.menuItemSchemaVS2012Dark.Text = "Schema: VS2012 Dark";
+            this.menuItemSchemaVS2012Dark.Click += new System.EventHandler(this.SetSchema);
             // 
             // menuItemSchemaVS2005
             // 
@@ -575,6 +585,7 @@ namespace DockSample
             // 
             this.vS2012ToolStripExtender1.DefaultRenderer = null;
             this.vS2012ToolStripExtender1.VS2012Renderer = null;
+            this.vS2012ToolStripExtender1.VS2013Renderer = null;
             // 
             // topBar
             // 
@@ -678,6 +689,7 @@ namespace DockSample
         private System.Windows.Forms.ToolStripMenuItem exitWithoutSavingLayout;
         private System.Windows.Forms.ToolStripButton toolBarButtonDockPanelSkinDemo;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Light;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Dark;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2013Blue;
         private WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme vS2013BlueTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme vS2012LightTheme1;
@@ -686,5 +698,6 @@ namespace DockSample
         private VSToolStripExtender vS2012ToolStripExtender1;
         private System.Windows.Forms.Panel topBar;
         private System.Windows.Forms.Panel bottomBar;
+        private WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme vS2012DarkTheme1;
     }
 }

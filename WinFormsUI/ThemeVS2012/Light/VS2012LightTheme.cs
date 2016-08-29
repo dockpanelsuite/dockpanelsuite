@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    using WeifenLuo.WinFormsUI.ThemeVS2012Light;
+    using WeifenLuo.WinFormsUI.ThemeVS2012.Light;
 
     /// <summary>
     /// Visual Studio 2012 Light theme.
@@ -403,7 +403,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public DockPanel.AutoHideWindowControl CreateAutoHideWindow(DockPanel panel)
             {
-                return new VS2012LightAutoHideWindowControl(panel);
+                return new VS2012AutoHideWindowControl(panel);
             }
         }
 
@@ -411,7 +411,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public DockPane.SplitterControlBase CreateSplitterControl(DockPane pane)
             {
-                return new VS2012LightSplitterControl(pane);
+                return new VS2012SplitterControl(pane);
             }
         }
 
@@ -419,7 +419,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public SplitterBase CreateSplitterControl()
             {
-                return new VS2012LightDockWindow.VS2012LightDockWindowSplitterControl();
+                return new VS2012DockWindow.VS2012DockWindowSplitterControl();
             }
         }
 
@@ -427,7 +427,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
             {
-                return new VS2012LightDockPaneStrip(pane);
+                return new VS2012DockPaneStrip(pane);
             }
         }
 
@@ -435,7 +435,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public AutoHideStripBase CreateAutoHideStrip(DockPanel panel)
             {
-                return new VS2012LightAutoHideStrip(panel);
+                return new VS2012AutoHideStrip(panel);
             }
         }
 
@@ -443,7 +443,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public DockPaneCaptionBase CreateDockPaneCaption(DockPane pane)
             {
-                return new VS2012LightDockPaneCaption(pane);
+                return new VS2012DockPaneCaption(pane);
             }
         }
 
@@ -451,13 +451,15 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public DockWindow CreateDockWindow(DockPanel dockPanel, DockState dockState)
             {
-                return new VS2012LightDockWindow(dockPanel, dockState);
+                return new VS2012DockWindow(dockPanel, dockState);
             }
         }
 
         public static DockPanelSkin CreateVisualStudio2012Light()
         {
             var skin = new DockPanelSkin();
+
+            skin.ColorPalette.MainWindowActive.Background = Color.FromArgb(0xFF, 0xEF, 0xEF, 0xF2);
 
             skin.ColorPalette.AutoHideStripDefault.Background = Color.FromArgb(0xFF, 0xEF, 0xEF, 0xF2);
             skin.ColorPalette.AutoHideStripDefault.Border = Color.FromArgb(0xFF, 0xCC, 0xCE, 0xDB);

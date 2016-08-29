@@ -176,6 +176,11 @@ namespace DockSample
                 this.dockPanel.Theme = this.vS2012LightTheme1;
                 this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2012);
             }
+            else if (sender == this.menuItemSchemaVS2012Dark)
+            {
+                this.dockPanel.Theme = this.vS2012DarkTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2012);
+            }
             else if (sender == this.menuItemSchemaVS2013Blue)
             {
                 this.dockPanel.Theme = this.vS2013BlueTheme1;
@@ -185,6 +190,7 @@ namespace DockSample
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
+            menuItemSchemaVS2012Dark.Checked = (sender == menuItemSchemaVS2012Dark);
             this.menuItemSchemaVS2013Blue.Checked = (sender == this.menuItemSchemaVS2013Blue);
             this.topBar.Visible = this.bottomBar.Visible = (sender == this.menuItemSchemaVS2013Blue);
 
