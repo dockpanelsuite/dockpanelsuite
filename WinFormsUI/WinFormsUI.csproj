@@ -60,6 +60,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\DrawingRoutines.cs" />
+    <Compile Include="Docking\IImageService.cs" />
     <Compile Include="Docking\InertButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -107,9 +108,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\DockPaneCollection.cs" />
-    <Compile Include="Docking\DockPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Docking\DockPanel.cs" />
     <Compile Include="Docking\DockPanelExtender.cs" />
     <Compile Include="Docking\DockPanel.Persistor.cs">
       <SubType>Component</SubType>

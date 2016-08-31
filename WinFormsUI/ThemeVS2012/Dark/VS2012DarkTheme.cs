@@ -16,6 +16,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2012DarkTheme()
         {
             Skin = CreateVisualStudio2012Dark();
+            ImageService = new ImageService();
         }
 
         /// <summary>
@@ -209,29 +210,40 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private class VS2012PanelIndicatorFactory : DockPanelExtender.IPanelIndicatorFactory
         {
-            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style)
+            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
             {
-                return new VS2012LightPanelIndicator(style);
+                return new VS2012LightPanelIndicator(style, (VS2012DarkTheme)theme);
             }
 
             private class VS2012LightPanelIndicator : PictureBox, DockPanel.IPanelIndicator
             {
-                private static Image _imagePanelLeft = Resources.DockIndicator_PanelLeft;
-                private static Image _imagePanelRight = Resources.DockIndicator_PanelRight;
-                private static Image _imagePanelTop = Resources.DockIndicator_PanelTop;
-                private static Image _imagePanelBottom = Resources.DockIndicator_PanelBottom;
-                private static Image _imagePanelFill = Resources.DockIndicator_PanelFill;
-                private static Image _imagePanelLeftActive = Resources.DockIndicator_PanelLeft;
-                private static Image _imagePanelRightActive = Resources.DockIndicator_PanelRight;
-                private static Image _imagePanelTopActive = Resources.DockIndicator_PanelTop;
-                private static Image _imagePanelBottomActive = Resources.DockIndicator_PanelBottom;
-                private static Image _imagePanelFillActive = Resources.DockIndicator_PanelFill;
+                private Image _imagePanelLeft;
+                private Image _imagePanelRight;
+                private Image _imagePanelTop;
+                private Image _imagePanelBottom;
+                private Image _imagePanelFill;
+                private Image _imagePanelLeftActive;
+                private Image _imagePanelRightActive;
+                private Image _imagePanelTopActive;
+                private Image _imagePanelBottomActive;
+                private Image _imagePanelFillActive;
 
-                public VS2012LightPanelIndicator(DockStyle dockStyle)
+                public VS2012LightPanelIndicator(DockStyle dockStyle, VS2012DarkTheme theme)
                 {
                     m_dockStyle = dockStyle;
                     SizeMode = PictureBoxSizeMode.AutoSize;
                     Image = ImageInactive;
+
+                    _imagePanelLeft = theme.ImageService.DockIndicator_PanelLeft;
+                    _imagePanelRight = theme.ImageService.DockIndicator_PanelRight;
+                    _imagePanelTop = theme.ImageService.DockIndicator_PanelTop;
+                    _imagePanelBottom = theme.ImageService.DockIndicator_PanelBottom;
+                    _imagePanelFill = theme.ImageService.DockIndicator_PanelFill;
+                    _imagePanelLeftActive = theme.ImageService.DockIndicator_PanelLeft;
+                    _imagePanelRightActive = theme.ImageService.DockIndicator_PanelRight;
+                    _imagePanelTopActive = theme.ImageService.DockIndicator_PanelTop;
+                    _imagePanelBottomActive = theme.ImageService.DockIndicator_PanelBottom;
+                    _imagePanelFillActive = theme.ImageService.DockIndicator_PanelFill;
                 }
 
                 private DockStyle m_dockStyle;
@@ -318,21 +330,21 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private class VS2012PaneIndicatorFactory : DockPanelExtender.IPaneIndicatorFactory
         {
-            public DockPanel.IPaneIndicator CreatePaneIndicator()
+            public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme)
             {
-                return new VS2012LightPaneIndicator();
+                return new VS2012LightPaneIndicator((VS2012DarkTheme)theme);
             }
 
             private class VS2012LightPaneIndicator : PictureBox, DockPanel.IPaneIndicator
             {
-                private static Bitmap _bitmapPaneDiamond = Resources.Dockindicator_PaneDiamond;
-                private static Bitmap _bitmapPaneDiamondLeft = Resources.Dockindicator_PaneDiamond_Fill;
-                private static Bitmap _bitmapPaneDiamondRight = Resources.Dockindicator_PaneDiamond_Fill;
-                private static Bitmap _bitmapPaneDiamondTop = Resources.Dockindicator_PaneDiamond_Fill;
-                private static Bitmap _bitmapPaneDiamondBottom = Resources.Dockindicator_PaneDiamond_Fill;
-                private static Bitmap _bitmapPaneDiamondFill = Resources.Dockindicator_PaneDiamond_Fill;
-                private static Bitmap _bitmapPaneDiamondHotSpot = Resources.Dockindicator_PaneDiamond_Hotspot;
-                private static Bitmap _bitmapPaneDiamondHotSpotIndex = Resources.DockIndicator_PaneDiamond_HotspotIndex;
+                private Bitmap _bitmapPaneDiamond;
+                private Bitmap _bitmapPaneDiamondLeft;
+                private Bitmap _bitmapPaneDiamondRight;
+                private Bitmap _bitmapPaneDiamondTop;
+                private Bitmap _bitmapPaneDiamondBottom;
+                private Bitmap _bitmapPaneDiamondFill;
+                private Bitmap _bitmapPaneDiamondHotSpot;
+                private Bitmap _bitmapPaneDiamondHotSpotIndex;
 
                 private static DockPanel.HotSpotIndex[] _hotSpots = new[]
                     {
@@ -343,13 +355,23 @@ namespace WeifenLuo.WinFormsUI.Docking
                         new DockPanel.HotSpotIndex(1, 2, DockStyle.Bottom)
                     };
 
-                private GraphicsPath _displayingGraphicsPath = DrawHelper.CalculateGraphicsPathFromBitmap(_bitmapPaneDiamond);
+                private GraphicsPath _displayingGraphicsPath;
 
-                public VS2012LightPaneIndicator()
+                public VS2012LightPaneIndicator(VS2012DarkTheme theme)
                 {
                     SizeMode = PictureBoxSizeMode.AutoSize;
                     Image = _bitmapPaneDiamond;
                     Region = new Region(DisplayingGraphicsPath);
+
+                    _bitmapPaneDiamond = theme.ImageService.Dockindicator_PaneDiamond;
+                    _bitmapPaneDiamondLeft = theme.ImageService.Dockindicator_PaneDiamond_Fill;
+                    _bitmapPaneDiamondRight = theme.ImageService.Dockindicator_PaneDiamond_Fill;
+                    _bitmapPaneDiamondTop = theme.ImageService.Dockindicator_PaneDiamond_Fill;
+                    _bitmapPaneDiamondBottom = theme.ImageService.Dockindicator_PaneDiamond_Fill;
+                    _bitmapPaneDiamondFill = theme.ImageService.Dockindicator_PaneDiamond_Fill;
+                    _bitmapPaneDiamondHotSpot = theme.ImageService.Dockindicator_PaneDiamond_Hotspot;
+                    _bitmapPaneDiamondHotSpotIndex = theme.ImageService.DockIndicator_PaneDiamond_HotspotIndex;
+                    _displayingGraphicsPath = DrawHelper.CalculateGraphicsPathFromBitmap(_bitmapPaneDiamond);
                 }
 
                 public GraphicsPath DisplayingGraphicsPath

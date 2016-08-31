@@ -7,7 +7,6 @@ using System.ComponentModel;
 namespace WeifenLuo.WinFormsUI.Docking
 {
     using WeifenLuo.WinFormsUI.ThemeVS2012;
-    using WeifenLuo.WinFormsUI.ThemeVS2012.Light;
 
     internal class VS2012DockPaneStrip : DockPaneStripBase
     {
@@ -121,10 +120,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         #region Members
 
         private ContextMenuStrip m_selectMenu;
-        private static Bitmap m_imageButtonClose;
         private InertButton m_buttonClose;
-        private static Bitmap m_imageButtonWindowList;
-        private static Bitmap m_imageButtonWindowListOverflow;
         private InertButton m_buttonWindowList;
         private IContainer m_components;
         private ToolTip m_toolTip;
@@ -209,24 +205,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { _selectMenuMargin = value; }
         }
 
-        private static Bitmap ImageButtonClose
-        {
-            get
-            {
-                if (m_imageButtonClose == null)
-                    m_imageButtonClose = Resources.DockPane_Close;
-
-                return m_imageButtonClose;
-            }
-        }
-
         private InertButton ButtonClose
         {
             get
             {
                 if (m_buttonClose == null)
                 {
-                    m_buttonClose = new InertButton(ImageButtonClose, ImageButtonClose);
+                    m_buttonClose = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPane_Close, DockPane.DockPanel.Theme.ImageService.DockPane_Close);
                     m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
                     m_buttonClose.Click += new EventHandler(Close_Click);
                     Controls.Add(m_buttonClose);
@@ -236,35 +221,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap ImageButtonWindowList
-        {
-            get
-            {
-                if (m_imageButtonWindowList == null)
-                    m_imageButtonWindowList = Resources.DockPane_Option;
-
-                return m_imageButtonWindowList;
-            }
-        }
-
-        private static Bitmap ImageButtonWindowListOverflow
-        {
-            get
-            {
-                if (m_imageButtonWindowListOverflow == null)
-                    m_imageButtonWindowListOverflow = Resources.DockPane_OptionOverflow;
-
-                return m_imageButtonWindowListOverflow;
-            }
-        }
-
         private InertButton ButtonWindowList
         {
             get
             {
                 if (m_buttonWindowList == null)
                 {
-                    m_buttonWindowList = new InertButton(ImageButtonWindowList, ImageButtonWindowListOverflow);
+                    m_buttonWindowList = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPane_Option, DockPane.DockPanel.Theme.ImageService.DockPane_OptionOverflow);
                     m_toolTip.SetToolTip(m_buttonWindowList, ToolTipSelect);
                     m_buttonWindowList.Click += new EventHandler(WindowList_Click);
                     Controls.Add(m_buttonWindowList);
@@ -1189,13 +1152,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     g.FillRectangle(new SolidBrush(activeColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? Resources.ActiveTabHover_Close : Resources.ActiveTab_Close, rectCloseButton);
+                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.ActiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.ActiveTab_Close, rectCloseButton);
                 }
                 else
                 {
                     g.FillRectangle(new SolidBrush(lostFocusColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, lostFocusText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? Resources.LostFocusTabHover_Close : Resources.LostFocusTab_Close, rectCloseButton);
+                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.LostFocusTabHover_Close : DockPane.DockPanel.Theme.ImageService.LostFocusTab_Close, rectCloseButton);
                 }
             }
             else
@@ -1204,7 +1167,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     g.FillRectangle(new SolidBrush(mouseHoverColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, mouseHoverText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? Resources.InactiveTabHover_Close : Resources.ActiveTabHover_Close, rectCloseButton);
+                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.InactiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.ActiveTabHover_Close, rectCloseButton);
                 }
                 else
                 {

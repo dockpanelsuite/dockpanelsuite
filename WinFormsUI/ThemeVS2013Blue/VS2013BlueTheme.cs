@@ -209,7 +209,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private class VS2013BluePanelIndicatorFactory : DockPanelExtender.IPanelIndicatorFactory
         {
-            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style)
+            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
             {
                 return new VS2013BluePanelIndicator(style);
             }
@@ -318,7 +318,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private class VS2013BluePaneIndicatorFactory : DockPanelExtender.IPaneIndicatorFactory
         {
-            public DockPanel.IPaneIndicator CreatePaneIndicator()
+            public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme)
             {
                 return new VS2013BluePaneIndicator();
             }

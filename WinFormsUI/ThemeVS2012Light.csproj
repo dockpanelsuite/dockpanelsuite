@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeVS2012\Dark\ImageService.cs" />
     <Compile Include="ThemeVS2012\Dark\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -49,6 +50,7 @@
     <Compile Include="ThemeVS2012\Dark\VS2012DarkTheme.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ThemeVS2012\Light\ImageService.cs" />
     <Compile Include="ThemeVS2012\Light\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
