@@ -13,11 +13,11 @@
 	<dependencies>
       <dependency id="DockPanelSuite" version="2.11.0-alpha2" />
     </dependencies>
-    <id>DockPanelSuite.ThemeVS2012Light</id>
-    <title>DockPanel Suite VS2012 Light Theme</title>
+    <id>DockPanelSuite.ThemeVS2012</id>
+    <title>DockPanel Suite VS2012 Themes</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Visual Studio 2012 Light theme for DockPanel Suite.</description>
-    <summary>Visual Studio 2012 Light theme for DockPanel Suite.</summary>
+    <description>Visual Studio 2012 themes for DockPanel Suite.</description>
+    <summary>Visual Studio 2012 themes for DockPanel Suite.</summary>
     <releaseNotes>
 Jul 9, 2016: 2.11.0 Alpha 2
 Updated.
@@ -30,7 +30,7 @@ Initial release of this theme as a separate assembly.
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" target="lib\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" />
-    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light.dll" />
+    <file src="..\bin\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" target="lib\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" />
+    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" />
   </files>
 </package>

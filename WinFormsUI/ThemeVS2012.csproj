@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
-    <AssemblyName>WeifenLuo.WinFormsUI.Docking.ThemeVS2012Light</AssemblyName>
+    <AssemblyName>WeifenLuo.WinFormsUI.Docking.ThemeVS2012</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>dockpanelsuite.snk</AssemblyOriginatorKeyFile>
     <DelaySign>False</DelaySign>
@@ -41,13 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeVS2012\VS2012AutoHideStripFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012AutoHideWindowFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockOutlineFactory.cs" />
     <Compile Include="ThemeVS2012\Dark\ImageService.cs" />
     <Compile Include="ThemeVS2012\Dark\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ThemeVS2012\Dark\VS2012DarkTheme.cs">
+    <Compile Include="ThemeVS2012\VS2012DarkTheme.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ThemeVS2012\Light\ImageService.cs" />
@@ -70,16 +73,23 @@
     <Compile Include="ThemeVS2012\VS2012DockPaneCaption.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ThemeVS2012\VS2012DockPaneCaptionFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockPaneSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockPaneStripFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockWindowFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockWindowSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012PaneIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockPaneStrip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ThemeVS2012\VS2012DockWindow.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ThemeVS2012\VS2012PanelIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012SplitterControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ThemeVS2012\Light\VS2012LightTheme.cs">
+    <Compile Include="ThemeVS2012\VS2012LightTheme.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
