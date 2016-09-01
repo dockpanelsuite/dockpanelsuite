@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeVS2012\Blue\ImageService.cs" />
+    <Compile Include="ThemeVS2012\Blue\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ThemeVS2012\PaintingService.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideWindowFactory.cs" />
@@ -79,6 +85,9 @@
     <Compile Include="ThemeVS2012\VS2012DockPaneStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockWindowSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012BlueTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThemeVS2012\VS2012PaneIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockPaneStrip.cs">
       <SubType>Component</SubType>
@@ -97,6 +106,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ThemeVS2012\Dark\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemeVS2012\Blue\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -144,6 +158,26 @@
     <Content Include="ThemeVS2012\Dark\Resources\InactiveTabHover_Close.png" />
     <Content Include="ThemeVS2012\Dark\Resources\LostFocusTabHover_Close.png" />
     <Content Include="ThemeVS2012\Dark\Resources\LostFocusTab_Close.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\ActiveTabHover_Close.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\ActiveTab_Close.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\Dockindicator_PaneDiamond.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockIndicator_PaneDiamond1.bmp" />
+    <Content Include="ThemeVS2012\Blue\Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockIndicator_PanelBottom.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockIndicator_PanelFill.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockIndicator_PanelLeft.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockIndicator_PanelRight.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockIndicator_PanelTop.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockPane_AutoHide.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockPane_Close.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockPane_Dock.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockPane_Option.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\DockPane_OptionOverflow.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\InactiveTabHover_Close.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\LostFocusTabHover_Close.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\LostFocusTab_Close.png" />
     <Content Include="ThemeVS2012\Light\Resources\ActiveTabHover_Close.png" />
     <Content Include="ThemeVS2012\Light\Resources\ActiveTab_Close.png" />
     <Content Include="ThemeVS2012\Light\Resources\DockIndicator_PaneDiamond1.bmp" />
