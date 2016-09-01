@@ -45,54 +45,54 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             var skin = new DockPanelSkin();
 
-            skin.ColorPalette.MainWindowActive.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
+            skin.ColorPalette.MainWindowActive.Background = ColorTranslator.FromHtml("#FF2D2D30");
 
-            skin.ColorPalette.AutoHideStripDefault.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
-            skin.ColorPalette.AutoHideStripDefault.Border = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
-            skin.ColorPalette.AutoHideStripDefault.Text = Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0);
+            skin.ColorPalette.AutoHideStripDefault.Background = ColorTranslator.FromHtml("#FF2D2D30");
+            skin.ColorPalette.AutoHideStripDefault.Border = ColorTranslator.FromHtml("#FF3F3F46");
+            skin.ColorPalette.AutoHideStripDefault.Text = ColorTranslator.FromHtml("#FFD0D0D0");
 
-            skin.ColorPalette.AutoHideStripHovered.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
-            skin.ColorPalette.AutoHideStripHovered.Border = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
-            skin.ColorPalette.AutoHideStripHovered.Text = Color.FromArgb(0xFF, 0x00, 0x97, 0xFB);
+            skin.ColorPalette.AutoHideStripHovered.Background = ColorTranslator.FromHtml("#FF2D2D30");
+            skin.ColorPalette.AutoHideStripHovered.Border = ColorTranslator.FromHtml("#FF007ACC");
+            skin.ColorPalette.AutoHideStripHovered.Text = ColorTranslator.FromHtml("#FF0097FB");
 
-            skin.ColorPalette.TabSelectedActive.Background = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
-            skin.ColorPalette.TabSelectedActive.Button = Color.FromArgb(0xFF, 0xD0, 0xE6, 0xF5);
-            skin.ColorPalette.TabSelectedActive.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+            skin.ColorPalette.TabSelectedActive.Background = ColorTranslator.FromHtml("#FF007ACC");
+            skin.ColorPalette.TabSelectedActive.Button = ColorTranslator.FromHtml("#FFD0E6F5");
+            skin.ColorPalette.TabSelectedActive.Text = ColorTranslator.FromHtml("#FFFFFFFF");
 
-            skin.ColorPalette.TabSelectedInactive.Background = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
-            skin.ColorPalette.TabSelectedInactive.Button = Color.FromArgb(0xFF, 0x6D, 0x6D, 0x70);
-            skin.ColorPalette.TabSelectedInactive.Text = Color.FromArgb(0xFF, 0xF1, 0xF1, 0xF1);
+            skin.ColorPalette.TabSelectedInactive.Background = ColorTranslator.FromHtml("#FF3F3F46");
+            skin.ColorPalette.TabSelectedInactive.Button = ColorTranslator.FromHtml("#FF6D6D70");
+            skin.ColorPalette.TabSelectedInactive.Text = ColorTranslator.FromHtml("#FFF1F1F1");
 
-            skin.ColorPalette.TabUnselected.Text = Color.FromArgb(0xFF, 0xF1, 0xF1, 0xF1);
+            skin.ColorPalette.TabUnselected.Text = ColorTranslator.FromHtml("#FFF1F1F1");
 
-            skin.ColorPalette.TabUnselectedHovered.Background = Color.FromArgb(0xFF, 0x1C, 0x97, 0xEA);
-            skin.ColorPalette.TabUnselectedHovered.Button = Color.FromArgb(0xFF, 0xD0, 0xE6, 0xF5);
-            skin.ColorPalette.TabUnselectedHovered.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+            skin.ColorPalette.TabUnselectedHovered.Background = ColorTranslator.FromHtml("#FF1C97EA");
+            skin.ColorPalette.TabUnselectedHovered.Button = ColorTranslator.FromHtml("#FFD0E6F5");
+            skin.ColorPalette.TabUnselectedHovered.Text = ColorTranslator.FromHtml("#FFFFFFFF");
 
-            skin.ColorPalette.ToolWindowCaptionActive.Background = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC);
-            skin.ColorPalette.ToolWindowCaptionActive.Button = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
-            skin.ColorPalette.ToolWindowCaptionActive.Grip = Color.FromArgb(0xFF, 0x59, 0xA8, 0xDE);
-            skin.ColorPalette.ToolWindowCaptionActive.Text = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+            skin.ColorPalette.ToolWindowCaptionActive.Background = ColorTranslator.FromHtml("#FF007ACC");
+            skin.ColorPalette.ToolWindowCaptionActive.Button = ColorTranslator.FromHtml("#FFFFFFFF");
+            skin.ColorPalette.ToolWindowCaptionActive.Grip = ColorTranslator.FromHtml("#FF59A8DE");
+            skin.ColorPalette.ToolWindowCaptionActive.Text = ColorTranslator.FromHtml("#FFFFFFFF");
 
-            skin.ColorPalette.ToolWindowCaptionInactive.Background = Color.FromArgb(0xFF, 0x2D, 0x2D, 0x30);
-            skin.ColorPalette.ToolWindowCaptionInactive.Button = Color.FromArgb(0xFF, 0xF1, 0xF1, 0xF1);
-            skin.ColorPalette.ToolWindowCaptionInactive.Grip = Color.FromArgb(0xFF, 0x46, 0x46, 0x4A);
-            skin.ColorPalette.ToolWindowCaptionInactive.Text = Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0);
+            skin.ColorPalette.ToolWindowCaptionInactive.Background = ColorTranslator.FromHtml("#FF2D2D30");
+            skin.ColorPalette.ToolWindowCaptionInactive.Button = ColorTranslator.FromHtml("#FFF1F1F1");
+            skin.ColorPalette.ToolWindowCaptionInactive.Grip = ColorTranslator.FromHtml("#FF46464A");
+            skin.ColorPalette.ToolWindowCaptionInactive.Text = ColorTranslator.FromHtml("#FFD0D0D0");
 
-            skin.ColorPalette.ToolWindowTabSelectedActive.Background = Color.FromArgb(0xFF, 0x25, 0x25, 0x26);
-            skin.ColorPalette.ToolWindowTabSelectedActive.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
-            skin.ColorPalette.ToolWindowTabSelectedActive.Text = Color.FromArgb(0xFF, 0x00, 0x97, 0xFB);
+            skin.ColorPalette.ToolWindowTabSelectedActive.Background = ColorTranslator.FromHtml("#FF252526");
+            skin.ColorPalette.ToolWindowTabSelectedActive.Separator = ColorTranslator.FromHtml("#FF3F3F46");
+            skin.ColorPalette.ToolWindowTabSelectedActive.Text = ColorTranslator.FromHtml("#FF0097FB");
 
-            skin.ColorPalette.ToolWindowTabSelectedInactive.Background = Color.FromArgb(0xFF, 0x25, 0x25, 0x26);
-            skin.ColorPalette.ToolWindowTabSelectedInactive.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
-            skin.ColorPalette.ToolWindowTabSelectedInactive.Text = Color.FromArgb(0xFF, 0x00, 0x97, 0xFB);
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Background = ColorTranslator.FromHtml("#FF252526");
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Separator = ColorTranslator.FromHtml("#FF3F3F46");
+            skin.ColorPalette.ToolWindowTabSelectedInactive.Text = ColorTranslator.FromHtml("#FF0097FB");
 
-            skin.ColorPalette.ToolWindowTabUnselected.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
-            skin.ColorPalette.ToolWindowTabUnselected.Text = Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0);
+            skin.ColorPalette.ToolWindowTabUnselected.Separator = ColorTranslator.FromHtml("#FF3F3F46");
+            skin.ColorPalette.ToolWindowTabUnselected.Text = ColorTranslator.FromHtml("#FFD0D0D0");
 
-            skin.ColorPalette.ToolWindowTabUnselectedHovered.Background = Color.FromArgb(0xFF, 0x3E, 0x3E, 0x40);
-            skin.ColorPalette.ToolWindowTabUnselectedHovered.Separator = Color.FromArgb(0xFF, 0x3F, 0x3F, 0x46);
-            skin.ColorPalette.ToolWindowTabUnselectedHovered.Text = Color.FromArgb(0xFF, 0x55, 0xAA, 0xFF);
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Background = ColorTranslator.FromHtml("#FF3E3E40");
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Separator = ColorTranslator.FromHtml("#FF3F3F46");
+            skin.ColorPalette.ToolWindowTabUnselectedHovered.Text = ColorTranslator.FromHtml("#FF55AAFF");
 
             return skin;
         }
