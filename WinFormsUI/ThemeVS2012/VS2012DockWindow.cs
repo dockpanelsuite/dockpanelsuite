@@ -9,14 +9,14 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// Dock window of Visual Studio 2012 Light theme.
     /// </summary>
     [ToolboxItem(false)]
-    internal class VS2012LightDockWindow : DockWindow
+    internal class VS2012DockWindow : DockWindow
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VS2012LightDockWindow"/> class.
+        /// Initializes a new instance of the <see cref="VS2012DockWindow"/> class.
         /// </summary>
         /// <param name="dockPanel">The dock panel.</param>
         /// <param name="dockState">State of the dock.</param>
-        public VS2012LightDockWindow(DockPanel dockPanel, DockState dockState) : base(dockPanel, dockState)
+        public VS2012DockWindow(DockPanel dockPanel, DockState dockState) : base(dockPanel, dockState)
         {
         }
 
@@ -44,9 +44,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
         
-        internal class VS2012LightDockWindowSplitterControl : SplitterBase
+        internal class VS2012DockWindowSplitterControl : SplitterBase
         {
             private SolidBrush _horizontalBrush;
+            private SolidBrush _backgroundBrush;
             private Color[] _verticalSurroundColors;
 
             protected override int SplitterSize
@@ -76,11 +77,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (window == null)
                     return;
 
+                var skin = window.DockPanel.Skin;
                 if (this._horizontalBrush == null)
                 {
-                    var skin = window.DockPanel.Skin;
-                    _horizontalBrush = new SolidBrush(skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor);
-                    _verticalSurroundColors = new[] { skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor };
+                    _horizontalBrush = new SolidBrush(skin.ColorPalette.TabUnselected.Background);
+                    _backgroundBrush = new SolidBrush(skin.ColorPalette.MainWindowActive.Background);
+                    _verticalSurroundColors = new[] { skin.ColorPalette.TabSelectedInactive.Background };
                 }
 
                 switch (Dock)
@@ -88,12 +90,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     case DockStyle.Right:
                     case DockStyle.Left:
                         {
+                            e.Graphics.FillRectangle(_backgroundBrush, rect.X, rect.Y, rect.Width, rect.Height);
                             using (var path = new GraphicsPath())
                             {
                                 path.AddRectangle(rect);
                                 using (var brush = new PathGradientBrush(path)
                                     {
-                                        CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = _verticalSurroundColors
+                                        CenterColor = _horizontalBrush.Color, SurroundColors = _verticalSurroundColors
                                     })
                                 {
                                     e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y, 

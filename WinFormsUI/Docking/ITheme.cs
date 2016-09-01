@@ -11,6 +11,4 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <param name="dockPanel">The dock panel.</param>
         void Apply(DockPanel dockPanel);
     }
-    
-
 }

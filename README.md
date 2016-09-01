@@ -9,3 +9,5 @@ DockPanel Suite
 DockPanel Suite - The Visual Studio inspired docking library for .NET WinForms
 
 For more details, check out [http://dockpanelsuite.com](http://dockpanelsuite.com).
+
+Visual Studio 2015 Community edition and above is recommended to compile the code base.

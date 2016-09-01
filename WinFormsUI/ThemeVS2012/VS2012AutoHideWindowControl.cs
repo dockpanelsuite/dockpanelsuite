@@ -4,16 +4,23 @@ using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    internal class VS2012LightAutoHideWindowControl : DockPanel.AutoHideWindowControl
+    internal class VS2012AutoHideWindowControl : DockPanel.AutoHideWindowControl
     {
-        private class VS2012LightAutoHideWindowSplitterControl : SplitterBase
+        private class VS2012AutoHideWindowSplitterControl : SplitterBase
         {
-            private static readonly SolidBrush _horizontalBrush = new SolidBrush(Color.FromArgb(0xFF, 204, 206, 219));
-            private static readonly Color[] _verticalSurroundColors = new[] { SystemColors.Control };
+            private readonly SolidBrush _horizontalBrush;
+            private readonly SolidBrush _backgroundBrush;
+            private readonly Color[] _verticalSurroundColors;
 
-            public VS2012LightAutoHideWindowSplitterControl(DockPanel.AutoHideWindowControl autoHideWindow)
+            public VS2012AutoHideWindowSplitterControl(DockPanel.AutoHideWindowControl autoHideWindow)
             {
                 AutoHideWindow = autoHideWindow;
+                _horizontalBrush = new SolidBrush(autoHideWindow.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background);
+                _backgroundBrush = new SolidBrush(autoHideWindow.DockPanel.Skin.ColorPalette.MainWindowActive.Background);
+                _verticalSurroundColors = new[]
+                                                   {
+                                                   autoHideWindow.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background
+                                               };
             }
 
             private DockPanel.AutoHideWindowControl AutoHideWindow { get; set; }
@@ -42,12 +49,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     case DockState.DockRightAutoHide:
                     case DockState.DockLeftAutoHide:
                         {
+                            e.Graphics.FillRectangle(_backgroundBrush, rect.X, rect.Y, rect.Width, rect.Height);
                             using (var path = new GraphicsPath())
                             {
                                 path.AddRectangle(rect);
                                 using (var brush = new PathGradientBrush(path)
                                     {
-                                        CenterColor = Color.FromArgb(0xFF, 204, 206, 219), SurroundColors = _verticalSurroundColors
+                                        CenterColor = _horizontalBrush.Color, SurroundColors = _verticalSurroundColors
                                     })
                                 {
                                     e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
@@ -67,9 +75,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        public VS2012LightAutoHideWindowControl(DockPanel dockPanel) : base(dockPanel)
+        public VS2012AutoHideWindowControl(DockPanel dockPanel) : base(dockPanel)
         {
-            m_splitter = new VS2012LightAutoHideWindowSplitterControl(this);
+            m_splitter = new VS2012AutoHideWindowSplitterControl(this);
             Controls.Add(m_splitter);
         }
 

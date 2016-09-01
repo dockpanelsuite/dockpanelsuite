@@ -69,12 +69,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public interface IPaneIndicatorFactory
         {
-            DockPanel.IPaneIndicator CreatePaneIndicator();
+            DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme);
         }
 
         public interface IPanelIndicatorFactory
         {
-            DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style);
+            DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme);
         }
 
         public interface IDockOutlineFactory
@@ -213,7 +213,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public class DefaultPaneIndicatorFactory : IPaneIndicatorFactory
         {
-            public DockPanel.IPaneIndicator CreatePaneIndicator()
+            public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme)
             {
                 return new DockPanel.DefaultPaneIndicator();
             }
@@ -221,7 +221,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public class DefaultPanelIndicatorFactory : IPanelIndicatorFactory
         {
-            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style)
+            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
             {
                 return new DockPanel.DefaultPanelIndicator(style);
             }

@@ -6,15 +6,16 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    using WeifenLuo.WinFormsUI.ThemeVS2012Light;
+    using WeifenLuo.WinFormsUI.ThemeVS2012;
+    using WeifenLuo.WinFormsUI.ThemeVS2012.Light;
 
-    internal class VS2012LightDockPaneCaption : DockPaneCaptionBase
+    internal class VS2012DockPaneCaption : DockPaneCaptionBase
     {
         private sealed class InertButton : InertButtonBase
         {
             private Bitmap m_image, m_imageAutoHide;
 
-            public InertButton(VS2012LightDockPaneCaption dockPaneCaption, Bitmap image, Bitmap imageAutoHide)
+            public InertButton(VS2012DockPaneCaption dockPaneCaption, Bitmap image, Bitmap imageAutoHide)
                 : base()
             {
                 m_dockPaneCaption = dockPaneCaption;
@@ -23,8 +24,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 RefreshChanges();
             }
 
-            private VS2012LightDockPaneCaption m_dockPaneCaption;
-            private VS2012LightDockPaneCaption DockPaneCaption
+            private VS2012DockPaneCaption m_dockPaneCaption;
+            private VS2012DockPaneCaption DockPaneCaption
             {
                 get { return m_dockPaneCaption; }
             }
@@ -170,7 +171,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private ToolTip m_toolTip;
 
-        public VS2012LightDockPaneCaption(DockPane pane) : base(pane)
+        public VS2012DockPaneCaption(DockPane pane) : base(pane)
         {
             SuspendLayout();
 
@@ -294,9 +295,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 if (DockPane.IsActivated)
-                    return DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.TextColor;
+                    return DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionActive.Text;
                 else
-                    return DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor;
+                    return DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionInactive.Text;
             }
         }
 
@@ -340,9 +341,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color captionColor;
 
             if (DockPane.IsActivated)
-                captionColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.StartColor;
+                captionColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionActive.Background;
             else
-                captionColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.StartColor;
+                captionColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionInactive.Background;
 
             SolidBrush captionBrush = new SolidBrush(captionColor);
             g.FillRectangle(captionBrush, rect);
@@ -362,9 +363,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color colorText;
             if (DockPane.IsActivated)
-                colorText = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.TextColor;
+                colorText = DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionActive.Text;
             else
-                colorText = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor;
+                colorText = DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionInactive.Text;
 
             TextRenderer.DrawText(g, DockPane.CaptionText, TextFont, DrawHelper.RtlTransform(this, rectCaptionText), colorText, TextFormat);
 
@@ -376,9 +377,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color dotsColor;
             if (DockPane.IsActivated)
-                dotsColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.EndColor;
+                dotsColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionActive.Grip;
             else
-                dotsColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.EndColor;
+                dotsColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionInactive.Grip;
 
             DrawDotsStrip(g, rectDotsStrip, dotsColor);
         }

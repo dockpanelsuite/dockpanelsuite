@@ -6,6 +6,8 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         public DockPanelSkin Skin { get; protected set; }
 
+        public IImageService ImageService { get; protected set; }
+
         public abstract void Apply(DockPanel dockPanel);
     }
 }

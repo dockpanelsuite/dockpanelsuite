@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Design;
-using System.Windows.Forms.Design;
 using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
@@ -38,6 +34,60 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_dockPaneStripSkin; }
             set { m_dockPaneStripSkin = value; }
         }
+
+        public DockPanelColorPalette ColorPalette { get; } = new DockPanelColorPalette();
+    }
+
+    public class DockPanelColorPalette
+    {
+        public MainWindowPalette MainWindowActive { get; } = new MainWindowPalette();
+        public AutoHideStripPalette AutoHideStripDefault { get; } = new AutoHideStripPalette();
+        public AutoHideStripPalette AutoHideStripHovered { get; } = new AutoHideStripPalette();
+        public TabPalette TabSelectedActive { get; } = new TabPalette();
+        public TabPalette TabSelectedInactive { get; } = new TabPalette();
+        public TabPalette TabUnselected { get; } = new TabPalette();
+        public TabPalette TabUnselectedHovered { get; } = new TabPalette();
+        public ToolWindowCaptionPalette ToolWindowCaptionActive { get; } = new ToolWindowCaptionPalette();
+        public ToolWindowCaptionPalette ToolWindowCaptionInactive { get; } = new ToolWindowCaptionPalette();
+        public ToolWindowTabPalette ToolWindowTabSelectedActive { get; } = new ToolWindowTabPalette();
+        public ToolWindowTabPalette ToolWindowTabSelectedInactive { get; } = new ToolWindowTabPalette();
+        public ToolWindowTabPalette ToolWindowTabUnselected { get; } = new ToolWindowTabPalette();
+        public ToolWindowTabPalette ToolWindowTabUnselectedHovered { get; } = new ToolWindowTabPalette();
+    }
+
+    public class MainWindowPalette
+    {
+        public Color Background { get; set; }
+    }
+
+    public class ToolWindowTabPalette
+    {
+        public Color Background { get; set; }
+        public Color Separator { get; set; } // VS2012
+        public Color Text { get; set; }
+    }
+
+    public class ToolWindowCaptionPalette
+    {
+        public Color Background { get; set; }
+        public Color Border { get; set; }
+        public Color Button { get; set; }
+        public Color Grip { get; set; }
+        public Color Text { get; set; }
+    }
+
+    public class TabPalette
+    {
+        public Color Background { get; set; }
+        public Color Button { get; set; }
+        public Color Text { get; set; }
+    }
+
+    public class AutoHideStripPalette
+    {
+        public Color Background { get; set; }
+        public Color Border { get; set; }
+        public Color Text { get; set; }
     }
 
     /// <summary>
@@ -78,7 +128,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_DockStripBackground; }
             set { m_DockStripBackground = value; }
         }
-
 
         /// <summary>
         /// Font used in AutoHideStrip elements.
