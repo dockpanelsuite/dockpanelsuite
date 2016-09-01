@@ -881,7 +881,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             // IMPORTANT: fill background.
             Rectangle rectTabStrip = TabStripRectangle;
-            g.FillRectangle(new SolidBrush(DockPane.DockPanel.Skin.ColorPalette.MainWindowActive.Background), rectTabStrip);
+            g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(DockPane.DockPanel.Skin.ColorPalette.MainWindowActive.Background), rectTabStrip);
 
             if (Appearance == DockPane.AppearanceStyle.Document)
                 DrawTabStrip_Document(g);
@@ -928,7 +928,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 else
                     tabUnderLineColor = DockPane.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background;
 
-                g.DrawLine(new Pen(tabUnderLineColor, 4), rectTabStrip.Left, rectTabStrip.Bottom, rectTabStrip.Right, rectTabStrip.Bottom);
+                g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(tabUnderLineColor, 4), rectTabStrip.Left, rectTabStrip.Bottom, rectTabStrip.Right, rectTabStrip.Bottom);
             }
 
             g.SetClip(DrawHelper.RtlTransform(this, rectTabOnly));
@@ -1067,10 +1067,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                     backgroundColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabSelectedInactive.Background;
                 }
 
-                g.FillRectangle(new SolidBrush(backgroundColor), rect);
+                g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(backgroundColor), rect);
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, ToolWindowTextFormat);
                 // TODO: how to cache Pen?
-                g.DrawLine(new Pen(separatorColor), rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
+                g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(separatorColor), rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
             }
             else
             {
@@ -1090,11 +1090,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                     backgroundColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowTabUnselected.Background;
                 }
 
-                g.FillRectangle(new SolidBrush(backgroundColor), rect);
+                g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(backgroundColor), rect);
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, ToolWindowTextFormat);
                 if (!last)
                 {
-                    g.DrawLine(new Pen(separatorColor), rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
+                    g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(separatorColor), rect.X + rect.Width - 1, rect.Y, rect.X + rect.Width - 1, rect.Height);
                 }
             }
 
@@ -1150,13 +1150,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (DockPane.IsActiveDocumentPane)
                 {
-                    g.FillRectangle(new SolidBrush(activeColor), rect);
+                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(activeColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
                     g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.ActiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.ActiveTab_Close, rectCloseButton);
                 }
                 else
                 {
-                    g.FillRectangle(new SolidBrush(lostFocusColor), rect);
+                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(lostFocusColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, lostFocusText, DocumentTextFormat);
                     g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.LostFocusTabHover_Close : DockPane.DockPanel.Theme.ImageService.LostFocusTab_Close, rectCloseButton);
                 }
@@ -1165,13 +1165,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (tab.Content == DockPane.MouseOverTab)
                 {
-                    g.FillRectangle(new SolidBrush(mouseHoverColor), rect);
+                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(mouseHoverColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, mouseHoverText, DocumentTextFormat);
                     g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.InactiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.ActiveTabHover_Close, rectCloseButton);
                 }
                 else
                 {
-                    g.FillRectangle(new SolidBrush(inactiveColor), rect);
+                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(inactiveColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, inactiveText, DocumentTextFormat);
                 }
             }

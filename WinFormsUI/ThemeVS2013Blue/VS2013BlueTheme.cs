@@ -17,6 +17,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2013BlueTheme()
         {
             Skin = CreateVisualStudio2013Blue();
+            PaintingService = new PaintingService();
         }
 
         /// <summary>
@@ -41,6 +42,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.PaneIndicatorFactory = new VS2013BluePaneIndicatorFactory();
             dockPanel.Extender.PanelIndicatorFactory = new VS2013BluePanelIndicatorFactory();
             dockPanel.Extender.DockOutlineFactory = new VS2013BlueDockOutlineFactory();
+        }
+
+        public override void CleanUp(DockPanel dockPanel)
+        {
+            PaintingService.CleanUp();
+            base.CleanUp(dockPanel);
         }
 
         private class VS2013BlueDockOutlineFactory : DockPanelExtender.IDockOutlineFactory

@@ -345,7 +345,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
                 captionColor = DockPane.DockPanel.Skin.ColorPalette.ToolWindowCaptionInactive.Background;
 
-            SolidBrush captionBrush = new SolidBrush(captionColor);
+            SolidBrush captionBrush = DockPane.DockPanel.Theme.PaintingService.GetBrush(captionColor);
             g.FillRectangle(captionBrush, rect);
 
             Rectangle rectCaption = rect;
@@ -389,7 +389,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (rectStrip.Width <= 0 || rectStrip.Height <= 0)
                 return;
 
-            var penDots = new Pen(colorDots, 1);
+            var penDots = DockPane.DockPanel.Theme.PaintingService.GetPen(colorDots, 1);
             penDots.DashStyle = DashStyle.Custom;
             penDots.DashPattern = new float[] { 1, 3 };
             int positionY = rectStrip.Height / 2;

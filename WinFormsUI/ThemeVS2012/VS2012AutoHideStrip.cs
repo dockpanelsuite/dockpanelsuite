@@ -338,7 +338,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (dockState == DockState.DockTopAutoHide || dockState == DockState.DockRightAutoHide)
                     rectThickLine.Y += 0;
 
-            g.FillRectangle(new SolidBrush(borderColor), rectThickLine);
+            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(borderColor), rectThickLine);
 
             //Set no rotate for drawing icon and text
             Matrix matrixRotate = g.Transform;
@@ -391,9 +391,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 textColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Text;
 
             if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
-                g.DrawString(content.DockHandler.TabText, TextFont, new SolidBrush(textColor), rectText, StringFormatTabVertical);
+                g.DrawString(content.DockHandler.TabText, TextFont, DockPanel.Theme.PaintingService.GetBrush(textColor), rectText, StringFormatTabVertical);
             else
-                g.DrawString(content.DockHandler.TabText, TextFont, new SolidBrush(textColor), rectText, StringFormatTabHorizontal);
+                g.DrawString(content.DockHandler.TabText, TextFont, DockPanel.Theme.PaintingService.GetBrush(textColor), rectText, StringFormatTabHorizontal);
 
             // Set rotate back
             g.Transform = matrixRotate;

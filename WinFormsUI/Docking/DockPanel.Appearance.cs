@@ -33,6 +33,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
                 }
 
+                m_dockPanelTheme?.CleanUp(this);
                 m_dockPanelTheme = value;
                 m_dockPanelTheme.Apply(this);
             }

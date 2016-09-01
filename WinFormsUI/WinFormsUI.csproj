@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Docking\DockPanelSkin.cs">
     </Compile>
+    <Compile Include="Docking\IPaintingService.cs" />
     <Compile Include="Docking\ITheme.cs" />
     <Compile Include="Docking\PatchController.cs" />
     <Compile Include="Docking\Resources.Designer.cs">

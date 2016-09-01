@@ -8,6 +8,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IImageService ImageService { get; protected set; }
 
+        public IPaintingService PaintingService { get; protected set; }
+
         public abstract void Apply(DockPanel dockPanel);
+
+        public virtual void CleanUp(DockPanel dockPanel)
+        {
+        }
     }
 }

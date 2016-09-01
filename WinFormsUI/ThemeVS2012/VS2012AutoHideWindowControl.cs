@@ -15,8 +15,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             public VS2012AutoHideWindowSplitterControl(DockPanel.AutoHideWindowControl autoHideWindow)
             {
                 AutoHideWindow = autoHideWindow;
-                _horizontalBrush = new SolidBrush(autoHideWindow.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background);
-                _backgroundBrush = new SolidBrush(autoHideWindow.DockPanel.Skin.ColorPalette.MainWindowActive.Background);
+                _horizontalBrush = autoHideWindow.DockPanel.Theme.PaintingService.GetBrush(autoHideWindow.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background);
+                _backgroundBrush = autoHideWindow.DockPanel.Theme.PaintingService.GetBrush(autoHideWindow.DockPanel.Skin.ColorPalette.MainWindowActive.Background);
                 _verticalSurroundColors = new[]
                                                    {
                                                    autoHideWindow.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background
@@ -55,6 +55,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                                 path.AddRectangle(rect);
                                 using (var brush = new PathGradientBrush(path)
                                     {
+                                        // TODO: fix this color.
                                         CenterColor = _horizontalBrush.Color, SurroundColors = _verticalSurroundColors
                                     })
                                 {

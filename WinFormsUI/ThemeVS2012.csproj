@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeVS2012\PaintingService.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockOutlineFactory.cs" />
