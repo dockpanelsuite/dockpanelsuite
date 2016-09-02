@@ -19,7 +19,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _backgroundBrush = autoHideWindow.DockPanel.Theme.PaintingService.GetBrush(autoHideWindow.DockPanel.Skin.ColorPalette.MainWindowActive.Background);
                 _verticalSurroundColors = new[]
                                                    {
-                                                   autoHideWindow.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background
+                                                   autoHideWindow.DockPanel.Skin.ColorPalette.MainWindowActive.Background
                                                };
             }
 

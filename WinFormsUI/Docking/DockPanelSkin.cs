@@ -45,13 +45,13 @@ namespace WeifenLuo.WinFormsUI.Docking
         public AutoHideStripPalette AutoHideStripHovered { get; } = new AutoHideStripPalette();
         public TabPalette TabSelectedActive { get; } = new TabPalette();
         public TabPalette TabSelectedInactive { get; } = new TabPalette();
-        public TabPalette TabUnselected { get; } = new TabPalette();
+        public UnselectedTabPalette TabUnselected { get; } = new UnselectedTabPalette();
         public TabPalette TabUnselectedHovered { get; } = new TabPalette();
         public ToolWindowCaptionPalette ToolWindowCaptionActive { get; } = new ToolWindowCaptionPalette();
         public ToolWindowCaptionPalette ToolWindowCaptionInactive { get; } = new ToolWindowCaptionPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedActive { get; } = new ToolWindowTabPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedInactive { get; } = new ToolWindowTabPalette();
-        public ToolWindowTabPalette ToolWindowTabUnselected { get; } = new ToolWindowTabPalette();
+        public ToolWindowUnselectedTabPalette ToolWindowTabUnselected { get; } = new ToolWindowUnselectedTabPalette();
         public ToolWindowTabPalette ToolWindowTabUnselectedHovered { get; } = new ToolWindowTabPalette();
     }
 
@@ -63,6 +63,12 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class ToolWindowTabPalette
     {
         public Color Background { get; set; }
+        public Color Separator { get; set; } // VS2012
+        public Color Text { get; set; }
+    }
+
+    public class ToolWindowUnselectedTabPalette
+    {
         public Color Separator { get; set; } // VS2012
         public Color Text { get; set; }
     }
@@ -80,6 +86,11 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         public Color Background { get; set; }
         public Color Button { get; set; }
+        public Color Text { get; set; }
+    }
+
+    public class UnselectedTabPalette
+    {
         public Color Text { get; set; }
     }
 

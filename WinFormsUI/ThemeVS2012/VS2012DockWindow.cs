@@ -80,9 +80,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 var skin = window.DockPanel.Skin;
                 if (this._horizontalBrush == null)
                 {
-                    _horizontalBrush = window.DockPanel.Theme.PaintingService.GetBrush(skin.ColorPalette.TabUnselected.Background);
+                    _horizontalBrush = window.DockPanel.Theme.PaintingService.GetBrush(skin.ColorPalette.TabSelectedInactive.Background);
                     _backgroundBrush = window.DockPanel.Theme.PaintingService.GetBrush(skin.ColorPalette.MainWindowActive.Background);
-                    _verticalSurroundColors = new[] { skin.ColorPalette.TabSelectedInactive.Background };
+                    _verticalSurroundColors = new[] { skin.ColorPalette.MainWindowActive.Background };
                 }
 
                 switch (Dock)

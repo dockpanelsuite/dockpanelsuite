@@ -17,7 +17,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             _backgroundBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Skin.ColorPalette.MainWindowActive.Background);
             this._verticalSurroundColors = new[]
                                                {
-                                                   pane.DockPanel.Skin.ColorPalette.TabSelectedInactive.Background
+                                                   pane.DockPanel.Skin.ColorPalette.MainWindowActive.Background
                                                };
         }
 
