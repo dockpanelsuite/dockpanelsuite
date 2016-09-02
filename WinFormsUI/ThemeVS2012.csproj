@@ -47,6 +47,19 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueAutoHideWindowControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueAutoHideWindowFactory.cs" />
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockWindowSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockPaneSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockWindowFactory.cs" />
     <Compile Include="ThemeVS2012\PaintingService.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideWindowFactory.cs" />

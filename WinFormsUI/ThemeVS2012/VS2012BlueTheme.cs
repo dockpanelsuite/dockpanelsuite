@@ -34,8 +34,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             dockPanel.Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
             dockPanel.Extender.AutoHideWindowFactory = new VS2012AutoHideWindowFactory();
             dockPanel.Extender.DockPaneStripFactory = new VS2012DockPaneStripFactory();
-            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012DockPaneSplitterControlFactory();
-            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2012DockWindowSplitterControlFactory();
+            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012BlueDockPaneSplitterControlFactory();
+            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2012BlueDockWindowSplitterControlFactory();
             dockPanel.Extender.DockWindowFactory = new VS2012DockWindowFactory();
             dockPanel.Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
             dockPanel.Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();
@@ -66,7 +66,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.ColorPalette.TabSelectedActive.Button = ColorTranslator.FromHtml("#FF75633D");
             skin.ColorPalette.TabSelectedActive.Text = ColorTranslator.FromHtml("#FF000000");
 
-            skin.ColorPalette.TabSelectedInactive.Background = ColorTranslator.FromHtml("#FF4D6082");
+            skin.ColorPalette.TabSelectedInactive.Background = ColorTranslator.FromHtml("#3D5277");// TODO: from theme .FromHtml("#FF4D6082");
             skin.ColorPalette.TabSelectedInactive.Button = ColorTranslator.FromHtml("#FFCED4DD");
             skin.ColorPalette.TabSelectedInactive.Text = ColorTranslator.FromHtml("#FFFFFFFF");
 
