@@ -9,7 +9,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
     {
         public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme)
         {
-            return new VS2012LightPaneIndicator((VS2012DarkTheme)theme);
+            return new VS2012LightPaneIndicator(theme);
         }
 
         private class VS2012LightPaneIndicator : PictureBox, DockPanel.IPaneIndicator
@@ -34,12 +34,8 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
 
             private GraphicsPath _displayingGraphicsPath;
 
-            public VS2012LightPaneIndicator(VS2012DarkTheme theme)
+            public VS2012LightPaneIndicator(ThemeBase theme)
             {
-                SizeMode = PictureBoxSizeMode.AutoSize;
-                Image = _bitmapPaneDiamond;
-                Region = new Region(DisplayingGraphicsPath);
-
                 _bitmapPaneDiamond = theme.ImageService.Dockindicator_PaneDiamond;
                 _bitmapPaneDiamondLeft = theme.ImageService.Dockindicator_PaneDiamond_Fill;
                 _bitmapPaneDiamondRight = theme.ImageService.Dockindicator_PaneDiamond_Fill;
@@ -49,6 +45,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
                 _bitmapPaneDiamondHotSpot = theme.ImageService.Dockindicator_PaneDiamond_Hotspot;
                 _bitmapPaneDiamondHotSpotIndex = theme.ImageService.DockIndicator_PaneDiamond_HotspotIndex;
                 _displayingGraphicsPath = DrawHelper.CalculateGraphicsPathFromBitmap(_bitmapPaneDiamond);
+
+                SizeMode = PictureBoxSizeMode.AutoSize;
+                Image = _bitmapPaneDiamond;
+                Region = new Region(DisplayingGraphicsPath);
             }
 
             public GraphicsPath DisplayingGraphicsPath

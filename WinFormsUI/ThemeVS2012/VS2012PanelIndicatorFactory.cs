@@ -9,7 +9,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
     {
         public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
         {
-            return new VS2012LightPanelIndicator(style, (VS2012DarkTheme)theme);
+            return new VS2012LightPanelIndicator(style, theme);
         }
 
         private class VS2012LightPanelIndicator : PictureBox, DockPanel.IPanelIndicator
@@ -25,7 +25,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
             private Image _imagePanelBottomActive;
             private Image _imagePanelFillActive;
 
-            public VS2012LightPanelIndicator(DockStyle dockStyle, VS2012DarkTheme theme)
+            public VS2012LightPanelIndicator(DockStyle dockStyle, ThemeBase theme)
             {
                 m_dockStyle = dockStyle;
                 SizeMode = PictureBoxSizeMode.AutoSize;
