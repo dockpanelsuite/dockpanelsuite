@@ -9,10 +9,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
     {
         public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
         {
-            return new VS2012LightPanelIndicator(style, theme);
+            return new VS2012PanelIndicator(style, theme);
         }
 
-        private class VS2012LightPanelIndicator : PictureBox, DockPanel.IPanelIndicator
+        private class VS2012PanelIndicator : PictureBox, DockPanel.IPanelIndicator
         {
             private Image _imagePanelLeft;
             private Image _imagePanelRight;
@@ -25,12 +25,8 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
             private Image _imagePanelBottomActive;
             private Image _imagePanelFillActive;
 
-            public VS2012LightPanelIndicator(DockStyle dockStyle, ThemeBase theme)
+            public VS2012PanelIndicator(DockStyle dockStyle, ThemeBase theme)
             {
-                m_dockStyle = dockStyle;
-                SizeMode = PictureBoxSizeMode.AutoSize;
-                Image = ImageInactive;
-
                 _imagePanelLeft = theme.ImageService.DockIndicator_PanelLeft;
                 _imagePanelRight = theme.ImageService.DockIndicator_PanelRight;
                 _imagePanelTop = theme.ImageService.DockIndicator_PanelTop;
@@ -41,6 +37,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
                 _imagePanelTopActive = theme.ImageService.DockIndicator_PanelTop;
                 _imagePanelBottomActive = theme.ImageService.DockIndicator_PanelBottom;
                 _imagePanelFillActive = theme.ImageService.DockIndicator_PanelFill;
+
+                m_dockStyle = dockStyle;
+                SizeMode = PictureBoxSizeMode.AutoSize;
+                Image = ImageInactive;
             }
 
             private DockStyle m_dockStyle;
