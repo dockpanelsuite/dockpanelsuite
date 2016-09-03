@@ -324,7 +324,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color borderColor;
             Color backgroundColor;
-            if (tab.Content.DockHandler.IsActivated || tab.IsMouseOver)
+            if (tab.IsMouseOver)
             {
                 borderColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Border;
                 backgroundColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Background;
@@ -395,7 +395,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
 
             Color textColor;
-            if (DockPanel.ActiveContent == content || tab.IsMouseOver)
+            if (tab.IsMouseOver)
                 textColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Text;
             else
                 textColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Text;
@@ -554,10 +554,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             return null;
         }
 
-        private TabVS2012 lastSelectedTab = null;
-
         protected override void OnMouseHover(EventArgs e)
         {
+            // IMPORTANT: do not trigger base handle, as no need to do anything.
+        }
+
+        private TabVS2012 lastSelectedTab = null;
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
             var tab = (TabVS2012)TabHitTest(PointToClient(MousePosition));
             if (tab != null)
             {
@@ -568,11 +574,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (lastSelectedTab != tab)
             {
                 if (lastSelectedTab != null)
+                {
                     lastSelectedTab.IsMouseOver = false;
+                    Invalidate();
+                }
+
                 lastSelectedTab = tab;
             }
-
-            base.OnMouseHover(e);
         }
 
         protected override void OnMouseLeave(EventArgs e)

@@ -18,6 +18,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             Skin = CreateVisualStudio2013Blue();
             PaintingService = new PaintingService();
+            ImageService = new ImageService();
         }
 
         /// <summary>

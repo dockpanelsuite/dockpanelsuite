@@ -203,6 +203,16 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DockPane_List {
+            get {
+                object obj = ResourceManager.GetObject("DockPane_List", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DockPane_Option {
             get {
                 object obj = ResourceManager.GetObject("DockPane_Option", resourceCulture);
@@ -216,6 +226,126 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue {
         internal static System.Drawing.Bitmap DockPane_OptionOverflow {
             get {
                 object obj = ResourceManager.GetObject("DockPane_OptionOverflow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneActive_Close {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneActive_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneActive_Dock {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneActive_Dock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneActive_Option {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneActive_Option", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneActiveHover_Close {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneActiveHover_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneActiveHover_Dock {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneActiveHover_Dock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneActiveHover_Option {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneActiveHover_Option", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneHover_AutoHide {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneHover_AutoHide", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneHover_Close {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneHover_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneHover_Dock {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneHover_Dock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneHover_List {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneHover_List", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneHover_Option {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneHover_Option", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DockPaneHover_OptionOverflow {
+            get {
+                object obj = ResourceManager.GetObject("DockPaneHover_OptionOverflow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

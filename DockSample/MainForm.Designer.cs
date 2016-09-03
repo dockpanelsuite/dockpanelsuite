@@ -330,7 +330,7 @@ namespace DockSample
             // 
             this.menuItemSchemaVS2013Blue.Name = "menuItemSchemaVS2013Blue";
             this.menuItemSchemaVS2013Blue.Size = new System.Drawing.Size(255, 22);
-            this.menuItemSchemaVS2013Blue.Text = "Schema: VS2013 Light";
+            this.menuItemSchemaVS2013Blue.Text = "Schema: VS2013 Blue";
             this.menuItemSchemaVS2013Blue.Click += new System.EventHandler(this.SetSchema);
             // 
             // menuItemSchemaVS2012Light

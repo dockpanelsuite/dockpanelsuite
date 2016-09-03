@@ -157,6 +157,9 @@
   <data name="DockPane_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockPane_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DockPane_List" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPane_List.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="DockPane_Dock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockPane_Dock.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -165,6 +168,42 @@
   </data>
   <data name="DockPane_OptionOverflow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DockPane_OptionOverflow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneActive_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneActive_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneActive_Dock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneActive_Dock.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneActive_Option" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneActive_Option.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneHover_AutoHide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneHover_AutoHide.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneHover_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneHover_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneHover_List" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneHover_List.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneHover_Dock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneHover_Dock.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneHover_Option" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneHover_Option.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneHover_OptionOverflow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneHover_OptionOverflow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneActiveHover_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneActiveHover_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneActiveHover_Dock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneActiveHover_Dock.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DockPaneActiveHover_Option" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\DockPaneActiveHover_Option.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InactiveTabHover_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\InactiveTabHover_Close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

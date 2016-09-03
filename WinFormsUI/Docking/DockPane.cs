@@ -439,6 +439,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get { return m_isActiveDocumentPane; }
         }
+
         internal void SetIsActiveDocumentPane(bool value)
         {
             if (m_isActiveDocumentPane == value)
@@ -448,6 +449,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (DockState == DockState.Document)
                 RefreshChanges();
             OnIsActiveDocumentPaneChanged(EventArgs.Empty);
+        }
+
+        public bool IsActivePane
+        {
+            get { return this == DockPanel.ActivePane; }
         }
 
         public bool IsDockStateValid(DockState dockState)

@@ -53,32 +53,23 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private sealed class InertButton : InertButtonBase
         {
-            private Bitmap m_image0, m_image1;
+            private Bitmap _hovered, _normal;
 
-            public InertButton(Bitmap image0, Bitmap image1)
+            public InertButton(Bitmap hovered, Bitmap normal)
                 : base()
             {
-                m_image0 = image0;
-                m_image1 = image1;
-            }
-
-            private int m_imageCategory = 0;
-            public int ImageCategory
-            {
-                get { return m_imageCategory; }
-                set
-                {
-                    if (m_imageCategory == value)
-                        return;
-
-                    m_imageCategory = value;
-                    Invalidate();
-                }
+                _hovered = hovered;
+                _normal = normal;
             }
 
             public override Bitmap Image
             {
-                get { return ImageCategory == 0 ? m_image0 : m_image1; }
+                get { return _normal; }
+            }
+
+            public override Bitmap HoverImage
+            {
+                get { return _hovered; }
             }
         }
 
@@ -120,10 +111,9 @@ namespace WeifenLuo.WinFormsUI.Docking
         #region Members
 
         private ContextMenuStrip m_selectMenu;
-        private InertButton m_buttonClose;
+        private InertButton m_buttonOverflow;
         private InertButton m_buttonWindowList;
         private IContainer m_components;
-        private ToolTip m_toolTip;
         private Font m_font;
         private Font m_boldFont;
         private int m_startDisplayingTab = 0;
@@ -131,8 +121,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         private int m_firstDisplayingTab = 0;
         private bool m_documentTabsOverflow = false;
         private static string m_toolTipSelect;
-        private static string m_toolTipClose;
-        private bool m_closeButtonVisible = false;
         private Rectangle _activeClose;
         private int _selectMenuMargin = 5;
         private bool m_suspendDrag = false;
@@ -186,7 +174,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 width -= DocumentTabGapLeft +
                     DocumentTabGapRight +
                     DocumentButtonGapRight +
-                    ButtonClose.Width +
+                    ButtonOverflow.Width +
                     ButtonWindowList.Width +
                     2 * DocumentButtonGapBetween;
 
@@ -205,19 +193,18 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { _selectMenuMargin = value; }
         }
 
-        private InertButton ButtonClose
+        private InertButton ButtonOverflow
         {
             get
             {
-                if (m_buttonClose == null)
+                if (m_buttonOverflow == null)
                 {
-                    m_buttonClose = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPane_Close, DockPane.DockPanel.Theme.ImageService.DockPane_Close);
-                    m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
-                    m_buttonClose.Click += new EventHandler(Close_Click);
-                    Controls.Add(m_buttonClose);
+                    m_buttonOverflow = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPaneHover_OptionOverflow, DockPane.DockPanel.Theme.ImageService.DockPane_OptionOverflow);
+                    m_buttonOverflow.Click += new EventHandler(WindowList_Click);
+                    Controls.Add(m_buttonOverflow);
                 }
 
-                return m_buttonClose;
+                return m_buttonOverflow;
             }
         }
 
@@ -227,8 +214,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (m_buttonWindowList == null)
                 {
-                    m_buttonWindowList = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPane_Option, DockPane.DockPanel.Theme.ImageService.DockPane_OptionOverflow);
-                    m_toolTip.SetToolTip(m_buttonWindowList, ToolTipSelect);
+                    m_buttonWindowList = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPaneHover_List, DockPane.DockPanel.Theme.ImageService.DockPane_List);
                     m_buttonWindowList.Click += new EventHandler(WindowList_Click);
                     Controls.Add(m_buttonWindowList);
                 }
@@ -305,10 +291,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 m_documentTabsOverflow = value;
-                if (value)
-                    ButtonWindowList.ImageCategory = 1;
-                else
-                    ButtonWindowList.ImageCategory = 0;
+                SetInertButtons();
             }
         }
 
@@ -377,16 +360,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static int ToolWindowTabSeperatorGapBottom
         {
             get { return _ToolWindowTabSeperatorGapBottom; }
-        }
-
-        private static string ToolTipClose
-        {
-            get
-            {
-                if (m_toolTipClose == null)
-                    m_toolTipClose = Strings.DockPaneStrip_ToolTipClose;
-                return m_toolTipClose;
-            }
         }
 
         private static string ToolTipSelect
@@ -524,7 +497,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             SuspendLayout();
 
             m_components = new Container();
-            m_toolTip = new ToolTip(Components);
             m_selectMenu = new ContextMenuStrip(Components);
 
             ResumeLayout();
@@ -567,7 +539,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private int MeasureHeight_Document()
         {
             int height = Math.Max(TextFont.Height + DocumentTabGapTop + (PatchController.EnableHighDpi == true ? DocumentIconGapBottom : 0),
-                ButtonClose.Height + DocumentButtonGapTop + DocumentButtonGapBottom)
+                ButtonOverflow.Height + DocumentButtonGapTop + DocumentButtonGapBottom)
                 + DocumentStripGapBottom + DocumentStripGapTop;
 
             return height;
@@ -817,6 +789,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     x += tab.TabWidth;
                 }
             }
+
             DocumentTabsOverflow = overflow;
         }
 
@@ -1275,18 +1248,18 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             if (Appearance == DockPane.AppearanceStyle.ToolWindow)
             {
-                if (m_buttonClose != null)
-                    m_buttonClose.Left = -m_buttonClose.Width;
+                if (m_buttonOverflow != null)
+                    m_buttonOverflow.Left = -m_buttonOverflow.Width;
 
                 if (m_buttonWindowList != null)
                     m_buttonWindowList.Left = -m_buttonWindowList.Width;
             }
             else
             {
-                ButtonClose.Enabled = false;
-                m_closeButtonVisible = false;
-                ButtonClose.Visible = m_closeButtonVisible;
-                ButtonClose.RefreshChanges();
+                ButtonOverflow.Visible = m_documentTabsOverflow;
+                ButtonOverflow.RefreshChanges();
+
+                ButtonWindowList.Visible = !m_documentTabsOverflow;
                 ButtonWindowList.RefreshChanges();
             }
         }
@@ -1307,8 +1280,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             Rectangle rectTabStrip = TabStripRectangle;
 
             // Set position and size of the buttons
-            int buttonWidth = ButtonClose.Image.Width;
-            int buttonHeight = ButtonClose.Image.Height;
+            int buttonWidth = ButtonOverflow.Image.Width;
+            int buttonHeight = ButtonOverflow.Image.Height;
             int height = rectTabStrip.Height - DocumentButtonGapTop - DocumentButtonGapBottom;
             if (buttonHeight < height)
             {
@@ -1321,13 +1294,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 - DocumentButtonGapRight - buttonWidth;
             int y = rectTabStrip.Y + DocumentButtonGapTop;
             Point point = new Point(x, y);
-            ButtonClose.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
+            ButtonOverflow.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
 
             // If the close button is not visible draw the window list button overtop.
             // Otherwise it is drawn to the left of the close button.
-            if (m_closeButtonVisible)
-                point.Offset(-(DocumentButtonGapBetween + buttonWidth), 0);
-
             ButtonWindowList.Bounds = DrawHelper.RtlTransform(this, new Rectangle(point, buttonSize));
         }
 
@@ -1443,13 +1413,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (tabUpdate || buttonUpdate)
                 Invalidate();
-
-            if (m_toolTip.GetToolTip(this) != toolTip)
-            {
-                m_toolTip.Active = false;
-                m_toolTip.SetToolTip(this, toolTip);
-                m_toolTip.Active = true;
-            }
 
             // requires further tracking of mouse hover behavior,
             ResetMouseEventArgs();
