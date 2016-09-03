@@ -13,7 +13,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static class Persistor
         {
             private const string ConfigFileVersion = "1.0";
-            private static string[] CompatibleConfigFileVersions = new string[] { };
+            private static string[] CompatibleConfigFileVersions = { };
 
             private class DummyContent : DockContent
             {
@@ -610,7 +610,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         IDockContent content = dockPanel.Contents[panes[i].IndexContents[j]];
                         if (j == 0)
-                            pane = dockPanel.DockPaneFactory.CreateDockPane(content, panes[i].DockState, false);
+                            pane = dockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(content, panes[i].DockState, false);
                         else if (panes[i].DockState == DockState.Float)
                             content.DockHandler.FloatPane = pane;
                         else
@@ -645,7 +645,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         int indexPane = floatWindows[i].NestedPanes[j].IndexPane;
                         DockPane pane = dockPanel.Panes[indexPane];
                         if (j == 0)
-                            fw = dockPanel.FloatWindowFactory.CreateFloatWindow(dockPanel, pane, floatWindows[i].Bounds);
+                            fw = dockPanel.Theme.Extender.FloatWindowFactory.CreateFloatWindow(dockPanel, pane, floatWindows[i].Bounds);
                         else
                         {
                             int indexPrevPane = floatWindows[i].NestedPanes[j].IndexPrevPane;

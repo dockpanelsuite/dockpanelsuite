@@ -21,22 +21,23 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <param name="dockPanel">The dock panel.</param>
         public override void Apply(DockPanel dockPanel)
         {
-            if (dockPanel == null)
+            if (Extender != null)
             {
-                throw new NullReferenceException("dockPanel");
+                return;
             }
 
+            Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 4;
-            dockPanel.Extender.DockPaneCaptionFactory = new VS2005MultithreadingDockPaneCaptionFactory();
-            dockPanel.Extender.AutoHideStripFactory = new VS2005MultithreadingAutoHideStripFactory();
-            dockPanel.Extender.AutoHideWindowFactory = null;
-            dockPanel.Extender.DockPaneStripFactory = new VS2005MultithreadingDockPaneStripFactory();
-            dockPanel.Extender.DockPaneSplitterControlFactory = null;
-            dockPanel.Extender.DockWindowSplitterControlFactory = null;
-            dockPanel.Extender.DockWindowFactory = null;
-            dockPanel.Extender.PaneIndicatorFactory = new VS2005MultithreadingPaneIndicatorFactory();
-            dockPanel.Extender.PanelIndicatorFactory = new VS2005MultithreadingPanelIndicatorFactory();
-            dockPanel.Extender.DockOutlineFactory = null;
+            Extender.DockPaneCaptionFactory = new VS2005MultithreadingDockPaneCaptionFactory();
+            Extender.AutoHideStripFactory = new VS2005MultithreadingAutoHideStripFactory();
+            Extender.AutoHideWindowFactory = null;
+            Extender.DockPaneStripFactory = new VS2005MultithreadingDockPaneStripFactory();
+            Extender.DockPaneSplitterControlFactory = null;
+            Extender.DockWindowSplitterControlFactory = null;
+            Extender.DockWindowFactory = null;
+            Extender.PaneIndicatorFactory = new VS2005MultithreadingPaneIndicatorFactory();
+            Extender.PanelIndicatorFactory = new VS2005MultithreadingPanelIndicatorFactory();
+            Extender.DockOutlineFactory = null;
         }
 
         internal static DockPanelSkin CreateVisualStudio2005()

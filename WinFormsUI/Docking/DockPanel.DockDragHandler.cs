@@ -61,7 +61,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             private static Bitmap _bitmapPaneDiamondFill = Resources.DockIndicator_PaneDiamond_Fill;
             private static Bitmap _bitmapPaneDiamondHotSpot = Resources.DockIndicator_PaneDiamond_HotSpot;
             private static Bitmap _bitmapPaneDiamondHotSpotIndex = Resources.DockIndicator_PaneDiamond_HotSpotIndex;
-            private static HotSpotIndex[] _hotSpots = new[]
+            private static HotSpotIndex[] _hotSpots =
             {
                 new HotSpotIndex(1, 0, DockStyle.Top),
                 new HotSpotIndex(0, 1, DockStyle.Left),
@@ -424,7 +424,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get
                     {
                         if (m_paneDiamond == null)
-                            m_paneDiamond = m_dragHandler.DockPanel.Extender.PaneIndicatorFactory.CreatePaneIndicator(m_dragHandler.DockPanel.Theme);
+                            m_paneDiamond = m_dragHandler.DockPanel.Theme.Extender.PaneIndicatorFactory.CreatePaneIndicator(m_dragHandler.DockPanel.Theme);
 
                         return m_paneDiamond;
                     }
@@ -436,7 +436,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get
                     {
                         if (m_panelLeft == null)
-                            m_panelLeft = m_dragHandler.DockPanel.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Left, m_dragHandler.DockPanel.Theme);
+                            m_panelLeft = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Left, m_dragHandler.DockPanel.Theme);
 
                         return m_panelLeft;
                     }
@@ -448,7 +448,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get
                     {
                         if (m_panelRight == null)
-                            m_panelRight = m_dragHandler.DockPanel.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Right, m_dragHandler.DockPanel.Theme);
+                            m_panelRight = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Right, m_dragHandler.DockPanel.Theme);
 
                         return m_panelRight;
                     }
@@ -460,7 +460,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get
                     {
                         if (m_panelTop == null)
-                            m_panelTop = m_dragHandler.DockPanel.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Top, m_dragHandler.DockPanel.Theme);
+                            m_panelTop = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Top, m_dragHandler.DockPanel.Theme);
 
                         return m_panelTop;
                     }
@@ -472,7 +472,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get
                     {
                         if (m_panelBottom == null)
-                            m_panelBottom = m_dragHandler.DockPanel.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Bottom, m_dragHandler.DockPanel.Theme);
+                            m_panelBottom = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Bottom, m_dragHandler.DockPanel.Theme);
 
                         return m_panelBottom;
                     }
@@ -484,7 +484,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get
                     {
                         if (m_panelFill == null)
-                            m_panelFill = m_dragHandler.DockPanel.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Fill, m_dragHandler.DockPanel.Theme);
+                            m_panelFill = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Fill, m_dragHandler.DockPanel.Theme);
 
                         return m_panelFill;
                     }
@@ -610,7 +610,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         PaneDiamond.Visible = true;
                         using (GraphicsPath graphicsPath = PaneDiamond.DisplayingGraphicsPath.Clone() as GraphicsPath)
                         {
-                            Point[] pts = new Point[]
+                            Point[] pts =
                                 {
                                     new Point(PaneDiamond.Left, PaneDiamond.Top),
                                     new Point(PaneDiamond.Right, PaneDiamond.Top),
@@ -736,7 +736,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
                 }
 
-                Outline = DockPanel.Extender.DockOutlineFactory.CreateDockOutline();
+                Outline = DockPanel.Theme.Extender.DockOutlineFactory.CreateDockOutline();
                 Indicator = new DockIndicator(this);
                 Indicator.Show(false);
 

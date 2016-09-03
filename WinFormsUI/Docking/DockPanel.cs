@@ -37,7 +37,6 @@ namespace WeifenLuo.WinFormsUI.Docking
     public partial class DockPanel : Panel
     {
         private readonly FocusManagerImpl m_focusManager;
-        private readonly DockPanelExtender m_extender;
         private readonly DockPaneCollection m_panes;
         private readonly FloatWindowCollection m_floatWindows;
         private AutoHideWindowControl m_autoHideWindow;
@@ -50,13 +49,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             ShowAutoHideContentOnHover = true;
 
             m_focusManager = new FocusManagerImpl(this);
-            m_extender = new DockPanelExtender(this);
             m_panes = new DockPaneCollection();
             m_floatWindows = new FloatWindowCollection();
 
+            Theme.Apply(this);
+
             SuspendLayout();
 
-            m_autoHideWindow = Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
+            m_autoHideWindow = Theme.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
             m_autoHideWindow.Visible = false;
             m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged; 
             SetAutoHideWindowParent();
@@ -117,12 +117,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             {	
                 if (m_autoHideStripControl == null)
                 {
-                    m_autoHideStripControl = AutoHideStripFactory.CreateAutoHideStrip(this);
+                    m_autoHideStripControl = Theme.Extender.AutoHideStripFactory.CreateAutoHideStrip(this);
                     Controls.Add(m_autoHideStripControl);
                 }
                 return m_autoHideStripControl;
             }
         }
+
         internal void ResetAutoHideStripControl()
         {
             if (m_autoHideStripControl != null)
@@ -291,42 +292,31 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         [Browsable(false)]
+        [Obsolete("Use Theme.Extender instead.")]
         public DockPanelExtender Extender
         {
-            get	{	return m_extender;	}
+            get { return null; }
         }
 
         [Browsable(false)]
+        [Obsolete("Use Theme.Extender instead.")]
         public DockPanelExtender.IDockPaneFactory DockPaneFactory
         {
-            get	{	return Extender.DockPaneFactory;	}
+            get { return null; }
         }
 
         [Browsable(false)]
+        [Obsolete("Use Theme.Extender instead.")]
         public DockPanelExtender.IFloatWindowFactory FloatWindowFactory
         {
-            get	{	return Extender.FloatWindowFactory;	}
+            get { return null; }
         }
 
         [Browsable(false)]
+        [Obsolete("Use Theme.Extender instead.")]
         public DockPanelExtender.IDockWindowFactory DockWindowFactory
         {
-            get { return Extender.DockWindowFactory; }
-        }
-
-        internal DockPanelExtender.IDockPaneCaptionFactory DockPaneCaptionFactory
-        {
-            get	{	return Extender.DockPaneCaptionFactory;	}
-        }
-
-        internal DockPanelExtender.IDockPaneStripFactory DockPaneStripFactory
-        {
-            get	{	return Extender.DockPaneStripFactory;	}
-        }
-
-        internal DockPanelExtender.IAutoHideStripFactory AutoHideStripFactory
-        {
-            get	{	return Extender.AutoHideStripFactory;	}
+            get { return null; }
         }
 
         [Browsable(false)]
@@ -355,9 +345,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException(nameof(value));
 
-                if (value == m_dockBottomPortion)
+                if (Math.Abs(value - m_dockBottomPortion) < double.Epsilon)
                     return;
 
                 m_dockBottomPortion = value;
@@ -382,9 +372,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException(nameof(value));
 
-                if (value == m_dockLeftPortion)
+                if (Math.Abs(value - m_dockLeftPortion) < double.Epsilon)
                     return;
 
                 m_dockLeftPortion = value;
@@ -408,9 +398,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException(nameof(value));
 
-                if (value == m_dockRightPortion)
+                if (Math.Abs(value - m_dockRightPortion) < double.Epsilon)
                     return;
 
                 m_dockRightPortion = value;
@@ -434,9 +424,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 if (value <= 0)
-                    throw new ArgumentOutOfRangeException("value");
+                    throw new ArgumentOutOfRangeException(nameof(value));
 
-                if (value == m_dockTopPortion)
+                if (Math.Abs(value - m_dockTopPortion) < double.Epsilon)
                     return;
 
                 m_dockTopPortion = value;
@@ -1107,6 +1097,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal void ReloadDockWindows()
         {
+            if (m_autoHideWindow == null)
+            {
+                return;
+            }
+
             var old = m_dockWindows;
             LoadDockWindows();
             foreach (var dockWindow in old)
@@ -1128,7 +1123,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public void ResetAutoHideStripWindow()
         {
             var old = m_autoHideWindow;
-            m_autoHideWindow = Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
+            m_autoHideWindow = Theme.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
             m_autoHideWindow.Visible = false;
             SetAutoHideWindowParent();
 

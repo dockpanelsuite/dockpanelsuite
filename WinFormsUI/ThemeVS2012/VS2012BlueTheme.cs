@@ -24,22 +24,23 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <param name="dockPanel">The dock panel.</param>
         public override void Apply(DockPanel dockPanel)
         {
-            if (dockPanel == null)
+            if (Extender != null)
             {
-                throw new NullReferenceException("dockPanel");
+                return;
             }
 
+            Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 6;
-            dockPanel.Extender.DockPaneCaptionFactory = new VS2012DockPaneCaptionFactory();
-            dockPanel.Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
-            dockPanel.Extender.AutoHideWindowFactory = new VS2012BlueAutoHideWindowFactory();
-            dockPanel.Extender.DockPaneStripFactory = new VS2012DockPaneStripFactory();
-            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2012BlueDockPaneSplitterControlFactory();
-            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2012BlueDockWindowSplitterControlFactory();
-            dockPanel.Extender.DockWindowFactory = new VS2012DockWindowFactory();
-            dockPanel.Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
-            dockPanel.Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();
-            dockPanel.Extender.DockOutlineFactory = new VS2012DockOutlineFactory();
+            Extender.DockPaneCaptionFactory = new VS2012DockPaneCaptionFactory();
+            Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
+            Extender.AutoHideWindowFactory = new VS2012BlueAutoHideWindowFactory();
+            Extender.DockPaneStripFactory = new VS2012DockPaneStripFactory();
+            Extender.DockPaneSplitterControlFactory = new VS2012BlueDockPaneSplitterControlFactory();
+            Extender.DockWindowSplitterControlFactory = new VS2012BlueDockWindowSplitterControlFactory();
+            Extender.DockWindowFactory = new VS2012DockWindowFactory();
+            Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
+            Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();
+            Extender.DockOutlineFactory = new VS2012DockOutlineFactory();
         }
 
         public override void CleanUp(DockPanel dockPanel)

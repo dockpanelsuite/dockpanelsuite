@@ -1,5 +1,3 @@
-using System;
-
 namespace WeifenLuo.WinFormsUI.Docking
 {
     using System.Drawing;
@@ -21,22 +19,23 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <param name="dockPanel">The dock panel.</param>
         public override void Apply(DockPanel dockPanel)
         {
-            if (dockPanel == null)
+            if (Extender != null)
             {
-                throw new NullReferenceException("dockPanel");
+                return;
             }
 
+            Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 4;
-            dockPanel.Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
-            dockPanel.Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
-            dockPanel.Extender.AutoHideWindowFactory = null;
-            dockPanel.Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
-            dockPanel.Extender.DockPaneSplitterControlFactory = null;
-            dockPanel.Extender.DockWindowSplitterControlFactory = null;
-            dockPanel.Extender.DockWindowFactory = null;
-            dockPanel.Extender.PaneIndicatorFactory = null;
-            dockPanel.Extender.PanelIndicatorFactory = null;
-            dockPanel.Extender.DockOutlineFactory = null;
+            Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
+            Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
+            Extender.AutoHideWindowFactory = null;
+            Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
+            Extender.DockPaneSplitterControlFactory = null;
+            Extender.DockWindowSplitterControlFactory = null;
+            Extender.DockWindowFactory = null;
+            Extender.PaneIndicatorFactory = null;
+            Extender.PanelIndicatorFactory = null;
+            Extender.DockOutlineFactory = null;
         }
 
         internal static DockPanelSkin CreateVisualStudio2003()

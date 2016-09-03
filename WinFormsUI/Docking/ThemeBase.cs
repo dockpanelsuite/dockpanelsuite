@@ -2,7 +2,7 @@
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    public abstract class ThemeBase : Component, ITheme
+    public abstract class ThemeBase : Component
     {
         public DockPanelSkin Skin { get; protected set; }
 
@@ -15,5 +15,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public virtual void CleanUp(DockPanel dockPanel)
         {
         }
+
+        public DockPanelExtender Extender { get; protected set; }
     }
 }

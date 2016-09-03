@@ -67,14 +67,13 @@ namespace DockSample
             DummyDoc dummyDoc = new DummyDoc();
 
             int count = 1;
-            //string text = "C:\\MADFDKAJ\\ADAKFJASD\\ADFKDSAKFJASD\\ASDFKASDFJASDF\\ASDFIJADSFJ\\ASDFKDFDA" + count.ToString();
-            string text = "Document" + count.ToString();
+            string text = $"Document{count}";
             while (FindDocument(text) != null)
             {
                 count++;
-                //text = "C:\\MADFDKAJ\\ADAKFJASD\\ADFKDSAKFJASD\\ASDFKASDFJASDF\\ASDFIJADSFJ\\ASDFKDFDA" + count.ToString();
-                text = "Document" + count.ToString();
+                text = $"Document{count}";
             }
+
             dummyDoc.Text = text;
             return dummyDoc;
         }

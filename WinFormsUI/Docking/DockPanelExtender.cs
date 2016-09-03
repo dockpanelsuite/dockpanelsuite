@@ -235,7 +235,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        internal DockPanelExtender(DockPanel dockPanel)
+        public DockPanelExtender(DockPanel dockPanel)
         {
             m_dockPanel = dockPanel;
         }

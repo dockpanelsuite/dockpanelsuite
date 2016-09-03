@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace WeifenLuo.WinFormsUI.Docking
+﻿namespace WeifenLuo.WinFormsUI.Docking
 {
+    using System;
     using System.ComponentModel;
 
     public partial class DockPanel
@@ -10,12 +9,14 @@ namespace WeifenLuo.WinFormsUI.Docking
         [LocalizedDescription("DockPanel_DockPanelSkin")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
+        [Obsolete("Use Theme.Skin instead.")]
         public DockPanelSkin Skin
         {
-            get { return m_dockPanelTheme.Skin;  }
+            get { return null;  }
         }
 
         private ThemeBase m_dockPanelTheme = new VS2005Theme();
+
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockPanelTheme")]
         public ThemeBase Theme

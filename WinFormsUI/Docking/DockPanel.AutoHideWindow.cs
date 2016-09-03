@@ -159,11 +159,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_activePane = value;
             }
 
-            private static readonly object ActiveContentChangedEvent = new object();
+            private static readonly object AutoHideActiveContentChangedEvent = new object();
             public event EventHandler ActiveContentChanged
             {
-                add { Events.AddHandler(ActiveContentChangedEvent, value); }
-                remove { Events.RemoveHandler(ActiveContentChangedEvent, value); }
+                add { Events.AddHandler(AutoHideActiveContentChangedEvent, value); }
+                remove { Events.RemoveHandler(AutoHideActiveContentChangedEvent, value); }
             }
 
             protected virtual void OnActiveContentChanged(EventArgs e)

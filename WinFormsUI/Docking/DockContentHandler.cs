@@ -17,7 +17,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public DockContentHandler(Form form, GetPersistStringCallback getPersistStringCallback)
         {
             if (!(form is IDockContent))
-                throw new ArgumentException(Strings.DockContent_Constructor_InvalidForm, "form");
+                throw new ArgumentException(Strings.DockContent_Constructor_InvalidForm, nameof(form));
 
             m_form = form;
             m_getPersistStringCallback = getPersistStringCallback;
@@ -96,7 +96,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (value <= 0)
                     throw(new ArgumentOutOfRangeException(Strings.DockContentHandler_AutoHidePortion_OutOfRange));
 
-                if (m_autoHidePortion == value)
+                if (Math.Abs(m_autoHidePortion - value) < double.Epsilon)
                     return;
 
                 m_autoHidePortion = value;
@@ -524,13 +524,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_isFloat = (m_visibleState == DockState.Float);
 
                 if (Pane == null)
-                    Pane = DockPanel.DockPaneFactory.CreateDockPane(Content, visibleState, true);
+                    Pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, visibleState, true);
                 else if (Pane.DockState != visibleState)
                 {
                     if (Pane.Contents.Count == 1)
                         Pane.SetDockState(visibleState);
                     else
-                        Pane = DockPanel.DockPaneFactory.CreateDockPane(Content, visibleState, true);
+                        Pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, visibleState, true);
                 }
             }
 
@@ -898,7 +898,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (dockState == DockState.Float)
             {
                 if (FloatPane == null)
-                Pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.Float, true);
+                Pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, DockState.Float, true);
             }
             else if (PanelPane == null)
             {
@@ -914,7 +914,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
 
                 if (paneExisting == null)
-                    Pane = DockPanel.DockPaneFactory.CreateDockPane(Content, dockState, true);
+                    Pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, dockState, true);
                 else
                     Pane = paneExisting;
             }
@@ -936,7 +936,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (FloatPane == null)
             {
                 IsHidden = true;	// to reduce the screen flicker
-                FloatPane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.Float, false);
+                FloatPane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, DockState.Float, false);
                 FloatPane.FloatWindow.StartPosition = FormStartPosition.Manual;
             }
 
@@ -977,7 +977,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             previousPane.DockPanel.SuspendLayout(true);
 
             DockPanel = previousPane.DockPanel;
-            DockPanel.DockPaneFactory.CreateDockPane(Content, previousPane, alignment, proportion, true);
+            DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, previousPane, alignment, proportion, true);
             Show();
 
             previousPane.DockPanel.ResumeLayout(true, true);
@@ -1121,7 +1121,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public void FloatAt(Rectangle floatWindowBounds)
         {
             // TODO: where is the pane used?
-            DockPane pane = DockPanel.DockPaneFactory.CreateDockPane(Content, floatWindowBounds, true);
+            DockPane pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, floatWindowBounds, true);
         }
 
         public void DockTo(DockPane pane, DockStyle dockStyle, int contentIndex)
@@ -1163,7 +1163,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             else
             {
-                DockPane paneFrom = DockPanel.DockPaneFactory.CreateDockPane(Content, pane.DockState, true);
+                DockPane paneFrom = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, pane.DockState, true);
                 INestedPanesContainer container = pane.NestedPanesContainer;
                 if (dockStyle == DockStyle.Left)
                     paneFrom.DockTo(container, pane, DockAlignment.Left, 0.5);
@@ -1181,20 +1181,20 @@ namespace WeifenLuo.WinFormsUI.Docking
         public void DockTo(DockPanel panel, DockStyle dockStyle)
         {
             if (panel != DockPanel)
-                throw new ArgumentException(Strings.IDockDragSource_DockTo_InvalidPanel, "panel");
+                throw new ArgumentException(Strings.IDockDragSource_DockTo_InvalidPanel, nameof(panel));
 
             DockPane pane;
 
             if (dockStyle == DockStyle.Top)
-                pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.DockTop, true);
+                pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, DockState.DockTop, true);
             else if (dockStyle == DockStyle.Bottom)
-                pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.DockBottom, true);
+                pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, DockState.DockBottom, true);
             else if (dockStyle == DockStyle.Left)
-                pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.DockLeft, true);
+                pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, DockState.DockLeft, true);
             else if (dockStyle == DockStyle.Right)
-                pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.DockRight, true);
+                pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, DockState.DockRight, true);
             else if (dockStyle == DockStyle.Fill)
-                pane = DockPanel.DockPaneFactory.CreateDockPane(Content, DockState.Document, true);
+                pane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(Content, DockState.Document, true);
             else
                 return;
         }

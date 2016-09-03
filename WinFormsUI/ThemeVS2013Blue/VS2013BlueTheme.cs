@@ -26,22 +26,23 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <param name="dockPanel">The dock panel.</param>
         public override void Apply(DockPanel dockPanel)
         {
-            if (dockPanel == null)
+            if (Extender != null)
             {
-                throw new NullReferenceException("dockPanel");
+                return;
             }
 
+            Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 6;
-            dockPanel.Extender.DockPaneCaptionFactory = new VS2013BlueDockPaneCaptionFactory();
-            dockPanel.Extender.AutoHideStripFactory = new VS2013BlueAutoHideStripFactory();
-            dockPanel.Extender.AutoHideWindowFactory = new VS2013BlueAutoHideWindowFactory();
-            dockPanel.Extender.DockPaneStripFactory = new VS2013BlueDockPaneStripFactory();
-            dockPanel.Extender.DockPaneSplitterControlFactory = new VS2013BlueDockPaneSplitterControlFactory();
-            dockPanel.Extender.DockWindowSplitterControlFactory = new VS2013BlueDockWindowSplitterControlFactory();
-            dockPanel.Extender.DockWindowFactory = new VS2013BlueDockWindowFactory();
-            dockPanel.Extender.PaneIndicatorFactory = new VS2013BluePaneIndicatorFactory();
-            dockPanel.Extender.PanelIndicatorFactory = new VS2013BluePanelIndicatorFactory();
-            dockPanel.Extender.DockOutlineFactory = new VS2013BlueDockOutlineFactory();
+            Extender.DockPaneCaptionFactory = new VS2013BlueDockPaneCaptionFactory();
+            Extender.AutoHideStripFactory = new VS2013BlueAutoHideStripFactory();
+            Extender.AutoHideWindowFactory = new VS2013BlueAutoHideWindowFactory();
+            Extender.DockPaneStripFactory = new VS2013BlueDockPaneStripFactory();
+            Extender.DockPaneSplitterControlFactory = new VS2013BlueDockPaneSplitterControlFactory();
+            Extender.DockWindowSplitterControlFactory = new VS2013BlueDockWindowSplitterControlFactory();
+            Extender.DockWindowFactory = new VS2013BlueDockWindowFactory();
+            Extender.PaneIndicatorFactory = new VS2013BluePaneIndicatorFactory();
+            Extender.PanelIndicatorFactory = new VS2013BluePanelIndicatorFactory();
+            Extender.DockOutlineFactory = new VS2013BlueDockOutlineFactory();
         }
 
         public override void CleanUp(DockPanel dockPanel)
@@ -341,7 +342,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 private static Bitmap _bitmapPaneDiamondHotSpot = Resources.Dockindicator_PaneDiamond_Hotspot;
                 private static Bitmap _bitmapPaneDiamondHotSpotIndex = Resources.DockIndicator_PaneDiamond_HotspotIndex;
 
-                private static DockPanel.HotSpotIndex[] _hotSpots = new[]
+                private static DockPanel.HotSpotIndex[] _hotSpots =
                     {
                         new DockPanel.HotSpotIndex(1, 0, DockStyle.Top),
                         new DockPanel.HotSpotIndex(0, 1, DockStyle.Left),
