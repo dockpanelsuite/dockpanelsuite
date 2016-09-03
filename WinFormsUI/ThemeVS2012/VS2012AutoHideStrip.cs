@@ -209,7 +209,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.FillRectangle(SystemBrushes.Control, ClientRectangle);
+            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background), ClientRectangle);
             DrawTabStrip(g);
         }
 
@@ -248,6 +248,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 foreach (TabVS2012 tab in pane.AutoHideTabs)
                     DrawTab(g, tab);
             }
+
             g.Transform = matrixIdentity;
         }
 
@@ -322,10 +323,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             IDockContent content = tab.Content;
 
             Color borderColor;
+            Color backgroundColor;
             if (tab.Content.DockHandler.IsActivated || tab.IsMouseOver)
+            {
                 borderColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Border;
+                backgroundColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Background;
+            }
             else
+            {
                 borderColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Border;
+                backgroundColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Background;
+            }
+
+            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(backgroundColor), rectTabOrigin);
 
             Rectangle rectThickLine = rectTabOrigin;
             rectThickLine.X += _TabGapLeft + _TextGapLeft + _ImageGapLeft + _ImageWidth;
