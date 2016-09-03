@@ -1164,6 +1164,39 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             if (!this.m_suspendDrag)
                 base.OnMouseMove(e);
+
+            int index = HitTest(PointToClient(MousePosition));
+            string toolTip = string.Empty;
+
+            bool tabUpdate = false;
+            bool buttonUpdate = false;
+            if (index != -1)
+            {
+                var tab = Tabs[index] as TabVS2012;
+                if (Appearance == DockPane.AppearanceStyle.ToolWindow || Appearance == DockPane.AppearanceStyle.Document)
+                {
+                    tabUpdate = SetMouseOverTab(tab.Content == DockPane.ActiveContent ? null : tab.Content);
+                }
+
+                if (!String.IsNullOrEmpty(tab.Content.DockHandler.ToolTipText))
+                    toolTip = tab.Content.DockHandler.ToolTipText;
+                else if (tab.MaxWidth > tab.TabWidth)
+                    toolTip = tab.Content.DockHandler.TabText;
+
+                var mousePos = PointToClient(MousePosition);
+                var tabRect = GetTabRectangle(index);
+                var closeButtonRect = GetCloseButtonRect(tabRect);
+                var mouseRect = new Rectangle(mousePos, new Size(1, 1));
+                buttonUpdate = SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
+            }
+            else
+            {
+                tabUpdate = SetMouseOverTab(null);
+                buttonUpdate = SetActiveClose(Rectangle.Empty);
+            }
+
+            if (tabUpdate || buttonUpdate)
+                Invalidate();
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
@@ -1375,47 +1408,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             DockPane.MouseOverTab = content;
             return true;
-        }
-
-        protected override void OnMouseHover(EventArgs e)
-        {
-            int index = HitTest(PointToClient(MousePosition));
-            string toolTip = string.Empty;
-
-            base.OnMouseHover(e);
-
-            bool tabUpdate = false;
-            bool buttonUpdate = false;
-            if (index != -1)
-            {
-                var tab = Tabs[index] as TabVS2012;
-                if (Appearance == DockPane.AppearanceStyle.ToolWindow || Appearance == DockPane.AppearanceStyle.Document)
-                {
-                    tabUpdate = SetMouseOverTab(tab.Content == DockPane.ActiveContent ? null : tab.Content);
-                }
-
-                if (!String.IsNullOrEmpty(tab.Content.DockHandler.ToolTipText))
-                    toolTip = tab.Content.DockHandler.ToolTipText;
-                else if (tab.MaxWidth > tab.TabWidth)
-                    toolTip = tab.Content.DockHandler.TabText;
-
-                var mousePos = PointToClient(MousePosition);
-                var tabRect = GetTabRectangle(index);
-                var closeButtonRect = GetCloseButtonRect(tabRect);
-                var mouseRect = new Rectangle(mousePos, new Size(1, 1));
-                buttonUpdate = SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
-            }
-            else
-            {
-                tabUpdate = SetMouseOverTab(null);
-                buttonUpdate = SetActiveClose(Rectangle.Empty);
-            }
-
-            if (tabUpdate || buttonUpdate)
-                Invalidate();
-
-            // requires further tracking of mouse hover behavior,
-            ResetMouseEventArgs();
         }
 
         protected override void OnMouseLeave(EventArgs e)
