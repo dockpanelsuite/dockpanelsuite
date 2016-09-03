@@ -11,7 +11,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
         public VS2012BlueSplitterControl(DockPane pane)
             : base(pane)
         {
-            _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Skin.ColorPalette.MainWindowActive.Background);
+            _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
         }
 
         protected override void OnPaint(PaintEventArgs e)

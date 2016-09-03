@@ -10,7 +10,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2013BlueSplitterControl(DockPane pane)
             : base(pane)
         {
-            _brush = new SolidBrush(pane.DockPanel.Skin.AutoHideStripSkin.DockStripBackground.StartColor);
+            _brush = new SolidBrush(pane.DockPanel.Theme.Skin.AutoHideStripSkin.DockStripBackground.StartColor);
         }
 
         protected override void OnPaint(PaintEventArgs e)

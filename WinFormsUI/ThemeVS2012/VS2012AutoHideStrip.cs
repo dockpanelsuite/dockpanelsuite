@@ -47,7 +47,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         #region Customizable Properties
         public Font TextFont
         {
-            get { return DockPanel.Skin.AutoHideStripSkin.TextFont; }
+            get { return DockPanel.Theme.Skin.AutoHideStripSkin.TextFont; }
         }
 
         private static StringFormat _stringFormatTabHorizontal;
@@ -326,12 +326,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color backgroundColor;
             if (tab.Content.DockHandler.IsActivated || tab.IsMouseOver)
             {
-                borderColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Border;
-                backgroundColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Background;
+                borderColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Border;
+                backgroundColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Background;
             }
             else
             {
-                borderColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Border;
+                borderColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Border;
                 backgroundColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Background;
             }
 
@@ -396,9 +396,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color textColor;
             if (DockPanel.ActiveContent == content || tab.IsMouseOver)
-                textColor = DockPanel.Skin.ColorPalette.AutoHideStripHovered.Text;
+                textColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Text;
             else
-                textColor = DockPanel.Skin.ColorPalette.AutoHideStripDefault.Text;
+                textColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Text;
 
             if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
                 g.DrawString(content.DockHandler.TabText, TextFont, DockPanel.Theme.PaintingService.GetBrush(textColor), rectText, StringFormatTabVertical);

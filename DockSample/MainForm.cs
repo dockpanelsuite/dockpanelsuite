@@ -260,8 +260,8 @@ namespace DockSample
                 autoHideSkin.TabGradient.TextColor = SystemColors.ControlText;
                 autoHideSkin.TextFont = new Font("Showcard Gothic", 10);
 
-                _autoHideStripSkin = dockPanel.Skin.AutoHideStripSkin;
-                dockPanel.Skin.AutoHideStripSkin = autoHideSkin;
+                _autoHideStripSkin = dockPanel.Theme.Skin.AutoHideStripSkin;
+                dockPanel.Theme.Skin.AutoHideStripSkin = autoHideSkin;
 
                 DockPaneStripSkin dockPaneSkin = new DockPaneStripSkin();
                 dockPaneSkin.DocumentGradient.DockStripGradient.StartColor = Color.Red;
@@ -277,19 +277,19 @@ namespace DockSample
 
                 dockPaneSkin.TextFont = new Font("SketchFlow Print", 10);
 
-                _dockPaneStripSkin = dockPanel.Skin.DockPaneStripSkin;
-                dockPanel.Skin.DockPaneStripSkin = dockPaneSkin;
+                _dockPaneStripSkin = dockPanel.Theme.Skin.DockPaneStripSkin;
+                dockPanel.Theme.Skin.DockPaneStripSkin = dockPaneSkin;
             }
             else
             {
                 if (_autoHideStripSkin != null)
                 {
-                    dockPanel.Skin.AutoHideStripSkin = _autoHideStripSkin;
+                    dockPanel.Theme.Skin.AutoHideStripSkin = _autoHideStripSkin;
                 }
 
                 if (_dockPaneStripSkin != null)
                 {
-                    dockPanel.Skin.DockPaneStripSkin = _dockPaneStripSkin;
+                    dockPanel.Theme.Skin.DockPaneStripSkin = _dockPaneStripSkin;
                 }
             }
 

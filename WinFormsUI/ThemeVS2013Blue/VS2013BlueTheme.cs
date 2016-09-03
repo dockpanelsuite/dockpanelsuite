@@ -601,7 +601,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 if (this._brush == null)
                 {
-                    _brush = new SolidBrush(window.DockPanel.Skin.AutoHideStripSkin.DockStripBackground.StartColor);
+                    _brush = new SolidBrush(window.DockPanel.Theme.Skin.AutoHideStripSkin.DockStripBackground.StartColor);
                 }
 
                 switch (Dock)

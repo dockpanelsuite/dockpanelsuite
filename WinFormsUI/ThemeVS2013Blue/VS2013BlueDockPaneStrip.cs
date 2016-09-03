@@ -285,7 +285,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public Font TextFont
         {
-            get { return DockPane.DockPanel.Skin.DockPaneStripSkin.TextFont; }
+            get { return DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.TextFont; }
         }
 
         private Font BoldFont
@@ -627,7 +627,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rect = TabsRectangle;
-            DockPanelGradient gradient = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient;
+            DockPanelGradient gradient = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.DockStripGradient;
 
             if (Appearance == DockPane.AppearanceStyle.Document)
             {
@@ -646,7 +646,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             else
             {
-                gradient = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient;
+                gradient = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.DockStripGradient;
             }
             Color startColor = gradient.StartColor;
             Color endColor = gradient.EndColor;
@@ -1001,9 +1001,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 Color tabUnderLineColor;
                 if (tabActive != null && DockPane.IsActiveDocumentPane)
-                    tabUnderLineColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
+                    tabUnderLineColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
                 else
-                    tabUnderLineColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
+                    tabUnderLineColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
 
                 g.DrawLine(new Pen(tabUnderLineColor, 4), rectTabStrip.Left, rectTabStrip.Bottom, rectTabStrip.Right, rectTabStrip.Bottom);
             }
@@ -1133,21 +1133,21 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectIcon = DrawHelper.RtlTransform(this, rectIcon);
             if (DockPane.ActiveContent == tab.Content && ((DockContent)tab.Content).IsActivated)
             {
-                Color startColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.StartColor;
-                Color endColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.EndColor;
-                LinearGradientMode gradientMode = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.LinearGradientMode;
+                Color startColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.StartColor;
+                Color endColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.EndColor;
+                LinearGradientMode gradientMode = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.LinearGradientMode;
                 g.FillRectangle(new LinearGradientBrush(rectTab, startColor, endColor, gradientMode), rect);
 
-                Color textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor;
+                Color textColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor;
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, ToolWindowTextFormat);
             }
             else
             {
                 Color textColor;
                 if (tab.Content == DockPane.MouseOverTab)
-                    textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.HoverTabGradient.TextColor;
+                    textColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.HoverTabGradient.TextColor;
                 else
-                    textColor = DockPane.DockPanel.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor;
+                    textColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor;
 
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, ToolWindowTextFormat);
             }
@@ -1192,15 +1192,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             rectText = DrawHelper.RtlTransform(this, rectText);
             rectIcon = DrawHelper.RtlTransform(this, rectIcon);
 
-            Color activeColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
-            Color lostFocusColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
-            Color inactiveColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
-            Color mouseHoverColor = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.EndColor;
+            Color activeColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.StartColor;
+            Color lostFocusColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.EndColor;
+            Color inactiveColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.StartColor;
+            Color mouseHoverColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.EndColor;
 
-            Color activeText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
-            Color inactiveText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
-            Color lostFocusText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
-            Color mouseHoverText = DockPane.DockPanel.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.TextColor;
+            Color activeText = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
+            Color inactiveText = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
+            Color lostFocusText = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
+            Color mouseHoverText = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.TextColor;
 
             if (DockPane.ActiveContent == tab.Content)
             {
