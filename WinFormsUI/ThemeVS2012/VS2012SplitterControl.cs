@@ -9,16 +9,18 @@ namespace WeifenLuo.WinFormsUI.Docking
         private readonly SolidBrush _horizontalBrush;
         private readonly SolidBrush _backgroundBrush;
         private readonly Color[] _verticalSurroundColors;
+        private int _splitterSize;
 
         public VS2012SplitterControl(DockPane pane)
             : base(pane)
         {
             _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.Skin.ColorPalette.TabSelectedInactive.Background);
             _backgroundBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
-            this._verticalSurroundColors = new[]
+            _verticalSurroundColors = new[]
                                                {
                                                    pane.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background
                                                };
+            _splitterSize = pane.DockPanel.Theme.Measures.SplitterSize;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -44,8 +46,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                                     CenterColor = _horizontalBrush.Color, SurroundColors = _verticalSurroundColors
                                 })
                             {
-                                e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
-                                                         Measures.SplitterSize / 3, rect.Height);
+                                e.Graphics.FillRectangle(brush, rect.X + _splitterSize / 2 - 1, rect.Y,
+                                                         _splitterSize / 3, rect.Height);
                             }
                         }
                     }
@@ -54,7 +56,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 case DockAlignment.Top:
                     {
                         e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                        rect.Width, Measures.SplitterSize);
+                                        rect.Width, _splitterSize);
                     }
                     break;
             }

@@ -16,7 +16,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
 
         protected override int SplitterSize
         {
-            get { return Measures.SplitterSize; }
+            get { return _host.IsDockWindow ? _host.DockPanel.Theme.Measures.SplitterSize : _host.DockPanel.Theme.Measures.AutoHideSplitterSize; }
         }
 
         protected override void StartDrag()
@@ -45,14 +45,14 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
                     case DockStyle.Right:
                     case DockStyle.Left:
                         {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, Measures.SplitterSize, rect.Height);
+                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, SplitterSize, rect.Height);
                         }
                         break;
                     case DockStyle.Bottom:
                     case DockStyle.Top:
                         {
                             e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                                     rect.Width, Measures.SplitterSize);
+                                                     rect.Width, SplitterSize);
                         }
                         break;
                 }
@@ -65,13 +65,13 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
                 case DockState.DockRightAutoHide:
                 case DockState.DockLeftAutoHide:
                     {
-                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, Measures.SplitterSize, rect.Height);
+                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, SplitterSize, rect.Height);
                     }
                     break;
                 case DockState.DockBottomAutoHide:
                 case DockState.DockTopAutoHide:
                     {
-                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, rect.Width, Measures.SplitterSize);
+                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, rect.Width, SplitterSize);
                     }
                     break;
             }

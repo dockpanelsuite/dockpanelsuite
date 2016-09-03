@@ -340,10 +340,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             Rectangle rectThickLine = rectTabOrigin;
             rectThickLine.X += _TabGapLeft + _TextGapLeft + _ImageGapLeft + _ImageWidth;
             rectThickLine.Width = TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width - 8;
-            rectThickLine.Height = Measures.AutoHideTabLineWidth;
+            rectThickLine.Height = DockPanel.Theme.Measures.AutoHideTabLineWidth;
 
             if (dockState == DockState.DockBottomAutoHide || dockState == DockState.DockLeftAutoHide)
-                rectThickLine.Y += rectTabOrigin.Height - Measures.AutoHideTabLineWidth;
+                rectThickLine.Y += rectTabOrigin.Height - DockPanel.Theme.Measures.AutoHideTabLineWidth;
             else
                 if (dockState == DockState.DockTopAutoHide || dockState == DockState.DockRightAutoHide)
                     rectThickLine.Y += 0;

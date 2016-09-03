@@ -128,7 +128,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public SplitterBase CreateSplitterControl(ISplitterHost host)
             {
-                return new DockWindow.DefaultSplitterControl();
+                return new DockWindow.DefaultSplitterControl(host);
             }
         }
 

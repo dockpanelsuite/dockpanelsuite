@@ -21,18 +21,18 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
                 // exclude the border and the splitter
                 if (DockState == DockState.DockBottomAutoHide)
                 {
-                    rect.Y += Measures.SplitterSize;
-                    rect.Height -= Measures.SplitterSize;
+                    rect.Y += DockPanel.Theme.Measures.AutoHideSplitterSize;
+                    rect.Height -= DockPanel.Theme.Measures.AutoHideSplitterSize;
                 }
                 else if (DockState == DockState.DockRightAutoHide)
                 {
-                    rect.X += Measures.SplitterSize;
-                    rect.Width -= Measures.SplitterSize;
+                    rect.X += DockPanel.Theme.Measures.AutoHideSplitterSize;
+                    rect.Width -= DockPanel.Theme.Measures.AutoHideSplitterSize;
                 }
                 else if (DockState == DockState.DockTopAutoHide)
-                    rect.Height -= Measures.SplitterSize;
+                    rect.Height -= DockPanel.Theme.Measures.AutoHideSplitterSize;
                 else if (DockState == DockState.DockLeftAutoHide)
-                    rect.Width -= Measures.SplitterSize;
+                    rect.Width -= DockPanel.Theme.Measures.AutoHideSplitterSize;
 
                 return rect;
             }

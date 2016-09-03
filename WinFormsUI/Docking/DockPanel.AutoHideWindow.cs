@@ -97,7 +97,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 protected override int SplitterSize
                 {
-                    get { return Measures.SplitterSize; }
+                    get { return AutoHideWindow.DockPanel.Theme.Measures.AutoHideSplitterSize; }
                 }
 
                 protected override void StartDrag()
@@ -346,9 +346,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Rectangle rectClient = ClientRectangle;
 
                 if (DockState == DockState.DockLeftAutoHide)
-                    ActivePane.Location = new Point(rectClient.Right - 2 - Measures.SplitterSize - ActivePane.Width, ActivePane.Location.Y);
+                    ActivePane.Location = new Point(rectClient.Right - 2 - DockPanel.Theme.Measures.AutoHideSplitterSize - ActivePane.Width, ActivePane.Location.Y);
                 else if (DockState == DockState.DockTopAutoHide)
-                    ActivePane.Location = new Point(ActivePane.Location.X, rectClient.Bottom - 2 - Measures.SplitterSize - ActivePane.Height);
+                    ActivePane.Location = new Point(ActivePane.Location.X, rectClient.Bottom - 2 - DockPanel.Theme.Measures.AutoHideSplitterSize - ActivePane.Height);
             }
 
             private Rectangle GetRectangle(bool show)
@@ -407,18 +407,18 @@ namespace WeifenLuo.WinFormsUI.Docking
                     // exclude the border and the splitter
                     if (DockState == DockState.DockBottomAutoHide)
                     {
-                        rect.Y += 2 + Measures.SplitterSize;
-                        rect.Height -= 2 + Measures.SplitterSize;
+                        rect.Y += 2 + DockPanel.Theme.Measures.AutoHideSplitterSize;
+                        rect.Height -= 2 + DockPanel.Theme.Measures.AutoHideSplitterSize;
                     }
                     else if (DockState == DockState.DockRightAutoHide)
                     {
-                        rect.X += 2 + Measures.SplitterSize;
-                        rect.Width -= 2 + Measures.SplitterSize;
+                        rect.X += 2 + DockPanel.Theme.Measures.AutoHideSplitterSize;
+                        rect.Width -= 2 + DockPanel.Theme.Measures.AutoHideSplitterSize;
                     }
                     else if (DockState == DockState.DockTopAutoHide)
-                        rect.Height -= 2 + Measures.SplitterSize;
+                        rect.Height -= 2 + DockPanel.Theme.Measures.AutoHideSplitterSize;
                     else if (DockState == DockState.DockLeftAutoHide)
-                        rect.Width -= 2 + Measures.SplitterSize;
+                        rect.Width -= 2 + DockPanel.Theme.Measures.AutoHideSplitterSize;
 
                     return rect;
                 }

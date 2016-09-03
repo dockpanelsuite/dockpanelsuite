@@ -31,6 +31,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 6;
+            Measures.AutoHideSplitterSize = 3;
             Extender.DockPaneCaptionFactory = new VS2012DockPaneCaptionFactory();
             Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
             Extender.AutoHideWindowFactory = new VS2012AutoHideWindowFactory();

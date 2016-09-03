@@ -24,18 +24,18 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 Rectangle rect = ClientRectangle;
                 if (DockState == DockState.DockLeft)
-                    rect.Width -= Measures.SplitterSize;
+                    rect.Width -= DockPanel.Theme.Measures.SplitterSize;
                 else if (DockState == DockState.DockRight)
                 {
-                    rect.X += Measures.SplitterSize;
-                    rect.Width -= Measures.SplitterSize;
+                    rect.X += DockPanel.Theme.Measures.SplitterSize;
+                    rect.Width -= DockPanel.Theme.Measures.SplitterSize;
                 }
                 else if (DockState == DockState.DockTop)
-                    rect.Height -= Measures.SplitterSize;
+                    rect.Height -= DockPanel.Theme.Measures.SplitterSize;
                 else if (DockState == DockState.DockBottom)
                 {
-                    rect.Y += Measures.SplitterSize;
-                    rect.Height -= Measures.SplitterSize;
+                    rect.Y += DockPanel.Theme.Measures.SplitterSize;
+                    rect.Height -= DockPanel.Theme.Measures.SplitterSize;
                 }
 
                 return rect;

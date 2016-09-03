@@ -33,6 +33,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 6;
+            Measures.AutoHideSplitterSize = 3;
             Extender.DockPaneCaptionFactory = new VS2013BlueDockPaneCaptionFactory();
             Extender.AutoHideStripFactory = new VS2013BlueAutoHideStripFactory();
             Extender.AutoHideWindowFactory = new VS2013BlueAutoHideWindowFactory();
@@ -575,7 +576,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             protected override int SplitterSize
             {
-                get { return Measures.SplitterSize; }
+                get { return 6; } // TODO: fix this query.
             }
 
             protected override void StartDrag()
@@ -611,13 +612,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     case DockStyle.Left:
                         {
                             e.Graphics.FillRectangle(_brush, rect.X, rect.Y,
-                                                             Measures.SplitterSize, rect.Height);
+                                                             SplitterSize, rect.Height);
                         }
                         break;
                     case DockStyle.Bottom:
                     case DockStyle.Top:
                         {
-                            e.Graphics.FillRectangle(_brush, rect.X, rect.Y, rect.Width, Measures.SplitterSize);
+                            e.Graphics.FillRectangle(_brush, rect.X, rect.Y, rect.Width, SplitterSize);
                         }
                         break;
                 }

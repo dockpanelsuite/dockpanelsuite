@@ -24,7 +24,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
 
         protected override int SplitterSize
         {
-            get { return Measures.SplitterSize; }
+            get { return _host.IsDockWindow ? _host.DockPanel.Theme.Measures.SplitterSize : _host.DockPanel.Theme.Measures.AutoHideSplitterSize; }
         }
 
         protected override void StartDrag()
@@ -41,33 +41,55 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
             if (rect.Width <= 0 || rect.Height <= 0)
                 return;
 
+            if (_host.IsDockWindow)
+            {
+                switch (Dock)
+                {
+                    case DockStyle.Right:
+                    case DockStyle.Left:
+                        {
+                            e.Graphics.FillRectangle(_backgroundBrush, rect.X, rect.Y, SplitterSize, rect.Height);
+                            using (var path = new GraphicsPath())
+                            {
+                                path.AddRectangle(rect);
+                                using (var brush = new PathGradientBrush(path)
+                                {
+                                    // TODO: fix this color.
+                                    CenterColor = _horizontalBrush.Color,
+                                    SurroundColors = _verticalSurroundColors
+                                })
+                                {
+                                    e.Graphics.FillRectangle(brush, rect.X + SplitterSize / 2 - 1, rect.Y,
+                                                             SplitterSize / 3, rect.Height);
+                                }
+                            }
+                        }
+                        break;
+                    case DockStyle.Bottom:
+                    case DockStyle.Top:
+                        {
+                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
+                                                     rect.Width, SplitterSize);
+                        }
+                        break;
+                }
+
+                return;
+            }
+
             switch (_host.DockState)
             {
                 case DockState.DockRightAutoHide:
                 case DockState.DockLeftAutoHide:
                     {
                         e.Graphics.FillRectangle(_backgroundBrush, rect.X, rect.Y, rect.Width, rect.Height);
-                        using (var path = new GraphicsPath())
-                        {
-                            path.AddRectangle(rect);
-                            using (var brush = new PathGradientBrush(path)
-                            {
-                                // TODO: fix this color.
-                                CenterColor = _horizontalBrush.Color,
-                                SurroundColors = _verticalSurroundColors
-                            })
-                            {
-                                e.Graphics.FillRectangle(brush, rect.X + Measures.SplitterSize / 2 - 1, rect.Y,
-                                                         Measures.SplitterSize / 3, rect.Height);
-                            }
-                        }
                     }
                     break;
                 case DockState.DockBottomAutoHide:
                 case DockState.DockTopAutoHide:
                     {
                         e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                        rect.Width, Measures.SplitterSize);
+                                        rect.Width, SplitterSize);
                     }
                     break;
             }

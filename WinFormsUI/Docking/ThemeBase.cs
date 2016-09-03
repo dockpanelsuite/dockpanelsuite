@@ -10,6 +10,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IPaintingService PaintingService { get; protected set; }
 
+        public Measures Measures { get; } = new Measures();
+
         public abstract void Apply(DockPanel dockPanel);
 
         public virtual void CleanUp(DockPanel dockPanel)

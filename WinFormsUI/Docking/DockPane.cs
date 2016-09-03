@@ -1251,7 +1251,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 size = floatPane.FloatWindow.Size;
 
             if (ptMouse.X > location.X + size.Width)
-                location.X += ptMouse.X - (location.X + size.Width) + Measures.SplitterSize;
+                location.X += ptMouse.X - (location.X + size.Width) + DockPanel.Theme.Measures.SplitterSize;
 
             return new Rectangle(location, size);
         }

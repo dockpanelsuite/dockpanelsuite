@@ -124,33 +124,33 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Rectangle rectSplitter = rect;
                 if (status.DisplayingAlignment == DockAlignment.Left)
                 {
-                    rectThis.Width = (int)((double)rect.Width * status.DisplayingProportion) - (Measures.SplitterSize / 2);
+                    rectThis.Width = (int)((double)rect.Width * status.DisplayingProportion) - (pane.DockPanel.Theme.Measures.SplitterSize / 2);
                     rectSplitter.X = rectThis.X + rectThis.Width;
-                    rectSplitter.Width = Measures.SplitterSize;
+                    rectSplitter.Width = pane.DockPanel.Theme.Measures.SplitterSize;
                     rectPrev.X = rectSplitter.X + rectSplitter.Width;
                     rectPrev.Width = rect.Width - rectThis.Width - rectSplitter.Width;
                 }
                 else if (status.DisplayingAlignment == DockAlignment.Right)
                 {
-                    rectPrev.Width = (rect.Width - (int)((double)rect.Width * status.DisplayingProportion)) - (Measures.SplitterSize / 2);
+                    rectPrev.Width = (rect.Width - (int)((double)rect.Width * status.DisplayingProportion)) - (pane.DockPanel.Theme.Measures.SplitterSize / 2);
                     rectSplitter.X = rectPrev.X + rectPrev.Width;
-                    rectSplitter.Width = Measures.SplitterSize;
+                    rectSplitter.Width = pane.DockPanel.Theme.Measures.SplitterSize;
                     rectThis.X = rectSplitter.X + rectSplitter.Width;
                     rectThis.Width = rect.Width - rectPrev.Width - rectSplitter.Width;
                 }
                 else if (status.DisplayingAlignment == DockAlignment.Top)
                 {
-                    rectThis.Height = (int)((double)rect.Height * status.DisplayingProportion) - (Measures.SplitterSize / 2);
+                    rectThis.Height = (int)((double)rect.Height * status.DisplayingProportion) - (pane.DockPanel.Theme.Measures.SplitterSize / 2);
                     rectSplitter.Y = rectThis.Y + rectThis.Height;
-                    rectSplitter.Height = Measures.SplitterSize;
+                    rectSplitter.Height = pane.DockPanel.Theme.Measures.SplitterSize;
                     rectPrev.Y = rectSplitter.Y + rectSplitter.Height;
                     rectPrev.Height = rect.Height - rectThis.Height - rectSplitter.Height;
                 }
                 else if (status.DisplayingAlignment == DockAlignment.Bottom)
                 {
-                    rectPrev.Height = (rect.Height - (int)((double)rect.Height * status.DisplayingProportion)) - (Measures.SplitterSize / 2);
+                    rectPrev.Height = (rect.Height - (int)((double)rect.Height * status.DisplayingProportion)) - (pane.DockPanel.Theme.Measures.SplitterSize / 2);
                     rectSplitter.Y = rectPrev.Y + rectPrev.Height;
-                    rectSplitter.Height = Measures.SplitterSize;
+                    rectSplitter.Height = pane.DockPanel.Theme.Measures.SplitterSize;
                     rectThis.Y = rectSplitter.Y + rectSplitter.Height;
                     rectThis.Height = rect.Height - rectPrev.Height - rectSplitter.Height;
                 }
