@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
@@ -31,7 +32,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             SetStyle(ControlStyles.Selectable, false);
             Enabled = false;
             TopMost = true;
+            SizeChanged += (sender, args) =>
+            {
+                if (BackgroundColor != null)
+                {
+                    Invalidate();
+                }
+            };
         }
+
+        public Color? BackgroundColor { get; set; }
 
         protected override CreateParams CreateParams
         {
@@ -54,17 +64,36 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.WndProc(ref m);
         }
 
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (BackgroundColor == null)
+            {
+                return;
+            }
+
+            var all = ClientRectangle;
+            if (all.Width > 10 && all.Height > 10)
+            {
+                var newLocation = new Point(all.Location.X + 5, all.Location.Y + 5);
+                var newSize = new Size(all.Width - 10, all.Height - 10);
+                var center = new Rectangle(newLocation, newSize);
+                e.Graphics.FillRectangle(new SolidBrush(BackgroundColor.Value), center);
+            }
+        }
+
         //The form can be still activated by explicity calling Activate
         protected override bool ShowWithoutActivation
         {
             get { return true; }
         }
+
         public virtual void Show(bool bActivate)
         {
-                Show();
+            Show();
 
-                if (bActivate)
-                    Activate();
+            if (bActivate)
+                Activate();
         }
     }
 }
