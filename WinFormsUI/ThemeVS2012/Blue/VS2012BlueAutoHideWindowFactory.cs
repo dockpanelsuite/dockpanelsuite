@@ -1,6 +1,6 @@
 ﻿using WeifenLuo.WinFormsUI.Docking;
 
-namespace WeifenLuo.WinFormsUI.ThemeVS2012
+namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
 {
     internal class VS2012BlueAutoHideWindowFactory : DockPanelExtender.IAutoHideWindowFactory
     {

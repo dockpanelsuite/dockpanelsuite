@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -40,63 +39,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 return rect;
-            }
-        }
-        
-        internal class VS2012BlueDockWindowSplitterControl : SplitterBase
-        {
-            private SolidBrush _horizontalBrush;
-
-            protected override int SplitterSize
-            {
-                get { return Measures.SplitterSize; }
-            }
-
-            protected override void StartDrag()
-            {
-                DockWindow window = Parent as DockWindow;
-                if (window == null)
-                    return;
-
-                window.DockPanel.BeginDrag(window, window.RectangleToScreen(Bounds));
-            }
-
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                base.OnPaint(e);
-
-                Rectangle rect = ClientRectangle;
-
-                if (rect.Width <= 0 || rect.Height <= 0)
-                    return;
-
-                DockWindow window = Parent as DockWindow;
-                if (window == null)
-                    return;
-
-                var skin = window.DockPanel.Skin;
-                if (this._horizontalBrush == null)
-                {
-                    _horizontalBrush = window.DockPanel.Theme.PaintingService.GetBrush(skin.ColorPalette.MainWindowActive.Background);
-                }
-
-                switch (Dock)
-                {
-                    case DockStyle.Right:
-                    case DockStyle.Left:
-                        {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, Measures.SplitterSize, rect.Height);
-                        }
-                        break;
-                    case DockStyle.Bottom:
-                    case DockStyle.Top:
-                        {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                                     rect.Width, Measures.SplitterSize);
-                        }
-                        break;
-                }
-
             }
         }
     }

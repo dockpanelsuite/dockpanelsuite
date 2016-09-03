@@ -425,7 +425,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private class VS2013BlueDockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
         {
-            public SplitterBase CreateSplitterControl()
+            public SplitterBase CreateSplitterControl(ISplitterHost host)
             {
                 return new VS2013BlueDockWindowSplitterControl();
             }

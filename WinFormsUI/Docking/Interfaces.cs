@@ -44,4 +44,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         Rectangle DragLimitBounds { get; }
         void MoveSplitter(int offset);
     }
+
+    public interface ISplitterHost : ISplitterDragSource
+    {
+        DockPanel DockPanel { get; }
+        DockState DockState { get; }
+        bool IsDockWindow { get; }
+    }
 }

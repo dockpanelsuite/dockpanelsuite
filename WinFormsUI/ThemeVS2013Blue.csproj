@@ -64,6 +64,9 @@
     <Compile Include="ThemeVS2012\VS2012DockWindow.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ThemeVS2012\VS2012WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThemeVS2013Blue\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

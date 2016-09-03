@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeVS2012\Blue\VS2012BlueWindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThemeVS2012\Blue\ImageService.cs" />
     <Compile Include="ThemeVS2012\Blue\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
@@ -60,6 +63,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ThemeVS2012\Blue\VS2012BlueDockWindowFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThemeVS2012\PaintingService.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideWindowFactory.cs" />

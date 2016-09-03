@@ -8,7 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     /// Dock window base class.
     /// </summary>
     [ToolboxItem(false)]
-    public partial class DockWindow : Panel, INestedPanesContainer, ISplitterDragSource
+    public partial class DockWindow : Panel, INestedPanesContainer, ISplitterHost
     {
         private DockPanel m_dockPanel;
         private DockState m_dockState;
@@ -27,7 +27,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (DockState == DockState.DockLeft || DockState == DockState.DockRight ||
                 DockState == DockState.DockTop || DockState == DockState.DockBottom)
             {
-                m_splitter = DockPanel.Extender.DockWindowSplitterControlFactory.CreateSplitterControl();
+                m_splitter = DockPanel.Extender.DockWindowSplitterControlFactory.CreateSplitterControl(this);
                 Controls.Add(m_splitter);
             }
 
@@ -57,6 +57,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             ResumeLayout();
+        }
+
+        public bool IsDockWindow
+        {
+            get { return true; }
         }
 
         public VisibleNestedPaneCollection VisibleNestedPanes

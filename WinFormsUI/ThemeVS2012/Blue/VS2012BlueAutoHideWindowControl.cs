@@ -1,62 +1,14 @@
 using System.Drawing;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
 {
     internal class VS2012BlueAutoHideWindowControl : DockPanel.AutoHideWindowControl
     {
-        private class VS2012BlueAutoHideWindowSplitterControl : SplitterBase
-        {
-            private readonly SolidBrush _horizontalBrush;
-
-            public VS2012BlueAutoHideWindowSplitterControl(DockPanel.AutoHideWindowControl autoHideWindow)
-            {
-                AutoHideWindow = autoHideWindow;
-                _horizontalBrush = autoHideWindow.DockPanel.Theme.PaintingService.GetBrush(autoHideWindow.DockPanel.Skin.ColorPalette.MainWindowActive.Background);
-            }
-
-            private DockPanel.AutoHideWindowControl AutoHideWindow { get; set; }
-
-            protected override int SplitterSize
-            {
-                get { return Measures.SplitterSize; }
-            }
-
-            protected override void StartDrag()
-            {
-                AutoHideWindow.DockPanel.BeginDrag(AutoHideWindow, AutoHideWindow.RectangleToScreen(Bounds));
-            }
-
-            protected override void OnPaint(PaintEventArgs e)
-            {
-                base.OnPaint(e);
-
-                Rectangle rect = ClientRectangle;
-
-                if (rect.Width <= 0 || rect.Height <= 0)
-                    return;
-
-                switch (AutoHideWindow.DockState)
-                {
-                    case DockState.DockRightAutoHide:
-                    case DockState.DockLeftAutoHide:
-                        {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, Measures.SplitterSize, rect.Height);
-                        }
-                        break;
-                    case DockState.DockBottomAutoHide:
-                    case DockState.DockTopAutoHide:
-                        {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, rect.Width, Measures.SplitterSize);
-                        }
-                        break;
-                }
-            }
-        }
-
         public VS2012BlueAutoHideWindowControl(DockPanel dockPanel) : base(dockPanel)
         {
-            m_splitter = new VS2012BlueAutoHideWindowSplitterControl(this);
+            m_splitter = new VS2012BlueWindowSplitterControl(this);
             Controls.Add(m_splitter);
         }
 

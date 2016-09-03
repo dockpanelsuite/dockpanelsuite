@@ -80,7 +80,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        public class AutoHideWindowControl : Panel, ISplitterDragSource
+        public class AutoHideWindowControl : Panel, ISplitterHost
         {
             protected class SplitterControl : SplitterBase
             {
@@ -132,6 +132,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 base.Dispose(disposing);
             }
 
+            public bool IsDockWindow
+            {
+                get { return false; }
+            }
+
             private DockPanel m_dockPanel = null;
             public DockPanel DockPanel
             {
@@ -143,6 +148,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 get { return m_activePane; }
             }
+
             private void SetActivePane()
             {
                 DockPane value = (ActiveContent == null ? null : ActiveContent.DockHandler.Pane);
