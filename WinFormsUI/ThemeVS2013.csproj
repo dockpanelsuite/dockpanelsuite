@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ThemeVS2012\VS2012AutoHideStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockOutlineFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PaneIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PanelIndicatorFactory.cs" />
     <Compile Include="ThemeVS2013\Blue\ImageService.cs" />
@@ -73,10 +74,6 @@
     </Compile>
     <Compile Include="ThemeVS2013\VS2013AutoHideWindowFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013DockPaneSplitterControlFactory.cs" />
-    <Compile Include="ThemeVS2013\VS2013DockWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ThemeVS2013\VS2013DockWindowFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013DockWindowSplitterControlFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013SplitterControl.cs">
       <SubType>Component</SubType>

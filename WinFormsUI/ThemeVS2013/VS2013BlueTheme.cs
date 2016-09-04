@@ -38,7 +38,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Extender.DockPaneStripFactory = new VS2013DockPaneStripFactory();
             Extender.DockPaneSplitterControlFactory = new VS2013DockPaneSplitterControlFactory();
             Extender.DockWindowSplitterControlFactory = new VS2013DockWindowSplitterControlFactory();
-            Extender.DockWindowFactory = new VS2013DockWindowFactory();
+            Extender.DockWindowFactory = new VS2012DockWindowFactory();
             Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();
             Extender.DockOutlineFactory = new VS2012DockOutlineFactory();

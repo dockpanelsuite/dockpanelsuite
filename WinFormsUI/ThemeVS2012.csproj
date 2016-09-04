@@ -111,10 +111,6 @@
     </Compile>
     <Compile Include="ThemeVS2013\VS2013AutoHideWindowFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013DockPaneSplitterControlFactory.cs" />
-    <Compile Include="ThemeVS2013\VS2013DockWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ThemeVS2013\VS2013DockWindowFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013DockWindowSplitterControlFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013SplitterControl.cs">
       <SubType>Component</SubType>
