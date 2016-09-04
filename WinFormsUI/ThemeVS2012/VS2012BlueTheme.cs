@@ -55,6 +55,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             var skin = new DockPanelSkin();
 
             skin.ColorPalette.MainWindowActive.Background = ColorTranslator.FromHtml("#FF293955");
+            skin.ColorPalette.MainWindowStatusBarDefault.Background = ColorTranslator.FromHtml("#FF293955");
 
             skin.ColorPalette.AutoHideStripDefault.Background = ColorTranslator.FromHtml("#FF293955");
             skin.ColorPalette.AutoHideStripDefault.Border = ColorTranslator.FromHtml("#FF465A7D");

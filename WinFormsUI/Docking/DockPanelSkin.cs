@@ -41,6 +41,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class DockPanelColorPalette
     {
         public MainWindowPalette MainWindowActive { get; } = new MainWindowPalette();
+        public MainWindowStatusBarPalette MainWindowStatusBarDefault { get; } = new MainWindowStatusBarPalette();
         public AutoHideStripPalette AutoHideStripDefault { get; } = new AutoHideStripPalette();
         public AutoHideStripPalette AutoHideStripHovered { get; } = new AutoHideStripPalette();
         public TabPalette TabSelectedActive { get; } = new TabPalette();
@@ -56,6 +57,11 @@ namespace WeifenLuo.WinFormsUI.Docking
     }
 
     public class MainWindowPalette
+    {
+        public Color Background { get; set; }
+    }
+
+    public class MainWindowStatusBarPalette
     {
         public Color Background { get; set; }
     }

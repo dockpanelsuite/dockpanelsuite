@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace WeifenLuo.WinFormsUI.Docking
 {
     using WeifenLuo.WinFormsUI.ThemeVS2012;
-    using WeifenLuo.WinFormsUI.ThemeVS2012.Light;
+    using WeifenLuo.WinFormsUI.ThemeVS2012.Blue;
 
     /// <summary>
     /// Visual Studio 2013 Light theme.
@@ -520,6 +520,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.DockPaneStripSkin.DocumentGradient.HoverTabGradient.TextColor = Color.White;
 
             skin.ColorPalette.MainWindowActive.Background = ColorTranslator.FromHtml("#FF293955");
+            skin.ColorPalette.MainWindowStatusBarDefault.Background = ColorTranslator.FromHtml("#FF293955");
 
             skin.ColorPalette.AutoHideStripDefault.Background = ColorTranslator.FromHtml("#FF293955");
             skin.ColorPalette.AutoHideStripDefault.Border = ColorTranslator.FromHtml("#FF465A7D");
