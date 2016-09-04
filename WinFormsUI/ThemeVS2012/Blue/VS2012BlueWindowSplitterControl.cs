@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -33,11 +34,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
             if (rect.Width <= 0 || rect.Height <= 0)
                 return;
 
-            if (_horizontalBrush == null)
-            {
-                _horizontalBrush = _host.DockPanel.Theme.PaintingService.GetBrush(_host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
-            }
-
+            _horizontalBrush = _host.DockPanel.Theme.PaintingService.GetBrush(_host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
             if (_host.IsDockWindow)
             {
                 switch (Dock)
@@ -45,14 +42,15 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
                     case DockStyle.Right:
                     case DockStyle.Left:
                         {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, SplitterSize, rect.Height);
+                            Debug.Assert(SplitterSize == rect.Width);
+                            e.Graphics.FillRectangle(_horizontalBrush, rect);
                         }
                         break;
                     case DockStyle.Bottom:
                     case DockStyle.Top:
                         {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                                     rect.Width, SplitterSize);
+                            Debug.Assert(SplitterSize == rect.Height);
+                            e.Graphics.FillRectangle(_horizontalBrush, rect);
                         }
                         break;
                 }
@@ -65,13 +63,15 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue
                 case DockState.DockRightAutoHide:
                 case DockState.DockLeftAutoHide:
                     {
-                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, SplitterSize, rect.Height);
+                        Debug.Assert(SplitterSize == rect.Width);
+                        e.Graphics.FillRectangle(_horizontalBrush, rect);
                     }
                     break;
                 case DockState.DockBottomAutoHide:
                 case DockState.DockTopAutoHide:
                     {
-                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y, rect.Width, SplitterSize);
+                        Debug.Assert(SplitterSize == rect.Height);
+                        e.Graphics.FillRectangle(_horizontalBrush, rect);
                     }
                     break;
             }

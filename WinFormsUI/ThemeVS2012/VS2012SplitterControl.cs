@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -9,7 +10,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private readonly SolidBrush _horizontalBrush;
         private readonly SolidBrush _backgroundBrush;
         private readonly Color[] _verticalSurroundColors;
-        private int _splitterSize;
+        private int SplitterSize { get; }
 
         public VS2012SplitterControl(DockPane pane)
             : base(pane)
@@ -20,7 +21,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                                                {
                                                    pane.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background
                                                };
-            _splitterSize = pane.DockPanel.Theme.Measures.SplitterSize;
+            SplitterSize = pane.DockPanel.Theme.Measures.SplitterSize;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -28,7 +29,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.OnPaint(e);
 
             Rectangle rect = ClientRectangle;
-
             if (rect.Width <= 0 || rect.Height <= 0)
                 return;
 
@@ -37,7 +37,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 case DockAlignment.Right:
                 case DockAlignment.Left:
                     {
-                        e.Graphics.FillRectangle(_backgroundBrush, rect.X, rect.Y, rect.Width, rect.Height);
+                        Debug.Assert(SplitterSize == rect.Width);
+                        e.Graphics.FillRectangle(_backgroundBrush, rect);
                         using (var path = new GraphicsPath())
                         {
                             path.AddRectangle(rect);
@@ -46,8 +47,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                                     CenterColor = _horizontalBrush.Color, SurroundColors = _verticalSurroundColors
                                 })
                             {
-                                e.Graphics.FillRectangle(brush, rect.X + _splitterSize / 2 - 1, rect.Y,
-                                                         _splitterSize / 3, rect.Height);
+                                e.Graphics.FillRectangle(brush, rect.X + SplitterSize / 2 - 1, rect.Y,
+                                                         SplitterSize / 3, rect.Height);
                             }
                         }
                     }
@@ -55,8 +56,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 case DockAlignment.Bottom:
                 case DockAlignment.Top:
                     {
-                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                        rect.Width, _splitterSize);
+                        Debug.Assert(SplitterSize == rect.Height);
+                        e.Graphics.FillRectangle(_horizontalBrush, rect);
                     }
                     break;
             }

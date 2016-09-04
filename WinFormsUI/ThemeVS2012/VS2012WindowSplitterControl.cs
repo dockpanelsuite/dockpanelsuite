@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -18,8 +19,8 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
             _horizontalBrush = host.DockPanel.Theme.PaintingService.GetBrush(host.DockPanel.Theme.Skin.ColorPalette.TabSelectedInactive.Background);
             _backgroundBrush = host.DockPanel.Theme.PaintingService.GetBrush(host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
             _verticalSurroundColors = new[]{
-                                                   host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background
-                                               };
+                                        host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background
+                                    };
         }
 
         protected override int SplitterSize
@@ -48,7 +49,8 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
                     case DockStyle.Right:
                     case DockStyle.Left:
                         {
-                            e.Graphics.FillRectangle(_backgroundBrush, rect.X, rect.Y, SplitterSize, rect.Height);
+                            Debug.Assert(SplitterSize == rect.Width);
+                            e.Graphics.FillRectangle(_backgroundBrush, rect);
                             using (var path = new GraphicsPath())
                             {
                                 path.AddRectangle(rect);
@@ -68,8 +70,8 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
                     case DockStyle.Bottom:
                     case DockStyle.Top:
                         {
-                            e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                                     rect.Width, SplitterSize);
+                            Debug.Assert(SplitterSize == rect.Height);
+                            e.Graphics.FillRectangle(_horizontalBrush, rect);
                         }
                         break;
                 }
@@ -82,14 +84,15 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
                 case DockState.DockRightAutoHide:
                 case DockState.DockLeftAutoHide:
                     {
-                        e.Graphics.FillRectangle(_backgroundBrush, rect.X, rect.Y, rect.Width, rect.Height);
+                        Debug.Assert(SplitterSize == rect.Width);
+                        e.Graphics.FillRectangle(_backgroundBrush, rect);
                     }
                     break;
                 case DockState.DockBottomAutoHide:
                 case DockState.DockTopAutoHide:
                     {
-                        e.Graphics.FillRectangle(_horizontalBrush, rect.X, rect.Y,
-                                        rect.Width, SplitterSize);
+                        Debug.Assert(SplitterSize == rect.Height);
+                        e.Graphics.FillRectangle(_horizontalBrush, rect);
                     }
                     break;
             }
