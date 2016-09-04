@@ -584,16 +584,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private bool _supprtDeeplyNestedContent = false;
+        private bool _supportDeeplyNestedContent = false;
         [LocalizedCategory("Category_Performance")]
         [LocalizedDescription("DockPanel_SupportDeeplyNestedContent_Description")]
         [DefaultValue(false)]
         public bool SupportDeeplyNestedContent
         {
-            get { return _supprtDeeplyNestedContent; }
-            set { _supprtDeeplyNestedContent = value; }
+            get { return _supportDeeplyNestedContent; }
+            set { _supportDeeplyNestedContent = value; }
         }
 
+        /// <summary>
+        /// Flag to show autohide content on mouse hover. Default value is <code>true</code>.
+        /// </summary>
+        /// <remarks>
+        /// This flag is ignored in VS2012/2013 themes. Such themes assume it is always <code>false</code>.
+        /// </remarks>
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_ShowAutoHideContentOnHover_Description")]
         [DefaultValue(true)]
@@ -1095,7 +1101,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 handler(this, e);
         }
 
-        internal void ReloadDockWindows()
+        internal void ResetDockWindows()
         {
             if (m_autoHideWindow == null)
             {

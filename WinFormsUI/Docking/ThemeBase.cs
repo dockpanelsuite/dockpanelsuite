@@ -18,6 +18,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             dockPanel.ResetAutoHideStripControl();
             dockPanel.ResetAutoHideStripWindow();
+            dockPanel.ResetDockWindows();
         }
 
         public virtual void CleanUp(DockPanel dockPanel)

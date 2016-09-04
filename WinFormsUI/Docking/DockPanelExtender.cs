@@ -301,7 +301,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 m_dockWindowSplitterControlFactory = value;
-                DockPanel.ReloadDockWindows();
             }
         }
 
@@ -333,7 +332,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 m_dockWindowFactory = value;
-                DockPanel.ReloadDockWindows();
             }
         }
 
