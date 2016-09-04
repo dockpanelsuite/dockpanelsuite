@@ -86,17 +86,16 @@ namespace DockSample
             this.toolBarButtonSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolBarButtonLayoutByCode = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonLayoutByXml = new System.Windows.Forms.ToolStripButton();
-            this.toolBarButtonDockPanelSkinDemo = new System.Windows.Forms.ToolStripButton();
+            this.topBar = new System.Windows.Forms.Panel();
+            this.bottomBar = new System.Windows.Forms.Panel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2005Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
             this.vS2003Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2003Theme();
+            this.vS2013BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme();
             this.vS2012LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
             this.vS2012BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012BlueTheme();
-            this.vS2013BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme();
-            this.vS2012ToolStripExtender1 = new DockSample.VSToolStripExtender(this.components);
-            this.topBar = new System.Windows.Forms.Panel();
-            this.bottomBar = new System.Windows.Forms.Panel();
             this.vS2012DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
+            this.vS2012ToolStripExtender1 = new DockSample.VSToolStripExtender(this.components);
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -347,7 +346,6 @@ namespace DockSample
             this.menuItemSchemaVS2012Blue.Text = "Schema: VS2012 Blue";
             this.menuItemSchemaVS2012Blue.Click += new System.EventHandler(this.SetSchema);
             // 
-            // 
             // menuItemSchemaVS2012Dark
             // 
             this.menuItemSchemaVS2012Dark.Name = "menuItemSchemaVS2012Dark";
@@ -452,6 +450,7 @@ namespace DockSample
             // 
             // statusBar
             // 
+            this.statusBar.BackColor = System.Drawing.Color.Black;
             this.statusBar.Location = new System.Drawing.Point(0, 387);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(579, 22);
@@ -485,8 +484,7 @@ namespace DockSample
             this.toolBarButtonTaskList,
             this.toolBarButtonSeparator2,
             this.toolBarButtonLayoutByCode,
-            this.toolBarButtonLayoutByXml,
-            this.toolBarButtonDockPanelSkinDemo});
+            this.toolBarButtonLayoutByXml});
             this.toolBar.Location = new System.Drawing.Point(0, 24);
             this.toolBar.Name = "toolBar";
             this.toolBar.Size = new System.Drawing.Size(579, 25);
@@ -566,16 +564,23 @@ namespace DockSample
             this.toolBarButtonLayoutByXml.Size = new System.Drawing.Size(23, 22);
             this.toolBarButtonLayoutByXml.ToolTipText = "Show layout by predefined XML file";
             // 
-            // toolBarButtonDockPanelSkinDemo
+            // topBar
             // 
-            this.toolBarButtonDockPanelSkinDemo.CheckOnClick = true;
-            this.toolBarButtonDockPanelSkinDemo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolBarButtonDockPanelSkinDemo.Image = ((System.Drawing.Image)(resources.GetObject("toolBarButtonDockPanelSkinDemo.Image")));
-            this.toolBarButtonDockPanelSkinDemo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolBarButtonDockPanelSkinDemo.Name = "toolBarButtonDockPanelSkinDemo";
-            this.toolBarButtonDockPanelSkinDemo.Size = new System.Drawing.Size(124, 22);
-            this.toolBarButtonDockPanelSkinDemo.Text = "DockPanelSkin Demo";
-            this.toolBarButtonDockPanelSkinDemo.ToolTipText = "This will use the DockPanelSkin properties to demonstrate its capabilities.";
+            this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.topBar.Location = new System.Drawing.Point(0, 49);
+            this.topBar.Name = "topBar";
+            this.topBar.Size = new System.Drawing.Size(579, 6);
+            this.topBar.TabIndex = 9;
+            this.topBar.Visible = false;
+            // 
+            // bottomBar
+            // 
+            this.bottomBar.BackColor = System.Drawing.Color.Black;
+            this.bottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bottomBar.Location = new System.Drawing.Point(0, 381);
+            this.bottomBar.Name = "bottomBar";
+            this.bottomBar.Size = new System.Drawing.Size(579, 6);
+            this.bottomBar.TabIndex = 10;
             // 
             // dockPanel
             // 
@@ -597,24 +602,6 @@ namespace DockSample
             this.vS2012ToolStripExtender1.DefaultRenderer = null;
             this.vS2012ToolStripExtender1.VS2012Renderer = null;
             this.vS2012ToolStripExtender1.VS2013Renderer = null;
-            // 
-            // topBar
-            // 
-            this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topBar.Location = new System.Drawing.Point(0, 49);
-            this.topBar.Name = "topBar";
-            this.topBar.Size = new System.Drawing.Size(579, 6);
-            this.topBar.TabIndex = 9;
-            this.topBar.Visible = false;
-            // 
-            // bottomBar
-            // 
-            this.bottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomBar.Location = new System.Drawing.Point(0, 381);
-            this.bottomBar.Name = "bottomBar";
-            this.bottomBar.Size = new System.Drawing.Size(579, 6);
-            this.bottomBar.TabIndex = 10;
-            this.bottomBar.Visible = false;
             // 
             // MainForm
             // 
@@ -698,7 +685,6 @@ namespace DockSample
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripMenuItem showRightToLeft;
         private System.Windows.Forms.ToolStripMenuItem exitWithoutSavingLayout;
-        private System.Windows.Forms.ToolStripButton toolBarButtonDockPanelSkinDemo;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Light;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Blue;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Dark;

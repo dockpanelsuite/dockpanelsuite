@@ -397,7 +397,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 m_autoHideStripFactory = value;
-                DockPanel.ResetAutoHideStripControl();
             }
         }
 
@@ -419,7 +418,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 m_autoHideWindowFactory = value;
-                DockPanel.ResetAutoHideStripWindow();
             }
         }
 

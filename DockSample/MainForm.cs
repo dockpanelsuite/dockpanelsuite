@@ -35,8 +35,6 @@ namespace DockSample
             vS2012ToolStripExtender1.VS2012Renderer = _vs2012ToolStripRenderer;
             vS2012ToolStripExtender1.VS2013Renderer = _vs2013ToolStripRenderer;
 
-            this.topBar.BackColor = this.bottomBar.BackColor = Color.FromArgb(0xFF, 41, 57, 85);
-
             SetSchema(this.menuItemSchemaVS2013Blue, null);
         }
 
@@ -96,6 +94,7 @@ namespace DockSample
             {
                 foreach (IDockContent document in dockPanel.DocumentsToArray())
                 {
+                    document.DockHandler.DockPanel = null;
                     document.DockHandler.Close();
                 }
             }
@@ -146,6 +145,8 @@ namespace DockSample
 
             // Close all other document windows
             CloseAllDocuments();
+
+            System.Diagnostics.Debug.Assert(dockPanel.Panes.Count == 0);
         }
 
         private readonly ToolStripRenderer _toolStripProfessionalRenderer = new ToolStripProfessionalRenderer();
@@ -196,8 +197,13 @@ namespace DockSample
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
             menuItemSchemaVS2012Blue.Checked = (sender == menuItemSchemaVS2012Blue);
             menuItemSchemaVS2012Dark.Checked = (sender == menuItemSchemaVS2012Dark);
-            this.menuItemSchemaVS2013Blue.Checked = (sender == this.menuItemSchemaVS2013Blue);
-            this.topBar.Visible = this.bottomBar.Visible = (sender == this.menuItemSchemaVS2013Blue);
+            menuItemSchemaVS2013Blue.Checked = (sender == menuItemSchemaVS2013Blue);
+            topBar.Visible = (menuItemSchemaVS2012Blue.Checked || menuItemSchemaVS2012Dark.Checked
+                || menuItemSchemaVS2012Light.Checked || menuItemSchemaVS2013Blue.Checked);
+            bottomBar.Visible = menuItemSchemaVS2013Blue.Checked;
+            topBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background;
+            bottomBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background;
+            statusBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowStatusBarDefault.Background;
 
             if (File.Exists(configFile))
                 dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
@@ -207,7 +213,6 @@ namespace DockSample
         {
             vS2012ToolStripExtender1.SetStyle(this.mainMenu, version);
             vS2012ToolStripExtender1.SetStyle(this.toolBar, version);
-            vS2012ToolStripExtender1.SetStyle(this.statusBar, version);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)
@@ -238,61 +243,6 @@ namespace DockSample
             menuItemLayoutByXml.Enabled = (newStyle != DocumentStyle.SystemMdi);
             toolBarButtonLayoutByCode.Enabled = (newStyle != DocumentStyle.SystemMdi);
             toolBarButtonLayoutByXml.Enabled = (newStyle != DocumentStyle.SystemMdi);
-        }
-
-        private AutoHideStripSkin _autoHideStripSkin;
-        private DockPaneStripSkin _dockPaneStripSkin;
-
-        private void SetDockPanelSkinOptions(bool isChecked)
-        {
-            if (isChecked)
-            {
-                // All of these options may be set in the designer.
-                // This is not a complete list of possible options available in the skin.
-
-                AutoHideStripSkin autoHideSkin = new AutoHideStripSkin();
-                autoHideSkin.DockStripGradient.StartColor = Color.AliceBlue;
-                autoHideSkin.DockStripGradient.EndColor = Color.Blue;
-                autoHideSkin.DockStripGradient.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-                autoHideSkin.TabGradient.StartColor = SystemColors.Control;
-                autoHideSkin.TabGradient.EndColor = SystemColors.ControlDark;
-                autoHideSkin.TabGradient.TextColor = SystemColors.ControlText;
-                autoHideSkin.TextFont = new Font("Showcard Gothic", 10);
-
-                _autoHideStripSkin = dockPanel.Theme.Skin.AutoHideStripSkin;
-                dockPanel.Theme.Skin.AutoHideStripSkin = autoHideSkin;
-
-                DockPaneStripSkin dockPaneSkin = new DockPaneStripSkin();
-                dockPaneSkin.DocumentGradient.DockStripGradient.StartColor = Color.Red;
-                dockPaneSkin.DocumentGradient.DockStripGradient.EndColor = Color.Pink;
-
-                dockPaneSkin.DocumentGradient.ActiveTabGradient.StartColor = Color.Green;
-                dockPaneSkin.DocumentGradient.ActiveTabGradient.EndColor = Color.Green;
-                dockPaneSkin.DocumentGradient.ActiveTabGradient.TextColor = Color.White;
-
-                dockPaneSkin.DocumentGradient.InactiveTabGradient.StartColor = Color.Gray;
-                dockPaneSkin.DocumentGradient.InactiveTabGradient.EndColor = Color.Gray;
-                dockPaneSkin.DocumentGradient.InactiveTabGradient.TextColor = Color.Black;
-
-                dockPaneSkin.TextFont = new Font("SketchFlow Print", 10);
-
-                _dockPaneStripSkin = dockPanel.Theme.Skin.DockPaneStripSkin;
-                dockPanel.Theme.Skin.DockPaneStripSkin = dockPaneSkin;
-            }
-            else
-            {
-                if (_autoHideStripSkin != null)
-                {
-                    dockPanel.Theme.Skin.AutoHideStripSkin = _autoHideStripSkin;
-                }
-
-                if (_dockPaneStripSkin != null)
-                {
-                    dockPanel.Theme.Skin.DockPaneStripSkin = _dockPaneStripSkin;
-                }
-            }
-
-            menuItemLayoutByXml_Click(menuItemLayoutByXml, EventArgs.Empty);
         }
 
         #endregion
@@ -465,8 +415,6 @@ namespace DockSample
                 menuItemLayoutByCode_Click(null, null);
             else if (e.ClickedItem == toolBarButtonLayoutByXml)
                 menuItemLayoutByXml_Click(null, null);
-            else if (e.ClickedItem == toolBarButtonDockPanelSkinDemo)
-                SetDockPanelSkinOptions(!toolBarButtonDockPanelSkinDemo.Checked);
         }
 
         private void menuItemNewWindow_Click(object sender, System.EventArgs e)

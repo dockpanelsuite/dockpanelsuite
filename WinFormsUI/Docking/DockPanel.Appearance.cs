@@ -37,6 +37,7 @@
                 m_dockPanelTheme?.CleanUp(this);
                 m_dockPanelTheme = value;
                 m_dockPanelTheme.Apply(this);
+                m_dockPanelTheme.PostApply(this);
             }
         }
     }

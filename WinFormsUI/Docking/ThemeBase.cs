@@ -14,6 +14,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public abstract void Apply(DockPanel dockPanel);
 
+        internal void PostApply(DockPanel dockPanel)
+        {
+            dockPanel.ResetAutoHideStripControl();
+            dockPanel.ResetAutoHideStripWindow();
+        }
+
         public virtual void CleanUp(DockPanel dockPanel)
         {
         }
