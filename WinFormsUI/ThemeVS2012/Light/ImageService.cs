@@ -34,6 +34,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
         public Bitmap DockPaneActiveHover_Close { get; }
         public Bitmap DockPaneActiveHover_Dock { get; }
         public Bitmap DockPaneActiveHover_Option { get; }
+        public Image InactiveTab_Close { get; internal set; }
         public Image InactiveTabHover_Close { get; internal set; }
         public Image LostFocusTabHover_Close { get; internal set; }
         public Image LostFocusTab_Close { get; internal set; }
@@ -69,6 +70,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
             DockPaneActiveHover_Close = Resources.DockPaneActiveHover_Close;
             DockPaneActiveHover_Dock = Resources.DockPaneActiveHover_Dock;
             DockPaneActiveHover_Option = Resources.DockPaneActiveHover_Option;
+            InactiveTab_Close = Resources.ActiveTabHover_Close;
             InactiveTabHover_Close = Resources.InactiveTabHover_Close;
             LostFocusTabHover_Close = Resources.LostFocusTabHover_Close;
             LostFocusTab_Close = Resources.LostFocusTab_Close;

@@ -353,6 +353,16 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Blue {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap InactiveTab_Close {
+            get {
+                object obj = ResourceManager.GetObject("InactiveTab_Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap InactiveTabHover_Close {
             get {
                 object obj = ResourceManager.GetObject("InactiveTabHover_Close", resourceCulture);

@@ -1143,7 +1143,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(mouseHoverColor), rect);
                     TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, mouseHoverText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.InactiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.ActiveTabHover_Close, rectCloseButton);
+                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.InactiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.InactiveTab_Close, rectCloseButton);
                 }
                 else
                 {

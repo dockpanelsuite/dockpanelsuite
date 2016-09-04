@@ -33,6 +33,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         Bitmap DockPaneActiveHover_Close { get; }
         Bitmap DockPaneActiveHover_Dock { get; }
         Bitmap DockPaneActiveHover_Option { get; }
+        Image InactiveTab_Close { get; }
         Image InactiveTabHover_Close { get; }
         Image LostFocusTabHover_Close { get; }
         Image LostFocusTab_Close { get; }

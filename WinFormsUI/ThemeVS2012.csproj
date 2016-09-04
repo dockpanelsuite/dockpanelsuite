@@ -170,6 +170,7 @@
     <Content Include="ThemeVS2012\Blue\Resources\DockPaneHover_Option.png" />
     <Content Include="ThemeVS2012\Blue\Resources\DockPaneHover_OptionOverflow.png" />
     <Content Include="ThemeVS2012\Blue\Resources\DockPane_List.png" />
+    <Content Include="ThemeVS2012\Blue\Resources\InactiveTab_Close.png" />
     <Content Include="ThemeVS2012\Dark\Resources\ActiveTabHover_Close.png" />
     <Content Include="ThemeVS2012\Dark\Resources\ActiveTab_Close.png" />
     <Content Include="ThemeVS2012\Dark\Resources\Dockindicator_PaneDiamond.png" />

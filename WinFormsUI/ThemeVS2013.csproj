@@ -156,6 +156,7 @@
     <Content Include="ThemeVS2013\Blue\Resources\DockPane_Option.png" />
     <Content Include="ThemeVS2013\Blue\Resources\DockPane_OptionOverflow.png" />
     <Content Include="ThemeVS2013\Blue\Resources\InactiveTabHover_Close.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\InactiveTab_Close.png" />
     <Content Include="ThemeVS2013\Blue\Resources\LostFocusTabHover_Close.png" />
     <Content Include="ThemeVS2013\Blue\Resources\LostFocusTab_Close.png" />
   </ItemGroup>
