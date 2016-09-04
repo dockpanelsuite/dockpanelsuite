@@ -26,8 +26,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _normal = normal;
                 _hoveredActive = hoveredActive;
                 _active = active;
-                _hoveredAutoHide = hoveredAutoHide ?? hovered;
-                _autoHide = autoHide ?? normal;
+                _hoveredAutoHide = hoveredAutoHide ?? hoveredActive;
+                _autoHide = autoHide ?? active;
                 RefreshChanges();
             }
 
@@ -49,12 +49,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             public override Bitmap Image
             {
-                get { return IsActive ? _active : IsAutoHide ? _autoHide : _normal; }
+                get { return IsActive ? IsAutoHide ? _autoHide : _active : _normal; }
             }
 
             public override Bitmap HoverImage
             {
-                get { return IsActive ? _hoveredActive : IsAutoHide ? _hoveredAutoHide : _hovered; }
+                get { return IsActive ? IsAutoHide ? _hoveredAutoHide : _hoveredActive : _hovered; }
             }
 
             protected override void OnRefreshChanges()
