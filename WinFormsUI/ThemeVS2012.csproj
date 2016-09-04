@@ -41,28 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueWindowSplitterControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ThemeVS2012\Blue\ImageService.cs" />
     <Compile Include="ThemeVS2012\Blue\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueAutoHideWindowControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueAutoHideWindowFactory.cs" />
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockWindowSplitterControlFactory.cs" />
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueSplitterControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockPaneSplitterControlFactory.cs" />
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ThemeVS2012\Blue\VS2012BlueDockWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012WindowSplitterControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,6 +106,22 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemeVS2013\VS2013AutoHideWindowControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2013\VS2013AutoHideWindowFactory.cs" />
+    <Compile Include="ThemeVS2013\VS2013DockPaneSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2013\VS2013DockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2013\VS2013DockWindowFactory.cs" />
+    <Compile Include="ThemeVS2013\VS2013DockWindowSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2013\VS2013SplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2013\VS2013WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ThemeVS2012\Dark\Resources.resx">

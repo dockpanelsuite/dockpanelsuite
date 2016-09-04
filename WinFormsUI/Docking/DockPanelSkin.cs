@@ -75,6 +75,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
     public class ToolWindowUnselectedTabPalette
     {
+        public Color Background { get; set; } // VS2013
         public Color Separator { get; set; } // VS2012
         public Color Text { get; set; }
     }
@@ -97,6 +98,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
     public class UnselectedTabPalette
     {
+        public Color Background { get; set; } // VS2013 only
         public Color Text { get; set; }
     }
 
