@@ -31,18 +31,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             public bool IsMouseOver { get; set; }
         }
 
-        private const int _ImageHeight = 16;
-        private const int _ImageWidth = 0;
-        private const int _ImageGapTop = 2;
-        private const int _ImageGapLeft = 4;
-        private const int _ImageGapRight = 2;
-        private const int _ImageGapBottom = 2;
-        private const int _TextGapLeft = 0;
-        private const int _TextGapRight = 0;
-        private const int _TabGapTop = 3;
-        private const int _TabGapBottom = 8;
-        private const int _TabGapLeft = 4;
-        private const int _TabGapBetween = 10;
+        private const int TextGapLeft = 0;
+        private const int TextGapRight = 0;
+        private const int TextGapBottom = 3;
+        private const int TabGapTop = 3;
+        private const int TabGapBottom = 8;
+        private const int TabGapLeft = 0;
+        private const int TabGapBetween = 12;
 
         #region Customizable Properties
         public Font TextFont
@@ -93,66 +88,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 return _stringFormatTabVertical;
             }
-        }
-
-        private static int ImageHeight
-        {
-            get { return _ImageHeight; }
-        }
-
-        private static int ImageWidth
-        {
-            get { return _ImageWidth; }
-        }
-
-        private static int ImageGapTop
-        {
-            get { return _ImageGapTop; }
-        }
-
-        private static int ImageGapLeft
-        {
-            get { return _ImageGapLeft; }
-        }
-
-        private static int ImageGapRight
-        {
-            get { return _ImageGapRight; }
-        }
-
-        private static int ImageGapBottom
-        {
-            get { return _ImageGapBottom; }
-        }
-
-        private static int TextGapLeft
-        {
-            get { return _TextGapLeft; }
-        }
-
-        private static int TextGapRight
-        {
-            get { return _TextGapRight; }
-        }
-
-        private static int TabGapTop
-        {
-            get { return _TabGapTop; }
-        }
-
-        private static int TabGapBottom
-        {
-            get { return _TabGapBottom; }
-        }
-
-        private static int TabGapLeft
-        {
-            get { return _TabGapLeft; }
-        }
-
-        private static int TabGapBetween
-        {
-            get { return _TabGapBetween; }
         }
 
         private static Pen PenTabBorder
@@ -264,25 +199,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             Rectangle rectTabStrip = GetLogicalTabStripRectangle(dockState);
 
-            int imageHeight = rectTabStrip.Height - ImageGapTop - ImageGapBottom;
-            int imageWidth = ImageWidth;
-            if (imageHeight > ImageHeight)
-                imageWidth = ImageWidth * (imageHeight / ImageHeight);
-
             int x = TabGapLeft + rectTabStrip.X;
             foreach (Pane pane in GetPanes(dockState))
             {
                 foreach (TabVS2012 tab in pane.AutoHideTabs)
                 {
-                    int width = imageWidth + ImageGapLeft + ImageGapRight +
-                        TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width +
+                    int width = TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width +
                         TextGapLeft + TextGapRight;
                     tab.TabX = x;
                     tab.TabWidth = width;
-                    x += width;
+                    x += width + TabGapBetween;
                 }
-
-                x += TabGapBetween;
             }
         }
 
@@ -338,15 +265,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(backgroundColor), rectTabOrigin);
 
             Rectangle rectThickLine = rectTabOrigin;
-            rectThickLine.X += _TabGapLeft + _TextGapLeft + _ImageGapLeft + _ImageWidth;
-            rectThickLine.Width = TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width - 8;
+            rectThickLine.X += TabGapLeft + TextGapLeft;
+            rectThickLine.Width = TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width;
             rectThickLine.Height = DockPanel.Theme.Measures.AutoHideTabLineWidth;
 
             if (dockState == DockState.DockBottomAutoHide || dockState == DockState.DockLeftAutoHide)
                 rectThickLine.Y += rectTabOrigin.Height - DockPanel.Theme.Measures.AutoHideTabLineWidth;
-            else
-                if (dockState == DockState.DockTopAutoHide || dockState == DockState.DockRightAutoHide)
-                    rectThickLine.Y += 0;
 
             g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(borderColor), rectThickLine);
 
@@ -354,44 +278,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             Matrix matrixRotate = g.Transform;
             g.Transform = MatrixIdentity;
 
-            // Draw the icon
-            Rectangle rectImage = rectTabOrigin;
-            rectImage.X += ImageGapLeft;
-            rectImage.Y += ImageGapTop;
-            int imageHeight = rectTabOrigin.Height - ImageGapTop - ImageGapBottom;
-            int imageWidth = ImageWidth;
-            if (imageHeight > ImageHeight)
-                imageWidth = ImageWidth * (imageHeight / ImageHeight);
-            rectImage.Height = imageHeight;
-            rectImage.Width = imageWidth;
-            rectImage = GetTransformedRectangle(dockState, rectImage);
-
-            if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
-            {
-                // The DockState is DockLeftAutoHide or DockRightAutoHide, so rotate the image 90 degrees to the right. 
-                Rectangle rectTransform = RtlTransform(rectImage, dockState);
-                Point[] rotationPoints =
-                { 
-                    new Point(rectTransform.X + rectTransform.Width, rectTransform.Y), 
-                    new Point(rectTransform.X + rectTransform.Width, rectTransform.Y + rectTransform.Height), 
-                    new Point(rectTransform.X, rectTransform.Y)
-                };
-
-                using (Icon rotatedIcon = new Icon(((Form)content).Icon, 16, 16))
-                {
-                    g.DrawImage(rotatedIcon.ToBitmap(), rotationPoints);
-                }
-            }
-            else
-            {
-                // Draw the icon normally without any rotation.
-                g.DrawIcon(((Form)content).Icon, RtlTransform(rectImage, dockState));
-            }
-
             // Draw the text
             Rectangle rectText = rectTabOrigin;
-            rectText.X += ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
-            rectText.Width -= ImageGapLeft + imageWidth + ImageGapRight + TextGapLeft;
+            rectText.X += TextGapLeft;
+            rectText.Width -= TextGapLeft;
+            if (dockState == DockState.DockBottomAutoHide || dockState == DockState.DockLeftAutoHide)
+                rectText.Y -= TextGapBottom;
+            else
+                rectText.Y += TextGapBottom;
+
             rectText = RtlTransform(GetTransformedRectangle(dockState, rectText), dockState);
 
             Color textColor;
@@ -594,9 +489,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override int MeasureHeight()
         {
-            return Math.Max(ImageGapBottom +
-                ImageGapTop + ImageHeight,
-                TextFont.Height) + TabGapTop + TabGapBottom;
+            return 31;
         }
 
         protected override void OnRefreshChanges()
