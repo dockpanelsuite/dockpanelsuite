@@ -55,7 +55,9 @@ namespace DockSample
             this.menuItemLockLayout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemShowDocumentIcon = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemSchemaVS2013Light = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2013Blue = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemSchemaVS2013Dark = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2012Light = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2012Blue = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2012Dark = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,7 +93,9 @@ namespace DockSample
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2005Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
             this.vS2003Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2003Theme();
+            this.vS2013LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013LightTheme();
             this.vS2013BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme();
+            this.vS2013DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2013DarkTheme();
             this.vS2012LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
             this.vS2012BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012BlueTheme();
             this.vS2012DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
@@ -287,7 +291,9 @@ namespace DockSample
             this.menuItemLockLayout,
             this.menuItemShowDocumentIcon,
             this.menuItem3,
+            this.menuItemSchemaVS2013Light,
             this.menuItemSchemaVS2013Blue,
+            this.menuItemSchemaVS2013Dark,
             this.menuItemSchemaVS2012Light,
             this.menuItemSchemaVS2012Blue,
             this.menuItemSchemaVS2012Dark,
@@ -325,12 +331,26 @@ namespace DockSample
             this.menuItem3.Name = "menuItem3";
             this.menuItem3.Size = new System.Drawing.Size(252, 6);
             // 
+            // menuItemSchemaVS2013Light
+            // 
+            this.menuItemSchemaVS2013Light.Name = "menuItemSchemaVS2013Light";
+            this.menuItemSchemaVS2013Light.Size = new System.Drawing.Size(255, 22);
+            this.menuItemSchemaVS2013Light.Text = "Schema: VS2013 Light";
+            this.menuItemSchemaVS2013Light.Click += new System.EventHandler(this.SetSchema);
+            // 
             // menuItemSchemaVS2013Blue
             // 
             this.menuItemSchemaVS2013Blue.Name = "menuItemSchemaVS2013Blue";
             this.menuItemSchemaVS2013Blue.Size = new System.Drawing.Size(255, 22);
             this.menuItemSchemaVS2013Blue.Text = "Schema: VS2013 Blue";
             this.menuItemSchemaVS2013Blue.Click += new System.EventHandler(this.SetSchema);
+            // 
+            // menuItemSchemaVS2013Dark
+            // 
+            this.menuItemSchemaVS2013Dark.Name = "menuItemSchemaVS2013Dark";
+            this.menuItemSchemaVS2013Dark.Size = new System.Drawing.Size(255, 22);
+            this.menuItemSchemaVS2013Dark.Text = "Schema: VS2013 Dark";
+            this.menuItemSchemaVS2013Dark.Click += new System.EventHandler(this.SetSchema);
             // 
             // menuItemSchemaVS2012Light
             // 
@@ -688,8 +708,12 @@ namespace DockSample
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Light;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Blue;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Dark;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2013Light;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2013Blue;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2013Dark;
+        private WeifenLuo.WinFormsUI.Docking.VS2013LightTheme vS2013LightTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2013BlueTheme vS2013BlueTheme1;
+        private WeifenLuo.WinFormsUI.Docking.VS2013DarkTheme vS2013DarkTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme vS2012LightTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2012BlueTheme vS2012BlueTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;

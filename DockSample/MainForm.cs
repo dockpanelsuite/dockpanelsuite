@@ -191,16 +191,28 @@ namespace DockSample
                 this.dockPanel.Theme = this.vS2013BlueTheme1;
                 this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
             }
-
+            else if (sender == this.menuItemSchemaVS2013Light)
+            {
+                this.dockPanel.Theme = this.vS2013LightTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+            }
+            else if (sender == this.menuItemSchemaVS2013Dark)
+            {
+                this.dockPanel.Theme = this.vS2013DarkTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+            }
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
             menuItemSchemaVS2012Blue.Checked = (sender == menuItemSchemaVS2012Blue);
             menuItemSchemaVS2012Dark.Checked = (sender == menuItemSchemaVS2012Dark);
+            menuItemSchemaVS2013Light.Checked = (sender == menuItemSchemaVS2013Light);
             menuItemSchemaVS2013Blue.Checked = (sender == menuItemSchemaVS2013Blue);
+            menuItemSchemaVS2013Dark.Checked = (sender == menuItemSchemaVS2013Dark);
             topBar.Visible = (menuItemSchemaVS2012Blue.Checked || menuItemSchemaVS2012Dark.Checked
-                || menuItemSchemaVS2012Light.Checked || menuItemSchemaVS2013Blue.Checked);
-            bottomBar.Visible = menuItemSchemaVS2013Blue.Checked;
+                || menuItemSchemaVS2012Light.Checked || menuItemSchemaVS2013Light.Checked
+                || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked);
+            bottomBar.Visible = menuItemSchemaVS2013Light.Checked || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked;
             topBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background;
             bottomBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background;
             statusBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowStatusBarDefault.Background;
