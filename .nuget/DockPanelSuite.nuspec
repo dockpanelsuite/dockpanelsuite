@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.11.0-alpha4</version>
+    <version>2.11.0-beta1</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -18,11 +18,12 @@
     <releaseNotes>
 Visual Studio 2003 Theme: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2003/
 Visual Studio 2012 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2012/
-Visual Studio 2013 Blue Theme: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013Blue/
+Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013Blue/
 
-Sept 3, 2016: 2.11.0 Alpha 4
+Sept 4, 2016: 2.11.0 Beta 1
 GitHub #155 Fixed main window focus lost during docking.
 GitHub #291 Fixed nested disposal exception.
+GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces.
 GitHub #317 Added Visual Studio 2012 Dark theme.
 GitHub #318 Fixed some flickers.
 GitHub #320 Added some HiDPI support.
