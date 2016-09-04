@@ -33,7 +33,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Extender.AutoHideWindowFactory = null;
             Extender.DockPaneStripFactory = new VS2005MultithreadingDockPaneStripFactory();
             Extender.DockPaneSplitterControlFactory = null;
-            Extender.DockWindowSplitterControlFactory = null;
+            Extender.WindowSplitterControlFactory = null;
             Extender.DockWindowFactory = null;
             Extender.PaneIndicatorFactory = new VS2005MultithreadingPaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2005MultithreadingPanelIndicatorFactory();

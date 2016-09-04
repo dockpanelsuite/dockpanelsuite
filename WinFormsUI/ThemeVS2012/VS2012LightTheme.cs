@@ -37,7 +37,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Extender.AutoHideWindowFactory = new VS2012AutoHideWindowFactory();
             Extender.DockPaneStripFactory = new VS2012DockPaneStripFactory();
             Extender.DockPaneSplitterControlFactory = new VS2012DockPaneSplitterControlFactory();
-            Extender.DockWindowSplitterControlFactory = new VS2012DockWindowSplitterControlFactory();
+            Extender.WindowSplitterControlFactory = new VS2012WindowSplitterControlFactory();
             Extender.DockWindowFactory = new VS2012DockWindowFactory();
             Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();

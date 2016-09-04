@@ -10,8 +10,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             public DefaultAutoHideWindowControl(DockPanel dockPanel) : base(dockPanel)
             {
-                m_splitter = new SplitterControl(this);
-                Controls.Add(m_splitter);
             }
 
             protected override void OnLayout(LayoutEventArgs levent)
@@ -111,7 +109,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             #endregion
 
             private Timer m_timerMouseTrack;
-            protected SplitterBase m_splitter;
+            protected SplitterBase m_splitter { get; private set; }
 
             public AutoHideWindowControl(DockPanel dockPanel)
             {
@@ -121,6 +119,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 m_timerMouseTrack.Tick += new EventHandler(TimerMouseTrack_Tick);
 
                 Visible = false;
+                m_splitter = DockPanel.Theme.Extender.WindowSplitterControlFactory.CreateSplitterControl(this);
+                Controls.Add(m_splitter);
             }
 
             protected override void Dispose(bool disposing)

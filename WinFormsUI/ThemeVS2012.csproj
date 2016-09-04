@@ -87,7 +87,7 @@
     <Compile Include="ThemeVS2012\VS2012DockPaneSplitterControlFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockPaneStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockWindowFactory.cs" />
-    <Compile Include="ThemeVS2012\VS2012DockWindowSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012WindowSplitterControlFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012BlueTheme.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -106,12 +106,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThemeVS2013\VS2013AutoHideWindowControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ThemeVS2013\VS2013AutoHideWindowFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013DockPaneSplitterControlFactory.cs" />
-    <Compile Include="ThemeVS2013\VS2013DockWindowSplitterControlFactory.cs" />
+    <Compile Include="ThemeVS2013\VS2013WindowSplitterControlFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013SplitterControl.cs">
       <SubType>Component</SubType>
     </Compile>

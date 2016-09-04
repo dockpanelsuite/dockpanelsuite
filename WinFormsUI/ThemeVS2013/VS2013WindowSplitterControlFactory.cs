@@ -2,7 +2,7 @@
 
 namespace WeifenLuo.WinFormsUI.ThemeVS2013
 {
-    internal class VS2013DockWindowSplitterControlFactory : DockPanelExtender.IDockWindowSplitterControlFactory
+    internal class VS2013WindowSplitterControlFactory : DockPanelExtender.IWindowSplitterControlFactory
     {
         public SplitterBase CreateSplitterControl(ISplitterHost host)
         {

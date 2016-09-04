@@ -27,7 +27,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockPane.SplitterControlBase CreateSplitterControl(DockPane pane);
         }
         
-        public interface IDockWindowSplitterControlFactory
+        public interface IWindowSplitterControlFactory
         {
             SplitterBase CreateSplitterControl(ISplitterHost host);
         }
@@ -122,9 +122,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         #endregion
         
-        #region DefaultDockWindowSplitterControlFactory
+        #region DefaultWindowSplitterControlFactory
 
-        private class DefaultDockWindowSplitterControlFactory : IDockWindowSplitterControlFactory
+        private class DefaultWindowSplitterControlFactory : IWindowSplitterControlFactory
         {
             public SplitterBase CreateSplitterControl(ISplitterHost host)
             {
@@ -288,14 +288,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
         
-        private IDockWindowSplitterControlFactory m_dockWindowSplitterControlFactory;
+        private IWindowSplitterControlFactory m_dockWindowSplitterControlFactory;
 
-        public IDockWindowSplitterControlFactory DockWindowSplitterControlFactory
+        public IWindowSplitterControlFactory WindowSplitterControlFactory
         {
             get
             {
                 return m_dockWindowSplitterControlFactory ??
-                       (m_dockWindowSplitterControlFactory = new DefaultDockWindowSplitterControlFactory());
+                       (m_dockWindowSplitterControlFactory = new DefaultWindowSplitterControlFactory());
             }
 
             set

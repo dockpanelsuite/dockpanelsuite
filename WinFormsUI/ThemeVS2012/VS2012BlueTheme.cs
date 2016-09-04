@@ -34,10 +34,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             Measures.AutoHideSplitterSize = 3;
             Extender.DockPaneCaptionFactory = new VS2012DockPaneCaptionFactory();
             Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
-            Extender.AutoHideWindowFactory = new VS2013AutoHideWindowFactory();
+            Extender.AutoHideWindowFactory = new VS2012AutoHideWindowFactory();
             Extender.DockPaneStripFactory = new VS2012DockPaneStripFactory();
             Extender.DockPaneSplitterControlFactory = new VS2013DockPaneSplitterControlFactory();
-            Extender.DockWindowSplitterControlFactory = new VS2013DockWindowSplitterControlFactory();
+            Extender.WindowSplitterControlFactory = new VS2013WindowSplitterControlFactory();
             Extender.DockWindowFactory = new VS2012DockWindowFactory();
             Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();

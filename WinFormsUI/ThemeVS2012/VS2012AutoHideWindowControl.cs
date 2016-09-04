@@ -8,8 +8,6 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         public VS2012AutoHideWindowControl(DockPanel dockPanel) : base(dockPanel)
         {
-            m_splitter = new VS2012WindowSplitterControl(this);
-            Controls.Add(m_splitter);
         }
 
         protected override Rectangle DisplayingRectangle
