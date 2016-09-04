@@ -250,7 +250,7 @@
     <value>Close</value>
   </data>
   <data name="DockPaneCaption_ToolTipOptions" xml:space="preserve">
-    <value>Options</value>
+    <value>Window Position</value>
   </data>
   <data name="DockPanel_ActiveAutoHideContent_InvalidValue" xml:space="preserve">
     <value>Invalid Content: The content must be auto-hide state and associates with this DockPanel.</value>

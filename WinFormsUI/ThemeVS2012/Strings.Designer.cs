@@ -475,7 +475,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Options.
+        ///   Looks up a localized string similar to Window Position.
         /// </summary>
         internal static string DockPaneCaption_ToolTipOptions {
             get {
