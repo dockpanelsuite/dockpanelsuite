@@ -1318,7 +1318,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             int height = rectTabStrip.Height - DocumentButtonGapTop - DocumentButtonGapBottom;
             if (buttonHeight < height)
             {
-                buttonWidth = buttonWidth * (height / buttonHeight);
+                buttonWidth = buttonWidth * height / buttonHeight;
                 buttonHeight = height;
             }
             Size buttonSize = new Size(buttonWidth, buttonHeight);

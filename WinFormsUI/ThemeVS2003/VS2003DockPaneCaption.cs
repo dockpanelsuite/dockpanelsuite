@@ -327,7 +327,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             int height = rectCaption.Height - ButtonGapTop - ButtonGapBottom;
             if (buttonHeight < height)
             {
-                buttonWidth = buttonWidth * (height / buttonHeight);
+                buttonWidth = buttonWidth * height / buttonHeight;
                 buttonHeight = height;
             }
             m_buttonClose.SuspendLayout();
