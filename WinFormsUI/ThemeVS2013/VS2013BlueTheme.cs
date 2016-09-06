@@ -14,8 +14,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2013BlueTheme()
         {
             Skin = CreateVisualStudio2013Blue();
+            ImageService = new ImageService(Skin.ColorPalette);
             PaintingService = new PaintingService();
-            ImageService = new ImageService();
         }
 
         /// <summary>
@@ -62,9 +62,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             var skin = new DockPanelSkin();
 
-            skin.ColorPalette.MainWindowActive.Background = ColorTranslator.FromHtml("#FF293955");
-            skin.ColorPalette.MainWindowStatusBarDefault.Background = ColorTranslator.FromHtml("#FF007ACC");
-
             skin.ColorPalette.AutoHideStripDefault.Background = ColorTranslator.FromHtml("#FF293955");
             skin.ColorPalette.AutoHideStripDefault.Border = ColorTranslator.FromHtml("#FF465A7D");
             skin.ColorPalette.AutoHideStripDefault.Text = ColorTranslator.FromHtml("#FFFFFFFF");
@@ -72,6 +69,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.ColorPalette.AutoHideStripHovered.Background = ColorTranslator.FromHtml("#FF293955");
             skin.ColorPalette.AutoHideStripHovered.Border = ColorTranslator.FromHtml("#FF9BA7B7");
             skin.ColorPalette.AutoHideStripHovered.Text = ColorTranslator.FromHtml("#FFFFFFFF");
+
+            skin.ColorPalette.OverflowButtonDefault.Glyph = ColorTranslator.FromHtml("#FFCED4DD");
+            skin.ColorPalette.OverflowButtonHovered.Background = ColorTranslator.FromHtml("#FFFFFCF4");
+            skin.ColorPalette.OverflowButtonHovered.Border = ColorTranslator.FromHtml("#FFE5C365");
+            skin.ColorPalette.OverflowButtonHovered.Glyph = ColorTranslator.FromHtml("#FF000000");
 
             skin.ColorPalette.TabSelectedActive.Background = ColorTranslator.FromHtml("#FFFFF29D");
             skin.ColorPalette.TabSelectedActive.Button = ColorTranslator.FromHtml("#FF75633D");
@@ -88,6 +90,24 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.ColorPalette.TabUnselectedHovered.Button = ColorTranslator.FromHtml("#FFCED4DD");
             skin.ColorPalette.TabUnselectedHovered.Text = ColorTranslator.FromHtml("#FFFFFFFF");
 
+            skin.ColorPalette.TabButtonSelectedActive.Glyph = ColorTranslator.FromHtml("#FF75633D");
+            skin.ColorPalette.TabButtonSelectedActiveHovered.Background = ColorTranslator.FromHtml("#FFFFFCF4");
+            skin.ColorPalette.TabButtonSelectedActiveHovered.Border = ColorTranslator.FromHtml("#FFE5C365");
+            skin.ColorPalette.TabButtonSelectedActiveHovered.Glyph = ColorTranslator.FromHtml("#FF000000");
+
+            skin.ColorPalette.TabButtonSelectedInactive.Glyph = ColorTranslator.FromHtml("#FFCED4DD");
+            skin.ColorPalette.TabButtonSelectedInactiveHovered.Background = ColorTranslator.FromHtml("#FFFFFCF4");
+            skin.ColorPalette.TabButtonSelectedInactiveHovered.Border = ColorTranslator.FromHtml("#FFE5C365");
+            skin.ColorPalette.TabButtonSelectedInactiveHovered.Glyph = ColorTranslator.FromHtml("#FF000000");
+
+            skin.ColorPalette.TabButtonUnselectedTabHovered.Glyph = ColorTranslator.FromHtml("#FFCED4DD");
+            skin.ColorPalette.TabButtonUnselectedTabHoveredButtonHovered.Background = ColorTranslator.FromHtml("#FFFFFCF4");
+            skin.ColorPalette.TabButtonUnselectedTabHoveredButtonHovered.Border = ColorTranslator.FromHtml("#FFE5C365");
+            skin.ColorPalette.TabButtonUnselectedTabHoveredButtonHovered.Glyph = ColorTranslator.FromHtml("#FF000000");
+
+            skin.ColorPalette.MainWindowActive.Background = ColorTranslator.FromHtml("#FF293955");
+            skin.ColorPalette.MainWindowStatusBarDefault.Background = ColorTranslator.FromHtml("#FF007ACC");
+
             skin.ColorPalette.ToolWindowCaptionActive.Background = ColorTranslator.FromHtml("#FFFFF29D");
             skin.ColorPalette.ToolWindowCaptionActive.Border = ColorTranslator.FromHtml("#FF8E9BBC");
             skin.ColorPalette.ToolWindowCaptionActive.Button = ColorTranslator.FromHtml("#FF75633D");
@@ -99,6 +119,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.ColorPalette.ToolWindowCaptionInactive.Button = ColorTranslator.FromHtml("#FFCED4DD");
             skin.ColorPalette.ToolWindowCaptionInactive.Grip = ColorTranslator.FromHtml("#FF4D6082");
             skin.ColorPalette.ToolWindowCaptionInactive.Text = ColorTranslator.FromHtml("#FFFFFFFF");
+
+            skin.ColorPalette.ToolWindowCaptionButtonActive.Glyph = ColorTranslator.FromHtml("#FF75633D");
+            skin.ColorPalette.ToolWindowCaptionButtonActiveHovered.Background = ColorTranslator.FromHtml("#FFFFFCF4");
+            skin.ColorPalette.ToolWindowCaptionButtonActiveHovered.Border = ColorTranslator.FromHtml("#FFE5C365");
+            skin.ColorPalette.ToolWindowCaptionButtonActiveHovered.Glyph = ColorTranslator.FromHtml("#FF000000");
+
+            skin.ColorPalette.ToolWindowCaptionButtonInactive.Glyph = ColorTranslator.FromHtml("#FFCED4DD");
+            skin.ColorPalette.ToolWindowCaptionButtonInactiveHovered.Background = ColorTranslator.FromHtml("#FFFFFCF4");
+            skin.ColorPalette.ToolWindowCaptionButtonInactiveHovered.Border = ColorTranslator.FromHtml("#FFE5C365");
+            skin.ColorPalette.ToolWindowCaptionButtonInactiveHovered.Glyph = ColorTranslator.FromHtml("#FF000000");
 
             skin.ColorPalette.ToolWindowTabSelectedActive.Background = ColorTranslator.FromHtml("#FFFFFFFF");
             skin.ColorPalette.ToolWindowTabSelectedActive.Text = ColorTranslator.FromHtml("#FF000000");

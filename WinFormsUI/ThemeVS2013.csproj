@@ -56,9 +56,9 @@
     </Compile>
     <Compile Include="ThemeVS2013\Light\ImageService.cs" />
     <Compile Include="ThemeVS2013\Light\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ThemeVS2013\VS2013LightTheme.cs">
       <SubType>Component</SubType>
@@ -131,8 +131,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThemeVS2013\Light\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ThemeVS2013\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -147,8 +147,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ThemeVS2013\Blue\Resources\ActiveTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\ActiveTab_Close.png" />
     <Content Include="ThemeVS2013\Blue\Resources\Dockindicator_PaneDiamond.png" />
     <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PaneDiamond1.bmp" />
     <Content Include="ThemeVS2013\Blue\Resources\Dockindicator_PaneDiamond_Fill.png" />
@@ -159,30 +157,13 @@
     <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelLeft.png" />
     <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelRight.png" />
     <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneActiveHover_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneActiveHover_Dock.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneActiveHover_Option.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneActive_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneActive_Dock.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneActive_Option.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneHover_AutoHide.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneHover_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneHover_Dock.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneHover_List.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneHover_Option.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPaneHover_OptionOverflow.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPane_AutoHide.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPane_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPane_Dock.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPane_List.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPane_Option.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockPane_OptionOverflow.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\InactiveTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\InactiveTab_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\LostFocusTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\LostFocusTab_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\ActiveTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\ActiveTab_Close.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\MaskTabClose.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\MaskTabList.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\MaskTabOverflow.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowAutoHide.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowClose.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowDock.png" />
+    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowOption.png" />
     <Content Include="ThemeVS2013\Dark\Resources\Dockindicator_PaneDiamond.png" />
     <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PaneDiamond1.bmp" />
     <Content Include="ThemeVS2013\Dark\Resources\Dockindicator_PaneDiamond_Fill.png" />
@@ -193,29 +174,13 @@
     <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelLeft.png" />
     <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelRight.png" />
     <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneActiveHover_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneActiveHover_Dock.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneActiveHover_Option.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneActive_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneActive_Dock.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneActive_Option.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneHover_AutoHide.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneHover_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneHover_Dock.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneHover_List.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneHover_Option.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPaneHover_OptionOverflow.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPane_AutoHide.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPane_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPane_Dock.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPane_List.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPane_Option.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockPane_OptionOverflow.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\InactiveTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\LostFocusTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\LostFocusTab_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\ActiveTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\ActiveTab_Close.png" />
+    <Content Include="ThemeVS2013\Dark\Resources\MaskTabClose.png" />
+    <Content Include="ThemeVS2013\Dark\Resources\MaskTabList.png" />
+    <Content Include="ThemeVS2013\Dark\Resources\MaskTabOverflow.png" />
+    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowAutoHide.png" />
+    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowClose.png" />
+    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowDock.png" />
+    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowOption.png" />
     <Content Include="ThemeVS2013\Light\Resources\Dockindicator_PaneDiamond.png" />
     <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PaneDiamond1.bmp" />
     <Content Include="ThemeVS2013\Light\Resources\Dockindicator_PaneDiamond_Fill.png" />
@@ -226,27 +191,13 @@
     <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelLeft.png" />
     <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelRight.png" />
     <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneActiveHover_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneActiveHover_Dock.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneActiveHover_Option.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneActive_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneActive_Dock.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneActive_Option.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneHover_AutoHide.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneHover_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneHover_Dock.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneHover_List.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneHover_Option.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPaneHover_OptionOverflow.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPane_AutoHide.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPane_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPane_Dock.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPane_List.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPane_Option.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockPane_OptionOverflow.png" />
-    <Content Include="ThemeVS2013\Light\Resources\InactiveTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\LostFocusTabHover_Close.png" />
-    <Content Include="ThemeVS2013\Light\Resources\LostFocusTab_Close.png" />
+    <Content Include="ThemeVS2013\Light\Resources\MaskTabClose.png" />
+    <Content Include="ThemeVS2013\Light\Resources\MaskTabList.png" />
+    <Content Include="ThemeVS2013\Light\Resources\MaskTabOverflow.png" />
+    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowAutoHide.png" />
+    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowClose.png" />
+    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowDock.png" />
+    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowOption.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="WinFormsUI.csproj">

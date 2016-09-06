@@ -40,20 +40,45 @@ namespace WeifenLuo.WinFormsUI.Docking
 
     public class DockPanelColorPalette
     {
-        public MainWindowPalette MainWindowActive { get; } = new MainWindowPalette();
-        public MainWindowStatusBarPalette MainWindowStatusBarDefault { get; } = new MainWindowStatusBarPalette();
+
         public AutoHideStripPalette AutoHideStripDefault { get; } = new AutoHideStripPalette();
         public AutoHideStripPalette AutoHideStripHovered { get; } = new AutoHideStripPalette();
+        public ButtonPalette OverflowButtonDefault { get; } = new ButtonPalette();
+        public HoveredButtonPalette OverflowButtonHovered { get; } = new HoveredButtonPalette();
         public TabPalette TabSelectedActive { get; } = new TabPalette();
         public TabPalette TabSelectedInactive { get; } = new TabPalette();
         public UnselectedTabPalette TabUnselected { get; } = new UnselectedTabPalette();
         public TabPalette TabUnselectedHovered { get; } = new TabPalette();
+        public ButtonPalette TabButtonSelectedActive { get; } = new ButtonPalette();
+        public HoveredButtonPalette TabButtonSelectedActiveHovered { get; } = new HoveredButtonPalette();
+        public ButtonPalette TabButtonSelectedInactive { get; } = new ButtonPalette();
+        public HoveredButtonPalette TabButtonSelectedInactiveHovered { get; } = new HoveredButtonPalette();
+        public ButtonPalette TabButtonUnselectedTabHovered { get; } = new ButtonPalette();
+        public HoveredButtonPalette TabButtonUnselectedTabHoveredButtonHovered { get; } = new HoveredButtonPalette();
+        public MainWindowPalette MainWindowActive { get; } = new MainWindowPalette();
+        public MainWindowStatusBarPalette MainWindowStatusBarDefault { get; } = new MainWindowStatusBarPalette();
         public ToolWindowCaptionPalette ToolWindowCaptionActive { get; } = new ToolWindowCaptionPalette();
         public ToolWindowCaptionPalette ToolWindowCaptionInactive { get; } = new ToolWindowCaptionPalette();
+        public ButtonPalette ToolWindowCaptionButtonActive { get; } = new ButtonPalette();
+        public HoveredButtonPalette ToolWindowCaptionButtonActiveHovered { get; } = new HoveredButtonPalette();
+        public ButtonPalette ToolWindowCaptionButtonInactive { get; } = new ButtonPalette();
+        public HoveredButtonPalette ToolWindowCaptionButtonInactiveHovered { get; } = new HoveredButtonPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedActive { get; } = new ToolWindowTabPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedInactive { get; } = new ToolWindowTabPalette();
         public ToolWindowUnselectedTabPalette ToolWindowTabUnselected { get; } = new ToolWindowUnselectedTabPalette();
         public ToolWindowTabPalette ToolWindowTabUnselectedHovered { get; } = new ToolWindowTabPalette();
+    }
+
+    public class HoveredButtonPalette
+    {
+        public Color Background { get; set; }
+        public Color Border { get; set; }
+        public Color Glyph { get; set; }
+    }
+
+    public class ButtonPalette
+    {
+        public Color Glyph { get; set; }
     }
 
     public class MainWindowPalette

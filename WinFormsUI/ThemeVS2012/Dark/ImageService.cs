@@ -39,8 +39,11 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Dark
         public Image LostFocusTabHover_Close { get; internal set; }
         public Image LostFocusTab_Close { get; internal set; }
 
-        public ImageService()
+        readonly DockPanelColorPalette palette;
+
+        public ImageService(DockPanelColorPalette palette)
         {
+            this.palette = palette;
             Dockindicator_PaneDiamond = Resources.Dockindicator_PaneDiamond;
             Dockindicator_PaneDiamond_Fill = Resources.Dockindicator_PaneDiamond_Fill;
             Dockindicator_PaneDiamond_Hotspot = Resources.Dockindicator_PaneDiamond_Hotspot;
@@ -50,30 +53,33 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Dark
             DockIndicator_PanelLeft = Resources.DockIndicator_PanelLeft;
             DockIndicator_PanelRight = Resources.DockIndicator_PanelRight;
             DockIndicator_PanelTop = Resources.DockIndicator_PanelTop;
-            ActiveTabHover_Close = Resources.ActiveTabHover_Close;
-            ActiveTab_Close = Resources.ActiveTab_Close;
-            DockPane_Close = Resources.DockPane_Close;
-            DockPane_List = Resources.DockPane_List;
-            DockPane_Dock = Resources.DockPane_Dock;
-            DockPane_AutoHide = Resources.DockPane_AutoHide;
-            DockPane_Option = Resources.DockPane_Option;
-            DockPane_OptionOverflow = Resources.DockPane_OptionOverflow;
-            DockPaneActive_Close = Resources.DockPaneActive_Close;
-            DockPaneActive_Dock = Resources.DockPaneActive_Dock;
-            DockPaneActive_Option = Resources.DockPaneActive_Option;
-            DockPaneHover_Close = Resources.DockPaneHover_Close;
-            DockPaneHover_List = Resources.DockPaneHover_List;
-            DockPaneHover_Dock = Resources.DockPaneHover_Dock;
-            DockPaneHover_AutoHide = Resources.DockPaneHover_AutoHide;
-            DockPaneHover_Option = Resources.DockPaneHover_Option;
-            DockPaneHover_OptionOverflow = Resources.DockPaneHover_OptionOverflow;
-            DockPaneActiveHover_Close = Resources.DockPaneActiveHover_Close;
-            DockPaneActiveHover_Dock = Resources.DockPaneActiveHover_Dock;
-            DockPaneActiveHover_Option = Resources.DockPaneActiveHover_Option;
-            InactiveTab_Close = Resources.ActiveTabHover_Close;
-            InactiveTabHover_Close = Resources.InactiveTabHover_Close;
-            LostFocusTabHover_Close = Resources.LostFocusTabHover_Close;
-            LostFocusTab_Close = Resources.LostFocusTab_Close;
+
+            ActiveTabHover_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonSelectedActiveHovered.Glyph, palette.TabButtonSelectedActiveHovered.Background, palette.TabButtonSelectedActiveHovered.Border);
+            ActiveTab_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonSelectedActive.Glyph, palette.TabSelectedActive.Background);
+            InactiveTab_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonUnselectedTabHovered.Glyph, palette.TabUnselectedHovered.Background);
+            InactiveTabHover_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonUnselectedTabHoveredButtonHovered.Glyph, palette.TabButtonUnselectedTabHoveredButtonHovered.Background, palette.TabButtonUnselectedTabHoveredButtonHovered.Border);
+            LostFocusTabHover_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonSelectedInactiveHovered.Glyph, palette.TabButtonSelectedInactiveHovered.Background, palette.TabButtonSelectedInactiveHovered.Border);
+            LostFocusTab_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonSelectedInactive.Glyph, palette.TabSelectedInactive.Background);
+
+            DockPane_List = ImageServiceHelper.GetImage(Resources.MaskTabList, palette.OverflowButtonDefault.Glyph, palette.MainWindowActive.Background);
+            DockPaneHover_List = ImageServiceHelper.GetImage(Resources.MaskTabList, palette.OverflowButtonHovered.Glyph, palette.OverflowButtonHovered.Background, palette.OverflowButtonHovered.Border);
+            DockPane_OptionOverflow = ImageServiceHelper.GetImage(Resources.MaskTabOverflow, palette.OverflowButtonDefault.Glyph, palette.MainWindowActive.Background);
+            DockPaneHover_OptionOverflow = ImageServiceHelper.GetImage(Resources.MaskTabOverflow, palette.OverflowButtonHovered.Glyph, palette.OverflowButtonHovered.Background, palette.OverflowButtonHovered.Border);
+
+            DockPane_Close = ImageServiceHelper.GetImage(Resources.MaskToolWindowClose, palette.ToolWindowCaptionButtonInactive.Glyph, palette.ToolWindowCaptionInactive.Background);
+            DockPaneActive_Close = ImageServiceHelper.GetImage(Resources.MaskToolWindowClose, palette.ToolWindowCaptionButtonActive.Glyph, palette.ToolWindowCaptionActive.Background);
+            DockPaneHover_Close = ImageServiceHelper.GetImage(Resources.MaskToolWindowClose, palette.ToolWindowCaptionButtonInactiveHovered.Glyph, palette.ToolWindowCaptionButtonInactiveHovered.Background, palette.ToolWindowCaptionButtonInactiveHovered.Border);
+            DockPaneActiveHover_Close = ImageServiceHelper.GetImage(Resources.MaskToolWindowClose, palette.ToolWindowCaptionButtonActiveHovered.Glyph, palette.ToolWindowCaptionButtonActiveHovered.Background, palette.ToolWindowCaptionButtonActiveHovered.Border);
+            DockPane_Dock = ImageServiceHelper.GetImage(Resources.MaskToolWindowDock, palette.ToolWindowCaptionButtonInactive.Glyph, palette.ToolWindowCaptionInactive.Background);
+            DockPaneActive_Dock = ImageServiceHelper.GetImage(Resources.MaskToolWindowDock, palette.ToolWindowCaptionButtonActive.Glyph, palette.ToolWindowCaptionActive.Background);
+            DockPaneHover_Dock = ImageServiceHelper.GetImage(Resources.MaskToolWindowDock, palette.ToolWindowCaptionButtonInactiveHovered.Glyph, palette.ToolWindowCaptionButtonInactiveHovered.Background, palette.ToolWindowCaptionButtonInactiveHovered.Border);
+            DockPaneActiveHover_Dock = ImageServiceHelper.GetImage(Resources.MaskToolWindowDock, palette.ToolWindowCaptionButtonActiveHovered.Glyph, palette.ToolWindowCaptionButtonActiveHovered.Background, palette.ToolWindowCaptionButtonActiveHovered.Border);
+            DockPane_Option = ImageServiceHelper.GetImage(Resources.MaskToolWindowOption, palette.ToolWindowCaptionButtonInactive.Glyph, palette.ToolWindowCaptionInactive.Background);
+            DockPaneActive_Option = ImageServiceHelper.GetImage(Resources.MaskToolWindowOption, palette.ToolWindowCaptionButtonActive.Glyph, palette.ToolWindowCaptionActive.Background);
+            DockPaneHover_Option = ImageServiceHelper.GetImage(Resources.MaskToolWindowOption, palette.ToolWindowCaptionButtonInactiveHovered.Glyph, palette.ToolWindowCaptionButtonInactiveHovered.Background, palette.ToolWindowCaptionButtonInactiveHovered.Border);
+            DockPaneActiveHover_Option = ImageServiceHelper.GetImage(Resources.MaskToolWindowOption, palette.ToolWindowCaptionButtonActiveHovered.Glyph, palette.ToolWindowCaptionButtonActiveHovered.Background, palette.ToolWindowCaptionButtonActiveHovered.Border);
+            DockPane_AutoHide = ImageServiceHelper.GetImage(Resources.MaskToolWindowAutoHide, palette.ToolWindowCaptionButtonActive.Glyph, palette.ToolWindowCaptionActive.Background);
+            DockPaneHover_AutoHide = ImageServiceHelper.GetImage(Resources.MaskToolWindowAutoHide, palette.ToolWindowCaptionButtonActiveHovered.Glyph, palette.ToolWindowCaptionButtonActiveHovered.Background, palette.ToolWindowCaptionButtonActiveHovered.Border);
         }
     }
 }
