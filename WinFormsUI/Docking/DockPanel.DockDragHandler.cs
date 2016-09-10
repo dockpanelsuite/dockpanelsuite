@@ -394,8 +394,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private sealed class DockDragHandler : DragHandler
+        public sealed class DockDragHandler : DragHandler
         {
+            // TODO: make it customizable so we can set Opacity = 0.7.
             public class DockIndicator : DragForm
             {
                 #region consts
@@ -737,7 +738,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 Outline = DockPanel.Theme.Extender.DockOutlineFactory.CreateDockOutline();
-                Indicator = new DockIndicator(this);
+                Indicator = DockPanel.Theme.Extender.DockIndicatorFactory.CreateDockIndicator(this);
                 Indicator.Show(false);
 
                 FloatOutlineBounds = DragSource.BeginDrag(StartMousePosition);

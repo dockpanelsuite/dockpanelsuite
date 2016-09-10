@@ -41,25 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeVS2012\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ThemeVS2012\VS2012AutoHideStripFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012AutoHideWindowFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockOutlineFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PaneIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PanelIndicatorFactory.cs" />
     <Compile Include="ThemeVS2013\Blue\ImageService.cs" />
     <Compile Include="ThemeVS2013\Dark\ImageService.cs" />
-    <Compile Include="ThemeVS2013\Dark\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ThemeVS2013\Light\ImageService.cs" />
-    <Compile Include="ThemeVS2013\Light\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ThemeVS2013\VS2013LightTheme.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -95,16 +91,6 @@
     <Compile Include="ThemeVS2012\VS2012WindowSplitterControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ThemeVS2013\Blue\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ThemeVS2013\Strings.Designer.cs">
-      <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ThemeVS2013\VS2013DockPaneStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,29 +101,13 @@
     <Compile Include="ThemeVS2013\VS2013WindowSplitterControlFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ThemeVS2012\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ThemeVS2012\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThemeVS2013\Blue\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThemeVS2013\Dark\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThemeVS2013\Light\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThemeVS2013\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -145,59 +115,6 @@
     <None Include="license.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ThemeVS2013\Blue\Resources\Dockindicator_PaneDiamond.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PaneDiamond1.bmp" />
-    <Content Include="ThemeVS2013\Blue\Resources\Dockindicator_PaneDiamond_Fill.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelBottom.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelFill.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelLeft.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelRight.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\MaskTabClose.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\MaskTabList.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\MaskTabOverflow.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowAutoHide.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowClose.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowDock.png" />
-    <Content Include="ThemeVS2013\Blue\Resources\MaskToolWindowOption.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\Dockindicator_PaneDiamond.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PaneDiamond1.bmp" />
-    <Content Include="ThemeVS2013\Dark\Resources\Dockindicator_PaneDiamond_Fill.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelBottom.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelFill.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelLeft.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelRight.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\MaskTabClose.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\MaskTabList.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\MaskTabOverflow.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowAutoHide.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowClose.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowDock.png" />
-    <Content Include="ThemeVS2013\Dark\Resources\MaskToolWindowOption.png" />
-    <Content Include="ThemeVS2013\Light\Resources\Dockindicator_PaneDiamond.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PaneDiamond1.bmp" />
-    <Content Include="ThemeVS2013\Light\Resources\Dockindicator_PaneDiamond_Fill.png" />
-    <Content Include="ThemeVS2013\Light\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelBottom.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelFill.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelLeft.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelRight.png" />
-    <Content Include="ThemeVS2013\Light\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2013\Light\Resources\MaskTabClose.png" />
-    <Content Include="ThemeVS2013\Light\Resources\MaskTabList.png" />
-    <Content Include="ThemeVS2013\Light\Resources\MaskTabOverflow.png" />
-    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowAutoHide.png" />
-    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowClose.png" />
-    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowDock.png" />
-    <Content Include="ThemeVS2013\Light\Resources\MaskToolWindowOption.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="WinFormsUI.csproj">

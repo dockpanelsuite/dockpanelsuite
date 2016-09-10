@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -17,7 +12,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         ///      and message filtering.
         ///   2. Override the OnDragging and OnEndDrag methods.
         /// </summary>
-        private abstract class DragHandlerBase : NativeWindow, IMessageFilter
+        public abstract class DragHandlerBase : NativeWindow, IMessageFilter
         {
             protected DragHandlerBase()
             {
@@ -97,7 +92,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private abstract class DragHandler : DragHandlerBase
+        public abstract class DragHandler : DragHandlerBase
         {
             private DockPanel m_dockPanel;
 

@@ -25,7 +25,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         Control DragControl { get; }
     }
 
-    internal interface IDockDragSource : IDragSource
+    public interface IDockDragSource : IDragSource
     {
         Rectangle BeginDrag(Point ptMouse);
         void EndDrag();

@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using WeifenLuo.WinFormsUI.Docking;
+using WeifenLuo.WinFormsUI.ThemeVS2012;
 
 namespace WeifenLuo.WinFormsUI.ThemeVS2013.Blue
 {
@@ -41,18 +42,89 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013.Blue
 
         readonly DockPanelColorPalette palette;
 
-        public ImageService(DockPanelColorPalette palette)
+        public ImageService(ThemeBase theme)
         {
-            this.palette = palette;
-            Dockindicator_PaneDiamond = Resources.Dockindicator_PaneDiamond;
-            Dockindicator_PaneDiamond_Fill = Resources.Dockindicator_PaneDiamond_Fill;
+            this.palette = theme.Skin.ColorPalette;
             Dockindicator_PaneDiamond_Hotspot = Resources.Dockindicator_PaneDiamond_Hotspot;
             DockIndicator_PaneDiamond_HotspotIndex = Resources.DockIndicator_PaneDiamond_HotspotIndex;
-            DockIndicator_PanelBottom = Resources.DockIndicator_PanelBottom;
-            DockIndicator_PanelFill = Resources.DockIndicator_PanelFill;
-            DockIndicator_PanelLeft = Resources.DockIndicator_PanelLeft;
-            DockIndicator_PanelRight = Resources.DockIndicator_PanelRight;
-            DockIndicator_PanelTop = Resources.DockIndicator_PanelTop;
+
+            var arrow = ColorTranslator.FromHtml("#FF4B5C74");
+            var outerBorder = ColorTranslator.FromHtml("#FF636971"); // ?
+            var separator = ColorTranslator.FromHtml("#FF8B919C"); // ?
+            var innerBorder = ColorTranslator.FromHtml("#FFFFFFFF");
+            var background = ColorTranslator.FromHtml("#FFF5F9FC"); // ?
+            var window = ColorTranslator.FromHtml("#FF4B5C74");
+            var core = ColorTranslator.FromHtml("#FFFDE8A7");
+
+            var layerArrow = ImageServiceHelper.GetLayerImage(arrow, 32, theme.PaintingService);
+            var layerWindow = ImageServiceHelper.GetLayerImage(window, 32, theme.PaintingService);
+            var layerCore = ImageServiceHelper.GetLayerImage(core, 32, theme.PaintingService);
+            var layerBorder = ImageServiceHelper.GetBackground(innerBorder, outerBorder, 40, theme.PaintingService);
+
+            var bottom = ImageServiceHelper.GetDockIcon(
+                Resources.MaskArrowBottom,
+                layerArrow,
+                Resources.MaskWindowBottom,
+                layerWindow,
+                Resources.MaskDock,
+                background,
+                theme.PaintingService,
+                Resources.MaskCoreBottom,
+                layerCore,
+                separator);
+            var center = ImageServiceHelper.GetDockIcon(
+                null,
+                null,
+                Resources.MaskWindowCenter,
+                layerWindow,
+                Resources.MaskDock,
+                background,
+                theme.PaintingService,
+                Resources.MaskCoreCenter,
+                layerCore,
+                separator);
+            var left = ImageServiceHelper.GetDockIcon(
+                Resources.MaskArrowLeft,
+                layerArrow,
+                Resources.MaskWindowLeft,
+                layerWindow,
+                Resources.MaskDock,
+                background,
+                theme.PaintingService,
+                Resources.MaskCoreLeft,
+                layerCore,
+                separator);
+            var right = ImageServiceHelper.GetDockIcon(
+                Resources.MaskArrowRight,
+                layerArrow,
+                Resources.MaskWindowRight,
+                layerWindow,
+                Resources.MaskDock,
+                background,
+                theme.PaintingService,
+                Resources.MaskCoreRight,
+                layerCore,
+                separator);
+            var top = ImageServiceHelper.GetDockIcon(
+                Resources.MaskArrowTop,
+                layerArrow,
+                Resources.MaskWindowTop,
+                layerWindow,
+                Resources.MaskDock,
+                background,
+                theme.PaintingService,
+                Resources.MaskCoreTop,
+                layerCore,
+                separator);
+            DockIndicator_PanelBottom = ImageServiceHelper.GetDockImage(bottom, layerBorder);
+            DockIndicator_PanelFill = ImageServiceHelper.GetDockImage(center, layerBorder);
+            DockIndicator_PanelLeft = ImageServiceHelper.GetDockImage(left, layerBorder);
+            DockIndicator_PanelRight = ImageServiceHelper.GetDockImage(right, layerBorder);
+            DockIndicator_PanelTop = ImageServiceHelper.GetDockImage(top, layerBorder);
+            var mask = Resources.MaskDockFive;
+            var five = ImageServiceHelper.GetFiveBackground(mask, innerBorder, outerBorder, theme.PaintingService);
+            Dockindicator_PaneDiamond = ImageServiceHelper.CombineFive(five, bottom, center, left, right, top);
+            Dockindicator_PaneDiamond_Fill = ImageServiceHelper.CombineFive(five, bottom, center, left, right, top);
 
             ActiveTabHover_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonSelectedActiveHovered.Glyph, palette.TabButtonSelectedActiveHovered.Background, palette.TabButtonSelectedActiveHovered.Border);
             ActiveTab_Close = ImageServiceHelper.GetImage(Resources.MaskTabClose, palette.TabButtonSelectedActive.Glyph, palette.TabSelectedActive.Background);

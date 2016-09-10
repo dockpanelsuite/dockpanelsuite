@@ -2,9 +2,9 @@ using System.Drawing;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
-    using WeifenLuo.WinFormsUI.ThemeVS2012;
-    using WeifenLuo.WinFormsUI.ThemeVS2013;
-    using WeifenLuo.WinFormsUI.ThemeVS2013.Light;
+    using ThemeVS2012;
+    using ThemeVS2013;
+    using ThemeVS2013.Light;
 
     /// <summary>
     /// Visual Studio 2013 Light theme.
@@ -14,8 +14,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2013LightTheme()
         {
             Skin = CreateVisualStudio2013Light();
-            ImageService = new ImageService(Skin.ColorPalette);
             PaintingService = new PaintingService();
+            ImageService = new ImageService(this);
         }
 
         /// <summary>
@@ -42,6 +42,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();
             Extender.DockOutlineFactory = new VS2012DockOutlineFactory();
+            Extender.DockIndicatorFactory = new VS2012DockIndicatorFactory();
         }
 
         public override void CleanUp(DockPanel dockPanel)

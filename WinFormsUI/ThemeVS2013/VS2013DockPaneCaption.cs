@@ -6,6 +6,7 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    using ThemeVS2012;
     using WeifenLuo.WinFormsUI.ThemeVS2013;
 
     internal class VS2013DockPaneCaption : DockPaneCaptionBase

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -7,24 +6,25 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
 {
     public class PaintingService : IPaintingService
     {
-        IDictionary<KeyValuePair<Color, int>, Pen> _penCache = new Dictionary<KeyValuePair<Color, int>, Pen>();
-        IDictionary<Color, SolidBrush> _brushCache = new Dictionary<Color, SolidBrush>();
+        IDictionary<KeyValuePair<int, int>, Pen> _penCache = new Dictionary<KeyValuePair<int, int>, Pen>();
+        IDictionary<int, SolidBrush> _brushCache = new Dictionary<int, SolidBrush>();
 
         public SolidBrush GetBrush(Color color)
         {
-            if (_brushCache.ContainsKey(color))
+            var key = color.ToArgb();
+            if (_brushCache.ContainsKey(key))
             {
-                return _brushCache[color];
+                return _brushCache[key];
             }
 
             var result = new SolidBrush(color);
-            _brushCache.Add(color, result);
+            _brushCache.Add(key, result);
             return result;
         }
 
         public Pen GetPen(Color color, int thickness)
         {
-            var key = new KeyValuePair<Color, int>(color, thickness);
+            var key = new KeyValuePair<int, int>(color.ToArgb(), thickness);
             if (_penCache.ContainsKey(key))
             {
                 return _penCache[key];

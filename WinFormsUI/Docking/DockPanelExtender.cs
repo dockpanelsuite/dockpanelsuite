@@ -82,6 +82,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockOutlineBase CreateDockOutline();
         }
 
+        public interface IDockIndicatorFactory
+        {
+            DockPanel.DockDragHandler.DockIndicator CreateDockIndicator(DockPanel.DockDragHandler dockDragHandler);
+        }
+
+        public class DefaultDockIndicatorFactory : IDockIndicatorFactory
+        {
+            public DockPanel.DockDragHandler.DockIndicator CreateDockIndicator(DockPanel.DockDragHandler dockDragHandler)
+            {
+                return new DockPanel.DockDragHandler.DockIndicator(dockDragHandler);
+            }
+        }
+
         #region DefaultDockPaneFactory
 
         private class DefaultDockPaneFactory : IDockPaneFactory
@@ -441,6 +454,14 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get { return m_DockOutlineFactory ?? (m_DockOutlineFactory = new DefaultDockOutlineFactory()); }
             set { m_DockOutlineFactory = value; }
+        }
+
+        private IDockIndicatorFactory m_DockIndicatorFactory;
+
+        public IDockIndicatorFactory DockIndicatorFactory
+        {
+            get { return m_DockIndicatorFactory ?? (m_DockIndicatorFactory = new DefaultDockIndicatorFactory()); }
+            set { m_DockIndicatorFactory = value; }
         }
     }
 }

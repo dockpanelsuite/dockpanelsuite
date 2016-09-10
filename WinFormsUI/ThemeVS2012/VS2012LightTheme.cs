@@ -14,8 +14,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2012LightTheme()
         {
             Skin = CreateVisualStudio2012Light();
-            ImageService = new ImageService(Skin.ColorPalette);
             PaintingService = new PaintingService();
+            ImageService = new ImageService(this);
         }
 
         /// <summary>
@@ -42,6 +42,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Extender.PaneIndicatorFactory = new VS2012PaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2012PanelIndicatorFactory();
             Extender.DockOutlineFactory = new VS2012DockOutlineFactory();
+            Extender.DockIndicatorFactory = new VS2012DockIndicatorFactory();
         }
 
         public override void CleanUp(DockPanel dockPanel)
