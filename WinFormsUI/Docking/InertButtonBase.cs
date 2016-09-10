@@ -60,59 +60,47 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (HoverImage != null)
-            {
-                if (IsMouseOver && Enabled)
-                {
-                    e.Graphics.DrawImage(
-                       HoverImage,
-                       PatchController.EnableHighDpi == true
-                           ? ClientRectangle
-                           : new Rectangle(0, 0, Image.Width, Image.Height));
-                }
-                else
-                {
-                    e.Graphics.DrawImage(
-                       Image,
-                       PatchController.EnableHighDpi == true
-                           ? ClientRectangle
-                           : new Rectangle(0, 0, Image.Width, Image.Height));
-                }
-
-                return;
-            }
+            Bitmap imgToDraw = Image;
 
             if (IsMouseOver && Enabled)
             {
-                using (Pen pen = new Pen(ForeColor))
+                if (HoverImage != null)
                 {
-                    e.Graphics.DrawRectangle(pen, Rectangle.Inflate(ClientRectangle, -1, -1));
+                    imgToDraw = HoverImage;
                 }
-
-                using (ImageAttributes imageAttributes = new ImageAttributes())
+                else
                 {
-                    ColorMap[] colorMap = new ColorMap[2];
-                    colorMap[0] = new ColorMap();
-                    colorMap[0].OldColor = Color.FromArgb(0, 0, 0);
-                    colorMap[0].NewColor = ForeColor;
-                    colorMap[1] = new ColorMap();
-                    colorMap[1].OldColor = Image.GetPixel(0, 0);
-                    colorMap[1].NewColor = Color.Transparent;
-
-                    imageAttributes.SetRemapTable(colorMap);
-
-                    e.Graphics.DrawImage(
-                       Image,
-                       PatchController.EnableHighDpi == true
-                           ? ClientRectangle
-                           : new Rectangle(0, 0, Image.Width, Image.Height),
-                       0, 0,
-                       Image.Width,
-                       Image.Height,
-                       GraphicsUnit.Pixel,
-                       imageAttributes);
+                    using (Pen pen = new Pen(ForeColor))
+                    {
+                        e.Graphics.DrawRectangle(pen, Rectangle.Inflate(ClientRectangle, -1, -1));
+                    }
                 }
             }
+            
+            using (ImageAttributes imageAttributes = new ImageAttributes())
+            {
+                ColorMap[] colorMap = new ColorMap[2];
+                colorMap[0] = new ColorMap();
+                colorMap[0].OldColor = Color.FromArgb(0, 0, 0);
+                colorMap[0].NewColor = ForeColor;
+                colorMap[1] = new ColorMap();
+                colorMap[1].OldColor = imgToDraw.GetPixel(0, 0);
+                colorMap[1].NewColor = Color.Transparent;
+
+                imageAttributes.SetRemapTable(colorMap);
+
+                e.Graphics.DrawImage(
+                    imgToDraw,
+                    PatchController.EnableHighDpi == true
+                        ? ClientRectangle
+                        : new Rectangle(0, 0, imgToDraw.Width, imgToDraw.Height),
+                    0, 0,
+                    imgToDraw.Width,
+                    imgToDraw.Height,
+                    GraphicsUnit.Pixel,
+                    imageAttributes);
+            }
+            
 
             base.OnPaint(e);
         }
