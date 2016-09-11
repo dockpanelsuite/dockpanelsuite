@@ -18,12 +18,12 @@
     <releaseNotes>
 Visual Studio 2003 Theme: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2003/
 Visual Studio 2012 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2012/
-Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013Blue/
+Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
 
-Sept 4, 2016: 2.11.0 Beta 1
+Sept 11, 2016: 2.11.0 Beta 1
 GitHub #155 Fixed main window focus lost during docking.
 GitHub #291 Fixed nested disposal exception.
-GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces.
+GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces. Added Visual Studio 2013 Dark and Light themes.
 GitHub #317 Added Visual Studio 2012 Dark theme.
 GitHub #318 Fixed some flickers.
 GitHub #320 Added some HiDPI support.
@@ -33,6 +33,7 @@ GitHub #334 Fixed font inheritance and cascading.
 GitHub #369 Added in-place patch management.
 GitHub #374 Color palette is introduced in theme design.
 GitHub #378 Added Visual Studio 2012 Blue theme.
+GitHub #408 Minimum .NET Framework version is now 3.5.
 
 Jul 6, 2016: 2.10.0
 1. GitHub #19 Added Visual Studio 2012 Light theme.
@@ -116,7 +117,7 @@ Oct 30, 2010: 2.4.0
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net20\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net20\WeifenLuo.WinFormsUI.Docking.dll" />
+    <file src="..\bin\net35-client\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.dll" />
     <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.dll" />
   </files>
 </package>

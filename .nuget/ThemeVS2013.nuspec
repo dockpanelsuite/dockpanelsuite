@@ -19,7 +19,7 @@
     <description>Visual Studio 2013 themes for DockPanel Suite.</description>
     <summary>Visual Studio 2013 themes for DockPanel Suite.</summary>
     <releaseNotes>
-Sept 4, 2016: 2.11.0 Beta 1
+Sept 11, 2016: 2.11.0 Beta 1
 Updated. Finished Blue theme. Added Light and Dark themes.
 
 Jul 6, 2016: 2.10.0
@@ -30,7 +30,7 @@ Initial release of this theme as a separate assembly.
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net20\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
+    <file src="..\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
     <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
   </files>
 </package>

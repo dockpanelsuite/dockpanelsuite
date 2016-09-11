@@ -10,5 +10,5 @@ for %%v in (2.0, 3.5, 4.0, 12.0, 14.0) do (
 
 call .nuget\NuGet.exe update /self
 call .nuget\NuGet.exe restore
-call "%msBuildExe%" WinFormsUI.Docking.sln /t:build /p:Configuration=Release /p:TargetFrameworkVersion=v2.0 /p:OutputPath=..\bin\net20\
+call "%msBuildExe%" WinFormsUI.Docking.sln /t:build /p:Configuration=Release /p:OutputPath=..\bin\net35-client\
 @IF %ERRORLEVEL% NEQ 0 PAUSE
