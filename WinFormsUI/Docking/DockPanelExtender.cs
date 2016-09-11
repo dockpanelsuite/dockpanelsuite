@@ -248,18 +248,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        public DockPanelExtender(DockPanel dockPanel)
-        {
-            m_dockPanel = dockPanel;
-        }
-
-        private DockPanel m_dockPanel;
-
-        private DockPanel DockPanel
-        {
-            get { return m_dockPanel; }
-        }
-
         private IDockPaneFactory m_dockPaneFactory = null;
 
         public IDockPaneFactory DockPaneFactory
@@ -273,9 +261,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             set
             {
-                if (DockPanel.Panes.Count > 0)
-                    throw new InvalidOperationException();
-
                 m_dockPaneFactory = value;
             }
         }
@@ -292,11 +277,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             set
             {
-                if (DockPanel.Panes.Count > 0)
-                {
-                    throw new InvalidOperationException();
-                }
-
                 m_dockPaneSplitterControlFactory = value;
             }
         }
@@ -330,9 +310,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             set
             {
-                if (DockPanel.FloatWindows.Count > 0)
-                    throw new InvalidOperationException();
-
                 m_floatWindowFactory = value;
             }
         }
@@ -361,9 +338,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             set
             {
-                if (DockPanel.Panes.Count > 0)
-                    throw new InvalidOperationException();
-
                 m_dockPaneCaptionFactory = value;
             }
         }
@@ -381,9 +355,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             set
             {
-                if (DockPanel.Contents.Count > 0)
-                    throw new InvalidOperationException();
-
                 m_dockPaneStripFactory = value;
             }
         }
@@ -401,9 +372,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             set
             {
-                if (DockPanel.Contents.Count > 0)
-                    throw new InvalidOperationException();
-
                 if (m_autoHideStripFactory == value)
                     return;
 
@@ -418,11 +386,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_autoHideWindowFactory ?? (m_autoHideWindowFactory = new DefaultAutoHideWindowFactory()); }
             set
             {
-                if (DockPanel.Contents.Count > 0)
-                {
-                    throw new InvalidOperationException();
-                }
-
                 if (m_autoHideWindowFactory == value)
                 {
                     return;

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using Lextm.SharpSnmpLib;
 using WeifenLuo.WinFormsUI.Docking;
+using System.Linq;
 
 namespace DockSample
 {
@@ -94,6 +95,7 @@ namespace DockSample
             {
                 foreach (IDockContent document in dockPanel.DocumentsToArray())
                 {
+                    // IMPORANT: dispose all panes.
                     document.DockHandler.DockPanel = null;
                     document.DockHandler.Close();
                 }
@@ -146,7 +148,13 @@ namespace DockSample
             // Close all other document windows
             CloseAllDocuments();
 
+            // IMPORTANT: dispose all float windows.
+            foreach (var window in dockPanel.FloatWindows.ToList())
+                window.Dispose();
+
             System.Diagnostics.Debug.Assert(dockPanel.Panes.Count == 0);
+            System.Diagnostics.Debug.Assert(dockPanel.Contents.Count == 0);
+            System.Diagnostics.Debug.Assert(dockPanel.FloatWindows.Count == 0);
         }
 
         private readonly ToolStripRenderer _toolStripProfessionalRenderer = new ToolStripProfessionalRenderer();

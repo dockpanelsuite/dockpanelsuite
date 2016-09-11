@@ -13,20 +13,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2005MultithreadingTheme()
         {
             Skin = CreateVisualStudio2005();
-        }
-
-        /// <summary>
-        /// Applies the specified theme to the dock panel.
-        /// </summary>
-        /// <param name="dockPanel">The dock panel.</param>
-        public override void Apply(DockPanel dockPanel)
-        {
-            if (Extender != null)
-            {
-                return;
-            }
-
-            Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 4;
             Extender.DockPaneCaptionFactory = new VS2005MultithreadingDockPaneCaptionFactory();
             Extender.AutoHideStripFactory = new VS2005MultithreadingAutoHideStripFactory();

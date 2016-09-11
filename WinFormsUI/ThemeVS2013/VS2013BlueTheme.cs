@@ -17,20 +17,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             Skin = CreateVisualStudio2013Blue();
             PaintingService = new PaintingService();
             ImageService = new ImageService(this);
-        }
-
-        /// <summary>
-        /// Applies the specified theme to the dock panel.
-        /// </summary>
-        /// <param name="dockPanel">The dock panel.</param>
-        public override void Apply(DockPanel dockPanel)
-        {
-            if (Extender != null)
-            {
-                return;
-            }
-
-            Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 6;
             Measures.AutoHideSplitterSize = 3;
             Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();

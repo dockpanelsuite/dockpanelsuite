@@ -1,9 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
     public abstract class ThemeBase : Component
     {
+        protected ThemeBase()
+        {
+            Extender = new DockPanelExtender();
+        }
+
         public DockPanelSkin Skin { get; protected set; }
         
         public DockPanelColorPalette ColorPalette { get; protected set; }
@@ -14,7 +20,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public Measures Measures { get; } = new Measures();
 
-        public abstract void Apply(DockPanel dockPanel);
+        public void Apply(DockPanel dockPanel)
+        {
+            if (dockPanel.Panes.Count > 0)
+                throw new InvalidOperationException("Before applying themes all panes must be closed.");
+
+            if (dockPanel.FloatWindows.Count > 0)
+                throw new InvalidOperationException("Before applying themes all float windows must be closed.");
+
+            if (dockPanel.Contents.Count > 0)
+                throw new InvalidOperationException("Before applying themes all dock contents must be closed.");
+        }
 
         internal void PostApply(DockPanel dockPanel)
         {
@@ -27,6 +43,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
         }
 
-        public DockPanelExtender Extender { get; protected set; }
+        public DockPanelExtender Extender { get; private set; }
     }
 }
