@@ -249,6 +249,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return;
 
             Rectangle rect = ClientRectangle;
+            var border = DockPane.DockPanel.Theme.ColorPalette.ToolWindowBorder;
             ToolWindowCaptionPalette palette;
             if (DockPane.IsActivePane)
             {
@@ -262,11 +263,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             SolidBrush captionBrush = DockPane.DockPanel.Theme.PaintingService.GetBrush(palette.Background);
             g.FillRectangle(captionBrush, rect);
 
-            g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(palette.Border), rect.Left, rect.Top,
+            g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(border), rect.Left, rect.Top,
                 rect.Left, rect.Bottom);
-            g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(palette.Border), rect.Left, rect.Top,
+            g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(border), rect.Left, rect.Top,
                 rect.Right, rect.Top);
-            g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(palette.Border), rect.Right - 1, rect.Top,
+            g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(border), rect.Right - 1, rect.Top,
                 rect.Right - 1, rect.Bottom);
 
             Rectangle rectCaption = rect;

@@ -11,7 +11,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private static bool? _highDpi;
 
-        internal static void Reset()
+        public static void Reset()
         {
             EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = _contentOrderFix = _fontInheritanceFix = null;
         }

@@ -309,5 +309,35 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012 {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] vs2012blue {
+            get {
+                object obj = ResourceManager.GetObject("vs2012blue", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] vs2012dark {
+            get {
+                object obj = ResourceManager.GetObject("vs2012dark", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] vs2012light {
+            get {
+                object obj = ResourceManager.GetObject("vs2012light", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -1,7 +1,10 @@
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
+using System.Linq;
+using System.IO;
+using System.Xml.Linq;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -38,33 +41,162 @@ namespace WeifenLuo.WinFormsUI.Docking
 
     public class DockPanelColorPalette
     {
+        private const string Env = "Environment";
+        private XDocument xml;
+
+        public DockPanelColorPalette(byte[] file)
+        {
+            if (file == null)
+            {
+                return;
+            }
+
+            xml = XDocument.Load(new StreamReader(new MemoryStream(file)));
+            AutoHideStripDefault.Background = ColorTranslatorFromHtml("AutoHideTabBackgroundBegin");
+            AutoHideStripDefault.Border = ColorTranslatorFromHtml("AutoHideTabBorder");
+            AutoHideStripDefault.Text = ColorTranslatorFromHtml("AutoHideTabText");
+
+            AutoHideStripHovered.Background = ColorTranslatorFromHtml("AutoHideTabMouseOverBackgroundBegin");
+            AutoHideStripHovered.Border = ColorTranslatorFromHtml("AutoHideTabMouseOverBorder");
+            AutoHideStripHovered.Text = ColorTranslatorFromHtml("AutoHideTabMouseOverText");
+
+            OverflowButtonDefault.Glyph = ColorTranslatorFromHtml("DocWellOverflowButtonGlyph");
+
+            OverflowButtonHovered.Background = ColorTranslatorFromHtml("DocWellOverflowButtonMouseOverBackground");
+            OverflowButtonHovered.Border = ColorTranslatorFromHtml("DocWellOverflowButtonMouseOverBorder");
+            OverflowButtonHovered.Glyph = ColorTranslatorFromHtml("DocWellOverflowButtonMouseOverGlyph");
+
+            OverflowButtonPressed.Background = ColorTranslatorFromHtml("DocWellOverflowButtonMouseDownBackground");
+            OverflowButtonPressed.Border = ColorTranslatorFromHtml("DocWellOverflowButtonMouseDownBorder");
+            OverflowButtonPressed.Glyph = ColorTranslatorFromHtml("DocWellOverflowButtonMouseDownGlyph");
+
+            TabSelectedActive.Background = ColorTranslatorFromHtml("FileTabSelectedBorder");
+            TabSelectedActive.Button = ColorTranslatorFromHtml("FileTabButtonSelectedActiveGlyph");
+            TabSelectedActive.Text = ColorTranslatorFromHtml("FileTabSelectedText");
+
+            TabSelectedInactive.Background = ColorTranslatorFromHtml("FileTabInactiveBorder");// TODO: from theme .FromHtml("#FF4D6082");
+            TabSelectedInactive.Button = ColorTranslatorFromHtml("FileTabButtonSelectedInactiveGlyph");
+            TabSelectedInactive.Text = ColorTranslatorFromHtml("FileTabInactiveText");
+
+            TabUnselected.Text = ColorTranslatorFromHtml("FileTabText");
+            TabUnselected.Background = ColorTranslatorFromHtml("FileTabBackground");
+
+            TabUnselectedHovered.Background = ColorTranslatorFromHtml("FileTabHotBorder");
+            TabUnselectedHovered.Button = ColorTranslatorFromHtml("FileTabHotGlyph");
+            TabUnselectedHovered.Text = ColorTranslatorFromHtml("FileTabHotText");
+
+            TabButtonSelectedActiveHovered.Background = ColorTranslatorFromHtml("FileTabButtonHoverSelectedActive");
+            TabButtonSelectedActiveHovered.Border = ColorTranslatorFromHtml("FileTabButtonHoverSelectedActiveBorder");
+            TabButtonSelectedActiveHovered.Glyph = ColorTranslatorFromHtml("FileTabButtonHoverSelectedActiveGlyph");
+
+            TabButtonSelectedActivePressed.Background = ColorTranslatorFromHtml("FileTabButtonDownSelectedActive");
+            TabButtonSelectedActivePressed.Border = ColorTranslatorFromHtml("FileTabButtonDownSelectedActiveBorder");
+            TabButtonSelectedActivePressed.Glyph = ColorTranslatorFromHtml("FileTabButtonDownSelectedActiveGlyph");
+
+            TabButtonSelectedInactiveHovered.Background = ColorTranslatorFromHtml("FileTabButtonHoverSelectedInactive");
+            TabButtonSelectedInactiveHovered.Border = ColorTranslatorFromHtml("FileTabButtonHoverSelectedInactiveBorder");
+            TabButtonSelectedInactiveHovered.Glyph = ColorTranslatorFromHtml("FileTabButtonHoverSelectedInactiveGlyph");
+
+            TabButtonSelectedInactivePressed.Background = ColorTranslatorFromHtml("FileTabButtonDownSelectedInactive");
+            TabButtonSelectedInactivePressed.Border = ColorTranslatorFromHtml("FileTabButtonDownSelectedInactiveBorder");
+            TabButtonSelectedInactivePressed.Glyph = ColorTranslatorFromHtml("FileTabButtonDownSelectedInactiveGlyph");
+
+            TabButtonUnselectedTabHoveredButtonHovered.Background = ColorTranslatorFromHtml("FileTabButtonHoverInactive");
+            TabButtonUnselectedTabHoveredButtonHovered.Border = ColorTranslatorFromHtml("FileTabButtonHoverInactiveBorder");
+            TabButtonUnselectedTabHoveredButtonHovered.Glyph = ColorTranslatorFromHtml("FileTabButtonHoverInactiveGlyph");
+
+            TabButtonUnselectedTabHoveredButtonPressed.Background = ColorTranslatorFromHtml("FileTabButtonDownInactive");
+            TabButtonUnselectedTabHoveredButtonPressed.Border = ColorTranslatorFromHtml("FileTabButtonDownInactiveBorder");
+            TabButtonUnselectedTabHoveredButtonPressed.Glyph = ColorTranslatorFromHtml("FileTabButtonDownInactiveGlyph");
+
+            MainWindowActive.Background = ColorTranslatorFromHtml("EnvironmentBackground");
+            MainWindowStatusBarDefault.Background = ColorTranslatorFromHtml("StatusBarDefault");
+
+            ToolWindowCaptionActive.Background = ColorTranslatorFromHtml("TitleBarActiveBorder");
+            ToolWindowCaptionActive.Button = ColorTranslatorFromHtml("ToolWindowButtonActiveGlyph");
+            ToolWindowCaptionActive.Grip = ColorTranslatorFromHtml("TitleBarDragHandleActive");
+            ToolWindowCaptionActive.Text = ColorTranslatorFromHtml("TitleBarActiveText");
+
+            ToolWindowCaptionInactive.Background = ColorTranslatorFromHtml("TitleBarInactive");
+            ToolWindowCaptionInactive.Button = ColorTranslatorFromHtml("ToolWindowButtonInactiveGlyph");
+            ToolWindowCaptionInactive.Grip = ColorTranslatorFromHtml("TitleBarDragHandle");
+            ToolWindowCaptionInactive.Text = ColorTranslatorFromHtml("TitleBarInactiveText");
+
+            ToolWindowCaptionButtonActiveHovered.Background = ColorTranslatorFromHtml("ToolWindowButtonHoverActive");
+            ToolWindowCaptionButtonActiveHovered.Border = ColorTranslatorFromHtml("ToolWindowButtonHoverActiveBorder");
+            ToolWindowCaptionButtonActiveHovered.Glyph = ColorTranslatorFromHtml("ToolWindowButtonHoverActiveGlyph");
+
+            ToolWindowCaptionButtonActivePressed.Background = ColorTranslatorFromHtml("ToolWindowButtonDown");
+            ToolWindowCaptionButtonActivePressed.Border = ColorTranslatorFromHtml("ToolWindowButtonDownBorder");
+            ToolWindowCaptionButtonActivePressed.Glyph = ColorTranslatorFromHtml("ToolWindowButtonDownActiveGlyph");
+
+            ToolWindowCaptionButtonInactiveHovered.Background = ColorTranslatorFromHtml("ToolWindowButtonHoverInactive");
+            ToolWindowCaptionButtonInactiveHovered.Border = ColorTranslatorFromHtml("ToolWindowButtonHoverInactiveBorder");
+            ToolWindowCaptionButtonInactiveHovered.Glyph = ColorTranslatorFromHtml("ToolWindowButtonHoverInactiveGlyph");
+
+            ToolWindowCaptionButtonInactivePressed.Background = ToolWindowCaptionButtonActivePressed.Background;
+            ToolWindowCaptionButtonInactivePressed.Border = ToolWindowCaptionButtonActivePressed.Border;
+            ToolWindowCaptionButtonInactivePressed.Glyph = ToolWindowCaptionButtonActivePressed.Glyph;
+
+            ToolWindowTabSelectedActive.Background = ColorTranslatorFromHtml("ToolWindowTabSelectedTab");
+            ToolWindowTabSelectedActive.Text = ColorTranslatorFromHtml("ToolWindowTabSelectedActiveText");
+
+            ToolWindowTabSelectedInactive.Background = ToolWindowTabSelectedActive.Background;
+            ToolWindowTabSelectedInactive.Text = ColorTranslatorFromHtml("ToolWindowTabSelectedText");
+
+            ToolWindowTabUnselected.Text = ColorTranslatorFromHtml("ToolWindowTabText");
+            ToolWindowTabUnselected.Background = ColorTranslatorFromHtml("ToolWindowTabGradientBegin");
+
+            ToolWindowTabUnselectedHovered.Background = ColorTranslatorFromHtml("ToolWindowTabMouseOverBackgroundBegin");
+            ToolWindowTabUnselectedHovered.Text = ColorTranslatorFromHtml("ToolWindowTabMouseOverText");
+
+            ToolWindowSeparator = ColorTranslatorFromHtml("ToolWindowTabSeparator");
+            ToolWindowBorder = ColorTranslatorFromHtml("ToolWindowBorder");
+        }
+
+        private Color ColorTranslatorFromHtml(string name)
+        {
+            var color = xml.Root.Element("Theme")
+                .Elements("Category").FirstOrDefault(item => item.Attribute("Name").Value == Env)?
+                .Elements("Color").FirstOrDefault(item => item.Attribute("Name").Value == name)?
+                .Element("Background").Attribute("Source").Value;
+            if (color == null)
+            {
+                return Color.Transparent;
+            }
+
+            return ColorTranslator.FromHtml($"#{color}");
+        }
 
         public AutoHideStripPalette AutoHideStripDefault { get; } = new AutoHideStripPalette();
         public AutoHideStripPalette AutoHideStripHovered { get; } = new AutoHideStripPalette();
         public ButtonPalette OverflowButtonDefault { get; } = new ButtonPalette();
         public HoveredButtonPalette OverflowButtonHovered { get; } = new HoveredButtonPalette();
+        public HoveredButtonPalette OverflowButtonPressed { get; } = new HoveredButtonPalette();
         public TabPalette TabSelectedActive { get; } = new TabPalette();
         public TabPalette TabSelectedInactive { get; } = new TabPalette();
         public UnselectedTabPalette TabUnselected { get; } = new UnselectedTabPalette();
         public TabPalette TabUnselectedHovered { get; } = new TabPalette();
-        public ButtonPalette TabButtonSelectedActive { get; } = new ButtonPalette();
         public HoveredButtonPalette TabButtonSelectedActiveHovered { get; } = new HoveredButtonPalette();
-        public ButtonPalette TabButtonSelectedInactive { get; } = new ButtonPalette();
+        public HoveredButtonPalette TabButtonSelectedActivePressed { get; } = new HoveredButtonPalette();
         public HoveredButtonPalette TabButtonSelectedInactiveHovered { get; } = new HoveredButtonPalette();
-        public ButtonPalette TabButtonUnselectedTabHovered { get; } = new ButtonPalette();
+        public HoveredButtonPalette TabButtonSelectedInactivePressed { get; } = new HoveredButtonPalette();
         public HoveredButtonPalette TabButtonUnselectedTabHoveredButtonHovered { get; } = new HoveredButtonPalette();
+        public HoveredButtonPalette TabButtonUnselectedTabHoveredButtonPressed { get; } = new HoveredButtonPalette();
         public MainWindowPalette MainWindowActive { get; } = new MainWindowPalette();
         public MainWindowStatusBarPalette MainWindowStatusBarDefault { get; } = new MainWindowStatusBarPalette();
         public ToolWindowCaptionPalette ToolWindowCaptionActive { get; } = new ToolWindowCaptionPalette();
         public ToolWindowCaptionPalette ToolWindowCaptionInactive { get; } = new ToolWindowCaptionPalette();
-        public ButtonPalette ToolWindowCaptionButtonActive { get; } = new ButtonPalette();
         public HoveredButtonPalette ToolWindowCaptionButtonActiveHovered { get; } = new HoveredButtonPalette();
-        public ButtonPalette ToolWindowCaptionButtonInactive { get; } = new ButtonPalette();
+        public HoveredButtonPalette ToolWindowCaptionButtonActivePressed { get; } = new HoveredButtonPalette();
         public HoveredButtonPalette ToolWindowCaptionButtonInactiveHovered { get; } = new HoveredButtonPalette();
+        public HoveredButtonPalette ToolWindowCaptionButtonInactivePressed { get; } = new HoveredButtonPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedActive { get; } = new ToolWindowTabPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedInactive { get; } = new ToolWindowTabPalette();
         public ToolWindowUnselectedTabPalette ToolWindowTabUnselected { get; } = new ToolWindowUnselectedTabPalette();
         public ToolWindowTabPalette ToolWindowTabUnselectedHovered { get; } = new ToolWindowTabPalette();
+        public Color ToolWindowBorder { get; }
+        public Color ToolWindowSeparator { get; }
     }
 
     public class HoveredButtonPalette
@@ -92,21 +224,18 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class ToolWindowTabPalette
     {
         public Color Background { get; set; }
-        public Color Separator { get; set; } // VS2012
         public Color Text { get; set; }
     }
 
     public class ToolWindowUnselectedTabPalette
     {
         public Color Background { get; set; } // VS2013
-        public Color Separator { get; set; } // VS2012
         public Color Text { get; set; }
     }
 
     public class ToolWindowCaptionPalette
     {
         public Color Background { get; set; }
-        public Color Border { get; set; }
         public Color Button { get; set; }
         public Color Grip { get; set; }
         public Color Text { get; set; }

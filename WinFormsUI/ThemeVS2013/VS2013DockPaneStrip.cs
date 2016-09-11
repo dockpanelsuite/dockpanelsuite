@@ -921,11 +921,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
         private void DrawTabStrip_ToolWindow(Graphics g)
         {
             var rect = TabStripRectangle_ToolWindow;
-            Color borderColor;
-            if (DockPane.IsActivePane)
-                borderColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Border;
-            else
-                borderColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Border;
+            Color borderColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowBorder;
 
             g.DrawLine(DockPane.DockPanel.Theme.PaintingService.GetPen(borderColor), rect.Left, rect.Top,
                 rect.Right, rect.Top);
@@ -1033,27 +1029,21 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
             rectText = DrawHelper.RtlTransform(this, rectText);
             rectIcon = DrawHelper.RtlTransform(this, rectIcon);
-            Color borderColor;
-            if (DockPane.IsActivePane)
-                borderColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Border;
-            else
-                borderColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Border;
+            Color borderColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowBorder;
 
+            Color separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowSeparator;
             if (DockPane.ActiveContent == tab.Content)
             {
                 Color textColor;
-                Color separatorColor;
                 Color backgroundColor;
                 if (DockPane.IsActiveDocumentPane)
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedActive.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedActive.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedActive.Background;
                 }
                 else
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedInactive.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedInactive.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedInactive.Background;
                 }
 
@@ -1069,18 +1059,15 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             else
             {
                 Color textColor;
-                Color separatorColor;
                 Color backgroundColor;
                 if (tab.Content == DockPane.MouseOverTab)
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselectedHovered.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselectedHovered.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselectedHovered.Background;
                 }
                 else
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselected.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselected.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.MainWindowActive.Background;
                 }
 

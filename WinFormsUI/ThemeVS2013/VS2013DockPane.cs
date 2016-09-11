@@ -32,9 +32,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            var color = IsActivePane
-                ? DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Border
-                : DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Border;
+            var color = DockPanel.Theme.ColorPalette.ToolWindowBorder;
             e.Graphics.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(color), e.ClipRectangle);
         }
 

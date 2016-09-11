@@ -193,4 +193,13 @@
   <data name="MaskDockFive" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\MaskDockFive.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="vs2012blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\vs2012blue.vstheme;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vs2012dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\vs2012dark.vstheme;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="vs2012light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\vs2012light.vstheme;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

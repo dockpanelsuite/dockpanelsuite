@@ -1025,21 +1025,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             Rectangle rectTab = DrawHelper.RtlTransform(this, rect);
             rectText = DrawHelper.RtlTransform(this, rectText);
             rectIcon = DrawHelper.RtlTransform(this, rectIcon);
+            Color separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowSeparator;
             if (DockPane.ActiveContent == tab.Content)
             {
                 Color textColor;
-                Color separatorColor;
                 Color backgroundColor;
                 if (DockPane.IsActiveDocumentPane)
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedActive.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedActive.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedActive.Background;
                 }
                 else
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedInactive.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedInactive.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabSelectedInactive.Background;
                 }
 
@@ -1051,18 +1049,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
             {
                 Color textColor;
-                Color separatorColor;
                 Color backgroundColor;
                 if (tab.Content == DockPane.MouseOverTab)
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselectedHovered.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselectedHovered.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselectedHovered.Background;
                 }
                 else
                 {
                     textColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselected.Text;
-                    separatorColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowTabUnselected.Separator;
                     backgroundColor = DockPane.DockPanel.Theme.ColorPalette.MainWindowActive.Background;
                 }
 
