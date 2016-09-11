@@ -254,9 +254,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public static Bitmap CombineFive(Bitmap five, Bitmap bottom, Bitmap center, Bitmap left, Bitmap right, Bitmap top)
         {
-            var cell = (five.Width - bottom.Width) / 2;
+            var result = new Bitmap(five);
+            var cell = (result.Width - bottom.Width) / 2;
             var offset = (cell - bottom.Width) / 2;
-            using (var gfx = Graphics.FromImage(five))
+            using (var gfx = Graphics.FromImage(result))
             {
                 gfx.DrawImageUnscaled(top, cell, offset);
                 gfx.DrawImageUnscaled(center, cell, cell);
@@ -265,7 +266,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 gfx.DrawImageUnscaled(right, 2 * cell - offset, cell);
             }
 
-            return five;
+            return result;
         }
 
         public static Bitmap GetFiveBackground(Bitmap mask, Color innerBorder, Color outerBorder, IPaintingService painting)
