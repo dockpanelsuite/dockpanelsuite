@@ -152,6 +152,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             ToolWindowSeparator = ColorTranslatorFromHtml("ToolWindowTabSeparator");
             ToolWindowBorder = ColorTranslatorFromHtml("ToolWindowBorder");
+
+            DockTarget.Background = ColorTranslatorFromHtml("DockTargetBackground");
+            DockTarget.Border = ColorTranslatorFromHtml("DockTargetBorder");
+            DockTarget.ButtonBackground = ColorTranslatorFromHtml("DockTargetButtonBackgroundBegin");
+            DockTarget.ButtonBorder = ColorTranslatorFromHtml("DockTargetButtonBorder");
+            DockTarget.GlyphBackground = ColorTranslatorFromHtml("DockTargetGlyphBackgroundBegin");
+            DockTarget.GlyphArrow = ColorTranslatorFromHtml("DockTargetGlyphArrow");
+            DockTarget.GlyphBorder = ColorTranslatorFromHtml("DockTargetGlyphBorder");
         }
 
         private Color ColorTranslatorFromHtml(string name)
@@ -197,6 +205,18 @@ namespace WeifenLuo.WinFormsUI.Docking
         public ToolWindowTabPalette ToolWindowTabUnselectedHovered { get; } = new ToolWindowTabPalette();
         public Color ToolWindowBorder { get; }
         public Color ToolWindowSeparator { get; }
+        public DockTargetPalette DockTarget { get; } = new DockTargetPalette();
+    }
+
+    public class DockTargetPalette
+    {
+        public Color Background { get; set; }
+        public Color Border { get; set; }
+        public Color ButtonBackground { get; set; }
+        public Color ButtonBorder { get; set; }
+        public Color GlyphBackground { get; set; }
+        public Color GlyphArrow { get; set; }
+        public Color GlyphBorder { get; set; }
     }
 
     public class HoveredButtonPalette

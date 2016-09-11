@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThemeVS2012\ImageService.cs" />
     <Compile Include="ThemeVS2012\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -54,9 +55,6 @@
     <Compile Include="ThemeVS2012\VS2012DockWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PaneIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PanelIndicatorFactory.cs" />
-    <Compile Include="ThemeVS2013\Blue\ImageService.cs" />
-    <Compile Include="ThemeVS2013\Dark\ImageService.cs" />
-    <Compile Include="ThemeVS2013\Light\ImageService.cs" />
     <Compile Include="ThemeVS2013\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,6 +64,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ThemeVS2013\VS2013DockPaneFactory.cs" />
+    <Compile Include="ThemeVS2013\VS2013DockPaneStripFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013LightTheme.cs">
       <SubType>Component</SubType>
     </Compile>

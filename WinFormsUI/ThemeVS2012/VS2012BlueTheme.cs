@@ -4,7 +4,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     using ThemeVS2012;
     using ThemeVS2013;
-    using ThemeVS2012.Blue;
 
     /// <summary>
     /// Visual Studio 2012 Light theme.

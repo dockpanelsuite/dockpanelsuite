@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
+namespace WeifenLuo.WinFormsUI.ThemeVS2012
 {
     public class ImageService : IImageService
     {
@@ -47,14 +47,18 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
             Dockindicator_PaneDiamond_Hotspot = Resources.Dockindicator_PaneDiamond_Hotspot;
             DockIndicator_PaneDiamond_HotspotIndex = Resources.DockIndicator_PaneDiamond_HotspotIndex;
 
-            var arrow = ColorTranslator.FromHtml("#FF1E1E1E");
-            var outerBorder = ColorTranslator.FromHtml("#FFCCCEDB"); // ?
-            var innerBorder = ColorTranslator.FromHtml("#FFEFEFF2");
-            var background = ColorTranslator.FromHtml("#FFF6F6F6"); // ?
-            var window = ColorTranslator.FromHtml("#FF007ACC");
+            var arrow = palette.DockTarget.GlyphArrow;
+            var outerBorder = palette.DockTarget.Border;
+            var separator = palette.DockTarget.ButtonBorder;
+            var innerBorder = palette.DockTarget.Background;
+            var background = palette.DockTarget.ButtonBackground;
+            var window = palette.DockTarget.GlyphBorder;
+            var core = palette.DockTarget.GlyphBackground;
+            var drawCore = core.ToArgb() != background.ToArgb();
 
             var layerArrow = ImageServiceHelper.GetLayerImage(arrow, 32, theme.PaintingService);
             var layerWindow = ImageServiceHelper.GetLayerImage(window, 32, theme.PaintingService);
+            var layerCore = drawCore ? ImageServiceHelper.GetLayerImage(core, 32, theme.PaintingService) : null;
             var layerBorder = ImageServiceHelper.GetBackground(innerBorder, outerBorder, 40, theme.PaintingService);
 
             var bottom = ImageServiceHelper.GetDockIcon(
@@ -64,7 +68,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
                 layerWindow,
                 Resources.MaskDock,
                 background,
-                theme.PaintingService);
+                theme.PaintingService,
+                Resources.MaskCoreBottom,
+                layerCore,
+                separator);
             var center = ImageServiceHelper.GetDockIcon(
                 null,
                 null,
@@ -72,7 +79,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
                 layerWindow,
                 Resources.MaskDock,
                 background,
-                theme.PaintingService);
+                theme.PaintingService,
+                Resources.MaskCoreCenter,
+                layerCore,
+                separator);
             var left = ImageServiceHelper.GetDockIcon(
                 Resources.MaskArrowLeft,
                 layerArrow,
@@ -80,7 +90,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
                 layerWindow,
                 Resources.MaskDock,
                 background,
-                theme.PaintingService);
+                theme.PaintingService,
+                Resources.MaskCoreLeft,
+                layerCore,
+                separator);
             var right = ImageServiceHelper.GetDockIcon(
                 Resources.MaskArrowRight,
                 layerArrow,
@@ -88,7 +101,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
                 layerWindow,
                 Resources.MaskDock,
                 background,
-                theme.PaintingService);
+                theme.PaintingService,
+                Resources.MaskCoreRight,
+                layerCore,
+                separator);
             var top = ImageServiceHelper.GetDockIcon(
                 Resources.MaskArrowTop,
                 layerArrow,
@@ -96,7 +112,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012.Light
                 layerWindow,
                 Resources.MaskDock,
                 background,
-                theme.PaintingService);
+                theme.PaintingService,
+                Resources.MaskCoreTop,
+                layerCore,
+                separator);
             DockIndicator_PanelBottom = ImageServiceHelper.GetDockImage(bottom, layerBorder);
             DockIndicator_PanelFill = ImageServiceHelper.GetDockImage(center, layerBorder);
             DockIndicator_PanelLeft = ImageServiceHelper.GetDockImage(left, layerBorder);

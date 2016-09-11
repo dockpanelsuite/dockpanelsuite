@@ -2,7 +2,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     using ThemeVS2012;
     using ThemeVS2013;
-    using ThemeVS2013.Dark;
 
     /// <summary>
     /// Visual Studio 2013 Light theme.
@@ -35,14 +34,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             PaintingService.CleanUp();
             base.CleanUp(dockPanel);
-        }
-
-        private class VS2013DockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
-        {
-            public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
-            {
-                return new VS2013DockPaneStrip(pane);
-            }
         }
     }
 }
