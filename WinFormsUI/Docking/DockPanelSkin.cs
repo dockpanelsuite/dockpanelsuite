@@ -74,7 +74,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             TabSelectedActive.Button = ColorTranslatorFromHtml("FileTabButtonSelectedActiveGlyph");
             TabSelectedActive.Text = ColorTranslatorFromHtml("FileTabSelectedText");
 
-            TabSelectedInactive.Background = ColorTranslatorFromHtml("FileTabInactiveBorder");// TODO: from theme .FromHtml("#FF4D6082");
+            TabSelectedInactive.Background = ColorTranslatorFromHtml("FileTabInactiveBorder");
             TabSelectedInactive.Button = ColorTranslatorFromHtml("FileTabButtonSelectedInactiveGlyph");
             TabSelectedInactive.Text = ColorTranslatorFromHtml("FileTabInactiveText");
 
@@ -126,17 +126,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             ToolWindowCaptionButtonActiveHovered.Border = ColorTranslatorFromHtml("ToolWindowButtonHoverActiveBorder");
             ToolWindowCaptionButtonActiveHovered.Glyph = ColorTranslatorFromHtml("ToolWindowButtonHoverActiveGlyph");
 
-            ToolWindowCaptionButtonActivePressed.Background = ColorTranslatorFromHtml("ToolWindowButtonDown");
-            ToolWindowCaptionButtonActivePressed.Border = ColorTranslatorFromHtml("ToolWindowButtonDownBorder");
-            ToolWindowCaptionButtonActivePressed.Glyph = ColorTranslatorFromHtml("ToolWindowButtonDownActiveGlyph");
+            ToolWindowCaptionButtonPressed.Background = ColorTranslatorFromHtml("ToolWindowButtonDown");
+            ToolWindowCaptionButtonPressed.Border = ColorTranslatorFromHtml("ToolWindowButtonDownBorder");
+            ToolWindowCaptionButtonPressed.Glyph = ColorTranslatorFromHtml("ToolWindowButtonDownActiveGlyph");
 
             ToolWindowCaptionButtonInactiveHovered.Background = ColorTranslatorFromHtml("ToolWindowButtonHoverInactive");
             ToolWindowCaptionButtonInactiveHovered.Border = ColorTranslatorFromHtml("ToolWindowButtonHoverInactiveBorder");
             ToolWindowCaptionButtonInactiveHovered.Glyph = ColorTranslatorFromHtml("ToolWindowButtonHoverInactiveGlyph");
-
-            ToolWindowCaptionButtonInactivePressed.Background = ToolWindowCaptionButtonActivePressed.Background;
-            ToolWindowCaptionButtonInactivePressed.Border = ToolWindowCaptionButtonActivePressed.Border;
-            ToolWindowCaptionButtonInactivePressed.Glyph = ToolWindowCaptionButtonActivePressed.Glyph;
 
             ToolWindowTabSelectedActive.Background = ColorTranslatorFromHtml("ToolWindowTabSelectedTab");
             ToolWindowTabSelectedActive.Text = ColorTranslatorFromHtml("ToolWindowTabSelectedActiveText");
@@ -196,9 +192,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         public ToolWindowCaptionPalette ToolWindowCaptionActive { get; } = new ToolWindowCaptionPalette();
         public ToolWindowCaptionPalette ToolWindowCaptionInactive { get; } = new ToolWindowCaptionPalette();
         public HoveredButtonPalette ToolWindowCaptionButtonActiveHovered { get; } = new HoveredButtonPalette();
-        public HoveredButtonPalette ToolWindowCaptionButtonActivePressed { get; } = new HoveredButtonPalette();
+        public HoveredButtonPalette ToolWindowCaptionButtonPressed { get; } = new HoveredButtonPalette();
         public HoveredButtonPalette ToolWindowCaptionButtonInactiveHovered { get; } = new HoveredButtonPalette();
-        public HoveredButtonPalette ToolWindowCaptionButtonInactivePressed { get; } = new HoveredButtonPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedActive { get; } = new ToolWindowTabPalette();
         public ToolWindowTabPalette ToolWindowTabSelectedInactive { get; } = new ToolWindowTabPalette();
         public ToolWindowUnselectedTabPalette ToolWindowTabUnselected { get; } = new ToolWindowUnselectedTabPalette();

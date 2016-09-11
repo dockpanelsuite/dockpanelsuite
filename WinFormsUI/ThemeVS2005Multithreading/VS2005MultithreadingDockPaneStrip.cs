@@ -84,6 +84,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 get { return null; }
             }
+
+            public override Bitmap PressImage
+            {
+                get { return null; }
+            }
         }
 
         #region Constants

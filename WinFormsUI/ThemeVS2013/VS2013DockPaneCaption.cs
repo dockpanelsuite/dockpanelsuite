@@ -7,70 +7,9 @@ using System.ComponentModel;
 namespace WeifenLuo.WinFormsUI.Docking
 {
     using ThemeVS2012;
-    using WeifenLuo.WinFormsUI.ThemeVS2013;
 
     internal class VS2013DockPaneCaption : DockPaneCaptionBase
     {
-        private sealed class InertButton : InertButtonBase
-        {
-            private Bitmap _hovered;
-            private Bitmap _normal;
-            private Bitmap _active;
-            private Bitmap _hoveredActive;
-            private Bitmap _hoveredAutoHide;
-            private Bitmap _autoHide;
-
-            public InertButton(VS2013DockPaneCaption dockPaneCaption, Bitmap hovered, Bitmap normal, Bitmap hoveredActive, Bitmap active, Bitmap hoveredAutoHide = null, Bitmap autoHide = null)
-            {
-                m_dockPaneCaption = dockPaneCaption;
-                _hovered = hovered;
-                _normal = normal;
-                _hoveredActive = hoveredActive;
-                _active = active;
-                _hoveredAutoHide = hoveredAutoHide ?? hoveredActive;
-                _autoHide = autoHide ?? active;
-                RefreshChanges();
-            }
-
-            private VS2013DockPaneCaption m_dockPaneCaption;
-            private VS2013DockPaneCaption DockPaneCaption
-            {
-                get { return m_dockPaneCaption; }
-            }
-
-            public bool IsAutoHide
-            {
-                get { return DockPaneCaption.DockPane.IsAutoHide; }
-            }
-
-            public bool IsActive
-            {
-                get { return DockPaneCaption.DockPane.IsActivePane; }
-            }
-
-            public override Bitmap Image
-            {
-                get { return IsActive ? IsAutoHide ? _autoHide : _active : _normal; }
-            }
-
-            public override Bitmap HoverImage
-            {
-                get { return IsActive ? IsAutoHide ? _hoveredAutoHide : _hoveredActive : _hovered; }
-            }
-
-            protected override void OnRefreshChanges()
-            {
-                if (DockPaneCaption.DockPane.DockPanel != null)
-                {
-                    if (DockPaneCaption.TextColor != ForeColor)
-                    {
-                        ForeColor = DockPaneCaption.TextColor;
-                        Invalidate();
-                    }
-                }
-            }
-        }
-
         #region consts
         private const int TextGapTop = 3;
         private const int TextGapBottom = 2;
@@ -83,15 +22,19 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int ButtonGapRight = 4;
         #endregion
 
-        private InertButton m_buttonClose;
-        private InertButton ButtonClose
+        private InertButtonBase m_buttonClose;
+        private InertButtonBase ButtonClose
         {
             get
             {
                 if (m_buttonClose == null)
                 {
-                    m_buttonClose = new InertButton(this, DockPane.DockPanel.Theme.ImageService.DockPaneHover_Close, DockPane.DockPanel.Theme.ImageService.DockPane_Close,
-                        DockPane.DockPanel.Theme.ImageService.DockPaneActiveHover_Close, DockPane.DockPanel.Theme.ImageService.DockPaneActive_Close);
+                    m_buttonClose = new VS2012DockPaneCaptionInertButton(this,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_Close,
+                        DockPane.DockPanel.Theme.ImageService.DockPane_Close,
+                        DockPane.DockPanel.Theme.ImageService.DockPanePress_Close,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActiveHover_Close,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActive_Close);
                     m_toolTip.SetToolTip(m_buttonClose, ToolTipClose);
                     m_buttonClose.Click += new EventHandler(Close_Click);
                     Controls.Add(m_buttonClose);
@@ -101,16 +44,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private InertButton m_buttonAutoHide;
-        private InertButton ButtonAutoHide
+        private InertButtonBase m_buttonAutoHide;
+        private InertButtonBase ButtonAutoHide
         {
             get
             {
                 if (m_buttonAutoHide == null)
                 {
-                    m_buttonAutoHide = new InertButton(this, DockPane.DockPanel.Theme.ImageService.DockPaneHover_Dock, DockPane.DockPanel.Theme.ImageService.DockPane_Dock,
-                        DockPane.DockPanel.Theme.ImageService.DockPaneActiveHover_Dock, DockPane.DockPanel.Theme.ImageService.DockPaneActive_Dock,
-                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_AutoHide, DockPane.DockPanel.Theme.ImageService.DockPane_AutoHide);
+                    m_buttonAutoHide = new VS2012DockPaneCaptionInertButton(this,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_Dock,
+                        DockPane.DockPanel.Theme.ImageService.DockPane_Dock,
+                        DockPane.DockPanel.Theme.ImageService.DockPanePress_Dock,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActiveHover_Dock,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActive_Dock,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActiveHover_AutoHide,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActive_AutoHide,
+                        DockPane.DockPanel.Theme.ImageService.DockPanePress_AutoHide);
                     m_toolTip.SetToolTip(m_buttonAutoHide, ToolTipAutoHide);
                     m_buttonAutoHide.Click += new EventHandler(AutoHide_Click);
                     Controls.Add(m_buttonAutoHide);
@@ -120,15 +69,19 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private InertButton m_buttonOptions;
-        private InertButton ButtonOptions
+        private InertButtonBase m_buttonOptions;
+        private InertButtonBase ButtonOptions
         {
             get
             {
                 if (m_buttonOptions == null)
                 {
-                    m_buttonOptions = new InertButton(this, DockPane.DockPanel.Theme.ImageService.DockPaneHover_Option, DockPane.DockPanel.Theme.ImageService.DockPane_Option,
-                        DockPane.DockPanel.Theme.ImageService.DockPaneActiveHover_Option, DockPane.DockPanel.Theme.ImageService.DockPaneActive_Option);
+                    m_buttonOptions = new VS2012DockPaneCaptionInertButton(this,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_Option,
+                        DockPane.DockPanel.Theme.ImageService.DockPane_Option,
+                        DockPane.DockPanel.Theme.ImageService.DockPanePress_Option,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActiveHover_Option,
+                        DockPane.DockPanel.Theme.ImageService.DockPaneActive_Option);
                     m_toolTip.SetToolTip(m_buttonOptions, ToolTipOptions);
                     m_buttonOptions.Click += new EventHandler(Options_Click);
                     Controls.Add(m_buttonOptions);

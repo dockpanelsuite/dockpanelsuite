@@ -52,6 +52,9 @@
     <Compile Include="ThemeVS2012\VS2012AutoHideWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012DockOutlineFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockPaneCaptionInertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThemeVS2012\VS2012DockWindowFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PaneIndicatorFactory.cs" />
     <Compile Include="ThemeVS2012\VS2012PanelIndicatorFactory.cs" />

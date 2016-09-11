@@ -53,13 +53,14 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
 
         private sealed class InertButton : InertButtonBase
         {
-            private Bitmap _hovered, _normal;
+            private Bitmap _hovered, _normal, _pressed;
 
-            public InertButton(Bitmap hovered, Bitmap normal)
+            public InertButton(Bitmap hovered, Bitmap normal, Bitmap pressed)
                 : base()
             {
                 _hovered = hovered;
                 _normal = normal;
+                _pressed = pressed;
             }
 
             public override Bitmap Image
@@ -70,6 +71,11 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             public override Bitmap HoverImage
             {
                 get { return _hovered; }
+            }
+
+            public override Bitmap PressImage
+            {
+                get { return _pressed; }
             }
         }
 
@@ -199,7 +205,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             {
                 if (m_buttonOverflow == null)
                 {
-                    m_buttonOverflow = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPaneHover_OptionOverflow, DockPane.DockPanel.Theme.ImageService.DockPane_OptionOverflow);
+                    m_buttonOverflow = new InertButton(
+                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_OptionOverflow, 
+                        DockPane.DockPanel.Theme.ImageService.DockPane_OptionOverflow,
+                        DockPane.DockPanel.Theme.ImageService.DockPanePress_OptionOverflow);
                     m_buttonOverflow.Click += new EventHandler(WindowList_Click);
                     Controls.Add(m_buttonOverflow);
                 }
@@ -214,7 +223,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             {
                 if (m_buttonWindowList == null)
                 {
-                    m_buttonWindowList = new InertButton(DockPane.DockPanel.Theme.ImageService.DockPaneHover_List, DockPane.DockPanel.Theme.ImageService.DockPane_List);
+                    m_buttonWindowList = new InertButton(
+                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_List,
+                        DockPane.DockPanel.Theme.ImageService.DockPane_List,
+                        DockPane.DockPanel.Theme.ImageService.DockPanePress_List);
                     m_buttonWindowList.Click += new EventHandler(WindowList_Click);
                     Controls.Add(m_buttonWindowList);
                 }
@@ -1125,38 +1137,80 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             Color inactiveText = DockPane.DockPanel.Theme.ColorPalette.TabUnselected.Text;
             Color mouseHoverText = DockPane.DockPanel.Theme.ColorPalette.TabUnselectedHovered.Text;
 
+            Color text;
+            Image image = null;
+            Color paint;
+            var imageService = DockPane.DockPanel.Theme.ImageService;
             if (DockPane.ActiveContent == tab.Content)
             {
                 if (DockPane.IsActiveDocumentPane)
                 {
-                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(activeColor), rect);
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, activeText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.ActiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.ActiveTab_Close, rectCloseButton);
+                    paint = activeColor;
+                    text = activeText;
+                    image = IsMouseDown
+                        ? imageService.TabPressActive_Close
+                        : rectCloseButton == ActiveClose
+                            ? imageService.TabHoverActive_Close
+                            : imageService.TabActive_Close;
                 }
                 else
                 {
-                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(lostFocusColor), rect);
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, lostFocusText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.LostFocusTabHover_Close : DockPane.DockPanel.Theme.ImageService.LostFocusTab_Close, rectCloseButton);
+                    paint = lostFocusColor;
+                    text = lostFocusText;
+                    image = IsMouseDown
+                        ? imageService.TabPressLostFocus_Close
+                        : rectCloseButton == ActiveClose
+                            ? imageService.TabHoverLostFocus_Close
+                            : imageService.TabLostFocus_Close;
                 }
             }
             else
             {
                 if (tab.Content == DockPane.MouseOverTab)
                 {
-                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(mouseHoverColor), rect);
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, mouseHoverText, DocumentTextFormat);
-                    g.DrawImage(rectCloseButton == ActiveClose ? DockPane.DockPanel.Theme.ImageService.InactiveTabHover_Close : DockPane.DockPanel.Theme.ImageService.InactiveTab_Close, rectCloseButton);
+                    paint = mouseHoverColor;
+                    text = mouseHoverText;
+                    image = IsMouseDown
+                        ? imageService.TabPressInactive_Close
+                        : rectCloseButton == ActiveClose
+                            ? imageService.TabHoverInactive_Close
+                            : imageService.TabInactive_Close;
                 }
                 else
                 {
-                    g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(inactiveColor), rect);
-                    TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, inactiveText, DocumentTextFormat);
+                    paint = inactiveColor;
+                    text = inactiveText;
                 }
             }
 
+            g.FillRectangle(DockPane.DockPanel.Theme.PaintingService.GetBrush(paint), rect);
+            TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, text, DocumentTextFormat);
+            if (image != null)
+                g.DrawImage(image, rectCloseButton);
+
             if (rectTab.Contains(rectIcon) && DockPane.DockPanel.ShowDocumentIcon)
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
+        }
+
+        private bool m_isMouseDown = false;
+        protected bool IsMouseDown
+        {
+            get { return m_isMouseDown; }
+            private set
+            {
+                if (m_isMouseDown == value)
+                    return;
+
+                m_isMouseDown = value;
+                Invalidate();
+            }
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseLeave(e);
+            if (IsMouseDown)
+                IsMouseDown = false;
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -1164,6 +1218,8 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             base.OnMouseDown(e);
             // suspend drag if mouse is down on active close button.
             this.m_suspendDrag = ActiveCloseHitTest(e.Location);
+            if (!IsMouseDown)
+                IsMouseDown = true;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

@@ -49,6 +49,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ThemeVS2012\VS2012DockIndicatorFactory.cs" />
+    <Compile Include="ThemeVS2012\VS2012DockPaneCaptionInertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThemeVS2012\VS2012WindowSplitterControl.cs">
       <SubType>Component</SubType>
     </Compile>

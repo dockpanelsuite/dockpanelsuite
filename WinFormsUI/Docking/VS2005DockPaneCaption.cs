@@ -43,6 +43,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 get { return null; }
             }
 
+            public override Bitmap PressImage
+            {
+                get { return null; }
+            }
+
             protected override void OnRefreshChanges()
             {
                 if (DockPaneCaption.DockPane.DockPanel != null)

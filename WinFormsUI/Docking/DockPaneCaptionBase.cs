@@ -20,7 +20,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private DockPane m_dockPane;
-        protected DockPane DockPane
+        public DockPane DockPane
         {
             get	{	return m_dockPane;	}
         }
