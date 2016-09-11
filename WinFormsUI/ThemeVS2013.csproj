@@ -56,6 +56,10 @@
     <Compile Include="ThemeVS2013\Blue\ImageService.cs" />
     <Compile Include="ThemeVS2013\Dark\ImageService.cs" />
     <Compile Include="ThemeVS2013\Light\ImageService.cs" />
+    <Compile Include="ThemeVS2013\VS2013DockPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2013\VS2013DockPaneFactory.cs" />
     <Compile Include="ThemeVS2013\VS2013LightTheme.cs">
       <SubType>Component</SubType>
     </Compile>

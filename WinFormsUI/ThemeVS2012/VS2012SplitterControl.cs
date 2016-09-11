@@ -15,11 +15,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         public VS2012SplitterControl(DockPane pane)
             : base(pane)
         {
-            _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.Skin.ColorPalette.TabSelectedInactive.Background);
-            _backgroundBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
+            _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.ColorPalette.TabSelectedInactive.Background);
+            _backgroundBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.ColorPalette.MainWindowActive.Background);
             _verticalSurroundColors = new[]
                                                {
-                                                   pane.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background
+                                                   pane.DockPanel.Theme.ColorPalette.MainWindowActive.Background
                                                };
             SplitterSize = pane.DockPanel.Theme.Measures.SplitterSize;
         }

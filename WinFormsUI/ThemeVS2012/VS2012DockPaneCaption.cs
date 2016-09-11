@@ -205,9 +205,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 if (DockPane.IsActivePane)
-                    return DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionActive.Text;
+                    return DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Text;
                 else
-                    return DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionInactive.Text;
+                    return DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Text;
             }
         }
 
@@ -251,9 +251,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color captionColor;
 
             if (DockPane.IsActivePane)
-                captionColor = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionActive.Background;
+                captionColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Background;
             else
-                captionColor = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionInactive.Background;
+                captionColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Background;
 
             SolidBrush captionBrush = DockPane.DockPanel.Theme.PaintingService.GetBrush(captionColor);
             g.FillRectangle(captionBrush, rect);
@@ -273,9 +273,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color colorText;
             if (DockPane.IsActivated)
-                colorText = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionActive.Text;
+                colorText = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Text;
             else
-                colorText = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionInactive.Text;
+                colorText = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Text;
 
             TextRenderer.DrawText(g, DockPane.CaptionText, TextFont, DrawHelper.RtlTransform(this, rectCaptionText), colorText, TextFormat);
 
@@ -287,9 +287,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color dotsColor;
             if (DockPane.IsActivated)
-                dotsColor = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionActive.Grip;
+                dotsColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Grip;
             else
-                dotsColor = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionInactive.Grip;
+                dotsColor = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Grip;
 
             DrawDotsStrip(g, rectDotsStrip, dotsColor);
         }

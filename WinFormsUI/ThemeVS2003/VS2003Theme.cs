@@ -26,9 +26,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Extender = new DockPanelExtender(dockPanel);
             Measures.SplitterSize = 4;
-            Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
             Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
             Extender.AutoHideWindowFactory = null;
+            Extender.DockPaneFactory = null;
+            Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
             Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
             Extender.DockPaneSplitterControlFactory = null;
             Extender.WindowSplitterControlFactory = null;

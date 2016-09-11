@@ -213,9 +213,12 @@ namespace DockSample
                 || menuItemSchemaVS2012Light.Checked || menuItemSchemaVS2013Light.Checked
                 || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked);
             bottomBar.Visible = menuItemSchemaVS2013Light.Checked || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked;
-            topBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background;
-            bottomBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background;
-            statusBar.BackColor = dockPanel.Theme.Skin.ColorPalette.MainWindowStatusBarDefault.Background;
+            if (dockPanel.Theme.ColorPalette != null)
+            {
+                topBar.BackColor = dockPanel.Theme.ColorPalette.MainWindowActive.Background;
+                bottomBar.BackColor = dockPanel.Theme.ColorPalette.MainWindowActive.Background;
+                statusBar.BackColor = dockPanel.Theme.ColorPalette.MainWindowStatusBarDefault.Background;
+            }
 
             if (File.Exists(configFile))
                 dockPanel.LoadFromXml(configFile, m_deserializeDockContent);

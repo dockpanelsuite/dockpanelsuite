@@ -206,9 +206,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 if (DockPane.IsActivePane)
-                    return DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionActive.Text;
+                    return DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive.Text;
                 else
-                    return DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionInactive.Text;
+                    return DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive.Text;
             }
         }
 
@@ -252,11 +252,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             ToolWindowCaptionPalette palette;
             if (DockPane.IsActivePane)
             {
-                palette = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionActive;
+                palette = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionActive;
             }
             else
             {
-                palette = DockPane.DockPanel.Theme.Skin.ColorPalette.ToolWindowCaptionInactive;
+                palette = DockPane.DockPanel.Theme.ColorPalette.ToolWindowCaptionInactive;
             }
 
             SolidBrush captionBrush = DockPane.DockPanel.Theme.PaintingService.GetBrush(palette.Background);

@@ -16,10 +16,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
         public VS2012WindowSplitterControl(ISplitterHost host)
         {
             _host = host;
-            _horizontalBrush = host.DockPanel.Theme.PaintingService.GetBrush(host.DockPanel.Theme.Skin.ColorPalette.TabSelectedInactive.Background);
-            _backgroundBrush = host.DockPanel.Theme.PaintingService.GetBrush(host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
+            _horizontalBrush = host.DockPanel.Theme.PaintingService.GetBrush(host.DockPanel.Theme.ColorPalette.TabSelectedInactive.Background);
+            _backgroundBrush = host.DockPanel.Theme.PaintingService.GetBrush(host.DockPanel.Theme.ColorPalette.MainWindowActive.Background);
             _verticalSurroundColors = new[]{
-                                        host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background
+                                        host.DockPanel.Theme.ColorPalette.MainWindowActive.Background
                                     };
         }
 

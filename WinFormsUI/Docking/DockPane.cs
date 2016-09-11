@@ -12,7 +12,6 @@ namespace WeifenLuo.WinFormsUI.Docking
     [ToolboxItem(false)]
     public partial class DockPane : UserControl, IDockDragSource
     {
-
         public enum AppearanceStyle
         {
             ToolWindow,
@@ -89,7 +88,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (content.DockHandler.DockPanel == null)
                 throw new ArgumentException(Strings.DockPane_Constructor_NullDockPanel);
-
 
             SuspendLayout();
             SetStyle(ControlStyles.Selectable, false);
@@ -303,7 +301,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        internal Rectangle ContentRectangle
+        internal protected virtual Rectangle ContentRectangle
         {
             get
             {

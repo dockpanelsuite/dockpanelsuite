@@ -34,8 +34,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_dockPaneStripSkin; }
             set { m_dockPaneStripSkin = value; }
         }
-
-        public DockPanelColorPalette ColorPalette { get; } = new DockPanelColorPalette();
     }
 
     public class DockPanelColorPalette

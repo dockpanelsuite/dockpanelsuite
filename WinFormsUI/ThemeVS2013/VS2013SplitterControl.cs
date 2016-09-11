@@ -13,7 +13,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
         public VS2013SplitterControl(DockPane pane)
             : base(pane)
         {
-            _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
+            _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.ColorPalette.MainWindowActive.Background);
             SplitterSize = pane.DockPanel.Theme.Measures.SplitterSize;
         }
 

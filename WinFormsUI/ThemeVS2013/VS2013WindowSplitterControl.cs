@@ -34,7 +34,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             if (rect.Width <= 0 || rect.Height <= 0)
                 return;
 
-            _horizontalBrush = _host.DockPanel.Theme.PaintingService.GetBrush(_host.DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background);
+            _horizontalBrush = _host.DockPanel.Theme.PaintingService.GetBrush(_host.DockPanel.Theme.ColorPalette.MainWindowActive.Background);
             if (_host.IsDockWindow)
             {
                 switch (Dock)

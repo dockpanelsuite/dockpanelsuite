@@ -5,6 +5,8 @@ namespace WeifenLuo.WinFormsUI.Docking
     public abstract class ThemeBase : Component
     {
         public DockPanelSkin Skin { get; protected set; }
+        
+        public DockPanelColorPalette ColorPalette { get; protected set; }
 
         public IImageService ImageService { get; protected set; }
 

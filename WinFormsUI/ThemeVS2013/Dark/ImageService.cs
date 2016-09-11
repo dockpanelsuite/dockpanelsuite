@@ -44,7 +44,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013.Dark
 
         public ImageService(ThemeBase theme)
         {
-            this.palette = theme.Skin.ColorPalette;
+            this.palette = theme.ColorPalette;
             Dockindicator_PaneDiamond_Hotspot = Resources.Dockindicator_PaneDiamond_Hotspot;
             DockIndicator_PaneDiamond_HotspotIndex = Resources.DockIndicator_PaneDiamond_HotspotIndex;
 

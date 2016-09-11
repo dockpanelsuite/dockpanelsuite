@@ -144,7 +144,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(DockPanel.Theme.Skin.ColorPalette.MainWindowActive.Background), ClientRectangle);
+            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(DockPanel.Theme.ColorPalette.MainWindowActive.Background), ClientRectangle);
             DrawTabStrip(g);
         }
 
@@ -253,13 +253,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color backgroundColor;
             if (tab.IsMouseOver)
             {
-                borderColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Border;
-                backgroundColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Background;
+                borderColor = DockPanel.Theme.ColorPalette.AutoHideStripHovered.Border;
+                backgroundColor = DockPanel.Theme.ColorPalette.AutoHideStripHovered.Background;
             }
             else
             {
-                borderColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Border;
-                backgroundColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Background;
+                borderColor = DockPanel.Theme.ColorPalette.AutoHideStripDefault.Border;
+                backgroundColor = DockPanel.Theme.ColorPalette.AutoHideStripDefault.Background;
             }
 
             g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(backgroundColor), rectTabOrigin);
@@ -291,9 +291,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color textColor;
             if (tab.IsMouseOver)
-                textColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripHovered.Text;
+                textColor = DockPanel.Theme.ColorPalette.AutoHideStripHovered.Text;
             else
-                textColor = DockPanel.Theme.Skin.ColorPalette.AutoHideStripDefault.Text;
+                textColor = DockPanel.Theme.ColorPalette.AutoHideStripDefault.Text;
 
             if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
                 g.DrawString(content.DockHandler.TabText, TextFont, DockPanel.Theme.PaintingService.GetBrush(textColor), rectText, StringFormatTabVertical);
