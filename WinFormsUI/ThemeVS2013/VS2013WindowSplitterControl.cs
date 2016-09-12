@@ -22,7 +22,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
 
         protected override void StartDrag()
         {
-            _host.DockPanel.BeginDrag(_host, ((Control)_host).RectangleToScreen(Bounds));
+            _host.DockPanel.BeginDrag(_host, _host.DragControl.RectangleToScreen(Bounds));
         }
 
         protected override void OnPaint(PaintEventArgs e)
