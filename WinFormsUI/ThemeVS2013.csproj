@@ -63,6 +63,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ThemeVS2013\VS2013ThemeBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ThemeVS2013\VS2013DockPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
