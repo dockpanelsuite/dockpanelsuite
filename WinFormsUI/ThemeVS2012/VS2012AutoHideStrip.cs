@@ -90,10 +90,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Pen PenTabBorder
-        {
-            get { return SystemPens.GrayText; }
-        }
         #endregion
 
         private static Matrix _matrixIdentity = new Matrix();
@@ -138,13 +134,12 @@ namespace WeifenLuo.WinFormsUI.Docking
                 ControlStyles.UserPaint |
                 ControlStyles.AllPaintingInWmPaint |
                 ControlStyles.OptimizedDoubleBuffer, true);
-            BackColor = SystemColors.ControlLight;
+            BackColor = DockPanel.Theme.ColorPalette.MainWindowActive.Background;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(DockPanel.Theme.ColorPalette.MainWindowActive.Background), ClientRectangle);
             DrawTabStrip(g);
         }
 
