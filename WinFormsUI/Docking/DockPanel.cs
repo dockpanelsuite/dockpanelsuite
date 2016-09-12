@@ -105,7 +105,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return !m_BackColor.IsEmpty;
         }
 
-        private void ResetDockBackColor()
+        internal void ResetDockBackColor()
         {
             DockBackColor = Color.Empty;
         }

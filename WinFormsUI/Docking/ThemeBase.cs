@@ -30,6 +30,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (dockPanel.Contents.Count > 0)
                 throw new InvalidOperationException("Before applying themes all dock contents must be closed.");
+
+            if (ColorPalette == null)
+                dockPanel.ResetDockBackColor();
+            else
+                dockPanel.DockBackColor = ColorPalette.MainWindowActive.Background;
         }
 
         internal void PostApply(DockPanel dockPanel)
