@@ -585,7 +585,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         autoHideSize = rectDockArea.Width * autoHideSize;
                     if (autoHideSize > rectDockArea.Width - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Width - MeasurePane.MinSize;
-                    rect.X = rectDockArea.X;
+                    rect.X = rectDockArea.X - Theme.Measures.DockPadding;
                     rect.Y = rectDockArea.Y;
                     rect.Width = (int)autoHideSize;
                     rect.Height = rectDockArea.Height;
@@ -596,7 +596,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         autoHideSize = rectDockArea.Width * autoHideSize;
                     if (autoHideSize > rectDockArea.Width - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Width - MeasurePane.MinSize;
-                    rect.X = rectDockArea.X + rectDockArea.Width - (int)autoHideSize;
+                    rect.X = rectDockArea.X + rectDockArea.Width - (int)autoHideSize + Theme.Measures.DockPadding;
                     rect.Y = rectDockArea.Y;
                     rect.Width = (int)autoHideSize;
                     rect.Height = rectDockArea.Height;
@@ -608,7 +608,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (autoHideSize > rectDockArea.Height - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Height - MeasurePane.MinSize;
                     rect.X = rectDockArea.X;
-                    rect.Y = rectDockArea.Y;
+                    rect.Y = rectDockArea.Y - Theme.Measures.DockPadding;
                     rect.Width = rectDockArea.Width;
                     rect.Height = (int)autoHideSize;
                 }
@@ -619,7 +619,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (autoHideSize > rectDockArea.Height - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Height - MeasurePane.MinSize;
                     rect.X = rectDockArea.X;
-                    rect.Y = rectDockArea.Y + rectDockArea.Height - (int)autoHideSize;
+                    rect.Y = rectDockArea.Y + rectDockArea.Height - (int)autoHideSize + Theme.Measures.DockPadding;
                     rect.Width = rectDockArea.Width;
                     rect.Height = (int)autoHideSize;
                 }

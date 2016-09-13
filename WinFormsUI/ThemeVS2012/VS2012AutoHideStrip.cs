@@ -31,13 +31,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             public bool IsMouseOver { get; set; }
         }
 
-        private const int TextGapLeft = 0;
+        private const int TextGapLeft = 6;
         private const int TextGapRight = 0;
         private const int TextGapBottom = 3;
         private const int TabGapTop = 3;
         private const int TabGapBottom = 8;
         private const int TabGapLeft = 0;
-        private const int TabGapBetween = 12;
+        private const int TabGapBetween = 6;
 
         #region Customizable Properties
         public Font TextFont

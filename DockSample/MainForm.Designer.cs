@@ -91,8 +91,6 @@ namespace DockSample
             this.toolBarButtonSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolBarButtonLayoutByCode = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonLayoutByXml = new System.Windows.Forms.ToolStripButton();
-            this.topBar = new System.Windows.Forms.Panel();
-            this.bottomBar = new System.Windows.Forms.Panel();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2005Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2005Theme();
             this.vS2003Theme1 = new WeifenLuo.WinFormsUI.Docking.VS2003Theme();
@@ -614,24 +612,6 @@ namespace DockSample
             this.toolBarButtonLayoutByXml.Size = new System.Drawing.Size(23, 22);
             this.toolBarButtonLayoutByXml.ToolTipText = "Show layout by predefined XML file";
             // 
-            // topBar
-            // 
-            this.topBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topBar.Location = new System.Drawing.Point(0, 49);
-            this.topBar.Name = "topBar";
-            this.topBar.Size = new System.Drawing.Size(579, 6);
-            this.topBar.TabIndex = 9;
-            this.topBar.Visible = false;
-            // 
-            // bottomBar
-            // 
-            this.bottomBar.BackColor = System.Drawing.Color.Black;
-            this.bottomBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bottomBar.Location = new System.Drawing.Point(0, 381);
-            this.bottomBar.Name = "bottomBar";
-            this.bottomBar.Size = new System.Drawing.Size(579, 6);
-            this.bottomBar.TabIndex = 10;
-            // 
             // dockPanel
             // 
             this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -641,10 +621,10 @@ namespace DockSample
             this.dockPanel.DockRightPortion = 200D;
             this.dockPanel.DockTopPortion = 150D;
             this.dockPanel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
-            this.dockPanel.Location = new System.Drawing.Point(0, 55);
+            this.dockPanel.Location = new System.Drawing.Point(0, 49);
             this.dockPanel.Name = "dockPanel";
             this.dockPanel.RightToLeftLayout = true;
-            this.dockPanel.Size = new System.Drawing.Size(579, 326);
+            this.dockPanel.Size = new System.Drawing.Size(579, 338);
             this.dockPanel.TabIndex = 0;
             // 
             // vS2012ToolStripExtender1
@@ -657,8 +637,6 @@ namespace DockSample
             // 
             this.ClientSize = new System.Drawing.Size(579, 409);
             this.Controls.Add(this.dockPanel);
-            this.Controls.Add(this.bottomBar);
-            this.Controls.Add(this.topBar);
             this.Controls.Add(this.toolBar);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.statusBar);
@@ -756,7 +734,5 @@ namespace DockSample
         private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;
         private WeifenLuo.WinFormsUI.Docking.VS2005Theme vS2005Theme1;
         private VSToolStripExtender vS2012ToolStripExtender1;
-        private System.Windows.Forms.Panel topBar;
-        private System.Windows.Forms.Panel bottomBar;
     }
 }

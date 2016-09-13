@@ -738,10 +738,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private void CalculateDockPadding()
         {
-            DockPadding.All = 0;
-
+            DockPadding.All = Theme.Measures.DockPadding;
             int height = AutoHideStripControl.MeasureHeight();
-
             if (AutoHideStripControl.GetNumberOfPanes(DockState.DockLeftAutoHide) > 0)
                 DockPadding.Left = height;
             if (AutoHideStripControl.GetNumberOfPanes(DockState.DockRightAutoHide) > 0)

@@ -1,12 +1,14 @@
 using System.Drawing;
 using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.ThemeVS2012;
 
-namespace WeifenLuo.WinFormsUI.Docking
+namespace WeifenLuo.WinFormsUI.ThemeVS2012
 {
+    using Docking;
+
     internal class VS2012AutoHideWindowControl : DockPanel.AutoHideWindowControl
     {
-        public VS2012AutoHideWindowControl(DockPanel dockPanel) : base(dockPanel)
+        public VS2012AutoHideWindowControl(DockPanel dockPanel)
+            : base(dockPanel)
         {
         }
 
@@ -28,9 +30,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     rect.Width -= DockPanel.Theme.Measures.AutoHideSplitterSize;
                 }
                 else if (DockState == DockState.DockTopAutoHide)
+                {
                     rect.Height -= DockPanel.Theme.Measures.AutoHideSplitterSize;
+                }
                 else if (DockState == DockState.DockLeftAutoHide)
+                {
                     rect.Width -= DockPanel.Theme.Measures.AutoHideSplitterSize;
+                }
 
                 return rect;
             }
@@ -41,22 +47,18 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockPadding.All = 0;
             if (DockState == DockState.DockLeftAutoHide)
             {
-                //DockPadding.Right = 2;
                 m_splitter.Dock = DockStyle.Right;
             }
             else if (DockState == DockState.DockRightAutoHide)
             {
-                //DockPadding.Left = 2;
                 m_splitter.Dock = DockStyle.Left;
             }
             else if (DockState == DockState.DockTopAutoHide)
             {
-                //DockPadding.Bottom = 2;
                 m_splitter.Dock = DockStyle.Bottom;
             }
             else if (DockState == DockState.DockBottomAutoHide)
             {
-                //DockPadding.Top = 2;
                 m_splitter.Dock = DockStyle.Top;
             }
 
@@ -67,7 +69,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 DockPane pane = c as DockPane;
                 if (pane == null)
                     continue;
-
 
                 if (pane == ActivePane)
                     pane.Bounds = rectDisplaying;
