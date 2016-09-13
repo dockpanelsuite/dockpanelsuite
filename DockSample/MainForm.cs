@@ -209,6 +209,21 @@ namespace DockSample
                 this.dockPanel.Theme = this.vS2013DarkTheme1;
                 this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
             }
+            else if (sender == this.menuItemSchemaVS2015Blue)
+            {
+                this.dockPanel.Theme = this.vS2015BlueTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+            }
+            else if (sender == this.menuItemSchemaVS2015Light)
+            {
+                this.dockPanel.Theme = this.vS2015LightTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+            }
+            else if (sender == this.menuItemSchemaVS2015Dark)
+            {
+                this.dockPanel.Theme = this.vS2015DarkTheme1;
+                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+            }
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
             menuItemSchemaVS2012Light.Checked = (sender == menuItemSchemaVS2012Light);
@@ -217,10 +232,14 @@ namespace DockSample
             menuItemSchemaVS2013Light.Checked = (sender == menuItemSchemaVS2013Light);
             menuItemSchemaVS2013Blue.Checked = (sender == menuItemSchemaVS2013Blue);
             menuItemSchemaVS2013Dark.Checked = (sender == menuItemSchemaVS2013Dark);
-            topBar.Visible = (menuItemSchemaVS2012Blue.Checked || menuItemSchemaVS2012Dark.Checked
-                || menuItemSchemaVS2012Light.Checked || menuItemSchemaVS2013Light.Checked
-                || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked);
-            bottomBar.Visible = menuItemSchemaVS2013Light.Checked || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked;
+            menuItemSchemaVS2015Light.Checked = (sender == menuItemSchemaVS2015Light);
+            menuItemSchemaVS2015Blue.Checked = (sender == menuItemSchemaVS2015Blue);
+            menuItemSchemaVS2015Dark.Checked = (sender == menuItemSchemaVS2015Dark);
+            topBar.Visible = (menuItemSchemaVS2012Blue.Checked || menuItemSchemaVS2012Dark.Checked || menuItemSchemaVS2012Light.Checked
+                || menuItemSchemaVS2013Light.Checked || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked
+                || menuItemSchemaVS2015Light.Checked || menuItemSchemaVS2015Blue.Checked || menuItemSchemaVS2015Dark.Checked);
+            bottomBar.Visible = menuItemSchemaVS2013Light.Checked || menuItemSchemaVS2013Blue.Checked || menuItemSchemaVS2013Dark.Checked
+                || menuItemSchemaVS2015Light.Checked || menuItemSchemaVS2015Blue.Checked || menuItemSchemaVS2015Dark.Checked;
             if (dockPanel.Theme.ColorPalette != null)
             {
                 topBar.BackColor = dockPanel.Theme.ColorPalette.MainWindowActive.Background;
