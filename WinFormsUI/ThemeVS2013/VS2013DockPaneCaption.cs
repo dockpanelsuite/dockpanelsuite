@@ -15,11 +15,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int TextGapBottom = 2;
         private const int TextGapLeft = 2;
         private const int TextGapRight = 3;
-        private const int ButtonGapTop = 3;
+        private const int ButtonGapTop = 4;
         private const int ButtonGapBottom = 3;
         private const int ButtonGapBetween = 1;
         private const int ButtonGapLeft = 1;
-        private const int ButtonGapRight = 4;
+        private const int ButtonGapRight = 5;
         #endregion
 
         private InertButtonBase m_buttonClose;
