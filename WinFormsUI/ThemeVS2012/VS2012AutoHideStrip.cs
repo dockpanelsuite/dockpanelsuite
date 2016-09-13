@@ -444,11 +444,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             return null;
         }
 
-        protected override void OnMouseHover(EventArgs e)
-        {
-            // IMPORTANT: do not trigger base handle, as no need to do anything.
-        }
-
         private TabVS2012 lastSelectedTab = null;
 
         protected override void OnMouseMove(MouseEventArgs e)

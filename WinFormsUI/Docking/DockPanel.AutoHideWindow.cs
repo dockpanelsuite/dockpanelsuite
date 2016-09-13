@@ -641,6 +641,5 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             AutoHideStripControl.RefreshChanges();
         }
-
     }
 }

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
     public abstract class ThemeBase : Component
     {
+        private Color _dockBackColor;
+        private bool _showAutoHideContentOnHover;
+
         protected ThemeBase()
         {
             Extender = new DockPanelExtender();
@@ -20,6 +24,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public Measures Measures { get; } = new Measures();
 
+        public bool ShowAutoHideContentOnHover { get; protected set; } = true;
+
         public void Apply(DockPanel dockPanel)
         {
             if (dockPanel.Panes.Count > 0)
@@ -31,10 +37,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (dockPanel.Contents.Count > 0)
                 throw new InvalidOperationException("Before applying themes all dock contents must be closed.");
 
-            if (ColorPalette == null)
-                dockPanel.ResetDockBackColor();
-            else
+            if (ColorPalette != null)
+            {
+                _dockBackColor = dockPanel.DockBackColor;
                 dockPanel.DockBackColor = ColorPalette.MainWindowActive.Background;
+            }
+
+            _showAutoHideContentOnHover = dockPanel.ShowAutoHideContentOnHover;
+            dockPanel.ShowAutoHideContentOnHover = ShowAutoHideContentOnHover;
         }
 
         internal void PostApply(DockPanel dockPanel)
@@ -46,6 +56,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public virtual void CleanUp(DockPanel dockPanel)
         {
+            if (ColorPalette != null)
+            {
+                dockPanel.DockBackColor = _dockBackColor;
+            }
+
+            dockPanel.ShowAutoHideContentOnHover = _showAutoHideContentOnHover;
         }
 
         public DockPanelExtender Extender { get; private set; }

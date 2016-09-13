@@ -17,6 +17,7 @@
             Measures.SplitterSize = 6;
             Measures.AutoHideSplitterSize = 3;
             Measures.DockPadding = 6;
+            ShowAutoHideContentOnHover = false;
             Extender.DockPaneCaptionFactory = new VS2012DockPaneCaptionFactory();
             Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
             Extender.AutoHideWindowFactory = new VS2012AutoHideWindowFactory();
