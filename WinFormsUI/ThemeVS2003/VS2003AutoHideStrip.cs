@@ -198,6 +198,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <exclude/>
         protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
             Graphics g = e.Graphics;
             DrawTabStrip(g);
         }

@@ -435,17 +435,36 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected internal Rectangle GetTabStripRectangle(DockState dockState)
         {
-            int height = MeasureHeight();
-            if (dockState == DockState.DockTopAutoHide && PanesTop.Count > 0)
+            int standard = MeasureHeight();
+            if (dockState == DockState.DockTopAutoHide)
+            {
+                var padding = DockPanel.Theme.Measures.DockPadding;
+                var height = PanesTop.Count > 0 ? standard : padding;
                 return new Rectangle(RectangleTopLeft.Width, 0, Width - RectangleTopLeft.Width - RectangleTopRight.Width, height);
-            else if (dockState == DockState.DockBottomAutoHide && PanesBottom.Count > 0)
+            }
+
+            if (dockState == DockState.DockBottomAutoHide)
+            {
+                var padding = DockPanel.Theme.Measures.DockPadding;
+                var height = PanesBottom.Count > 0 ? standard : padding;
                 return new Rectangle(RectangleBottomLeft.Width, Height - height, Width - RectangleBottomLeft.Width - RectangleBottomRight.Width, height);
-            else if (dockState == DockState.DockLeftAutoHide && PanesLeft.Count > 0)
-                return new Rectangle(0, RectangleTopLeft.Width, height, Height - RectangleTopLeft.Height - RectangleBottomLeft.Height);
-            else if (dockState == DockState.DockRightAutoHide && PanesRight.Count > 0)
-                return new Rectangle(Width - height, RectangleTopRight.Width, height, Height - RectangleTopRight.Height - RectangleBottomRight.Height);
-            else
-                return Rectangle.Empty;
+            }
+
+            if (dockState == DockState.DockLeftAutoHide)
+            {
+                var padding = DockPanel.Theme.Measures.DockPadding;
+                var width = PanesLeft.Count > 0 ? standard : padding;
+                return new Rectangle(0, RectangleTopLeft.Height, width, Height - RectangleTopLeft.Height - RectangleBottomLeft.Height);
+            }
+
+            if (dockState == DockState.DockRightAutoHide)
+            {
+                var padding = DockPanel.Theme.Measures.DockPadding;
+                var width = PanesRight.Count > 0 ? standard : padding;
+                return new Rectangle(Width - width, RectangleTopRight.Height, width, Height - RectangleTopRight.Height - RectangleBottomRight.Height);
+            }
+
+            return Rectangle.Empty;
         }
 
         private GraphicsPath m_displayingArea = null;
