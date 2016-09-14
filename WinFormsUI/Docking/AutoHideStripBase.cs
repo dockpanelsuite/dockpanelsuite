@@ -433,34 +433,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// </remarks>
         protected internal Rectangle GetTabStripRectangle(DockState dockState)
         {
-            int standard = MeasureHeight();
             if (dockState == DockState.DockTopAutoHide)
-            {
-                var padding = DockPanel.Theme.Measures.DockPadding;
-                var height = PanesTop.Count > 0 ? standard : padding;
-                return new Rectangle(RectangleTopLeft.Width, 0, Width - RectangleTopLeft.Width - RectangleTopRight.Width, height);
-            }
+                return new Rectangle(RectangleTopLeft.Width, 0, Width - RectangleTopLeft.Width - RectangleTopRight.Width, RectangleTopLeft.Height);
 
             if (dockState == DockState.DockBottomAutoHide)
-            {
-                var padding = DockPanel.Theme.Measures.DockPadding;
-                var height = PanesBottom.Count > 0 ? standard : padding;
-                return new Rectangle(RectangleBottomLeft.Width, Height - height, Width - RectangleBottomLeft.Width - RectangleBottomRight.Width, height);
-            }
+                return new Rectangle(RectangleBottomLeft.Width, Height - RectangleBottomLeft.Height, Width - RectangleBottomLeft.Width - RectangleBottomRight.Width, RectangleBottomLeft.Height);
 
             if (dockState == DockState.DockLeftAutoHide)
-            {
-                var padding = DockPanel.Theme.Measures.DockPadding;
-                var width = PanesLeft.Count > 0 ? standard : padding;
-                return new Rectangle(0, RectangleTopLeft.Height, width, Height - RectangleTopLeft.Height - RectangleBottomLeft.Height);
-            }
+                return new Rectangle(0, RectangleTopLeft.Height, RectangleTopLeft.Width, Height - RectangleTopLeft.Height - RectangleBottomLeft.Height);
 
             if (dockState == DockState.DockRightAutoHide)
-            {
-                var padding = DockPanel.Theme.Measures.DockPadding;
-                var width = PanesRight.Count > 0 ? standard : padding;
-                return new Rectangle(Width - width, RectangleTopRight.Height, width, Height - RectangleTopRight.Height - RectangleBottomRight.Height);
-            }
+                return new Rectangle(Width - RectangleTopRight.Width, RectangleTopRight.Height, RectangleTopRight.Width, Height - RectangleTopRight.Height - RectangleBottomRight.Height);
 
             return Rectangle.Empty;
         }
