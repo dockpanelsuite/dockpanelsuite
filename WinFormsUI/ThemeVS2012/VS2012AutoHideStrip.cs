@@ -251,29 +251,27 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             Color borderColor;
             Color backgroundColor;
+            Color textColor;
             if (tab.IsMouseOver)
             {
                 borderColor = DockPanel.Theme.ColorPalette.AutoHideStripHovered.Border;
                 backgroundColor = DockPanel.Theme.ColorPalette.AutoHideStripHovered.Background;
+                textColor = DockPanel.Theme.ColorPalette.AutoHideStripHovered.Text;
             }
             else
             {
                 borderColor = DockPanel.Theme.ColorPalette.AutoHideStripDefault.Border;
                 backgroundColor = DockPanel.Theme.ColorPalette.AutoHideStripDefault.Background;
+                textColor = DockPanel.Theme.ColorPalette.AutoHideStripDefault.Text;
             }
 
             g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(backgroundColor), rectTabOrigin);
 
-            Rectangle rectThickLine = GetThickLineRectangle(rectTabOrigin, dockState, TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width);
-            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(borderColor), rectThickLine);
+            Rectangle rectBorder = GetBorderRectangle(rectTabOrigin, dockState, TextRenderer.MeasureText(tab.Content.DockHandler.TabText, TextFont).Width);
+            g.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(borderColor), rectBorder);
 
             // Draw the text
             Rectangle rectText = GetTextRectangle(rectTabOrigin, dockState);
-            Color textColor;
-            if (tab.IsMouseOver)
-                textColor = DockPanel.Theme.ColorPalette.AutoHideStripHovered.Text;
-            else
-                textColor = DockPanel.Theme.ColorPalette.AutoHideStripDefault.Text;
 
             if (dockState == DockState.DockLeftAutoHide || dockState == DockState.DockRightAutoHide)
                 g.DrawString(content.DockHandler.TabText, TextFont, DockPanel.Theme.PaintingService.GetBrush(textColor), rectText, StringFormatTabVertical);
@@ -284,7 +282,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             g.Transform = matrixRotate;
         }
 
-        private Rectangle GetThickLineRectangle(Rectangle tab, DockState state, int width)
+        private Rectangle GetBorderRectangle(Rectangle tab, DockState state, int width)
         {
             var result = new Rectangle(tab.Location, tab.Size);
             if (state == DockState.DockLeftAutoHide)

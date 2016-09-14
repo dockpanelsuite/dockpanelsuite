@@ -188,12 +188,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 public AutoHideStateCollection()
                 {
-                    m_states = new AutoHideState[]	{	
-                                                new AutoHideState(DockState.DockTopAutoHide),
-                                                new AutoHideState(DockState.DockBottomAutoHide),
-                                                new AutoHideState(DockState.DockLeftAutoHide),
-                                                new AutoHideState(DockState.DockRightAutoHide)
-                                            };
+                    m_states = new[]{
+                                        new AutoHideState(DockState.DockTopAutoHide),
+                                        new AutoHideState(DockState.DockBottomAutoHide),
+                                        new AutoHideState(DockState.DockLeftAutoHide),
+                                        new AutoHideState(DockState.DockRightAutoHide)
+                                    };
                 }
 
                 public AutoHideState this[DockState dockState]
@@ -326,45 +326,22 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected AutoHideStripBase(DockPanel panel)
         {
-            m_dockPanel = panel;
-            m_panesTop = new PaneCollection(panel, DockState.DockTopAutoHide);
-            m_panesBottom = new PaneCollection(panel, DockState.DockBottomAutoHide);
-            m_panesLeft = new PaneCollection(panel, DockState.DockLeftAutoHide);
-            m_panesRight = new PaneCollection(panel, DockState.DockRightAutoHide);
+            DockPanel = panel;
+            PanesTop = new PaneCollection(panel, DockState.DockTopAutoHide);
+            PanesBottom = new PaneCollection(panel, DockState.DockBottomAutoHide);
+            PanesLeft = new PaneCollection(panel, DockState.DockLeftAutoHide);
+            PanesRight = new PaneCollection(panel, DockState.DockRightAutoHide);
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.Selectable, false);
         }
 
-        private DockPanel m_dockPanel;
-        protected DockPanel DockPanel
-        {
-            get { return m_dockPanel; }
-        }
+        protected DockPanel DockPanel { get; private set; }
 
-        private PaneCollection m_panesTop;
-        protected PaneCollection PanesTop
-        {
-            get { return m_panesTop; }
-        }
-
-        private PaneCollection m_panesBottom;
-        protected PaneCollection PanesBottom
-        {
-            get { return m_panesBottom; }
-        }
-
-        private PaneCollection m_panesLeft;
-        protected PaneCollection PanesLeft
-        {
-            get { return m_panesLeft; }
-        }
-
-        private PaneCollection m_panesRight;
-        protected PaneCollection PanesRight
-        {
-            get { return m_panesRight; }
-        }
+        protected PaneCollection PanesTop { get; private set; }
+        protected PaneCollection PanesBottom { get; private set; }
+        protected PaneCollection PanesLeft { get; private set; }
+        protected PaneCollection PanesRight { get; private set; }
 
         protected PaneCollection GetPanes(DockState dockState)
         {
@@ -385,6 +362,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             return GetPanes(dockState).Count;
         }
 
+        /// <summary>
+        /// The top left rectangle in auto hide strip area.
+        /// </summary>
         protected Rectangle RectangleTopLeft
         {
             get
@@ -397,6 +377,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        /// <summary>
+        /// The top right rectangle in auto hide strip area.
+        /// </summary>
         protected Rectangle RectangleTopRight
         {
             get
@@ -409,6 +392,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        /// <summary>
+        /// The bottom left rectangle in auto hide strip area.
+        /// </summary>
         protected Rectangle RectangleBottomLeft
         {
             get
@@ -421,6 +407,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        /// <summary>
+        /// The bottom right rectangle in auto hide strip area.
+        /// </summary>
         protected Rectangle RectangleBottomRight
         {
             get
@@ -433,6 +422,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        /// <summary>
+        /// Gets one of the four auto hide strip rectangles.
+        /// </summary>
+        /// <param name="dockState">Dock state.</param>
+        /// <returns>The desired rectangle.</returns>
+        /// <remarks>
+        /// As the corners are represented by <see cref="RectangleTopLeft"/>, <see cref="RectangleTopRight"/>, <see cref="RectangleBottomLeft"/>, and <see cref="RectangleBottomRight"/>,
+        /// the four strips can be easily calculated out as the borders.
+        /// </remarks>
         protected internal Rectangle GetTabStripRectangle(DockState dockState)
         {
             int standard = MeasureHeight();
@@ -467,7 +465,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             return Rectangle.Empty;
         }
 
-        private GraphicsPath m_displayingArea = null;
+        private GraphicsPath m_displayingArea;
+
         private GraphicsPath DisplayingArea
         {
             get

@@ -72,6 +72,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private Color m_BackColor;
+
         /// <summary>
         /// Determines the color with which the client rectangle will be drawn.
         /// If this property is used instead of the BackColor it will not have any influence on the borders to the surrounding controls (DockPane).
@@ -90,12 +91,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 return !m_BackColor.IsEmpty ? m_BackColor : base.BackColor;
             }
+
             set
             {
                 if (m_BackColor != value)
                 {
                     m_BackColor = value;
-                    this.Refresh();
+                    Refresh();
                 }
             }
         }
@@ -105,12 +107,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             return !m_BackColor.IsEmpty;
         }
 
-        internal void ResetDockBackColor()
-        {
-            DockBackColor = Color.Empty;
-        }
+        private AutoHideStripBase m_autoHideStripControl;
 
-        private AutoHideStripBase m_autoHideStripControl = null;
         internal AutoHideStripBase AutoHideStripControl
         {
             get
@@ -120,6 +118,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     m_autoHideStripControl = Theme.Extender.AutoHideStripFactory.CreateAutoHideStrip(this);
                     Controls.Add(m_autoHideStripControl);
                 }
+
                 return m_autoHideStripControl;
             }
         }
@@ -150,7 +149,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             InvalidateWindowRegion();
         }
 
-        private bool m_disposed = false;
+        private bool m_disposed;
+
         protected override void Dispose(bool disposing)
         {
             if (!m_disposed && disposing)
@@ -177,8 +177,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IDockContent ActiveAutoHideContent
         {
-            get	{	return AutoHideWindow.ActiveContent;	}
-            set	{	AutoHideWindow.ActiveContent = value;	}
+            get { return AutoHideWindow.ActiveContent; }
+            set { AutoHideWindow.ActiveContent = value; }
         }
 
         private bool m_allowEndUserDocking = !Win32Helper.IsRunningOnMono;
@@ -194,6 +194,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 return m_allowEndUserDocking;
             }
+
             set
             {
                 if (Win32Helper.IsRunningOnMono && value)
@@ -215,6 +216,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     m_allowEndUserDocking = false;
                 return m_allowEndUserNestedDocking;
             }
+
             set
             {
                 if (Win32Helper.IsRunningOnMono && value)
@@ -228,12 +230,12 @@ namespace WeifenLuo.WinFormsUI.Docking
         [Browsable(false)]
         public DockContentCollection Contents
         {
-            get	{	return m_contents;	}
+            get { return m_contents; }
         }
 
         internal DockContent DummyContent
         {
-            get	{	return m_dummyContent;	}
+            get { return m_dummyContent; }
         }
 
         private bool m_rightToLeftLayout = false;
@@ -242,7 +244,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         [LocalizedDescription("DockPanel_RightToLeftLayout_Description")]
         public bool RightToLeftLayout
         {
-            get { return m_rightToLeftLayout; }
+            get
+            {
+                return m_rightToLeftLayout;
+            }
+
             set
             {
                 if (m_rightToLeftLayout == value)
@@ -258,10 +264,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             base.OnRightToLeftChanged(e);
             foreach (FloatWindow floatWindow in FloatWindows)
-            {
-                if (floatWindow.RightToLeft != RightToLeft)
-                    floatWindow.RightToLeft = RightToLeft;
-            }
+                floatWindow.RightToLeft = RightToLeft;
         }
 
         private bool m_showDocumentIcon = false;
@@ -281,15 +284,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private DocumentTabStripLocation m_documentTabStripLocation = DocumentTabStripLocation.Top;
         [DefaultValue(DocumentTabStripLocation.Top)]
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DocumentTabStripLocation")]
-        public DocumentTabStripLocation DocumentTabStripLocation
-        {
-            get { return m_documentTabStripLocation; }
-            set { m_documentTabStripLocation = value; }
-        }
+        public DocumentTabStripLocation DocumentTabStripLocation { get; set; } = DocumentTabStripLocation.Top;
 
         [Browsable(false)]
         [Obsolete("Use Theme.Extender instead.")]
@@ -322,9 +320,21 @@ namespace WeifenLuo.WinFormsUI.Docking
         [Browsable(false)]
         public DockPaneCollection Panes
         {
-            get	{	return m_panes;	}
+            get { return m_panes; }
         }
 
+        /// <summary>
+        /// Dock area.
+        /// </summary>
+        /// <remarks>
+        /// This <see cref="Rectangle"/> is the center rectangle of <see cref="DockPanel"/> control.
+        /// 
+        /// Excluded spaces are for the following visual elements,
+        /// * Auto hide strips on four sides.
+        /// * Necessary paddings defined in themes.
+        /// 
+        /// Therefore, all dock contents mainly fall into this area (except auto hide window, which might slightly move beyond this area).
+        /// </remarks>
         public Rectangle DockArea
         {
             get
@@ -336,12 +346,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private double m_dockBottomPortion = 0.25;
+
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockBottomPortion_Description")]
         [DefaultValue(0.25)]
         public double DockBottomPortion
         {
-            get	{	return m_dockBottomPortion;	}
+            get
+            {
+                return m_dockBottomPortion;
+            }
+
             set
             {
                 if (value <= 0)
@@ -363,12 +378,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private double m_dockLeftPortion = 0.25;
+
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockLeftPortion_Description")]
         [DefaultValue(0.25)]
         public double DockLeftPortion
         {
-            get	{	return m_dockLeftPortion;	}
+            get
+            {
+                return m_dockLeftPortion;
+            }
+
             set
             {
                 if (value <= 0)
@@ -389,12 +409,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         private double m_dockRightPortion = 0.25;
+
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockRightPortion_Description")]
         [DefaultValue(0.25)]
         public double DockRightPortion
         {
-            get	{	return m_dockRightPortion;	}
+            get
+            {
+                return m_dockRightPortion;
+            }
+
             set
             {
                 if (value <= 0)
@@ -410,17 +435,23 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (m_dockLeftPortion + m_dockRightPortion > 1)
                         m_dockLeftPortion = 1 - m_dockRightPortion;
                 }
+
                 PerformLayout();
             }
         }
 
         private double m_dockTopPortion = 0.25;
+
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockTopPortion_Description")]
         [DefaultValue(0.25)]
         public double DockTopPortion
         {
-            get	{	return m_dockTopPortion;	}
+            get
+            {
+                return m_dockTopPortion;
+            }
+
             set
             {
                 if (value <= 0)
@@ -443,7 +474,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         [Browsable(false)]
         public DockWindowCollection DockWindows
         {
-            get	{	return m_dockWindows;	}
+            get { return m_dockWindows; }
         }
 
         public void UpdateDockWindowZOrder(DockStyle dockStyle, bool fullPanelEdge)
@@ -520,27 +551,24 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private Control DummyControl
         {
-            get	{	return m_dummyControl;	}
+            get { return m_dummyControl; }
         }
 
         [Browsable(false)]
         public FloatWindowCollection FloatWindows
         {
-            get	{	return m_floatWindows;	}
+            get { return m_floatWindows; }
         }
 
-        private Size m_defaultFloatWindowSize = new Size(300, 300);
         [Category("Layout")]
         [LocalizedDescription("DockPanel_DefaultFloatWindowSize_Description")]
-        public Size DefaultFloatWindowSize
-        {
-            get { return m_defaultFloatWindowSize; }
-            set { m_defaultFloatWindowSize = value; }
-        }
+        public Size DefaultFloatWindowSize { get; set; } = new Size(300, 300);
+
         private bool ShouldSerializeDefaultFloatWindowSize()
         {
             return DefaultFloatWindowSize != new Size(300, 300);
         }
+
         private void ResetDefaultFloatWindowSize()
         {
             DefaultFloatWindowSize = new Size(300, 300);
@@ -584,15 +612,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private bool _supportDeeplyNestedContent = false;
         [LocalizedCategory("Category_Performance")]
         [LocalizedDescription("DockPanel_SupportDeeplyNestedContent_Description")]
         [DefaultValue(false)]
-        public bool SupportDeeplyNestedContent
-        {
-            get { return _supportDeeplyNestedContent; }
-            set { _supportDeeplyNestedContent = value; }
-        }
+        public bool SupportDeeplyNestedContent { get; set; }
 
         /// <summary>
         /// Flag to show autohide content on mouse hover. Default value is <code>true</code>.
@@ -627,7 +650,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 return dockState == DockState.DockLeft ? dockLeftSize : dockRightSize;
             }
-            else if (dockState == DockState.DockTop || dockState == DockState.DockBottom)
+
+            if (dockState == DockState.DockTop || dockState == DockState.DockBottom)
             {
                 int height = ClientRectangle.Height - DockPadding.Top - DockPadding.Bottom;
                 int dockTopSize = m_dockTopPortion >= 1 ? (int)m_dockTopPortion : (int)(height * m_dockTopPortion);
@@ -647,8 +671,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 return dockState == DockState.DockTop ? dockTopSize : dockBottomSize;
             }
-            else
-                return 0;
+
+            return 0;
         }
 
         protected override void OnLayout(LayoutEventArgs levent)
@@ -687,7 +711,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 InvalidateWindowRegion();
             }
             else if (DocumentStyle == DocumentStyle.DockingMdi)
+            {
                 InvalidateWindowRegion();
+            }
 
             ResumeLayout(true, true);
         }
@@ -701,7 +727,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             base.OnPaint(e);
 
-            if (DockBackColor == BackColor) return;
+            if (DockBackColor.ToArgb() == BackColor.ToArgb())
+                return;
 
             Graphics g = e.Graphics;
             SolidBrush bgBrush = new SolidBrush(DockBackColor);
@@ -739,15 +766,15 @@ namespace WeifenLuo.WinFormsUI.Docking
         private void CalculateDockPadding()
         {
             DockPadding.All = Theme.Measures.DockPadding;
-            int height = AutoHideStripControl.MeasureHeight();
+            int standard = AutoHideStripControl.MeasureHeight();
             if (AutoHideStripControl.GetNumberOfPanes(DockState.DockLeftAutoHide) > 0)
-                DockPadding.Left = height;
+                DockPadding.Left = standard;
             if (AutoHideStripControl.GetNumberOfPanes(DockState.DockRightAutoHide) > 0)
-                DockPadding.Right = height;
+                DockPadding.Right = standard;
             if (AutoHideStripControl.GetNumberOfPanes(DockState.DockTopAutoHide) > 0)
-                DockPadding.Top = height;
+                DockPadding.Top = standard;
             if (AutoHideStripControl.GetNumberOfPanes(DockState.DockBottomAutoHide) > 0)
-                DockPadding.Bottom = height;
+                DockPadding.Bottom = standard;
         }
 
         internal void RemoveContent(IDockContent content)
