@@ -6,6 +6,7 @@ using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     public class InertButton : Button
     {
         private enum RepeatClickStatus

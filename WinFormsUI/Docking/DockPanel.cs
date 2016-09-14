@@ -52,23 +52,33 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_panes = new DockPaneCollection();
             m_floatWindows = new FloatWindowCollection();
 
-            Theme.Apply(this);
-
             SuspendLayout();
+
+            m_dummyControl = new DummyControl();
+            m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
+            Controls.Add(m_dummyControl);
+
+            Theme.Apply(this);
 
             m_autoHideWindow = Theme.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
             m_autoHideWindow.Visible = false;
             m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged; 
             SetAutoHideWindowParent();
 
-            m_dummyControl = new DummyControl();
-            m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
-            Controls.Add(m_dummyControl);
-
             LoadDockWindows();
 
             m_dummyContent = new DockContent();
             ResumeLayout();
+        }
+
+        internal void ResetDummy()
+        {
+            DummyControl.ResetBackColor();
+        }
+
+        internal void SetDummy()
+        {
+            DummyControl.BackColor = DockBackColor;
         }
 
         private Color m_BackColor;

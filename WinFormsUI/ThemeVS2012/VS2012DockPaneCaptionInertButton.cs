@@ -1,8 +1,10 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace WeifenLuo.WinFormsUI.ThemeVS2012
 {
+    [ToolboxItem(false)]
     public class VS2012DockPaneCaptionInertButton : InertButtonBase
     {
         private Bitmap _hovered;
