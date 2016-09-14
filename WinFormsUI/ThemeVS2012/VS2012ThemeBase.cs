@@ -10,7 +10,7 @@
     {
         public VS2012ThemeBase(byte[] resources, IDockPaneSplitterControlFactory splitterFactory, IWindowSplitterControlFactory windowsSplitterFactory)
         {
-            ColorPalette = new DockPanelColorPalette(resources);
+            ColorPalette = new DockPanelColorPalette(new VS2012PaletteFactory(resources));
             Skin = new DockPanelSkin();
             PaintingService = new PaintingService();
             ImageService = new ImageService(this);

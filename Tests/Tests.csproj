@@ -82,6 +82,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2010.csproj">
+      <Project>{e9efe270-83bc-4d18-a1bf-7902ba8b83d6}</Project>
+      <Name>ThemeVS2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinFormsUI\ThemeVS2012.csproj">
       <Project>{4ed4fdb5-9fd0-49e6-876d-1635f727c755}</Project>
       <Name>ThemeVS2012</Name>
@@ -89,6 +93,10 @@
     <ProjectReference Include="..\WinFormsUI\ThemeVS2013.csproj">
       <Project>{245e07f6-10d5-4cfa-b003-0deb06b223da}</Project>
       <Name>ThemeVS2013</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2015.csproj">
+      <Project>{007d4ac8-948f-4816-86ad-b9d1343672c1}</Project>
+      <Name>ThemeVS2015</Name>
     </ProjectReference>
     <ProjectReference Include="..\WinFormsUI\WinFormsUI.csproj">
       <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>

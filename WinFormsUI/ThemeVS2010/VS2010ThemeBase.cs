@@ -1,29 +1,28 @@
-namespace WeifenLuo.WinFormsUI.ThemeVS2015
+﻿namespace WeifenLuo.WinFormsUI.ThemeVS2010
 {
+    using Docking;
     using ThemeVS2012;
     using ThemeVS2013;
-    using Docking;
 
     /// <summary>
-    /// Visual Studio 2015 theme base.
+    /// Visual Studio 2010 theme base.
     /// </summary>
-    public abstract class VS2015ThemeBase : ThemeBase
+    public abstract class VS2010ThemeBase : ThemeBase
     {
-        public VS2015ThemeBase(byte[] resources)
+        public VS2010ThemeBase(byte[] resources)
         {
-            ColorPalette = new DockPanelColorPalette(new VS2012PaletteFactory(resources));
+            ColorPalette = new DockPanelColorPalette(new VS2010PaletteFactory(resources));
             Skin = new DockPanelSkin();
             PaintingService = new PaintingService();
             ImageService = new ImageService(this);
             Measures.SplitterSize = 6;
             Measures.AutoHideSplitterSize = 3;
             Measures.DockPadding = 6;
-            ShowAutoHideContentOnHover = false;
-            Extender.AutoHideStripFactory = new VS2012AutoHideStripFactory();
-            Extender.AutoHideWindowFactory = new VS2012AutoHideWindowFactory();
-            Extender.DockPaneFactory = new VS2013DockPaneFactory();
-            Extender.DockPaneCaptionFactory = new VS2013DockPaneCaptionFactory();
-            Extender.DockPaneStripFactory = new VS2013DockPaneStripFactory();
+            ShowAutoHideContentOnHover = true;
+            Extender.DockPaneCaptionFactory = new VS2010DockPaneCaptionFactory();
+            Extender.AutoHideStripFactory = new VS2010AutoHideStripFactory();
+            Extender.AutoHideWindowFactory = new VS2010AutoHideWindowFactory();
+            Extender.DockPaneStripFactory = new VS2010DockPaneStripFactory();
             Extender.DockPaneSplitterControlFactory = new VS2013DockPaneSplitterControlFactory();
             Extender.WindowSplitterControlFactory = new VS2013WindowSplitterControlFactory();
             Extender.DockWindowFactory = new VS2012DockWindowFactory();
