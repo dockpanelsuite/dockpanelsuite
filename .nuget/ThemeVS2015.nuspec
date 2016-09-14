@@ -10,27 +10,24 @@
       <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="" />
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
-	<dependencies>
+    <dependencies>
       <dependency id="DockPanelSuite" version="2.11.0-beta2" />
     </dependencies>
-    <id>DockPanelSuite.ThemeVS2012</id>
-    <title>DockPanel Suite VS2012 Themes</title>
+    <id>DockPanelSuite.ThemeVS2015</id>
+    <title>DockPanel Suite VS2015 Themes</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Visual Studio 2012 themes for DockPanel Suite.</description>
-    <summary>Visual Studio 2012 themes for DockPanel Suite.</summary>
+    <description>Visual Studio 2015 themes for DockPanel Suite.</description>
+    <summary>Visual Studio 2015 themes for DockPanel Suite.</summary>
     <releaseNotes>
 Sept 14, 2016: 2.11.0 Beta 2
-Updated. Dark theme is added. Blue theme is added.
-
-Jul 6, 2016: 2.10.0
-Initial release of this theme as a separate assembly. Light theme is added.
+Initial release with Blue/Dark/Light themes.
 </releaseNotes>
     <copyright>(C) 2007-2013 Weifen Luo and other contributors</copyright>
     <language>en-US</language>
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" />
-    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2012.dll" />
+    <file src="..\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" />
+    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" />
   </files>
 </package>

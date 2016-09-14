@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.11.0-beta1</version>
+    <version>2.11.0-beta2</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,102 +16,104 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
-Visual Studio 2003 Theme: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2003/
-Visual Studio 2012 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2012/
-Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
+      Visual Studio 2003 Theme: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2003/
+      Visual Studio 2012 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2012/
+      Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
+      Visual Studio 2015 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2015/
 
-Sept 11, 2016: 2.11.0 Beta 1
-GitHub #155 Fixed main window focus lost during docking.
-GitHub #291 Fixed nested disposal exception.
-GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces. Added Visual Studio 2013 Dark and Light themes.
-GitHub #317 Added Visual Studio 2012 Dark theme.
-GitHub #318 Fixed some flickers.
-GitHub #320 Added some HiDPI support.
-GitHub #321 Fixed some memory leak.
-GitHub #323 Removed focus content first when hiding.
-GitHub #334 Fixed font inheritance and cascading.
-GitHub #369 Added in-place patch management.
-GitHub #374 Color palette is introduced in theme design.
-GitHub #378 Added Visual Studio 2012 Blue theme.
-GitHub #408 Minimum .NET Framework version is now 3.5.
+      Sept 14, 2016: 2.11.0 Beta 2
+      GitHub #155 Fixed main window focus lost during docking.
+      GitHub #291 Fixed nested disposal exception.
+      GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces. Added Visual Studio 2013 Dark and Light themes.
+      GitHub #317 Added Visual Studio 2012 Dark theme.
+      GitHub #318 Fixed some flickers.
+      GitHub #320 Added some HiDPI support.
+      GitHub #321 Fixed some memory leak.
+      GitHub #323 Removed focus content first when hiding.
+      GitHub #334 Fixed font inheritance and cascading.
+      GitHub #369 Added in-place patch management.
+      GitHub #374 Color palette is introduced in theme design.
+      GitHub #378 Added Visual Studio 2012 Blue theme.
+      GitHub #387 Added Visual Studio 2015 Blue/Dark/Light themes.
+      GitHub #408 Minimum .NET Framework version is now 3.5.
 
-Jul 6, 2016: 2.10.0
-1. GitHub #19 Added Visual Studio 2012 Light theme.
-2. GitHub #112 Changed theme related interfaces.
-3. GitHub #121 Added a close button on tab (VS2012 theme only).
-4. GitHub #124 Fixed flickers of VS2012 Light theme.
-5. GitHub #143 Memory leak in VS2012LighSplitterControl class. 
-6. GitHub #161 Tabs docked at the bottom close unexpectedly.
-7. GitHub #163 Hatch marks over the pin and close button on a small window.
-8. GitHub #172 Skin demo button broken in sample project.
-9. GitHub #175 Handling long headings patch from @lukeer.
-10. GitHub #189 "Show Document Icon" doesn't work with the skin VS2012 Light theme.
-11. GitHub #183 VS2012 Theme enhancement in sample project.
-12. GitHub #241 Multiple UI thread support is added.
-13. GitHub #261 Addessed memory leak when a dock content is closed.
-14. GitHub #300 Hide DockPanel.Skin in designer.
-15. GitHub #306 Added Visual Studio 2013 Blue theme.
-16. GitHub #315 Non default themes are now in separate assemblies/NuGet packages.
-17. GitHub #322 Added a drag event notification.
-18. GitHub #325 Close tabs without activating them first.
-19. GitHub #329 Revised gradient color tab rendering.
+      Jul 6, 2016: 2.10.0
+      1. GitHub #19 Added Visual Studio 2012 Light theme.
+      2. GitHub #112 Changed theme related interfaces.
+      3. GitHub #121 Added a close button on tab (VS2012 theme only).
+      4. GitHub #124 Fixed flickers of VS2012 Light theme.
+      5. GitHub #143 Memory leak in VS2012LighSplitterControl class.
+      6. GitHub #161 Tabs docked at the bottom close unexpectedly.
+      7. GitHub #163 Hatch marks over the pin and close button on a small window.
+      8. GitHub #172 Skin demo button broken in sample project.
+      9. GitHub #175 Handling long headings patch from @lukeer.
+      10. GitHub #189 "Show Document Icon" doesn't work with the skin VS2012 Light theme.
+      11. GitHub #183 VS2012 Theme enhancement in sample project.
+      12. GitHub #241 Multiple UI thread support is added.
+      13. GitHub #261 Addessed memory leak when a dock content is closed.
+      14. GitHub #300 Hide DockPanel.Skin in designer.
+      15. GitHub #306 Added Visual Studio 2013 Blue theme.
+      16. GitHub #315 Non default themes are now in separate assemblies/NuGet packages.
+      17. GitHub #322 Added a drag event notification.
+      18. GitHub #325 Close tabs without activating them first.
+      19. GitHub #329 Revised gradient color tab rendering.
 
-BREAKING CHANGES
-Except default VS2005 theme, all other themes are published as separate NuGet packages.
+      BREAKING CHANGES
+      Except default VS2005 theme, all other themes are published as separate NuGet packages.
 
-November 26, 2013: 2.9.0
-1. GitHub #81 - Add an event to the DockPanel that will be raised when the value of the AutoHideWindow's ActiveContent property changes.
-2. GitHub #123 - Opt-in ShowAutoHideContentOnHover feature to require a tab to be clicked on to show autohide content vice the current behavior of showing on hover.
-3. GitHub #128 - Fixed issues with the sample application: "Close All" should only close documents and disable "close all but this" when there are no documents.
-4. GitHub #129 - Fixed ArgumentException with VS2005 theme.
-5. GitHub #130 - Fixed NullReferenceException when setting DockPanel.CloseButton while the content is hidden. Fixed issue that prevented close button from being show when made visible programatically.
-6. GitHub #138 - When showing a content, prefer to place it in the active pane, otherwise default to the first available.
+      November 26, 2013: 2.9.0
+      1. GitHub #81 - Add an event to the DockPanel that will be raised when the value of the AutoHideWindow's ActiveContent property changes.
+      2. GitHub #123 - Opt-in ShowAutoHideContentOnHover feature to require a tab to be clicked on to show autohide content vice the current behavior of showing on hover.
+      3. GitHub #128 - Fixed issues with the sample application: "Close All" should only close documents and disable "close all but this" when there are no documents.
+      4. GitHub #129 - Fixed ArgumentException with VS2005 theme.
+      5. GitHub #130 - Fixed NullReferenceException when setting DockPanel.CloseButton while the content is hidden. Fixed issue that prevented close button from being show when made visible programatically.
+      6. GitHub #138 - When showing a content, prefer to place it in the active pane, otherwise default to the first available.
 
-April 28, 2013: 2.8.0
-1. GitHub #69 Restored multiple UI threads support.
-2. GitHub #81 Added ActiveAutoHideContentChanged event.
-3. GitHub #82 Fixed dock indicator issue when DockPanel parent form is set to TopMost.
-4. GitHub #91 Changed double-click behavior of FloatWindow.
-5. GitHub #119 Changed initialization of DockContent's AutoHidePortion.
-6. GitHub #123 Require click to show autohide content.
+      April 28, 2013: 2.8.0
+      1. GitHub #69 Restored multiple UI threads support.
+      2. GitHub #81 Added ActiveAutoHideContentChanged event.
+      3. GitHub #82 Fixed dock indicator issue when DockPanel parent form is set to TopMost.
+      4. GitHub #91 Changed double-click behavior of FloatWindow.
+      5. GitHub #119 Changed initialization of DockContent's AutoHidePortion.
+      6. GitHub #123 Require click to show autohide content.
 
-Sept 5, 2012: 2.7.0
-1. GitHub #11 - Corrected an issue that prevented the docking indicator from being shown when docking a float window while the cursor was in the float window to be docked.
-2. GitHub #16 - Fixed a stack overflow that occurs on Mono at shutdown due to an existing discrepency in Mono's implementation of Control.Dispose().
-3. GitHub #22 - DockContent.TabText is now localizable.
-4. GitHub #28 - Closing a tab via middle click no longer activates the content first, which was unnecessarily time consuming and could result in the active tab changing from what was previously active.
-5. GitHub #31 - SupportDeeplyNestedControls is now turned off by default. (BREAKING CHANGE)
-6. GitHub #35 - The icon of a FloatWindow will reflect the active content. Note that icons are not visible on FloatWindows by default but can be made visible via the Extender functionality (see the cookbook on the wiki for details).
-7. GitHub #40 - The middle mouse button now closes tabs embedded in a FloatWindow.
-8. GitHub #42 - Added support for .NET Client Profile.
-9. GitHub #46 - Fixed docking indicators not-visible issue for most known scenarios.
+      Sept 5, 2012: 2.7.0
+      1. GitHub #11 - Corrected an issue that prevented the docking indicator from being shown when docking a float window while the cursor was in the float window to be docked.
+      2. GitHub #16 - Fixed a stack overflow that occurs on Mono at shutdown due to an existing discrepency in Mono's implementation of Control.Dispose().
+      3. GitHub #22 - DockContent.TabText is now localizable.
+      4. GitHub #28 - Closing a tab via middle click no longer activates the content first, which was unnecessarily time consuming and could result in the active tab changing from what was previously active.
+      5. GitHub #31 - SupportDeeplyNestedControls is now turned off by default. (BREAKING CHANGE)
+      6. GitHub #35 - The icon of a FloatWindow will reflect the active content. Note that icons are not visible on FloatWindows by default but can be made visible via the Extender functionality (see the cookbook on the wiki for details).
+      7. GitHub #40 - The middle mouse button now closes tabs embedded in a FloatWindow.
+      8. GitHub #42 - Added support for .NET Client Profile.
+      9. GitHub #46 - Fixed docking indicators not-visible issue for most known scenarios.
 
-BREAKING CHANGES
-#31 - By changing the default value of SupportDeeplyNestedControls to false, if a DockPanel previously relied on this functionality being enabled it will need to be manually enabled again following the upgrade to 2.7.
+      BREAKING CHANGES
+      #31 - By changing the default value of SupportDeeplyNestedControls to false, if a DockPanel previously relied on this functionality being enabled it will need to be manually enabled again following the upgrade to 2.7.
 
-May 26, 2012: 2.6.0
-1. Fix Bug [1849882]: When click Autohide, form should slide away.
-2. Patch 3118287: Fix for unable to move splitter after hide.
-3. GitHub #1: ActiveContentChanged Doesn't Fire When Many DockPanels Exist in Application.
-4. GitHub #2: Heavily Nested Controls Do Not Resize With DockContent.
-5. GitHub #7: Should Work on Mono/Linux/Mac with Minimal Feature Set.
-6. First signed release with NuGet package deployment.
+      May 26, 2012: 2.6.0
+      1. Fix Bug [1849882]: When click Autohide, form should slide away.
+      2. Patch 3118287: Fix for unable to move splitter after hide.
+      3. GitHub #1: ActiveContentChanged Doesn't Fire When Many DockPanels Exist in Application.
+      4. GitHub #2: Heavily Nested Controls Do Not Resize With DockContent.
+      5. GitHub #7: Should Work on Mono/Linux/Mac with Minimal Feature Set.
+      6. First signed release with NuGet package deployment.
 
-Nov 25, 2010: 2.5.0
-1. Fix Bug [2149926]: Can't resize document marked as HideOnClose when one of a set of side by side documents is closed (patch 3118287 from Agiel).
-2. Fix Bug [2792816]: Changing the DockBackColor at design time does not refresh immediately. Set a couple public properties to [Browsable(false)] so that they are not displayed in the Designer.
-3. Fix Bug [2956415]: The Window List button is hidden underneath the close button on a Document when a Floating form is opened and a new Document form opened afterwards.
-4. Fix Bug [2945519]: CloseContent suspended layout but it was possible to not resume layout because of early exits. try/finally added and suspend layout moved below the early exits since the suspend is not needed that early.
-5. Fix Bug [2782283]: DockPanelSkin tool window inactive caption gradient end color should have been SystemColors.InactiveCaption and TextColor should have been SystemColors.InactiveCaptionText instead of ControlText so that it will show up in all windows color schemes.
-6. Fix Bug [2737792]: For AutoHideTabs that are right or left the icon should be rotated 90 degrees to be consistent with Visual Studio (original code from lind60 and re-posted by jhorigan).
-7. Patch 2810961: Add a text font to the DockPanelSkin to allow different fonts to be used for tab text. From Branko Drvensek.
+      Nov 25, 2010: 2.5.0
+      1. Fix Bug [2149926]: Can't resize document marked as HideOnClose when one of a set of side by side documents is closed (patch 3118287 from Agiel).
+      2. Fix Bug [2792816]: Changing the DockBackColor at design time does not refresh immediately. Set a couple public properties to [Browsable(false)] so that they are not displayed in the Designer.
+      3. Fix Bug [2956415]: The Window List button is hidden underneath the close button on a Document when a Floating form is opened and a new Document form opened afterwards.
+      4. Fix Bug [2945519]: CloseContent suspended layout but it was possible to not resume layout because of early exits. try/finally added and suspend layout moved below the early exits since the suspend is not needed that early.
+      5. Fix Bug [2782283]: DockPanelSkin tool window inactive caption gradient end color should have been SystemColors.InactiveCaption and TextColor should have been SystemColors.InactiveCaptionText instead of ControlText so that it will show up in all windows color schemes.
+      6. Fix Bug [2737792]: For AutoHideTabs that are right or left the icon should be rotated 90 degrees to be consistent with Visual Studio (original code from lind60 and re-posted by jhorigan).
+      7. Patch 2810961: Add a text font to the DockPanelSkin to allow different fonts to be used for tab text. From Branko Drvensek.
 
-Oct 30, 2010: 2.4.0
-1. Upgrade the suite to use Visual Studio 2008. The suite still uses the 2.0 Framework.
-2. BUG FIX: [2149926] Can't resize document marked as HideOnClose when one of a set of side by side documents is closed.
-3. BUG FIX: [2780774] Sample app layout by code functionality does not fully work and breaks when executed two times in a row.
-4. Middle mouse button click on a Document tab closes the Document that was clicked. (Original code from Ralf Jablonski but modified to close the Document that was clicked)
-</releaseNotes>
+      Oct 30, 2010: 2.4.0
+      1. Upgrade the suite to use Visual Studio 2008. The suite still uses the 2.0 Framework.
+      2. BUG FIX: [2149926] Can't resize document marked as HideOnClose when one of a set of side by side documents is closed.
+      3. BUG FIX: [2780774] Sample app layout by code functionality does not fully work and breaks when executed two times in a row.
+      4. Middle mouse button click on a Document tab closes the Document that was clicked. (Original code from Ralf Jablonski but modified to close the Document that was clicked)
+    </releaseNotes>
     <copyright>(C) 2007-2013 Weifen Luo and other contributors</copyright>
     <language>en-US</language>
     <tags>windows forms docking dockpanel panel</tags>
