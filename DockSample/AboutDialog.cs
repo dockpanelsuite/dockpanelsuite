@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Reflection;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace DockSample
@@ -15,6 +9,7 @@ namespace DockSample
         public AboutDialog()
         {
             InitializeComponent();
+            AutoScaleMode = AutoScaleMode.Dpi;
         }
 
         private void AboutDialog_Load(object sender, EventArgs e)

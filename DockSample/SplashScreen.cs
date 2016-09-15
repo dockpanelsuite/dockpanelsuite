@@ -7,6 +7,7 @@ namespace DockSample
         public SplashScreen()
         {
             InitializeComponent();
+            AutoScaleMode = AutoScaleMode.Dpi;
         }
     }
 }

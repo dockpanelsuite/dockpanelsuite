@@ -1,11 +1,11 @@
+using Lextm.SharpSnmpLib;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using System.IO;
-using Lextm.SharpSnmpLib;
 using WeifenLuo.WinFormsUI.Docking;
-using System.Linq;
 
 namespace DockSample
 {
@@ -20,9 +20,11 @@ namespace DockSample
         private DummyTaskList m_taskList;
         private bool _showSplash;
         private SplashScreen _splashScreen;
+
         public MainForm()
         {
             InitializeComponent();
+            AutoScaleMode = AutoScaleMode.Dpi;
 
             SetSplashScreen();
             CreateStandardControls();
