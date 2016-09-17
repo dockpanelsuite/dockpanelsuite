@@ -249,8 +249,9 @@ namespace DockSample
 
         private void EnableVSRenderer(VisualStudioToolStripExtender.VsVersion version, ToolStripRenderer renderer)
         {
-            vsToolStripExtender1.SetStyle(this.mainMenu, version, renderer);
-            vsToolStripExtender1.SetStyle(this.toolBar, version, renderer);
+            vsToolStripExtender1.SetStyle(mainMenu, version, renderer);
+            vsToolStripExtender1.SetStyle(toolBar, version, renderer);
+            vsToolStripExtender1.SetStyle(statusBar, version, renderer);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)

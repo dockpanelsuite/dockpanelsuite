@@ -12,6 +12,21 @@ namespace WeifenLuo.WinFormsUI.Docking
             _palette = palette;
         }
 
+        public Color ButtonCheckedHoveredBorder
+        {
+            get { return _palette.CommandBarToolbarButtonCheckedHovered.Border; }
+        }
+
+        public Color ButtonCheckedHoveredBackground
+        {
+            get { return _palette.CommandBarMenuPopupHovered.CheckmarkBackground; }
+        }
+
+        public Color ButtonCheckedBorder
+        {
+            get { return _palette.CommandBarToolbarButtonChecked.Border; }
+        }
+
         public override Color ButtonCheckedGradientBegin
         {
             get { return _palette.CommandBarToolbarButtonChecked.Background; }
@@ -64,7 +79,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public override Color ButtonPressedBorder
         {
-            get { return ButtonSelectedBorder; }
+            get { return _palette.CommandBarMenuTopLevelHeaderHovered.Border; }
         }
 
         public override Color ButtonPressedGradientBegin
@@ -91,6 +106,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get { return _palette.CommandBarMenuPopupDefault.BackgroundTop; }
         }
+
         public override Color MenuItemPressedGradientEnd
         {
             get { return _palette.CommandBarMenuPopupDefault.BackgroundTop; }

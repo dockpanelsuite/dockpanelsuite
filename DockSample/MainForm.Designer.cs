@@ -637,7 +637,7 @@ namespace DockSample
             this.dockPanel.Size = new System.Drawing.Size(579, 338);
             this.dockPanel.TabIndex = 0;
             // 
-            // vS2012ToolStripExtender1
+            // vsToolStripExtender1
             // 
             this.vsToolStripExtender1.DefaultRenderer = null;
             // 

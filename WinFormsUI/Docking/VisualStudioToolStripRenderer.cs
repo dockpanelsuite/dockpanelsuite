@@ -7,9 +7,29 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     public class VisualStudioToolStripRenderer : ToolStripProfessionalRenderer
     {
+        private SolidBrush _statusBarBrush;
+        private SolidBrush _statusGripBrush;
+        private SolidBrush _statusGripAccentBrush;
+        private static Rectangle[] baseSizeGripRectangles =
+        {
+            new Rectangle(6,0,1,1),
+            new Rectangle(6,2,1,1),
+            new Rectangle(6,4,1,1),
+            new Rectangle(6,6,1,1),
+            new Rectangle(4,2,1,1),
+            new Rectangle(4,4,1,1),
+            new Rectangle(4,6,1,1),
+            new Rectangle(2,4,1,1),
+            new Rectangle(2,6,1,1),
+            new Rectangle(0,6,1,1)
+        };
+
         public VisualStudioToolStripRenderer(DockPanelColorPalette palette)
             : base(new VisualStudioColorTable(palette))
         {
+            _statusBarBrush = new SolidBrush(palette.MainWindowStatusBarDefault.Background);
+            _statusGripBrush = new SolidBrush(palette.MainWindowStatusBarDefault.ResizeGrip);
+            _statusGripAccentBrush = new SolidBrush(palette.MainWindowStatusBarDefault.ResizeGripAccent);
         }
 
         public void RefreshToolStrips()
@@ -69,6 +89,59 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
+        {
+            var item = e.ToolStrip as StatusStrip;
+            if (item == null)
+                base.OnRenderToolStripBorder(e);
+            else
+                e.Graphics.FillRectangle(_statusBarBrush, e.ToolStrip.Bounds);
+        }
+
+        protected override void OnRenderStatusStripSizingGrip(ToolStripRenderEventArgs e)
+        {
+            // IMPORTANT: below code was taken from Microsoft's reference code (MIT license).
+            Graphics g = e.Graphics;
+            StatusStrip statusStrip = e.ToolStrip as StatusStrip;
+
+            // we have a set of stock rectangles.  Translate them over to where the grip is to be drawn
+            // for the white set, then translate them up and right one pixel for the grey.
+
+
+            if (statusStrip != null)
+            {
+                Rectangle sizeGripBounds = statusStrip.SizeGripBounds;
+                if (!LayoutUtils.IsZeroWidthOrHeight(sizeGripBounds))
+                {
+                    Rectangle[] whiteRectangles = new Rectangle[baseSizeGripRectangles.Length];
+                    Rectangle[] greyRectangles = new Rectangle[baseSizeGripRectangles.Length];
+
+                    for (int i = 0; i < baseSizeGripRectangles.Length; i++)
+                    {
+                        Rectangle baseRect = baseSizeGripRectangles[i];
+                        if (statusStrip.RightToLeft == RightToLeft.Yes)
+                        {
+                            baseRect.X = sizeGripBounds.Width - baseRect.X - baseRect.Width;
+                        }
+                        baseRect.Offset(sizeGripBounds.X, sizeGripBounds.Bottom - 12 /*height of pyramid (10px) + 2px padding from bottom*/);
+                        greyRectangles[i] = baseRect;
+                        if (statusStrip.RightToLeft == RightToLeft.Yes)
+                        {
+                            baseRect.Offset(1, -1);
+                        }
+                        else
+                        {
+                            baseRect.Offset(-1, -1);
+                        }
+                        whiteRectangles[i] = baseRect;
+                    }
+
+                    g.FillRectangles(_statusGripAccentBrush, whiteRectangles);
+                    g.FillRectangles(_statusGripBrush, greyRectangles);
+                }
+            }
+        }
+
         protected override void OnRenderButtonBackground(ToolStripItemRenderEventArgs e)
         {
             ToolStripButton button = e.Item as ToolStripButton;
@@ -84,23 +157,34 @@ namespace WeifenLuo.WinFormsUI.Docking
                     Color brushMiddle;
                     Color brushEnd;
 
+                    var table = ColorTable as VisualStudioColorTable;
                     if (button.Checked)
                     {
-                        pen = Color.FromArgb(0xFF, 0x00, 0x7A, 0xCC); // ColorTable.ButtonPressedBorder;
-                        brushBegin = ColorTable.ButtonCheckedGradientBegin;
-                        brushMiddle = ColorTable.ButtonCheckedGradientMiddle;
-                        brushEnd = ColorTable.ButtonCheckedGradientEnd;
+                        if (button.Selected)
+                        {
+                            pen = table.ButtonCheckedHoveredBorder;
+                            brushBegin = table.ButtonCheckedHoveredBackground;
+                            brushMiddle = table.ButtonCheckedHoveredBackground;
+                            brushEnd = table.ButtonCheckedHoveredBackground;
+                        }
+                        else
+                        {
+                            pen = table.ButtonCheckedBorder;
+                            brushBegin = ColorTable.ButtonCheckedGradientBegin;
+                            brushMiddle = ColorTable.ButtonCheckedGradientMiddle;
+                            brushEnd = ColorTable.ButtonCheckedGradientEnd;
+                        }
                     }
                     else if (button.Pressed)
                     {
-                        pen = Color.Transparent; // ColorTable.ButtonPressedBorder;
+                        pen = ColorTable.ButtonPressedBorder;
                         brushBegin = ColorTable.ButtonPressedGradientBegin;
                         brushMiddle = ColorTable.ButtonPressedGradientMiddle;
                         brushEnd = ColorTable.ButtonPressedGradientEnd;
                     }
                     else
                     {
-                        pen = Color.Transparent; // ColorTable.ButtonSelectedBorder;
+                        pen = ColorTable.ButtonSelectedBorder;
                         brushBegin = ColorTable.ButtonSelectedGradientBegin;
                         brushMiddle = ColorTable.ButtonSelectedGradientMiddle;
                         brushEnd = ColorTable.ButtonSelectedGradientEnd;
