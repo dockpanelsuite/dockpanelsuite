@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -15,12 +16,14 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         public DockPanelSkin Skin { get; protected set; }
-        
+
         public DockPanelColorPalette ColorPalette { get; protected set; }
 
         public IImageService ImageService { get; protected set; }
 
         public IPaintingService PaintingService { get; protected set; }
+
+        public ToolStripRenderer ToolStripRenderer { get; protected set;}
 
         public Measures Measures { get; } = new Measures();
 

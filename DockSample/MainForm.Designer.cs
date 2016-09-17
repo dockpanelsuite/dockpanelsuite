@@ -104,7 +104,8 @@ namespace DockSample
             this.vS2012LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
             this.vS2012BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012BlueTheme();
             this.vS2012DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
-            this.vS2012ToolStripExtender1 = new DockSample.VSToolStripExtender(this.components);
+            this.vS2010BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2010BlueTheme();
+            this.vsToolStripExtender1 = new WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender(this.components);
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -638,9 +639,7 @@ namespace DockSample
             // 
             // vS2012ToolStripExtender1
             // 
-            this.vS2012ToolStripExtender1.DefaultRenderer = null;
-            this.vS2012ToolStripExtender1.VS2012Renderer = null;
-            this.vS2012ToolStripExtender1.VS2013Renderer = null;
+            this.vsToolStripExtender1.DefaultRenderer = null;
             // 
             // MainForm
             // 
@@ -744,6 +743,6 @@ namespace DockSample
         private WeifenLuo.WinFormsUI.Docking.VS2010BlueTheme vS2010BlueTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;
         private WeifenLuo.WinFormsUI.Docking.VS2005Theme vS2005Theme1;
-        private VSToolStripExtender vS2012ToolStripExtender1;
+        private WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender vsToolStripExtender1;
     }
 }

@@ -3,10 +3,10 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-namespace DockSample
+namespace WeifenLuo.WinFormsUI.Docking
 {
-    [ProvideProperty("EnableVS2012Style", typeof(ToolStrip))]
-    public partial class VSToolStripExtender : Component, IExtenderProvider
+    [ProvideProperty("EnableVSStyle", typeof(ToolStrip))]
+    public partial class VisualStudioToolStripExtender : Component, IExtenderProvider
     {
         private class ToolStripProperties
         {
@@ -52,12 +52,12 @@ namespace DockSample
 
         private readonly Dictionary<ToolStrip, ToolStripProperties> strips = new Dictionary<ToolStrip, ToolStripProperties>();
 
-        public VSToolStripExtender()
+        public VisualStudioToolStripExtender()
         {
             InitializeComponent();
         }
 
-        public VSToolStripExtender(IContainer container)
+        public VisualStudioToolStripExtender(IContainer container)
         {
             container.Add(this);
 
@@ -75,10 +75,6 @@ namespace DockSample
 
         public ToolStripRenderer DefaultRenderer { get; set; }
 
-        public ToolStripRenderer VS2012Renderer { get; set; }
-
-        public ToolStripRenderer VS2013Renderer { get; set; }
-
         [DefaultValue(false)]
         public VsVersion GetStyle(ToolStrip strip)
         {
@@ -88,7 +84,7 @@ namespace DockSample
             return VsVersion.Unkown;
         }
 
-        public void SetStyle(ToolStrip strip, VsVersion version)
+        public void SetStyle(ToolStrip strip, VsVersion version, ToolStripRenderer renderer)
         {
             var apply = false;
             ToolStripProperties properties = null;
@@ -107,9 +103,7 @@ namespace DockSample
 
             if (apply)
             {
-                strip.Renderer = version == VsVersion.Vs2013
-                                     ? this.VS2013Renderer
-                                     : version == VsVersion.Vs2012 ? VS2012Renderer : DefaultRenderer;
+                strip.Renderer = renderer ?? DefaultRenderer;
                 properties.VsVersion = version;
             }
         }
@@ -119,8 +113,11 @@ namespace DockSample
             Unkown,
             Vs2003,
             Vs2005,
+            Vs2008,
+            Vs2010,
             Vs2012,
-            Vs2013
+            Vs2013,
+            Vs2015
         }
     }
 }

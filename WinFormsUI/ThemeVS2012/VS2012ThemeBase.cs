@@ -14,6 +14,7 @@
             Skin = new DockPanelSkin();
             PaintingService = new PaintingService();
             ImageService = new ImageService(this);
+            ToolStripRenderer = new VisualStudioToolStripRenderer(ColorPalette);
             Measures.SplitterSize = 6;
             Measures.AutoHideSplitterSize = 3;
             Measures.DockPadding = 6;

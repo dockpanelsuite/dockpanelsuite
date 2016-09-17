@@ -1,4 +1,3 @@
-using Lextm.SharpSnmpLib;
 using System;
 using System.Drawing;
 using System.IO;
@@ -34,10 +33,7 @@ namespace DockSample
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
             
-            vS2012ToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
-            vS2012ToolStripExtender1.VS2012Renderer = _vs2012ToolStripRenderer;
-            vS2012ToolStripExtender1.VS2013Renderer = _vs2013ToolStripRenderer;
-
+            vsToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
             SetSchema(this.menuItemSchemaVS2013Blue, null);
         }
 
@@ -160,8 +156,6 @@ namespace DockSample
         }
 
         private readonly ToolStripRenderer _toolStripProfessionalRenderer = new ToolStripProfessionalRenderer();
-        private readonly ToolStripRenderer _vs2012ToolStripRenderer = new VS2012ToolStripRenderer();
-        private readonly ToolStripRenderer _vs2013ToolStripRenderer = new Vs2013ToolStripRenderer();
         
         private void SetSchema(object sender, System.EventArgs e)
         {
@@ -174,62 +168,62 @@ namespace DockSample
             if (sender == this.menuItemSchemaVS2005)
             {
                 this.dockPanel.Theme = this.vS2005Theme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2005);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2005, vS2005Theme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2003)
             {
                 this.dockPanel.Theme = this.vS2003Theme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2003);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2003, vS2003Theme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2010Blue)
             {
                 this.dockPanel.Theme = this.vS2010BlueTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2012);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2010, vS2010BlueTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2012Light)
             {
                 this.dockPanel.Theme = this.vS2012LightTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2012);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012LightTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2012Blue)
             {
                 this.dockPanel.Theme = this.vS2012BlueTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2012);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012BlueTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2012Dark)
             {
                 this.dockPanel.Theme = this.vS2012DarkTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2012);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012DarkTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2013Blue)
             {
                 this.dockPanel.Theme = this.vS2013BlueTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013BlueTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2013Light)
             {
                 this.dockPanel.Theme = this.vS2013LightTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013LightTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2013Dark)
             {
                 this.dockPanel.Theme = this.vS2013DarkTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013DarkTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2015Blue)
             {
                 this.dockPanel.Theme = this.vS2015BlueTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015BlueTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2015Light)
             {
                 this.dockPanel.Theme = this.vS2015LightTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015LightTheme1.ToolStripRenderer);
             }
             else if (sender == this.menuItemSchemaVS2015Dark)
             {
                 this.dockPanel.Theme = this.vS2015DarkTheme1;
-                this.EnableVSRenderer(VSToolStripExtender.VsVersion.Vs2013);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1.ToolStripRenderer);
             }
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
@@ -253,10 +247,10 @@ namespace DockSample
                 dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
         }
 
-        private void EnableVSRenderer(VSToolStripExtender.VsVersion version)
+        private void EnableVSRenderer(VisualStudioToolStripExtender.VsVersion version, ToolStripRenderer renderer)
         {
-            vS2012ToolStripExtender1.SetStyle(this.mainMenu, version);
-            vS2012ToolStripExtender1.SetStyle(this.toolBar, version);
+            vsToolStripExtender1.SetStyle(this.mainMenu, version, renderer);
+            vsToolStripExtender1.SetStyle(this.toolBar, version, renderer);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)

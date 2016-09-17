@@ -510,6 +510,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
 
             m_components = new Container();
             m_selectMenu = new ContextMenuStrip(Components);
+            m_selectMenu.Renderer = pane.DockPanel.Theme.ToolStripRenderer;
 
             ResumeLayout();
         }

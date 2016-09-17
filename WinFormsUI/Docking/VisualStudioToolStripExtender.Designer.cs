@@ -1,6 +1,6 @@
-﻿namespace DockSample
+﻿namespace WeifenLuo.WinFormsUI.Docking
 {
-    partial class VSToolStripExtender
+    partial class VisualStudioToolStripExtender
     {
         /// <summary>
         /// Required designer variable.
