@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -9,6 +10,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         private readonly SolidBrush _horizontalBrush;
         private readonly SolidBrush _backgroundBrush;
+        private PathGradientBrush _foregroundBrush;
         private readonly Color[] _verticalSurroundColors;
         private int SplitterSize { get; }
 
@@ -18,10 +20,42 @@ namespace WeifenLuo.WinFormsUI.Docking
             _horizontalBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.ColorPalette.TabSelectedInactive.Background);
             _backgroundBrush = pane.DockPanel.Theme.PaintingService.GetBrush(pane.DockPanel.Theme.ColorPalette.MainWindowActive.Background);
             _verticalSurroundColors = new[]
-                                               {
-                                                   pane.DockPanel.Theme.ColorPalette.MainWindowActive.Background
-                                               };
+            {
+                pane.DockPanel.Theme.ColorPalette.MainWindowActive.Background
+            };
             SplitterSize = pane.DockPanel.Theme.Measures.SplitterSize;
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            Rectangle rect = ClientRectangle;
+            if (rect.Width <= 0 || rect.Height <= 0)
+                return;
+
+            if (Alignment != DockAlignment.Left && Alignment != DockAlignment.Right)
+                return;
+
+            _foregroundBrush?.Dispose();
+            using (var path = new GraphicsPath())
+            {
+                path.AddRectangle(rect);
+                _foregroundBrush = new PathGradientBrush(path)
+                {
+                    CenterColor = _horizontalBrush.Color,
+                    SurroundColors = _verticalSurroundColors
+                };
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (!IsDisposed && disposing)
+            {
+                _foregroundBrush?.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -39,18 +73,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         Debug.Assert(SplitterSize == rect.Width);
                         e.Graphics.FillRectangle(_backgroundBrush, rect);
-                        using (var path = new GraphicsPath())
-                        {
-                            path.AddRectangle(rect);
-                            using (var brush = new PathGradientBrush(path)
-                                {
-                                    CenterColor = _horizontalBrush.Color, SurroundColors = _verticalSurroundColors
-                                })
-                            {
-                                e.Graphics.FillRectangle(brush, rect.X + SplitterSize / 2 - 1, rect.Y,
-                                                         SplitterSize / 3, rect.Height);
-                            }
-                        }
+                        e.Graphics.FillRectangle(_foregroundBrush, rect.X + SplitterSize / 2 - 1, rect.Y,
+                                                    SplitterSize / 3, rect.Height);
                     }
                     break;
                 case DockAlignment.Bottom:
