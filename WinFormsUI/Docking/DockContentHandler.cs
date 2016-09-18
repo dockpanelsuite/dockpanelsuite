@@ -1078,7 +1078,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private ToolStripRenderer m_stripPreviousRenderer;
         private ContextMenuStrip m_tabPageContextMenuStrip;
 
         public ContextMenuStrip TabPageContextMenuStrip
@@ -1093,10 +1092,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (value == m_tabPageContextMenuStrip)
                     return;
 
-                if (m_tabPageContextMenuStrip != null)
-                    m_tabPageContextMenuStrip.Renderer = m_stripPreviousRenderer;
                 m_tabPageContextMenuStrip = value;
-                m_stripPreviousRenderer = m_tabPageContextMenuStrip?.Renderer;
                 ApplyTheme();
             }
         }
@@ -1104,7 +1100,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public void ApplyTheme()
         {
             if (m_tabPageContextMenuStrip != null && DockPanel != null)
-                m_tabPageContextMenuStrip.Renderer = DockPanel.Theme.ToolStripRenderer;
+                DockPanel.Theme.ApplyTo(m_tabPageContextMenuStrip);
         }
 
         #region IDockDragSource Members

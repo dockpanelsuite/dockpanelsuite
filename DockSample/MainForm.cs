@@ -168,62 +168,62 @@ namespace DockSample
             if (sender == this.menuItemSchemaVS2005)
             {
                 this.dockPanel.Theme = this.vS2005Theme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2005, vS2005Theme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2005, vS2005Theme1);
             }
             else if (sender == this.menuItemSchemaVS2003)
             {
                 this.dockPanel.Theme = this.vS2003Theme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2003, vS2003Theme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2003, vS2003Theme1);
             }
             else if (sender == this.menuItemSchemaVS2010Blue)
             {
                 this.dockPanel.Theme = this.vS2010BlueTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2010, vS2010BlueTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2010, vS2010BlueTheme1);
             }
             else if (sender == this.menuItemSchemaVS2012Light)
             {
                 this.dockPanel.Theme = this.vS2012LightTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012LightTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012LightTheme1);
             }
             else if (sender == this.menuItemSchemaVS2012Blue)
             {
                 this.dockPanel.Theme = this.vS2012BlueTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012BlueTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012BlueTheme1);
             }
             else if (sender == this.menuItemSchemaVS2012Dark)
             {
                 this.dockPanel.Theme = this.vS2012DarkTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012DarkTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2012, vS2012DarkTheme1);
             }
             else if (sender == this.menuItemSchemaVS2013Blue)
             {
                 this.dockPanel.Theme = this.vS2013BlueTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013BlueTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013BlueTheme1);
             }
             else if (sender == this.menuItemSchemaVS2013Light)
             {
                 this.dockPanel.Theme = this.vS2013LightTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013LightTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013LightTheme1);
             }
             else if (sender == this.menuItemSchemaVS2013Dark)
             {
                 this.dockPanel.Theme = this.vS2013DarkTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013DarkTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2013, vS2013DarkTheme1);
             }
             else if (sender == this.menuItemSchemaVS2015Blue)
             {
                 this.dockPanel.Theme = this.vS2015BlueTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015BlueTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015BlueTheme1);
             }
             else if (sender == this.menuItemSchemaVS2015Light)
             {
                 this.dockPanel.Theme = this.vS2015LightTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015LightTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015LightTheme1);
             }
             else if (sender == this.menuItemSchemaVS2015Dark)
             {
                 this.dockPanel.Theme = this.vS2015DarkTheme1;
-                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1.ToolStripRenderer);
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
             }
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
@@ -247,11 +247,11 @@ namespace DockSample
                 dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
         }
 
-        private void EnableVSRenderer(VisualStudioToolStripExtender.VsVersion version, ToolStripRenderer renderer)
+        private void EnableVSRenderer(VisualStudioToolStripExtender.VsVersion version, ThemeBase theme)
         {
-            vsToolStripExtender1.SetStyle(mainMenu, version, renderer);
-            vsToolStripExtender1.SetStyle(toolBar, version, renderer);
-            vsToolStripExtender1.SetStyle(statusBar, version, renderer);
+            vsToolStripExtender1.SetStyle(mainMenu, version, theme);
+            vsToolStripExtender1.SetStyle(toolBar, version, theme);
+            vsToolStripExtender1.SetStyle(statusBar, version, theme);
         }
 
         private void SetDocumentStyle(object sender, System.EventArgs e)

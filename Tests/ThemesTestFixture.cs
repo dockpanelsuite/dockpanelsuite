@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Drawing;
+using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace Tests
@@ -754,5 +755,49 @@ namespace Tests
         {
             Assert.AreEqual(left.ToArgb(), right.ToArgb(), $"expected {ColorTranslator.ToHtml(right)}, but {ColorTranslator.ToHtml(left)}");
         }
+
+        [Test]
+        public void ToolStripTest()
+        {
+            var stripSystem = new ContextMenuStrip();
+            stripSystem.RenderMode = ToolStripRenderMode.System;
+
+            var stripProfessional = new ContextMenuStrip();
+            stripProfessional.RenderMode = ToolStripRenderMode.Professional;
+
+            var stripManager = new ContextMenuStrip();
+            stripManager.RenderMode = ToolStripRenderMode.ManagerRenderMode;
+
+            var renderder = new CustomRenderer();
+            var stripCustom = new ContextMenuStrip();
+            stripCustom.Renderer = renderder;
+
+            Assert.AreEqual(ToolStripRenderMode.System, stripSystem.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.Professional, stripProfessional.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.ManagerRenderMode, stripManager.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.Custom, stripCustom.RenderMode);
+            Assert.AreEqual(renderder, stripCustom.Renderer);
+
+            var theme = new VS2012BlueTheme();
+            theme.ApplyTo(stripManager);
+            theme.ApplyTo(stripProfessional);
+            theme.ApplyTo(stripSystem);
+            theme.ApplyTo(stripCustom);
+
+            Assert.AreEqual(ToolStripRenderMode.Custom, stripSystem.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.Custom, stripProfessional.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.Custom, stripManager.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.Custom, stripCustom.RenderMode);
+
+            theme.CleanUp(null);
+            Assert.AreEqual(ToolStripRenderMode.System, stripSystem.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.Professional, stripProfessional.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.ManagerRenderMode, stripManager.RenderMode);
+            Assert.AreEqual(ToolStripRenderMode.Custom, stripCustom.RenderMode);
+            Assert.AreEqual(renderder, stripCustom.Renderer);
+        }
+
+        public class CustomRenderer : ToolStripProfessionalRenderer
+        { }
     }
 }

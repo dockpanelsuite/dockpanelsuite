@@ -554,7 +554,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_components = new Container();
             m_toolTip = new ToolTip(Components);
             m_selectMenu = new ContextMenuStrip(Components);
-            m_selectMenu.Renderer = pane.DockPanel.Theme.ToolStripRenderer;
+            pane.DockPanel.Theme.ApplyTo(m_selectMenu);
             m_graphicsPath = new GraphicsPath();
 
             // clone shared resources

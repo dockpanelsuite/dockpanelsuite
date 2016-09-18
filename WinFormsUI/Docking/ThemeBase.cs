@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -23,13 +24,32 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IPaintingService PaintingService { get; protected set; }
 
-        public ToolStripRenderer ToolStripRenderer { get; protected set;}
+        protected ToolStripRenderer ToolStripRenderer { get; set;}
+
+        private Dictionary<ToolStrip, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>> _stripBefore 
+            = new Dictionary<ToolStrip, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>>();
+
+        public void ApplyTo(ToolStrip toolStrip)
+        {
+            if (toolStrip == null)
+                return;
+
+            _stripBefore.Add(toolStrip, new KeyValuePair<ToolStripRenderMode, ToolStripRenderer>(toolStrip.RenderMode, toolStrip.Renderer));
+            toolStrip.Renderer = ToolStripRenderer;
+        }
+
+        private KeyValuePair<ToolStripManagerRenderMode, ToolStripRenderer> _managerBefore;
+
+        public void ApplyToToolStripManager()
+        {
+            _managerBefore = new KeyValuePair<ToolStripManagerRenderMode, ToolStripRenderer>(ToolStripManager.RenderMode, ToolStripManager.Renderer);
+        }
 
         public Measures Measures { get; } = new Measures();
 
         public bool ShowAutoHideContentOnHover { get; protected set; } = true;
 
-        public void Apply(DockPanel dockPanel)
+        public void ApplyTo(DockPanel dockPanel)
         {
             if (dockPanel.Panes.Count > 0)
                 throw new InvalidOperationException("Before applying themes all panes must be closed.");
@@ -64,12 +84,31 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public virtual void CleanUp(DockPanel dockPanel)
         {
-            if (ColorPalette != null)
+            if (dockPanel != null)
             {
-                dockPanel.DockBackColor = _dockBackColor;
+                if (ColorPalette != null)
+                {
+                    dockPanel.DockBackColor = _dockBackColor;
+                }
+
+                dockPanel.ShowAutoHideContentOnHover = _showAutoHideContentOnHover;
             }
 
-            dockPanel.ShowAutoHideContentOnHover = _showAutoHideContentOnHover;
+            foreach (var item in _stripBefore)
+            {
+                var strip = item.Key;
+                var cache = item.Value;
+                if (cache.Key == ToolStripRenderMode.Custom)
+                    strip.Renderer = cache.Value;
+                else
+                    strip.RenderMode = cache.Key;
+            }
+
+            _stripBefore.Clear();
+            if (_managerBefore.Key == ToolStripManagerRenderMode.Custom)
+                ToolStripManager.Renderer = _managerBefore.Value;
+            else
+                ToolStripManager.RenderMode = _managerBefore.Key;
         }
 
         public DockPanelExtender Extender { get; private set; }

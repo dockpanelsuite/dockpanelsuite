@@ -58,7 +58,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
             Controls.Add(m_dummyControl);
 
-            Theme.Apply(this);
+            Theme.ApplyTo(this);
 
             m_autoHideWindow = Theme.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
             m_autoHideWindow.Visible = false;

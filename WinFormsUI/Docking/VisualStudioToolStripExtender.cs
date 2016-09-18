@@ -84,7 +84,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return VsVersion.Unkown;
         }
 
-        public void SetStyle(ToolStrip strip, VsVersion version, ToolStripRenderer renderer)
+        public void SetStyle(ToolStrip strip, VsVersion version, ThemeBase theme)
         {
             var apply = false;
             ToolStripProperties properties = null;
@@ -103,7 +103,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (apply)
             {
-                strip.Renderer = renderer ?? DefaultRenderer;
+                if (theme == null)
+                    strip.Renderer = DefaultRenderer;
+                else
+                    theme.ApplyTo(strip);
                 properties.VsVersion = version;
             }
         }
