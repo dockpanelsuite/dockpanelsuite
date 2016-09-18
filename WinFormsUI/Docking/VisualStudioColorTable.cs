@@ -208,12 +208,12 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public override Color MenuItemBorder
         {
-            get { return _palette.CommandBarMenuPopupDefault.Border; }
+            get { return _palette.CommandBarMenuTopLevelHeaderHovered.Border; }
         }
 
         public override Color MenuBorder
         {
-            get { return _palette.CommandBarMenuTopLevelHeaderHovered.Border; }
+            get { return _palette.CommandBarMenuPopupDefault.Border; }
         }
 
         //public override Color RaftingContainerGradientBegin

@@ -7,9 +7,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     public class VisualStudioToolStripRenderer : ToolStripProfessionalRenderer
     {
-        private SolidBrush _statusBarBrush;
-        private SolidBrush _statusGripBrush;
-        private SolidBrush _statusGripAccentBrush;
         private static Rectangle[] baseSizeGripRectangles =
         {
             new Rectangle(6,0,1,1),
@@ -24,22 +21,28 @@ namespace WeifenLuo.WinFormsUI.Docking
             new Rectangle(0,6,1,1)
         };
 
+        private const int GRIP_PADDING = 4;
+        private SolidBrush _statusBarBrush;
+        private SolidBrush _statusGripBrush;
+        private SolidBrush _statusGripAccentBrush;
+        private SolidBrush _toolBarBrush;
+        private SolidBrush _gripBrush;
+        private Pen _toolBarBorderPen;
+        private VisualStudioColorTable _table;
+        private DockPanelColorPalette _palette;
+
         public VisualStudioToolStripRenderer(DockPanelColorPalette palette)
             : base(new VisualStudioColorTable(palette))
         {
+            _table = (VisualStudioColorTable)ColorTable;
+            _palette = palette;
+            RoundedEdges = false;
             _statusBarBrush = new SolidBrush(palette.MainWindowStatusBarDefault.Background);
             _statusGripBrush = new SolidBrush(palette.MainWindowStatusBarDefault.ResizeGrip);
             _statusGripAccentBrush = new SolidBrush(palette.MainWindowStatusBarDefault.ResizeGripAccent);
-        }
-
-        public void RefreshToolStrips()
-        {
-            ToolStripRenderer old = ToolStripManager.Renderer;
-            if (old != null && ToolStripManager.RenderMode == ToolStripManagerRenderMode.Custom)
-            {
-                ToolStripManager.RenderMode = ToolStripManagerRenderMode.Professional;
-                ToolStripManager.Renderer = old;
-            }
+            _toolBarBrush = new SolidBrush(palette.CommandBarToolbarDefault.Background);
+            _gripBrush = new SolidBrush(palette.CommandBarToolbarDefault.Grip);
+            _toolBarBorderPen = new Pen(palette.CommandBarToolbarDefault.Border);
         }
 
         #region Rendering Improvements (includes fixes for bugs occured when Windows Classic theme is on).
@@ -91,11 +94,55 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
         {
-            var item = e.ToolStrip as StatusStrip;
-            if (item == null)
+            var status = e.ToolStrip as StatusStrip;
+            if (status != null)
+            {
+                // IMPORTANT: left empty to remove white border.
+                return;
+            }
+
+            var context = e.ToolStrip as MenuStrip;
+            if (context != null)
+            {
                 base.OnRenderToolStripBorder(e);
-            else
-                e.Graphics.FillRectangle(_statusBarBrush, e.ToolStrip.Bounds);
+                return;
+            }
+
+            var drop = e.ToolStrip as ToolStripDropDown;
+            if (drop != null)
+            {
+                base.OnRenderToolStripBorder(e);
+                return;
+            }
+
+            var rect = e.ToolStrip.ClientRectangle;
+            e.Graphics.DrawRectangle(_toolBarBorderPen, new Rectangle(rect.Location, new Size(rect.Width - 1, rect.Height - 1)));
+        }
+
+        protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
+        {
+            var status = e.ToolStrip as StatusStrip;
+            if (status != null)
+            {
+                base.OnRenderToolStripBackground(e);
+                return;
+            }
+
+            var context = e.ToolStrip as MenuStrip;
+            if (context != null)
+            {
+                base.OnRenderToolStripBackground(e);
+                return;
+            }
+
+            var drop = e.ToolStrip as ToolStripDropDown;
+            if (drop != null)
+            {
+                base.OnRenderToolStripBackground(e);
+                return;
+            }
+
+            e.Graphics.FillRectangle(_toolBarBrush, e.ToolStrip.ClientRectangle);
         }
 
         protected override void OnRenderStatusStripSizingGrip(ToolStripRenderEventArgs e)
@@ -142,6 +189,72 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        protected override void OnRenderGrip(ToolStripGripRenderEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Rectangle bounds = e.GripBounds;
+            ToolStrip toolStrip = e.ToolStrip;
+
+            bool rightToLeft = (e.ToolStrip.RightToLeft == RightToLeft.Yes);
+
+            int height = (toolStrip.Orientation == Orientation.Horizontal) ? bounds.Height : bounds.Width;
+            int width = (toolStrip.Orientation == Orientation.Horizontal) ? bounds.Width : bounds.Height;
+
+            int numRectangles = (height - (GRIP_PADDING * 2)) / 4;
+
+            if (numRectangles > 0)
+            {
+                numRectangles++;
+                // a MenuStrip starts its grip lower and has fewer grip rectangles.
+                int yOffset = (toolStrip is MenuStrip) ? 2 : 0;
+
+                Rectangle[] shadowRects = new Rectangle[numRectangles];
+                int startY = GRIP_PADDING + 1 + yOffset;
+                int startX = (width / 2);
+
+                for (int i = 0; i < numRectangles; i++)
+                {
+                    shadowRects[i] = (toolStrip.Orientation == Orientation.Horizontal) ?
+                                        new Rectangle(startX, startY, 1, 1) :
+                                        new Rectangle(startY, startX, 1, 1);
+
+                    startY += 4;
+                }
+
+                // in RTL the GripLight rects should paint to the left of the GripDark rects.
+                int xOffset = (rightToLeft) ? 2 : -2;
+
+                if (rightToLeft)
+                {
+                    // scoot over the rects in RTL so they fit within the bounds.
+                    for (int i = 0; i < numRectangles; i++)
+                    {
+                        shadowRects[i].Offset(-xOffset, 0);
+                    }
+                }
+
+                Brush b = _gripBrush;
+                for (int i = 0; i < numRectangles - 1; i++)
+                {
+                    g.FillRectangle(b, shadowRects[i]);
+                }
+
+                for (int i = 0; i < numRectangles; i++)
+                {
+                    shadowRects[i].Offset(xOffset, -2);
+                }
+
+                g.FillRectangles(b, shadowRects);
+
+                for (int i = 0; i < numRectangles; i++)
+                {
+                    shadowRects[i].Offset(-2 * xOffset, 0);
+                }
+
+                g.FillRectangles(b, shadowRects);
+            }
+        }
+
         protected override void OnRenderButtonBackground(ToolStripItemRenderEventArgs e)
         {
             ToolStripButton button = e.Item as ToolStripButton;
@@ -157,19 +270,18 @@ namespace WeifenLuo.WinFormsUI.Docking
                     Color brushMiddle;
                     Color brushEnd;
 
-                    var table = ColorTable as VisualStudioColorTable;
                     if (button.Checked)
                     {
                         if (button.Selected)
                         {
-                            pen = table.ButtonCheckedHoveredBorder;
-                            brushBegin = table.ButtonCheckedHoveredBackground;
-                            brushMiddle = table.ButtonCheckedHoveredBackground;
-                            brushEnd = table.ButtonCheckedHoveredBackground;
+                            pen = _table.ButtonCheckedHoveredBorder;
+                            brushBegin = _table.ButtonCheckedHoveredBackground;
+                            brushMiddle = _table.ButtonCheckedHoveredBackground;
+                            brushEnd = _table.ButtonCheckedHoveredBackground;
                         }
                         else
                         {
-                            pen = table.ButtonCheckedBorder;
+                            pen = _table.ButtonCheckedBorder;
                             brushBegin = ColorTable.ButtonCheckedGradientBegin;
                             brushMiddle = ColorTable.ButtonCheckedGradientMiddle;
                             brushEnd = ColorTable.ButtonCheckedGradientEnd;
@@ -190,7 +302,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         brushEnd = ColorTable.ButtonSelectedGradientEnd;
                     }
 
-                    DrawRectangle(e.Graphics, contentRect, 
+                    DrawRectangle(e.Graphics, contentRect,
                         brushBegin, brushMiddle, brushEnd, pen, false);
                 }
             }
@@ -200,6 +312,27 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        protected override void Initialize(ToolStrip toolStrip)
+        {
+            base.Initialize(toolStrip);
+            // IMPORTANT: enlarge grip area so grip can be rendered fully.
+            toolStrip.GripMargin = new Padding(toolStrip.GripMargin.All + 1);
+        }
+
+        protected override void OnRenderOverflowButtonBackground(ToolStripItemRenderEventArgs e)
+        {
+            var cache = _palette.CommandBarMenuPopupDefault.BackgroundTop;
+
+            // IMPORTANT: not 100% accurate as the color change should only happen when the overflow menu is hovered.
+            // here color change happens when the overflow menu is displayed.
+            if (e.Item.Pressed)
+                _palette.CommandBarMenuPopupDefault.BackgroundTop = _palette.CommandBarToolbarOverflowPressed.Background;
+            base.OnRenderOverflowButtonBackground(e);
+            if (e.Item.Pressed)
+                _palette.CommandBarMenuPopupDefault.BackgroundTop = cache;
+        }
+
+        #region helpers
         private static void DrawRectangle(Graphics graphics, Rectangle rect, Color brushBegin, 
             Color brushMiddle, Color brushEnd, Color penColor, bool glass)
         {
@@ -382,7 +515,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             return path;
-        } 
+        }
+        #endregion
         // */
         #endregion
     }
