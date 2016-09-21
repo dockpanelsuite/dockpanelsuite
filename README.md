@@ -1,7 +1,7 @@
 DockPanel Suite
 ===============
 
-[![Join the chat at https://gitter.im/dockpanelsuite/dockpanelsuite](https://img.shields.io/gitter/room/dockpanelsuite/dockpanelsuite.svg&style=flat-square)](https://gitter.im/dockpanelsuite/dockpanelsuite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/dockpanelsuite/dockpanelsuite](https://img.shields.io/gitter/room/dockpanelsuite/dockpanelsuite.svg?style=flat-square)](https://gitter.im/dockpanelsuite/dockpanelsuite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![NuGet Version](https://img.shields.io/nuget/v/DockPanelSuite.svg?style=flat-square)](https://www.nuget.org/packages/DockPanelSuite/)
 [![Build status](https://img.shields.io/appveyor/ci/lextm/dockpanelsuite/master.svg?label=appvejor&style=flat-square)](https://ci.appveyor.com/project/lextm/dockpanelsuite)
 [![Stories in Progress](https://img.shields.io/waffle/label/dockpanelsuite/dockpanelsuite/in%20progress.svg?style=flat-square)](http://waffle.io/dockpanelsuite/dockpanelsuite) 
