@@ -22,6 +22,7 @@
       Visual Studio 2015 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2015/
 
       Sept 14, 2016: 2.11.0 Beta 2
+      GitHub #65 Dummy control is now rendered with proper back color.
       GitHub #155 Fixed main window focus lost during docking.
       GitHub #291 Fixed nested disposal exception.
       GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces. Added Visual Studio 2013 Dark and Light themes.
@@ -35,7 +36,9 @@
       GitHub #374 Color palette is introduced in theme design.
       GitHub #378 Added Visual Studio 2012 Blue theme.
       GitHub #387 Added Visual Studio 2015 Blue/Dark/Light themes.
+      GitHub $401 Added an ActiveX patch.
       GitHub #408 Minimum .NET Framework version is now 3.5.
+      GitHub #411 Menu strips are themed.
 
       Jul 6, 2016: 2.10.0
       1. GitHub #19 Added Visual Studio 2012 Light theme.
