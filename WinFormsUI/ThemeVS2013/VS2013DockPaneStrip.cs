@@ -1209,7 +1209,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            base.OnMouseLeave(e);
+            base.OnMouseUp(e);
             if (IsMouseDown)
                 IsMouseDown = false;
         }
