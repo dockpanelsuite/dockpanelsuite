@@ -11,7 +11,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public DockContent()
         {
             m_dockHandler = new DockContentHandler(this, new GetPersistStringCallback(GetPersistString));
-            m_dockHandler.DockStateChanged += new EventHandler(DockHandler_DockStateChanged);
+            m_dockHandler.DockStateChanged += new EventHandler<DockStateChangedEventArgs>(DockHandler_DockStateChanged);
         }
 
         private DockContentHandler m_dockHandler = null;
@@ -302,7 +302,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         #endregion
 
         #region Events
-        private void DockHandler_DockStateChanged(object sender, EventArgs e)
+        private void DockHandler_DockStateChanged(object sender, DockStateChangedEventArgs e)
         {
             OnDockStateChanged(e);
         }
@@ -310,14 +310,14 @@ namespace WeifenLuo.WinFormsUI.Docking
         private static readonly object DockStateChangedEvent = new object();
         [LocalizedCategory("Category_PropertyChanged")]
         [LocalizedDescription("Pane_DockStateChanged_Description")]
-        public event EventHandler DockStateChanged
+        public event EventHandler<DockStateChangedEventArgs> DockStateChanged
         {
             add { Events.AddHandler(DockStateChangedEvent, value); }
             remove { Events.RemoveHandler(DockStateChangedEvent, value); }
         }
-        protected virtual void OnDockStateChanged(EventArgs e)
+        protected virtual void OnDockStateChanged(DockStateChangedEventArgs e)
         {
-            EventHandler handler = (EventHandler)Events[DockStateChangedEvent];
+            EventHandler<DockStateChangedEventArgs> handler = (EventHandler<DockStateChangedEventArgs>)Events[DockStateChangedEvent];
             if (handler != null)
                 handler(this, e);
         }

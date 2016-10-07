@@ -642,7 +642,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 ResetAutoHidePortion(oldDockState, DockState);
-                OnDockStateChanged(EventArgs.Empty);
+                OnDockStateChanged(new DockStateChangedEventArgs(oldDockState, DockState));
             }
 
             ResumeSetDockState();
@@ -1049,14 +1049,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         #region Events
         private static readonly object DockStateChangedEvent = new object();
-        public event EventHandler DockStateChanged
+        public event EventHandler<DockStateChangedEventArgs> DockStateChanged
         {
             add { Events.AddHandler(DockStateChangedEvent, value); }
             remove { Events.RemoveHandler(DockStateChangedEvent, value); }
         }
-        protected virtual void OnDockStateChanged(EventArgs e)
+        protected virtual void OnDockStateChanged(DockStateChangedEventArgs e)
         {
-            EventHandler handler = (EventHandler)Events[DockStateChangedEvent];
+            EventHandler<DockStateChangedEventArgs> handler = (EventHandler<DockStateChangedEventArgs>)Events[DockStateChangedEvent];
             if (handler != null)
                 handler(this, e);
         }
