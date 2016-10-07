@@ -11,10 +11,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         public DockContent()
         {
             m_dockHandler = new DockContentHandler(this, new GetPersistStringCallback(GetPersistString));
-            if (PatchController.EnableFontInheritanceFix != true)
-            {
-                m_dockHandler.DockStateChanged += new EventHandler(DockHandler_DockStateChanged);
-            }
+            m_dockHandler.DockStateChanged += new EventHandler(DockHandler_DockStateChanged);
         }
 
         private DockContentHandler m_dockHandler = null;
