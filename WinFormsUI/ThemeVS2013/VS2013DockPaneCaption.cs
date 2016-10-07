@@ -290,7 +290,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private bool ShouldShowAutoHideButton
         {
-            get	{	return !DockPane.IsFloat;	}
+            get	{	return !DockPane.IsFloat && ((DockPane.ActiveContent != null) ? DockPane.ActiveContent.DockHandler.AutoHideButtonVisible : true);	}
         }
 
         private void SetButtons()

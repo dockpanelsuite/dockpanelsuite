@@ -135,6 +135,28 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        private bool m_autoHideButtonVisible = true;
+        /// <summary>
+        /// Determines whether the auto-hide (pin) button is visible when the content is docked as a tool.
+        /// </summary>
+        public bool AutoHideButtonVisible
+        {
+            get
+            {
+                return m_autoHideButtonVisible;
+            }
+            set
+            {
+                if (m_autoHideButtonVisible == value)
+                    return;
+
+                m_autoHideButtonVisible = value;
+                if (IsActiveContentHandler)
+                    Pane.RefreshChanges();
+            }
+        }
+
+
         private bool IsActiveContentHandler
         {
             get { return Pane != null && Pane.ActiveContent != null && Pane.ActiveContent.DockHandler == this; }

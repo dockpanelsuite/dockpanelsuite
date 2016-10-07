@@ -85,6 +85,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { DockHandler.CloseButtonVisible = value; }
         }
 
+        [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockContent_AutoHideButtonVisible_Description")]
+        [DefaultValue(true)]
+        public bool AutoHideButtonVisible
+        {
+            get { return DockHandler.AutoHideButtonVisible; }
+            set { DockHandler.AutoHideButtonVisible = value; }
+        }
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DockPanel DockPanel
