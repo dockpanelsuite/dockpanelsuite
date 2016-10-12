@@ -258,10 +258,10 @@
   <data name="DockPanel_ActiveContentChanged_Description" xml:space="preserve">
     <value>Occurs when the value of ActiveContentProperty changed.</value>
   </data>
-	<data name="DockPanel_DocumentDragged_Description" xml:space="preserve">
+  <data name="DockPanel_DocumentDragged_Description" xml:space="preserve">
     <value>Occurs when a document or pane is dragged within the dock panel.</value>
   </data>
-	<data name="DockPanel_ActiveDocumentChanged_Description" xml:space="preserve">
+  <data name="DockPanel_ActiveDocumentChanged_Description" xml:space="preserve">
     <value>Occurs when the value of ActiveDocument property changed.</value>
   </data>
   <data name="DockPanel_ActivePaneChanged_Description" xml:space="preserve">
@@ -371,5 +371,8 @@
   </data>
   <data name="DockPanel_ShowAutoHideContentOnHover_Description" xml:space="preserve">
     <value>Shows the hidden autohide content when hovering over the tab.  When disabled, the tab must be clicked to show the content.</value>
+  </data>
+  <data name="DockContent_AutoHideButtonVisible_Description" xml:space="preserve">
+    <value>Shows or hides the auto-hide (pin) button of the content, when docked as a tool.</value>
   </data>
 </root>

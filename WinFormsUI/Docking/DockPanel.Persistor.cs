@@ -80,6 +80,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     set { m_autoHidePortion = value; }
                 }
 
+                private bool m_autoHideButtonVisible;
+                public bool AutoHideButtonVisible
+                {
+                    get { return m_autoHideButtonVisible; }
+                    set { m_autoHideButtonVisible = value; }
+                }
+
                 private bool m_isHidden;
                 public bool IsHidden
                 {
@@ -265,6 +272,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     xmlOut.WriteAttributeString("ID", dockPanel.Contents.IndexOf(content).ToString(CultureInfo.InvariantCulture));
                     xmlOut.WriteAttributeString("PersistString", content.DockHandler.PersistString);
                     xmlOut.WriteAttributeString("AutoHidePortion", content.DockHandler.AutoHidePortion.ToString(CultureInfo.InvariantCulture));
+                    xmlOut.WriteAttributeString("AutoHideButtonVisible", content.DockHandler.AutoHideButtonVisible.ToString(CultureInfo.InvariantCulture));
                     xmlOut.WriteAttributeString("IsHidden", content.DockHandler.IsHidden.ToString(CultureInfo.InvariantCulture));
                     xmlOut.WriteAttributeString("IsFloat", content.DockHandler.IsFloat.ToString(CultureInfo.InvariantCulture));
                     xmlOut.WriteEndElement();
@@ -389,6 +397,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     contents[i].PersistString = xmlIn.GetAttribute("PersistString");
                     contents[i].AutoHidePortion = Convert.ToDouble(xmlIn.GetAttribute("AutoHidePortion"), CultureInfo.InvariantCulture);
+                    contents[i].AutoHideButtonVisible = Convert.ToBoolean(xmlIn.GetAttribute("AutoHideButtonVisible"), CultureInfo.InvariantCulture);
                     contents[i].IsHidden = Convert.ToBoolean(xmlIn.GetAttribute("IsHidden"), CultureInfo.InvariantCulture);
                     contents[i].IsFloat = Convert.ToBoolean(xmlIn.GetAttribute("IsFloat"), CultureInfo.InvariantCulture);
                     MoveToNextElement(xmlIn);
