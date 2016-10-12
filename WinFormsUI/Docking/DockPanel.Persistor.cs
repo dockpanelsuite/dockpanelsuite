@@ -692,7 +692,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     IDockContent content = dockPanel.Contents[sortedContents[i]];
                     if (content.DockHandler.Pane != null && content.DockHandler.Pane.DockState != DockState.Document)
+                    {
+                        content.DockHandler.SuspendAutoHidePortionUpdates = true;
                         content.DockHandler.IsHidden = contents[sortedContents[i]].IsHidden;
+                        content.DockHandler.SuspendAutoHidePortionUpdates = false;
+                    }
                 }
 
                 // after all non-document IDockContent, show document IDockContent
@@ -700,7 +704,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     IDockContent content = dockPanel.Contents[sortedContents[i]];
                     if (content.DockHandler.Pane != null && content.DockHandler.Pane.DockState == DockState.Document)
+                    {
+                        content.DockHandler.SuspendAutoHidePortionUpdates = true;
                         content.DockHandler.IsHidden = contents[sortedContents[i]].IsHidden;
+                        content.DockHandler.SuspendAutoHidePortionUpdates = false;
+                    }
                 }
 
                 for (int i = 0; i < panes.Length; i++)
