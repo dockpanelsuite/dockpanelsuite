@@ -68,6 +68,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public bool AllowEndUserDocking { get; set; } = true;
 
+        internal bool SuspendAutoHidePortionUpdates { get; set; } = false;
+
         private double m_autoHidePortion = 0.25;
         public double AutoHidePortion
         {
@@ -80,6 +82,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (value <= 0)
                     throw (new ArgumentOutOfRangeException(Strings.DockContentHandler_AutoHidePortion_OutOfRange));
+
+                if (SuspendAutoHidePortionUpdates)
+                    return;
 
                 if (Math.Abs(m_autoHidePortion - value) < double.Epsilon)
                     return;
