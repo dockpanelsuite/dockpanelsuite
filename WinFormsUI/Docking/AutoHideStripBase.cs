@@ -498,6 +498,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (!DockPanel.ShowAutoHideContentOnHover)
                 return;
 
+            // IMPORTANT: VS2003/2005 themes only.
             IDockContent content = HitTest();
             SetActiveAutoHideContent(content);
 
@@ -507,8 +508,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private void SetActiveAutoHideContent(IDockContent content)
         {
-            if (content != null && DockPanel.ActiveAutoHideContent != content)
-                DockPanel.ActiveAutoHideContent = content;
+            if (content != null)
+                if (DockPanel.ActiveAutoHideContent != content)
+                    DockPanel.ActiveAutoHideContent = content;
+                else if (!DockPanel.ShowAutoHideContentOnHover)
+                    DockPanel.ActiveAutoHideContent = null; // IMPORTANT: Not needed for VS2003/2005 themes.
         }
 
         protected override void OnLayout(LayoutEventArgs levent)
