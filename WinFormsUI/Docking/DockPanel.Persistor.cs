@@ -714,10 +714,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 for (int i = 0; i < panes.Length; i++)
                     dockPanel.Panes[i].ActiveContent = panes[i].IndexActiveContent == -1 ? null : dockPanel.Contents[panes[i].IndexActiveContent];
 
-                if (dockPanelStruct.IndexActiveDocumentPane != -1)
+                if (dockPanelStruct.IndexActiveDocumentPane >= 0 && dockPanel.Panes.Count > dockPanelStruct.IndexActiveDocumentPane)
                     dockPanel.Panes[dockPanelStruct.IndexActiveDocumentPane].Activate();
 
-                if (dockPanelStruct.IndexActivePane != -1)
+                if (dockPanelStruct.IndexActivePane >= 0 && dockPanel.Panes.Count > dockPanelStruct.IndexActivePane)
                     dockPanel.Panes[dockPanelStruct.IndexActivePane].Activate();
 
                 for (int i = dockPanel.Contents.Count - 1; i >= 0; i--)
