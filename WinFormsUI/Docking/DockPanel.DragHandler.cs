@@ -76,7 +76,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 else if (m.Msg == (int)Win32.Msgs.WM_LBUTTONUP)
                     EndDrag(false);
                 else if (m.Msg == (int)Win32.Msgs.WM_CAPTURECHANGED)
-                    EndDrag(true);
+                    EndDrag(!Win32Helper.IsRunningOnMono);
                 else if (m.Msg == (int)Win32.Msgs.WM_KEYDOWN && (int)m.WParam == (int)Keys.Escape)
                     EndDrag(true);
 

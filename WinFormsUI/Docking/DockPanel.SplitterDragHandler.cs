@@ -36,6 +36,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 public void Close()
                 {
+                    DragForm.Bounds = Rectangle.Empty;
                     DragForm.Close();
                 }
 
