@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
@@ -36,6 +37,26 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             _stripBefore.Add(toolStrip, new KeyValuePair<ToolStripRenderMode, ToolStripRenderer>(toolStrip.RenderMode, toolStrip.Renderer));
             toolStrip.Renderer = ToolStripRenderer;
+
+            if(Win32Helper.IsRunningOnMono)
+            {
+                foreach (var item in toolStrip.Items.OfType<ToolStripDropDownItem>())
+                {
+                    ResetOwnerItemHack(item);
+                }
+            }
+        }
+
+        private void ResetOwnerItemHack(ToolStripDropDownItem item)
+        {
+            var oldOwner = item.DropDown.OwnerItem;
+            item.DropDown.OwnerItem = null;
+            item.DropDown.OwnerItem = oldOwner;
+
+            foreach (var child in item.DropDownItems.OfType<ToolStripDropDownItem>())
+            {
+                ResetOwnerItemHack(child);
+            }
         }
 
         private KeyValuePair<ToolStripManagerRenderMode, ToolStripRenderer> _managerBefore;
