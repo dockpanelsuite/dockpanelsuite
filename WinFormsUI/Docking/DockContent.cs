@@ -214,6 +214,14 @@ namespace WeifenLuo.WinFormsUI.Docking
         public void ApplyTheme()
         {
             DockHandler.ApplyTheme();
+
+            if (DockPanel != null)
+            {
+                if (MainMenuStrip != null)
+                    DockPanel.Theme.ApplyTo(MainMenuStrip);
+                if(ContextMenuStrip != null)
+                    DockPanel.Theme.ApplyTo(ContextMenuStrip);
+            }
         }
 
         [Localizable(true)]
