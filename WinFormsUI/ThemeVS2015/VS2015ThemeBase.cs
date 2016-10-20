@@ -15,7 +15,10 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2015
             Skin = new DockPanelSkin();
             PaintingService = new PaintingService();
             ImageService = new ImageService(this);
-            ToolStripRenderer = new VisualStudioToolStripRenderer(ColorPalette);
+            ToolStripRenderer = new VisualStudioToolStripRenderer(ColorPalette)
+            {
+                UseGlassOnMenuStrip = false,
+            };
             Measures.SplitterSize = 6;
             Measures.AutoHideSplitterSize = 3;
             Measures.DockPadding = 6;

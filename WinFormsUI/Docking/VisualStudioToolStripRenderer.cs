@@ -31,6 +31,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private VisualStudioColorTable _table;
         private DockPanelColorPalette _palette;
 
+        public bool UseGlassOnMenuStrip { get; set; }
+
         public VisualStudioToolStripRenderer(DockPanelColorPalette palette)
             : base(new VisualStudioColorTable(palette))
         {
@@ -43,6 +45,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             _toolBarBrush = new SolidBrush(palette.CommandBarToolbarDefault.Background);
             _gripBrush = new SolidBrush(palette.CommandBarToolbarDefault.Grip);
             _toolBarBorderPen = new Pen(palette.CommandBarToolbarDefault.Border);
+
+            UseGlassOnMenuStrip = true;
         }
 
         #region Rendering Improvements (includes fixes for bugs occured when Windows Classic theme is on).
@@ -87,7 +91,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         brushEnd = Color.Empty;
                     }
 
-                    DrawRectangle(e.Graphics, itemRect, brushBegin, brushEnd, pen, true);
+                    DrawRectangle(e.Graphics, itemRect, brushBegin, brushEnd, pen, UseGlassOnMenuStrip);
                 }
             }
         }
