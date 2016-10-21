@@ -38,7 +38,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             _stripBefore.Add(toolStrip, new KeyValuePair<ToolStripRenderMode, ToolStripRenderer>(toolStrip.RenderMode, toolStrip.Renderer));
             toolStrip.Renderer = ToolStripRenderer;
 
-            if(Win32Helper.IsRunningOnMono)
+            if (Win32Helper.IsRunningOnMono)
             {
                 foreach (var item in toolStrip.Items.OfType<ToolStripDropDownItem>())
                 {
