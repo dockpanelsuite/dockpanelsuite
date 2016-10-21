@@ -219,7 +219,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (MainMenuStrip != null)
                     DockPanel.Theme.ApplyTo(MainMenuStrip);
-                if(ContextMenuStrip != null)
+                if (ContextMenuStrip != null)
                     DockPanel.Theme.ApplyTo(ContextMenuStrip);
             }
         }
