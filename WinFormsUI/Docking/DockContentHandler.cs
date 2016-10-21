@@ -877,7 +877,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             // Change the parent of a control with focus may result in the first
             // MDI child form get activated. 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            if (bRestoreFocus)
+            if (bRestoreFocus && !Win32Helper.IsRunningOnMono)
                 Activate();
 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
