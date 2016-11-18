@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.11.0-beta2</version>
+    <version>2.11.0</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -21,24 +21,34 @@
       Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
       Visual Studio 2015 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2015/
 
-      Sept 14, 2016: 2.11.0 Beta 2
-      GitHub #65 Dummy control is now rendered with proper back color.
-      GitHub #155 Fixed main window focus lost during docking.
-      GitHub #291 Fixed nested disposal exception.
-      GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces. Added Visual Studio 2013 Dark and Light themes.
-      GitHub #317 Added Visual Studio 2012 Dark theme.
-      GitHub #318 Fixed some flickers.
-      GitHub #320 Added some HiDPI support.
-      GitHub #321 Fixed some memory leak.
-      GitHub #323 Removed focus content first when hiding.
-      GitHub #334 Fixed font inheritance and cascading.
-      GitHub #369 Added in-place patch management.
-      GitHub #374 Color palette is introduced in theme design.
-      GitHub #378 Added Visual Studio 2012 Blue theme.
-      GitHub #387 Added Visual Studio 2015 Blue/Dark/Light themes.
-      GitHub $401 Added an ActiveX patch.
-      GitHub #408 Minimum .NET Framework version is now 3.5.
-      GitHub #411 Menu strips are themed.
+      Nov 18, 2016: 2.11.0
+      1. GitHub #65 Dummy control is now rendered with proper back color.
+      2. GitHub #155 Fixed main window focus lost during docking.
+      3. GitHub #291 Fixed nested disposal exception.
+      4. GitHub #316 Finished Visual Studio 2013 Blue theme missing pieces. Added Visual Studio 2013 Dark and Light themes.
+      5. GitHub #317 Added Visual Studio 2012 Dark theme.
+      6. GitHub #318 Fixed some flickers.
+      7. GitHub #320 Added some HiDPI support.
+      8. GitHub #321 Fixed some memory leak.
+      9. GitHub #323 Removed focus content first when hiding.
+      10. GitHub #334 Fixed font inheritance and cascading.
+      11. GitHub #369 Added in-place patch management.
+      12. GitHub #374 Color palette is introduced in theme design.
+      13. GitHub #378 Added Visual Studio 2012 Blue theme.
+      14. GitHub #387 Added Visual Studio 2015 Blue/Dark/Light themes.
+      15. GitHub $401 Added an ActiveX patch.
+      16. GitHub #408 Minimum .NET Framework version is now 3.5.
+      17. GitHub #411 Menu strips are themed.
+      18. GitHub #414 Fixed the usage of AutoHidePortion for DockContent.
+      19. GitHub #420 Click auto hide tab now properly close active auto hide window in certain themes.
+      20. GitHub #430 Fixed pane resizing on Mono.
+      21. GitHub #432 Themes start to apply to tool strips on Mono.
+      22. GitHub #433 Themes start to apply to dock content menus.
+      23. GitHub #434 Fixed an exception when layout is loaded from XML.
+      24. GitHub #443 Fixed LoadFromXml crash on Mono.
+
+      BREAKING CHANGES
+      Some theme NuGet package names are changed. Theme related APIs have been changed significantly, so custom themes must be upgraded.
 
       Jul 6, 2016: 2.10.0
       1. GitHub #19 Added Visual Studio 2012 Light theme.

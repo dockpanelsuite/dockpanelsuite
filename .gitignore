@@ -26,3 +26,4 @@ T4MVC.cs
 /packages
 /Gendarme
 *.nupkg
+/.vs/config

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Diagnostics.CodeAnalysis;
 
@@ -9,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Weifen Luo")]
 [assembly: AssemblyProduct("DockPanel Suite")]
-[assembly: AssemblyCopyright("Copyright © Weifen Luo and other contributors 2007-2013")]
+[assembly: AssemblyCopyright("Copyright © Weifen Luo and other contributors 2007-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]
