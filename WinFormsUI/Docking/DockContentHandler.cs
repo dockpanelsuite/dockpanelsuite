@@ -140,6 +140,28 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
+        private bool m_autoHideButtonVisible = true;
+        /// <summary>
+        /// Determines whether the auto-hide (pin) button is visible when the content is docked as a tool.
+        /// </summary>
+        public bool AutoHideButtonVisible
+        {
+            get
+            {
+                return m_autoHideButtonVisible;
+            }
+            set
+            {
+                if (m_autoHideButtonVisible == value)
+                    return;
+
+                m_autoHideButtonVisible = value;
+                if (IsActiveContentHandler)
+                    Pane.RefreshChanges();
+            }
+        }
+
+
         private bool IsActiveContentHandler
         {
             get { return Pane != null && Pane.ActiveContent != null && Pane.ActiveContent.DockHandler == this; }
@@ -625,7 +647,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 ResetAutoHidePortion(oldDockState, DockState);
-                OnDockStateChanged(EventArgs.Empty);
+                OnDockStateChanged(new DockStateChangedEventArgs(oldDockState, DockState));
             }
 
             ResumeSetDockState();
@@ -1032,14 +1054,14 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         #region Events
         private static readonly object DockStateChangedEvent = new object();
-        public event EventHandler DockStateChanged
+        public event EventHandler<DockStateChangedEventArgs> DockStateChanged
         {
             add { Events.AddHandler(DockStateChangedEvent, value); }
             remove { Events.RemoveHandler(DockStateChangedEvent, value); }
         }
-        protected virtual void OnDockStateChanged(EventArgs e)
+        protected virtual void OnDockStateChanged(DockStateChangedEventArgs e)
         {
-            EventHandler handler = (EventHandler)Events[DockStateChangedEvent];
+            EventHandler<DockStateChangedEventArgs> handler = (EventHandler<DockStateChangedEventArgs>)Events[DockStateChangedEvent];
             if (handler != null)
                 handler(this, e);
         }

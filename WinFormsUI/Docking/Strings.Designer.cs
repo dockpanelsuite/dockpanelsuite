@@ -115,6 +115,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows or hides the auto-hide (pin) button of the content, when docked as a tool..
+        /// </summary>
+        internal static string DockContent_AutoHideButtonVisible_Description {
+            get {
+                return ResourceManager.GetString("DockContent_AutoHideButtonVisible_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The size to display the content in auto hide mode. Value &lt; 1 to specify the size in portion; value &gt;= 1 to specify the size in pixel..
         /// </summary>
         internal static string DockContent_AutoHidePortion_Description {
