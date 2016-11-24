@@ -278,7 +278,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private bool CloseButtonEnabled
         {
-            get	{	return (DockPane.ActiveContent != null)? DockPane.ActiveContent.DockHandler.CloseButton : false;	}
+            get	{ return (DockPane.ActiveContent != null) ? DockPane.ActiveContent.DockHandler.CloseButton : false; }
         }
 
         /// <summary>
@@ -291,7 +291,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private bool ShouldShowAutoHideButton
         {
-            get	{	return !DockPane.IsFloat;	}
+            get	{ return !DockPane.IsFloat; }
         }
 
         private void SetButtons()
@@ -355,6 +355,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             base.OnRightToLeftChanged(e);
             PerformLayout();
+        }
+
+        protected override bool CanDragAutoHide
+        {
+            get { return true; }
         }
     }
 }

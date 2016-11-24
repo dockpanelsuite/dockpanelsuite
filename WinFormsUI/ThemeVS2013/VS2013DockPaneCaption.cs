@@ -355,5 +355,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.OnRightToLeftChanged(e);
             PerformLayout();
         }
+
+        protected override bool CanDragAutoHide
+        {
+            get { return true; }
+        }
     }
 }
