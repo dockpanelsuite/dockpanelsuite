@@ -336,6 +336,84 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _palette.CommandBarMenuPopupDefault.BackgroundTop = cache;
         }
 
+        protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+        {
+            Color color = Color.Black;
+            var toolStrip = e.ToolStrip;
+            if (toolStrip is StatusStrip)
+            {
+                if (e.Item.Selected)
+                {
+                    color = _palette.MainWindowStatusBarDefault.HighlightText;
+                }
+                else
+                {
+                    color = _palette.MainWindowStatusBarDefault.Text;
+                }
+            }
+            else if (toolStrip is MenuStrip)
+            {
+                var button = e.Item as ToolStripButton;
+                var checkedButton = button != null && button.Checked;
+                if (!e.Item.Enabled)
+                {
+                    color = _palette.CommandBarMenuPopupDisabled.Text;
+                }
+                else if (button != null && button.Pressed)
+                {
+                    color = _palette.CommandBarToolbarButtonPressed.Text;
+                }
+                else if (e.Item.Selected && checkedButton)
+                {
+                    color = _palette.CommandBarToolbarButtonCheckedHovered.Text;
+                }
+                else if (e.Item.Selected)
+                {
+                    color = _palette.CommandBarMenuTopLevelHeaderHovered.Text;
+                }
+                else if (checkedButton)
+                {
+                    color = _palette.CommandBarToolbarButtonChecked.Text;
+                }
+                else
+                {
+                    color = _palette.CommandBarMenuDefault.Text;
+                }
+            }
+            else if (toolStrip is ToolStripDropDown)
+            {
+                // This might differ from above branch, but left the same here.
+                var button = e.Item as ToolStripButton;
+                var checkedButton = button != null && button.Checked;
+                if (!e.Item.Enabled)
+                {
+                    color = _palette.CommandBarMenuPopupDisabled.Text;
+                }
+                else if (button != null && button.Pressed)
+                {
+                    color = _palette.CommandBarToolbarButtonPressed.Text;
+                }
+                else if (e.Item.Selected && checkedButton)
+                {
+                    color = _palette.CommandBarToolbarButtonCheckedHovered.Text;
+                }
+                else if (e.Item.Selected)
+                {
+                    color = _palette.CommandBarMenuTopLevelHeaderHovered.Text;
+                }
+                else if (checkedButton)
+                {
+                    color = _palette.CommandBarToolbarButtonChecked.Text;
+                }
+                else
+                {
+                    color = _palette.CommandBarMenuDefault.Text;
+                }
+            }
+
+            TextRenderer.DrawText(e.Graphics, e.Text, e.TextFont, e.TextRectangle, color, e.TextFormat);
+        }
+
         #region helpers
         private static void DrawRectangle(Graphics graphics, Rectangle rect, Color brushBegin, 
             Color brushMiddle, Color brushEnd, Color penColor, bool glass)
