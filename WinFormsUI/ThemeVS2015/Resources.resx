@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="vs2015blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\vs2015blue.vstheme;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="vs2015blue_vstheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\vs2015blue.vstheme.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="vs2015dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\vs2015dark.vstheme;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="vs2015dark_vstheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\vs2015dark.vstheme.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="vs2015light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\vs2015light.vstheme;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="vs2015light_vstheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\vs2015light.vstheme.gz;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

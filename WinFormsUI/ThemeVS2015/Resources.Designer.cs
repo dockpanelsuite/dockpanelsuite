@@ -63,9 +63,9 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2015 {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] vs2015blue {
+        internal static byte[] vs2015blue_vstheme {
             get {
-                object obj = ResourceManager.GetObject("vs2015blue", resourceCulture);
+                object obj = ResourceManager.GetObject("vs2015blue_vstheme", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2015 {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] vs2015dark {
+        internal static byte[] vs2015dark_vstheme {
             get {
-                object obj = ResourceManager.GetObject("vs2015dark", resourceCulture);
+                object obj = ResourceManager.GetObject("vs2015dark_vstheme", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2015 {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] vs2015light {
+        internal static byte[] vs2015light_vstheme {
             get {
-                object obj = ResourceManager.GetObject("vs2015light", resourceCulture);
+                object obj = ResourceManager.GetObject("vs2015light_vstheme", resourceCulture);
                 return ((byte[])(obj));
             }
         }

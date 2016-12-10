@@ -8,7 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class VS2013DarkTheme : VS2013ThemeBase
     {
         public VS2013DarkTheme()
-            : base(Resources.vs2013dark)
+            : base(Decompress(Resources.vs2013dark_vstheme))
         {
         }
     }

@@ -8,7 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class VS2013BlueTheme : VS2013ThemeBase
     {
         public VS2013BlueTheme()
-            : base(Resources.vs2013blue)
+            : base(Decompress(Resources.vs2013blue_vstheme))
         {
         }
     }

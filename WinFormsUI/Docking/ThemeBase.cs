@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -133,5 +135,27 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         public DockPanelExtender Extender { get; private set; }
+
+        public static byte[] Decompress(byte[] fileToDecompress)
+        {
+            using (MemoryStream originalFileStream = new MemoryStream(fileToDecompress))
+            {
+                using (MemoryStream decompressedFileStream = new MemoryStream())
+                {
+                    using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
+                    {
+                        //Copy the decompression stream into the output file.
+                        byte[] buffer = new byte[4096];
+                        int numRead;
+                        while ((numRead = decompressionStream.Read(buffer, 0, buffer.Length)) != 0)
+                        {
+                            decompressedFileStream.Write(buffer, 0, numRead);
+                        }
+
+                        return decompressedFileStream.ToArray();
+                    }
+                }
+            }
+        }
     }
 }

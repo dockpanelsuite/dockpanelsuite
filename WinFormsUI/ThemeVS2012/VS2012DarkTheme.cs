@@ -8,7 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class VS2012DarkTheme : VS2012ThemeBase
     {
         public VS2012DarkTheme()
-            :base(Resources.vs2012dark, null, null)
+            :base(Decompress(Resources.vs2012dark_vstheme), null, null)
         {
         }
     }

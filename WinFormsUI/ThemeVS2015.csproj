@@ -137,9 +137,9 @@
     <None Include="license.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ThemeVS2015\Resources\VS2015blue.vstheme" />
-    <None Include="ThemeVS2015\Resources\VS2015dark.vstheme" />
-    <None Include="ThemeVS2015\Resources\VS2015light.vstheme" />
+    <None Include="ThemeVS2015\Resources\vs2015blue.vstheme.gz" />
+    <None Include="ThemeVS2015\Resources\vs2015dark.vstheme.gz" />
+    <None Include="ThemeVS2015\Resources\vs2015light.vstheme.gz" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="WinFormsUI.csproj">

@@ -8,7 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     public class VS2012LightTheme : VS2012ThemeBase
     {
         public VS2012LightTheme()
-            : base(Resources.vs2012light, null, null)
+            : base(Decompress(Resources.vs2012light_vstheme), null, null)
         {
         }
     }
