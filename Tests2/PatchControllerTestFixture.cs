@@ -16,6 +16,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableMainWindowFocusLostFix);
             Assert.IsFalse(PatchController.EnableMemoryLeakFix);
             Assert.IsFalse(PatchController.EnableNestedDisposalFix);
+            Assert.IsFalse(PatchController.EnableActiveXFix);
         }
     }
 }

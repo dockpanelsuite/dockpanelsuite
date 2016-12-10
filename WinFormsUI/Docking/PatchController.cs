@@ -13,7 +13,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public static void Reset()
         {
-            EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = _contentOrderFix = _fontInheritanceFix = null;
+            EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = _contentOrderFix = _fontInheritanceFix = _activeXFix = null;
         }
 
         public static bool? EnableHighDpi
@@ -479,6 +479,84 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 _contentOrderFix = value;
+            }
+        }
+
+        private static bool? _activeXFix;
+
+        public static bool? EnableActiveXFix
+        {
+            get
+            {
+                if (_activeXFix != null)
+                {
+                    return _activeXFix;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _activeXFix = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _activeXFix = section.EnableAll;
+                    }
+
+                    return _activeXFix = section.EnableContentOrderFix;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableActiveXFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _activeXFix = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableActiveXFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _activeXFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableActiveXFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _activeXFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _activeXFix = false; // not enabled by default as it has side effect.
+            }
+
+            set
+            {
+                _activeXFix = value;
             }
         }
     }

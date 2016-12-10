@@ -47,7 +47,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 DragControl.FindForm().Capture = true;
                 AssignHandle(DragControl.FindForm().Handle);
-                //Application.AddMessageFilter(this);
+                if (PatchController.EnableActiveXFix == false)
+                {
+                    Application.AddMessageFilter(this);
+                }
+
                 return true;
             }
 
@@ -58,7 +62,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             private void EndDrag(bool abort)
             {
                 ReleaseHandle();
-                //Application.RemoveMessageFilter(this);
+
+                if (PatchController.EnableActiveXFix == false)
+                {
+                    Application.RemoveMessageFilter(this);
+                }
+
                 DragControl.FindForm().Capture = false;
 
                 OnEndDrag(abort);
@@ -66,29 +75,47 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             bool IMessageFilter.PreFilterMessage(ref Message m)
             {
+                if (PatchController.EnableActiveXFix == false)
+                {
+                    if (m.Msg == (int)Win32.Msgs.WM_MOUSEMOVE)
+                        OnDragging();
+                    else if (m.Msg == (int)Win32.Msgs.WM_LBUTTONUP)
+                        EndDrag(false);
+                    else if (m.Msg == (int)Win32.Msgs.WM_CAPTURECHANGED)
+                        EndDrag(!Win32Helper.IsRunningOnMono);
+                    else if (m.Msg == (int)Win32.Msgs.WM_KEYDOWN && (int)m.WParam == (int)Keys.Escape)
+                        EndDrag(true);
+                }
+
                 return OnPreFilterMessage(ref m);
             }
 
             protected virtual bool OnPreFilterMessage(ref Message m)
             {
-                if (m.Msg == (int)Win32.Msgs.WM_MOUSEMOVE)
-                    OnDragging();
-                else if (m.Msg == (int)Win32.Msgs.WM_LBUTTONUP)
-                    EndDrag(false);
-                else if (m.Msg == (int)Win32.Msgs.WM_CAPTURECHANGED)
-                    EndDrag(!Win32Helper.IsRunningOnMono);
-                else if (m.Msg == (int)Win32.Msgs.WM_KEYDOWN && (int)m.WParam == (int)Keys.Escape)
-                    EndDrag(true);
+                if (PatchController.EnableActiveXFix == true)
+                {
+                    if (m.Msg == (int)Win32.Msgs.WM_MOUSEMOVE)
+                        OnDragging();
+                    else if (m.Msg == (int)Win32.Msgs.WM_LBUTTONUP)
+                        EndDrag(false);
+                    else if (m.Msg == (int)Win32.Msgs.WM_CAPTURECHANGED)
+                        EndDrag(!Win32Helper.IsRunningOnMono);
+                    else if (m.Msg == (int)Win32.Msgs.WM_KEYDOWN && (int)m.WParam == (int)Keys.Escape)
+                        EndDrag(true);
+                }
 
                 return false;
             }
 
             protected sealed override void WndProc(ref Message m)
             {
-                //Manually pre-filter message, rather than using
-                //Application.AddMessageFilter(this).  This fixes
-                //the docker control for ActiveX objects
-                this.OnPreFilterMessage(ref m);
+                if (PatchController.EnableActiveXFix == true)
+                {
+                    //Manually pre-filter message, rather than using
+                    //Application.AddMessageFilter(this).  This fixes
+                    //the docker control for ActiveX objects
+                    this.OnPreFilterMessage(ref m);
+                }
 
                 if (m.Msg == (int)Win32.Msgs.WM_CANCELMODE || m.Msg == (int)Win32.Msgs.WM_CAPTURECHANGED)
                     EndDrag(true);

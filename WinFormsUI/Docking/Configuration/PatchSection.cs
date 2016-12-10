@@ -45,5 +45,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableContentOrderFix"]; }
         }
+
+        [ConfigurationProperty("enableActiveXFix", DefaultValue = false)] // disabled by default to avoid side effect.
+        public bool EnableActiveXFix
+        {
+            get { return (bool)base["enableActiveXFix"]; }
+        }
     }
 }
