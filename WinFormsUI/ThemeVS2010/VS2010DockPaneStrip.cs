@@ -121,6 +121,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2010
         private InertButton m_buttonOverflow;
         private InertButton m_buttonWindowList;
         private IContainer m_components;
+        private ToolTip m_toolTip;
         private Font m_font;
         private Font m_boldFont;
         private int m_startDisplayingTab = 0;
@@ -510,6 +511,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2010
             SuspendLayout();
 
             m_components = new Container();
+            m_toolTip = new ToolTip(Components);
             m_selectMenu = new ContextMenuStrip(Components);
             pane.DockPanel.Theme.ApplyTo(m_selectMenu);
 
@@ -1253,6 +1255,13 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2010
 
             if (tabUpdate || buttonUpdate)
                 Invalidate();
+
+            if (m_toolTip.GetToolTip(this) != toolTip)
+            {
+                m_toolTip.Active = false;
+                m_toolTip.SetToolTip(this, toolTip);
+                m_toolTip.Active = true;
+            }
         }
 
         protected override void OnMouseClick(MouseEventArgs e)
