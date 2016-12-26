@@ -11,10 +11,19 @@ namespace WeifenLuo.WinFormsUI.Docking
         public DockContent()
         {
             m_dockHandler = new DockContentHandler(this, new GetPersistStringCallback(GetPersistString));
+            m_dockHandler.DockStateChanged += new EventHandler(DockHandler_DockStateChanged);
             if (PatchController.EnableFontInheritanceFix != true)
             {
-                m_dockHandler.DockStateChanged += new EventHandler(DockHandler_DockStateChanged);
+                //Suggested as a fix by bensty regarding form resize
+                this.ParentChanged += new EventHandler(DockContent_ParentChanged);
             }
+        }
+
+        //Suggested as a fix by bensty regarding form resize
+        private void DockContent_ParentChanged(object Sender, EventArgs e)
+        {
+            if (this.Parent != null)
+                this.Font = this.Parent.Font;
         }
 
         private DockContentHandler m_dockHandler = null;
