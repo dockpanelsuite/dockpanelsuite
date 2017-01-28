@@ -36,6 +36,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (Alignment != DockAlignment.Left && Alignment != DockAlignment.Right)
                 return;
 
+            MakeForegroundBrush(rect);
+        }
+
+        private void MakeForegroundBrush(Rectangle rect)
+        {
             _foregroundBrush?.Dispose();
             using (var path = new GraphicsPath())
             {
@@ -72,6 +77,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 case DockAlignment.Left:
                     {
                         Debug.Assert(SplitterSize == rect.Width);
+
+                        if (_foregroundBrush == null)
+                            MakeForegroundBrush(rect);
+
                         e.Graphics.FillRectangle(_backgroundBrush, rect);
                         e.Graphics.FillRectangle(_foregroundBrush, rect.X + SplitterSize / 2 - 1, rect.Y,
                                                     SplitterSize / 3, rect.Height);
