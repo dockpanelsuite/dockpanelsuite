@@ -86,29 +86,23 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void SetStyle(ToolStrip strip, VsVersion version, ThemeBase theme)
         {
-            var apply = false;
             ToolStripProperties properties = null;
 
             if (!strips.ContainsKey(strip))
             {
                 properties = new ToolStripProperties(strip) { VsVersion = version };
                 strips.Add(strip, properties);
-                apply = true;
             }
             else
             {
                 properties = strips[strip];
-                apply = properties.VsVersion != version;
             }
 
-            if (apply)
-            {
-                if (theme == null)
-                    strip.Renderer = DefaultRenderer;
-                else
-                    theme.ApplyTo(strip);
-                properties.VsVersion = version;
-            }
+            if (theme == null)
+                strip.Renderer = DefaultRenderer;
+            else
+                theme.ApplyTo(strip);
+            properties.VsVersion = version;
         }
 
         public enum VsVersion
