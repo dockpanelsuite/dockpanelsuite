@@ -216,9 +216,7 @@
     <None Include="Docking\Resources\DockPane_Option.png" />
     <None Include="Docking\Resources\DockPane_OptionOverflow.png" />
     <None Include="dockpanelsuite.snk" />
-    <None Include="license.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="license.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Docking\DockPanel.bmp" />
