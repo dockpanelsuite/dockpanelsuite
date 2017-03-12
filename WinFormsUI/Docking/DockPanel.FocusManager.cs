@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -158,7 +157,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
                     }
-                    if (--_referenceCount == 0)
+
+                    --_referenceCount;
+
+                    if (_referenceCount == 0)
                         sm_localWindowsHook.Dispose();
                     
                     m_disposed = true;
