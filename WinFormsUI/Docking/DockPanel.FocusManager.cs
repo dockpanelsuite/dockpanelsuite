@@ -161,7 +161,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     --_referenceCount;
 
-                    if (_referenceCount == 0)
+                    if (_referenceCount == 0 && sm_localWindowsHook != null)
                     {
                         sm_localWindowsHook.Dispose();
                         sm_localWindowsHook = null;
