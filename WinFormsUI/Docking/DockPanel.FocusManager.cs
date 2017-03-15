@@ -120,6 +120,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             // Use a static instance of the windows hook to prevent stack overflows in the windows kernel.
             [ThreadStatic]
             private static LocalWindowsHook sm_localWindowsHook;
+            [ThreadStatic]
+            private static int _referenceCount = 0;
 
             private readonly LocalWindowsHook.HookEventHandler m_hookEventHandler;
 
@@ -138,6 +140,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 sm_localWindowsHook.HookInvoked += m_hookEventHandler;
+                ++_referenceCount;
             }
 
             private DockPanel m_dockPanel;
@@ -156,6 +159,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                         sm_localWindowsHook.HookInvoked -= m_hookEventHandler;
                     }
 
+                    --_referenceCount;
+
+                    if (_referenceCount == 0 && sm_localWindowsHook != null)
+                    {
+                        sm_localWindowsHook.Dispose();
+                        sm_localWindowsHook = null;
+                    }
+					
                     m_disposed = true;
                 }
 
