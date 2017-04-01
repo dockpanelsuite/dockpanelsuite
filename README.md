@@ -8,6 +8,8 @@ DockPanel Suite
 
 [![Throughput Graph](https://graphs.waffle.io/dockpanelsuite/dockpanelsuite/throughput.svg?style=flat-square)](https://waffle.io/dockpanelsuite/dockpanelsuite/metrics/throughput) 
 
+[![Join the chat at https://gitter.im/dockpanelsuite/dockpanelsuite](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dockpanelsuite/dockpanelsuite?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 DockPanel Suite - The Visual Studio inspired docking library for .NET WinForms
 
 For more details, check out [http://dockpanelsuite.com](http://dockpanelsuite.com).
