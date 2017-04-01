@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.13.0</version>
+    <version>2.14.0</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -11,7 +11,7 @@
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="DockPanelSuite" version="2.13.0" />
+      <dependency id="DockPanelSuite" version="2.14.0" />
     </dependencies>
     <id>DockPanelSuite.ThemeVS2005Multithreading</id>
     <title>DockPanel Suite VS2005 Theme for Multiple UI Threads</title>
@@ -20,6 +20,9 @@
 Most WinForms apps uses a single UI thread. Not recommended unless the application uses multiple UI threads.</description>
     <summary>Visual Studio 2005 theme for DockPanel Suite with multiple UI thread support.</summary>
     <releaseNotes>
+Apr 01, 2017: 2.14.0
+Updated.
+
 Jan 29, 2017: 2.13.0
 Updated.
 

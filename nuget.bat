@@ -1,5 +1,6 @@
 mkdir .nuget
 cd .nuget
+del *.nupkg
 nuget update /self
 nuget pack DockPanelSuite.nuspec
 nuget pack ThemeVS2003.nuspec

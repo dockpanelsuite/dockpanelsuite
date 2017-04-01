@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>2.13.0</version>
+    <version>2.14.0</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -16,11 +16,15 @@
     <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
     <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
     <releaseNotes>
+    
       Visual Studio 2003 Theme: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2003/
       Visual Studio 2012 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2012/
       Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
       Visual Studio 2015 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2015/
       
+      Apr 01, 2017: 2.14.0
+      1. GitHub #476 Uninstall Hook if last Focus Manager is disposed
+
       Jan 29, 2017: 2.13.0
       1. GitHub #465 Fixed sample project menu strip rendering.
       2. GitHub #466 License.txt is no longer copied to output folder.
