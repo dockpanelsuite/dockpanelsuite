@@ -459,13 +459,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 if (m_activeContent != null)
-                    m_activeContent.DockHandler.IsActivated = false;
+                    m_activeContent.DockHandler.SetIsActivated(false);
 
                 m_activeContent = value;
 
                 if (m_activeContent != null)
                 {
-                    m_activeContent.DockHandler.IsActivated = true;
+                    m_activeContent.DockHandler.SetIsActivated(true);
                     if (!DockHelper.IsDockStateAutoHide((m_activeContent.DockHandler.DockState)))
                         AddLastToActiveList(m_activeContent);
                 }
