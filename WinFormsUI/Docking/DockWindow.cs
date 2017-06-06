@@ -252,7 +252,16 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             // if DockWindow is document, draw the border
             if (DockState == DockState.Document)
-                e.Graphics.DrawRectangle(SystemPens.ControlDark, ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+            {
+                try
+                {
+                    e.Graphics.DrawRectangle(SystemPens.ControlDark, ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+                }
+                catch (System.Runtime.InteropServices.ExternalException)
+                {
+                    // Handle exception silently
+                }
+            }
 
             base.OnPaint(e);
         }
