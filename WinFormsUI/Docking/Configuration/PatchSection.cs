@@ -51,5 +51,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableActiveXFix"]; }
         }
+
+        [ConfigurationProperty("enableDisplayingPaneFix", DefaultValue = true)]
+        public bool EnableDisplayingPaneFix
+        {
+            get { return (bool)base["enableDisplayingPaneFix"]; }
+        }
     }
 }

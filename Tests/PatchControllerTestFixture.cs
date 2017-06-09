@@ -8,6 +8,9 @@ namespace Tests
     [TestFixture]
     public class PatchControllerTestFixture
     {
+        /// <summary>
+        /// Test default values.
+        /// </summary>
         [Test]
         public void Basic()
         {
@@ -19,6 +22,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableMemoryLeakFix);
             Assert.IsTrue(PatchController.EnableNestedDisposalFix);
             Assert.IsFalse(PatchController.EnableActiveXFix);
+            Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
         }
 
         [Test]
@@ -53,6 +57,10 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableActiveXFix);
             Environment.SetEnvironmentVariable("DPS_EnableActiveXFix", null);
 
+            Environment.SetEnvironmentVariable("DPS_EnableDisplayingPaneFix", "false");
+            Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
+            Environment.SetEnvironmentVariable("DPS_EnableDisplayingPaneFix", null);
+
             PatchController.Reset();
             Assert.IsTrue(PatchController.EnableHighDpi);
             Assert.IsTrue(PatchController.EnableContentOrderFix);
@@ -61,6 +69,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableMemoryLeakFix);
             Assert.IsTrue(PatchController.EnableNestedDisposalFix);
             Assert.IsFalse(PatchController.EnableActiveXFix);
+            Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
         }
 
         [Test]
@@ -76,6 +85,7 @@ namespace Tests
             key.SetValue("EnableMemoryLeakFix", "false", RegistryValueKind.String);
             key.SetValue("EnableNestedDisposalFix", "false", RegistryValueKind.String);
             key.SetValue("EnableActiveXFix", "true", RegistryValueKind.String);
+            key.SetValue("EnableDisplayingPaneFix", "false", RegistryValueKind.String);
 
             Assert.IsFalse(PatchController.EnableHighDpi);
             Assert.IsFalse(PatchController.EnableContentOrderFix);
@@ -84,6 +94,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableMemoryLeakFix);
             Assert.IsFalse(PatchController.EnableNestedDisposalFix);
             Assert.IsTrue(PatchController.EnableActiveXFix);
+            Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
             Registry.CurrentUser.DeleteSubKeyTree("Software\\DockPanelSuite");
         }
 
@@ -99,6 +110,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableMemoryLeakFix);
             Assert.IsFalse(PatchController.EnableNestedDisposalFix);
             Assert.IsFalse(PatchController.EnableActiveXFix);
+            Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
         }
     }
 }

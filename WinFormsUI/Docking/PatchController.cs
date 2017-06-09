@@ -9,12 +9,15 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         public static bool? EnableAll { private get; set; }
 
-        private static bool? _highDpi;
-
         public static void Reset()
         {
-            EnableAll = _highDpi = _memoryLeakFix = _nestedDisposalFix = _focusLostFix = _contentOrderFix = _fontInheritanceFix = _activeXFix = null;
+            EnableAll = _highDpi = _memoryLeakFix 
+                = _nestedDisposalFix = _focusLostFix = _contentOrderFix
+                = _fontInheritanceFix = _activeXFix = _displayingPaneFix = null;
         }
+
+        //* Use this section to create new option.
+        private static bool? _highDpi;
 
         public static bool? EnableHighDpi
         {
@@ -91,6 +94,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _highDpi = value;
             }
         }
+        // */
 
         private static bool? _memoryLeakFix;
 
@@ -557,6 +561,84 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 _activeXFix = value;
+            }
+        }
+
+        private static bool? _displayingPaneFix;
+
+        public static bool? EnableDisplayingPaneFix
+        {
+            get
+            {
+                if (_displayingPaneFix != null)
+                {
+                    return _displayingPaneFix;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _displayingPaneFix = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _displayingPaneFix = section.EnableAll;
+                    }
+
+                    return _displayingPaneFix = section.EnableHighDpi;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableDisplayingPaneFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _displayingPaneFix = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableDisplayingPaneFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _displayingPaneFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableDisplayingPaneFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _displayingPaneFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _displayingPaneFix = true;
+            }
+
+            set
+            {
+                _displayingPaneFix = value;
             }
         }
     }
