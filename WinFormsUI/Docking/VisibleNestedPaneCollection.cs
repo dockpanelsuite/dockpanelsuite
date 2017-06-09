@@ -75,10 +75,21 @@ namespace WeifenLuo.WinFormsUI.Docking
             DockPane lastNestedPane = null;
             for (int i=Count - 1; i> IndexOf(pane); i--)
             {
-                if (this[i].NestedDockingStatus.DisplayingPreviousPane == pane)
+                if (PatchController.EnableDisplayingPaneFix == true)
                 {
-                    lastNestedPane = this[i];
-                    break;
+                    if (this[i].NestedDockingStatus.DisplayingPreviousPane == pane)
+                    {
+                        lastNestedPane = this[i];
+                        break;
+                    }
+                }
+                else
+                {
+                    if (this[i].NestedDockingStatus.PreviousPane == pane)
+                    {
+                        lastNestedPane = this[i];
+                        break;
+                    }
                 }
             }
 
@@ -92,8 +103,16 @@ namespace WeifenLuo.WinFormsUI.Docking
                 for (int i=indexLastNestedPane - 1; i>IndexOf(lastNestedPane); i--)
                 {
                     NestedDockingStatus status = this[i].NestedDockingStatus;
-                    if (status.DisplayingPreviousPane == pane)
-                        status.SetDisplayingStatus(true, lastNestedPane, status.DisplayingAlignment, status.DisplayingProportion);
+                    if (PatchController.EnableDisplayingPaneFix == true)
+                    {
+                        if (status.DisplayingPreviousPane == pane)
+                            status.SetDisplayingStatus(true, lastNestedPane, status.DisplayingAlignment, status.DisplayingProportion);
+                    }
+                    else
+                    {
+                        if (status.PreviousPane == pane)
+                            status.SetDisplayingStatus(true, lastNestedPane, status.DisplayingAlignment, status.DisplayingProportion);
+                    }
                 }
             }
             else

@@ -6,6 +6,9 @@ namespace Tests
     [TestFixture]
     public class PatchControllerConfig2TestFixture
     {
+        /// <summary>
+        /// All settings are disabled by "enableAll" in app.config.
+        /// </summary>
         [Test]
         public void Basic()
         {
@@ -17,6 +20,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableMemoryLeakFix);
             Assert.IsFalse(PatchController.EnableNestedDisposalFix);
             Assert.IsFalse(PatchController.EnableActiveXFix);
+            Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
         }
     }
 }
