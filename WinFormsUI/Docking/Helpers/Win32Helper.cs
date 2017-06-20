@@ -19,5 +19,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             return (uint)((high << 16) + low);
         }
+
+        internal static uint HitTestCaption(Control control)
+        {
+            var captionRectangle = new Rectangle(0, 0, control.Width, control.ClientRectangle.Top - control.PointToClient(control.Location).X);
+            return captionRectangle.Contains(Control.MousePosition) ? (uint)2 : 0;
+        }
     }
 }

@@ -207,7 +207,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 case (int)Win32.Msgs.WM_NCRBUTTONDOWN:
                     {
-                        uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
+                        uint result = Win32Helper.IsRunningOnMono ? Win32Helper.HitTestCaption(this) : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
                         if (result == 2)	// HITTEST_CAPTION
                         {
                             DockPane theOnlyPane = (VisibleNestedPanes.Count == 1) ? VisibleNestedPanes[0] : null;
@@ -249,7 +249,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 case (int)Win32.Msgs.WM_NCLBUTTONDBLCLK:
                     {
                         uint result = !DoubleClickTitleBarToDock || Win32Helper.IsRunningOnMono 
-                            ? 0
+                            ? Win32Helper.HitTestCaption(this)
                             : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
 
                         if (result != 2)	// HITTEST_CAPTION
