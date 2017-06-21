@@ -123,16 +123,20 @@ namespace WeifenLuo.WinFormsUI.Docking
                 var strip = item.Key;
                 var cache = item.Value;
                 if (cache.Key == ToolStripRenderMode.Custom)
-                    if(cache.Value != null)
+                {
+                    if (cache.Value != null)
                         strip.Renderer = cache.Value;
+                }
                 else
                     strip.RenderMode = cache.Key;
             }
 
             _stripBefore.Clear();
             if (_managerBefore.Key == ToolStripManagerRenderMode.Custom)
-                if(_managerBefore.Value != null)
+            {
+                if (_managerBefore.Value != null)
                     ToolStripManager.Renderer = _managerBefore.Value;
+            }
             else
                 ToolStripManager.RenderMode = _managerBefore.Key;
         }
