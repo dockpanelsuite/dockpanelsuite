@@ -38,7 +38,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return;
 
             _stripBefore[toolStrip] = new KeyValuePair<ToolStripRenderMode, ToolStripRenderer>(toolStrip.RenderMode, toolStrip.Renderer);
-            toolStrip.Renderer = ToolStripRenderer;
+            if(ToolStripRenderer != null)
+                toolStrip.Renderer = ToolStripRenderer;
 
             if (Win32Helper.IsRunningOnMono)
             {
@@ -122,14 +123,16 @@ namespace WeifenLuo.WinFormsUI.Docking
                 var strip = item.Key;
                 var cache = item.Value;
                 if (cache.Key == ToolStripRenderMode.Custom)
-                    strip.Renderer = cache.Value;
+                    if(cache.Value != null)
+                        strip.Renderer = cache.Value;
                 else
                     strip.RenderMode = cache.Key;
             }
 
             _stripBefore.Clear();
             if (_managerBefore.Key == ToolStripManagerRenderMode.Custom)
-                ToolStripManager.Renderer = _managerBefore.Value;
+                if(_managerBefore.Value != null)
+                    ToolStripManager.Renderer = _managerBefore.Value;
             else
                 ToolStripManager.RenderMode = _managerBefore.Key;
         }
