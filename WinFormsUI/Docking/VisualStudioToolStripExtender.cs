@@ -99,9 +99,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             if (theme == null)
-                strip.Renderer = DefaultRenderer;
+            {
+                if (DefaultRenderer != null)
+                    strip.Renderer = DefaultRenderer;
+            }
             else
+            {
                 theme.ApplyTo(strip);
+            }
             properties.VsVersion = version;
         }
 
