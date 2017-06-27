@@ -29,7 +29,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected ToolStripRenderer ToolStripRenderer { get; set;}
 
-        private Dictionary<ToolStrip, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>> _stripBefore 
+        private Dictionary<ToolStrip, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>> _stripBefore
             = new Dictionary<ToolStrip, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>>();
 
         public void ApplyTo(ToolStrip toolStrip)
@@ -128,7 +128,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                         strip.Renderer = cache.Value;
                 }
                 else
+                {
                     strip.RenderMode = cache.Key;
+                }
             }
 
             _stripBefore.Clear();
@@ -138,7 +140,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     ToolStripManager.Renderer = _managerBefore.Value;
             }
             else
+            {
                 ToolStripManager.RenderMode = _managerBefore.Key;
+            }
         }
 
         public DockPanelExtender Extender { get; private set; }
