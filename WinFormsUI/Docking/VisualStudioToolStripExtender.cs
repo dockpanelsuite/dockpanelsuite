@@ -104,7 +104,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                     strip.Renderer = DefaultRenderer;
             }
             else
+            {
                 theme.ApplyTo(strip);
+            }
             properties.VsVersion = version;
         }
 
