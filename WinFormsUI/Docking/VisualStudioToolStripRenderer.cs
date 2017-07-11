@@ -410,6 +410,18 @@ namespace WeifenLuo.WinFormsUI.Docking
                     color = _palette.CommandBarMenuDefault.Text;
                 }
             }
+            else 
+            {
+                // Default color, if not it will be black no matter what 
+                if (!e.Item.Enabled)
+                {
+                    color = _palette.CommandBarMenuPopupDisabled.Text;
+                } 
+                else
+                {
+                    color = _palette.CommandBarMenuDefault.Text;
+                }
+            }
 
             TextRenderer.DrawText(e.Graphics, e.Text, e.TextFont, e.TextRectangle, color, e.TextFormat);
         }
