@@ -64,7 +64,6 @@ namespace DockSample
             this.menuItemSchemaVS2012Light = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2012Blue = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2012Dark = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemSchemaVS2010Blue = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2005 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2003 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem6 = new System.Windows.Forms.ToolStripSeparator();
@@ -104,7 +103,6 @@ namespace DockSample
             this.vS2012LightTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
             this.vS2012BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012BlueTheme();
             this.vS2012DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
-            this.vS2010BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2010BlueTheme();
             this.vsToolStripExtender1 = new WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender(this.components);
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
@@ -306,7 +304,6 @@ namespace DockSample
             this.menuItemSchemaVS2012Light,
             this.menuItemSchemaVS2012Blue,
             this.menuItemSchemaVS2012Dark,
-            this.menuItemSchemaVS2010Blue,
             this.menuItemSchemaVS2005,
             this.menuItemSchemaVS2003,
             this.menuItem6,
@@ -403,13 +400,6 @@ namespace DockSample
             this.menuItemSchemaVS2012Dark.Size = new System.Drawing.Size(255, 22);
             this.menuItemSchemaVS2012Dark.Text = "Schema: VS2012 Dark";
             this.menuItemSchemaVS2012Dark.Click += new System.EventHandler(this.SetSchema);
-            // 
-            // menuItemSchemaVS2010Blue
-            // 
-            this.menuItemSchemaVS2010Blue.Name = "menuItemSchemaVS2010Blue";
-            this.menuItemSchemaVS2010Blue.Size = new System.Drawing.Size(255, 22);
-            this.menuItemSchemaVS2010Blue.Text = "Schema: VS2010 Blue";
-            this.menuItemSchemaVS2010Blue.Click += new System.EventHandler(this.SetSchema);
             // 
             // menuItemSchemaVS2005
             // 
@@ -721,7 +711,6 @@ namespace DockSample
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripMenuItem showRightToLeft;
         private System.Windows.Forms.ToolStripMenuItem exitWithoutSavingLayout;
-        private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2010Blue;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Light;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Blue;
         private System.Windows.Forms.ToolStripMenuItem menuItemSchemaVS2012Dark;
@@ -740,7 +729,6 @@ namespace DockSample
         private WeifenLuo.WinFormsUI.Docking.VS2012LightTheme vS2012LightTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2012BlueTheme vS2012BlueTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme vS2012DarkTheme1;
-        private WeifenLuo.WinFormsUI.Docking.VS2010BlueTheme vS2010BlueTheme1;
         private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;
         private WeifenLuo.WinFormsUI.Docking.VS2005Theme vS2005Theme1;
         private WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender vsToolStripExtender1;
