@@ -14,5 +14,5 @@ if exist "%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe" (
 
 call .nuget\NuGet.exe update /self
 call .nuget\NuGet.exe restore
-call %msBuildExe% WinFormsUI.Docking.sln /t:build /p:Configuration="Debug"
+call %msBuildExe% WinFormsUI.Docking.sln /t:build /p:Configuration=Release /p:OutputPath=..\bin\net35-client\
 @IF %ERRORLEVEL% NEQ 0 PAUSE
