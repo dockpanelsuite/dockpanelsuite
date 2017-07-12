@@ -27,3 +27,4 @@ T4MVC.cs
 /Gendarme
 *.nupkg
 /.vs
+/.idea
