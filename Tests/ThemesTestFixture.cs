@@ -8,65 +8,6 @@ namespace Tests
     [TestFixture]
     public class ThemesTestFixture
     {
-        // TODO: [Test]
-        public void CreateVisualStudio2010Blue()
-        {
-            var ColorPalette = new VS2010BlueTheme().ColorPalette;
-            AssertColor(ColorPalette.AutoHideStripDefault.Background, ColorTranslator.FromHtml("#FF293955"));
-            AssertColor(ColorPalette.AutoHideStripDefault.Border, ColorTranslator.FromHtml("#FF465A7D"));
-            AssertColor(ColorPalette.AutoHideStripDefault.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.AutoHideStripHovered.Background, ColorTranslator.FromHtml("#FF293955"));
-            AssertColor(ColorPalette.AutoHideStripHovered.Border, ColorTranslator.FromHtml("#FF9BA7B7"));
-            AssertColor(ColorPalette.AutoHideStripHovered.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.OverflowButtonDefault.Glyph, ColorTranslator.FromHtml("#FFCED4DD"));
-            AssertColor(ColorPalette.OverflowButtonHovered.Background, ColorTranslator.FromHtml("#FFFFFCF4"));
-            AssertColor(ColorPalette.OverflowButtonHovered.Border, ColorTranslator.FromHtml("#FFE5C365"));
-            AssertColor(ColorPalette.OverflowButtonHovered.Glyph, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.TabSelectedActive.Background, ColorTranslator.FromHtml("#FFFFF0D0"));
-            AssertColor(ColorPalette.TabSelectedActive.Button, ColorTranslator.FromHtml("#FF75633D"));
-            AssertColor(ColorPalette.TabSelectedActive.Text, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.TabSelectedInactive.Background, ColorTranslator.FromHtml("#3D5277"));// TODO: from theme .FromHtml("#FF4D6082"));
-            AssertColor(ColorPalette.TabSelectedInactive.Button, ColorTranslator.FromHtml("#FFCED4DD"));
-            AssertColor(ColorPalette.TabSelectedInactive.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.TabUnselected.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.TabUnselectedHovered.Background, ColorTranslator.FromHtml("#FF4B5C74"));
-            AssertColor(ColorPalette.TabUnselectedHovered.Button, ColorTranslator.FromHtml("#FFCED4DD"));
-            AssertColor(ColorPalette.TabUnselectedHovered.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.TabButtonSelectedActiveHovered.Background, ColorTranslator.FromHtml("#FFFFFCF4"));
-            AssertColor(ColorPalette.TabButtonSelectedActiveHovered.Border, ColorTranslator.FromHtml("#FFE5C365"));
-            AssertColor(ColorPalette.TabButtonSelectedActiveHovered.Glyph, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.TabButtonSelectedInactiveHovered.Background, ColorTranslator.FromHtml("#FFFFFCF4"));
-            AssertColor(ColorPalette.TabButtonSelectedInactiveHovered.Border, ColorTranslator.FromHtml("#FFE5C365"));
-            AssertColor(ColorPalette.TabButtonSelectedInactiveHovered.Glyph, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.TabButtonUnselectedTabHoveredButtonHovered.Background, ColorTranslator.FromHtml("#FFFFFCF4"));
-            AssertColor(ColorPalette.TabButtonUnselectedTabHoveredButtonHovered.Border, ColorTranslator.FromHtml("#FFE5C365"));
-            AssertColor(ColorPalette.TabButtonUnselectedTabHoveredButtonHovered.Glyph, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.MainWindowActive.Background, ColorTranslator.FromHtml("#FF293955"));
-            AssertColor(ColorPalette.MainWindowStatusBarDefault.Background, ColorTranslator.FromHtml("#FF293955"));
-            AssertColor(ColorPalette.ToolWindowCaptionActive.Background, ColorTranslator.FromHtml("#FFFFF0D0"));
-            AssertColor(ColorPalette.ToolWindowCaptionActive.Button, ColorTranslator.FromHtml("#FF75633D"));
-            AssertColor(ColorPalette.ToolWindowCaptionActive.Grip, ColorTranslator.FromHtml("#FFFFF0D0"));
-            AssertColor(ColorPalette.ToolWindowCaptionActive.Text, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.ToolWindowCaptionInactive.Background, ColorTranslator.FromHtml("#FF4D6082"));
-            AssertColor(ColorPalette.ToolWindowCaptionInactive.Button, ColorTranslator.FromHtml("#FFCED4DD"));
-            AssertColor(ColorPalette.ToolWindowCaptionInactive.Grip, ColorTranslator.FromHtml("#FF4D6082"));
-            AssertColor(ColorPalette.ToolWindowCaptionInactive.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.ToolWindowCaptionButtonActiveHovered.Background, ColorTranslator.FromHtml("#FFFFFCF4"));
-            AssertColor(ColorPalette.ToolWindowCaptionButtonActiveHovered.Border, ColorTranslator.FromHtml("#FFE5C365"));
-            AssertColor(ColorPalette.ToolWindowCaptionButtonActiveHovered.Glyph, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.ToolWindowCaptionButtonInactiveHovered.Background, ColorTranslator.FromHtml("#FFFFFCF4"));
-            AssertColor(ColorPalette.ToolWindowCaptionButtonInactiveHovered.Border, ColorTranslator.FromHtml("#FFE5C365"));
-            AssertColor(ColorPalette.ToolWindowCaptionButtonInactiveHovered.Glyph, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.ToolWindowTabSelectedActive.Background, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.ToolWindowSeparator, ColorTranslator.FromHtml("#FF4B5C74"));
-            AssertColor(ColorPalette.ToolWindowTabSelectedActive.Text, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.ToolWindowTabSelectedInactive.Background, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.ToolWindowTabSelectedInactive.Text, ColorTranslator.FromHtml("#FF000000"));
-            AssertColor(ColorPalette.ToolWindowTabUnselected.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-            AssertColor(ColorPalette.ToolWindowTabUnselectedHovered.Background, ColorTranslator.FromHtml("#FF4B5C74"));
-            AssertColor(ColorPalette.ToolWindowTabUnselectedHovered.Text, ColorTranslator.FromHtml("#FFFFFFFF"));
-        }
-
         #region VS2012
         [Test]
         public void CreateVisualStudio2012Blue()
