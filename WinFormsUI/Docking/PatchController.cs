@@ -13,10 +13,12 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             EnableAll = _highDpi = _memoryLeakFix 
                 = _nestedDisposalFix = _focusLostFix = _contentOrderFix
-                = _fontInheritanceFix = _activeXFix = _displayingPaneFix = null;
+                = _fontInheritanceFix = _activeXFix = _displayingPaneFix
+                = _activeControlFix = null;
         }
 
-        //* Use this section to create new option.
+#region Copy this section to create new option, and then comment it to show what needs to be modified.
+        //*
         private static bool? _highDpi;
 
         public static bool? EnableHighDpi
@@ -95,6 +97,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
         // */
+#endregion
 
         private static bool? _memoryLeakFix;
 
@@ -639,6 +642,84 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 _displayingPaneFix = value;
+            }
+        }
+
+        private static bool? _activeControlFix;
+
+        public static bool? EnableActiveControlFix
+        {
+            get
+            {
+                if (_activeControlFix != null)
+                {
+                    return _activeControlFix;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _activeControlFix = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _activeControlFix = section.EnableAll;
+                    }
+
+                    return _activeControlFix = section.EnableHighDpi;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableActiveControlFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _activeControlFix = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableActiveControlFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _activeControlFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableActiveControlFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _activeControlFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _activeControlFix = true;
+            }
+
+            set
+            {
+                _activeControlFix = value;
             }
         }
     }

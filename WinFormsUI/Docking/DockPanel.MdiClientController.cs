@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.Runtime.InteropServices;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -32,8 +31,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (Site != null && Site.Container != null)
                         Site.Container.Remove(this);
 
-                    if (Disposed != null)
-                        Disposed(this, EventArgs.Empty);
+                    Disposed?.Invoke(this, EventArgs.Empty);
                 }
             }
 
@@ -358,7 +356,16 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return;
 
             if (content.DockHandler.DockPanel == this && content.DockHandler.Pane != null)
-                content.DockHandler.Pane.ActiveContent = content;
+            {
+                if (content.DockHandler.Pane.DisplayingContents.Contains(content))
+                {
+                    content.DockHandler.Pane.ActiveContent = content;
+                }
+                else if (PatchController.EnableActiveControlFix != true)
+                {
+                    content.DockHandler.Pane.ActiveContent = content;
+                }
+            }
         }
 
         private bool MdiClientExists

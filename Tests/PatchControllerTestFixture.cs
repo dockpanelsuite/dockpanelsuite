@@ -23,6 +23,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableNestedDisposalFix);
             Assert.IsFalse(PatchController.EnableActiveXFix);
             Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
+            Assert.IsTrue(PatchController.EnableActiveControlFix);
         }
 
         [Test]
@@ -61,6 +62,10 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
             Environment.SetEnvironmentVariable("DPS_EnableDisplayingPaneFix", null);
 
+            Environment.SetEnvironmentVariable("DPS_EnableActiveControlFix", "false");
+            Assert.IsFalse(PatchController.EnableActiveControlFix);
+            Environment.SetEnvironmentVariable("DPS_EnableActiveControlFix", null);
+
             PatchController.Reset();
             Assert.IsTrue(PatchController.EnableHighDpi);
             Assert.IsTrue(PatchController.EnableContentOrderFix);
@@ -70,6 +75,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableNestedDisposalFix);
             Assert.IsFalse(PatchController.EnableActiveXFix);
             Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
+            Assert.IsTrue(PatchController.EnableActiveControlFix);
         }
 
         [Test]
@@ -86,6 +92,7 @@ namespace Tests
             key.SetValue("EnableNestedDisposalFix", "false", RegistryValueKind.String);
             key.SetValue("EnableActiveXFix", "true", RegistryValueKind.String);
             key.SetValue("EnableDisplayingPaneFix", "false", RegistryValueKind.String);
+            key.SetValue("EnableActiveControlFix", "false", RegistryValueKind.String);
 
             Assert.IsFalse(PatchController.EnableHighDpi);
             Assert.IsFalse(PatchController.EnableContentOrderFix);
@@ -95,6 +102,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableNestedDisposalFix);
             Assert.IsTrue(PatchController.EnableActiveXFix);
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
+            Assert.IsFalse(PatchController.EnableActiveControlFix);
             Registry.CurrentUser.DeleteSubKeyTree("Software\\DockPanelSuite");
         }
 
@@ -111,6 +119,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableNestedDisposalFix);
             Assert.IsFalse(PatchController.EnableActiveXFix);
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
+            Assert.IsFalse(PatchController.EnableActiveControlFix);
         }
     }
 }
