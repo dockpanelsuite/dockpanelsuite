@@ -95,6 +95,10 @@
       <Project>{007d4ac8-948f-4816-86ad-b9d1343672c1}</Project>
       <Name>ThemeVS2015</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2017.csproj">
+      <Project>{12578d4b-980b-4502-a08d-af5a25c3c517}</Project>
+      <Name>ThemeVS2017</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinFormsUI\WinFormsUI.csproj">
       <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
       <Name>WinFormsUI</Name>
