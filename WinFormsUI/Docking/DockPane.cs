@@ -51,6 +51,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_tabStripControl; }
         }
 
+        public IDockContent CreationContent { get; private set; }
+
         internal protected DockPane(IDockContent content, DockState visibleState, bool show)
         {
             InternalConstruct(content, visibleState, false, Rectangle.Empty, null, DockAlignment.Right, 0.5, show);
@@ -89,6 +91,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (content.DockHandler.DockPanel == null)
                 throw new ArgumentException(Strings.DockPane_Constructor_NullDockPanel);
 
+            CreationContent = content;
+
             SuspendLayout();
             SetStyle(ControlStyles.Selectable, false);
 
@@ -123,6 +127,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             ResumeLayout();
             DockPanel.ResumeLayout(true, true);
+
+            CreationContent = null;
         }
 
         private bool m_isDisposing;
