@@ -45,6 +45,26 @@ namespace WeifenLuo.WinFormsUI.Docking
             protected virtual void Dispose(bool disposing)
             {
             }
+
+            private Rectangle? _rect;
+
+            public Rectangle? Rectangle
+            {
+                get
+                {
+                    if (_rect != null)
+                    {
+                        return _rect;
+                    }
+
+                    throw new InvalidOperationException("rectangle calculation must happen first");
+                }
+
+                set
+                {
+                    _rect = value;
+                }
+            }
         }
 
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]        

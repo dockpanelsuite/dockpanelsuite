@@ -589,7 +589,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private GraphicsPath GetOutline_Document(int index)
         {
-            Rectangle rectTab = GetTabRectangle(index);
+            Rectangle rectTab = Tabs[index].Rectangle.Value;
             rectTab.X -= rectTab.Height / 2;
             rectTab.Intersect(TabsRectangle);
             rectTab = RectangleToScreen(DrawHelper.RtlTransform(this, rectTab));
@@ -620,7 +620,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private GraphicsPath GetOutline_ToolWindow(int index)
         {
-            Rectangle rectTab = GetTabRectangle(index);
+            Rectangle rectTab = Tabs[index].Rectangle.Value;
             rectTab.Intersect(TabsRectangle);
             rectTab = RectangleToScreen(DrawHelper.RtlTransform(this, rectTab));
             Rectangle rectPaneClient = DockPane.RectangleToScreen(DockPane.ClientRectangle);
@@ -900,10 +900,16 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (Tabs[i].Content == DockPane.ActiveContent)
                 {
                     tabActive = Tabs[i] as TabVS2012;
+                    tabActive.Rectangle = rectTab;
                     continue;
                 }
+
                 if (rectTab.IntersectsWith(rectTabOnly))
-                    DrawTab(g, Tabs[i] as TabVS2012, rectTab, false);
+                {
+                    var tab = Tabs[i] as TabVS2012;
+                    tab.Rectangle = rectTab;
+                    DrawTab(g, tab, false);
+                }
             }
 
             g.SetClip(rectTabStrip);
@@ -925,11 +931,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             g.SetClip(DrawHelper.RtlTransform(this, rectTabOnly));
             if (tabActive != null)
             {
-                rectTab = GetTabRectangle(Tabs.IndexOf(tabActive));
+                rectTab = tabActive.Rectangle.Value;
                 if (rectTab.IntersectsWith(rectTabOnly))
                 {
                     rectTab.Intersect(rectTabOnly);
-                    DrawTab(g, tabActive, rectTab, false);
+                    tabActive.Rectangle = rectTab;
+                    DrawTab(g, tabActive, false);
                 }
             }
         }
@@ -937,7 +944,11 @@ namespace WeifenLuo.WinFormsUI.Docking
         private void DrawTabStrip_ToolWindow(Graphics g)
         {
             for (int i = 0; i < Tabs.Count; i++)
-                DrawTab(g, Tabs[i] as TabVS2012, GetTabRectangle(i), i == Tabs.Count - 1);
+            {
+                var tab = Tabs[i] as TabVS2012;
+                tab.Rectangle = GetTabRectangle(i);
+                DrawTab(g, tab, i == Tabs.Count - 1);
+            }
         }
 
         private Rectangle GetTabRectangle(int index)
@@ -946,42 +957,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return GetTabRectangle_ToolWindow(index);
             else
                 return GetTabRectangle_Document(index);
-        }
-
-        private Rectangle GetEffectiveTabRectangle(int index)
-        {
-            int count = Tabs.Count;
-            if (count == 0)
-                return GetTabRectangle(index);
-
-            Rectangle rectTabStrip = new Rectangle(TabStripRectangle.Location, TabStripRectangle.Size);
-            rectTabStrip.Height += 1;
-
-            // Draw the tabs
-            Rectangle rectTabOnly = TabsRectangle;
-            Rectangle rectTab = Rectangle.Empty;
-            TabVS2012 tabActive = null;
-            for (int i = 0; i < count; i++)
-            {
-                rectTab = GetTabRectangle(i);
-                if (Tabs[i].Content == DockPane.ActiveContent)
-                {
-                    tabActive = Tabs[i] as TabVS2012;
-                    continue;
-                }
-            }
-
-            if (tabActive != null)
-            {
-                rectTab = GetTabRectangle(Tabs.IndexOf(tabActive));
-                if (rectTab.IntersectsWith(rectTabOnly))
-                {
-                    rectTab.Intersect(rectTabOnly);
-                    return rectTab;
-                }
-            }
-
-            return GetTabRectangle(index);
         }
 
         private Rectangle GetTabRectangle_ToolWindow(int index)
@@ -1010,12 +985,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             return rect;
         }
 
-        private void DrawTab(Graphics g, TabVS2012 tab, Rectangle rect, bool last)
+        private void DrawTab(Graphics g, TabVS2012 tab, bool last)
         {
             if (Appearance == DockPane.AppearanceStyle.ToolWindow)
-                DrawTab_ToolWindow(g, tab, rect, last);
+                DrawTab_ToolWindow(g, tab, last);
             else
-                DrawTab_Document(g, tab, rect);
+                DrawTab_Document(g, tab);
         }
 
         private GraphicsPath GetTabOutline(Tab tab, bool rtlTransform, bool toScreen)
@@ -1028,7 +1003,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private GraphicsPath GetTabOutline_ToolWindow(Tab tab, bool rtlTransform, bool toScreen)
         {
-            Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
+            Rectangle rect = tab.Rectangle.Value;
             if (rtlTransform)
                 rect = DrawHelper.RtlTransform(this, rect);
             if (toScreen)
@@ -1041,7 +1016,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private GraphicsPath GetTabOutline_Document(Tab tab, bool rtlTransform, bool toScreen, bool full)
         {
             GraphicsPath.Reset();
-            Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
+            Rectangle rect = tab.Rectangle.Value;
 
             // Shorten TabOutline so it doesn't get overdrawn by icons next to it
             rect.Intersect(TabsRectangle);
@@ -1056,8 +1031,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             return GraphicsPath;
         }
 
-        private void DrawTab_ToolWindow(Graphics g, TabVS2012 tab, Rectangle rect, bool last)
+        private void DrawTab_ToolWindow(Graphics g, TabVS2012 tab, bool last)
         {
+            var rect = tab.Rectangle.Value;
             rect.Y += 1;
             Rectangle rectIcon = new Rectangle(
                 rect.X + ToolWindowImageGapLeft,
@@ -1124,8 +1100,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
         }
 
-        private void DrawTab_Document(Graphics g, TabVS2012 tab, Rectangle rect)
+        private void DrawTab_Document(Graphics g, TabVS2012 tab)
         {
+            var rect = tab.Rectangle.Value;
             if (tab.TabWidth == 0)
                 return;
 
@@ -1277,7 +1254,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     toolTip = tab.Content.DockHandler.TabText;
 
                 var mousePos = PointToClient(MousePosition);
-                var tabRect = GetEffectiveTabRectangle(index);
+                var tabRect = tab.Rectangle.Value;
                 var closeButtonRect = GetCloseButtonRect(tabRect);
                 var mouseRect = new Rectangle(mousePos, new Size(1, 1));
                 buttonUpdate = SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
