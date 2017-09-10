@@ -903,6 +903,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
                     tabActive.Rectangle = rectTab;
                     continue;
                 }
+
                 if (rectTab.IntersectsWith(rectTabOnly))
                 {
                     var tab = Tabs[i] as TabVS2013;
@@ -930,7 +931,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             g.SetClip(DrawHelper.RtlTransform(this, rectTabOnly));
             if (tabActive != null)
             {
-                rectTab = GetTabRectangle(Tabs.IndexOf(tabActive));
+                rectTab = tabActive.Rectangle.Value;
                 if (rectTab.IntersectsWith(rectTabOnly))
                 {
                     rectTab.Intersect(rectTabOnly);

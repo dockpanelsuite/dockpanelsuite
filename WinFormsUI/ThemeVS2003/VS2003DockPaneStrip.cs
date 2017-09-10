@@ -507,7 +507,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (Appearance == DockPane.AppearanceStyle.Document)
             {
-                Rectangle rectTab = GetTabRectangle(index);
+                Rectangle rectTab = Tabs[index].Rectangle.Value;
                 rectTab.Intersect(TabsRectangle);
                 int y = DockPane.PointToClient(PointToScreen(new Point(0, rectTab.Bottom))).Y;
                 Rectangle rectPaneClient = DockPane.ClientRectangle;
@@ -522,7 +522,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             else
             {
-                Rectangle rectTab = GetTabRectangle(index);
+                Rectangle rectTab = Tabs[index].Rectangle.Value;
                 rectTab.Intersect(TabsRectangle);
                 int y = DockPane.PointToClient(PointToScreen(new Point(0, rectTab.Top))).Y;
                 Rectangle rectPaneClient = DockPane.ClientRectangle;
@@ -739,7 +739,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (rectTab.IntersectsWith(rectTabOnly))
                 {
                     rectTab.Intersect(rectTabOnly);
-                    DrawTab(g, Tabs[i] as TabVS2003, rectTab);
+                    var tab = Tabs[i] as TabVS2003;
+                    tab.Rectangle = rectTab;
+                    DrawTab(g, tab);
                 }
             }
         }
@@ -751,8 +753,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             g.DrawLine(OutlineInnerPen, rectTabStrip.Left, rectTabStrip.Top,
                 rectTabStrip.Right, rectTabStrip.Top);
 
-            for (int i=0; i<Tabs.Count; i++)
-                DrawTab(g, Tabs[i] as TabVS2003, GetTabRectangle(i));
+            for (int i = 0; i < Tabs.Count; i++)
+            {
+                var tab = Tabs[i] as TabVS2003;
+                tab.Rectangle = GetTabRectangle(i);
+                DrawTab(g, tab);
+            }
         }
 
         private Rectangle GetTabRectangle(int index)
@@ -779,20 +785,21 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Rectangle(tab.TabX, rectTabStrip.Y + DocumentTabGapTop, tab.TabWidth, rectTabStrip.Height - DocumentTabGapTop);
         }
 
-        private void DrawTab(Graphics g, TabVS2003 tab, Rectangle rect)
+        private void DrawTab(Graphics g, TabVS2003 tab)
         {
             OnBeginDrawTab(tab);
 
             if (Appearance == DockPane.AppearanceStyle.ToolWindow)
-                DrawTab_ToolWindow(g, tab, rect);
+                DrawTab_ToolWindow(g, tab);
             else
-                DrawTab_Document(g, tab, rect);
+                DrawTab_Document(g, tab);
 
             OnEndDrawTab(tab);
         }
 
-        private void DrawTab_ToolWindow(Graphics g, TabVS2003 tab, Rectangle rect)
+        private void DrawTab_ToolWindow(Graphics g, TabVS2003 tab)
         {
+            var rect = tab.Rectangle.Value;
             Rectangle rectIcon = new Rectangle(
                 rect.X + ToolWindowImageGapLeft,
                 rect.Y + rect.Height - 1 - ToolWindowImageGapBottom - ToolWindowImageHeight,
@@ -828,8 +835,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 g.DrawIcon(tab.Content.DockHandler.Icon, rectIcon);
         }
 
-        private void DrawTab_Document(Graphics g, TabVS2003 tab, Rectangle rect)
+        private void DrawTab_Document(Graphics g, TabVS2003 tab)
         {
+            var rect = tab.Rectangle.Value;
             Rectangle rectText = rect;
             if (DockPane.DockPanel.ShowDocumentIcon)
             {
@@ -921,16 +929,16 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             int index;
             for (index=0; index<Tabs.Count; index++)
-                if (GetTabRectangle(index).IntersectsWith(rectTabStrip))
+                if (Tabs[index].Rectangle.Value.IntersectsWith(rectTabStrip))
                     break;
 
-            Rectangle rectTab = GetTabRectangle(index);
+            Rectangle rectTab = Tabs[index].Rectangle.Value;
             if (rectTab.Left < rectTabStrip.Left)
                 OffsetX += rectTabStrip.Left - rectTab.Left;
             else if (index == 0)
                 OffsetX = 0;
             else
-                OffsetX += rectTabStrip.Left - GetTabRectangle(index - 1).Left;
+                OffsetX += rectTabStrip.Left - Tabs[index - 1].Rectangle.Value.Left;
 
             OnRefreshChanges();
         }
@@ -942,16 +950,16 @@ namespace WeifenLuo.WinFormsUI.Docking
             int index;
             int count = Tabs.Count;
             for (index=0; index<count; index++)
-                if (GetTabRectangle(index).IntersectsWith(rectTabStrip))
+                if (Tabs[index].Rectangle.Value.IntersectsWith(rectTabStrip))
                     break;
 
             if (index + 1 < count)
             {
-                OffsetX -= GetTabRectangle(index + 1).Left - rectTabStrip.Left;
+                OffsetX -= Tabs[index + 1].Rectangle.Value.Left - rectTabStrip.Left;
                 CalculateTabs();
             }
 
-            Rectangle rectLastTab = GetTabRectangle(count - 1);
+            Rectangle rectLastTab = Tabs[count - 1].Rectangle.Value;
             if (rectLastTab.Right < rectTabStrip.Right)
                 OffsetX += rectTabStrip.Right - rectLastTab.Right;
 
@@ -1037,7 +1045,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             for (int i=0; i<Tabs.Count; i++)
             {
-                Rectangle rectTab = GetTabRectangle(i);
+                Rectangle rectTab = Tabs[i].Rectangle.Value;
                 rectTab.Intersect(rectTabStrip);
                 if (rectTab.Contains(point))
                     return i;
@@ -1047,7 +1055,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override Rectangle GetTabBounds(Tab tab)
         {
-            return GetTabRectangle(Tabs.IndexOf(tab));
+            return tab.Rectangle.Value;
         }
 
         /// <exclude/>
@@ -1060,7 +1068,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (index != -1)
             {
-                Rectangle rectTab = GetTabRectangle(index);
+                Rectangle rectTab = Tabs[index].Rectangle.Value;
                 if (Tabs[index].Content.DockHandler.ToolTipText != null)
                     toolTip = Tabs[index].Content.DockHandler.ToolTipText;
                 else if (rectTab.Width < GetTabOriginalWidth(index))
