@@ -207,7 +207,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (m_buttonOverflow == null)
                 {
                     m_buttonOverflow = new InertButton(
-                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_OptionOverflow, 
+                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_OptionOverflow,
                         DockPane.DockPanel.Theme.ImageService.DockPane_OptionOverflow,
                         DockPane.DockPanel.Theme.ImageService.DockPanePress_OptionOverflow);
                     m_buttonOverflow.Click += new EventHandler(WindowList_Click);
@@ -225,7 +225,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (m_buttonWindowList == null)
                 {
                     m_buttonWindowList = new InertButton(
-                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_List, 
+                        DockPane.DockPanel.Theme.ImageService.DockPaneHover_List,
                         DockPane.DockPanel.Theme.ImageService.DockPane_List,
                         DockPane.DockPanel.Theme.ImageService.DockPanePress_List);
                     m_buttonWindowList.Click += new EventHandler(WindowList_Click);
@@ -544,7 +544,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (DockPane.IsAutoHide || Tabs.Count <= 1)
                 return 0;
 
-            int height = Math.Max(TextFont.Height + (PatchController.EnableHighDpi == true ? DocumentIconGapBottom : 0), 
+            int height = Math.Max(TextFont.Height + (PatchController.EnableHighDpi == true ? DocumentIconGapBottom : 0),
                 ToolWindowImageHeight + ToolWindowImageGapTop + ToolWindowImageGapBottom)
                 + ToolWindowStripGapTop + ToolWindowStripGapBottom;
 
@@ -665,7 +665,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             int totalAllocatedWidth = 0;
             int averageWidth = totalWidth / countTabs;
             int remainedTabs = countTabs;
-            for (anyWidthWithinAverage = true; anyWidthWithinAverage && remainedTabs > 0; )
+            for (anyWidthWithinAverage = true; anyWidthWithinAverage && remainedTabs > 0;)
             {
                 anyWidthWithinAverage = false;
                 foreach (TabVS2012 tab in Tabs)
@@ -863,7 +863,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 width = sizeText.Width + DocumentIconWidth + DocumentIconGapLeft + DocumentIconGapRight + DocumentTextGapRight;
             else
                 width = sizeText.Width + DocumentIconGapLeft + DocumentTextGapRight;
-            
+
             width += TAB_CLOSE_BUTTON_WIDTH;
             return width;
         }
@@ -948,6 +948,42 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return GetTabRectangle_Document(index);
         }
 
+        private Rectangle GetEffectiveTabRectangle(int index)
+        {
+            int count = Tabs.Count;
+            if (count == 0)
+                return GetTabRectangle(index);
+
+            Rectangle rectTabStrip = new Rectangle(TabStripRectangle.Location, TabStripRectangle.Size);
+            rectTabStrip.Height += 1;
+
+            // Draw the tabs
+            Rectangle rectTabOnly = TabsRectangle;
+            Rectangle rectTab = Rectangle.Empty;
+            TabVS2012 tabActive = null;
+            for (int i = 0; i < count; i++)
+            {
+                rectTab = GetTabRectangle(i);
+                if (Tabs[i].Content == DockPane.ActiveContent)
+                {
+                    tabActive = Tabs[i] as TabVS2012;
+                    continue;
+                }
+            }
+
+            if (tabActive != null)
+            {
+                rectTab = GetTabRectangle(Tabs.IndexOf(tabActive));
+                if (rectTab.IntersectsWith(rectTabOnly))
+                {
+                    rectTab.Intersect(rectTabOnly);
+                    return rectTab;
+                }
+            }
+
+            return GetTabRectangle(index);
+        }
+
         private Rectangle GetTabRectangle_ToolWindow(int index)
         {
             Rectangle rectTabStrip = TabStripRectangle;
@@ -1006,7 +1042,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             GraphicsPath.Reset();
             Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
-            
+
             // Shorten TabOutline so it doesn't get overdrawn by icons next to it
             rect.Intersect(TabsRectangle);
             rect.Width--;
@@ -1143,7 +1179,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     paint = activeColor;
                     text = activeText;
                     image = IsMouseDown
-                        ? imageService.TabPressActive_Close 
+                        ? imageService.TabPressActive_Close
                         : rectCloseButton == ActiveClose
                             ? imageService.TabHoverActive_Close
                             : imageService.TabActive_Close;
@@ -1241,7 +1277,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     toolTip = tab.Content.DockHandler.TabText;
 
                 var mousePos = PointToClient(MousePosition);
-                var tabRect = GetTabRectangle(index);
+                var tabRect = GetEffectiveTabRectangle(index);
                 var closeButtonRect = GetCloseButtonRect(tabRect);
                 var mouseRect = new Rectangle(mousePos, new Size(1, 1));
                 buttonUpdate = SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
@@ -1330,7 +1366,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
             }
         }
-        
+
         private void ContextMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
