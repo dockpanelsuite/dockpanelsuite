@@ -1003,7 +1003,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private GraphicsPath GetTabOutline_ToolWindow(Tab tab, bool rtlTransform, bool toScreen)
         {
-            Rectangle rect = tab.Rectangle.Value;
+            Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
             if (rtlTransform)
                 rect = DrawHelper.RtlTransform(this, rect);
             if (toScreen)
@@ -1016,7 +1016,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         private GraphicsPath GetTabOutline_Document(Tab tab, bool rtlTransform, bool toScreen, bool full)
         {
             GraphicsPath.Reset();
-            Rectangle rect = tab.Rectangle.Value;
+            Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
 
             // Shorten TabOutline so it doesn't get overdrawn by icons next to it
             rect.Intersect(TabsRectangle);

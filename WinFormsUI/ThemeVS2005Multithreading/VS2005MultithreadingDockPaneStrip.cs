@@ -1074,7 +1074,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         private GraphicsPath GetTabOutline_ToolWindow(Tab tab, bool rtlTransform, bool toScreen)
         {
-            Rectangle rect = tab.Rectangle.Value;
+            Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
             if (rtlTransform)
                 rect = DrawHelper.RtlTransform(this, rect);
             if (toScreen)
@@ -1089,8 +1089,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             int curveSize = 6;
 
             GraphicsPath.Reset();
-            Rectangle rect = tab.Rectangle.Value;
-            
+            Rectangle rect = GetTabRectangle(Tabs.IndexOf(tab));
+
             // Shorten TabOutline so it doesn't get overdrawn by icons next to it
             rect.Intersect(TabsRectangle);
             rect.Width--;
