@@ -797,13 +797,14 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             {
                 m_startDisplayingTab = 0;
                 FirstDisplayingTab = 0;
-                x = rectTabStrip.X;// +rectTabStrip.Height / 2;
+                x = rectTabStrip.X;
                 foreach (TabVS2013 tab in Tabs)
                 {
                     tab.TabX = x;
                     x += tab.TabWidth;
                 }
             }
+
             DocumentTabsOverflow = overflow;
         }
 
@@ -951,6 +952,43 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
                 return GetTabRectangle_ToolWindow(index);
             else
                 return GetTabRectangle_Document(index);
+        }
+
+        private Rectangle GetEffectiveTabRectangle(int index)
+        {
+            int count = Tabs.Count;
+            if (count == 0)
+                return GetTabRectangle(index);
+
+            Rectangle rectTabStrip = new Rectangle(TabStripRectangle.Location, TabStripRectangle.Size);
+            rectTabStrip.Height += 1;
+
+            // Draw the tabs
+            Rectangle rectTabOnly = TabsRectangle;
+            Rectangle rectTab = Rectangle.Empty;
+            TabVS2013 tabActive = null;
+            for (int i = 0; i < count; i++)
+            {
+                rectTab = GetTabRectangle(i);
+                if (Tabs[i].Content == DockPane.ActiveContent)
+                {
+                    tabActive = Tabs[i] as TabVS2013;
+                    continue;
+                }
+            }
+
+            if (tabActive != null)
+            {
+                rectTab = GetTabRectangle(Tabs.IndexOf(tabActive));
+                if (rectTab.IntersectsWith(rectTabOnly))
+                {
+                    rectTab.Intersect(rectTabOnly);
+                }
+
+                return rectTab;
+            }
+
+            return GetTabRectangle(index);
         }
 
         private Rectangle GetTabRectangle_ToolWindow(int index)
@@ -1249,7 +1287,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
                     toolTip = tab.Content.DockHandler.TabText;
 
                 var mousePos = PointToClient(MousePosition);
-                var tabRect = GetTabRectangle(index);
+                var tabRect = GetEffectiveTabRectangle(index);
                 var closeButtonRect = GetCloseButtonRect(tabRect);
                 var mouseRect = new Rectangle(mousePos, new Size(1, 1));
                 buttonUpdate = SetActiveClose(closeButtonRect.IntersectsWith(mouseRect) ? closeButtonRect : Rectangle.Empty);
@@ -1292,7 +1330,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
 
         private Rectangle GetCloseButtonRect(Rectangle rectTab)
         {
-            if (Appearance != Docking.DockPane.AppearanceStyle.Document)
+            if (Appearance != DockPane.AppearanceStyle.Document)
             {
                 return Rectangle.Empty;
             }
