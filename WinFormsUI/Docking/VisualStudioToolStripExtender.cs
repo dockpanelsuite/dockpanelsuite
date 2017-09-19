@@ -10,7 +10,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     {
         private class ToolStripProperties
         {
-            private VsVersion version = VsVersion.Unkown;
+            private VsVersion version = VsVersion.Unknown;
             private readonly ToolStrip strip;
             private readonly Dictionary<ToolStripItem, string> menuText = new Dictionary<ToolStripItem, string>();
             
@@ -81,7 +81,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (strips.ContainsKey(strip))
                 return strips[strip].VsVersion;
 
-            return VsVersion.Unkown;
+            return VsVersion.Unknown;
         }
 
         public void SetStyle(ToolStrip strip, VsVersion version, ThemeBase theme)
@@ -112,7 +112,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public enum VsVersion
         {
-            Unkown,
+            Unknown,
             Vs2003,
             Vs2005,
             Vs2008,
