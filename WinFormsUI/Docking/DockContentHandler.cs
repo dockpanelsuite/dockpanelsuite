@@ -389,6 +389,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     throw new InvalidOperationException(Strings.DockContentHandler_IsFloat_InvalidValue);
 
                 SetDockState(IsHidden, visibleState, Pane);
+                if (PanelPane != null && PanelPane.IsHidden)
+                    PanelPane.NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(PanelPane);
             }
         }
 

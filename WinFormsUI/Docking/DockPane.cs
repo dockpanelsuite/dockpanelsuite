@@ -1159,6 +1159,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             SetVisibleContentsToPane(floatPane, activeContent);
 
+            if (IsHidden)
+                NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(this);
+
             DockPanel.ResumeLayout(true, true);
             return floatPane;
         }
