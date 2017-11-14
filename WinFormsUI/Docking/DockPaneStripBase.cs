@@ -47,6 +47,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             private Rectangle? _rect;
+            private static Rectangle empty = new Rectangle();
 
             public Rectangle? Rectangle
             {
@@ -57,7 +58,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return _rect;
                     }
 
-                    throw new InvalidOperationException("rectangle calculation must happen first");
+                    return _rect = empty;
                 }
 
                 set
