@@ -524,7 +524,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                     NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(this);
                 }
                 else
+                {
                     content.DockHandler.Close();
+                    // TODO: fix layout here for #519
+                }
             }
             finally
             {

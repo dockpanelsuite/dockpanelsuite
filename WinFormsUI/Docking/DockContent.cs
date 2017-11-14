@@ -328,9 +328,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
         protected virtual void OnDockStateChanged(EventArgs e)
         {
-            EventHandler handler = (EventHandler)Events[DockStateChangedEvent];
-            if (handler != null)
-                handler(this, e);
+            ((EventHandler)Events[DockStateChangedEvent])?.Invoke(this, e);
         }
         #endregion
 
