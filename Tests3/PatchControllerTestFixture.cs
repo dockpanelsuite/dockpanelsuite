@@ -22,6 +22,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveXFix);
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
             Assert.IsFalse(PatchController.EnableActiveControlFix);
+            Assert.IsFalse(PatchController.EnableFloatSplitterFix);
         }
     }
 }

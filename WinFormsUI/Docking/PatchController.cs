@@ -513,7 +513,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return _activeXFix = section.EnableAll;
                     }
 
-                    return _activeXFix = section.EnableContentOrderFix;
+                    return _activeXFix = section.EnableActiveXFix;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableActiveXFix");
@@ -591,7 +591,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return _displayingPaneFix = section.EnableAll;
                     }
 
-                    return _displayingPaneFix = section.EnableHighDpi;
+                    return _displayingPaneFix = section.EnableDisplayingPaneFix;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableDisplayingPaneFix");
@@ -669,7 +669,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return _activeControlFix = section.EnableAll;
                     }
 
-                    return _activeControlFix = section.EnableHighDpi;
+                    return _activeControlFix = section.EnableActiveControlFix;
                 }
 
                 var environment = Environment.GetEnvironmentVariable("DPS_EnableActiveControlFix");
@@ -720,6 +720,84 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 _activeControlFix = value;
+            }
+        }
+
+        private static bool? _floatSplitterFix;
+
+        public static bool? EnableFloatSplitterFix
+        {
+            get
+            {
+                if (_floatSplitterFix != null)
+                {
+                    return _floatSplitterFix;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _floatSplitterFix = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _floatSplitterFix = section.EnableAll;
+                    }
+
+                    return _floatSplitterFix = section.EnableFloatSplitterFix;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableFloatSplitterFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _floatSplitterFix = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableFloatSplitterFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _floatSplitterFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableFloatSplitterFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _floatSplitterFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _floatSplitterFix = true;
+            }
+
+            set
+            {
+                _floatSplitterFix = value;
             }
         }
     }

@@ -1155,9 +1155,18 @@ namespace WeifenLuo.WinFormsUI.Docking
                     DockPanel.ResumeLayout(true, true);
                     return null;
                 }
+
                 floatPane = DockPanel.Theme.Extender.DockPaneFactory.CreateDockPane(firstContent, DockState.Float, true);
             }
+
             SetVisibleContentsToPane(floatPane, activeContent);
+            if (PatchController.EnableFloatSplitterFix == true)
+            {
+                if (IsHidden)
+                {
+                    NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(this);
+                }
+            }
 
             if (IsHidden)
                 NestedDockingStatus.NestedPanes.SwitchPaneWithFirstChild(this);

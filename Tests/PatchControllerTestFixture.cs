@@ -24,6 +24,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveXFix);
             Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
             Assert.IsTrue(PatchController.EnableActiveControlFix);
+            Assert.IsTrue(PatchController.EnableFloatSplitterFix);
         }
 
         [Test]
@@ -66,6 +67,10 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveControlFix);
             Environment.SetEnvironmentVariable("DPS_EnableActiveControlFix", null);
 
+            Environment.SetEnvironmentVariable("DPS_EnableFloatSplitterFix", "false");
+            Assert.IsFalse(PatchController.EnableActiveControlFix);
+            Environment.SetEnvironmentVariable("DPS_EnableFloatSplitterFix", null);
+
             PatchController.Reset();
             Assert.IsTrue(PatchController.EnableHighDpi);
             Assert.IsTrue(PatchController.EnableContentOrderFix);
@@ -76,6 +81,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveXFix);
             Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
             Assert.IsTrue(PatchController.EnableActiveControlFix);
+            Assert.IsTrue(PatchController.EnableFloatSplitterFix);
         }
 
         [Test]
@@ -93,6 +99,7 @@ namespace Tests
             key.SetValue("EnableActiveXFix", "true", RegistryValueKind.String);
             key.SetValue("EnableDisplayingPaneFix", "false", RegistryValueKind.String);
             key.SetValue("EnableActiveControlFix", "false", RegistryValueKind.String);
+            key.SetValue("EnableFloatSplitterFix", "false", RegistryValueKind.String);
 
             Assert.IsFalse(PatchController.EnableHighDpi);
             Assert.IsFalse(PatchController.EnableContentOrderFix);
@@ -103,6 +110,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableActiveXFix);
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
             Assert.IsFalse(PatchController.EnableActiveControlFix);
+            Assert.IsFalse(PatchController.EnableFloatSplitterFix);
             Registry.CurrentUser.DeleteSubKeyTree("Software\\DockPanelSuite");
         }
 
@@ -120,6 +128,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveXFix);
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
             Assert.IsFalse(PatchController.EnableActiveControlFix);
+            Assert.IsFalse(PatchController.EnableFloatSplitterFix);
         }
     }
 }
