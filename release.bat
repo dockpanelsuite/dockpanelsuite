@@ -12,7 +12,6 @@ if exist "%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe" (
   set msBuildExe="%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe"
 )
 
-call .nuget\NuGet.exe update /self
-call .nuget\NuGet.exe restore
+call %msBuildExe% WinFormsUI.Docking.sln /t:restore /p:Configuration=Release /p:TargetFrameworkVersion=v4.0 /p:OutputPath=..\bin\net40\
 call %msBuildExe% WinFormsUI.Docking.sln /t:build /p:Configuration=Release /p:TargetFrameworkVersion=v4.0 /p:OutputPath=..\bin\net40\
 @IF %ERRORLEVEL% NEQ 0 PAUSE
