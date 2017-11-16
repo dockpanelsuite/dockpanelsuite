@@ -47,7 +47,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             private Rectangle? _rect;
-            private static Rectangle empty = new Rectangle();
 
             public Rectangle? Rectangle
             {
@@ -58,7 +57,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         return _rect;
                     }
 
-                    return _rect = empty;
+                    return _rect = System.Drawing.Rectangle.Empty;
                 }
 
                 set
