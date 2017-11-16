@@ -14,7 +14,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             EnableAll = _highDpi = _memoryLeakFix 
                 = _nestedDisposalFix = _focusLostFix = _contentOrderFix
                 = _fontInheritanceFix = _activeXFix = _displayingPaneFix
-                = _activeControlFix = null;
+                = _activeControlFix = _floatSplitterFix = null;
         }
 
 #region Copy this section to create new option, and then comment it to show what needs to be modified.
