@@ -12,6 +12,6 @@ if exist "%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe" (
   set msBuildExe="%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe"
 )
 
-call %msBuildExe% WinFormsUI.Docking.sln /t:restore /p:Configuration="Debug"
-call %msBuildExe% WinFormsUI.Docking.sln /t:build /p:Configuration="Debug"
+call %msBuildExe% WinFormsUI.Docking.sln /t:restore /p:Configuration=Release
+call %msBuildExe% WinFormsUI.Docking.sln /t:build /p:Configuration=Release
 @IF %ERRORLEVEL% NEQ 0 PAUSE

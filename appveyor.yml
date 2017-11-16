@@ -6,6 +6,5 @@ branches:
     - master
 before_build:
   - .\.nuget\nuget.exe restore
-build:
-  project: WinFormsUI.Docking.sln
-  verbosity: minimal
+build_script:
+  - appveyor.bat
