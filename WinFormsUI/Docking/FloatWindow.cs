@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Diagnostics.CodeAnalysis;
 
@@ -194,8 +192,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                         if (IsDisposed)
                             return;
 
-                        uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
-                        if (result == 2 && DockPanel.AllowEndUserDocking && this.AllowEndUserDocking)	// HITTEST_CAPTION
+                        int result = Win32Helper.IsRunningOnMono ? 0 : m.WParam.ToInt32();
+                        if (result == (int)Win32.HitTest.HTCAPTION && DockPanel.AllowEndUserDocking && AllowEndUserDocking)	// HITTEST_CAPTION
                         {
                             Activate();
                             m_dockPanel.BeginDrag(this);
@@ -207,8 +205,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 case (int)Win32.Msgs.WM_NCRBUTTONDOWN:
                     {
-                        uint result = Win32Helper.IsRunningOnMono ? Win32Helper.HitTestCaption(this) : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
-                        if (result == 2)	// HITTEST_CAPTION
+                        int result = Win32Helper.IsRunningOnMono ? Win32Helper.HitTestCaption(this) : m.WParam.ToInt32();
+                        if (result == (int)Win32.HitTest.HTCAPTION)	// HITTEST_CAPTION
                         {
                             DockPane theOnlyPane = (VisibleNestedPanes.Count == 1) ? VisibleNestedPanes[0] : null;
                             if (theOnlyPane != null && theOnlyPane.ActiveContent != null)
@@ -248,11 +246,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
                 case (int)Win32.Msgs.WM_NCLBUTTONDBLCLK:
                     {
-                        uint result = !DoubleClickTitleBarToDock || Win32Helper.IsRunningOnMono 
+                        int result = !DoubleClickTitleBarToDock || Win32Helper.IsRunningOnMono 
                             ? Win32Helper.HitTestCaption(this)
-                            : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
+                            : m.WParam.ToInt32();
 
-                        if (result != 2)	// HITTEST_CAPTION
+                        if (result != (int)Win32.HitTest.HTCAPTION)	// HITTEST_CAPTION
                         {
                             base.WndProc(ref m);
                             return;
@@ -370,8 +368,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         Rectangle IDockDragSource.BeginDrag(Point ptMouse)
         {
-            m_preDragExStyle = NativeMethods.GetWindowLong(this.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE);
-            NativeMethods.SetWindowLong(this.Handle, 
+            m_preDragExStyle = NativeMethods.GetWindowLong(Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE);
+            NativeMethods.SetWindowLong(Handle, 
                                         (int)Win32.GetWindowLongIndex.GWL_EXSTYLE,
                                         m_preDragExStyle | (int)(Win32.WindowExStyles.WS_EX_TRANSPARENT | Win32.WindowExStyles.WS_EX_LAYERED) );
             return Bounds;
@@ -379,10 +377,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         void IDockDragSource.EndDrag()
         {
-            NativeMethods.SetWindowLong(this.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, m_preDragExStyle);
+            NativeMethods.SetWindowLong(Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, m_preDragExStyle);
             
             Invalidate(true);
-            NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCPAINT, 1, 0);
+            NativeMethods.SendMessage(Handle, (int)Win32.Msgs.WM_NCPAINT, 1, 0);
         }
 
         public  void FloatAt(Rectangle floatWindowBounds)
