@@ -12,6 +12,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             m_dockHandler = new DockContentHandler(this, new GetPersistStringCallback(GetPersistString));
             m_dockHandler.DockStateChanged += new EventHandler(DockHandler_DockStateChanged);
+            m_dockHandler.BeforeEndDrag += new EventHandler(DockHandler_BeforeEndDrag);
+            m_dockHandler.EndDrag += new EventHandler(DockHandler_EndDrag);
             if (PatchController.EnableFontInheritanceFix != true)
             {
                 //Suggested as a fix by bensty regarding form resize
@@ -329,6 +331,42 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected virtual void OnDockStateChanged(EventArgs e)
         {
             ((EventHandler)Events[DockStateChangedEvent])?.Invoke(this, e);
+        }
+
+        private void DockHandler_BeforeEndDrag(object sender, EventArgs e)
+        {
+            OnBeforeEndDrag(e);
+        }
+
+        private static readonly object BeforeEndDragEvent = new object();
+        public event EventHandler BeforeEndDrag
+        {
+            add { Events.AddHandler(BeforeEndDragEvent, value); }
+            remove { Events.RemoveHandler(BeforeEndDragEvent, value); }
+        }
+        protected virtual void OnBeforeEndDrag(EventArgs e)
+        {
+            EventHandler handler = (EventHandler)Events[BeforeEndDragEvent];
+            if (handler != null)
+                handler(this, e);
+        }
+
+        private void DockHandler_EndDrag(object sender, EventArgs e)
+        {
+            OnEndDrag(e);
+        }
+
+        private static readonly object EndDragEvent = new object();
+        public event EventHandler EndDrag
+        {
+            add { Events.AddHandler(EndDragEvent, value); }
+            remove { Events.RemoveHandler(EndDragEvent, value); }
+        }
+        protected virtual void OnEndDrag(EventArgs e)
+        {
+            EventHandler handler = (EventHandler)Events[EndDragEvent];
+            if (handler != null)
+                handler(this, e);
         }
         #endregion
 
