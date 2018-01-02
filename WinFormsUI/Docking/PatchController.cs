@@ -14,7 +14,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             EnableAll = _highDpi = _memoryLeakFix 
                 = _nestedDisposalFix = _focusLostFix = _contentOrderFix
                 = _fontInheritanceFix = _activeXFix = _displayingPaneFix
-                = _activeControlFix = _floatSplitterFix = null;
+                = _activeControlFix = _floatSplitterFix = _activateOnDockFix = null;
         }
 
 #region Copy this section to create new option, and then comment it to show what needs to be modified.
@@ -798,6 +798,84 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 _floatSplitterFix = value;
+            }
+        }
+
+        private static bool? _activateOnDockFix;
+
+        public static bool? EnableActivateOnDockFix
+        {
+            get
+            {
+                if (_activateOnDockFix != null)
+                {
+                    return _activateOnDockFix;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _activateOnDockFix = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _activateOnDockFix = section.EnableAll;
+                    }
+
+                    return _activateOnDockFix = section.EnableActivateOnDockFix;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableActivateOnDockFix");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _activateOnDockFix = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableActivateOnDockFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _activateOnDockFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableActivateOnDockFix");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _activateOnDockFix = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _activateOnDockFix = true;
+            }
+
+            set
+            {
+                _activateOnDockFix = value;
             }
         }
     }

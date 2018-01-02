@@ -69,5 +69,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableFloatSplitterFix"]; }
         }
+
+        [ConfigurationProperty("enableActivateOnDockFix", DefaultValue = true)]
+        public bool EnableActivateOnDockFix
+        {
+            get { return (bool)base["enableActivateOnDockFix"]; }
+        }
     }
 }
