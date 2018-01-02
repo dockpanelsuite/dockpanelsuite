@@ -1227,7 +1227,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 paneFrom.DockState = pane.DockState;
             }
 
-            Pane.ActiveContent = Content;
+            if(PatchController.EnableActivateOnDockFix == true)
+                Pane.ActiveContent = Content;
         }
 
         public void DockTo(DockPanel panel, DockStyle dockStyle)
