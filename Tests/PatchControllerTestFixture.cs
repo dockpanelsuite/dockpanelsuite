@@ -25,6 +25,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
             Assert.IsTrue(PatchController.EnableActiveControlFix);
             Assert.IsTrue(PatchController.EnableFloatSplitterFix);
+            Assert.IsTrue(PatchController.EnableActivateOnDockFix);
         }
 
         [Test]
@@ -68,8 +69,12 @@ namespace Tests
             Environment.SetEnvironmentVariable("DPS_EnableActiveControlFix", null);
 
             Environment.SetEnvironmentVariable("DPS_EnableFloatSplitterFix", "false");
-            Assert.IsFalse(PatchController.EnableActiveControlFix);
+            Assert.IsFalse(PatchController.EnableFloatSplitterFix);
             Environment.SetEnvironmentVariable("DPS_EnableFloatSplitterFix", null);
+
+            Environment.SetEnvironmentVariable("DPS_EnableActivateOnDockFix", "false");
+            Assert.IsFalse(PatchController.EnableActivateOnDockFix);
+            Environment.SetEnvironmentVariable("DPS_EnableActivateOnDockFix", null);
 
             PatchController.Reset();
             Assert.IsTrue(PatchController.EnableHighDpi);
@@ -82,6 +87,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableDisplayingPaneFix);
             Assert.IsTrue(PatchController.EnableActiveControlFix);
             Assert.IsTrue(PatchController.EnableFloatSplitterFix);
+            Assert.IsTrue(PatchController.EnableActivateOnDockFix);
         }
 
         [Test]
@@ -100,6 +106,7 @@ namespace Tests
             key.SetValue("EnableDisplayingPaneFix", "false", RegistryValueKind.String);
             key.SetValue("EnableActiveControlFix", "false", RegistryValueKind.String);
             key.SetValue("EnableFloatSplitterFix", "false", RegistryValueKind.String);
+            key.SetValue("EnableActivateOnDockFix", "false", RegistryValueKind.String);
 
             Assert.IsFalse(PatchController.EnableHighDpi);
             Assert.IsFalse(PatchController.EnableContentOrderFix);
@@ -111,6 +118,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
             Assert.IsFalse(PatchController.EnableActiveControlFix);
             Assert.IsFalse(PatchController.EnableFloatSplitterFix);
+            Assert.IsFalse(PatchController.EnableActivateOnDockFix);
             Registry.CurrentUser.DeleteSubKeyTree("Software\\DockPanelSuite");
         }
 
@@ -129,6 +137,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableDisplayingPaneFix);
             Assert.IsFalse(PatchController.EnableActiveControlFix);
             Assert.IsFalse(PatchController.EnableFloatSplitterFix);
+            Assert.IsFalse(PatchController.EnableActivateOnDockFix);
         }
     }
 }
