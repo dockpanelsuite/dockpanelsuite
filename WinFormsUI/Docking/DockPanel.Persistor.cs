@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Globalization;
+using System.Linq;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -674,9 +675,15 @@ namespace WeifenLuo.WinFormsUI.Docking
                         for (int j = i + 1; j < contents.Length; j++)
                         {
                             DockPane pane1 = dockPanel.Contents[sortedContents[i]].DockHandler.Pane;
-                            int ZOrderIndex1 = pane1 == null ? 0 : panes[dockPanel.Panes.IndexOf(pane1)].ZOrderIndex;
+                            int ZOrderIndex1 = 0;
+                            var match = panes.Where(p => p.IndexContents.Contains(dockPanel.Panes.IndexOf(pane1))).ToArray();
+                            if (match.Length > 0)
+                                ZOrderIndex1 = match[0].ZOrderIndex;
                             DockPane pane2 = dockPanel.Contents[sortedContents[j]].DockHandler.Pane;
-                            int ZOrderIndex2 = pane2 == null ? 0 : panes[dockPanel.Panes.IndexOf(pane2)].ZOrderIndex;
+                            int ZOrderIndex2 = 0;
+                            match = panes.Where(p => p.IndexContents.Contains(dockPanel.Panes.IndexOf(pane2))).ToArray();
+                            if (match.Length > 0)
+                                ZOrderIndex2 = match[0].ZOrderIndex;
                             if (ZOrderIndex1 > ZOrderIndex2)
                             {
                                 int temp = sortedContents[i];
@@ -712,7 +719,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                 }
 
                 for (int i = 0; i < panes.Length; i++)
-                    dockPanel.Panes[i].ActiveContent = panes[i].IndexActiveContent == -1 ? null : dockPanel.Contents[panes[i].IndexActiveContent];
+                {
+                    if (panes[i].IndexActiveContent <= 0)
+                        continue;
+
+                    var content = dockPanel.Contents[panes[i].IndexActiveContent];
+                    var pane = content.DockHandler.Pane;
+                    pane.ActiveContent = content;
+                }
 
                 if (dockPanelStruct.IndexActiveDocumentPane >= 0 && dockPanel.Panes.Count > dockPanelStruct.IndexActiveDocumentPane)
                     dockPanel.Panes[dockPanelStruct.IndexActiveDocumentPane].Activate();
