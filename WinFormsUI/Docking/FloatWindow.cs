@@ -149,6 +149,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             RefreshChanges();
             Visible = (VisibleNestedPanes.Count > 0);
             SetText();
+			
+			if (Visible)
+            {
+                MinimumSize = VisibleNestedPanes[0].MinimumSize;
+                MaximumSize = VisibleNestedPanes[0].MaximumSize;
+                FormBorderStyle = (MinimumSize == MaximumSize && !MinimumSize.IsEmpty)
+                    ? FormBorderStyle.FixedToolWindow : FormBorderStyle.SizableToolWindow;
+            }
 
             base.OnLayout(levent);
         }

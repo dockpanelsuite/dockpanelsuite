@@ -92,6 +92,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             SuspendLayout();
             SetStyle(ControlStyles.Selectable, false);
 
+			BackColor = content.BackColor;
+			
             m_isFloat = (dockState == DockState.Float);
 
             m_contents = new DockContentCollection();
@@ -157,6 +159,30 @@ namespace WeifenLuo.WinFormsUI.Docking
                     m_autoHidePane.Dispose();
             }
             base.Dispose(disposing);
+        }
+		
+		 public override Size MinimumSize
+        {
+            get
+            {
+                Size dpSize = base.MinimumSize;
+                if (ActiveContent != null
+                    && (ActiveContent.MinimumSize.Width != 0 || ActiveContent.MinimumSize.Height != 0))
+                    dpSize = ActiveContent.MinimumSize;
+                return dpSize;
+            }
+        }
+
+        public override Size MaximumSize
+        {
+            get
+            {
+                Size dpSize = base.MaximumSize;
+                if (ActiveContent != null
+                    && (ActiveContent.MaximumSize.Width != 0 || ActiveContent.MaximumSize.Height != 0))
+                    dpSize = ActiveContent.MaximumSize;
+                return dpSize;
+            }
         }
 
         private IDockContent m_activeContent = null;
