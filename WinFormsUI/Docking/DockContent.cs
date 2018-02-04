@@ -26,6 +26,104 @@ namespace WeifenLuo.WinFormsUI.Docking
                 this.Font = this.Parent.Font;
         }
 
+        [Category("Layout")]
+        [Description("Minimum size when docked left/ right.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MinSize_Vertical { get; set; }
+
+        [Category("Layout")]
+        [Description("Maximum size when docked left/ right.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MaxSize_Vertical { get; set; }
+
+        [Category("Layout")]
+        [Description("Minimum size when docked top/ bottom.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MinSize_Horizontal { get; set; }
+
+        [Category("Layout")]
+        [Description("Maximum size when docked top/ bottom.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MaxSize_Horizontal { get; set; }
+
+        [Category("Layout")]
+        [Description("Minimum size while floating.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MinSize_Floating { get; set; }
+
+        [Category("Layout")]
+        [Description("Maximum size while floating.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MaxSize_Floating { get; set; }
+
+        [Category("Layout")]
+        [Description("Minimum size when docked as a document.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MinSize_Document { get; set; }
+
+        [Category("Layout")]
+        [Description("Maximum size when docked as a document.")]
+        [DefaultValue(typeof(Size), "Empty")]
+        public Size MaxSize_Document { get; set; }
+		
+        public override Size MinimumSize
+        {
+            get
+            {
+                switch (DockHandler.DockState)
+                {
+                    case DockState.DockLeft:
+                    case DockState.DockLeftAutoHide:
+                    case DockState.DockRight:
+                    case DockState.DockRightAutoHide:
+                        return new Size(MinSize_Vertical.Width, 0);
+
+                    case DockState.DockTop:
+                    case DockState.DockTopAutoHide:
+                    case DockState.DockBottom:
+                    case DockState.DockBottomAutoHide:
+                        return new Size(0, MinSize_Horizontal.Height);
+
+                    case DockState.Float:
+                        return MinSize_Floating;
+
+                    case DockState.Document:
+                        return MinSize_Document;
+                }
+                return base.MinimumSize;
+            }
+            set => base.MinimumSize = value;
+        }
+
+        public override Size MaximumSize
+        {
+            get
+            {
+                switch (DockHandler.DockState)
+                {
+                    case DockState.DockLeft:
+                    case DockState.DockLeftAutoHide:
+                    case DockState.DockRight:
+                    case DockState.DockRightAutoHide:
+                        return new Size(MaxSize_Vertical.Width, 0);
+
+                    case DockState.DockTop:
+                    case DockState.DockTopAutoHide:
+                    case DockState.DockBottom:
+                    case DockState.DockBottomAutoHide:
+                        return new Size(0, MaxSize_Horizontal.Height);
+
+                    case DockState.Float:
+                        return MaxSize_Floating;
+
+                    case DockState.Document:
+                        return MaxSize_Document;
+                }
+                return base.MaximumSize;
+            }
+            set => base.MaximumSize = value;
+        }
+		
         private DockContentHandler m_dockHandler = null;
         [Browsable(false)]
         public DockContentHandler DockHandler
