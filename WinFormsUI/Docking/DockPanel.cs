@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
+using System.Linq;
 
 // To simplify the process of finding the toolbox bitmap resource:
 // #1 Create an internal class called "resfinder" outside of the root namespace.
@@ -643,13 +644,48 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (dockState == DockState.DockLeft || dockState == DockState.DockRight)
             {
                 int width = ClientRectangle.Width - DockPadding.Left - DockPadding.Right;
+
+                #region left side
                 int dockLeftSize = m_dockLeftPortion >= 1 ? (int)m_dockLeftPortion : (int)(width * m_dockLeftPortion);
-                int dockRightSize = m_dockRightPortion >= 1 ? (int)m_dockRightPortion : (int)(width * m_dockRightPortion);
+                int minSize_left = DockWindows[DockState.DockLeft].VisibleNestedPanes.Sum(vp => vp.MinimumSize.Width);
+                int maxSize_left = DockWindows[DockState.DockLeft].VisibleNestedPanes.Sum(vp => vp.MaximumSize.Width);
+
+                if (dockLeftSize < minSize_left)
+                {
+                    dockLeftSize = minSize_left;
+                    m_dockLeftPortion = m_dockLeftPortion >= 1 ? minSize_left : minSize_left / (double)width;
+                }
+
+                if (dockLeftSize > maxSize_left && maxSize_left != 0)
+                {
+                    dockLeftSize = maxSize_left;
+                    m_dockLeftPortion = m_dockLeftPortion >= 1 ? maxSize_left : maxSize_left / (double)width;
+                }
 
                 if (dockLeftSize < MeasurePane.MinSize)
                     dockLeftSize = MeasurePane.MinSize;
+                #endregion
+
+                #region right side
+                int dockRightSize = m_dockRightPortion >= 1 ? (int)m_dockRightPortion : (int)(width * m_dockRightPortion);
+                int minSize_right = DockWindows[DockState.DockRight].VisibleNestedPanes.Sum(vp => vp.MinimumSize.Width);
+                int maxSize_right = DockWindows[DockState.DockRight].VisibleNestedPanes.Sum(vp => vp.MaximumSize.Width);
+
+                if (dockRightSize < minSize_right)
+                {
+                    dockRightSize = minSize_right;
+                    m_dockRightPortion = m_dockRightPortion >= 1 ? minSize_right : minSize_right / (double)width;
+                }
+
+                if (dockRightSize > maxSize_right && maxSize_right != 0)
+                {
+                    dockRightSize = maxSize_right;
+                    m_dockRightPortion = m_dockRightPortion >= 1 ? maxSize_right : maxSize_right / (double)width;
+                }
+
                 if (dockRightSize < MeasurePane.MinSize)
                     dockRightSize = MeasurePane.MinSize;
+                #endregion
 
                 if (dockLeftSize + dockRightSize > width - MeasurePane.MinSize)
                 {
@@ -664,13 +700,48 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (dockState == DockState.DockTop || dockState == DockState.DockBottom)
             {
                 int height = ClientRectangle.Height - DockPadding.Top - DockPadding.Bottom;
+
+                #region top side
                 int dockTopSize = m_dockTopPortion >= 1 ? (int)m_dockTopPortion : (int)(height * m_dockTopPortion);
-                int dockBottomSize = m_dockBottomPortion >= 1 ? (int)m_dockBottomPortion : (int)(height * m_dockBottomPortion);
+                int minSize_top = DockWindows[DockState.DockTop].VisibleNestedPanes.Sum(vp => vp.MinimumSize.Height);
+                int maxSize_top = DockWindows[DockState.DockTop].VisibleNestedPanes.Sum(vp => vp.MaximumSize.Height);
+
+                if (dockTopSize < minSize_top)
+                {
+                    dockTopSize = minSize_top;
+                    m_dockTopPortion = m_dockTopPortion >= 1 ? minSize_top : minSize_top / (double)height;
+                }
+
+                if (dockTopSize > maxSize_top && maxSize_top != 0)
+                {
+                    dockTopSize = maxSize_top;
+                    m_dockTopPortion = m_dockTopPortion >= 1 ? maxSize_top : maxSize_top / (double)height;
+                }
 
                 if (dockTopSize < MeasurePane.MinSize)
                     dockTopSize = MeasurePane.MinSize;
+                #endregion
+
+                #region bottom side
+                int dockBottomSize = m_dockBottomPortion >= 1 ? (int)m_dockBottomPortion : (int)(height * m_dockBottomPortion);
+                int minSize_bottom = DockWindows[DockState.DockBottom].VisibleNestedPanes.Sum(vp => vp.MinimumSize.Height);
+                int maxSize_bottom = DockWindows[DockState.DockBottom].VisibleNestedPanes.Sum(vp => vp.MaximumSize.Height);
+
+                if (dockBottomSize < minSize_bottom)
+                {
+                    dockBottomSize = minSize_bottom;
+                    m_dockBottomPortion = m_dockBottomPortion >= 1 ? minSize_bottom : minSize_bottom / (double)height;
+                }
+
+                if (dockBottomSize > maxSize_bottom && maxSize_bottom != 0)
+                {
+                    dockBottomSize = maxSize_bottom;
+                    m_dockBottomPortion = m_dockBottomPortion >= 1 ? maxSize_bottom : maxSize_bottom / (double)height;
+                }
+
                 if (dockBottomSize < MeasurePane.MinSize)
                     dockBottomSize = MeasurePane.MinSize;
+                #endregion
 
                 if (dockTopSize + dockBottomSize > height - MeasurePane.MinSize)
                 {

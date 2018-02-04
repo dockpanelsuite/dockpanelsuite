@@ -1,6 +1,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
+using System.Linq;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -22,6 +23,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_dockState = dockState;
             Visible = false;
 
+			BackColor = DockPanel.BackColor;
+			
             SuspendLayout();
 
             if (DockState == DockState.DockLeft || DockState == DockState.DockRight ||
@@ -164,26 +167,102 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 Rectangle rectLimit = DockPanel.DockArea;
+                Size minSize = new Size(VisibleNestedPanes.Sum(p => p.MinimumSize.Width), VisibleNestedPanes.Sum(p => p.MinimumSize.Height));
+                Size maxSize = new Size(VisibleNestedPanes.Sum(p => p.MaximumSize.Width), VisibleNestedPanes.Sum(p => p.MaximumSize.Height));
                 Point location;
-                if ((Control.ModifierKeys & Keys.Shift) == 0)
+                if ((ModifierKeys & Keys.Shift) == 0)
                     location = Location;
                 else
                     location = DockPanel.DockArea.Location;
 
+                int splitterSize = DockPanel.Theme.Measures.SplitterSize;
+
                 if (((ISplitterDragSource)this).IsVertical)
                 {
-                    rectLimit.X += MeasurePane.MinSize;
-                    rectLimit.Width -= 2 * MeasurePane.MinSize;
+                    if (minSize.Width > 0 || maxSize.Width > 0)
+                    {
+                        if (DockState == DockState.DockLeft)
+                        {
+                            rectLimit.X -= splitterSize;
+                            rectLimit.X += minSize.Width;
+                            rectLimit.Width -= minSize.Width;
+
+                            if (rectLimit.Right > maxSize.Width)
+                                rectLimit.Width = maxSize.Width - rectLimit.X;
+                            if ((DockPanel.DockArea.Width - rectLimit.Right) < MeasurePane.MinSize
+                                && rectLimit.Width > MeasurePane.MinSize)
+                                rectLimit.Width -= MeasurePane.MinSize;
+                        }
+                        else
+                        {
+                            rectLimit.X += splitterSize;
+                            rectLimit.Width -= minSize.Width;
+
+                            if ((rectLimit.Width - rectLimit.X) > (maxSize.Width - minSize.Width))
+                            {
+                                rectLimit.X = rectLimit.Right - (maxSize.Width - minSize.Width);
+                                rectLimit.Width -= rectLimit.X;
+                            }
+
+                            if (rectLimit.X < MeasurePane.MinSize && rectLimit.Width > MeasurePane.MinSize)
+                            {
+                                rectLimit.X += MeasurePane.MinSize;
+                                rectLimit.Width -= MeasurePane.MinSize;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rectLimit.X += MeasurePane.MinSize;
+                        rectLimit.Width -= 2 * MeasurePane.MinSize;
+                    }
+
                     rectLimit.Y = location.Y;
-                    if ((Control.ModifierKeys & Keys.Shift) == 0)
+                    if ((ModifierKeys & Keys.Shift) == 0)
                         rectLimit.Height = Height;
                 }
                 else
                 {
-                    rectLimit.Y += MeasurePane.MinSize;
-                    rectLimit.Height -= 2 * MeasurePane.MinSize;
+                    if (minSize.Height > 0 || maxSize.Height > 0)
+                    {
+                        if (DockState == DockState.DockTop)
+                        {
+                            rectLimit.Y -= splitterSize;
+                            rectLimit.Y += minSize.Height;
+                            rectLimit.Height -= minSize.Height;
+
+                            if (rectLimit.Bottom > maxSize.Height)
+                                rectLimit.Height = maxSize.Height - rectLimit.Y;
+                            if ((DockPanel.DockArea.Height - rectLimit.Bottom) < MeasurePane.MinSize
+                                && rectLimit.Height > MeasurePane.MinSize)
+                                rectLimit.Height -= MeasurePane.MinSize;
+                        }
+                        else
+                        {
+                            rectLimit.Y += splitterSize;
+                            rectLimit.Height -= minSize.Height;
+
+                            if ((rectLimit.Height - rectLimit.Y) > (maxSize.Height - minSize.Height))
+                            {
+                                rectLimit.Y = rectLimit.Bottom - (maxSize.Height - minSize.Height);
+                                rectLimit.Height -= rectLimit.Y;
+                            }
+
+                            if (rectLimit.Y < MeasurePane.MinSize && rectLimit.Height > MeasurePane.MinSize)
+                            {
+                                rectLimit.Y += MeasurePane.MinSize;
+                                rectLimit.Height -= MeasurePane.MinSize;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rectLimit.Y += MeasurePane.MinSize;
+                        rectLimit.Height -= 2 * MeasurePane.MinSize;
+                    }
+
                     rectLimit.X = location.X;
-                    if ((Control.ModifierKeys & Keys.Shift) == 0)
+                    if ((ModifierKeys & Keys.Shift) == 0)
                         rectLimit.Width = Width;
                 }
 
@@ -195,6 +274,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             if ((Control.ModifierKeys & Keys.Shift) != 0)
                 SendToBack();
+
+			if (System.Math.Abs(offset) <= DockPanel.Theme.Measures.SplitterSize) return;
 
             Rectangle rectDockArea = DockPanel.DockArea;
             if (DockState == DockState.DockLeft && rectDockArea.Width > 0)
