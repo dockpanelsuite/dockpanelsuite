@@ -1,6 +1,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
+using System.Linq;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -174,6 +175,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 else
                     location = DockPanel.DockArea.Location;
 
+                int splitterSize = DockPanel.Theme.Measures.SplitterSize;
+
                 if (((ISplitterDragSource)this).IsVertical)
                 {
                     if (minSize.Width > 0 || maxSize.Width > 0)
@@ -272,8 +275,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             if ((Control.ModifierKeys & Keys.Shift) != 0)
                 SendToBack();
 
-			if (Math.Abs(offset) <= DockPanel.Theme.Measures.SplitterSize) return;
-			 
+			if (System.Math.Abs(offset) <= DockPanel.Theme.Measures.SplitterSize) return;
+
             Rectangle rectDockArea = DockPanel.DockArea;
             if (DockState == DockState.DockLeft && rectDockArea.Width > 0)
             {

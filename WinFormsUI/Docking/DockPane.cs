@@ -92,8 +92,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             SuspendLayout();
             SetStyle(ControlStyles.Selectable, false);
 
-			BackColor = content.BackColor;
-			
+            BackColor = ((DockContent)content).BackColor;
+
             m_isFloat = (dockState == DockState.Float);
 
             m_contents = new DockContentCollection();
@@ -160,15 +160,17 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             base.Dispose(disposing);
         }
-		
-		 public override Size MinimumSize
+
+        public override Size MinimumSize
         {
             get
             {
                 Size dpSize = base.MinimumSize;
-                if (ActiveContent != null
-                    && (ActiveContent.MinimumSize.Width != 0 || ActiveContent.MinimumSize.Height != 0))
-                    dpSize = ActiveContent.MinimumSize;
+                if (ActiveContent is DockContent content)
+                {
+                    if (content.MinimumSize.Width != 0 || content.MinimumSize.Height != 0)
+                        dpSize = content.MinimumSize;
+                }
                 return dpSize;
             }
         }
@@ -178,9 +180,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {
                 Size dpSize = base.MaximumSize;
-                if (ActiveContent != null
-                    && (ActiveContent.MaximumSize.Width != 0 || ActiveContent.MaximumSize.Height != 0))
-                    dpSize = ActiveContent.MaximumSize;
+                if (ActiveContent is DockContent content)
+                {
+                    if (content.MaximumSize.Width != 0 || content.MaximumSize.Height != 0)
+                        dpSize = content.MaximumSize;
+                }
                 return dpSize;
             }
         }
@@ -1366,7 +1370,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         #endregion
 
         #region cachedLayoutArgs leak workaround
-        
+
         /// <summary>
         /// There's a bug in the WinForms layout engine
         /// that can result in a deferred layout to not

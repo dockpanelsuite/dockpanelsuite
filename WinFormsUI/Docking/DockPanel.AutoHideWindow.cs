@@ -489,8 +489,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 get
                 {
                     Rectangle rectLimit = DockPanel.DockArea;
-                    Size minSize = ActiveContent.MinimumSize;
-                    Size maxSize = ActiveContent.MaximumSize;
+                    Size minSize = ((DockContent)ActiveContent).MinimumSize;
+                    Size maxSize = ((DockContent)ActiveContent).MaximumSize;
 
                     if ((this as ISplitterDragSource)?.IsVertical == true)
                     {
@@ -657,25 +657,26 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 Rectangle rect = Rectangle.Empty;
                 double autoHideSize = ActiveAutoHideContent.DockHandler.AutoHidePortion;
-				
+                DockContent castActiveContent = ActiveAutoHideContent as DockContent;
+
                 if (state == DockState.DockLeftAutoHide || state == DockState.DockRightAutoHide)
                 {
                     if (autoHideSize < 1)
                         autoHideSize = rectDockArea.Width * autoHideSize;
                     if (autoHideSize > rectDockArea.Width - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Width - MeasurePane.MinSize;
-                    if (ActiveAutoHideContent.MaximumSize.Width > 0)
+                    if (castActiveContent.MaximumSize.Width > 0)
                     {
-                        if (autoHideSize > ActiveAutoHideContent.MaximumSize.Width)
+                        if (autoHideSize > castActiveContent.MaximumSize.Width)
                         {
-                            autoHideSize = ActiveAutoHideContent.MaximumSize.Width;
-                            adjustHideSize(ActiveAutoHideContent, autoHideSize);
+                            autoHideSize = castActiveContent.MaximumSize.Width;
+                            adjustHideSize(castActiveContent, autoHideSize);
                         }
 
-                        if (autoHideSize < ActiveAutoHideContent.MinimumSize.Width)
+                        if (autoHideSize < castActiveContent.MinimumSize.Width)
                         {
-                            autoHideSize = ActiveAutoHideContent.MinimumSize.Width;
-                            adjustHideSize(ActiveAutoHideContent, autoHideSize);
+                            autoHideSize = castActiveContent.MinimumSize.Width;
+                            adjustHideSize(castActiveContent, autoHideSize);
                         }
                     }
 
@@ -693,18 +694,18 @@ namespace WeifenLuo.WinFormsUI.Docking
                         autoHideSize = rectDockArea.Height * autoHideSize;
                     if (autoHideSize > rectDockArea.Height - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Height - MeasurePane.MinSize;
-                    if (ActiveAutoHideContent.MaximumSize.Height > 0)
+                    if (castActiveContent.MaximumSize.Height > 0)
                     {
-                        if (autoHideSize > ActiveAutoHideContent.MaximumSize.Height)
+                        if (autoHideSize > castActiveContent.MaximumSize.Height)
                         {
-                            autoHideSize = ActiveAutoHideContent.MaximumSize.Height;
-                            adjustHideSize(ActiveAutoHideContent, autoHideSize);
+                            autoHideSize = castActiveContent.MaximumSize.Height;
+                            adjustHideSize(castActiveContent, autoHideSize);
                         }
 
-                        if (autoHideSize < ActiveAutoHideContent.MinimumSize.Height)
+                        if (autoHideSize < castActiveContent.MinimumSize.Height)
                         {
-                            autoHideSize = ActiveAutoHideContent.MinimumSize.Height;
-                            adjustHideSize(ActiveAutoHideContent, autoHideSize);
+                            autoHideSize = castActiveContent.MinimumSize.Height;
+                            adjustHideSize(castActiveContent, autoHideSize);
                         }
                     }
                     rect.X = rectDockArea.X;
