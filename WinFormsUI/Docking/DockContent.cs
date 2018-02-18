@@ -229,7 +229,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { DockHandler.TabPageContextMenuStrip = value; }
         }
 
-        public void ApplyTheme()
+        void IContextMenuStripHost.ApplyTheme()
         {
             DockHandler.ApplyTheme();
 
