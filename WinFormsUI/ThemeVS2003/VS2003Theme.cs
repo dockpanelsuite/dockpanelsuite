@@ -55,7 +55,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return skin;
         }
 
-        private class VS2003DockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
+        public class VS2003DockPaneStripFactory : DockPanelExtender.IDockPaneStripFactory
         {
             public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
             {
@@ -63,7 +63,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2003AutoHideStripFactory : DockPanelExtender.IAutoHideStripFactory
+        public class VS2003AutoHideStripFactory : DockPanelExtender.IAutoHideStripFactory
         {
             public AutoHideStripBase CreateAutoHideStrip(DockPanel panel)
             {
@@ -71,7 +71,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private class VS2003DockPaneCaptionFactory : DockPanelExtender.IDockPaneCaptionFactory
+        public class VS2003DockPaneCaptionFactory : DockPanelExtender.IDockPaneCaptionFactory
         {
             public DockPaneCaptionBase CreateDockPaneCaption(DockPane pane)
             {
