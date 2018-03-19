@@ -444,20 +444,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
             if (brushMiddle.IsEmpty)
             {
-                Brush gradient = new LinearGradientBrush(rect, brushBegin,
-                    brushEnd, LinearGradientMode.Vertical);
-
-                graphics.FillRectangle(gradient, rect);
+                rect.SafelyDrawLinearGradient(brushBegin, brushEnd, LinearGradientMode.Vertical, graphics);
             }
             else
             {
-                Brush first = new LinearGradientBrush(
-                    firstHalf, brushBegin, brushMiddle, LinearGradientMode.Vertical);
-                Brush second = new LinearGradientBrush(
-                    secondHalf, brushMiddle, brushEnd, LinearGradientMode.Vertical);
-
-                graphics.FillRectangle(first, firstHalf);
-                graphics.FillRectangle(second, secondHalf);
+                firstHalf.SafelyDrawLinearGradientF(brushBegin, brushMiddle, LinearGradientMode.Vertical, graphics);
+                secondHalf.SafelyDrawLinearGradientF(brushMiddle, brushEnd, LinearGradientMode.Vertical, graphics);
             }
 
             if (glass)
