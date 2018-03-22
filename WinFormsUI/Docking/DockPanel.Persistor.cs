@@ -237,6 +237,19 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (!upstream)
                     xmlOut.WriteStartDocument();
 
+                SaveAsXml(dockPanel, xmlOut);
+
+                if (!upstream)
+                {
+                    xmlOut.WriteEndDocument();
+                    xmlOut.Close();
+                }
+                else
+                    xmlOut.Flush();
+            }
+
+            public static void SaveAsXml(DockPanel dockPanel, XmlWriter xmlOut)
+            {
                 // Always begin file with identification and warning
                 xmlOut.WriteComment(Strings.DockPanel_Persistor_XmlFileComment1);
                 xmlOut.WriteComment(Strings.DockPanel_Persistor_XmlFileComment2);
@@ -351,14 +364,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 xmlOut.WriteEndElement();   //	</FloatWindows>
 
                 xmlOut.WriteEndElement();
-
-                if (!upstream)
-                {
-                    xmlOut.WriteEndDocument();
-                    xmlOut.Close();
-                }
-                else
-                    xmlOut.Flush();
             }
 
             public static void LoadFromXml(DockPanel dockPanel, string fileName, DeserializeDockContent deserializeContent)
@@ -509,6 +514,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             public static void LoadFromXml(DockPanel dockPanel, Stream stream, DeserializeDockContent deserializeContent, bool closeStream)
             {
+                using (var xmlIn = new XmlTextReader(stream) { WhitespaceHandling = WhitespaceHandling.None })
+                {
+                    LoadFromXml(dockPanel, xmlIn, deserializeContent);
+
+                    if (closeStream)
+                        xmlIn.Close();
+                }
+            }
+
+            public static void LoadFromXml(DockPanel dockPanel, XmlTextReader xmlIn, DeserializeDockContent deserializeContent)
+            {
                 if (dockPanel.Contents.Count != 0)
                     throw new InvalidOperationException(Strings.DockPanel_LoadFromXml_AlreadyInitialized);
 
@@ -517,52 +533,47 @@ namespace WeifenLuo.WinFormsUI.Docking
                 PaneStruct[] panes;
                 DockWindowStruct[] dockWindows;
                 FloatWindowStruct[] floatWindows;
-                using (var xmlIn = new XmlTextReader(stream) { WhitespaceHandling = WhitespaceHandling.None })
+
+                xmlIn.MoveToContent();
+
+                while (!xmlIn.Name.Equals("DockPanel"))
                 {
-                    xmlIn.MoveToContent();
-
-                    while (!xmlIn.Name.Equals("DockPanel"))
-                    {
-                        if (!MoveToNextElement(xmlIn))
-                            throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
-                    }
-
-                    string formatVersion = xmlIn.GetAttribute("FormatVersion");
-                    if (!IsFormatVersionValid(formatVersion))
-                        throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidFormatVersion);
-
-                    dockPanelStruct = new DockPanelStruct();
-                    dockPanelStruct.DockLeftPortion = Convert.ToDouble(xmlIn.GetAttribute("DockLeftPortion"), CultureInfo.InvariantCulture);
-                    dockPanelStruct.DockRightPortion = Convert.ToDouble(xmlIn.GetAttribute("DockRightPortion"), CultureInfo.InvariantCulture);
-                    dockPanelStruct.DockTopPortion = Convert.ToDouble(xmlIn.GetAttribute("DockTopPortion"), CultureInfo.InvariantCulture);
-                    dockPanelStruct.DockBottomPortion = Convert.ToDouble(xmlIn.GetAttribute("DockBottomPortion"), CultureInfo.InvariantCulture);
-                    dockPanelStruct.IndexActiveDocumentPane = Convert.ToInt32(xmlIn.GetAttribute("ActiveDocumentPane"), CultureInfo.InvariantCulture);
-                    dockPanelStruct.IndexActivePane = Convert.ToInt32(xmlIn.GetAttribute("ActivePane"), CultureInfo.InvariantCulture);
-
-                    // Load Contents
-                    MoveToNextElement(xmlIn);
-                    if (xmlIn.Name != "Contents")
+                    if (!MoveToNextElement(xmlIn))
                         throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
-                    contents = LoadContents(xmlIn);
-
-                    // Load Panes
-                    if (xmlIn.Name != "Panes")
-                        throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
-                    panes = LoadPanes(xmlIn);
-
-                    // Load DockWindows
-                    if (xmlIn.Name != "DockWindows")
-                        throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
-                    dockWindows = LoadDockWindows(xmlIn, dockPanel);
-
-                    // Load FloatWindows
-                    if (xmlIn.Name != "FloatWindows")
-                        throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
-                    floatWindows = LoadFloatWindows(xmlIn);
-
-                    if (closeStream)
-                        xmlIn.Close();
                 }
+
+                string formatVersion = xmlIn.GetAttribute("FormatVersion");
+                if (!IsFormatVersionValid(formatVersion))
+                    throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidFormatVersion);
+
+                dockPanelStruct = new DockPanelStruct();
+                dockPanelStruct.DockLeftPortion = Convert.ToDouble(xmlIn.GetAttribute("DockLeftPortion"), CultureInfo.InvariantCulture);
+                dockPanelStruct.DockRightPortion = Convert.ToDouble(xmlIn.GetAttribute("DockRightPortion"), CultureInfo.InvariantCulture);
+                dockPanelStruct.DockTopPortion = Convert.ToDouble(xmlIn.GetAttribute("DockTopPortion"), CultureInfo.InvariantCulture);
+                dockPanelStruct.DockBottomPortion = Convert.ToDouble(xmlIn.GetAttribute("DockBottomPortion"), CultureInfo.InvariantCulture);
+                dockPanelStruct.IndexActiveDocumentPane = Convert.ToInt32(xmlIn.GetAttribute("ActiveDocumentPane"), CultureInfo.InvariantCulture);
+                dockPanelStruct.IndexActivePane = Convert.ToInt32(xmlIn.GetAttribute("ActivePane"), CultureInfo.InvariantCulture);
+
+                // Load Contents
+                MoveToNextElement(xmlIn);
+                if (xmlIn.Name != "Contents")
+                    throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
+                contents = LoadContents(xmlIn);
+
+                // Load Panes
+                if (xmlIn.Name != "Panes")
+                    throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
+                panes = LoadPanes(xmlIn);
+
+                // Load DockWindows
+                if (xmlIn.Name != "DockWindows")
+                    throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
+                dockWindows = LoadDockWindows(xmlIn, dockPanel);
+
+                // Load FloatWindows
+                if (xmlIn.Name != "FloatWindows")
+                    throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
+                floatWindows = LoadFloatWindows(xmlIn);
 
                 dockPanel.SuspendLayout(true);
 
@@ -774,6 +785,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             Persistor.SaveAsXml(this, stream, encoding, upstream);
         }
 
+        public void SaveAsXml(XmlWriter xmlOut)
+        {
+            Persistor.SaveAsXml(this, xmlOut);
+        }
+
         /// <summary>
         /// Loads layout from XML file.
         /// </summary>
@@ -809,6 +825,17 @@ namespace WeifenLuo.WinFormsUI.Docking
         public void LoadFromXml(Stream stream, DeserializeDockContent deserializeContent, bool closeStream)
         {
             Persistor.LoadFromXml(this, stream, deserializeContent, closeStream);
+        }
+
+        /// <summary>
+        /// Loads layout from XMLTextReader.
+        /// </summary>
+        /// <param name="xmlIn">XMLTextReader.</param>
+        /// <param name="deserializeContent">Deserialization handler.</param>
+        /// <exception cref="Exception">Deserialization might throw exceptions.</exception>
+        public void LoadFromXml(XmlTextReader xmlIn, DeserializeDockContent deserializeContent)
+        {
+            Persistor.LoadFromXml(this, xmlIn, deserializeContent);
         }
     }
 }
