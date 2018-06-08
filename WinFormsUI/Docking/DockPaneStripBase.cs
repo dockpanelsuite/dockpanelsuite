@@ -264,9 +264,22 @@ namespace WeifenLuo.WinFormsUI.Docking
                 // Close the specified content.
                 IDockContent content = Tabs[index].Content;
                 DockPane.CloseContent(content);
+                SelectClosestPane(index);
+
                 return true;
             }
             return false;
+        }
+
+        private void SelectClosestPane(int index)
+        {
+            if (index > 0 && DockPane.DockPanel.DocumentStyle == DocumentStyle.DockingWindow)
+            {
+                index = index - 1;
+
+                if (index >= 0 || index < Tabs.Count)                
+                    DockPane.ActiveContent = Tabs[index].Content;                
+            }
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
