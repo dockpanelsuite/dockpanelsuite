@@ -350,21 +350,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Color startColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.StartColor;
                 Color endColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.EndColor;
                 LinearGradientMode gradientMode = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveCaptionGradient.LinearGradientMode;
-                using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, startColor, endColor, gradientMode))
-                {
-                    brush.Blend = ActiveBackColorGradientBlend;
-                    g.FillRectangle(brush, ClientRectangle);
-                }
+                ClientRectangle.SafelyDrawLinearGradient(startColor, endColor, gradientMode, g, ActiveBackColorGradientBlend);
             }
             else
             {
                 Color startColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.StartColor;
                 Color endColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.EndColor;
                 LinearGradientMode gradientMode = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode;
-                using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, startColor, endColor, gradientMode))
-                {
-                    g.FillRectangle(brush, ClientRectangle);
-                }
+                ClientRectangle.SafelyDrawLinearGradient(startColor, endColor, gradientMode, g);
             }
 
             Rectangle rectCaption = ClientRectangle;

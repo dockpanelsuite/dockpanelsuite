@@ -203,10 +203,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color startColor = DockPanel.Theme.Skin.AutoHideStripSkin.DockStripGradient.StartColor;
             Color endColor = DockPanel.Theme.Skin.AutoHideStripSkin.DockStripGradient.EndColor;
             LinearGradientMode gradientMode = DockPanel.Theme.Skin.AutoHideStripSkin.DockStripGradient.LinearGradientMode;
-            using (LinearGradientBrush brush = new LinearGradientBrush(ClientRectangle, startColor, endColor, gradientMode))
-            {
-                g.FillRectangle(brush, ClientRectangle);
-            }
+            ClientRectangle.SafelyDrawLinearGradient(startColor, endColor, gradientMode, g);
 
             DrawTabStrip(g);
         }
@@ -319,7 +316,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             Color startColor = DockPanel.Theme.Skin.AutoHideStripSkin.TabGradient.StartColor;
             Color endColor = DockPanel.Theme.Skin.AutoHideStripSkin.TabGradient.EndColor;
             LinearGradientMode gradientMode = DockPanel.Theme.Skin.AutoHideStripSkin.TabGradient.LinearGradientMode;
-            g.FillPath(new LinearGradientBrush(rectTabOrigin, startColor, endColor, gradientMode), path);
+            using (LinearGradientBrush brush = new LinearGradientBrush(rectTabOrigin, startColor, endColor, gradientMode))
+            {
+                g.FillPath(brush, path);
+            }
+
             g.DrawPath(PenTabBorder, path);
 
             // Set no rotate for drawing icon and text
