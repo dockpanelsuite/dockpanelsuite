@@ -166,7 +166,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private TabGradient m_activeTabGradient = new TabGradient();
         private TabGradient m_inactiveTabGradient = new TabGradient();
         private TabGradient m_hoverTabGradient = new TabGradient();
-        
+        private Pen m_activeBorderPen = new Pen(SystemColors.ControlText);
+        private Pen m_inactiveBorderPen = new Pen(SystemColors.ControlText);
 
         /// <summary>
         /// The gradient color skin for the DockStrip.
@@ -199,6 +200,24 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get { return m_inactiveTabGradient; }
             set { m_inactiveTabGradient = value; }
+        }
+
+        /// <summary>
+        /// The skin used to display the active DockPane tabs.
+        /// </summary>
+        public Pen ActiveBorderPen
+        {
+            get { return m_activeBorderPen; }
+            set { m_activeBorderPen = value; }
+        }
+
+        /// <summary>
+        /// The skin used to display the inactive DockPane tabs.
+        /// </summary>
+        public Pen InactiveBorderPen
+        {
+            get { return m_inactiveBorderPen; }
+            set { m_inactiveBorderPen = value; }
         }
     }
 

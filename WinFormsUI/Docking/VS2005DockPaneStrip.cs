@@ -552,21 +552,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return _DocumentTextGapRight; }
         }
 
-        private static Pen PenToolWindowTabBorder
-        {
-            get { return SystemPens.GrayText; }
-        }
-
-        private static Pen PenDocumentTabActiveBorder
-        {
-            get { return SystemPens.ControlDarkDark; }
-        }
-
-        private static Pen PenDocumentTabInactiveBorder
-        {
-            get { return SystemPens.GrayText; }
-        }
-
         #endregion
 
         #endregion
@@ -1007,10 +992,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             g.SetClip(rectTabStrip);
 
             if (DockPane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
-                g.DrawLine(PenDocumentTabActiveBorder, rectTabStrip.Left, rectTabStrip.Top + 1,
+                g.DrawLine(DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveBorderPen, rectTabStrip.Left, rectTabStrip.Top + 1,
                     rectTabStrip.Right, rectTabStrip.Top + 1);
             else
-                g.DrawLine(PenDocumentTabActiveBorder, rectTabStrip.Left, rectTabStrip.Bottom - 1,
+                g.DrawLine(DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveBorderPen, rectTabStrip.Left, rectTabStrip.Bottom - 1,
                     rectTabStrip.Right, rectTabStrip.Bottom - 1);
 
             g.SetClip(DrawHelper.RtlTransform(this, rectTabOnly));
@@ -1030,7 +1015,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             Rectangle rectTabStrip = TabStripRectangle;
 
-            g.DrawLine(PenToolWindowTabBorder, rectTabStrip.Left, rectTabStrip.Top,
+            g.DrawLine(DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveBorderPen, rectTabStrip.Left, rectTabStrip.Top,
                 rectTabStrip.Right, rectTabStrip.Top);
 
             for (int i = 0; i < Tabs.Count; i++)
@@ -1305,7 +1290,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     g.FillPath(brush, path);
                 }
 
-                g.DrawPath(PenToolWindowTabBorder, path);
+                g.DrawPath(DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveBorderPen, path);
 
                 Color textColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.ActiveTabGradient.TextColor;
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, ToolWindowTextFormat);
@@ -1324,7 +1309,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     Point pt1 = new Point(rect.Right, rect.Top + ToolWindowTabSeperatorGapTop);
                     Point pt2 = new Point(rect.Right, rect.Bottom - ToolWindowTabSeperatorGapBottom);
-                    g.DrawLine(PenToolWindowTabBorder, DrawHelper.RtlTransform(this, pt1), DrawHelper.RtlTransform(this, pt2));
+                    g.DrawLine(DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveBorderPen, DrawHelper.RtlTransform(this, pt1), DrawHelper.RtlTransform(this, pt2));
                 }
 
                 Color textColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.ToolWindowGradient.InactiveTabGradient.TextColor;
@@ -1380,7 +1365,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     g.FillPath(brush, path);
                 }
 
-                g.DrawPath(PenDocumentTabActiveBorder, path);
+                g.DrawPath(DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveBorderPen, path);
 
                 Color textColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.ActiveTabGradient.TextColor;
                 if (DockPane.IsActiveDocumentPane)
@@ -1398,7 +1383,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     g.FillPath(brush1, path);
                 }
 
-                g.DrawPath(PenDocumentTabInactiveBorder, path);
+                g.DrawPath(DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.InactiveBorderPen, path);
 
                 Color textColor = DockPane.DockPanel.Theme.Skin.DockPaneStripSkin.DocumentGradient.InactiveTabGradient.TextColor;
                 TextRenderer.DrawText(g, tab.Content.DockHandler.TabText, TextFont, rectText, textColor, DocumentTextFormat);

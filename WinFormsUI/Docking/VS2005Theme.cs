@@ -49,6 +49,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.LinearGradientMode = LinearGradientMode.Vertical;
             skin.DockPaneStripSkin.ToolWindowGradient.InactiveCaptionGradient.TextColor = SystemColors.InactiveCaptionText;
 
+            skin.DockPaneStripSkin.DocumentGradient.ActiveBorderPen = SystemPens.ControlDarkDark;
+            skin.DockPaneStripSkin.DocumentGradient.InactiveBorderPen = SystemPens.ControlDarkDark;
+
+            skin.DockPaneStripSkin.ToolWindowGradient.ActiveBorderPen = SystemPens.ControlDark;
+            skin.DockPaneStripSkin.ToolWindowGradient.InactiveBorderPen = SystemPens.ControlDark;
+
             return skin;
         }
     }
