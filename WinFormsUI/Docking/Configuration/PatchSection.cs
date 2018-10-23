@@ -75,5 +75,11 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableActivateOnDockFix"]; }
         }
+        
+        [ConfigurationProperty("enableSelectClosestOnClose", DefaultValue = true)]
+        public bool EnableSelectClosestOnClose
+        {
+            get { return (bool)base["enableSelectClosestOnClose"]; }
+        }
     }
 }
