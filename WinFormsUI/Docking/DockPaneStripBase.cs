@@ -264,7 +264,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 // Close the specified content.
                 IDockContent content = Tabs[index].Content;
                 DockPane.CloseContent(content);
-                SelectClosestPane(index);
+                if (PatchController.EnableSelectClosestOnClose == true)
+                    SelectClosestPane(index);
 
                 return true;
             }
