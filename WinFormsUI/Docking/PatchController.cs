@@ -14,7 +14,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             EnableAll = _highDpi = _memoryLeakFix 
                 = _nestedDisposalFix = _focusLostFix = _contentOrderFix
                 = _fontInheritanceFix = _activeXFix = _displayingPaneFix
-                = _activeControlFix = _floatSplitterFix = _activateOnDockFix = null;
+                = _activeControlFix = _floatSplitterFix = _activateOnDockFix
+                = _selectClosestOnClose = null;
         }
 
 #region Copy this section to create new option, and then comment it to show what needs to be modified.
@@ -876,6 +877,84 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 _activateOnDockFix = value;
+            }
+        }
+        
+        private static bool? _selectClosestOnClose;
+
+        public static bool? EnableSelectClosestOnClose
+        {
+            get
+            {
+                if (_selectClosestOnClose != null)
+                {
+                    return _selectClosestOnClose;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _selectClosestOnClose = EnableAll;
+                }
+
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _selectClosestOnClose = section.EnableAll;
+                    }
+
+                    return _selectClosestOnClose = section.EnableSelectClosestOnClose;
+                }
+
+                var environment = Environment.GetEnvironmentVariable("DPS_EnableSelectClosestOnClose");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _selectClosestOnClose = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableSelectClosestOnClose");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _selectClosestOnClose = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnableSelectClosestOnClose");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _selectClosestOnClose = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _selectClosestOnClose = true;
+            }
+
+            set
+            {
+                _selectClosestOnClose = value;
             }
         }
     }

@@ -26,6 +26,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableActiveControlFix);
             Assert.IsTrue(PatchController.EnableFloatSplitterFix);
             Assert.IsTrue(PatchController.EnableActivateOnDockFix);
+            Assert.IsTrue(PatchController.EnableSelectClosestOnClose);
         }
 
         [Test]
@@ -76,6 +77,10 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActivateOnDockFix);
             Environment.SetEnvironmentVariable("DPS_EnableActivateOnDockFix", null);
 
+            Environment.SetEnvironmentVariable("DPS_EnableSelectClosestOnClose", "false");
+            Assert.IsFalse(PatchController.EnableSelectClosestOnClose);
+            Environment.SetEnvironmentVariable("DPS_EnableSelectClosestOnClose", null);
+
             PatchController.Reset();
             Assert.IsTrue(PatchController.EnableHighDpi);
             Assert.IsTrue(PatchController.EnableContentOrderFix);
@@ -88,6 +93,7 @@ namespace Tests
             Assert.IsTrue(PatchController.EnableActiveControlFix);
             Assert.IsTrue(PatchController.EnableFloatSplitterFix);
             Assert.IsTrue(PatchController.EnableActivateOnDockFix);
+            Assert.IsTrue(PatchController.EnableSelectClosestOnClose);
         }
 
         [Test]
@@ -107,6 +113,7 @@ namespace Tests
             key.SetValue("EnableActiveControlFix", "false", RegistryValueKind.String);
             key.SetValue("EnableFloatSplitterFix", "false", RegistryValueKind.String);
             key.SetValue("EnableActivateOnDockFix", "false", RegistryValueKind.String);
+            key.SetValue("EnableSelectClosestOnClose", "false", RegistryValueKind.String);
 
             Assert.IsFalse(PatchController.EnableHighDpi);
             Assert.IsFalse(PatchController.EnableContentOrderFix);
@@ -119,6 +126,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveControlFix);
             Assert.IsFalse(PatchController.EnableFloatSplitterFix);
             Assert.IsFalse(PatchController.EnableActivateOnDockFix);
+            Assert.IsFalse(PatchController.EnableSelectClosestOnClose);
             Registry.CurrentUser.DeleteSubKeyTree("Software\\DockPanelSuite");
         }
 
@@ -138,6 +146,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveControlFix);
             Assert.IsFalse(PatchController.EnableFloatSplitterFix);
             Assert.IsFalse(PatchController.EnableActivateOnDockFix);
+            Assert.IsFalse(PatchController.EnableSelectClosestOnClose);
         }
     }
 }

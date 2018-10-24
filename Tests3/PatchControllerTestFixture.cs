@@ -24,6 +24,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableActiveControlFix);
             Assert.IsFalse(PatchController.EnableFloatSplitterFix);
             Assert.IsFalse(PatchController.EnableActivateOnDockFix);
+            Assert.IsFalse(PatchController.EnableSelectClosestOnClose);
         }
     }
 }
