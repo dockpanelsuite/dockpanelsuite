@@ -10,25 +10,23 @@
       <frameworkAssembly assemblyName="System.Windows.Forms" targetFramework="" />
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
-    <id>DockPanelSuite</id>
-    <title>DockPanel Suite</title>
+    <dependencies>
+      <dependency id="DockPanelSuite" version="3.0.6" />
+    </dependencies>
+    <id>DockPanelSuite.ThemeVS2015</id>
+    <title>DockPanel Suite VS2015 Themes</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</description>
-    <summary>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</summary>
+    <description>Visual Studio 2015 themes for DockPanel Suite.</description>
+    <summary>Visual Studio 2015 themes for DockPanel Suite.</summary>
     <releaseNotes>Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
-
-      Visual Studio 2003 Theme: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2003/
-      Visual Studio 2012 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2012/
-      Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
-      Visual Studio 2015 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2015/
     </releaseNotes>
     <copyright>(C) 2007-2018 Weifen Luo and other contributors</copyright>
     <language>en-US</language>
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net35-client\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.dll" />
-    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.dll" />
+    <file src=".\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" />
+    <file src=".\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2015.dll" />
   </files>
 </package>

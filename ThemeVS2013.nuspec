@@ -26,7 +26,7 @@
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
-    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
+    <file src=".\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
+    <file src=".\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
   </files>
 </package>

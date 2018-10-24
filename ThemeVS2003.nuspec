@@ -13,12 +13,11 @@
     <dependencies>
       <dependency id="DockPanelSuite" version="3.0.6" />
     </dependencies>
-    <id>DockPanelSuite.ThemeVS2005Multithreading</id>
-    <title>DockPanel Suite VS2005 Theme for Multiple UI Threads</title>
+    <id>DockPanelSuite.ThemeVS2003</id>
+    <title>DockPanel Suite VS2003 Theme</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Visual Studio 2005 theme for DockPanel Suite with multiple UI thread support. 
-Most WinForms apps uses a single UI thread. Not recommended unless the application uses multiple UI threads.</description>
-    <summary>Visual Studio 2005 theme for DockPanel Suite with multiple UI thread support.</summary>
+    <description>Visual Studio 2003 theme for DockPanel Suite.</description>
+    <summary>Visual Studio 2003 theme for DockPanel Suite.</summary>
     <releaseNotes>Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
     </releaseNotes>
@@ -27,7 +26,7 @@ Most WinForms apps uses a single UI thread. Not recommended unless the applicati
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src="..\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading.dll" />
-    <file src="..\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading.dll" />
+    <file src=".\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2003.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2003.dll" />
+    <file src=".\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2003.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2003.dll" />
   </files>
 </package>
