@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>3.0.4</version>
+    <version>3.0.5</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -23,7 +23,7 @@
       Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
       Visual Studio 2015 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2015/
     </releaseNotes>
-    <copyright>(C) 2007-2017 Weifen Luo and other contributors</copyright>
+    <copyright>(C) 2007-2018 Weifen Luo and other contributors</copyright>
     <language>en-US</language>
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>

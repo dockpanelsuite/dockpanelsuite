@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>3.0.4</version>
+    <version>3.0.5</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -11,7 +11,7 @@
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="DockPanelSuite" version="3.0.4" />
+      <dependency id="DockPanelSuite" version="3.0.5" />
     </dependencies>
     <id>DockPanelSuite.ThemeVS2013</id>
     <title>DockPanel Suite VS2013 Themes</title>
@@ -21,7 +21,7 @@
     <releaseNotes>Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
     </releaseNotes>
-    <copyright>(C) 2007-2017 Weifen Luo and other contributors</copyright>
+    <copyright>(C) 2007-2018 Weifen Luo and other contributors</copyright>
     <language>en-US</language>
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
