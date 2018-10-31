@@ -1,8 +1,4 @@
 ﻿using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {

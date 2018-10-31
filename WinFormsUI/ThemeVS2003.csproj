@@ -68,6 +68,26 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemeVS2005\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ThemeVS2005\VS2005AutoHideWindowControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2005\VS2005AutoHideWindowFactory.cs" />
+    <Compile Include="ThemeVS2005\VS2005DockIndicatorFactory.cs" />
+    <Compile Include="ThemeVS2005\VS2005DockOutline.cs" />
+    <Compile Include="ThemeVS2005\VS2005DockOutlineFactory.cs" />
+    <Compile Include="ThemeVS2005\VS2005PaneIndicator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2005\VS2005PaneIndicatorFactory.cs" />
+    <Compile Include="ThemeVS2005\VS2005PanelIndicator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThemeVS2005\VS2005PanelIndicatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ThemeVS2003\Resources.resx">
@@ -77,6 +97,10 @@
     <EmbeddedResource Include="ThemeVS2003\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemeVS2005\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +126,32 @@
       <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
       <Name>WinFormsUI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Bottom.png" />
+    <Content Include="ThemeVS2005\Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Left.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Right.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Top.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelBottom.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelBottom_Active.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelFill.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelFill_Active.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelLeft.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelLeft_Active.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelRight.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelRight_Active.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelTop.png" />
+    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelTop_Active.png" />
+    <Content Include="ThemeVS2005\Resources\DockPane_AutoHide.png" />
+    <Content Include="ThemeVS2005\Resources\DockPane_Close.png" />
+    <Content Include="ThemeVS2005\Resources\DockPane_Dock.png" />
+    <Content Include="ThemeVS2005\Resources\DockPane_Option.png" />
+    <Content Include="ThemeVS2005\Resources\DockPane_OptionOverflow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\GendarmeMsBuild.dll')" AssemblyFile="..\gendarme\GendarmeMsBuild.dll" TaskName="GendarmeMsBuild.Gendarme" />

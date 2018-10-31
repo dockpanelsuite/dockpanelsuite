@@ -23,6 +23,7 @@ namespace DockSample
         public MainForm()
         {
             InitializeComponent();
+
             AutoScaleMode = AutoScaleMode.Dpi;
 
             SetSplashScreen();
@@ -32,9 +33,8 @@ namespace DockSample
             RightToLeftLayout = showRightToLeft.Checked;
             m_solutionExplorer.RightToLeftLayout = RightToLeftLayout;
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
-            
+
             vsToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
-            SetSchema(this.menuItemSchemaVS2013Blue, null);
         }
 
         #region Methods
@@ -403,6 +403,8 @@ namespace DockSample
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
+            SetSchema(this.menuItemSchemaVS2013Blue, null);
+
             string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.config");
 
             if (File.Exists(configFile))

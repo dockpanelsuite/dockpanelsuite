@@ -400,6 +400,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             private void RefreshActiveWindow()
             {
+                if (DockPanel.Theme == null)
+                {
+                    return;
+                }
+
                 SuspendFocusTracking();
                 m_inRefreshActiveWindow = true;
 

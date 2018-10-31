@@ -2,6 +2,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     using System.Drawing;
     using System.Drawing.Drawing2D;
+    using WeifenLuo.WinFormsUI.ThemeVS2005;
 
     /// <summary>
     /// Visual Studio 2003 theme.
@@ -13,8 +14,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             Skin = CreateVisualStudio2003();
             Measures.SplitterSize = 4;
             Extender.AutoHideStripFactory = new VS2003AutoHideStripFactory();
+            Extender.AutoHideWindowFactory = new VS2005AutoHideWindowFactory();
             Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
             Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
+            Extender.PaneIndicatorFactory = new VS2005PaneIndicatorFactory();
+            Extender.PanelIndicatorFactory = new VS2005PanelIndicatorFactory();
+            Extender.DockOutlineFactory = new VS2005DockOutlineFactory();
+            Extender.DockIndicatorFactory = new VS2005DockIndicatorFactory();
         }
 
         internal static DockPanelSkin CreateVisualStudio2003()

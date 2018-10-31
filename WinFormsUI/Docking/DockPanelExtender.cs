@@ -1,7 +1,8 @@
-using System;
 using System.Drawing;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
+using static WeifenLuo.WinFormsUI.Docking.DockPanel;
+using static WeifenLuo.WinFormsUI.Docking.DockPanel.DockDragHandler;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -64,17 +65,17 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public interface IAutoHideWindowFactory
         {
-            DockPanel.AutoHideWindowControl CreateAutoHideWindow(DockPanel panel);
+            AutoHideWindowControl CreateAutoHideWindow(DockPanel panel);
         }
 
         public interface IPaneIndicatorFactory
         {
-            DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme);
+            IPaneIndicator CreatePaneIndicator(ThemeBase theme);
         }
 
         public interface IPanelIndicatorFactory
         {
-            DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme);
+            IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme);
         }
 
         public interface IDockOutlineFactory
@@ -84,15 +85,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public interface IDockIndicatorFactory
         {
-            DockPanel.DockDragHandler.DockIndicator CreateDockIndicator(DockPanel.DockDragHandler dockDragHandler);
-        }
-
-        public class DefaultDockIndicatorFactory : IDockIndicatorFactory
-        {
-            public DockPanel.DockDragHandler.DockIndicator CreateDockIndicator(DockPanel.DockDragHandler dockDragHandler)
-            {
-                return new DockPanel.DockDragHandler.DockIndicator(dockDragHandler);
-            }
+            DockIndicator CreateDockIndicator(DockDragHandler dockDragHandler);
         }
 
         #region DefaultDockPaneFactory
@@ -175,78 +168,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         #endregion
-
-        #region DefaultDockPaneCaptionFactory
-
-        private class DefaultDockPaneCaptionFactory : IDockPaneCaptionFactory
-        {
-            public DockPaneCaptionBase CreateDockPaneCaption(DockPane pane)
-            {
-                return new VS2005DockPaneCaption(pane);
-            }
-        }
-
-        #endregion
-
-        #region DefaultDockPaneTabStripFactory
-
-        private class DefaultDockPaneStripFactory : IDockPaneStripFactory
-        {
-            public DockPaneStripBase CreateDockPaneStrip(DockPane pane)
-            {
-                return new VS2005DockPaneStrip(pane);
-            }
-        }
-
-        #endregion
-
-        #region DefaultAutoHideStripFactory
-
-        private class DefaultAutoHideStripFactory : IAutoHideStripFactory
-        {
-            public AutoHideStripBase CreateAutoHideStrip(DockPanel panel)
-            {
-                return new VS2005AutoHideStrip(panel);
-            }
-        }
-
-        #endregion
-
-        #region DefaultAutoHideWindowFactory
-
-        public class DefaultAutoHideWindowFactory : IAutoHideWindowFactory
-        {
-            public DockPanel.AutoHideWindowControl CreateAutoHideWindow(DockPanel panel)
-            {
-                return new DockPanel.DefaultAutoHideWindowControl(panel);
-            }
-        }
-
-        #endregion
-
-        public class DefaultPaneIndicatorFactory : IPaneIndicatorFactory
-        {
-            public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme)
-            {
-                return new DockPanel.DefaultPaneIndicator();
-            }
-        }
-
-        public class DefaultPanelIndicatorFactory : IPanelIndicatorFactory
-        {
-            public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
-            {
-                return new DockPanel.DefaultPanelIndicator(style);
-            }
-        }
-
-        public class DefaultDockOutlineFactory : IDockOutlineFactory
-        {
-            public DockOutlineBase CreateDockOutline()
-            {
-                return new DockPanel.DefaultDockOutline();
-            }
-        }
 
         private IDockPaneFactory m_dockPaneFactory = null;
 
@@ -331,9 +252,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get
             {
-                if (m_dockPaneCaptionFactory == null)
-                    m_dockPaneCaptionFactory = new DefaultDockPaneCaptionFactory();
-
                 return m_dockPaneCaptionFactory;
             }
             set
@@ -348,9 +266,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get
             {
-                if (m_dockPaneStripFactory == null)
-                    m_dockPaneStripFactory = new DefaultDockPaneStripFactory();
-
                 return m_dockPaneStripFactory;
             }
             set
@@ -365,9 +280,6 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             get
             {
-                if (m_autoHideStripFactory == null)
-                    m_autoHideStripFactory = new DefaultAutoHideStripFactory();
-
                 return m_autoHideStripFactory;
             }
             set
@@ -383,7 +295,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         
         public IAutoHideWindowFactory AutoHideWindowFactory
         {
-            get { return m_autoHideWindowFactory ?? (m_autoHideWindowFactory = new DefaultAutoHideWindowFactory()); }
+            get { return m_autoHideWindowFactory; }
             set
             {
                 if (m_autoHideWindowFactory == value)
@@ -399,7 +311,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IPaneIndicatorFactory PaneIndicatorFactory
         {
-            get { return m_PaneIndicatorFactory ?? (m_PaneIndicatorFactory = new DefaultPaneIndicatorFactory()); }
+            get { return m_PaneIndicatorFactory; }
             set { m_PaneIndicatorFactory = value; }
         }
 
@@ -407,7 +319,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IPanelIndicatorFactory PanelIndicatorFactory
         {
-            get { return m_PanelIndicatorFactory ?? (m_PanelIndicatorFactory = new DefaultPanelIndicatorFactory()); }
+            get { return m_PanelIndicatorFactory; }
             set { m_PanelIndicatorFactory = value; }
         }
 
@@ -415,7 +327,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IDockOutlineFactory DockOutlineFactory
         {
-            get { return m_DockOutlineFactory ?? (m_DockOutlineFactory = new DefaultDockOutlineFactory()); }
+            get { return m_DockOutlineFactory; }
             set { m_DockOutlineFactory = value; }
         }
 
@@ -423,7 +335,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IDockIndicatorFactory DockIndicatorFactory
         {
-            get { return m_DockIndicatorFactory ?? (m_DockIndicatorFactory = new DefaultDockIndicatorFactory()); }
+            get { return m_DockIndicatorFactory; }
             set { m_DockIndicatorFactory = value; }
         }
     }

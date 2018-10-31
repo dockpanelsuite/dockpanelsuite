@@ -15,7 +15,7 @@
             get { return null;  }
         }
 
-        private ThemeBase m_dockPanelTheme = new VS2005Theme();
+        private ThemeBase m_dockPanelTheme;
 
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DockPanelTheme")]
@@ -26,10 +26,11 @@
             {
                 if (value == null)
                 {
+                    m_dockPanelTheme = null;
                     return;
                 }
 
-                if (m_dockPanelTheme.GetType() == value.GetType())
+                if (m_dockPanelTheme?.GetType() == value.GetType())
                 {
                     return;
                 }

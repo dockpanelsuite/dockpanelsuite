@@ -75,6 +75,23 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void ApplyTo(DockPanel dockPanel)
         {
+            if (Extender.AutoHideStripFactory == null
+                || Extender.AutoHideWindowFactory == null
+                || Extender.DockIndicatorFactory == null
+                || Extender.DockOutlineFactory == null
+                || Extender.DockPaneCaptionFactory == null
+                || Extender.DockPaneFactory == null
+                || Extender.DockPaneSplitterControlFactory == null
+                || Extender.DockPaneStripFactory == null
+                || Extender.DockWindowFactory == null
+                || Extender.FloatWindowFactory == null
+                || Extender.PaneIndicatorFactory == null
+                || Extender.PanelIndicatorFactory == null
+                || Extender.WindowSplitterControlFactory == null)
+            {
+                throw new InvalidOperationException("Before applying themes all factories must be configured.");
+            }
+
             if (dockPanel.Panes.Count > 0)
                 throw new InvalidOperationException("Before applying themes all panes must be closed.");
 
