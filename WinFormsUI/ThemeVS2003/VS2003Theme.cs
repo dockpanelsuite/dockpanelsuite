@@ -17,6 +17,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             Extender.AutoHideWindowFactory = new VS2005AutoHideWindowFactory();
             Extender.DockPaneCaptionFactory = new VS2003DockPaneCaptionFactory();
             Extender.DockPaneStripFactory = new VS2003DockPaneStripFactory();
+            Extender.DockPaneSplitterControlFactory = new VS2005DockPaneSplitterControlFactory();
+            Extender.WindowSplitterControlFactory = new VS2005WindowSplitterControlFactory();
+            Extender.DockWindowFactory = new VS2005DockWindowFactory();
             Extender.PaneIndicatorFactory = new VS2005PaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2005PanelIndicatorFactory();
             Extender.DockOutlineFactory = new VS2005DockOutlineFactory();

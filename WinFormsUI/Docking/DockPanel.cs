@@ -866,7 +866,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         internal Form ParentForm
         {
             get
-            {	
+            {
                 if (!IsParentFormValid())
                     throw new InvalidOperationException(Strings.DockPanel_ParentForm_Invalid);
 
