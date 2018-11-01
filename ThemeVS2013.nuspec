@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
-    <version>3.1.0-beta1</version>
+    <version>3.1.0-beta2</version>
     <authors>Weifen Luo and other contributors</authors>
     <owners>Weifen Luo and other contributors</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
@@ -11,7 +11,7 @@
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="DockPanelSuite" version="3.1.0-beta1" />
+      <dependency id="DockPanelSuite" version="3.1.0-beta2" />
     </dependencies>
     <id>DockPanelSuite.ThemeVS2013</id>
     <title>DockPanel Suite VS2013 Themes</title>
