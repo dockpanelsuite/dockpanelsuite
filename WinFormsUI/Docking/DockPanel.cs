@@ -58,17 +58,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
             Controls.Add(m_dummyControl);
 
-            if (Theme != null)
-            {
-                Theme.ApplyTo(this);
-
-                m_autoHideWindow = Theme?.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
-                m_autoHideWindow.Visible = false;
-                m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged;
-                SetAutoHideWindowParent();
-                LoadDockWindows();
-            }
-
             m_dummyContent = new DockContent();
             ResumeLayout();
         }
@@ -855,6 +844,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void SuspendLayout(bool allWindows)
         {
+            if (Theme == null)
+            {
+                throw new InvalidOperationException("DockPanel.Theme must be set to a valid theme.");
+            }
+
             FocusManager.SuspendFocusTracking();
             SuspendLayout();
             if (allWindows)
