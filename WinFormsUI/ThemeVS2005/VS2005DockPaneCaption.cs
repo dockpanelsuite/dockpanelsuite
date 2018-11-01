@@ -7,8 +7,10 @@ using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     internal class VS2005DockPaneCaption : DockPaneCaptionBase
     {
+        [ToolboxItem(false)]
         private sealed class InertButton : InertButtonBase
         {
             private Bitmap m_image, m_imageAutoHide;

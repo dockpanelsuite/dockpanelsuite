@@ -1,11 +1,13 @@
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
     partial class DockPanel
     {
+        [ToolboxItem(false)]
         public class AutoHideWindowControl : Panel, ISplitterHost
         {
             protected class SplitterControl : SplitterBase

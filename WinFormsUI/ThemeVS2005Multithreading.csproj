@@ -75,19 +75,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ThemeVS2005\VS2005AutoHideWindowFactory.cs" />
-    <Compile Include="ThemeVS2005\VS2005DockOutline.cs" />
     <Compile Include="ThemeVS2005\VS2005DockOutlineFactory.cs" />
     <Compile Include="ThemeVS2005\VS2005DockPaneSplitterControlFactory.cs" />
-    <Compile Include="ThemeVS2005\VS2005DockWindow.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ThemeVS2005\VS2005DockWindowFactory.cs" />
-    <Compile Include="ThemeVS2005\VS2005SplitterControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ThemeVS2005\VS2005WindowSplitterControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ThemeVS2005\VS2005WindowSplitterControlFactory.cs" />
   </ItemGroup>
   <ItemGroup>

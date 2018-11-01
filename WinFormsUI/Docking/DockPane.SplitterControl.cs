@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -5,6 +6,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     partial class DockPane
     {
+        [ToolboxItem(false)]
         public class SplitterControlBase : Control, ISplitterDragSource
         {
             DockPane m_pane;

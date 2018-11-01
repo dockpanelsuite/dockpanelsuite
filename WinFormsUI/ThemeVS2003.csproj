@@ -78,15 +78,8 @@
     </Compile>
     <Compile Include="ThemeVS2005\VS2005AutoHideWindowFactory.cs" />
     <Compile Include="ThemeVS2005\VS2005DockIndicatorFactory.cs" />
-    <Compile Include="ThemeVS2005\VS2005DockOutline.cs" />
     <Compile Include="ThemeVS2005\VS2005DockOutlineFactory.cs" />
-    <Compile Include="ThemeVS2005\VS2005PaneIndicator.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ThemeVS2005\VS2005PaneIndicatorFactory.cs" />
-    <Compile Include="ThemeVS2005\VS2005PanelIndicator.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ThemeVS2005\VS2005PanelIndicatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>

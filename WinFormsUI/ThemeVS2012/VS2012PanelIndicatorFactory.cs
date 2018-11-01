@@ -12,6 +12,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
             return new VS2012PanelIndicator(style, theme);
         }
 
+        [ToolboxItem(false)]
         private class VS2012PanelIndicator : PictureBox, DockPanel.IPanelIndicator
         {
             private Image _imagePanelLeft;

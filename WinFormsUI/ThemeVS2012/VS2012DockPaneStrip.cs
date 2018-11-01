@@ -8,6 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     using WeifenLuo.WinFormsUI.ThemeVS2012;
 
+    [ToolboxItem(false)]
     internal class VS2012DockPaneStrip : DockPaneStripBase
     {
         private class TabVS2012 : Tab
@@ -51,6 +52,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new TabVS2012(content);
         }
 
+        [ToolboxItem(false)]
         private sealed class InertButton : InertButtonBase
         {
             private Bitmap _hovered, _normal, _pressed;

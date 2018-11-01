@@ -5,6 +5,7 @@ using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     internal class VS2005MultithreadingPanelIndicator : PictureBox, DockPanel.IPanelIndicator
     {
         private Image _imagePanelLeft;

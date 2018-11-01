@@ -7,6 +7,7 @@ using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     internal class VS2005DockPaneStrip : DockPaneStripBase
     {
         private class TabVS2005 : Tab
@@ -50,6 +51,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new TabVS2005(content);
         }
 
+        [ToolboxItem(false)]
         private sealed class InertButton : InertButtonBase
         {
             private Bitmap m_image0, m_image1;

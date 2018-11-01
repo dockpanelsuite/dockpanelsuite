@@ -1,10 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace WeifenLuo.WinFormsUI.ThemeVS2013
 {
+    [ToolboxItem(false)]
     public class VS2013WindowSplitterControl : SplitterBase
     {
         private SolidBrush _horizontalBrush;
