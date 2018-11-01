@@ -116,9 +116,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\DockWindowCollection.cs" />
-    <Compile Include="Docking\DockWindow.SplitterControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Docking\DummyControl.cs">
       <SubType>Component</SubType>
     </Compile>

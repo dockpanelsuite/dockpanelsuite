@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
-using WeifenLuo.WinFormsUI.ThemeVS2005Multithreading;
+using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {

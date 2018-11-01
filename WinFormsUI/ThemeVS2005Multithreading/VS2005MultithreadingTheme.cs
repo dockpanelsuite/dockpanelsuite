@@ -1,4 +1,3 @@
-using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -16,14 +15,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             Measures.SplitterSize = 4;
             Extender.DockPaneCaptionFactory = new VS2005MultithreadingDockPaneCaptionFactory();
             Extender.AutoHideStripFactory = new VS2005MultithreadingAutoHideStripFactory();
-            Extender.AutoHideWindowFactory = null;
+            Extender.AutoHideWindowFactory = new ThemeVS2005.VS2005AutoHideWindowFactory();
             Extender.DockPaneStripFactory = new VS2005MultithreadingDockPaneStripFactory();
-            Extender.DockPaneSplitterControlFactory = null;
-            Extender.WindowSplitterControlFactory = null;
-            Extender.DockWindowFactory = null;
+            Extender.DockPaneSplitterControlFactory = new ThemeVS2005.VS2005DockPaneSplitterControlFactory();
+            Extender.WindowSplitterControlFactory = new ThemeVS2005.VS2005WindowSplitterControlFactory();
+            Extender.DockWindowFactory = new ThemeVS2005.VS2005DockWindowFactory();
             Extender.PaneIndicatorFactory = new VS2005MultithreadingPaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2005MultithreadingPanelIndicatorFactory();
-            Extender.DockOutlineFactory = null;
+            Extender.DockOutlineFactory = new ThemeVS2005.VS2005DockOutlineFactory();
         }
 
         internal static DockPanelSkin CreateVisualStudio2005()

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.ThemeVS2005Multithreading;
+using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {

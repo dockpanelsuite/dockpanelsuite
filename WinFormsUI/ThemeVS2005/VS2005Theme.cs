@@ -6,7 +6,7 @@ using static WeifenLuo.WinFormsUI.Docking.DockPanelExtender;
 namespace WeifenLuo.WinFormsUI.Docking
 {
     /// <summary>
-    /// Visual Studio 2005 theme (default theme).
+    /// Visual Studio 2005 theme.
     /// </summary>
     public partial class VS2005Theme : ThemeBase
     {
@@ -18,6 +18,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             Extender.AutoHideWindowFactory = new VS2005AutoHideWindowFactory();
             Extender.DockPaneCaptionFactory = new VS2005DockPaneCaptionFactory();
             Extender.DockPaneStripFactory = new VS2005DockPaneStripFactory();
+            Extender.DockPaneSplitterControlFactory = new VS2005DockPaneSplitterControlFactory();
+            Extender.WindowSplitterControlFactory = new VS2005WindowSplitterControlFactory();
+            Extender.DockWindowFactory = new VS2005DockWindowFactory();
             Extender.PaneIndicatorFactory = new VS2005PaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2005PanelIndicatorFactory();
             Extender.DockOutlineFactory = new VS2005DockOutlineFactory();
@@ -95,7 +98,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 return new VS2005DockPaneStrip(pane);
             }
         }
-
-#endregion
+        #endregion
     }
 }
