@@ -1,13 +1,14 @@
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
     using WeifenLuo.WinFormsUI.ThemeVS2012;
 
+    [ToolboxItem(false)]
     internal class VS2012DockPaneCaption : DockPaneCaptionBase
     {
         #region consts

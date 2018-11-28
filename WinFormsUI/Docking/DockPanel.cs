@@ -58,15 +58,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
             Controls.Add(m_dummyControl);
 
-            Theme.ApplyTo(this);
-
-            m_autoHideWindow = Theme.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
-            m_autoHideWindow.Visible = false;
-            m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged; 
-            SetAutoHideWindowParent();
-
-            LoadDockWindows();
-
             m_dummyContent = new DockContent();
             ResumeLayout();
         }
@@ -687,6 +678,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnLayout(LayoutEventArgs levent)
         {
+            if (Theme == null)
+            {
+                return;
+            }
+
             SuspendLayout(true);
 
             AutoHideStripControl.Bounds = ClientRectangle;
@@ -848,6 +844,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void SuspendLayout(bool allWindows)
         {
+            if (Theme == null)
+            {
+                throw new InvalidOperationException("DockPanel.Theme must be set to a valid theme.");
+            }
+
             FocusManager.SuspendFocusTracking();
             SuspendLayout();
             if (allWindows)
@@ -865,7 +866,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         internal Form ParentForm
         {
             get
-            {	
+            {
                 if (!IsParentFormValid())
                     throw new InvalidOperationException(Strings.DockPanel_ParentForm_Invalid);
 
@@ -886,6 +887,11 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnParentChanged(EventArgs e)
         {
+            if (Theme == null)
+            {
+                return;
+            }
+
             SetAutoHideWindowParent();
             GetMdiClientController().ParentForm = (this.Parent as Form);
             base.OnParentChanged (e);
@@ -1145,10 +1151,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             var old = m_dockWindows;
             LoadDockWindows();
-            foreach (var dockWindow in old)
+            if (old != null)
             {
-                Controls.Remove(dockWindow);
-                dockWindow.Dispose();
+                foreach (var dockWindow in old)
+                {
+                    Controls.Remove(dockWindow);
+                    dockWindow.Dispose();
+                }
             }
         }
 
@@ -1168,9 +1177,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_autoHideWindow.Visible = false;
             SetAutoHideWindowParent();
 
-            old.Visible = false;
-            old.Parent = null;
-            old.Dispose();
+            if (old != null)
+            {
+                old.Visible = false;
+                old.Parent = null;
+                old.Dispose();
+            }
         }
     }
 }

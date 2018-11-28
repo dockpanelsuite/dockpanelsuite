@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.ThemeVS2005Multithreading;
+using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     internal class VS2005MultithreadingPaneIndicator : PictureBox, DockPanel.IPaneIndicator
     {
         private Bitmap _bitmapPaneDiamond;

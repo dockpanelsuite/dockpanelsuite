@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -12,6 +13,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
             return new VS2012PaneIndicator(theme);
         }
 
+        [ToolboxItem(false)]
         private class VS2012PaneIndicator : PictureBox, DockPanel.IPaneIndicator
         {
             private Bitmap _bitmapPaneDiamond;

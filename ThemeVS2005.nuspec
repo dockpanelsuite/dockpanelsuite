@@ -13,11 +13,11 @@
     <dependencies>
       <dependency id="DockPanelSuite" version="3.1.0-beta2" />
     </dependencies>
-    <id>DockPanelSuite.ThemeVS2013</id>
-    <title>DockPanel Suite VS2013 Themes</title>
+    <id>DockPanelSuite.ThemeVS2005</id>
+    <title>DockPanel Suite VS2005 Theme</title>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Visual Studio 2013 themes for DockPanel Suite.</description>
-    <summary>Visual Studio 2013 themes for DockPanel Suite.</summary>
+    <description>Visual Studio 2005 theme for DockPanel Suite.</description>
+    <summary>Visual Studio 2005 theme for DockPanel Suite.</summary>
     <releaseNotes>Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
     </releaseNotes>
@@ -26,7 +26,7 @@
     <tags>windows forms docking dockpanel panel</tags>
   </metadata>
   <files>
-    <file src=".\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
-    <file src=".\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2013.dll" />
+    <file src=".\bin\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2005.dll" target="lib\net35-client\WeifenLuo.WinFormsUI.Docking.ThemeVS2005.dll" />
+    <file src=".\bin\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005.dll" target="lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005.dll" />
   </files>
 </package>

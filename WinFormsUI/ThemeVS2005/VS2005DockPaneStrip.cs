@@ -3,9 +3,11 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
+using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     internal class VS2005DockPaneStrip : DockPaneStripBase
     {
         private class TabVS2005 : Tab
@@ -44,11 +46,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        protected internal override DockPaneStripBase.Tab CreateTab(IDockContent content)
+        protected override DockPaneStripBase.Tab CreateTab(IDockContent content)
         {
             return new TabVS2005(content);
         }
 
+        [ToolboxItem(false)]
         private sealed class InertButton : InertButtonBase
         {
             private Bitmap m_image0, m_image1;
@@ -603,7 +606,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.Dispose(disposing);
         }
 
-        protected internal override int MeasureHeight()
+        protected override int MeasureHeight()
         {
             if (Appearance == DockPane.AppearanceStyle.ToolWindow)
                 return MeasureHeight_ToolWindow();
@@ -907,7 +910,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             DocumentTabsOverflow = overflow;
         }
 
-        protected internal override void EnsureTabVisible(IDockContent content)
+        protected override void EnsureTabVisible(IDockContent content)
         {
             if (Appearance != DockPane.AppearanceStyle.Document || !Tabs.Contains(content))
                 return;
@@ -1524,7 +1527,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        protected internal override int HitTest(Point point)
+        protected override int HitTest(Point point)
         {
             if (!TabsRectangle.Contains(point))
                 return -1;

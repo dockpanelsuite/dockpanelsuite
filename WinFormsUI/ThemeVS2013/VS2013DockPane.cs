@@ -1,10 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace WeifenLuo.WinFormsUI.ThemeVS2013
 {
+    [ToolboxItem(false)]
     public class VS2013DockPane : DockPane
     {
         public VS2013DockPane(IDockContent content, DockState visibleState, bool show)

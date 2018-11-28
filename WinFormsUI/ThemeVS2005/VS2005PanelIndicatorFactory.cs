@@ -2,57 +2,46 @@
 using System.Drawing;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using static WeifenLuo.WinFormsUI.Docking.DockPanel;
+using static WeifenLuo.WinFormsUI.Docking.DockPanelExtender;
 
-namespace WeifenLuo.WinFormsUI.ThemeVS2012
+namespace WeifenLuo.WinFormsUI.ThemeVS2005
 {
-    internal class VS2012PanelIndicatorFactory : DockPanelExtender.IPanelIndicatorFactory
+    public class VS2005PanelIndicatorFactory : IPanelIndicatorFactory
     {
-        public DockPanel.IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
+        public IPanelIndicator CreatePanelIndicator(DockStyle style, ThemeBase theme)
         {
-            return new VS2012PanelIndicator(style, theme);
+            return new VS2005PanelIndicator(style);
         }
 
         [ToolboxItem(false)]
-        private class VS2012PanelIndicator : PictureBox, DockPanel.IPanelIndicator
+        private class VS2005PanelIndicator : PictureBox, IPanelIndicator
         {
-            private Image _imagePanelLeft;
-            private Image _imagePanelRight;
-            private Image _imagePanelTop;
-            private Image _imagePanelBottom;
-            private Image _imagePanelFill;
-            private Image _imagePanelLeftActive;
-            private Image _imagePanelRightActive;
-            private Image _imagePanelTopActive;
-            private Image _imagePanelBottomActive;
-            private Image _imagePanelFillActive;
+            private static Image _imagePanelLeft = Resources.DockIndicator_PanelLeft;
+            private static Image _imagePanelRight = Resources.DockIndicator_PanelRight;
+            private static Image _imagePanelTop = Resources.DockIndicator_PanelTop;
+            private static Image _imagePanelBottom = Resources.DockIndicator_PanelBottom;
+            private static Image _imagePanelFill = Resources.DockIndicator_PanelFill;
+            private static Image _imagePanelLeftActive = Resources.DockIndicator_PanelLeft_Active;
+            private static Image _imagePanelRightActive = Resources.DockIndicator_PanelRight_Active;
+            private static Image _imagePanelTopActive = Resources.DockIndicator_PanelTop_Active;
+            private static Image _imagePanelBottomActive = Resources.DockIndicator_PanelBottom_Active;
+            private static Image _imagePanelFillActive = Resources.DockIndicator_PanelFill_Active;
 
-            public VS2012PanelIndicator(DockStyle dockStyle, ThemeBase theme)
+            public VS2005PanelIndicator(DockStyle dockStyle)
             {
-                _imagePanelLeft = theme.ImageService.DockIndicator_PanelLeft;
-                _imagePanelRight = theme.ImageService.DockIndicator_PanelRight;
-                _imagePanelTop = theme.ImageService.DockIndicator_PanelTop;
-                _imagePanelBottom = theme.ImageService.DockIndicator_PanelBottom;
-                _imagePanelFill = theme.ImageService.DockIndicator_PanelFill;
-                _imagePanelLeftActive = theme.ImageService.DockIndicator_PanelLeft;
-                _imagePanelRightActive = theme.ImageService.DockIndicator_PanelRight;
-                _imagePanelTopActive = theme.ImageService.DockIndicator_PanelTop;
-                _imagePanelBottomActive = theme.ImageService.DockIndicator_PanelBottom;
-                _imagePanelFillActive = theme.ImageService.DockIndicator_PanelFill;
-
                 m_dockStyle = dockStyle;
                 SizeMode = PictureBoxSizeMode.AutoSize;
                 Image = ImageInactive;
             }
 
             private DockStyle m_dockStyle;
-
             private DockStyle DockStyle
             {
                 get { return m_dockStyle; }
             }
 
             private DockStyle m_status;
-
             public DockStyle Status
             {
                 get { return m_status; }
@@ -108,7 +97,6 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
             }
 
             private bool m_isActivated = false;
-
             private bool IsActivated
             {
                 get { return m_isActivated; }

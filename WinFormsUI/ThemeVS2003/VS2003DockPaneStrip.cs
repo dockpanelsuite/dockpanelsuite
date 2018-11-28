@@ -8,6 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     using WeifenLuo.WinFormsUI.ThemeVS2003;
 
+    [ToolboxItem(false)]
     internal class VS2003DockPaneStrip : DockPaneStripBase
     {
         private class TabVS2003 : Tab

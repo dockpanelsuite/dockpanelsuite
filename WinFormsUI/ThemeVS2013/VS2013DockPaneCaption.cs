@@ -8,6 +8,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 {
     using ThemeVS2012;
 
+    [ToolboxItem(false)]
     internal class VS2013DockPaneCaption : DockPaneCaptionBase
     {
         #region consts

@@ -4,7 +4,9 @@ using System.Windows.Forms;
 namespace WeifenLuo.WinFormsUI.ThemeVS2012
 {
     using Docking;
+    using System.ComponentModel;
 
+    [ToolboxItem(false)]
     internal class VS2012AutoHideWindowControl : DockPanel.AutoHideWindowControl
     {
         public VS2012AutoHideWindowControl(DockPanel dockPanel)

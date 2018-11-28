@@ -8,6 +8,7 @@ using WeifenLuo.WinFormsUI.ThemeVS2012;
 
 namespace WeifenLuo.WinFormsUI.ThemeVS2013
 {
+    [ToolboxItem(false)]
     internal class VS2013DockPaneStrip : DockPaneStripBase
     {
         private class TabVS2013 : Tab
@@ -51,6 +52,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             return new TabVS2013(content);
         }
 
+        [ToolboxItem(false)]
         private sealed class InertButton : InertButtonBase
         {
             private Bitmap _hovered, _normal, _pressed;

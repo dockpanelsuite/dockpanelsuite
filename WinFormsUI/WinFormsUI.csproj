@@ -74,18 +74,10 @@
     <Compile Include="Docking\IPaintingService.cs" />
     <Compile Include="Docking\LayoutUtils.cs" />
     <Compile Include="Docking\PatchController.cs" />
-    <Compile Include="Docking\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Docking\ThemeBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\VisualStudioColorTable.cs" />
-    <Compile Include="Docking\VS2005AutoHideStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Docking\DockPanel.AutoHideWindow.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -108,9 +100,6 @@
     <Compile Include="Docking\DockPaneCaptionBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Docking\VS2005DockPaneCaption.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Docking\DockPaneCollection.cs" />
     <Compile Include="Docking\DockPanel.cs" />
     <Compile Include="Docking\DockPanelExtender.cs" />
@@ -123,16 +112,10 @@
     <Compile Include="Docking\DockPaneStripBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Docking\VS2005DockPaneStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Docking\DockWindow.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\DockWindowCollection.cs" />
-    <Compile Include="Docking\DockWindow.SplitterControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Docking\DummyControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -155,9 +138,6 @@
     <Compile Include="Docking\Localization.cs" />
     <Compile Include="Docking\Helpers\ResourceHelper.cs" />
     <Compile Include="Docking\Helpers\Win32Helper.cs" />
-    <Compile Include="Docking\VS2005Theme.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Docking\VisualStudioToolStripRenderer.cs" />
     <Compile Include="Docking\VisualStudioToolStripExtender.cs">
       <SubType>Component</SubType>
@@ -175,11 +155,6 @@
     <Compile Include="Docking\Win32\NativeMethods.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Docking\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Docking\Strings.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -192,37 +167,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond.png" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Bottom.png" />
-    <None Include="Docking\Resources\Dockindicator_PaneDiamond_Fill.png" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Left.png" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Right.png" />
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_Top.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelBottom.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelBottom_Active.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelFill.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelFill_Active.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelLeft.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelLeft_Active.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelRight.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelRight_Active.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelTop.png" />
-    <None Include="Docking\Resources\DockIndicator_PanelTop_Active.png" />
-    <None Include="Docking\Resources\DockPane_AutoHide.png" />
-    <None Include="Docking\Resources\DockPane_Close.png" />
-    <None Include="Docking\Resources\DockPane_Dock.png" />
-    <None Include="Docking\Resources\DockPane_Option.png" />
-    <None Include="Docking\Resources\DockPane_OptionOverflow.png" />
     <None Include="dockpanelsuite.snk" />
     <None Include="license.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Docking\DockPanel.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\GendarmeMsBuild.dll')" AssemblyFile="..\gendarme\GendarmeMsBuild.dll" TaskName="GendarmeMsBuild.Gendarme" />

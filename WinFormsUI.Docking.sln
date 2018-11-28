@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.25914.0
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -35,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2015", "WinFormsUI\ThemeVS2015.csproj", "{007D4AC8-948F-4816-86AD-B9D1343672C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{91DA877F-E437-42C9-8FE5-E3709721BB8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2005", "WinFormsUI\ThemeVS2005.csproj", "{B51EC09A-F8BE-4B5A-BD07-0F4489075A00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +85,10 @@ Global
 		{007D4AC8-948F-4816-86AD-B9D1343672C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{007D4AC8-948F-4816-86AD-B9D1343672C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{007D4AC8-948F-4816-86AD-B9D1343672C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51EC09A-F8BE-4B5A-BD07-0F4489075A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51EC09A-F8BE-4B5A-BD07-0F4489075A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51EC09A-F8BE-4B5A-BD07-0F4489075A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51EC09A-F8BE-4B5A-BD07-0F4489075A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,5 +102,9 @@ Global
 		{4B0F335C-88AD-4884-B286-0107D24D246B} = {0CA1B611-8907-4C9C-93A7-4133E7540B24}
 		{6C17B7EB-B55B-4878-8EB1-5AA6942FB50F} = {0CA1B611-8907-4C9C-93A7-4133E7540B24}
 		{007D4AC8-948F-4816-86AD-B9D1343672C1} = {91DA877F-E437-42C9-8FE5-E3709721BB8B}
+		{B51EC09A-F8BE-4B5A-BD07-0F4489075A00} = {91DA877F-E437-42C9-8FE5-E3709721BB8B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC9B8990-422B-40EC-B51C-5F63F52A37BD}
 	EndGlobalSection
 EndGlobal

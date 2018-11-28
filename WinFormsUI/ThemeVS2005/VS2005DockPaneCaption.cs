@@ -3,12 +3,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
-using System.Windows.Forms.VisualStyles;
+using WeifenLuo.WinFormsUI.ThemeVS2005;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
+    [ToolboxItem(false)]
     internal class VS2005DockPaneCaption : DockPaneCaptionBase
     {
+        [ToolboxItem(false)]
         private sealed class InertButton : InertButtonBase
         {
             private Bitmap m_image, m_imageAutoHide;
@@ -324,7 +326,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        protected internal override int MeasureHeight()
+        protected override int MeasureHeight()
         {
             int height = TextFont.Height + TextGapTop + TextGapBottom;
 

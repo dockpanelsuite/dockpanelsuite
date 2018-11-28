@@ -162,6 +162,10 @@
       <Project>{719f0f69-66da-438d-b5bb-2d883ef4ace2}</Project>
       <Name>ThemeVS2003</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2005.csproj">
+      <Project>{b51ec09a-f8be-4b5a-bd07-0f4489075a00}</Project>
+      <Name>ThemeVS2005</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinFormsUI\ThemeVS2012.csproj">
       <Project>{4ed4fdb5-9fd0-49e6-876d-1635f727c755}</Project>
       <Name>ThemeVS2012</Name>

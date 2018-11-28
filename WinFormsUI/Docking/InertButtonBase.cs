@@ -49,7 +49,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override Size DefaultSize
         {
-            get { return Resources.DockPane_Close.Size; }
+            get { return new Size(16, 15); }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
