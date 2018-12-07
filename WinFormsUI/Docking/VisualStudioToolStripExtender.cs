@@ -17,7 +17,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             public ToolStripProperties(ToolStrip toolstrip)
             {
-                if (toolstrip == null) throw new ArgumentNullException("toolstrip");
+                if (toolstrip == null) throw new ArgumentNullException(nameof(toolstrip));
                 strip = toolstrip;
 
                 if (strip is MenuStrip)

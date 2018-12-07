@@ -117,6 +117,120 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Category_Docking" xml:space="preserve">
+    <value>Docking</value>
+  </data>
+  <data name="Category_DockingNotification" xml:space="preserve">
+    <value>Docking Notification</value>
+  </data>
+  <data name="Category_PropertyChanged" xml:space="preserve">
+    <value>Property Changed</value>
+  </data>
+  <data name="DockContent_AllowEndUserDocking_Description" xml:space="preserve">
+    <value>Determines if end user drag and drop docking is allowed.</value>
+  </data>
+  <data name="DockContent_AutoHidePortion_Description" xml:space="preserve">
+    <value>The size to display the content in auto hide mode. Value &lt; 1 to specify the size in portion; value &gt;= 1 to specify the size in pixel.</value>
+  </data>
+  <data name="DockContent_CloseButton_Description" xml:space="preserve">
+    <value>Enable/Disable the close button of the content.</value>
+  </data>
+  <data name="DockContent_DockAreas_Description" xml:space="preserve">
+    <value>Gets or sets a value indicating in which area of the DockPanel the content allowed to show.</value>
+  </data>
+  <data name="DockContent_DockStateChanged_Description" xml:space="preserve">
+    <value>Occurs when the value of DockState property changed.</value>
+  </data>
+  <data name="DockContent_HideOnClose_Description" xml:space="preserve">
+    <value>Indicates the content will be hidden instead of being closed.</value>
+  </data>
+  <data name="DockContent_ShowHint_Description" xml:space="preserve">
+    <value>The desired docking state when first showing.</value>
+  </data>
+  <data name="DockContent_TabPageContextMenu_Description" xml:space="preserve">
+    <value>Context menu displayed for the dock pane tab strip.</value>
+  </data>
+  <data name="DockContent_TabText_Description" xml:space="preserve">
+    <value>The tab text displayed in the dock pane. If not set, the Text property will be used.</value>
+  </data>
+  <data name="DockContent_ToolTipText_Description" xml:space="preserve">
+    <value>The text displayed when mouse hovers over the tab.</value>
+  </data>
+  <data name="DockHandler_TabPageContextMenuStrip_Description" xml:space="preserve">
+    <value>Context menu displayed for the dock pane tab strip.</value>
+  </data>
+  <data name="DockPanel_ActiveContentChanged_Description" xml:space="preserve">
+    <value>Occurs when the value of ActiveContentProperty changed.</value>
+  </data>
+  <data name="DockPanel_DocumentDragged_Description" xml:space="preserve">
+    <value>Occurs when a document or pane is dragged within the dock panel.</value>
+  </data>
+  <data name="DockPanel_ActiveDocumentChanged_Description" xml:space="preserve">
+    <value>Occurs when the value of ActiveDocument property changed.</value>
+  </data>
+  <data name="DockPanel_ActivePaneChanged_Description" xml:space="preserve">
+    <value>Occurs when the value of ActivePane property changed.</value>
+  </data>
+  <data name="DockPanel_AllowEndUserDocking_Description" xml:space="preserve">
+    <value>Determines if the drag and drop docking is allowed.</value>
+  </data>
+  <data name="DockPanel_AllowEndUserNestedDocking_Description" xml:space="preserve">
+    <value>Determines if the drag and drop nested docking is allowed.</value>
+  </data>
+  <data name="DockPanel_ActiveAutoHideContentChanged_Description" xml:space="preserve">
+    <value>Occurs when the value of the AutoHideWindow's ActiveContent changed.</value>
+  </data>
+  <data name="DockPanel_ContentAdded_Description" xml:space="preserve">
+    <value>Occurs when a content added to the DockPanel.</value>
+  </data>
+  <data name="DockPanel_ContentRemoved_Description" xml:space="preserve">
+    <value>Occurs when a content removed from the DockPanel.</value>
+  </data>
+  <data name="DockPanel_DefaultFloatWindowSize_Description" xml:space="preserve">
+    <value>The default size of float window.</value>
+  </data>
+  <data name="DockPanel_Description" xml:space="preserve">
+    <value>Provides Visual Studio .Net style docking.</value>
+  </data>
+  <data name="DockPanel_DockBottomPortion_Description" xml:space="preserve">
+    <value>Size of the bottom docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels.</value>
+  </data>
+  <data name="DockPanel_DockLeftPortion_Description" xml:space="preserve">
+    <value>Size of the left docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels.</value>
+  </data>
+  <data name="DockPanel_DockRightPortion_Description" xml:space="preserve">
+    <value>Size of the right docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels.</value>
+  </data>
+  <data name="DockPanel_DockTopPortion_Description" xml:space="preserve">
+    <value>Size of the top docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels.</value>
+  </data>
+  <data name="DockPanel_DocumentStyle_Description" xml:space="preserve">
+    <value>The style of the document window.</value>
+  </data>
+  <data name="DockPanel_RightToLeftLayout_Description" xml:space="preserve">
+    <value>Indicates whether the control layout is right-to-left when the RightToLeft property is set to Yes.</value>
+  </data>
+  <data name="DockPanel_ShowDocumentIcon_Description" xml:space="preserve">
+    <value>Determines if the document icon will be displayed in the tab strip.</value>
+  </data>
+  <data name="DockContent_CloseButtonVisible_Description" xml:space="preserve">
+    <value>Shows or hides the close button of the content. This property does not function with System MDI Document Style.</value>
+  </data>
+  <data name="DockPanel_DockPanelSkin_Description" xml:space="preserve">
+    <value>The visual skin to use when displaying the docked windows.</value>
+  </data>
+  <data name="DockPanel_DocumentTabStripLocation_Description" xml:space="preserve">
+    <value>Determines where the tab strip for Document style content is drawn.</value>
+  </data>
+  <data name="Category_Performance" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="DockPanel_SupportDeeplyNestedContent_Description" xml:space="preserve">
+    <value>Support deeply nested controls.  Disabling this setting may improve resize performance but may cause heavily nested content not to resize.</value>
+  </data>
+  <data name="DockPanel_ShowAutoHideContentOnHover_Description" xml:space="preserve">
+    <value>Shows the hidden autohide content when hovering over the tab.  When disabled, the tab must be clicked to show the content.</value>
+  </data>
   <data name="DockAreaEditor_FloatCheckBoxText" xml:space="preserve">
     <value>(Float)</value>
   </data>
@@ -225,13 +339,22 @@
   <data name="FloatWindow_Constructor_NullDockPanel" xml:space="preserve">
     <value>Invalid argument: DockPanel can not be "null".</value>
   </data>
-  <data name="FloatWindow_SetPaneIndex_InvalidIndex" xml:space="preserve">
-    <value>Invalid Index: The index is out of range.</value>
-  </data>
-  <data name="FloatWindow_SetPaneIndex_InvalidPane" xml:space="preserve">
-    <value>Invalid Pane: DockPane not within the collection.</value>
-  </data>
   <data name="IDockDragSource_DockTo_InvalidPanel" xml:space="preserve">
     <value>Invalid DockPanel.</value>
+  </data>
+  <data name="Theme_DockContentNotClosed" xml:space="preserve">
+    <value>Before applying themes all dock contents must be closed.</value>
+  </data>
+  <data name="Theme_FloatWindowNotClosed" xml:space="preserve">
+    <value>Before applying themes all float windows must be closed.</value>
+  </data>
+  <data name="Theme_MissingFactory" xml:space="preserve">
+    <value>Before applying themes all factories must be configured.</value>
+  </data>
+  <data name="Theme_NoTheme" xml:space="preserve">
+    <value>DockPanel.Theme must be set to a valid theme.</value>
+  </data>
+  <data name="Theme_PaneNotClosed" xml:space="preserve">
+    <value>Before applying themes all panes must be closed.</value>
   </data>
 </root>

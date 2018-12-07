@@ -89,17 +89,17 @@ namespace WeifenLuo.WinFormsUI.Docking
                 || Extender.PanelIndicatorFactory == null
                 || Extender.WindowSplitterControlFactory == null)
             {
-                throw new InvalidOperationException("Before applying themes all factories must be configured.");
+                throw new InvalidOperationException(Strings.Theme_MissingFactory);
             }
 
             if (dockPanel.Panes.Count > 0)
-                throw new InvalidOperationException("Before applying themes all panes must be closed.");
+                throw new InvalidOperationException(Strings.Theme_PaneNotClosed);
 
             if (dockPanel.FloatWindows.Count > 0)
-                throw new InvalidOperationException("Before applying themes all float windows must be closed.");
+                throw new InvalidOperationException(Strings.Theme_FloatWindowNotClosed);
 
             if (dockPanel.Contents.Count > 0)
-                throw new InvalidOperationException("Before applying themes all dock contents must be closed.");
+                throw new InvalidOperationException(Strings.Theme_DockContentNotClosed);
 
             if (ColorPalette == null)
             {

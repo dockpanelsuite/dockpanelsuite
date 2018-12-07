@@ -6,7 +6,7 @@
     public partial class DockPanel
     {
         [LocalizedCategory("Category_Docking")]
-        [LocalizedDescription("DockPanel_DockPanelSkin")]
+        [LocalizedDescription("DockPanel_DockPanelSkin_Description")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
         [Obsolete("Use Theme.Skin instead.")]

@@ -19,7 +19,7 @@ namespace WeifenLuo.WinFormsUI.Docking {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -61,6 +61,42 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Docking.
+        /// </summary>
+        internal static string Category_Docking {
+            get {
+                return ResourceManager.GetString("Category_Docking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Docking Notification.
+        /// </summary>
+        internal static string Category_DockingNotification {
+            get {
+                return ResourceManager.GetString("Category_DockingNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Performance.
+        /// </summary>
+        internal static string Category_Performance {
+            get {
+                return ResourceManager.GetString("Category_Performance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property Changed.
+        /// </summary>
+        internal static string Category_PropertyChanged {
+            get {
+                return ResourceManager.GetString("Category_PropertyChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (Float).
         /// </summary>
         internal static string DockAreaEditor_FloatCheckBoxText {
@@ -70,11 +106,110 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Determines if end user drag and drop docking is allowed..
+        /// </summary>
+        internal static string DockContent_AllowEndUserDocking_Description {
+            get {
+                return ResourceManager.GetString("DockContent_AllowEndUserDocking_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The size to display the content in auto hide mode. Value &lt; 1 to specify the size in portion; value &gt;= 1 to specify the size in pixel..
+        /// </summary>
+        internal static string DockContent_AutoHidePortion_Description {
+            get {
+                return ResourceManager.GetString("DockContent_AutoHidePortion_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable/Disable the close button of the content..
+        /// </summary>
+        internal static string DockContent_CloseButton_Description {
+            get {
+                return ResourceManager.GetString("DockContent_CloseButton_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shows or hides the close button of the content. This property does not function with System MDI Document Style..
+        /// </summary>
+        internal static string DockContent_CloseButtonVisible_Description {
+            get {
+                return ResourceManager.GetString("DockContent_CloseButtonVisible_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The form must be of type IDockContent..
         /// </summary>
         internal static string DockContent_Constructor_InvalidForm {
             get {
                 return ResourceManager.GetString("DockContent_Constructor_InvalidForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gets or sets a value indicating in which area of the DockPanel the content allowed to show..
+        /// </summary>
+        internal static string DockContent_DockAreas_Description {
+            get {
+                return ResourceManager.GetString("DockContent_DockAreas_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occurs when the value of DockState property changed..
+        /// </summary>
+        internal static string DockContent_DockStateChanged_Description {
+            get {
+                return ResourceManager.GetString("DockContent_DockStateChanged_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates the content will be hidden instead of being closed..
+        /// </summary>
+        internal static string DockContent_HideOnClose_Description {
+            get {
+                return ResourceManager.GetString("DockContent_HideOnClose_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The desired docking state when first showing..
+        /// </summary>
+        internal static string DockContent_ShowHint_Description {
+            get {
+                return ResourceManager.GetString("DockContent_ShowHint_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Context menu displayed for the dock pane tab strip..
+        /// </summary>
+        internal static string DockContent_TabPageContextMenu_Description {
+            get {
+                return ResourceManager.GetString("DockContent_TabPageContextMenu_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The tab text displayed in the dock pane. If not set, the Text property will be used..
+        /// </summary>
+        internal static string DockContent_TabText_Description {
+            get {
+                return ResourceManager.GetString("DockContent_TabText_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The text displayed when mouse hovers over the tab..
+        /// </summary>
+        internal static string DockContent_ToolTipText_Description {
+            get {
+                return ResourceManager.GetString("DockContent_ToolTipText_Description", resourceCulture);
             }
         }
         
@@ -196,6 +331,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Context menu displayed for the dock pane tab strip..
+        /// </summary>
+        internal static string DockHandler_TabPageContextMenuStrip_Description {
+            get {
+                return ResourceManager.GetString("DockHandler_TabPageContextMenuStrip_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Content: ActiveContent must be one of the visible contents, or null if there is no visible content..
         /// </summary>
         internal static string DockPane_ActiveContent_InvalidValue {
@@ -304,6 +448,168 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Occurs when the value of the AutoHideWindow&apos;s ActiveContent changed..
+        /// </summary>
+        internal static string DockPanel_ActiveAutoHideContentChanged_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ActiveAutoHideContentChanged_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occurs when the value of ActiveContentProperty changed..
+        /// </summary>
+        internal static string DockPanel_ActiveContentChanged_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ActiveContentChanged_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occurs when the value of ActiveDocument property changed..
+        /// </summary>
+        internal static string DockPanel_ActiveDocumentChanged_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ActiveDocumentChanged_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occurs when the value of ActivePane property changed..
+        /// </summary>
+        internal static string DockPanel_ActivePaneChanged_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ActivePaneChanged_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Determines if the drag and drop docking is allowed..
+        /// </summary>
+        internal static string DockPanel_AllowEndUserDocking_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_AllowEndUserDocking_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Determines if the drag and drop nested docking is allowed..
+        /// </summary>
+        internal static string DockPanel_AllowEndUserNestedDocking_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_AllowEndUserNestedDocking_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occurs when a content added to the DockPanel..
+        /// </summary>
+        internal static string DockPanel_ContentAdded_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ContentAdded_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occurs when a content removed from the DockPanel..
+        /// </summary>
+        internal static string DockPanel_ContentRemoved_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ContentRemoved_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The default size of float window..
+        /// </summary>
+        internal static string DockPanel_DefaultFloatWindowSize_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DefaultFloatWindowSize_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides Visual Studio .Net style docking..
+        /// </summary>
+        internal static string DockPanel_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of the bottom docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels..
+        /// </summary>
+        internal static string DockPanel_DockBottomPortion_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DockBottomPortion_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of the left docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels..
+        /// </summary>
+        internal static string DockPanel_DockLeftPortion_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DockLeftPortion_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The visual skin to use when displaying the docked windows..
+        /// </summary>
+        internal static string DockPanel_DockPanelSkin_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DockPanelSkin_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of the right docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels..
+        /// </summary>
+        internal static string DockPanel_DockRightPortion_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DockRightPortion_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of the top docking window. Value &lt; 1 to specify the size in portion; value &gt; 1 to specify the size in pixels..
+        /// </summary>
+        internal static string DockPanel_DockTopPortion_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DockTopPortion_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Occurs when a document or pane is dragged within the dock panel..
+        /// </summary>
+        internal static string DockPanel_DocumentDragged_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DocumentDragged_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The style of the document window..
+        /// </summary>
+        internal static string DockPanel_DocumentStyle_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DocumentStyle_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Determines where the tab strip for Document style content is drawn..
+        /// </summary>
+        internal static string DockPanel_DocumentTabStripLocation_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_DocumentTabStripLocation_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The DockPanel has already been initialized..
         /// </summary>
         internal static string DockPanel_LoadFromXml_AlreadyInitialized {
@@ -358,6 +664,15 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indicates whether the control layout is right-to-left when the RightToLeft property is set to Yes..
+        /// </summary>
+        internal static string DockPanel_RightToLeftLayout_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_RightToLeftLayout_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Index: The index is out of range..
         /// </summary>
         internal static string DockPanel_SetPaneIndex_InvalidIndex {
@@ -376,6 +691,33 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows the hidden autohide content when hovering over the tab.  When disabled, the tab must be clicked to show the content..
+        /// </summary>
+        internal static string DockPanel_ShowAutoHideContentOnHover_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ShowAutoHideContentOnHover_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Determines if the document icon will be displayed in the tab strip..
+        /// </summary>
+        internal static string DockPanel_ShowDocumentIcon_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_ShowDocumentIcon_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support deeply nested controls.  Disabling this setting may improve resize performance but may cause heavily nested content not to resize..
+        /// </summary>
+        internal static string DockPanel_SupportDeeplyNestedContent_Description {
+            get {
+                return ResourceManager.GetString("DockPanel_SupportDeeplyNestedContent_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid argument: DockPanel can not be &quot;null&quot;..
         /// </summary>
         internal static string FloatWindow_Constructor_NullDockPanel {
@@ -385,29 +727,56 @@ namespace WeifenLuo.WinFormsUI.Docking {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Index: The index is out of range..
-        /// </summary>
-        internal static string FloatWindow_SetPaneIndex_InvalidIndex {
-            get {
-                return ResourceManager.GetString("FloatWindow_SetPaneIndex_InvalidIndex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Pane: DockPane not within the collection..
-        /// </summary>
-        internal static string FloatWindow_SetPaneIndex_InvalidPane {
-            get {
-                return ResourceManager.GetString("FloatWindow_SetPaneIndex_InvalidPane", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Invalid DockPanel..
         /// </summary>
         internal static string IDockDragSource_DockTo_InvalidPanel {
             get {
                 return ResourceManager.GetString("IDockDragSource_DockTo_InvalidPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before applying themes all dock contents must be closed..
+        /// </summary>
+        internal static string Theme_DockContentNotClosed {
+            get {
+                return ResourceManager.GetString("Theme_DockContentNotClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before applying themes all float windows must be closed..
+        /// </summary>
+        internal static string Theme_FloatWindowNotClosed {
+            get {
+                return ResourceManager.GetString("Theme_FloatWindowNotClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before applying themes all factories must be configured..
+        /// </summary>
+        internal static string Theme_MissingFactory {
+            get {
+                return ResourceManager.GetString("Theme_MissingFactory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DockPanel.Theme must be set to a valid theme..
+        /// </summary>
+        internal static string Theme_NoTheme {
+            get {
+                return ResourceManager.GetString("Theme_NoTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before applying themes all panes must be closed..
+        /// </summary>
+        internal static string Theme_PaneNotClosed {
+            get {
+                return ResourceManager.GetString("Theme_PaneNotClosed", resourceCulture);
             }
         }
     }
