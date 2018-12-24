@@ -11,6 +11,7 @@ namespace DockSample
         {
             InitializeComponent();
             AutoScaleMode = AutoScaleMode.Dpi;
+            DockAreas = DockAreas.Document | DockAreas.Float;
         }
 
         private string m_fileName = string.Empty;
