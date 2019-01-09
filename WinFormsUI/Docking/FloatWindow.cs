@@ -246,7 +246,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
                 case (int)Win32.Msgs.WM_NCLBUTTONDBLCLK:
                     {
-                        uint result = !DoubleClickTitleBarToDock || Win32Helper.IsRunningOnMono 
+                        if (!DoubleClickTitleBarToDock)
+                        {
+                            base.WndProc(ref m);
+                            return;
+                        }
+                        
+                        uint result = Win32Helper.IsRunningOnMono 
                             ? Win32Helper.HitTestCaption(this)
                             : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
 
