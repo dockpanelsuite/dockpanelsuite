@@ -35,7 +35,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             #region consts
-            private const int ANIMATE_TIME = 100;    // in mini-seconds
+            private const int DEFAULT_ANIMATE_TIME = 100;    // in mini-seconds
             #endregion
 
             private Timer m_timerMouseTrack;
@@ -161,6 +161,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                 get { return m_flagAnimate; }
                 set { m_flagAnimate = value; }
             }
+            
+            private int m_animateTime = DEFAULT_ANIMATE_TIME;
+            public int AnimateTime
+            {
+                get { return m_animateTime; }
+                set { m_animateTime = value; }
+            }
 
             private bool m_flagDragging = false;
             internal bool FlagDragging
@@ -251,7 +258,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     while (true)
                     {
-                        TimeSpan time = new TimeSpan(0, 0, 0, 0, ANIMATE_TIME);
+                        TimeSpan time = new TimeSpan(0, 0, 0, 0, AnimateTime);
                         TimeSpan elapsedPerMove = DateTime.Now - startPerMove;
                         TimeSpan elapsedTime = DateTime.Now - startingTime;
                         if (((int)((time - elapsedTime).TotalMilliseconds)) <= 0)

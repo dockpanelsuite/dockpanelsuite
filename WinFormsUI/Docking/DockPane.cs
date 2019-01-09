@@ -281,7 +281,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 contextMenu.Show(this, position);
         }
 
-        private Rectangle CaptionRectangle
+        protected Rectangle CaptionRectangle
         {
             get
             {
@@ -320,7 +320,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        internal Rectangle TabStripRectangle
+        internal protected Rectangle TabStripRectangle
         {
             get
             {
@@ -466,12 +466,12 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return DockHelper.IsDockStateAutoHide(DockState); }
         }
 
-        public AppearanceStyle Appearance
+        public virtual AppearanceStyle Appearance
         {
             get { return (DockState == DockState.Document) ? AppearanceStyle.Document : AppearanceStyle.ToolWindow; }
         }
 
-        public Rectangle DisplayingRectangle
+        public virtual Rectangle DisplayingRectangle
         {
             get { return ClientRectangle; }
         }
