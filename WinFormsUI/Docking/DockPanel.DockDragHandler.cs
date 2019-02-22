@@ -302,7 +302,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     Region = region;
                 }
 
-                private bool ShouldPanelIndicatorVisible(DockState dockState)
+                protected virtual bool ShouldPanelIndicatorVisible(DockState dockState)
                 {
                     if (!Visible)
                         return false;
