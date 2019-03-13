@@ -1124,13 +1124,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         bool IDockDragSource.CanDockTo(DockPane pane)
         {
-            if (!IsDockStateValid(pane.DockState))
-                return false;
-
-            if (Pane == pane && pane.DisplayingContents.Count == 1)
-                return false;
-
-            return true;
+            return IsDockStateValid(pane.DockState);
         }
 
         Rectangle IDockDragSource.BeginDrag(Point ptMouse)
@@ -1142,25 +1136,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             else
                 size = floatPane.FloatWindow.Size;
 
-            Point location;
-            Rectangle rectPane = Pane.ClientRectangle;
-            if (DockState == DockState.Document)
-            {
-                if (Pane.DockPanel.DocumentTabStripLocation == DocumentTabStripLocation.Bottom)
-                    location = new Point(rectPane.Left, rectPane.Bottom - size.Height);
-                else
-                    location = new Point(rectPane.Left, rectPane.Top);
-            }
-            else
-            {
-                location = new Point(rectPane.Left, rectPane.Bottom);
-                location.Y -= size.Height;
-            }
-            location = Pane.PointToScreen(location);
-
-            if (ptMouse.X > location.X + size.Width)
-                location.X += ptMouse.X - (location.X + size.Width) + DockPanel.Theme.Measures.SplitterSize;
-
+            Point location = new Point(ptMouse.X - size.Width / 2, ptMouse.Y - 4);
             return new Rectangle(location, size);
         }
 

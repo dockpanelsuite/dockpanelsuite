@@ -313,7 +313,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return DragHandler.DragSource.IsDockStateValid(dockState);
                 }
 
-                private bool ShouldPaneDiamondVisible()
+                protected virtual bool ShouldPaneDiamondVisible()
                 {
                     if (DockPane == null)
                         return false;
