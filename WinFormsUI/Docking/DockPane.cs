@@ -400,7 +400,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_dockPanel; }
         }
 
-        private bool HasCaption
+        protected virtual bool HasCaption
         {
             get
             {
