@@ -29,15 +29,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected ToolStripRenderer ToolStripRenderer { get; set;}
 
-        private Dictionary<ToolStrip, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>> _stripBefore
-            = new Dictionary<ToolStrip, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>>();
+        private Dictionary<WeakReference, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>> _stripBefore
+            = new Dictionary<WeakReference, KeyValuePair<ToolStripRenderMode, ToolStripRenderer>>();
 
         public void ApplyTo(ToolStrip toolStrip)
         {
             if (toolStrip == null)
                 return;
 
-            _stripBefore[toolStrip] = new KeyValuePair<ToolStripRenderMode, ToolStripRenderer>(toolStrip.RenderMode, toolStrip.Renderer);
+            _stripBefore[new WeakReference(toolStrip)] = new KeyValuePair<ToolStripRenderMode, ToolStripRenderer>(toolStrip.RenderMode, toolStrip.Renderer);
             if(ToolStripRenderer != null)
                 toolStrip.Renderer = ToolStripRenderer;
 
@@ -137,7 +137,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             foreach (var item in _stripBefore)
             {
-                var strip = item.Key;
+                var strip = item.Key.Target as ToolStrip;
+                if (strip == null)
+                    continue;
+
                 var cache = item.Value;
                 if (cache.Key == ToolStripRenderMode.Custom)
                 {
