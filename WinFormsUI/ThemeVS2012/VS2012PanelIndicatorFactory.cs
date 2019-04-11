@@ -51,8 +51,9 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
                 get { return m_dockStyle; }
             }
 
-            private DockStyle m_status;
+            public DockPanel DockPanel { get; set; }
 
+            private DockStyle m_status;
             public DockStyle Status
             {
                 get { return m_status; }

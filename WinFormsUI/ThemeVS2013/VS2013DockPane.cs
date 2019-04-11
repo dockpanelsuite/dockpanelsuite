@@ -38,7 +38,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             e.Graphics.FillRectangle(DockPanel.Theme.PaintingService.GetBrush(color), e.ClipRectangle);
         }
 
-        protected override Rectangle ContentRectangle
+        public override Rectangle ContentRectangle
         {
             get
             {

@@ -50,6 +50,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             Region = new Region(DisplayingGraphicsPath);
         }
 
+        public DockPane DockPane { get; set; }
+
         public GraphicsPath DisplayingGraphicsPath
         {
             get { return _displayingGraphicsPath; }

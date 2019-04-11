@@ -44,6 +44,8 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2005
                 Region = new Region(DisplayingGraphicsPath);
             }
 
+            public DockPane DockPane { get; set; }
+
             public GraphicsPath DisplayingGraphicsPath
             {
                 get { return _displayingGraphicsPath; }

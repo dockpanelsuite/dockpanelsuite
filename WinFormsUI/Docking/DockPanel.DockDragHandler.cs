@@ -21,6 +21,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             int Top { get; }
             int Right { get; }
             int Bottom { get; }
+            DockPane DockPane { set; }
             Rectangle ClientRectangle { get; }
             int Width { get; }
             int Height { get; }
@@ -31,6 +32,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             Point Location { get; set; }
             bool Visible { get; set; }
+            DockPanel DockPanel { set; }
             Rectangle Bounds { get; }
             int Width { get; }
             int Height { get; }
@@ -71,7 +73,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             public class DockIndicator : DragForm
             {
                 #region consts
-                private int _PanelIndicatorMargin = 10;
+                const int panelIndicatorMargin = 0;
                 #endregion
 
                 private DockDragHandler m_dragHandler;
@@ -88,6 +90,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                         (Control)PanelFill
                         });
                     Region = new Region(Rectangle.Empty);
+                }
+
+                private int m_topMargin;
+                public int TopMargin
+                {
+                    get { return m_topMargin; }
+                    set { m_topMargin = value; }
                 }
 
                 private IPaneIndicator m_paneDiamond = null;
@@ -109,7 +118,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         if (m_panelLeft == null)
                             m_panelLeft = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Left, m_dragHandler.DockPanel.Theme);
-
+                        m_panelLeft.DockPanel = m_dragHandler.DockPanel;
                         return m_panelLeft;
                     }
                 }
@@ -121,7 +130,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         if (m_panelRight == null)
                             m_panelRight = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Right, m_dragHandler.DockPanel.Theme);
-
+                        m_panelRight.DockPanel = m_dragHandler.DockPanel;
                         return m_panelRight;
                     }
                 }
@@ -133,7 +142,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         if (m_panelTop == null)
                             m_panelTop = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Top, m_dragHandler.DockPanel.Theme);
-
+                        m_panelTop.DockPanel = m_dragHandler.DockPanel;
                         return m_panelTop;
                     }
                 }
@@ -145,7 +154,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         if (m_panelBottom == null)
                             m_panelBottom = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Bottom, m_dragHandler.DockPanel.Theme);
-
+                        m_panelBottom.DockPanel = m_dragHandler.DockPanel;
                         return m_panelBottom;
                     }
                 }
@@ -157,7 +166,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     {
                         if (m_panelFill == null)
                             m_panelFill = m_dragHandler.DockPanel.Theme.Extender.PanelIndicatorFactory.CreatePanelIndicator(DockStyle.Fill, m_dragHandler.DockPanel.Theme);
-
+                        m_panelFill.DockPanel = m_dragHandler.DockPanel;
                         return m_panelFill;
                     }
                 }
@@ -231,7 +240,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     rectDockArea = RectangleToClient(DockPanel.RectangleToScreen(rectDockArea));
                     if (ShouldPanelIndicatorVisible(DockState.DockLeft))
                     {
-                        PanelLeft.Location = new Point(rectDockArea.X + _PanelIndicatorMargin, rectDockArea.Y + (rectDockArea.Height - PanelRight.Height) / 2);
+                        PanelLeft.Location = new Point(rectDockArea.X + panelIndicatorMargin, rectDockArea.Y + (rectDockArea.Height - PanelRight.Height) / 2);
                         PanelLeft.Visible = true;
                         region.Union(PanelLeft.Bounds);
                     }
@@ -240,7 +249,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     if (ShouldPanelIndicatorVisible(DockState.DockRight))
                     {
-                        PanelRight.Location = new Point(rectDockArea.X + rectDockArea.Width - PanelRight.Width - _PanelIndicatorMargin, rectDockArea.Y + (rectDockArea.Height - PanelRight.Height) / 2);
+                        PanelRight.Location = new Point(rectDockArea.X + rectDockArea.Width - PanelRight.Width - panelIndicatorMargin, rectDockArea.Y + (rectDockArea.Height - PanelRight.Height) / 2);
                         PanelRight.Visible = true;
                         region.Union(PanelRight.Bounds);
                     }
@@ -249,7 +258,8 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     if (ShouldPanelIndicatorVisible(DockState.DockTop))
                     {
-                        PanelTop.Location = new Point(rectDockArea.X + (rectDockArea.Width - PanelTop.Width) / 2, rectDockArea.Y + _PanelIndicatorMargin);
+                        PanelTop.Location = new Point(rectDockArea.X + (rectDockArea.Width - PanelTop.Width) / 2,
+                            rectDockArea.Y + panelIndicatorMargin + TopMargin);
                         PanelTop.Visible = true;
                         region.Union(PanelTop.Bounds);
                     }
@@ -258,7 +268,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     if (ShouldPanelIndicatorVisible(DockState.DockBottom))
                     {
-                        PanelBottom.Location = new Point(rectDockArea.X + (rectDockArea.Width - PanelBottom.Width) / 2, rectDockArea.Y + rectDockArea.Height - PanelBottom.Height - _PanelIndicatorMargin);
+                        PanelBottom.Location = new Point(rectDockArea.X + (rectDockArea.Width - PanelBottom.Width) / 2, rectDockArea.Y + rectDockArea.Height - PanelBottom.Height - panelIndicatorMargin);
                         PanelBottom.Visible = true;
                         region.Union(PanelBottom.Bounds);
                     }
@@ -277,6 +287,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     if (ShouldPaneDiamondVisible())
                     {
+                        PaneDiamond.DockPane = DockPane;
                         Rectangle rect = RectangleToClient(DockPane.RectangleToScreen(DockPane.ClientRectangle));
                         PaneDiamond.Location = new Point(rect.Left + (rect.Width - PaneDiamond.Width) / 2, rect.Top + (rect.Height - PaneDiamond.Height) / 2);
                         PaneDiamond.Visible = true;

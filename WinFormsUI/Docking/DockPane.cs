@@ -299,7 +299,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        internal protected virtual Rectangle ContentRectangle
+        public virtual Rectangle ContentRectangle
         {
             get
             {
