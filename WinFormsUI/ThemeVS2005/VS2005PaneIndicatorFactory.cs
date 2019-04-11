@@ -10,7 +10,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2005
 {
     public class VS2005PaneIndicatorFactory : IPaneIndicatorFactory
     {
-        public IPaneIndicator CreatePaneIndicator(ThemeBase theme)
+        public IPaneIndicator CreatePaneIndicator(ThemeBase theme, DockDragHandler dragHandler)
         {
             return new VS2005PaneIndicator();
         }

@@ -105,7 +105,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     get
                     {
                         if (m_paneDiamond == null)
-                            m_paneDiamond = m_dragHandler.DockPanel.Theme.Extender.PaneIndicatorFactory.CreatePaneIndicator(m_dragHandler.DockPanel.Theme);
+                            m_paneDiamond = m_dragHandler.DockPanel.Theme.Extender.PaneIndicatorFactory.CreatePaneIndicator(m_dragHandler.DockPanel.Theme, m_dragHandler);
 
                         return m_paneDiamond;
                     }

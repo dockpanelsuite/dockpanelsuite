@@ -89,7 +89,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public class VS2005MultithreadingPaneIndicatorFactory : DockPanelExtender.IPaneIndicatorFactory
         {
-            public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme)
+            public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme, DockPanel.DockDragHandler dragHandler)
             {
                 return new VS2005MultithreadingPaneIndicator();
             }

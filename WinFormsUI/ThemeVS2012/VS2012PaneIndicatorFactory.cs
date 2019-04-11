@@ -8,7 +8,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2012
 {
     internal class VS2012PaneIndicatorFactory : DockPanelExtender.IPaneIndicatorFactory
     {
-        public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme)
+        public DockPanel.IPaneIndicator CreatePaneIndicator(ThemeBase theme, DockPanel.DockDragHandler dragHandler)
         {
             return new VS2012PaneIndicator(theme);
         }
