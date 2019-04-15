@@ -502,7 +502,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             CloseContent(ActiveContent);
         }
 
-        internal void CloseContent(IDockContent content)
+        public void CloseContent(IDockContent content)
         {
             if (content == null)
                 return;

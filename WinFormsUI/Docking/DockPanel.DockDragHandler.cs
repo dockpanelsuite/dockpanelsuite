@@ -505,14 +505,21 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
 
                 if (!Outline.FloatWindowBounds.IsEmpty)
+                {
+                    if (!(DragSource is FloatWindow) && !((DragSource as DockPane)?.IsFloat ?? false))
+                        DockPanel.OnBeforeDocumentDragged();
+
                     DragSource.FloatAt(Outline.FloatWindowBounds);
+                }
                 else if (Outline.DockTo is DockPane)
                 {
+                    DockPanel.OnBeforeDocumentDragged();
                     DockPane pane = Outline.DockTo as DockPane;
                     DragSource.DockTo(pane, Outline.Dock, Outline.ContentIndex);
                 }
                 else if (Outline.DockTo is DockPanel)
                 {
+                    DockPanel.OnBeforeDocumentDragged();
                     DockPanel panel = Outline.DockTo as DockPanel;
                     panel.UpdateDockWindowZOrder(Outline.Dock, Outline.FlagFullEdge);
                     DragSource.DockTo(panel, Outline.Dock);

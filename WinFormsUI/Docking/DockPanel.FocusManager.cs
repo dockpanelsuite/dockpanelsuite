@@ -614,6 +614,22 @@ namespace WeifenLuo.WinFormsUI.Docking
                 handler(this, EventArgs.Empty);
         }
 
+        private static readonly object BeforeDocumentDraggedEvent = new object();
+        [LocalizedCategory("Category_PropertyChanged")]
+        [LocalizedDescription("DockPanel_ActiveContentChanged_Description")]
+        public event EventHandler BeforeDocumentDragged
+        {
+            add { Events.AddHandler(BeforeDocumentDraggedEvent, value); }
+            remove { Events.RemoveHandler(BeforeDocumentDraggedEvent, value); }
+        }
+
+        internal void OnBeforeDocumentDragged()
+        {
+            EventHandler handler = (EventHandler)Events[BeforeDocumentDraggedEvent];
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
         private static readonly object ActivePaneChangedEvent = new object();
         [LocalizedCategory("Category_PropertyChanged")]
         [LocalizedDescription("DockPanel_ActivePaneChanged_Description")]
