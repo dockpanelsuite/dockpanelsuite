@@ -34,7 +34,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     [ToolboxBitmap(typeof(resfinder), "WeifenLuo.WinFormsUI.Docking.DockPanel.bmp")]
     [DefaultProperty("DocumentStyle")]
     [DefaultEvent("ActiveContentChanged")]
-    public partial class DockPanel : Panel
+    public partial class DockPanel : Panel, ISupportInitialize
     {
         private readonly FocusManagerImpl m_focusManager;
         private readonly DockPaneCollection m_panes;
@@ -287,7 +287,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         [DefaultValue(DocumentTabStripLocation.Top)]
         [LocalizedCategory("Category_Docking")]
-        [LocalizedDescription("DockPanel_DocumentTabStripLocation")]
+        [LocalizedDescription("DockPanel_DocumentTabStripLocation_Description")]
         public DocumentTabStripLocation DocumentTabStripLocation { get; set; } = DocumentTabStripLocation.Top;
 
         [Browsable(false)]
@@ -590,10 +590,15 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (!Enum.IsDefined(typeof(DocumentStyle), value))
                     throw new InvalidEnumArgumentException();
 
-                if (value == DocumentStyle.SystemMdi && DockWindows[DockState.Document].VisibleNestedPanes.Count > 0)
+                if (value == DocumentStyle.SystemMdi && DockWindows != null && DockWindows[DockState.Document].VisibleNestedPanes.Count > 0)
                     throw new InvalidEnumArgumentException();
 
                 m_documentStyle = value;
+
+                if (initializing)
+                {
+                    return;
+                }
 
                 SuspendLayout(true);
 
@@ -846,7 +851,7 @@ namespace WeifenLuo.WinFormsUI.Docking
         {
             if (Theme == null)
             {
-                throw new InvalidOperationException("DockPanel.Theme must be set to a valid theme.");
+                throw new InvalidOperationException(Strings.Theme_NoTheme);
             }
 
             FocusManager.SuspendFocusTracking();
@@ -1183,6 +1188,18 @@ namespace WeifenLuo.WinFormsUI.Docking
                 old.Parent = null;
                 old.Dispose();
             }
+        }
+
+        private bool initializing;
+
+        void ISupportInitialize.BeginInit()
+        {
+            initializing = true;
+        }
+
+        void ISupportInitialize.EndInit()
+        {
+            initializing = false;
         }
     }
 }

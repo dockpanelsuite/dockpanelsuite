@@ -106,7 +106,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     IDockContent content = DockPane.DisplayingContents[index];
                     if (content == null)
-                        throw (new ArgumentOutOfRangeException("index"));
+                        throw (new ArgumentOutOfRangeException(nameof(index)));
                     return content.DockHandler.GetTab(DockPane.TabStripControl);
                 }
             }

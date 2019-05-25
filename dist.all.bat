@@ -1,3 +1,4 @@
+CALL vswhere.bat
 CALL clean.bat
 CALL release.bat
 CALL clean.bat
