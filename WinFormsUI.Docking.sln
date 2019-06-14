@@ -15,16 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2003", "WinFormsUI\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2005Multithreading", "WinFormsUI\ThemeVS2005Multithreading.csproj", "{01B09009-BD30-47F2-B318-4B583D606C61}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{718A6D59-6451-4C5F-A456-399CC9F47B97}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\DockPanelSuite.nuspec = .nuget\DockPanelSuite.nuspec
-		.nuget\ThemeVS2003.nuspec = .nuget\ThemeVS2003.nuspec
-		.nuget\ThemeVS2005Multithreading.nuspec = .nuget\ThemeVS2005Multithreading.nuspec
-		.nuget\ThemeVS2012.nuspec = .nuget\ThemeVS2012.nuspec
-		.nuget\ThemeVS2013.nuspec = .nuget\ThemeVS2013.nuspec
-		.nuget\ThemeVS2015.nuspec = .nuget\ThemeVS2015.nuspec
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{2EF6DD60-E690-4E65-AD06-B3041C0ACDD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests2", "Tests2\Tests2.csproj", "{4B0F335C-88AD-4884-B286-0107D24D246B}"
