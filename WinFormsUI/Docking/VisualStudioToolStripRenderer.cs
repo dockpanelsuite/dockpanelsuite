@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
@@ -334,6 +335,79 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.OnRenderOverflowButtonBackground(e);
             if (e.Item.Pressed)
                 _palette.CommandBarMenuPopupDefault.BackgroundTop = cache;
+        }
+
+        protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
+        {
+            e.ArrowColor = e.Item.Selected ? _palette.CommandBarMenuPopupHovered.Arrow : _palette.CommandBarMenuPopupDefault.Arrow;
+            base.OnRenderArrow(e);
+        }
+
+        protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
+        {
+            ////base.OnRenderItemCheck(e);
+            using (var imageAttr = new ImageAttributes())
+            {
+                Color foreColor = e.Item.Selected ? _palette.CommandBarMenuPopupHovered.Checkmark : _palette.CommandBarMenuPopupDefault.Checkmark;
+                Color backColor = e.Item.Selected ? _palette.CommandBarMenuPopupHovered.CheckmarkBackground : _palette.CommandBarMenuPopupDefault.CheckmarkBackground;
+                Color borderColor = _palette.CommandBarMenuPopupDefault.Border;
+
+                // Create a color map.
+                ColorMap[] colorMap = new ColorMap[1];
+                colorMap[0] = new ColorMap();
+
+                // old color determined from testing
+                colorMap[0].OldColor = Color.FromArgb(4, 2, 4);
+                colorMap[0].NewColor = foreColor;
+                imageAttr.SetRemapTable(colorMap);
+
+                using (var b = new SolidBrush(backColor))
+                {
+                    e.Graphics.FillRectangle(b, e.ImageRectangle);
+                }
+                e.Graphics.DrawImage(e.Image, e.ImageRectangle, 0, 0, e.Image.Width, e.Image.Height, GraphicsUnit.Pixel, imageAttr);
+                using (var p = new Pen(borderColor))
+                {
+                    e.Graphics.DrawRectangle(p, e.ImageRectangle);
+                }
+            }
+        }
+
+        protected override void OnRenderSeparator(ToolStripSeparatorRenderEventArgs e)
+        {
+            Rectangle r = e.Item.ContentRectangle;
+            if (e.Vertical)
+            {
+                using (var p = new Pen(_palette.CommandBarToolbarDefault.Separator))
+                {
+                    e.Graphics.DrawLine(p, r.X, r.Y, r.X, r.Y + r.Height);
+                }
+                using (var p = new Pen(_palette.CommandBarToolbarDefault.SeparatorAccent))
+                {
+                    e.Graphics.DrawLine(p, r.X + 1, r.Y, r.X + 1, r.Y + r.Height);
+                }
+            }
+            else
+            {
+                // if this is a menu, then account for the image column
+                int x1 = r.X;
+                int x2 = r.X + r.Width;
+                var menu = e.ToolStrip as ToolStripDropDownMenu;
+                if (menu != null)
+                {
+                    x1 += menu.Padding.Left;
+                    x2 -= menu.Padding.Right;
+                }
+
+                using (var p = new Pen(_palette.CommandBarToolbarDefault.Separator))
+                {
+                    e.Graphics.DrawLine(p, x1, r.Y, x2, r.Y);
+                }
+                using (var p = new Pen(_palette.CommandBarToolbarDefault.SeparatorAccent))
+                {
+                    e.Graphics.DrawLine(p, x1, r.Y + 1, x2, r.Y + 1);
+                }
+            }
         }
 
         protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)

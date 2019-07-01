@@ -28,3 +28,4 @@ T4MVC.cs
 *.nupkg
 /.vs
 /.idea
+*.bak
