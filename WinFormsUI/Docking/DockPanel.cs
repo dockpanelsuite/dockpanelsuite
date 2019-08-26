@@ -687,6 +687,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 return;
             }
+            if (DockWindows == null)
+            {
+                return;
+            }
 
             SuspendLayout(true);
 
