@@ -91,6 +91,11 @@ namespace DockSample
             this.toolBarButtonSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolBarButtonLayoutByCode = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonLayoutByXml = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.subMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disabledItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
             this.vS2015BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme();
@@ -205,7 +210,10 @@ namespace DockSample
             this.menuItemStatusBar,
             this.menuItem2,
             this.menuItemLayoutByCode,
-            this.menuItemLayoutByXml});
+            this.menuItemLayoutByXml,
+            this.toolStripSeparator1,
+            this.subMenuToolStripMenuItem,
+            this.disabledItemToolStripMenuItem});
             this.menuItemView.MergeIndex = 1;
             this.menuItemView.Name = "menuItemView";
             this.menuItemView.Size = new System.Drawing.Size(44, 20);
@@ -612,6 +620,39 @@ namespace DockSample
             this.toolBarButtonLayoutByXml.Size = new System.Drawing.Size(23, 22);
             this.toolBarButtonLayoutByXml.ToolTipText = "Show layout by predefined XML file";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(182, 6);
+            // 
+            // subMenuToolStripMenuItem
+            // 
+            this.subMenuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemAToolStripMenuItem,
+            this.itemBToolStripMenuItem});
+            this.subMenuToolStripMenuItem.Name = "subMenuToolStripMenuItem";
+            this.subMenuToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.subMenuToolStripMenuItem.Text = "Sub menu";
+            // 
+            // itemAToolStripMenuItem
+            // 
+            this.itemAToolStripMenuItem.Name = "itemAToolStripMenuItem";
+            this.itemAToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.itemAToolStripMenuItem.Text = "Item A";
+            // 
+            // itemBToolStripMenuItem
+            // 
+            this.itemBToolStripMenuItem.Name = "itemBToolStripMenuItem";
+            this.itemBToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.itemBToolStripMenuItem.Text = "Item B";
+            // 
+            // disabledItemToolStripMenuItem
+            // 
+            this.disabledItemToolStripMenuItem.Enabled = false;
+            this.disabledItemToolStripMenuItem.Name = "disabledItemToolStripMenuItem";
+            this.disabledItemToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.disabledItemToolStripMenuItem.Text = "Disabled Item";
+            // 
             // dockPanel
             // 
             this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -735,5 +776,10 @@ namespace DockSample
         private WeifenLuo.WinFormsUI.Docking.VS2003Theme vS2003Theme1;
         private WeifenLuo.WinFormsUI.Docking.VS2005Theme vS2005Theme1;
         private WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender vsToolStripExtender1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem subMenuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem disabledItemToolStripMenuItem;
     }
 }
