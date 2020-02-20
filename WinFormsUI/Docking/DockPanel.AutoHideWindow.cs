@@ -44,6 +44,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             public AutoHideWindowControl(DockPanel dockPanel)
             {
                 m_dockPanel = dockPanel;
+				BackColor = dockPanel.BackColor;
 
                 m_timerMouseTrack = new Timer();
                 m_timerMouseTrack.Tick += new EventHandler(TimerMouseTrack_Tick);
@@ -418,16 +419,84 @@ namespace WeifenLuo.WinFormsUI.Docking
                 get
                 {
                     Rectangle rectLimit = DockPanel.DockArea;
+                    Size minSize = ((DockContent)ActiveContent).MinimumSize;
+                    Size maxSize = ((DockContent)ActiveContent).MaximumSize;
 
-                    if ((this as ISplitterDragSource).IsVertical)
+                    if ((this as ISplitterDragSource)?.IsVertical == true)
                     {
-                        rectLimit.X += MeasurePane.MinSize;
-                        rectLimit.Width -= 2 * MeasurePane.MinSize;
+                        if (minSize.Width > 0 || maxSize.Width > 0)
+                        {
+                            if (DockState == DockState.DockLeftAutoHide)
+                            {
+                                rectLimit.X += minSize.Width;
+                                rectLimit.Width -= minSize.Width;
+
+                                if (rectLimit.Right > maxSize.Width)
+                                    rectLimit.Width = maxSize.Width - rectLimit.X;
+                                if ((DockPanel.DockArea.Width - rectLimit.Right) < MeasurePane.MinSize
+                                    && rectLimit.Width > MeasurePane.MinSize)
+                                    rectLimit.Width -= MeasurePane.MinSize;
+                            }
+                            else
+                            {
+                                rectLimit.Width -= minSize.Width;
+
+                                if ((rectLimit.Width - rectLimit.X) > (maxSize.Width - minSize.Width))
+                                {
+                                    rectLimit.X = rectLimit.Right - (maxSize.Width - minSize.Width);
+                                    rectLimit.Width -= rectLimit.X;
+                                }
+
+                                if (rectLimit.X < MeasurePane.MinSize && rectLimit.Width > MeasurePane.MinSize)
+                                {
+                                    rectLimit.X += MeasurePane.MinSize;
+                                    rectLimit.Width -= MeasurePane.MinSize;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            rectLimit.X += MeasurePane.MinSize;
+                            rectLimit.Width -= 2 * MeasurePane.MinSize;
+                        }
                     }
                     else
                     {
-                        rectLimit.Y += MeasurePane.MinSize;
-                        rectLimit.Height -= 2 * MeasurePane.MinSize;
+                        if (minSize.Height > 0 || maxSize.Height > 0)
+                        {
+                            if (DockState == DockState.DockTopAutoHide)
+                            {
+                                rectLimit.Y += minSize.Height;
+                                rectLimit.Height -= minSize.Height;
+
+                                if (rectLimit.Bottom > maxSize.Height)
+                                    rectLimit.Height = maxSize.Height - rectLimit.Y;
+                                if ((DockPanel.DockArea.Width - rectLimit.Bottom) < MeasurePane.MinSize
+                                    && rectLimit.Height > MeasurePane.MinSize)
+                                    rectLimit.Height -= MeasurePane.MinSize;
+                            }
+                            else
+                            {
+                                rectLimit.Height -= minSize.Height;
+
+                                if ((rectLimit.Height - rectLimit.Y) > (maxSize.Height - minSize.Height))
+                                {
+                                    rectLimit.Y = rectLimit.Bottom - (maxSize.Height - minSize.Height);
+                                    rectLimit.Height -= rectLimit.Y;
+                                }
+
+                                if (rectLimit.Y < MeasurePane.MinSize && rectLimit.Height > MeasurePane.MinSize)
+                                {
+                                    rectLimit.Y += MeasurePane.MinSize;
+                                    rectLimit.Height -= MeasurePane.MinSize;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            rectLimit.Y += MeasurePane.MinSize;
+                            rectLimit.Height -= 2 * MeasurePane.MinSize;
+                        }
                     }
 
                     return DockPanel.RectangleToScreen(rectLimit);
@@ -495,6 +564,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             AutoHideWindow.RefreshActiveContent();
         }
 
+		private void adjustHideSize(DockContent content, double newSize)
+        {
+            double sizeArea = (AutoHideWindow.DockState == DockState.DockLeftAutoHide
+                || AutoHideWindow.DockState == DockState.DockRightAutoHide) ? DockArea.Width : DockArea.Height;
+
+            content.DockHandler.AutoHidePortion = content.DockHandler.AutoHidePortion >= 1
+                ? newSize : newSize / sizeArea;
+        }
+		
         internal Rectangle AutoHideWindowRectangle
         {
             get
@@ -509,47 +587,62 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 Rectangle rect = Rectangle.Empty;
                 double autoHideSize = ActiveAutoHideContent.DockHandler.AutoHidePortion;
-                if (state == DockState.DockLeftAutoHide)
+                DockContent castActiveContent = ActiveAutoHideContent as DockContent;
+
+                if (state == DockState.DockLeftAutoHide || state == DockState.DockRightAutoHide)
                 {
                     if (autoHideSize < 1)
                         autoHideSize = rectDockArea.Width * autoHideSize;
                     if (autoHideSize > rectDockArea.Width - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Width - MeasurePane.MinSize;
-                    rect.X = rectDockArea.X - Theme.Measures.DockPadding;
+                    if (castActiveContent.MaximumSize.Width > 0)
+                    {
+                        if (autoHideSize > castActiveContent.MaximumSize.Width)
+                        {
+                            autoHideSize = castActiveContent.MaximumSize.Width;
+                            adjustHideSize(castActiveContent, autoHideSize);
+                        }
+
+                        if (autoHideSize < castActiveContent.MinimumSize.Width)
+                        {
+                            autoHideSize = castActiveContent.MinimumSize.Width;
+                            adjustHideSize(castActiveContent, autoHideSize);
+                        }
+                    }
+
+                    if (state == DockState.DockLeftAutoHide)
+                        rect.X = rectDockArea.X - Theme.Measures.DockPadding;
+                    else
+                        rect.X = rectDockArea.X + rectDockArea.Width - (int)autoHideSize + Theme.Measures.DockPadding;
                     rect.Y = rectDockArea.Y;
                     rect.Width = (int)autoHideSize;
                     rect.Height = rectDockArea.Height;
                 }
-                else if (state == DockState.DockRightAutoHide)
-                {
-                    if (autoHideSize < 1)
-                        autoHideSize = rectDockArea.Width * autoHideSize;
-                    if (autoHideSize > rectDockArea.Width - MeasurePane.MinSize)
-                        autoHideSize = rectDockArea.Width - MeasurePane.MinSize;
-                    rect.X = rectDockArea.X + rectDockArea.Width - (int)autoHideSize + Theme.Measures.DockPadding;
-                    rect.Y = rectDockArea.Y;
-                    rect.Width = (int)autoHideSize;
-                    rect.Height = rectDockArea.Height;
-                }
-                else if (state == DockState.DockTopAutoHide)
+                else if (state == DockState.DockTopAutoHide || state == DockState.DockBottomAutoHide)
                 {
                     if (autoHideSize < 1)
                         autoHideSize = rectDockArea.Height * autoHideSize;
                     if (autoHideSize > rectDockArea.Height - MeasurePane.MinSize)
                         autoHideSize = rectDockArea.Height - MeasurePane.MinSize;
+                    if (castActiveContent.MaximumSize.Height > 0)
+                    {
+                        if (autoHideSize > castActiveContent.MaximumSize.Height)
+                        {
+                            autoHideSize = castActiveContent.MaximumSize.Height;
+                            adjustHideSize(castActiveContent, autoHideSize);
+                        }
+
+                        if (autoHideSize < castActiveContent.MinimumSize.Height)
+                        {
+                            autoHideSize = castActiveContent.MinimumSize.Height;
+                            adjustHideSize(castActiveContent, autoHideSize);
+                        }
+                    }
                     rect.X = rectDockArea.X;
-                    rect.Y = rectDockArea.Y - Theme.Measures.DockPadding;
-                    rect.Width = rectDockArea.Width;
-                    rect.Height = (int)autoHideSize;
-                }
-                else if (state == DockState.DockBottomAutoHide)
-                {
-                    if (autoHideSize < 1)
-                        autoHideSize = rectDockArea.Height * autoHideSize;
-                    if (autoHideSize > rectDockArea.Height - MeasurePane.MinSize)
-                        autoHideSize = rectDockArea.Height - MeasurePane.MinSize;
-                    rect.X = rectDockArea.X;
-                    rect.Y = rectDockArea.Y + rectDockArea.Height - (int)autoHideSize + Theme.Measures.DockPadding;
+                    if (state == DockState.DockTopAutoHide)
+                        rect.Y = rectDockArea.Y - Theme.Measures.DockPadding;
+                    else
+                        rect.Y = rectDockArea.Y + rectDockArea.Height - (int)autoHideSize + Theme.Measures.DockPadding;
                     rect.Width = rectDockArea.Width;
                     rect.Height = (int)autoHideSize;
                 }
