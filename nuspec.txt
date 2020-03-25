@@ -1,7 +1,0 @@
-DockPanelSuite.nuspec
-ThemeVS2003.nuspec
-ThemeVS2005.nuspec
-ThemeVS2005Multithreading.nuspec
-ThemeVS2012.nuspec
-ThemeVS2013.nuspec
-ThemeVS2015.nuspec
