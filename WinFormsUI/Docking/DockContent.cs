@@ -193,6 +193,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             return DockHandler.IsDockStateValid(dockState);
         }
 
+#if NET35 || NET40
         /// <summary>
         /// Context menu.
         /// </summary>
@@ -207,7 +208,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return DockHandler.TabPageContextMenu; }
             set { DockHandler.TabPageContextMenu = value; }
         }
-
+#endif
         /// <summary>
         /// Context menu strip.
         /// </summary>
