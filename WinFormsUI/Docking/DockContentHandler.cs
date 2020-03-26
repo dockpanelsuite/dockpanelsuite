@@ -919,6 +919,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             if (dockState == DockState.Unknown || dockState == DockState.Hidden)
                 throw (new ArgumentException(Strings.DockContentHandler_Show_InvalidDockState));
 
+            if (dockPanel.Theme.GetType() == typeof(DefaultTheme))
+                throw new ArgumentException(Strings.Theme_NoTheme);
+
             dockPanel.SuspendLayout(true);
 
             DockPanel = dockPanel;
