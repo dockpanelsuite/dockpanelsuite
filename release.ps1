@@ -34,6 +34,8 @@ catch
 
 Write-Host "MSBuild found. Compile the projects."
 
+Remove-Item .\WinFormsUI\bin\Release\*.nupkg
+
 & $msBuild WinFormsUI.Docking.sln /p:Configuration=Release /t:restore
 & $msBuild WinFormsUI.Docking.sln /p:Configuration=Release /t:clean
 & $msBuild WinFormsUI.Docking.sln /p:Configuration=Release
