@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Compile Include="Docking\Configuration\PatchSection.cs" />
+    <Compile Include="Docking\DefaultTheme.cs" />
     <Compile Include="Docking\DockPanel.SplitterDragHandler.cs">
       <SubType>Component</SubType>
     </Compile>

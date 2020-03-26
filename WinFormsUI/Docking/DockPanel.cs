@@ -575,10 +575,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             DefaultFloatWindowSize = new Size(300, 300);
         }
 
-        private DocumentStyle m_documentStyle = DocumentStyle.DockingMdi;
+        private DocumentStyle m_documentStyle = DocumentStyle.DockingWindow;
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DocumentStyle_Description")]
-        [DefaultValue(DocumentStyle.DockingMdi)]
+        [DefaultValue(DocumentStyle.DockingWindow)]
         public DocumentStyle DocumentStyle
         {
             get	{	return m_documentStyle;	}
@@ -683,7 +683,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnLayout(LayoutEventArgs levent)
         {
-            if (Theme == null)
+            if (m_dockPanelTheme == null)
             {
                 return;
             }

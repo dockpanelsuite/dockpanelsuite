@@ -21,7 +21,17 @@
         [LocalizedDescription("DockPanel_DockPanelTheme")]
         public ThemeBase Theme
         {
-            get { return m_dockPanelTheme; }
+            get 
+            {
+                if (m_dockPanelTheme == null)
+                {
+                    m_dockPanelTheme = new DefaultTheme();
+                    InitializeTheme();
+                }
+
+                return m_dockPanelTheme;
+            }
+
             set
             {
                 var old = m_dockPanelTheme;
@@ -41,14 +51,20 @@
                 m_dockPanelTheme.ApplyTo(this);
                 m_dockPanelTheme.PostApply(this);
                 if (old == null)
-                { 
-                    m_autoHideWindow = m_dockPanelTheme?.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
-                    m_autoHideWindow.Visible = false;
-                    m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged;
-                    SetAutoHideWindowParent();
-                    LoadDockWindows();
+                {
+                    InitializeTheme();
                 }
             }
+        }
+
+        private void InitializeTheme()
+        {
+            LoadDockWindows();
+
+            m_autoHideWindow = m_dockPanelTheme?.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
+            m_autoHideWindow.Visible = false;
+            m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged;
+            SetAutoHideWindowParent();
         }
     }
 }

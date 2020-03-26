@@ -669,7 +669,7 @@ namespace DockSample
             this.dockPanel.ShowAutoHideContentOnHover = false;
             this.dockPanel.Size = new System.Drawing.Size(579, 338);
             this.dockPanel.TabIndex = 0;
-            this.dockPanel.Theme = this.vS2013BlueTheme1;
+            //this.dockPanel.Theme = this.vS2013BlueTheme1;
             // 
             // vsToolStripExtender1
             // 
