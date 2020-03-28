@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v2-preview
       with:
         name: packages
-        path: .\*.nupkg
+        path: *.nupkg
