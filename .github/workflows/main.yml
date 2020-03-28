@@ -27,7 +27,7 @@ jobs:
       run: call dist.all.bat
     
     - name: Archive production artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2-preview
       with:
         name: packages
         path: .\*.nupkg
