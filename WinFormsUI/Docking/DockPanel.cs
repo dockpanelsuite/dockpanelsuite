@@ -34,7 +34,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     [ToolboxBitmap(typeof(resfinder), "WeifenLuo.WinFormsUI.Docking.DockPanel.bmp")]
     [DefaultProperty("DocumentStyle")]
     [DefaultEvent("ActiveContentChanged")]
-    public partial class DockPanel : Panel, ISupportInitialize
+    public partial class DockPanel : Panel
     {
         private readonly FocusManagerImpl m_focusManager;
         private readonly DockPaneCollection m_panes;
@@ -57,6 +57,15 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_dummyControl = new DummyControl();
             m_dummyControl.Bounds = new Rectangle(0, 0, 1, 1);
             Controls.Add(m_dummyControl);
+
+            Theme.ApplyTo(this);
+
+            m_autoHideWindow = Theme.Extender.AutoHideWindowFactory.CreateAutoHideWindow(this);
+            m_autoHideWindow.Visible = false;
+            m_autoHideWindow.ActiveContentChanged += m_autoHideWindow_ActiveContentChanged; 
+            SetAutoHideWindowParent();
+
+            LoadDockWindows();
 
             m_dummyContent = new DockContent();
             ResumeLayout();
@@ -287,7 +296,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         [DefaultValue(DocumentTabStripLocation.Top)]
         [LocalizedCategory("Category_Docking")]
-        [LocalizedDescription("DockPanel_DocumentTabStripLocation_Description")]
+        [LocalizedDescription("DockPanel_DocumentTabStripLocation")]
         public DocumentTabStripLocation DocumentTabStripLocation { get; set; } = DocumentTabStripLocation.Top;
 
         [Browsable(false)]
@@ -575,10 +584,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             DefaultFloatWindowSize = new Size(300, 300);
         }
 
-        private DocumentStyle m_documentStyle = DocumentStyle.DockingMdi;
+        private DocumentStyle m_documentStyle = DocumentStyle.DockingWindow;
         [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockPanel_DocumentStyle_Description")]
-        [DefaultValue(DocumentStyle.DockingMdi)]
+        [DefaultValue(DocumentStyle.DockingWindow)]
         public DocumentStyle DocumentStyle
         {
             get	{	return m_documentStyle;	}
@@ -590,15 +599,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                 if (!Enum.IsDefined(typeof(DocumentStyle), value))
                     throw new InvalidEnumArgumentException();
 
-                if (value == DocumentStyle.SystemMdi && DockWindows != null && DockWindows[DockState.Document].VisibleNestedPanes.Count > 0)
+                if (value == DocumentStyle.SystemMdi && DockWindows[DockState.Document].VisibleNestedPanes.Count > 0)
                     throw new InvalidEnumArgumentException();
 
                 m_documentStyle = value;
-
-                if (initializing)
-                {
-                    return;
-                }
 
                 SuspendLayout(true);
 
@@ -683,11 +687,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnLayout(LayoutEventArgs levent)
         {
-            if (Theme == null)
-            {
-                return;
-            }
-
             SuspendLayout(true);
 
             AutoHideStripControl.Bounds = ClientRectangle;
@@ -849,11 +848,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void SuspendLayout(bool allWindows)
         {
-            if (Theme == null)
-            {
-                throw new InvalidOperationException(Strings.Theme_NoTheme);
-            }
-
             FocusManager.SuspendFocusTracking();
             SuspendLayout();
             if (allWindows)
@@ -892,11 +886,6 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnParentChanged(EventArgs e)
         {
-            if (Theme == null)
-            {
-                return;
-            }
-
             SetAutoHideWindowParent();
             GetMdiClientController().ParentForm = (this.Parent as Form);
             base.OnParentChanged (e);
@@ -1156,13 +1145,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             var old = m_dockWindows;
             LoadDockWindows();
-            if (old != null)
+            foreach (var dockWindow in old)
             {
-                foreach (var dockWindow in old)
-                {
-                    Controls.Remove(dockWindow);
-                    dockWindow.Dispose();
-                }
+                Controls.Remove(dockWindow);
+                dockWindow.Dispose();
             }
         }
 
@@ -1182,24 +1168,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             m_autoHideWindow.Visible = false;
             SetAutoHideWindowParent();
 
-            if (old != null)
-            {
-                old.Visible = false;
-                old.Parent = null;
-                old.Dispose();
-            }
-        }
-
-        private bool initializing;
-
-        void ISupportInitialize.BeginInit()
-        {
-            initializing = true;
-        }
-
-        void ISupportInitialize.EndInit()
-        {
-            initializing = false;
+            old.Visible = false;
+            old.Parent = null;
+            old.Dispose();
         }
     }
 }

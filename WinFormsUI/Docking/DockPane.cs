@@ -250,8 +250,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 if (content.DockHandler.TabPageContextMenuStrip != null)
                     return content.DockHandler.TabPageContextMenuStrip;
+#if NET35 || NET40
                 else if (content.DockHandler.TabPageContextMenu != null)
                     return content.DockHandler.TabPageContextMenu;
+#endif
                 else
                     return null;
             }
@@ -275,10 +277,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 contextMenuStrip.Show(control, position);
                 return;
             }
-
+#if NET35 || NET40
             ContextMenu contextMenu = menu as ContextMenu;
             if (contextMenu != null)
                 contextMenu.Show(this, position);
+#endif
         }
 
         private Rectangle CaptionRectangle
@@ -1224,9 +1227,9 @@ namespace WeifenLuo.WinFormsUI.Docking
             base.WndProc(ref m);
         }
 
-        #region IDockDragSource Members
+#region IDockDragSource Members
 
-        #region IDragSource Members
+#region IDragSource Members
 
         Control IDragSource.DragControl
         {
@@ -1235,7 +1238,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public IDockContent MouseOverTab { get; set; }
 
-        #endregion
+#endregion
 
         bool IDockDragSource.IsDockStateValid(DockState dockState)
         {
@@ -1335,9 +1338,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                 DockState = DockState.Document;
         }
 
-        #endregion
+#endregion
 
-        #region cachedLayoutArgs leak workaround
+#region cachedLayoutArgs leak workaround
         
         /// <summary>
         /// There's a bug in the WinForms layout engine
@@ -1363,6 +1366,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _lastParentWindow = newParent;
             }
         }
-        #endregion
+#endregion
     }
 }

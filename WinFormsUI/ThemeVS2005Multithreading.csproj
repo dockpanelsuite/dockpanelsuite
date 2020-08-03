@@ -1,46 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{01B09009-BD30-47F2-B318-4B583D606C61}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <PackageId>DockPanelSuite.ThemeVS2005Multithreading</PackageId>
+    <PackageVersion>3.1.0-beta6</PackageVersion>
+    <FileVersion>3.1.0.0</FileVersion>
+    <Authors>Weifen Luo and other contributors</Authors>
+    <Description>Visual Studio 2005 theme for DockPanel Suite with multiple UI thread support. (Not recommended)</Description>
+    <Copyright>(C) 2007-2020 Weifen Luo and other contributors</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>http://dockpanelsuite.com</PackageProjectUrl>
+    <PackageReleaseNotes>
+      Release notes can be found at GitHub,
+      https://github.com/dockpanelsuite/dockpanelsuite/releases
+    </PackageReleaseNotes>
+    <TargetFrameworks>netcoreapp3.1;net35;net40</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <StartupObject />
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
     <AssemblyName>WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>dockpanelsuite.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>False</DelaySign>
-    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
+
   <ItemGroup>
     <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingAutoHideStrip.cs">
       <SubType>Component</SubType>
@@ -71,9 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="ThemeVS2005\VS2005AutoHideWindowControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ThemeVS2005\VS2005AutoHideWindowControl.cs" />
     <Compile Include="ThemeVS2005\VS2005AutoHideWindowFactory.cs" />
     <Compile Include="ThemeVS2005\VS2005DockOutlineFactory.cs" />
     <Compile Include="ThemeVS2005\VS2005DockPaneSplitterControlFactory.cs" />
@@ -86,12 +68,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="WinFormsUI.csproj">
-      <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
-      <Name>WinFormsUI</Name>
-    </ProjectReference>
-  </ItemGroup>
+
   <ItemGroup>
     <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond.png" />
     <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Bottom.png" />
@@ -128,16 +105,8 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <UsingTask Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\GendarmeMsBuild.dll')" AssemblyFile="..\gendarme\GendarmeMsBuild.dll" TaskName="GendarmeMsBuild.Gendarme" />
-  <Target Name="AfterBuild">
-    <Gendarme Condition=" '$(Configuration)' == 'Release' AND '$(OS)' == 'Windows_NT' AND Exists('..\gendarme\gendarme.exe')" GendarmeExeFilename="..\gendarme\gendarme.exe" Assemblies="$(TargetPath)" WarningsAsErrors="False" IntegrateWithVisualStudio="True" GendarmeIgnoreFilename="gendarme.ignore" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <ProjectReference Include="WinFormsUI.csproj" />
+  </ItemGroup>
+
 </Project>

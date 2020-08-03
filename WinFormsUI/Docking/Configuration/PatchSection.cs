@@ -2,6 +2,7 @@
 
 namespace WeifenLuo.WinFormsUI.Docking.Configuration
 {
+#if NET35 || NET40
     public class PatchSection : ConfigurationSection
     {
         [ConfigurationProperty("enableAll", DefaultValue = null)]
@@ -82,4 +83,5 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
             get { return (bool)base["enableSelectClosestOnClose"]; }
         }
     }
+#endif
 }
