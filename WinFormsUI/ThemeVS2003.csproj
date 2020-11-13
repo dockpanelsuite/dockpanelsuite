@@ -14,7 +14,7 @@
       Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
     </PackageReleaseNotes>
-    <TargetFrameworks>netcoreapp3.1;net35;net40</TargetFrameworks>
+    <TargetFrameworks>net5.0-windows;netcoreapp3.1;net35;net40</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject />
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
