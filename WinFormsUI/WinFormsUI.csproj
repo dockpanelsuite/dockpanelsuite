@@ -20,7 +20,7 @@
       Visual Studio 2013 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2013/
       Visual Studio 2015 Themes: https://www.nuget.org/packages/DockPanelSuite.ThemeVS2015/
     </PackageReleaseNotes>
-    <TargetFrameworks>net5.0-windows;net40;net35</TargetFrameworks>
+    <TargetFrameworks>net5.0-windows;netcoreapp3.1;net40;net35</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject />
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
