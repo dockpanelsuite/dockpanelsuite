@@ -1,238 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{40793A27-478B-4357-B4C3-FC8943131F3D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DockSample</RootNamespace>
-    <AssemblyName>DockSample</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFramework>net40</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Logo.ico</ApplicationIcon>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2003.csproj" />
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2005.csproj" />
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2012.csproj" />
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2013.csproj" />
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2015.csproj" />
+    <ProjectReference Include="..\WinFormsUI\WinFormsUI.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="AboutDialog.cs">
-      <SubType>Form</SubType>
+    <None Update="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="AboutDialog.Designer.cs">
-      <DependentUpon>AboutDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DummyDoc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DummyDoc.Designer.cs">
-      <DependentUpon>DummyDoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DummyOutputWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DummyOutputWindow.Designer.cs">
-      <DependentUpon>DummyOutputWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DummyPropertyWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DummyPropertyWindow.Designer.cs">
-      <DependentUpon>DummyPropertyWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DummySolutionExplorer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DummySolutionExplorer.Designer.cs">
-      <DependentUpon>DummySolutionExplorer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DummyTaskList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DummyTaskList.Designer.cs">
-      <DependentUpon>DummyTaskList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DummyToolbox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DummyToolbox.Designer.cs">
-      <DependentUpon>DummyToolbox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Customization\DockHelper.cs" />
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SplashScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SplashScreen.Designer.cs">
-      <DependentUpon>SplashScreen.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AboutDialog.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>AboutDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DummyDoc.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DummyDoc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DummyOutputWindow.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DummyOutputWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DummyPropertyWindow.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DummyPropertyWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DummySolutionExplorer.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DummySolutionExplorer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DummyTaskList.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DummyTaskList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DummyToolbox.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DummyToolbox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="ToolWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolWindow.Designer.cs">
-      <DependentUpon>ToolWindow.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WinFormsUI\ThemeVS2003.csproj">
-      <Project>{719f0f69-66da-438d-b5bb-2d883ef4ace2}</Project>
-      <Name>ThemeVS2003</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinFormsUI\ThemeVS2005.csproj">
-      <Project>{b51ec09a-f8be-4b5a-bd07-0f4489075a00}</Project>
-      <Name>ThemeVS2005</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinFormsUI\ThemeVS2012.csproj">
-      <Project>{4ed4fdb5-9fd0-49e6-876d-1635f727c755}</Project>
-      <Name>ThemeVS2012</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinFormsUI\ThemeVS2013.csproj">
-      <Project>{245e07f6-10d5-4cfa-b003-0deb06b223da}</Project>
-      <Name>ThemeVS2013</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinFormsUI\ThemeVS2015.csproj">
-      <Project>{007d4ac8-948f-4816-86ad-b9d1343672c1}</Project>
-      <Name>ThemeVS2015</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinFormsUI\WinFormsUI.csproj">
-      <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
-      <Name>WinFormsUI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\ArrowDown.bmp" />
-    <None Include="Images\ArrowUp.bmp" />
-    <None Include="Images\Bitmap.ico" />
-    <None Include="Images\BlankIcon.ico" />
-    <None Include="Images\ClosedFolder.ICO" />
-    <None Include="Images\CSFile.ico" />
-    <None Include="Images\CSProject.ico" />
-    <None Include="Images\File.ico" />
-    <None Include="Images\Form.ico" />
-    <None Include="Images\Mouse.bmp" />
-    <None Include="Images\msenv22.ico" />
-    <None Include="Images\New.ico" />
-    <None Include="Images\Open.ico" />
-    <None Include="Images\OpenFolder.ICO" />
-    <None Include="Images\OutputWindow.ico" />
-    <None Include="Images\PropertyWindow.ico" />
-    <None Include="Images\Reference.ico" />
-    <None Include="Images\References.ico" />
-    <None Include="Images\SolutionExplorer.ico" />
-    <None Include="Images\TaskListWindow.ico" />
-    <None Include="Images\ToolboxWindow.ico" />
-    <None Include="Images\XmlFile.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\DockPanel.xml" />
-    <EmbeddedResource Include="SplashScreen.resx">
-      <DependentUpon>SplashScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ToolWindow.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ToolWindow.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="license.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\Logo.ico" />
-    <Content Include="Images\SplashScreen.png" />
-    <Content Include="Logo.ico" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
