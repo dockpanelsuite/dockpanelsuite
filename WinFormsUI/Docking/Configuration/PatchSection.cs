@@ -76,11 +76,17 @@ namespace WeifenLuo.WinFormsUI.Docking.Configuration
         {
             get { return (bool)base["enableActivateOnDockFix"]; }
         }
-        
+
         [ConfigurationProperty("enableSelectClosestOnClose", DefaultValue = true)]
         public bool EnableSelectClosestOnClose
         {
             get { return (bool)base["enableSelectClosestOnClose"]; }
+        }
+
+        [ConfigurationProperty("enablePerScreenDpi", DefaultValue = false)]
+        public bool EnablePerScreenDpi
+        {
+            get { return (bool)base["enablePerScreenDpi"]; }
         }
     }
 #endif

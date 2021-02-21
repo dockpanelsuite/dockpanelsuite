@@ -1,6 +1,8 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+//using Vanara.PInvoke;
+using System.Diagnostics;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -225,6 +227,26 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                 private void RefreshChanges()
                 {
+                    if (PatchController.EnablePerScreenDpi == true)
+                    {
+                        //SHCore.PROCESS_DPI_AWARENESS value;
+                        //if (SHCore.GetProcessDpiAwareness(Process.GetCurrentProcess().Handle, out value) == HRESULT.S_OK)
+                        //{
+                        //    if (value == SHCore.PROCESS_DPI_AWARENESS.PROCESS_SYSTEM_DPI_AWARE)
+                        //    {
+                                var allScreens = Screen.AllScreens;
+                                var mousePos = Control.MousePosition;
+                                foreach (var screen in allScreens)
+                                {
+                                    if (screen.Bounds.Contains(mousePos))
+                                    {
+                                        Bounds = screen.Bounds;
+                                    }
+                                }
+                        //    }
+                        //}
+                    }
+
                     Region region = new Region(Rectangle.Empty);
                     Rectangle rectDockArea = FullPanelEdge ? DockPanel.DockArea : DockPanel.DocumentWindowBounds;
 
@@ -327,7 +349,11 @@ namespace WeifenLuo.WinFormsUI.Docking
                 public override void Show(bool bActivate)
                 {
                     base.Show(bActivate);
-                    Bounds = SystemInformation.VirtualScreen;
+                    if (PatchController.EnablePerScreenDpi != true)
+                    {
+                        Bounds = SystemInformation.VirtualScreen;
+                    }
+
                     RefreshChanges();
                 }
 
