@@ -15,7 +15,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 = _nestedDisposalFix = _focusLostFix = _contentOrderFix
                 = _fontInheritanceFix = _activeXFix = _displayingPaneFix
                 = _activeControlFix = _floatSplitterFix = _activateOnDockFix
-                = _selectClosestOnClose = null;
+                = _selectClosestOnClose = _perScreenDpi = null;
         }
 
 #region Copy this section to create new option, and then comment it to show what needs to be modified.
@@ -879,7 +879,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 _activateOnDockFix = value;
             }
         }
-        
+
         private static bool? _selectClosestOnClose;
 
         public static bool? EnableSelectClosestOnClose
@@ -955,6 +955,84 @@ namespace WeifenLuo.WinFormsUI.Docking
             set
             {
                 _selectClosestOnClose = value;
+            }
+        }
+
+        private static bool? _perScreenDpi;
+
+        public static bool? EnablePerScreenDpi
+        {
+            get
+            {
+                if (_perScreenDpi != null)
+                {
+                    return _perScreenDpi;
+                }
+
+                if (EnableAll != null)
+                {
+                    return _perScreenDpi = EnableAll;
+                }
+#if NET35 || NET40
+                var section = ConfigurationManager.GetSection("dockPanelSuite") as PatchSection;
+                if (section != null)
+                {
+                    if (section.EnableAll != null)
+                    {
+                        return _perScreenDpi = section.EnableAll;
+                    }
+
+                    return _perScreenDpi = section.EnablePerScreenDpi;
+                }
+#endif
+                var environment = Environment.GetEnvironmentVariable("DPS_EnablePerScreenDpi");
+                if (!string.IsNullOrEmpty(environment))
+                {
+                    var enable = false;
+                    if (bool.TryParse(environment, out enable))
+                    {
+                        return _perScreenDpi = enable;
+                    }
+                }
+
+                {
+                    var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnablePerScreenDpi");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _perScreenDpi = enable;
+                            }
+                        }
+                    }
+                }
+
+                {
+                    var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
+                    if (key != null)
+                    {
+                        var pair = key.GetValue("EnablePerScreenDpi");
+                        if (pair != null)
+                        {
+                            var enable = false;
+                            if (bool.TryParse(pair.ToString(), out enable))
+                            {
+                                return _perScreenDpi = enable;
+                            }
+                        }
+                    }
+                }
+
+                return _perScreenDpi = false;
+            }
+
+            set
+            {
+                _perScreenDpi = value;
             }
         }
     }

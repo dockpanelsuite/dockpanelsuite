@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>DockPanelSuite</PackageId>
-    <PackageVersion>3.1.0-beta6</PackageVersion>
+    <PackageVersion>3.1.0-beta7</PackageVersion>
     <FileVersion>3.1.0.0</FileVersion>
     <Authors>Weifen Luo and other contributors</Authors>
     <Description>The docking library for .Net Windows Forms development which mimics Visual Studio .Net.</Description>
@@ -162,6 +162,9 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net40' OR '$(TargetFramework)' == 'net35'">
     <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--<PackageReference Include="Vanara.PInvoke.SHCore" Version="3.3.4" />-->
   </ItemGroup>
 
 </Project>
