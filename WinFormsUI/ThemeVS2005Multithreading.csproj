@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>DockPanelSuite.ThemeVS2005Multithreading</PackageId>
-    <PackageVersion>3.1.0-beta7</PackageVersion>
+    <PackageVersion>3.1.0</PackageVersion>
     <FileVersion>3.1.0.0</FileVersion>
     <Authors>Weifen Luo and other contributors</Authors>
     <Description>Visual Studio 2005 theme for DockPanel Suite with multiple UI thread support. (Not recommended)</Description>
