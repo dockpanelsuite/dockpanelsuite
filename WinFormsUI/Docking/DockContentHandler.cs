@@ -709,14 +709,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 return m_isActivated;
             }
+        }
+        internal void SetIsActivated(bool value)
+        {
+            if (m_isActivated == value)
+                return;
 
-            internal set
-            {
-                if (m_isActivated == value)
-                    return;
-
-                m_isActivated = value;
-            }
+            m_isActivated = value;
+            OnIsActivatedChanged(EventArgs.Empty);
         }
 
         public bool IsDockStateValid(DockState dockState)
@@ -1050,6 +1050,19 @@ namespace WeifenLuo.WinFormsUI.Docking
         protected virtual void OnDockStateChanged(EventArgs e)
         {
             EventHandler handler = (EventHandler)Events[DockStateChangedEvent];
+            if (handler != null)
+                handler(this, e);
+        }
+
+        private static readonly object IsActivatedChangedEvent = new object();
+        public event EventHandler IsActivatedChanged
+        {
+            add { Events.AddHandler(IsActivatedChangedEvent, value); }
+            remove { Events.RemoveHandler(IsActivatedChangedEvent, value); }
+        }
+        protected virtual void OnIsActivatedChanged(EventArgs e)
+        {
+            EventHandler handler = (EventHandler) Events[IsActivatedChangedEvent];
             if (handler != null)
                 handler(this, e);
         }
