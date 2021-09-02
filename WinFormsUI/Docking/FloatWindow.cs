@@ -375,6 +375,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             return Bounds;
         }
 
+        void IDockDragSource.BeforeEndDrag()
+        {
+        }
+
         void IDockDragSource.EndDrag()
         {
             NativeMethods.SetWindowLong(this.Handle, (int)Win32.GetWindowLongIndex.GWL_EXSTYLE, m_preDragExStyle);

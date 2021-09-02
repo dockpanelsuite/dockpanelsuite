@@ -1167,8 +1167,30 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Rectangle(location, size);
         }
 
+        private static readonly object BeforeEndDragEvent = new object();
+        public event EventHandler BeforeEndDrag
+        {
+            add { Events.AddHandler(BeforeEndDragEvent, value); }
+            remove { Events.RemoveHandler(BeforeEndDragEvent, value); }
+        }
+        void IDockDragSource.BeforeEndDrag()
+        {
+            EventHandler handler = (EventHandler)Events[BeforeEndDragEvent];
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
+        private static readonly object EndDragEvent = new object();
+        public event EventHandler EndDrag
+        {
+            add { Events.AddHandler(EndDragEvent, value); }
+            remove { Events.RemoveHandler(EndDragEvent, value); }
+        }
         void IDockDragSource.EndDrag()
         {
+            EventHandler handler = (EventHandler)Events[EndDragEvent];
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         public void FloatAt(Rectangle floatWindowBounds)
