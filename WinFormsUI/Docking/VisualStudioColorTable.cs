@@ -269,22 +269,22 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return _palette.CommandBarToolbarDefault.Background; }
         }
 
-        //public override Color ToolStripContentPanelGradientBegin
-        //{
-        //    get { return Color.FromArgb(255, 239, 239, 242); }
-        //}
-        //public override Color ToolStripContentPanelGradientEnd
-        //{
-        //    get { return Color.FromArgb(255, 239, 239, 242); }
-        //}
-        //public override Color ToolStripPanelGradientBegin
-        //{
-        //    get { return Color.FromArgb(255, 239, 239, 242); }
-        //}
-        //public override Color ToolStripPanelGradientEnd
-        //{
-        //    get { return Color.FromArgb(255, 239, 239, 242); }
-        //}
+        public override Color ToolStripContentPanelGradientBegin
+        {
+            get { return _palette.CommandBarMenuDefault.Background; }
+        }
+        public override Color ToolStripContentPanelGradientEnd
+        {
+            get { return _palette.CommandBarMenuDefault.Background; }
+        }
+        public override Color ToolStripPanelGradientBegin
+        {
+            get { return _palette.CommandBarMenuDefault.Background; }
+        }
+        public override Color ToolStripPanelGradientEnd
+        {
+            get { return _palette.CommandBarMenuDefault.Background; }
+        }
 
         public override Color OverflowButtonGradientBegin
         {

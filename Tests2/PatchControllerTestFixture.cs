@@ -25,6 +25,7 @@ namespace Tests
             Assert.IsFalse(PatchController.EnableFloatSplitterFix);
             Assert.IsFalse(PatchController.EnableActivateOnDockFix);
             Assert.IsFalse(PatchController.EnableSelectClosestOnClose);
+            Assert.IsTrue(PatchController.EnablePerScreenDpi);
         }
     }
 }
