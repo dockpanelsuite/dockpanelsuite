@@ -17,16 +17,16 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2005
         [ToolboxItem(false)]
         private class VS2005PanelIndicator : PictureBox, IPanelIndicator
         {
-            private static Image _imagePanelLeft = Resources.DockIndicator_PanelLeft;
-            private static Image _imagePanelRight = Resources.DockIndicator_PanelRight;
-            private static Image _imagePanelTop = Resources.DockIndicator_PanelTop;
-            private static Image _imagePanelBottom = Resources.DockIndicator_PanelBottom;
-            private static Image _imagePanelFill = Resources.DockIndicator_PanelFill;
-            private static Image _imagePanelLeftActive = Resources.DockIndicator_PanelLeft_Active;
-            private static Image _imagePanelRightActive = Resources.DockIndicator_PanelRight_Active;
-            private static Image _imagePanelTopActive = Resources.DockIndicator_PanelTop_Active;
-            private static Image _imagePanelBottomActive = Resources.DockIndicator_PanelBottom_Active;
-            private static Image _imagePanelFillActive = Resources.DockIndicator_PanelFill_Active;
+            private Image _imagePanelLeft = Resources.DockIndicator_PanelLeft;
+            private Image _imagePanelRight = Resources.DockIndicator_PanelRight;
+            private Image _imagePanelTop = Resources.DockIndicator_PanelTop;
+            private Image _imagePanelBottom = Resources.DockIndicator_PanelBottom;
+            private Image _imagePanelFill = Resources.DockIndicator_PanelFill;
+            private Image _imagePanelLeftActive = Resources.DockIndicator_PanelLeft_Active;
+            private Image _imagePanelRightActive = Resources.DockIndicator_PanelRight_Active;
+            private Image _imagePanelTopActive = Resources.DockIndicator_PanelTop_Active;
+            private Image _imagePanelBottomActive = Resources.DockIndicator_PanelBottom_Active;
+            private Image _imagePanelFillActive = Resources.DockIndicator_PanelFill_Active;
 
             public VS2005PanelIndicator(DockStyle dockStyle)
             {

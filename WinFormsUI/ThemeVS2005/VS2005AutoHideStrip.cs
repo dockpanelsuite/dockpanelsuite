@@ -50,7 +50,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return DockPanel.Theme.Skin.AutoHideStripSkin.TextFont; }
         }
 
-        private static StringFormat _stringFormatTabHorizontal;
+        private StringFormat _stringFormatTabHorizontal;
         private StringFormat StringFormatTabHorizontal
         {
             get
@@ -73,7 +73,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static StringFormat _stringFormatTabVertical;
+        private StringFormat _stringFormatTabVertical;
         private StringFormat StringFormatTabVertical
         {
             get
@@ -150,37 +150,35 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return _TabGapBetween; }
         }
 
-        private static Pen PenTabBorder
+        private Pen PenTabBorder
         {
             get { return SystemPens.GrayText; }
         }
         #endregion
 
-        private static Matrix _matrixIdentity = new Matrix();
+        private static readonly Matrix _matrixIdentity = new Matrix();
         private static Matrix MatrixIdentity
         {
             get { return _matrixIdentity; }
         }
 
-        private static DockState[] _dockStates;
+        private static readonly DockState[] _dockStates
+            = new[] {
+                DockState.DockLeftAutoHide,
+                DockState.DockRightAutoHide,
+                DockState.DockTopAutoHide,
+                DockState.DockBottomAutoHide,
+            };
         private static DockState[] DockStates
         {
             get
             {
-                if (_dockStates == null)
-                {
-                    _dockStates = new DockState[4];
-                    _dockStates[0] = DockState.DockLeftAutoHide;
-                    _dockStates[1] = DockState.DockRightAutoHide;
-                    _dockStates[2] = DockState.DockTopAutoHide;
-                    _dockStates[3] = DockState.DockBottomAutoHide;
-                }
                 return _dockStates;
             }
         }
 
-        private static GraphicsPath _graphicsPath;
-        internal static GraphicsPath GraphicsPath
+        private GraphicsPath _graphicsPath;
+        private GraphicsPath GraphicsPath
         {
             get
             {

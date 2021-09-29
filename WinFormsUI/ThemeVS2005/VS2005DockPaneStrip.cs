@@ -131,10 +131,10 @@ namespace WeifenLuo.WinFormsUI.Docking
         #region Members
 
         private ContextMenuStrip m_selectMenu;
-        private static Bitmap m_imageButtonClose;
+        private Bitmap m_imageButtonClose;
         private InertButton m_buttonClose;
-        private static Bitmap m_imageButtonWindowList;
-        private static Bitmap m_imageButtonWindowListOverflow;
+        private Bitmap m_imageButtonWindowList;
+        private Bitmap m_imageButtonWindowListOverflow;
         private InertButton m_buttonWindowList;
         private IContainer m_components;
         private ToolTip m_toolTip;
@@ -144,8 +144,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private int m_endDisplayingTab = 0;
         private int m_firstDisplayingTab = 0;
         private bool m_documentTabsOverflow = false;
-        private static string m_toolTipSelect;
-        private static string m_toolTipClose;
+        private string m_toolTipSelect;
+        private string m_toolTipClose;
         private bool m_closeButtonVisible = false;
         private int _selectMenuMargin = 5;
 
@@ -218,7 +218,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { _selectMenuMargin = value; }
         }
 
-        private static Bitmap ImageButtonClose
+        private Bitmap ImageButtonClose
         {
             get
             {
@@ -245,7 +245,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap ImageButtonWindowList
+        private Bitmap ImageButtonWindowList
         {
             get
             {
@@ -256,7 +256,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap ImageButtonWindowListOverflow
+        private Bitmap ImageButtonWindowListOverflow
         {
             get
             {
@@ -283,10 +283,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static GraphicsPath GraphicsPath
-        {
-            get { return VS2005AutoHideStrip.GraphicsPath; }
-        }
+        private GraphicsPath GraphicsPath { get; } = new GraphicsPath();
 
         private IContainer Components
         {
@@ -425,7 +422,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return _ToolWindowTabSeperatorGapBottom; }
         }
 
-        private static string ToolTipClose
+        private string ToolTipClose
         {
             get
             {
@@ -435,7 +432,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static string ToolTipSelect
+        private string ToolTipSelect
         {
             get
             {
@@ -555,17 +552,17 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return _DocumentTextGapRight; }
         }
 
-        private static Pen PenToolWindowTabBorder
+        private Pen PenToolWindowTabBorder
         {
             get { return SystemPens.GrayText; }
         }
 
-        private static Pen PenDocumentTabActiveBorder
+        private Pen PenDocumentTabActiveBorder
         {
             get { return SystemPens.ControlDarkDark; }
         }
 
-        private static Pen PenDocumentTabInactiveBorder
+        private Pen PenDocumentTabInactiveBorder
         {
             get { return SystemPens.GrayText; }
         }

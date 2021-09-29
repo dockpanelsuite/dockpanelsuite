@@ -75,8 +75,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         private const int _ButtonGapRight = 2;
         #endregion
 
-        private static Bitmap _imageButtonClose;
-        private static Bitmap ImageButtonClose
+        private Bitmap _imageButtonClose;
+        private Bitmap ImageButtonClose
         {
             get
             {
@@ -104,8 +104,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap _imageButtonAutoHide;
-        private static Bitmap ImageButtonAutoHide
+        private Bitmap _imageButtonAutoHide;
+        private Bitmap ImageButtonAutoHide
         {
             get
             {
@@ -116,8 +116,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap _imageButtonDock;
-        private static Bitmap ImageButtonDock
+        private Bitmap _imageButtonDock;
+        private Bitmap ImageButtonDock
         {
             get
             {
@@ -145,8 +145,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static Bitmap _imageButtonOptions;
-        private static Bitmap ImageButtonOptions
+        private Bitmap _imageButtonOptions;
+        private Bitmap ImageButtonOptions
         {
             get
             {
@@ -248,42 +248,14 @@ namespace WeifenLuo.WinFormsUI.Docking
             get	{	return _ButtonGapBetween;	}
         }
 
-        private static string _toolTipClose;
-        private static string ToolTipClose
-        {
-            get
-            {	
-                if (_toolTipClose == null)
-                    _toolTipClose = Strings.DockPaneCaption_ToolTipClose;
-                return _toolTipClose;
-            }
-        }
+        private static string ToolTipClose { get; } = Strings.DockPaneCaption_ToolTipClose;
 
-        private static string _toolTipOptions;
-        private static string ToolTipOptions
-        {
-            get
-            {
-                if (_toolTipOptions == null)
-                    _toolTipOptions = Strings.DockPaneCaption_ToolTipOptions;
+        private static string ToolTipOptions { get; } = Strings.DockPaneCaption_ToolTipOptions;
 
-                return _toolTipOptions;
-            }
-        }
+        private static string ToolTipAutoHide { get; } = Strings.DockPaneCaption_ToolTipAutoHide;
 
-        private static string _toolTipAutoHide;
-        private static string ToolTipAutoHide
-        {
-            get
-            {	
-                if (_toolTipAutoHide == null)
-                    _toolTipAutoHide = Strings.DockPaneCaption_ToolTipAutoHide;
-                return _toolTipAutoHide;
-            }
-        }
-
-        private static Blend _activeBackColorGradientBlend;
-        private static Blend ActiveBackColorGradientBlend
+        private Blend _activeBackColorGradientBlend;
+        private Blend ActiveBackColorGradientBlend
         {
             get
             {
@@ -311,7 +283,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        private static TextFormatFlags _textFormat =
+        private static readonly TextFormatFlags _textFormat =
             TextFormatFlags.SingleLine |
             TextFormatFlags.EndEllipsis |
             TextFormatFlags.VerticalCenter;
