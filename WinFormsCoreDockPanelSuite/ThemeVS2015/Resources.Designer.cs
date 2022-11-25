@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace WinFormsCoreDockPanelSuite.ThemeVS2015 {
-
+    using System;
     
     
     /// <summary>
@@ -61,6 +61,256 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2015 {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Dockindicator_PaneDiamond_Hotspot {
+            get {
+                object obj = ResourceManager.GetObject("Dockindicator_PaneDiamond_Hotspot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotspotIndex {
+            get {
+                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotspotIndex", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskArrowBottom {
+            get {
+                object obj = ResourceManager.GetObject("MaskArrowBottom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskArrowLeft {
+            get {
+                object obj = ResourceManager.GetObject("MaskArrowLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskArrowRight {
+            get {
+                object obj = ResourceManager.GetObject("MaskArrowRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskArrowTop {
+            get {
+                object obj = ResourceManager.GetObject("MaskArrowTop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskCoreBottom {
+            get {
+                object obj = ResourceManager.GetObject("MaskCoreBottom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskCoreCenter {
+            get {
+                object obj = ResourceManager.GetObject("MaskCoreCenter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskCoreLeft {
+            get {
+                object obj = ResourceManager.GetObject("MaskCoreLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskCoreRight {
+            get {
+                object obj = ResourceManager.GetObject("MaskCoreRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskCoreTop {
+            get {
+                object obj = ResourceManager.GetObject("MaskCoreTop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskDock {
+            get {
+                object obj = ResourceManager.GetObject("MaskDock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskDockFive {
+            get {
+                object obj = ResourceManager.GetObject("MaskDockFive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskTabClose {
+            get {
+                object obj = ResourceManager.GetObject("MaskTabClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskTabList {
+            get {
+                object obj = ResourceManager.GetObject("MaskTabList", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskTabOverflow {
+            get {
+                object obj = ResourceManager.GetObject("MaskTabOverflow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskToolWindowAutoHide {
+            get {
+                object obj = ResourceManager.GetObject("MaskToolWindowAutoHide", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskToolWindowClose {
+            get {
+                object obj = ResourceManager.GetObject("MaskToolWindowClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskToolWindowDock {
+            get {
+                object obj = ResourceManager.GetObject("MaskToolWindowDock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskToolWindowOption {
+            get {
+                object obj = ResourceManager.GetObject("MaskToolWindowOption", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskWindowBottom {
+            get {
+                object obj = ResourceManager.GetObject("MaskWindowBottom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskWindowCenter {
+            get {
+                object obj = ResourceManager.GetObject("MaskWindowCenter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskWindowLeft {
+            get {
+                object obj = ResourceManager.GetObject("MaskWindowLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskWindowRight {
+            get {
+                object obj = ResourceManager.GetObject("MaskWindowRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap MaskWindowTop {
+            get {
+                object obj = ResourceManager.GetObject("MaskWindowTop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
         internal static byte[] vs2015blue_vstheme {
@@ -89,344 +339,5 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2015 {
                 return ((byte[])(obj));
             }
         }
-
-
-        #region 2012
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Dockindicator_PaneDiamond_Hotspot
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("Dockindicator_PaneDiamond_Hotspot", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotspotIndex
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotspotIndex", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskArrowBottom
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskArrowBottom", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskArrowLeft
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskArrowLeft", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskArrowRight
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskArrowRight", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskArrowTop
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskArrowTop", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskCoreBottom
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskCoreBottom", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskCoreCenter
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskCoreCenter", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskCoreLeft
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskCoreLeft", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskCoreRight
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskCoreRight", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskCoreTop
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskCoreTop", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskDock
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskDock", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskDockFive
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskDockFive", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskTabClose
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskTabClose", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskTabList
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskTabList", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskTabOverflow
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskTabOverflow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskToolWindowAutoHide
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskToolWindowAutoHide", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskToolWindowClose
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskToolWindowClose", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskToolWindowDock
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskToolWindowDock", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskToolWindowOption
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskToolWindowOption", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskWindowBottom
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskWindowBottom", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskWindowCenter
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskWindowCenter", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskWindowLeft
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskWindowLeft", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskWindowRight
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskWindowRight", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MaskWindowTop
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("MaskWindowTop", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] vs2012blue_vstheme
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("vs2012blue_vstheme", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] vs2012dark_vstheme
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("vs2012dark_vstheme", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] vs2012light_vstheme
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("vs2012light_vstheme", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        #endregion
     }
 }
