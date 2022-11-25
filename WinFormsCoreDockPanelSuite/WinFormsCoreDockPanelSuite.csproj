@@ -1,0 +1,534 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Docking\DockPanel.bmp" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Bottom.png" />
+    <None Remove="ThemeVS2003\Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Left.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Right.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Top.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelBottom.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelBottom_Active.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelFill.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelFill_Active.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelLeft.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelLeft_Active.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelRight.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelRight_Active.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelTop.png" />
+    <None Remove="ThemeVS2003\Resources\DockIndicator_PanelTop_Active.png" />
+    <None Remove="ThemeVS2003\Resources\DockPane_AutoHide.png" />
+    <None Remove="ThemeVS2003\Resources\DockPane_Close.png" />
+    <None Remove="ThemeVS2003\Resources\DockPane_Dock.png" />
+    <None Remove="ThemeVS2003\Resources\DockPane_Option.png" />
+    <None Remove="ThemeVS2003\Resources\DockPane_OptionOverflow.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Bottom.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Left.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Right.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Top.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelBottom.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelBottom_Active.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelFill.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelFill_Active.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelLeft.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelLeft_Active.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelRight.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelRight_Active.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelTop.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockIndicator_PanelTop_Active.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockPane_AutoHide.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockPane_Close.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockPane_Dock.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockPane_Option.png" />
+    <None Remove="ThemeVS2005Multithreading\Resources\DockPane_OptionOverflow.png" />
+    <None Remove="ThemeVS2012\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
+    <None Remove="ThemeVS2012\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <None Remove="ThemeVS2012\Resources\MaskArrowBottom.png" />
+    <None Remove="ThemeVS2012\Resources\MaskArrowLeft.png" />
+    <None Remove="ThemeVS2012\Resources\MaskArrowRight.png" />
+    <None Remove="ThemeVS2012\Resources\MaskArrowTop.png" />
+    <None Remove="ThemeVS2012\Resources\MaskCoreBottom.png" />
+    <None Remove="ThemeVS2012\Resources\MaskCoreCenter.png" />
+    <None Remove="ThemeVS2012\Resources\MaskCoreLeft.png" />
+    <None Remove="ThemeVS2012\Resources\MaskCoreRight.png" />
+    <None Remove="ThemeVS2012\Resources\MaskCoreTop.png" />
+    <None Remove="ThemeVS2012\Resources\MaskDock.png" />
+    <None Remove="ThemeVS2012\Resources\MaskDockFive.png" />
+    <None Remove="ThemeVS2012\Resources\MaskTabClose.png" />
+    <None Remove="ThemeVS2012\Resources\MaskTabList.png" />
+    <None Remove="ThemeVS2012\Resources\MaskTabOverflow.png" />
+    <None Remove="ThemeVS2012\Resources\MaskToolWindowAutoHide.png" />
+    <None Remove="ThemeVS2012\Resources\MaskToolWindowClose.png" />
+    <None Remove="ThemeVS2012\Resources\MaskToolWindowDock.png" />
+    <None Remove="ThemeVS2012\Resources\MaskToolWindowOption.png" />
+    <None Remove="ThemeVS2012\Resources\MaskWindowBottom.png" />
+    <None Remove="ThemeVS2012\Resources\MaskWindowCenter.png" />
+    <None Remove="ThemeVS2012\Resources\MaskWindowLeft.png" />
+    <None Remove="ThemeVS2012\Resources\MaskWindowRight.png" />
+    <None Remove="ThemeVS2012\Resources\MaskWindowTop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Bottom.png" />
+    <Content Include="ThemeVS2003\Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Left.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Right.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PaneDiamond_Top.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelBottom.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelBottom_Active.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelFill.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelFill_Active.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelLeft.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelLeft_Active.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelRight.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelRight_Active.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelTop.png" />
+    <Content Include="ThemeVS2003\Resources\DockIndicator_PanelTop_Active.png" />
+    <Content Include="ThemeVS2003\Resources\DockPane_AutoHide.png" />
+    <Content Include="ThemeVS2003\Resources\DockPane_Close.png" />
+    <Content Include="ThemeVS2003\Resources\DockPane_Dock.png" />
+    <Content Include="ThemeVS2003\Resources\DockPane_Option.png" />
+    <Content Include="ThemeVS2003\Resources\DockPane_OptionOverflow.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Bottom.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\Dockindicator_PaneDiamond_Fill.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Left.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Right.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PaneDiamond_Top.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelBottom.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelBottom_Active.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelFill.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelFill_Active.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelLeft.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelLeft_Active.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelRight.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelRight_Active.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelTop.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockIndicator_PanelTop_Active.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockPane_AutoHide.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockPane_Close.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockPane_Dock.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockPane_Option.png" />
+    <Content Include="ThemeVS2005Multithreading\Resources\DockPane_OptionOverflow.png" />
+    <Content Include="ThemeVS2012\Resources\Dockindicator_PaneDiamond_Hotspot.png" />
+    <Content Include="ThemeVS2012\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowBottom.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowLeft.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowRight.png" />
+    <Content Include="ThemeVS2012\Resources\MaskArrowTop.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreBottom.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreCenter.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreLeft.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreRight.png" />
+    <Content Include="ThemeVS2012\Resources\MaskCoreTop.png" />
+    <Content Include="ThemeVS2012\Resources\MaskDock.png" />
+    <Content Include="ThemeVS2012\Resources\MaskDockFive.png" />
+    <Content Include="ThemeVS2012\Resources\MaskTabClose.png" />
+    <Content Include="ThemeVS2012\Resources\MaskTabList.png" />
+    <Content Include="ThemeVS2012\Resources\MaskTabOverflow.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowAutoHide.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowClose.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowDock.png" />
+    <Content Include="ThemeVS2012\Resources\MaskToolWindowOption.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowBottom.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowCenter.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowLeft.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowRight.png" />
+    <Content Include="ThemeVS2012\Resources\MaskWindowTop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Docking\DockPanel.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Docking\AutoHideStripBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DefaultTheme.cs" />
+    <Compile Update="Docking\DockContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPane.SplitterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPaneCaptionBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.Appearance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.AutoHideWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.DockDragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.DragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.FocusManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.MdiClientController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.Persistor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPanel.SplitterDragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockPaneStripBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\DragForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Docking\DummyControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\FloatWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Docking\InertButtonBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\SplitterBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Docking\ThemeBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\VisualStudioToolStripExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Docking\VisualStudioToolStripExtender.Designer.cs">
+      <DependentUpon>VisualStudioToolStripExtender.cs</DependentUpon>
+    </Compile>
+    <Compile Update="ThemeVS2003\InertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2003\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2003\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2003\VS2003AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2003\VS2003DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2003\VS2003DockPaneStrip.cs" />
+    <Compile Update="ThemeVS2003\VS2003Theme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\VS2005MultithreadingAutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\VS2005MultithreadingDockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\VS2005MultithreadingDockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\VS2005MultithreadingPaneIndicator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\VS2005MultithreadingPanelIndicator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\VS2005MultithreadingTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2005Multithreading\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2005\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2005\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2005\VS2005AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005\VS2005DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005\VS2005DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2005\VS2005Theme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2012\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012AutoHideWindowControl.cs" />
+    <Compile Update="ThemeVS2012\VS2012BlueTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012DarkTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012DockPaneCaptionInertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012DockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012LightTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012SplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012ThemeBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012_2013SplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2012\VS2012_2013WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2013\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013_2012AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013_2012AutoHideWindowControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013_2012DockPaneCaptionInertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013_2012DockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013_2012WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013BlueTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013DarkTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013DockPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013LightTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013SplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013ThemeBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2013\VS2013WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2015\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2012AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2012AutoHideWindowControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2012DockPaneCaptionInertButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2012DockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2012WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2013DockPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2013DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2013DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2013SplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015_2013WindowSplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015BlueTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015DarkTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015LightTheme.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ThemeVS2015\VS2015ThemeBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Docking\Strings.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2003\Resources.resx">
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2003\Strings.resx">
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2005Multithreading\Resources.resx">
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2005Multithreading\Strings.resx">
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2005\Resources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2005\Strings.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2012\Resources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2012\Strings.resx">
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2013\Resources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2013\Strings.resx">
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2015\Resources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ThemeVS2015\Strings.resx">
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
