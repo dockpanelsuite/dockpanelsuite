@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using WinFormsCoreDockPanelSuite.Docking;
 using WinFormsCoreDockPanelSuite.Docking.Helpers;
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading
 {
     [ToolboxItem(false)]
     internal class VS2005MultithreadingAutoHideStrip : AutoHideStripBase

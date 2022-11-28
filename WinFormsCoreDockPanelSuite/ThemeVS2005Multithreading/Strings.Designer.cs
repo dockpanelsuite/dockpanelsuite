@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading {
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

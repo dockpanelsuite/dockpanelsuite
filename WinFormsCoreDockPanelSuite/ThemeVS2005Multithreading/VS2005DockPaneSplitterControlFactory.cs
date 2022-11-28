@@ -7,7 +7,7 @@ using WinFormsCoreDockPanelSuite.Docking;
 using static WinFormsCoreDockPanelSuite.Docking.DockPane;
 using static WinFormsCoreDockPanelSuite.Docking.DockPanelExtender;
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading
 {
     internal class VS2005DockPaneSplitterControlFactory : IDockPaneSplitterControlFactory
     {

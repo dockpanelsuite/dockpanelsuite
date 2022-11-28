@@ -43,33 +43,33 @@ namespace NetCoreDockSample
             this.option2ToolStripMenuItem,
             this.option3ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 70);
             // 
             // option1ToolStripMenuItem
             // 
             this.option1ToolStripMenuItem.Name = "option1ToolStripMenuItem";
-            this.option1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.option1ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.option1ToolStripMenuItem.Text = "Option&1";
             // 
             // option2ToolStripMenuItem
             // 
             this.option2ToolStripMenuItem.Name = "option2ToolStripMenuItem";
-            this.option2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.option2ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.option2ToolStripMenuItem.Text = "Option&2";
             // 
             // option3ToolStripMenuItem
             // 
             this.option3ToolStripMenuItem.Name = "option3ToolStripMenuItem";
-            this.option3ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.option3ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.option3ToolStripMenuItem.Text = "Option&3";
             // 
             // ToolWindow
             // 
             this.ClientSize = new System.Drawing.Size(292, 266);
-            this.DockAreas = ((WinFormsCoreDockPanelSuite.Docking.DockAreas)(((((WinFormsCoreDockPanelSuite.Docking.DockAreas.Float | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockLeft)
-                        | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockRight)
-                        | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockTop)
-                        | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockBottom)));
+            this.DockAreas = ((WinFormsCoreDockPanelSuite.Docking.DockAreas)(((((WinFormsCoreDockPanelSuite.Docking.DockAreas.Float | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockLeft) 
+            | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockRight) 
+            | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockTop) 
+            | WinFormsCoreDockPanelSuite.Docking.DockAreas.DockBottom)));
             this.Name = "ToolWindow";
             this.TabPageContextMenuStrip = this.contextMenuStrip1;
             this.TabText = "ToolWindow";

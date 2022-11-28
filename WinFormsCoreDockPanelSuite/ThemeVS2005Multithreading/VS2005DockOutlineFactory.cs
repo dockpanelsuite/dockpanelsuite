@@ -5,7 +5,7 @@ using WinFormsCoreDockPanelSuite.Docking;
 
 using static WinFormsCoreDockPanelSuite.Docking.DockPanelExtender;
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading
 {
     public class VS2005DockOutlineFactory : IDockOutlineFactory
     {

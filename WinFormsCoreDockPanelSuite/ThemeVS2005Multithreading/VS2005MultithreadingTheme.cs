@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using WinFormsCoreDockPanelSuite.Docking;
 using WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading;
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading
 {
     /// <summary>
     /// Visual Studio 2005 theme for multiple UI threads.
@@ -26,6 +26,7 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
             Extender.PaneIndicatorFactory = new VS2005MultithreadingPaneIndicatorFactory();
             Extender.PanelIndicatorFactory = new VS2005MultithreadingPanelIndicatorFactory();
             Extender.DockOutlineFactory = new VS2005DockOutlineFactory();
+            Extender.DockIndicatorFactory = new VS2005MultithreadingDockIndicatorFactory();
         }
 
         internal static DockPanelSkin CreateVisualStudio2005()

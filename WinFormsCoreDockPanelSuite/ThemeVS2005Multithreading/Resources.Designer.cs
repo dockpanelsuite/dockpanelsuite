@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading {
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -83,9 +83,9 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_Fill {
+        internal static System.Drawing.Bitmap Dockindicator_PaneDiamond_Fill {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_Fill", resourceCulture);
+                object obj = ResourceManager.GetObject("Dockindicator_PaneDiamond_Fill", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotSpot {
+        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_Hotspot {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotSpot", resourceCulture);
+                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_Hotspot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotSpotIndex {
+        internal static System.Drawing.Bitmap DockIndicator_PaneDiamond_HotspotIndex {
             get {
-                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotSpotIndex", resourceCulture);
+                object obj = ResourceManager.GetObject("DockIndicator_PaneDiamond_HotspotIndex", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

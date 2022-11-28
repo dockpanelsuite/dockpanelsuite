@@ -7,7 +7,7 @@ using WinFormsCoreDockPanelSuite.Docking;
 using WinFormsCoreDockPanelSuite.Docking.Helpers;
 using WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading;
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading
 {
     [ToolboxItem(false)]
     internal class VS2005MultithreadingPaneIndicator : PictureBox, DockPanel.IPaneIndicator
@@ -41,9 +41,10 @@ namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
                 _bitmapPaneDiamondRight = (Bitmap)Resources.DockIndicator_PaneDiamond_Right.Clone();
                 _bitmapPaneDiamondTop = (Bitmap)Resources.DockIndicator_PaneDiamond_Top.Clone();
                 _bitmapPaneDiamondBottom = (Bitmap)Resources.DockIndicator_PaneDiamond_Bottom.Clone();
-                _bitmapPaneDiamondFill = (Bitmap)Resources.DockIndicator_PaneDiamond_Fill.Clone();
-                _bitmapPaneDiamondHotSpot = (Bitmap)Resources.DockIndicator_PaneDiamond_HotSpot.Clone();
-                _bitmapPaneDiamondHotSpotIndex = (Bitmap)Resources.DockIndicator_PaneDiamond_HotSpotIndex.Clone();
+           
+                _bitmapPaneDiamondFill = (Bitmap)Resources.Dockindicator_PaneDiamond_Fill.Clone();
+            _bitmapPaneDiamondHotSpot = (Bitmap)Resources.DockIndicator_PaneDiamond_Hotspot.Clone();
+                _bitmapPaneDiamondHotSpotIndex = (Bitmap)Resources.DockIndicator_PaneDiamond_HotspotIndex.Clone();
             }
 
             _displayingGraphicsPath = DrawHelper.CalculateGraphicsPathFromBitmap(_bitmapPaneDiamond);

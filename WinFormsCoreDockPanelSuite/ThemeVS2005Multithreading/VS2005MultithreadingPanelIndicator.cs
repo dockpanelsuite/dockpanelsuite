@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using WinFormsCoreDockPanelSuite.Docking;
 using WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading;
 
-namespace WinFormsCoreDockPanelSuite.ThemeVS2005MultithreadingMultithreading
+namespace WinFormsCoreDockPanelSuite.ThemeVS2005Multithreading
 {
     [ToolboxItem(false)]
     internal class VS2005MultithreadingPanelIndicator : PictureBox, DockPanel.IPanelIndicator
