@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <PackageId>DockPanelSuite.ThemeVS2015</PackageId>
     <PackageVersion>3.1.0</PackageVersion>

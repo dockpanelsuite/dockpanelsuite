@@ -1,6 +1,7 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Configuration;
+using System.Runtime.InteropServices;
 using WeifenLuo.WinFormsUI.Docking.Configuration;
 
 namespace WeifenLuo.WinFormsUI.Docking
@@ -57,6 +58,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -73,6 +75,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -137,6 +140,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -153,6 +157,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -215,6 +220,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -231,6 +237,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -293,6 +300,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -309,6 +317,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -371,6 +380,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -387,6 +397,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -449,6 +460,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -465,6 +477,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -527,6 +540,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -543,6 +557,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -605,6 +620,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -621,6 +637,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -683,6 +700,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -699,6 +717,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -761,6 +780,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -777,6 +797,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -839,6 +860,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -855,6 +877,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -917,6 +940,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -933,6 +957,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -995,6 +1020,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.CurrentUser.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
@@ -1011,6 +1037,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     }
                 }
 
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     var key = Registry.LocalMachine.OpenSubKey(@"Software\DockPanelSuite");
                     if (key != null)
