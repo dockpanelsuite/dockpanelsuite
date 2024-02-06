@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <PackageId>DockPanelSuite.ThemeVS2005Multithreading</PackageId>
     <PackageVersion>3.1.0</PackageVersion>
@@ -14,7 +13,7 @@
       Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
     </PackageReleaseNotes>
-    <TargetFrameworks>netcoreapp3.1;net35;net40</TargetFrameworks>
+    <TargetFrameworks>net7.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject />
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
@@ -24,7 +23,6 @@
     <EnableDefaultItems>false</EnableDefaultItems>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="ThemeVS2005Multithreading\VS2005MultithreadingAutoHideStrip.cs">
       <SubType>Component</SubType>
@@ -68,7 +66,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond.png" />
     <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Bottom.png" />
@@ -108,5 +105,4 @@
   <ItemGroup>
     <ProjectReference Include="WinFormsUI.csproj" />
   </ItemGroup>
-
 </Project>

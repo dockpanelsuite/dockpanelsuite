@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <PackageId>DockPanelSuite.ThemeVS2005</PackageId>
     <PackageVersion>3.1.0</PackageVersion>
@@ -14,7 +13,7 @@
       Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
     </PackageReleaseNotes>
-    <TargetFrameworks>netcoreapp3.1;net35;net40</TargetFrameworks>
+    <TargetFrameworks>net7.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject />
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
@@ -24,7 +23,6 @@
     <EnableDefaultItems>false</EnableDefaultItems>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThemeVS2005\Resources.Designer.cs">
@@ -154,5 +152,4 @@
   <ItemGroup>
     <None Include="ThemeVS2005\Resources\DockPane_OptionOverflow.png" />
   </ItemGroup>
-
 </Project>

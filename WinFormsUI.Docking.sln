@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28315.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsUI", "WinFormsUI\WinFormsUI.csproj", "{C75532C4-765B-418E-B09B-46D36B2ABDB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockSample", "DockSample\DockSample.csproj", "{40793A27-478B-4357-B4C3-FC8943131F3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockSample", "DockSample\DockSample.csproj", "{40793A27-478B-4357-B4C3-FC8943131F3D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThemeVS2013", "WinFormsUI\ThemeVS2013.csproj", "{245E07F6-10D5-4CFA-B003-0DEB06B223DA}"
 EndProject
@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThemeVS2003", "WinFormsUI\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThemeVS2005Multithreading", "WinFormsUI\ThemeVS2005Multithreading.csproj", "{01B09009-BD30-47F2-B318-4B583D606C61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{2EF6DD60-E690-4E65-AD06-B3041C0ACDD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{2EF6DD60-E690-4E65-AD06-B3041C0ACDD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests2", "Tests2\Tests2.csproj", "{4B0F335C-88AD-4884-B286-0107D24D246B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests2", "Tests2\Tests2.csproj", "{4B0F335C-88AD-4884-B286-0107D24D246B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests3", "Tests3\Tests3.csproj", "{6C17B7EB-B55B-4878-8EB1-5AA6942FB50F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests3", "Tests3\Tests3.csproj", "{6C17B7EB-B55B-4878-8EB1-5AA6942FB50F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTesting", "UnitTesting", "{0CA1B611-8907-4C9C-93A7-4133E7540B24}"
 EndProject
