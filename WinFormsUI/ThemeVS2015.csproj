@@ -123,6 +123,9 @@
     <None Include="ThemeVS2015\Resources\vs2015light.vstheme.gz" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="WinFormsUI.csproj" />
   </ItemGroup>
 </Project>

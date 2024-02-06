@@ -162,6 +162,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <!--<PackageReference Include="Vanara.PInvoke.SHCore" Version="3.3.4" />-->
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
   </ItemGroup>
 </Project>
