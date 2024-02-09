@@ -1112,7 +1112,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
         }
 
-        internal void ApplyTheme()
+        public void ApplyTheme()
         {
             if (m_tabPageContextMenuStrip != null && DockPanel != null)
                 DockPanel.Theme.ApplyTo(m_tabPageContextMenuStrip);

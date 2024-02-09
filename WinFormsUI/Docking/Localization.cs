@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace WeifenLuo.WinFormsUI.Docking
 {
     [AttributeUsage(AttributeTargets.All)]
-    internal sealed class LocalizedDescriptionAttribute : DescriptionAttribute
+    public class LocalizedDescriptionAttribute : DescriptionAttribute
     {
         private bool m_initialized = false;
 
@@ -32,7 +32,7 @@ namespace WeifenLuo.WinFormsUI.Docking
     }
 
     [AttributeUsage(AttributeTargets.All)]
-    internal sealed class LocalizedCategoryAttribute : CategoryAttribute
+    public class LocalizedCategoryAttribute : CategoryAttribute
     {
         public LocalizedCategoryAttribute(string key) : base(key)
         {
