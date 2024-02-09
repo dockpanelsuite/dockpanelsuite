@@ -141,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Docking\DockContent.resx" />
-    <EmbeddedResource Include="Docking\DragForm.resx" />
     <EmbeddedResource Include="Docking\Strings.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
