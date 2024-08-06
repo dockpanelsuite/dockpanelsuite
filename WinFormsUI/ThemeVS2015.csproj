@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <PackageId>DockPanelSuite.ThemeVS2015</PackageId>
-    <PackageVersion>3.1.0</PackageVersion>
-    <FileVersion>3.1.0.0</FileVersion>
+    <PackageVersion>3.1.1</PackageVersion>
+    <FileVersion>3.1.1.0</FileVersion>
     <Authors>Weifen Luo and other contributors</Authors>
     <Description>Visual Studio 2015 themes for DockPanel Suite.</Description>
     <Copyright>(C) 2007-2020 Weifen Luo and other contributors</Copyright>
