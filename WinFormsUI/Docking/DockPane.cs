@@ -1273,6 +1273,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             return new Rectangle(location, size);
         }
 
+        void IDockDragSource.BeforeEndDrag()
+        {
+        }
+
         void IDockDragSource.EndDrag()
         {
         }

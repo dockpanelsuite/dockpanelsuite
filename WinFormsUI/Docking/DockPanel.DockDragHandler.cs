@@ -453,6 +453,8 @@ namespace WeifenLuo.WinFormsUI.Docking
                 Outline.Close();
                 Indicator.Close();
 
+                DragSource.BeforeEndDrag();
+
                 EndDrag(abort);
 
                 // Queue a request to layout all children controls
