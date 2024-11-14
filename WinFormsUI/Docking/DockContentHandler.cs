@@ -673,9 +673,21 @@ namespace WeifenLuo.WinFormsUI.Docking
             pane.ValidateActiveContent();
         }
 
+        private string m_PersistString = "";
         internal string PersistString
         {
-            get { return GetPersistStringCallback == null ? Form.GetType().ToString() : GetPersistStringCallback(); }
+            get
+            {
+                if (m_PersistString.Length > 0)
+                {
+                    return m_PersistString;
+                }
+                return GetPersistStringCallback == null ? Form.GetType().ToString() : GetPersistStringCallback();
+            }
+            set
+            {
+                m_PersistString = value;
+            }
         }
 
         public GetPersistStringCallback GetPersistStringCallback { get; set; }

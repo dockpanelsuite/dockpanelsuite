@@ -165,6 +165,15 @@ namespace WeifenLuo.WinFormsUI.Docking
         }
 
         [LocalizedCategory("Category_Docking")]
+        [LocalizedDescription("DockContent_PersistString_Description")]
+        [DefaultValue("")]
+        public string PersistString
+        {
+            get { return DockHandler.PersistString; }
+            set { DockHandler.PersistString = value; }
+        }
+
+        [LocalizedCategory("Category_Docking")]
         [LocalizedDescription("DockContent_HideOnClose_Description")]
         [DefaultValue(false)]
         public bool HideOnClose
