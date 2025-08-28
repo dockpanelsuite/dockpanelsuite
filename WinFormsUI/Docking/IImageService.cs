@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -52,6 +53,60 @@ namespace WeifenLuo.WinFormsUI.Docking
     public static class ImageServiceHelper
     {
         /// <summary>
+        /// Gets the current DPI scaling factor.
+        /// </summary>
+        /// <returns>The DPI scaling factor, or 1.0 if DPI awareness is disabled.</returns>
+        private static float GetDpiScale()
+        {
+            if (PatchController.EnableHighDpi != true)
+                return 1.0f;
+
+            // Use a temporary control to get the current DPI
+            using (var control = new Control())
+            {
+                using (var graphics = control.CreateGraphics())
+                {
+                    return graphics.DpiX / 96.0f;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draws an image with DPI scaling awareness.
+        /// </summary>
+        /// <param name="graphics">The graphics context to draw on.</param>
+        /// <param name="image">The image to draw.</param>
+        /// <param name="x">The x-coordinate.</param>
+        /// <param name="y">The y-coordinate.</param>
+        private static void DrawImageDpiAware(Graphics graphics, Image image, int x, int y)
+        {
+            if (PatchController.EnableHighDpi == true)
+            {
+                // When DPI scaling is enabled, draw the image at its actual size
+                // but position it at the scaled coordinates
+                graphics.DrawImage(image, ScaleValue(x), ScaleValue(y));
+            }
+            else
+            {
+                graphics.DrawImageUnscaled(image, x, y);
+            }
+        }
+
+        /// <summary>
+        /// Scales a value according to current DPI settings.
+        /// </summary>
+        /// <param name="value">The value to scale.</param>
+        /// <returns>The scaled value.</returns>
+        private static int ScaleValue(int value)
+        {
+            if (PatchController.EnableHighDpi == true)
+            {
+                float scale = GetDpiScale();
+                return (int)(value * scale);
+            }
+            return value;
+        }
+        /// <summary>
         /// Gets images for tabs and captions.
         /// </summary>
         /// <param name="mask"></param>
@@ -102,18 +157,30 @@ namespace WeifenLuo.WinFormsUI.Docking
                 border = background;
             }
 
-            Bitmap back = new Bitmap(width, height);
+            // Create the final image with potential DPI scaling
+            var finalWidth = ScaleValue(width);
+            var finalHeight = ScaleValue(height);
+            Bitmap back = new Bitmap(finalWidth, finalHeight);
             using (Graphics gfx = Graphics.FromImage(back))
             {
                 SolidBrush brush = new SolidBrush(background);
                 SolidBrush brush2 = new SolidBrush(border.Value);
-                gfx.FillRectangle(brush2, 0, 0, width, height);
+                gfx.FillRectangle(brush2, 0, 0, finalWidth, finalHeight);
                 if (background != border.Value)
                 {
-                    gfx.FillRectangle(brush, 1, 1, width - 2, height - 2);
+                    var borderSize = ScaleValue(1);
+                    gfx.FillRectangle(brush, borderSize, borderSize, finalWidth - 2 * borderSize, finalHeight - 2 * borderSize);
                 }
 
-                gfx.DrawImageUnscaled(output, 0, 0);
+                // Scale the output image when drawing if DPI scaling is enabled
+                if (PatchController.EnableHighDpi == true && GetDpiScale() != 1.0f)
+                {
+                    gfx.DrawImage(output, new Rectangle(0, 0, finalWidth, finalHeight));
+                }
+                else
+                {
+                    gfx.DrawImageUnscaled(output, 0, 0);
+                }
             }
 
             output.Dispose();
@@ -152,8 +219,8 @@ namespace WeifenLuo.WinFormsUI.Docking
         /// <returns></returns>
         public static Bitmap GetDockIcon(Bitmap maskArrow, Bitmap layerArrow, Bitmap maskWindow, Bitmap layerWindow, Bitmap maskBack, Color background, IPaintingService painting, Bitmap maskCore = null, Bitmap layerCore = null, Color? separator = null)
         {
-            var width = maskBack.Width;
-            var height = maskBack.Height;
+            var width = ScaleValue(maskBack.Width);
+            var height = ScaleValue(maskBack.Height);
             var rect = new Rectangle(0, 0, width, height);
             Bitmap arrowOut = null;
 
@@ -178,11 +245,11 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 SolidBrush brush = painting.GetBrush(background);
                 gfx.FillRectangle(brush, 0, 0, width, height);
-                gfx.DrawImageUnscaled(windowOut, 0, 0);
+                DrawImageDpiAware(gfx, windowOut, 0, 0);
                 windowOut.Dispose();
                 if (layerCore != null)
                 {
-                    gfx.DrawImageUnscaled(coreOut, 0, 0);
+                    DrawImageDpiAware(gfx, coreOut, 0, 0);
                     coreOut.Dispose();
                 }
 
@@ -200,7 +267,7 @@ namespace WeifenLuo.WinFormsUI.Docking
             {
                 if (arrowOut != null)
                 {
-                    gfx.DrawImageUnscaled(arrowOut, 0, 0);
+                    DrawImageDpiAware(gfx, arrowOut, 0, 0);
                     arrowOut.Dispose();
                 }
             }
@@ -255,15 +322,15 @@ namespace WeifenLuo.WinFormsUI.Docking
         public static Bitmap CombineFive(Bitmap five, Bitmap bottom, Bitmap center, Bitmap left, Bitmap right, Bitmap top)
         {
             var result = new Bitmap(five);
-            var cell = (result.Width - bottom.Width) / 2;
-            var offset = (cell - bottom.Width) / 2;
+            var cell = (result.Width - ScaleValue(bottom.Width)) / 2;
+            var offset = (cell - ScaleValue(bottom.Width)) / 2;
             using (var gfx = Graphics.FromImage(result))
             {
-                gfx.DrawImageUnscaled(top, cell, offset);
-                gfx.DrawImageUnscaled(center, cell, cell);
-                gfx.DrawImageUnscaled(bottom, cell, 2 * cell - offset);
-                gfx.DrawImageUnscaled(left, offset, cell);
-                gfx.DrawImageUnscaled(right, 2 * cell - offset, cell);
+                DrawImageDpiAware(gfx, top, cell, offset);
+                DrawImageDpiAware(gfx, center, cell, cell);
+                DrawImageDpiAware(gfx, bottom, cell, 2 * cell - offset);
+                DrawImageDpiAware(gfx, left, offset, cell);
+                DrawImageDpiAware(gfx, right, 2 * cell - offset, cell);
             }
 
             return result;
@@ -272,36 +339,36 @@ namespace WeifenLuo.WinFormsUI.Docking
         public static Bitmap GetFiveBackground(Bitmap mask, Color innerBorder, Color outerBorder, IPaintingService painting)
         {
             // TODO: calculate points using functions.
-            using (var input = GetLayerImage(innerBorder, mask.Width, painting))
+            using (var input = GetLayerImage(innerBorder, ScaleValue(mask.Width), painting))
             {
                 using (var gfx = Graphics.FromImage(input))
                 {
                     var pen = painting.GetPen(outerBorder);
                     gfx.DrawLines(pen, new[]
                     {
-                        new Point(36, 25),new Point(36, 0),
-                        new Point(75, 0), new Point(75, 25)
+                        new Point(ScaleValue(36), ScaleValue(25)), new Point(ScaleValue(36), 0),
+                        new Point(ScaleValue(75), 0), new Point(ScaleValue(75), ScaleValue(25))
                     });
                     gfx.DrawLines(pen, new[]
                     {
-                        new Point(86, 36), new Point(111, 36),
-                        new Point(111, 75), new Point(86, 75)
+                        new Point(ScaleValue(86), ScaleValue(36)), new Point(ScaleValue(111), ScaleValue(36)),
+                        new Point(ScaleValue(111), ScaleValue(75)), new Point(ScaleValue(86), ScaleValue(75))
                     });
                     gfx.DrawLines(pen, new[]
                     {
-                        new Point(75, 86), new Point(75, 111),
-                        new Point(36, 111), new Point(36, 86)
+                        new Point(ScaleValue(75), ScaleValue(86)), new Point(ScaleValue(75), ScaleValue(111)),
+                        new Point(ScaleValue(36), ScaleValue(111)), new Point(ScaleValue(36), ScaleValue(86))
                     });
                     gfx.DrawLines(pen, new[]
                     {
-                        new Point(25, 75), new Point(0, 75),
-                        new Point(0, 36), new Point(25, 36)
+                        new Point(ScaleValue(25), ScaleValue(75)), new Point(0, ScaleValue(75)),
+                        new Point(0, ScaleValue(36)), new Point(ScaleValue(25), ScaleValue(36))
                     });
-                    var pen2 = painting.GetPen(outerBorder, 2);
-                    gfx.DrawLine(pen2, new Point(36, 25), new Point(25, 36));
-                    gfx.DrawLine(pen2, new Point(75, 25), new Point(86, 36));
-                    gfx.DrawLine(pen2, new Point(86, 75), new Point(75, 86));
-                    gfx.DrawLine(pen2, new Point(36, 86), new Point(25, 75));
+                    var pen2 = painting.GetPen(outerBorder, ScaleValue(2));
+                    gfx.DrawLine(pen2, new Point(ScaleValue(36), ScaleValue(25)), new Point(ScaleValue(25), ScaleValue(36)));
+                    gfx.DrawLine(pen2, new Point(ScaleValue(75), ScaleValue(25)), new Point(ScaleValue(86), ScaleValue(36)));
+                    gfx.DrawLine(pen2, new Point(ScaleValue(86), ScaleValue(75)), new Point(ScaleValue(75), ScaleValue(86)));
+                    gfx.DrawLine(pen2, new Point(ScaleValue(36), ScaleValue(86)), new Point(ScaleValue(25), ScaleValue(75)));
                 }
 
                 return MaskImages(input, mask);
